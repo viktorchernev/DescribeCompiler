@@ -43,11 +43,40 @@ namespace DescribeCompiler
         }
 
         /// <summary>
-        /// Add your methods for logging here
+        /// The logging verbosity level
+        /// </summary>
+        public LogVerbosity Verbosity
+        { 
+            get
+            {
+                return logVerbosity;
+            }
+            set
+            {
+                logVerbosity = value;
+            }
+        }
+
+
+
+        /// <summary>
+        /// Add your method for logging info here
         /// </summary>
         public Action<string> LogInfo;
+
+        /// <summary>
+        /// Add your method for logging error here
+        /// </summary>
         public Action<string> LogError;
+
+        /// <summary>
+        /// Add your method for logging text here
+        /// </summary>
         public Action<string> LogText;
+
+        /// <summary>
+        /// Add your method for logging parser data here
+        /// </summary>
         public Action<string> LogParserInfo;
 
 
@@ -55,7 +84,9 @@ namespace DescribeCompiler
         /// <summary>
         /// Ctor.
         /// </summary>
-        public DescribeCompiler()
+        /// <param name="verbosity">The logging verbosity of the parser</param>
+        public DescribeCompiler(
+            LogVerbosity verbosity = LogVerbosity.High)
         {
             LogText = log;
             LogError = log;
@@ -70,6 +101,10 @@ namespace DescribeCompiler
             {
                 _GoldParser = new GoldParser.Parser.Parser();
                 LogInfo("GOLD parser engine initialized");
+
+                //set verbosity
+                logVerbosity = verbosity;
+                LogInfo("Verbosity set to: " + Verbosity.ToString());
             }
             catch (Exception ex)
             {
@@ -86,22 +121,34 @@ namespace DescribeCompiler
                 if (LoadGrammar(grammar))
                 {
                     LogInfo("Preloaded grammar: \"" + fullname + "\"");
+                    if (logVerbosity != LogVerbosity.High) LogText("------------------------");
                     LoadedGrammarName = fullname;
                 }
                 else
                 {
                     LogInfo("Failed to preload grammar: \"" + fullname + "\"");
+                    if (logVerbosity != LogVerbosity.High) LogText("------------------------");
                     return;
                 }
             }
             catch (Exception ex)
             {
                 LogError("Failed to preload grammar: " + ex.Message);
+                if (logVerbosity != LogVerbosity.High) LogText("------------------------");
                 return;
             }
+            
             initialized = true;
         }
-        public DescribeCompiler(Action<string> logText)
+
+        /// <summary>
+        /// Ctor.
+        /// </summary>
+        /// <param name="logText">method to log text</param>
+        /// <param name="verbosity">The logging verbosity of the parser</param>
+        public DescribeCompiler(
+            Action<string> logText, 
+            LogVerbosity verbosity = LogVerbosity.High)
         {
             LogText = log;
             LogText += logText;
@@ -118,6 +165,10 @@ namespace DescribeCompiler
             {
                 _GoldParser = new GoldParser.Parser.Parser();
                 LogInfo("GOLD parser engine initialized");
+
+                //set verbosity
+                logVerbosity = verbosity;
+                LogInfo("Verbosity set to: " + Verbosity.ToString());
             }
             catch (Exception ex)
             {
@@ -134,22 +185,35 @@ namespace DescribeCompiler
                 if (LoadGrammar(grammar))
                 {
                     LogInfo("Preloaded grammar: \"" + fullname + "\"");
+                    if (logVerbosity != LogVerbosity.High) LogText("------------------------");
                     LoadedGrammarName = fullname;
                 }
                 else
                 {
                     LogInfo("Failed to preload grammar: \"" + fullname + "\"");
+                    if (logVerbosity != LogVerbosity.High) LogText("------------------------");
                     return;
                 }
             }
             catch (Exception ex)
             {
                 LogError("Failed to preload grammar: " + ex.Message);
+                if (logVerbosity != LogVerbosity.High) LogText("------------------------");
                 return;
             }
             initialized = true;
         }
-        public DescribeCompiler(Action<string> logText, Action<string> logError)
+
+        /// <summary>
+        /// Ctor.
+        /// </summary>
+        /// <param name="logText">method to log text<</param>
+        /// <param name="logError">method to log errors<</param>
+        /// <param name="verbosity">The logging verbosity of the parser</param>
+        public DescribeCompiler(
+            Action<string> logText, 
+            Action<string> logError, 
+            LogVerbosity verbosity = LogVerbosity.High)
         {
             LogText = log;
             LogText += logText;
@@ -168,6 +232,10 @@ namespace DescribeCompiler
             {
                 _GoldParser = new GoldParser.Parser.Parser();
                 LogInfo("GOLD parser engine initialized");
+
+                //set verbosity
+                logVerbosity = verbosity;
+                LogInfo("Verbosity set to: " + Verbosity.ToString());
             }
             catch (Exception ex)
             {
@@ -184,22 +252,37 @@ namespace DescribeCompiler
                 if (LoadGrammar(grammar))
                 {
                     LogInfo("Preloaded grammar: \"" + fullname + "\"");
+                    if (logVerbosity != LogVerbosity.High) LogText("------------------------");
                     LoadedGrammarName = fullname;
                 }
                 else
                 {
                     LogInfo("Failed to preload grammar: \"" + fullname + "\"");
+                    if (logVerbosity != LogVerbosity.High) LogText("------------------------");
                     return;
                 }
             }
             catch (Exception ex)
             {
                 LogError("Failed to preload grammar: " + ex.Message);
+                if (logVerbosity != LogVerbosity.High) LogText("------------------------");
                 return;
             }
             initialized = true;
         }
-        public DescribeCompiler(Action<string> logText, Action<string> logError, Action<string> logInfo)
+
+        /// <summary>
+        /// Ctor.
+        /// </summary>
+        /// <param name="logText">method to log text</param>
+        /// <param name="logError">method to log errors</param>
+        /// <param name="logInfo">method to log less important info</param>
+        /// <param name="verbosity">The logging verbosity of the parser</param>
+        public DescribeCompiler(
+            Action<string> logText, 
+            Action<string> logError, 
+            Action<string> logInfo, 
+            LogVerbosity verbosity = LogVerbosity.High)
         {
             LogText = log;
             LogText += logText;
@@ -220,6 +303,10 @@ namespace DescribeCompiler
             {
                 _GoldParser = new GoldParser.Parser.Parser();
                 LogInfo("GOLD parser engine initialized");
+
+                //set verbosity
+                logVerbosity = verbosity;
+                LogInfo("Verbosity set to: " + Verbosity.ToString());
             }
             catch (Exception ex)
             {
@@ -236,22 +323,40 @@ namespace DescribeCompiler
                 if (LoadGrammar(grammar))
                 {
                     LogInfo("Preloaded grammar: \"" + fullname + "\"");
+                    if (logVerbosity != LogVerbosity.High) LogText("------------------------");
                     LoadedGrammarName = fullname;
                 }
                 else
                 {
                     LogInfo("Failed to preload grammar: \"" + fullname + "\"");
+                    if (logVerbosity != LogVerbosity.High) LogText("------------------------");
                     return;
                 }
             }
             catch (Exception ex)
             {
                 LogError("Failed to preload grammar: " + ex.Message);
+                if (logVerbosity != LogVerbosity.High) LogText("------------------------");
                 return;
             }
             initialized = true;
         }
-        public DescribeCompiler(Action<string> logText, Action<string> logError, Action<string> logInfo, Action<string> logParserInfo)
+
+
+        /// <summary>
+        /// Ctor.
+        /// </summary>
+        /// <param name="logText">method to log text</param>
+        /// <param name="logError">method to log errors</param>
+        /// <param name="logInfo">method to log less important info</param>
+        /// <param name="logParserInfo">method to log parser output</param>
+        /// <param name="verbosity">The logging verbosity of the parser</param>
+        public DescribeCompiler(
+            Action<string> logText, 
+            Action<string> logError, 
+            Action<string> logInfo, 
+            Action<string> logParserInfo, 
+            LogVerbosity verbosity = LogVerbosity.High)
         {
             LogText = log;
             LogText += logText;
@@ -273,6 +378,10 @@ namespace DescribeCompiler
             {
                 _GoldParser = new GoldParser.Parser.Parser();
                 LogInfo("GOLD parser engine initialized");
+
+                //set verbosity
+                logVerbosity = verbosity;
+                LogInfo("Verbosity set to: " + Verbosity.ToString());
             }
             catch (Exception ex)
             {
@@ -289,21 +398,26 @@ namespace DescribeCompiler
                 if (LoadGrammar(grammar))
                 {
                     LogInfo("Preloaded grammar: \"" + fullname + "\"");
+                    if (logVerbosity != LogVerbosity.High) LogText("------------------------");
                     LoadedGrammarName = fullname;
                 }
                 else
                 {
                     LogInfo("Failed to preload grammar: \"" + fullname + "\"");
+                    if (logVerbosity != LogVerbosity.High) LogText("------------------------");
                     return;
                 }
             }
             catch (Exception ex)
             {
                 LogError("Failed to preload grammar: " + ex.Message);
+                if (logVerbosity != LogVerbosity.High) LogText("------------------------");
                 return;
             }
             initialized = true;
         }
+
+
 
 
         /// <summary>
@@ -349,7 +463,7 @@ namespace DescribeCompiler
                 LogError("This parser isn't innitialized, and cannot be used. Create a new instance.");
                 return false;
             }
-            LogText("------------------------");
+            if (logVerbosity == LogVerbosity.High)  LogText("------------------------");
             LogText("Starting a parse operation on: \"" + fileInfo.FullName + "\"");
             if (!File.Exists(fileInfo.FullName)) 
             {
@@ -373,7 +487,10 @@ namespace DescribeCompiler
                     LogText("------------------------");
                     return false;
                 }
-                LogInfo("Fetched file contents - " + source.Length.ToString() + " characters long");
+                if(logVerbosity == LogVerbosity.High)
+                {
+                    LogInfo("Fetched file contents - " + source.Length.ToString() + " characters long");
+                }
             }
             catch (Exception ex)
             {
@@ -449,6 +566,10 @@ namespace DescribeCompiler
             {
                 unfold.Files.Remove(fileInfo.FullName);
             }
+            if (logVerbosity != LogVerbosity.High && unfold.Files.Count > 0)
+            {
+                LogText("------------------------");
+            }
             while (unfold.Files.Count > 0)
             {
                 FileInfo nextFile = new FileInfo(unfold.Files[0]);
@@ -467,8 +588,15 @@ namespace DescribeCompiler
             {
                 string output = Translations.TranslateUnfold(unfold);
                 html = output;
-                LogText("Unfold translated successfuly");
-                LogText("Done!");
+                if (logVerbosity == LogVerbosity.Medium)
+                {
+                    LogParserInfo("Done!");
+                }
+                else
+                {
+                    LogText("Unfold translated successfuly");
+                    LogText("Done!");
+                }
                 LogText("------------------------");
                 return true;
             }
@@ -486,7 +614,7 @@ namespace DescribeCompiler
                 LogError("This parser isn't innitialized, and cannot be used. Create a new instance.");
                 return false;
             }
-            LogText("------------------------");
+            if (logVerbosity == LogVerbosity.High) LogText("------------------------");
             LogText("Starting a parse operation on: \"" + fileInfo.FullName + "\"");
             if (!File.Exists(fileInfo.FullName))
             {
@@ -510,7 +638,10 @@ namespace DescribeCompiler
                     LogText("------------------------");
                     return false;
                 }
-                LogInfo("Fetched file contents - " + source.Length.ToString() + " characters long");
+                if (logVerbosity == LogVerbosity.High)
+                {
+                    LogInfo("Fetched file contents - " + source.Length.ToString() + " characters long");
+                }
             }
             catch (Exception ex)
             {
@@ -571,7 +702,14 @@ namespace DescribeCompiler
             {
                 bool optimized = Optimizations.DoScripture(unfold, root, false);
                 LogText("Parse tree unfolded successfuly");
-                LogText("Done!");
+                if (logVerbosity == LogVerbosity.Medium)
+                {
+                    LogParserInfo("Done!");
+                }
+                else
+                {
+                    LogText("Done!");
+                }
                 LogText("------------------------");
                 return true;
             }
