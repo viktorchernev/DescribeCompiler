@@ -4,3 +4,12 @@ If we have a single symbol that is a Text and is parsed as text chunk, then we h
 t\-shirt
 
 This might be due to some bug in the grammar
+Yes, was a simple grammar bug:
+
+Text = {TextCharacter}{TextCharacter}+
+
+should be 
+
+Text = {TextCharacter}+
+
+as '+' is 1 or more, not 0 or more
