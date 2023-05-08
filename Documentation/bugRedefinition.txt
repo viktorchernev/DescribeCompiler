@@ -1,0 +1,4 @@
+BUG:Redefinition bug
+
+When same item is used in 2 productions (aka redefinition), we get "Failed to Unfold the parse tree : An item with the same key has already been added."
+This can be handled better, and the item key and file should be outputted in the error message.

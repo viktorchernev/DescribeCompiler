@@ -1,0 +1,3 @@
+BUG: Last item comment Runaway group bug
+When a file ends with a line comment we end up with a runaway group. This is remedied by adding a new line after the comment. 
+This is most likely because there is no new line to end the comment group.

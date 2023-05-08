@@ -1,0 +1,2 @@
+BUG:Wrong possition im error message.
+The Gold parser engine gives wrong line number in error messages - most of the times wrong by 1

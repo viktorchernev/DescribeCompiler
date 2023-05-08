@@ -1,0 +1,3 @@
+IDEA:self suffixed lists
+In the simplest form, at least, same suffix should be added to the end of each entry in the list, for example "kg".
+This is to be achieved with decorators.
