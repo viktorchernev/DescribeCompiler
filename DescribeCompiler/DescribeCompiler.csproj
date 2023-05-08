@@ -60,6 +60,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="describe.ico" />
+    <EmbeddedResource Include="Translations\NotSpacedItemComment.html" />
+    <EmbeddedResource Include="Translations\NotSpacedItemEmpty.html" />
     <EmbeddedResource Include="Translations\NotSpacedItem.html" />
     <EmbeddedResource Include="Translations\NotSpacedPage.html" />
     <EmbeddedResource Include="Translations\NotSpacedProduction.html" />

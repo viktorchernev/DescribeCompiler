@@ -15,6 +15,9 @@ namespace DescribeCompilerCLI
     {
         static void Main(string[] args)
         {
+            //get cmd argument path
+
+
             Console.BufferHeight = Int16.MaxValue - 1;
             Console.ForegroundColor = ConsoleColor.DarkGray;
 
@@ -23,11 +26,16 @@ namespace DescribeCompilerCLI
                     ConsoleLog, 
                     ConsoleLogError, 
                     ConsoleLogInfo,
-                    ConsoleLogParseInfo);
+                    ConsoleLogParseInfo,
+                    LogVerbosity.Low);
+
 
             string html = "";
-            comp.ParseFile(new FileInfo(@"C:\Users\Viktor Chernev\Desktop\DataLists\Lists\Public\@public.ds"), out html);
-
+            comp.ParseFile(new FileInfo(@"C:\Users\Viktor Chernev\Desktop\DataLists\Lists\0_root.ds"), out html);
+            if(html != null)
+            {
+                File.WriteAllText(@"C:\Users\Viktor Chernev\Desktop\sss.html", html);
+            }
             Console.ReadLine();
             //string s = comp.Log;
         }

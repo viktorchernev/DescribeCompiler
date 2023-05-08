@@ -3,8 +3,13 @@ using System.Linq;
 
 namespace DescribeCompiler
 {
-    public class ResourceUtil
+    public static class ResourceUtil
 	{   
+        /// <summary>
+        /// Retrieve a byte array that is an embedded resource
+        /// </summary>
+        /// <param name="filename">The name of the byte array resource</param>
+        /// <returns>The retrieved byte array</returns>
 		public static byte[] ExtractResource_ByteArray(string filename)
         {
             System.Reflection.Assembly a = System.Reflection.Assembly.GetExecutingAssembly();
@@ -20,6 +25,12 @@ namespace DescribeCompiler
                 return ba;
             }
         }
+
+        /// <summary>
+        /// Retrieve a string that is an embedded resource
+        /// </summary>
+        /// <param name="filename">The name of the string resource</param>
+        /// <returns>The retrieved string</returns>
 		public static string ExtractResource_String(string filename)
         {
             System.Reflection.Assembly a = System.Reflection.Assembly.GetExecutingAssembly();

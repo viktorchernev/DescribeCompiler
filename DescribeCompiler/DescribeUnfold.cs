@@ -4,17 +4,20 @@ namespace DescribeCompiler
 {
     public class DescribeUnfold
     {
-        public List<string> PrimaryProductions;
-        public Dictionary<string, List<string>> Productions;
-        public Dictionary<string, string> Translations;
+        public List<string> PrimaryProductions;                         //ids of productions that are primary productions
+        public Dictionary<string, List<string>> Productions;            //id of lhs item vs ids of rhs items
+        public Dictionary<string, string> Translations;                 //id of item vs text of item
 
-        public string CurrentFolder;
-        public List<string> Files;
-        public Dictionary<string, string> IdFile;
+        public string CurrentFolder;                                    //current folder we are in
+        public List<string> Files;                                      //list of files
+        public Dictionary<string, string> IdFile;                       //id vs filepath that contains it
 
-        public Dictionary<string, List<string>> Links;
-        public Dictionary<string, List<string>> Decorators;
+        public Dictionary<string, List<string>> Links;                  //id vs links texts
+        public Dictionary<string, List<string>> Decorators;             //id vs decorators texts
 
+        /// <summary>
+        /// Ctor.
+        /// </summary>
         public DescribeUnfold()
         {
             PrimaryProductions = new List<string>();
