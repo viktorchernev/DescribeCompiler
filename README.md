@@ -2,5 +2,5 @@ D#scribe is a domain specific language used to write and maintain complex data l
 
 Second-brain apps and some websites are some of the use cases, although anything that someone would rather think about in terms of lists is a good candidate.
 
-> I want to learn to write describe code
+> I want to learn to write describe code  
 > I want to learn how does it work
