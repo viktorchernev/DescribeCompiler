@@ -113,12 +113,14 @@ namespace DescribeCompiler
                 case "EscapeStar":
                 case "EscapeEscape":
                 case "EscapeFSlash":
-                case "EscapeBSlash":
                 case "EscapeLeftSquare":
                 case "EscapeRightSquare":
                 case "EscapeLeftCurl":
                 case "EscapeRightCurl":
                     text = r[0].Data.ToString().Replace("\\", "");
+                    break;
+                case "EscapeBSlash":
+                    text = r[0].Data.ToString().Replace("\\\\", "\\");
                     break;
             }
             string s = r[0].Data.ToString();
@@ -351,6 +353,14 @@ namespace DescribeCompiler
         private static string DoExpression(DescribeUnfold u, Reduction r)
         {
             string head = DoItem(u, r[0].Data as Reduction);
+
+            //empty production treated as item
+            if(r[2] is Token && r[2].Data.ToString() == ";")
+            {
+                return head;
+            }
+
+            //otherwise continue as normal production
             string ruleName = GetRuleName(r[2].Data as Reduction);
             if (ruleName == "Terminator")
             {

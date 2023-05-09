@@ -1,3 +1,5 @@
 BUG:Consecutive Closing semicolons
 When having multiple closing semicolons sometimes there is an error when we reach closing the root level production.
 To be investigated further
+
+Was not able to reproduce it

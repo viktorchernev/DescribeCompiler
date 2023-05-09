@@ -1,0 +1,9 @@
+BUG:Empty production null reference bug
+An empty procuction, for example:
+
+apples ->;
+
+causes "Failed to Unfold the parse tree : Object reference not set to an instance of an object."
+
+Was a bug in "private static string DoExpression(DescribeUnfold u, Reduction r)"
+in Optimizations
