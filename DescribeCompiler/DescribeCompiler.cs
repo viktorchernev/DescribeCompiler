@@ -3,6 +3,10 @@ using GoldParser.ParseTree;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Text.RegularExpressions;
+using System.Text;
 
 namespace DescribeCompiler
 {
@@ -412,38 +416,300 @@ namespace DescribeCompiler
 
 
 
+
+        //wether to parse only .ds files, or all the files in a dir in ParseFolder op
+        const bool PARSE_DS_ONLY = true;
+        const bool PARSE_TOP_DIRECTORY_ONLY = false;
+
+
         /// <summary>
-        /// Translate a Describe source file ".ds" to a web page ".html"
+        /// Translate a folder of Describe source files ".ds" to a web page ".html"
         /// </summary>
-        /// <param name="fileInfo">Represents the file to be parsed</param>
-        /// <returns>true if successful, otherwise false</returns>
-        public bool ParseFile(FileInfo fileInfo, out string html)
+        /// <param name="dirInfo">Represents the directory of files to be parsed.</param>
+        /// <param name="html">The resulted HTML output.</param>
+        /// <returns>true if successful, otherwise false.</returns>
+        public bool ParseFolder(DirectoryInfo dirInfo, out string html)
         {
             html = null;
             fileCounter = 0;
+            reductionCounter = 0;
+            bool result = false;
             if (logVerbosity == LogVerbosity.Low)
             {
-                bool result = ParseFile_LowVerbosity(fileInfo, out html);
-                return result;
+                result = ParseFolder_LowVerbosity(dirInfo, out html);
             }
             else if (logVerbosity == LogVerbosity.Medium)
             {
-                bool result = ParseFile_MediumVerbosity(fileInfo, out html);
-                return result;
+                result = ParseFolder_MediumVerbosity(dirInfo, out html);
             }
             else if (logVerbosity == LogVerbosity.High)
             {
                 tokenCounter = 0;
                 reductionCounter = 0;
-                bool result = ParseFile_HighVerbosity(fileInfo, out html);
-                return result;
+                result = ParseFolder_HighVerbosity(dirInfo, out html);
             }
-            return false;
+            return result;
         }
 
-        public bool ParseFile_LowVerbosity(FileInfo fileInfo, out string html)
+
+        bool ParseFolder_LowVerbosity(DirectoryInfo dirInfo, out string html)
         {
             html = null;
+
+            //initial checks
+            if (!initialized)
+            {
+                LogError("Parser not innitialized.");
+                return false;
+            }
+
+            string msg = "\"" + dirInfo.FullName + "\" - ";
+            if (!Directory.Exists(dirInfo.FullName))
+            {
+                msg += "does not exist!";
+                LogError(msg);
+                return false;
+            }
+
+            //fetch files
+            DescribeUnfold unfold = new DescribeUnfold();
+            try
+            {
+                SearchOption searchOption = SearchOption.AllDirectories;
+                if (PARSE_TOP_DIRECTORY_ONLY) searchOption = SearchOption.TopDirectoryOnly;
+
+                string searchMask = "*.*";
+                if (PARSE_DS_ONLY) searchMask = "*.ds";
+
+                unfold.Files = Directory.GetFiles(dirInfo.FullName, searchMask, searchOption).ToList();
+                if (unfold.Files.Count() == 0)
+                {
+                    msg += "directory is empty";
+                    LogError(msg);
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                LogError(msg + " Failed to read the file contents: " + ex.Message);
+                return false;
+            }
+
+            //parse files
+            while (unfold.Files.Count() > 0)
+            {
+                string filename = unfold.Files[0];
+                bool result = ParseFile_LowVerbosity(new FileInfo(filename), unfold);
+                if (result)
+                {
+                    unfold.Files.RemoveAt(0);
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            // translate
+            try
+            {
+                string output = Translations.TranslateUnfold(unfold);
+                html = output;
+                LogText(msg + "Ok");
+
+                LogText("------------------------");
+                LogInfo(fileCounter.ToString() + " files parsed.");
+                LogInfo("Parser red " + tokenCounter.ToString() +
+                    " tokens in " + reductionCounter.ToString() +
+                    " reductions.");
+                LogInfo("Those were translated to " + unfold.Productions.Count().ToString() +
+                    " productions, containing " + unfold.Translations.Count().ToString() +
+                    " entries.");
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                LogError(msg + "Failed to Translate the Unfold : " + ex.Message);
+                return false;
+            }
+        }
+        bool ParseFolder_MediumVerbosity(DirectoryInfo dirInfo, out string html)
+        {
+            html = null;
+
+            //initial checks
+            if (!initialized)
+            {
+                LogError("This parser isn't innitialized, and cannot be used. Create a new instance.");
+                return false;
+            }
+            LogText("------------------------");
+            LogText("Starting a parse operation on folder: \"" + dirInfo.FullName + "\"");
+            if (!Directory.Exists(dirInfo.FullName))
+            {
+                LogError("Error - the directory you are trying to parse does not exist");
+                LogText("------------------------");
+                return false;
+            }
+
+            //fetch files
+            DescribeUnfold unfold = new DescribeUnfold();
+            try
+            {
+                SearchOption searchOption = SearchOption.AllDirectories;
+                if (PARSE_TOP_DIRECTORY_ONLY) searchOption = SearchOption.TopDirectoryOnly;
+
+                string searchMask = "*.*";
+                if (PARSE_DS_ONLY) searchMask = "*.ds";
+
+                unfold.Files = Directory.GetFiles(dirInfo.FullName, searchMask, searchOption).ToList();
+                if (unfold.Files.Count() == 0)
+                {
+                    LogError("Error - the directory you are trying to parse contains no files that fit the criteria");
+                    LogText("------------------------");
+                    return false;
+                }
+                LogInfo("Fetched " + unfold.Files.Count() + " files");
+            }
+            catch (Exception ex)
+            {
+                LogError("Failed to read the file contents: " + ex.Message);
+                LogText("------------------------");
+                return false;
+            }
+
+            //parse files
+            while (unfold.Files.Count() > 0)
+            {
+                string filename = unfold.Files[0];
+                bool result = ParseFile_MediumVerbosity(new FileInfo(filename), unfold);
+                if (result)
+                {
+                    unfold.Files.RemoveAt(0);
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            // translate
+            try
+            {
+                string output = Translations.TranslateUnfold(unfold);
+                html = output;
+
+                LogText("Done!");
+                LogText("------------------------");
+
+                LogInfo(fileCounter.ToString() + " files parsed.");
+                LogInfo("Parser red " + tokenCounter.ToString() +
+                    " tokens in " + reductionCounter.ToString() +
+                    " reductions.");
+                LogInfo("Those were translated to " + unfold.Productions.Count().ToString() +
+                    " productions, containing " + unfold.Translations.Count().ToString() +
+                    " entries.");
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                LogError("Failed to Translate the Unfold : " + ex.Message);
+                LogText("------------------------");
+                return false;
+            }
+        }
+        bool ParseFolder_HighVerbosity(DirectoryInfo dirInfo, out string html)
+        {
+            html = null;
+
+            //initial checks
+            if (!initialized)
+            {
+                LogError("This parser isn't innitialized, and cannot be used. Create a new instance.");
+                return false;
+            }
+            LogText("------------------------");
+            LogText("Starting a parse operation on folder: \"" + dirInfo.FullName + "\"");
+            if (!Directory.Exists(dirInfo.FullName))
+            {
+                LogError("Error - the directory you are trying to parse does not exist");
+                LogText("------------------------");
+                return false;
+            }
+
+            //fetch files
+            DescribeUnfold unfold = new DescribeUnfold();
+            try
+            {
+                SearchOption searchOption = SearchOption.AllDirectories;
+                if (PARSE_TOP_DIRECTORY_ONLY) searchOption = SearchOption.TopDirectoryOnly;
+
+                string searchMask = "*.*";
+                if (PARSE_DS_ONLY) searchMask = "*.ds";
+
+                unfold.Files = Directory.GetFiles(dirInfo.FullName, searchMask, searchOption).ToList();
+                if (unfold.Files.Count() == 0)
+                {
+                    LogError("Error - the directory you are trying to parse contains no files that fit the criteria");
+                    LogText("------------------------");
+                    return false;
+                }
+                LogInfo("Fetched " + unfold.Files.Count() + " files");
+            }
+            catch (Exception ex)
+            {
+                LogError("Failed to read the file contents: " + ex.Message);
+                LogText("------------------------");
+                return false;
+            }
+
+            //parse files
+            while(unfold.Files.Count() > 0)
+            {
+                string filename = unfold.Files[0];
+                bool result = ParseFile_HighVerbosity(new FileInfo(filename), unfold);
+                if(result)
+                {
+                    unfold.Files.RemoveAt(0);
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            // translate
+            try
+            {
+                string output = Translations.TranslateUnfold(unfold);
+                html = output;
+
+                LogParserInfo("Done!");
+                LogText("------------------------");
+
+                LogInfo(fileCounter.ToString() + " files parsed.");
+                LogInfo("Parser red " + tokenCounter.ToString() +
+                    " tokens in " + reductionCounter.ToString() +
+                    " reductions.");
+                LogInfo("Those were translated to " + unfold.Productions.Count().ToString() +
+                    " productions, containing " + unfold.Translations.Count().ToString() +
+                    " entries.");
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                LogError("Failed to Translate the Unfold : " + ex.Message);
+                LogText("------------------------");
+                return false;
+            }
+        }
+
+        bool ParseFile_LowVerbosity(FileInfo fileInfo, DescribeUnfold unfold)
+        {
+            fileCounter++;
             if (!initialized)
             {
                 LogError("Parser not innitialized.");
@@ -461,6 +727,7 @@ namespace DescribeCompiler
             try
             {
                 source = File.ReadAllText(fileInfo.FullName);
+                source = EncodeNonAsciiCharacters(source);
                 if (source.Length == 0)
                 {
                     msg += "file is empty!";
@@ -487,8 +754,7 @@ namespace DescribeCompiler
             try
             {
                 string message = "";
-                bool result = Parse_LowVerbosity(reader, out root, out message);
-
+                bool result = Parse_HighVerbosity(reader, out root, out message);
                 if (!result)
                 {
                     msg += "failed to parse: " + message;
@@ -508,8 +774,6 @@ namespace DescribeCompiler
             }
 
             //unfold
-            DescribeUnfold unfold = new DescribeUnfold();
-            unfold.CurrentFolder = Path.GetDirectoryName(fileInfo.FullName);
             try
             {
                 bool optimized = Optimizations.DoScripture(unfold, root);
@@ -524,6 +788,7 @@ namespace DescribeCompiler
                     LogError(msg);
                     return false;
                 }
+                return true;
             }
             catch (Exception ex)
             {
@@ -532,54 +797,17 @@ namespace DescribeCompiler
                 return false;
             }
 
-            //parse more files here
-            if (unfold.Files.Contains(fileInfo.FullName))
-            {
-                unfold.Files.Remove(fileInfo.FullName);
-            }
-            while (unfold.Files.Count > 0)
-            {
-                FileInfo nextFile = new FileInfo(unfold.Files[0]);
-
-                unfold.CurrentFolder = Path.GetDirectoryName(nextFile.FullName);
-                bool result = ParseFile_LowVerbosity(nextFile, unfold);
-                unfold.Files.Remove(nextFile.FullName);
-                if (result == false)
-                {
-                    return false;
-                }
-            }
-
-            //translate
-            try
-            {
-                string output = Translations.TranslateUnfold(unfold);
-                html = output;
-                if (logVerbosity == LogVerbosity.Medium)
-                {
-                    LogParserInfo("Done!");
-                }
-                LogText("------------------------");
-                return true;
-            }
-            catch (Exception ex)
-            {
-                LogError("Failed to Translate the Unfold : " + ex.Message);
-                LogText("------------------------");
-                return false;
-            }
         }
-        public bool ParseFile_MediumVerbosity(FileInfo fileInfo, out string html)
+        bool ParseFile_MediumVerbosity(FileInfo fileInfo, DescribeUnfold unfold)
         {
             fileCounter++;
-            html = null;
             if (!initialized)
             {
                 LogError("This parser isn't innitialized, and cannot be used. Create a new instance.");
                 return false;
             }
-            LogText("------------------------");
-            LogText("Starting a parse operation on: \"" + fileInfo.FullName + "\"");
+            //LogText("------------------------");
+            LogText("Starting a parse operation on file: \"" + fileInfo.FullName + "\"");
             if (!File.Exists(fileInfo.FullName))
             {
                 LogError("Error - the file you are trying to parse does not exist");
@@ -616,7 +844,7 @@ namespace DescribeCompiler
             try
             {
                 string message = "";
-                bool result = Parse_MediumVerbosity(reader, out root, out message);
+                bool result = Parse_HighVerbosity(reader, out root, out message);
 
                 if (result)
                 {
@@ -642,18 +870,19 @@ namespace DescribeCompiler
             }
 
             //unfold
-            DescribeUnfold unfold = new DescribeUnfold();
-            unfold.CurrentFolder = Path.GetDirectoryName(fileInfo.FullName);
             try
             {
                 bool optimized = Optimizations.DoScripture(unfold, root);
-                if (optimized)
+                if(optimized)
                 {
                     LogText("Parse tree unfolded successfuly");
+                    LogParserInfo("Done!");
+                    LogText("------------------------");
+                    return true;
                 }
                 else
                 {
-                    LogError("Failed to Unfold the parse tree : ");
+                    LogError("Failed to Unfold the parse tree");
                     LogText("------------------------");
                     return false;
                 }
@@ -665,53 +894,17 @@ namespace DescribeCompiler
                 return false;
             }
 
-            //parse more files here
-            if (unfold.Files.Contains(fileInfo.FullName))
-            {
-                unfold.Files.Remove(fileInfo.FullName);
-            }
-            if (unfold.Files.Count > 0) LogText("------------------------");
-            while (unfold.Files.Count > 0)
-            {
-                FileInfo nextFile = new FileInfo(unfold.Files[0]);
-
-                unfold.CurrentFolder = Path.GetDirectoryName(nextFile.FullName);
-                bool result = ParseFile_MediumVerbosity(nextFile, unfold);
-                unfold.Files.Remove(nextFile.FullName);
-                if (result == false)
-                {
-                    return false;
-                }
-            }
-
-            //translate
-            try
-            {
-                string output = Translations.TranslateUnfold(unfold);
-                html = output;
-                LogText("Done!");
-                LogInfo(fileCounter.ToString() + " files parsed.");
-                LogText("------------------------");
-                return true;
-            }
-            catch (Exception ex)
-            {
-                LogError("Failed to Translate the Unfold : " + ex.Message);
-                LogText("------------------------");
-                return false;
-            }
         }
-        public bool ParseFile_HighVerbosity(FileInfo fileInfo, out string html)
+        bool ParseFile_HighVerbosity(FileInfo fileInfo, DescribeUnfold unfold)
         {
             fileCounter++;
-            html = null;
             if (!initialized)
             {
                 LogError("This parser isn't innitialized, and cannot be used. Create a new instance.");
                 return false;
             }
             LogText("------------------------");
-            LogText("Starting a parse operation on: \"" + fileInfo.FullName + "\"");
+            LogText("Starting a parse operation on file: \"" + fileInfo.FullName + "\"");
             if (!File.Exists(fileInfo.FullName))
             {
                 LogError("Error - the file you are trying to parse does not exist");
@@ -776,340 +969,9 @@ namespace DescribeCompiler
             }
 
             //unfold
-            DescribeUnfold unfold = new DescribeUnfold();
-            unfold.CurrentFolder = Path.GetDirectoryName(fileInfo.FullName);
             try
             {
                 bool optimized = Optimizations.DoScripture(unfold, root);
-                if(optimized)
-                {
-                    LogText("Parse tree unfolded successfuly");
-                }
-                else
-                {
-                    LogError("Failed to Unfold the parse tree : ");
-                    LogText("------------------------");
-                    return false;
-                }
-            }
-            catch (Exception ex)
-            {
-                LogError("Failed to Unfold the parse tree : " + ex.Message);
-                LogText("------------------------");
-                return false;
-            }
-
-            //parse more files here
-            if (unfold.Files.Contains(fileInfo.FullName))
-            {
-                unfold.Files.Remove(fileInfo.FullName);
-            }
-            if (logVerbosity != LogVerbosity.High && unfold.Files.Count > 0)
-            {
-                LogText("------------------------");
-            }
-            while (unfold.Files.Count > 0)
-            {
-                FileInfo nextFile = new FileInfo(unfold.Files[0]);
-
-                unfold.CurrentFolder = Path.GetDirectoryName(nextFile.FullName);
-                bool result = ParseFile_HighVerbosity(nextFile, unfold);
-                unfold.Files.Remove(nextFile.FullName);
-                if (result == false)
-                {
-                    return false;
-                }
-            }
-
-            //translate
-            try
-            {
-                string output = Translations.TranslateUnfold(unfold);
-                html = output;
-                LogText("Unfold translated successfuly");
-                LogText("Done!");
-                LogInfo(fileCounter.ToString() + " files parsed.");
-                LogInfo(
-                    "Parser red " + tokenCounter.ToString() + 
-                    " tokens and reduced " + reductionCounter.ToString() +
-                    " reductions.");
-                LogText("------------------------");
-                return true;
-            }
-            catch (Exception ex)
-            {
-                LogError("Failed to Translate the Unfold : " + ex.Message);
-                LogText("------------------------");
-                return false;
-            }
-        }
-
-        bool ParseFile_LowVerbosity(FileInfo fileInfo, DescribeUnfold unfold)
-        {
-            if (!initialized)
-            {
-                LogError("Parser not innitialized.");
-                return false;
-            }
-
-            string msg = "\"" + fileInfo.FullName + "\" - ";
-            if (!File.Exists(fileInfo.FullName))
-            {
-                msg += "does not exist!";
-                LogError("msg");
-                return false;
-            }
-            string source = "";
-            try
-            {
-                source = File.ReadAllText(fileInfo.FullName);
-                if (source.Length == 0)
-                {
-                    msg += "file is empty!";
-                    LogError(msg);
-                    return false;
-                }
-                else if (string.IsNullOrWhiteSpace(source))
-                {
-                    msg += "file is empty!";
-                    LogError(msg);
-                    return false;
-                }
-            }
-            catch (Exception ex)
-            {
-                msg += "failed to read: " + ex.Message;
-                LogError(msg);
-                return false;
-            }
-
-            //parse
-            StringReader reader = new StringReader(source);
-            Reduction root = null;
-            try
-            {
-                string message = "";
-                bool result = Parse_LowVerbosity(reader, out root, out message);
-                if (!result)
-                {
-                    msg += "failed to parse: " + message;
-                    LogError(msg);
-                    return false;
-                }
-            }
-            catch (Exception ex)
-            {
-                msg += "failed to parse: " + ex.Message;
-                LogError(msg);
-                return false;
-            }
-            finally
-            {
-                reader.Dispose();
-            }
-
-            //unfold
-            try
-            {
-                bool optimized = Optimizations.DoScripture(unfold, root, false);
-                if (optimized)
-                {
-                    msg += "Ok";
-                    LogText(msg);
-                }
-                else
-                {
-                    msg += "failed to unfold tree.";
-                    LogError(msg);
-                    return false;
-                }
-                return true;
-            }
-            catch (Exception ex)
-            {
-                msg += "failed to unfold tree: " + ex.Message;
-                LogError(msg);
-                return false;
-            }
-
-        }
-        bool ParseFile_MediumVerbosity(FileInfo fileInfo, DescribeUnfold unfold)
-        {
-            fileCounter++;
-            if (!initialized)
-            {
-                LogError("This parser isn't innitialized, and cannot be used. Create a new instance.");
-                return false;
-            }
-            //LogText("------------------------");
-            LogText("Starting a parse operation on: \"" + fileInfo.FullName + "\"");
-            if (!File.Exists(fileInfo.FullName))
-            {
-                LogError("Error - the file you are trying to parse does not exist");
-                LogText("------------------------");
-                return false;
-            }
-            string source = "";
-            try
-            {
-                source = File.ReadAllText(fileInfo.FullName);
-                if (source.Length == 0)
-                {
-                    LogError("Error - the file you are trying to parse is empty");
-                    LogText("------------------------");
-                    return false;
-                }
-                else if (string.IsNullOrWhiteSpace(source))
-                {
-                    LogError("Error - the file you are trying to parse is only white space");
-                    LogText("------------------------");
-                    return false;
-                }
-            }
-            catch (Exception ex)
-            {
-                LogError("Failed to read the file contents: " + ex.Message);
-                LogText("------------------------");
-                return false;
-            }
-
-            //parse
-            StringReader reader = new StringReader(source);
-            Reduction root = null;
-            try
-            {
-                string message = "";
-                bool result = Parse_MediumVerbosity(reader, out root, out message);
-
-                if (result)
-                {
-                    LogText("File parsed successfuly");
-                }
-                else
-                {
-                    LogError("Failed to parse the file: " + message);
-                    LogText("------------------------");
-                    string ugshdhdsshdjhjsdhshjsd = Log;
-                    return false;
-                }
-            }
-            catch (Exception ex)
-            {
-                LogError("Failed to parse the file: " + ex.Message);
-                LogText("------------------------");
-                return false;
-            }
-            finally
-            {
-                reader.Dispose();
-            }
-
-            //unfold
-            try
-            {
-                bool optimized = Optimizations.DoScripture(unfold, root, false);
-                if(optimized)
-                {
-                    LogText("Parse tree unfolded successfuly");
-                    LogParserInfo("Done!");
-                    LogText("------------------------");
-                    return true;
-                }
-                else
-                {
-                    LogError("Failed to Unfold the parse tree");
-                    LogText("------------------------");
-                    return false;
-                }
-            }
-            catch (Exception ex)
-            {
-                LogError("Failed to Unfold the parse tree : " + ex.Message);
-                LogText("------------------------");
-                return false;
-            }
-
-        }
-        bool ParseFile_HighVerbosity(FileInfo fileInfo, DescribeUnfold unfold)
-        {
-            fileCounter++;
-            if (!initialized)
-            {
-                LogError("This parser isn't innitialized, and cannot be used. Create a new instance.");
-                return false;
-            }
-            LogText("------------------------");
-            LogText("Starting a parse operation on: \"" + fileInfo.FullName + "\"");
-            if (!File.Exists(fileInfo.FullName))
-            {
-                LogError("Error - the file you are trying to parse does not exist");
-                LogText("------------------------");
-                return false;
-            }
-            string source = "";
-            try
-            {
-                source = File.ReadAllText(fileInfo.FullName);
-                if (source.Length == 0)
-                {
-                    LogError("Error - the file you are trying to parse is empty");
-                    LogText("------------------------");
-                    return false;
-                }
-                else if (string.IsNullOrWhiteSpace(source))
-                {
-                    LogError("Error - the file you are trying to parse is only white space");
-                    LogText("------------------------");
-                    return false;
-                }
-                if (logVerbosity == LogVerbosity.High)
-                {
-                    LogInfo("Fetched file contents - " + source.Length.ToString() + " characters long");
-                }
-            }
-            catch (Exception ex)
-            {
-                LogError("Failed to read the file contents: " + ex.Message);
-                LogText("------------------------");
-                return false;
-            }
-
-            //parse
-            StringReader reader = new StringReader(source);
-            Reduction root = null;
-            try
-            {
-                string message = "";
-                bool result = Parse_HighVerbosity(reader, out root, out message);
-
-                if (result)
-                {
-                    LogParserInfo(Environment.NewLine + "Parsing sequence: " + message + Environment.NewLine);
-                    LogText("File parsed successfuly");
-                }
-                else
-                {
-                    LogError("Failed to parse the file: " + message);
-                    LogText("------------------------");
-                    string ugshdhdsshdjhjsdhshjsd = Log;
-                    return false;
-                }
-            }
-            catch (Exception ex)
-            {
-                LogError("Failed to parse the file: " + ex.Message);
-                LogText("------------------------");
-                return false;
-            }
-            finally
-            {
-                reader.Dispose();
-            }
-
-            //unfold
-            try
-            {
-                bool optimized = Optimizations.DoScripture(unfold, root, false);
                 if(optimized)
                 {
                     LogText("Parse tree unfolded successfuly");
@@ -1485,6 +1347,25 @@ namespace DescribeCompiler
             if (!string.IsNullOrEmpty(Log)) Log += Environment.NewLine;
             Log += text;
         }
+        private string EncodeNonAsciiCharacters(string value)
+        {
+            //https://stackoverflow.com/questions/1615559/convert-a-unicode-string-to-an-escaped-ascii-string
+            StringBuilder sb = new StringBuilder();
+            foreach (char c in value)
+            {
+                if (c > 127)
+                {
+                    // This character is too big for ASCII
+                    string encodedValue = "&#x" + ((int)c).ToString("x4") + "\\;";
+                    sb.Append(encodedValue);
+                }
+                else
+                {
+                    sb.Append(c);
+                }
+            }
+            return sb.ToString() + Environment.NewLine;
+        }
 
 
         //private guts
@@ -1501,9 +1382,3 @@ namespace DescribeCompiler
         const GrammarName DEFAULT_GRAMMAR = GrammarName.Decorators;
     }
 }
-
-
-//1. Load grammar
-//A grammar is loaded by default, so we don't need to do anything if we don't like to
-//use another one of the embedded grammar files. The last version needs to be used -
-//older versions are mostly for test purposes.

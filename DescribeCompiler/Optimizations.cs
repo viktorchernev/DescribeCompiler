@@ -220,29 +220,23 @@ namespace DescribeCompiler
             {
                 tag = getRandomString();
             }
-            else if (tag.Contains("/")) //filename addressing
+            if(u.CurFileNamespace != "")
             {
-                string[] sep = tag.Split('/');
-                tag = sep[sep.Length - 1];
-
-                List<string> arrl = sep.ToList();
-                arrl.RemoveAt(arrl.Count() - 1);
-                string filename = String.Join("\\", arrl);
-                string path = Path.Combine(u.CurrentFolder, filename);
-
-                if (!u.IdFile.Keys.Contains(tag)) u.IdFile.Add(tag, path);
-                if (!u.Files.Contains(path)) u.Files.Add(path);
-
-                //Path.Combine(unfold.CurrentFolder, unfold.Files[0]);
+                if (tag.StartsWith("."))
+                {
+                    tag = u.CurFileNamespace + tag;
+                }
+                else if(tag.Contains(".") == false)
+                {
+                    tag = u.CurFileNamespace + "." + tag;
+                }
             }
-            //else if (tag.Contains(".")) //namespace addressing (but does not contain '/', because filenames will contain a dot)
-            //{
 
-            //}
-            //else if (tag.StartsWith("#")) //encrypted
-            //{
+            //filename addressing
+            //namespace addressing
+            //(tag.StartsWith("#")) //encrypted
 
-            //}
+
             if (!u.Translations.Keys.Contains(tag))
             {
                 u.Translations.Add(tag, text);
@@ -369,11 +363,27 @@ namespace DescribeCompiler
             else if (ruleName == "item-or-expression")
             {
                 string right = DoItemOrExpression(u, r[2].Data as Reduction);
+                //check for id collision
+                //item with same id is redefinition,
+                //but 2 productions heads with same id is collision
+                if (u.Productions.ContainsKey(head))
+                {
+                    string item = u.Translations[head] + " <" + head + ">";
+                    throw new Exception("Collision! Item \"" + item + "\" - there is production head item with the same id.");
+                }
                 u.Productions.Add(head, new List<string>() { right });
             }
             else if (ruleName == "item-or-expression-list")
             {
                 string[] rights = DoItemOrExpressionList(u, r[2].Data as Reduction);
+                //check for id collision
+                //item with same id is redefinition,
+                //but 2 productions heads with same id is collision
+                if (u.Productions.ContainsKey(head))
+                {
+                    string item = u.Translations[head] + " <" + head + ">";
+                    throw new Exception("Collision! Item \"" + item + "\" - there is production head item with the same id.");
+                }
                 u.Productions.Add(head, rights.ToList());
             }
             return head;
@@ -382,20 +392,51 @@ namespace DescribeCompiler
         //<expression-list>
         //::= <expression> <expression>
         //| <expression> <expression-list>
-        private static string[] DoExpressionList(DescribeUnfold u, Reduction r)
+        private static string[] DoExpressionList(DescribeUnfold u, Reduction r, bool isPrimery = false)
         {
             //this method is about a list of "Expression"
             string key1 = DoExpression(u, r[0].Data as Reduction);
+
+            //isPrimery meant that it is expressionList directly in the scripture
+            //element - where we might find valid nammespace directive
+            bool removeKey = false;
+            if (isPrimery)
+            {
+                //setup the Namespace field in the unfold
+                //production literal is "directives" or "DIRECTIVES".
+                //if we have only one production then we won't be doing this check
+                //for now and just parse it, be it a directive
+                string literal = u.Translations[key1];
+                if (literal == "directives" || literal == "DIRECTIVES")
+                {
+                    List<string> directives = u.Productions[key1];
+                    foreach (string directive in directives)
+                    {
+                        string keyword = u.Translations[directive];
+                        if(keyword == "namespace") u.CurFileNamespace = directive;
+                        u.Translations.Remove(directive);
+                    }
+
+                    u.Translations.Remove(key1);
+                    u.Productions.Remove(key1);
+                    u.PrimaryProductions.Remove(key1);
+                    removeKey = true;
+                }
+            }
+
+
             string ruleName2 = GetRuleName(r[1].Data as Reduction);
             if (ruleName2 == "expression")
             {
                 string key2 = DoExpression(u, r[1].Data as Reduction);
-                return new string[] { key1, key2 };
+                if (removeKey) return new string[] { key2 };
+                else return new string[] { key1, key2 };
             }
             else if (ruleName2 == "expression-list")
             {
                 string[] keys = DoExpressionList(u, r[1].Data as Reduction);
-                List<string> li = new List<string>() { key1 };
+                List<string> li = new List<string>();
+                if (removeKey == false) li.Add(key1);
                 for (int i = 0; i < keys.Length; i++) li.Add(keys[i]);
                 return li.ToArray();
             }
@@ -413,8 +454,16 @@ namespace DescribeCompiler
         /// <param name="r">Root reduction aka the parse tree</param>
         /// <param name="isPrimary">Wether this is the first file</param>
         /// <returns>True if successful</returns>
-        public static bool DoScripture(DescribeUnfold u, Reduction r, bool isPrimary = true)
+        public static bool DoScripture(DescribeUnfold u, Reduction r)
         {
+            //reset namespace for the file
+            u.CurFileNamespace = "";
+
+            //if we have no productions whatsoever
+            //then this must be the primary file
+            bool isPrimary = u.Productions.Count == 0;
+
+            //Unfold the scripture
             string ruleName = GetRuleName(r[0].Data as Reduction);
             if (ruleName == "expression")
             {
@@ -424,7 +473,7 @@ namespace DescribeCompiler
             }
             else if (ruleName == "expression-list")
             {
-                string[] keys = DoExpressionList(u, r[0].Data as Reduction);
+                string[] keys = DoExpressionList(u, r[0].Data as Reduction, true);
                 if (isPrimary)
                 {
                     for (int i = 0; i < keys.Length; i++)
@@ -434,8 +483,7 @@ namespace DescribeCompiler
                 }
                 return true;
             }
-
             return false;
         }
     }
-}
+} 

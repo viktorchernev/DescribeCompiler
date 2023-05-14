@@ -31,8 +31,9 @@ namespace DescribeCompilerCLI
 
 
             string html = "";
-            comp.ParseFile(new FileInfo(@"C:\Users\Viktor Chernev\Desktop\DataLists\Lists\0_root.ds"), out html);
-            if(html != null)
+            //comp.ParseFile(new FileInfo(@"C:\Users\Viktor Chernev\Desktop\DataLists\Lists\0_root.ds"), out html);
+            comp.ParseFolder(new DirectoryInfo(@"C:\Users\Viktor Chernev\Desktop\DataLists\Lists\"), out html);
+            if (html != null)
             {
                 File.WriteAllText(@"C:\Users\Viktor Chernev\Desktop\sss.html", html);
             }

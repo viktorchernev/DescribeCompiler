@@ -85,7 +85,6 @@ namespace DescribeCompiler
                     }
                 }
             }
-
             string it = itemTemplate.Replace("{ITEM}", u.Translations[id]);
             return it;
         }

@@ -8,7 +8,7 @@ namespace DescribeCompiler
         public Dictionary<string, List<string>> Productions;            //id of lhs item vs ids of rhs items
         public Dictionary<string, string> Translations;                 //id of item vs text of item
 
-        public string CurrentFolder;                                    //current folder we are in
+        public string CurFileNamespace;                                 //current namespace we are in
         public List<string> Files;                                      //list of files
         public Dictionary<string, string> IdFile;                       //id vs filepath that contains it
 
@@ -24,7 +24,7 @@ namespace DescribeCompiler
             Productions = new Dictionary<string, List<string>>();
             Translations = new Dictionary<string, string>();
 
-            CurrentFolder = "";
+            CurFileNamespace = "";
             Files = new List<string>();
             IdFile = new Dictionary<string, string>();
 
