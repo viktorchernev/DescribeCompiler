@@ -1,0 +1,3 @@
+FEATURE: Add the functionality to change entries foreground color
+
+Added - use the decorator "{color:VALUE}", where value is a CSS compatible color value.

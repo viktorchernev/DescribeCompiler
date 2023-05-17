@@ -1,0 +1,22 @@
+
+
+
+//our solar system
+solar system ->
+
+	rocky planets -> //innermost
+
+		/* 1-st */ Mercury,
+		/* 2-nd */ Venus,
+		/* 3-rd */ Earth,
+		/* 4-th */ Mars;
+
+	gas giants ->
+
+		Jupiter,
+		Saturn;
+
+	ice giants -> //outermost
+
+		Uranus,
+		Neptune;

@@ -1,0 +1,32 @@
+
+
+
+//decorators example
+types of documentaries ->
+
+	history {comment},
+	Ancient Rome documentaries,
+	Ancient Egypt documentaries,
+	
+	gap {empty},
+	engineering {comment},
+	Space Race documentaries {color|orange},
+	Aerospace Engineering documentaries {color|#4287f5},
+	Mechanical Engineering documentaries {color|#42F5E3},
+	Biological Engineering {color|#ad6};
+
+
+
+//decorators example
+types of documentaries ->
+
+	history {comment}, //comment entry
+	Ancient Rome documentaries,
+	Ancient Egypt documentaries,
+	
+	gap {empty}, //empry entry
+	engineering {comment}, //comment entry
+	Space Race documentaries {color|orange}, //colored - named color
+	Aerospace Engineering documentaries {color|#4287f5}, //colored - hex
+	Mechanical Engineering documentaries {color|#42F5E3}, //colored - hex
+	Biological Engineering {color|#ad6}; //colored - hex
