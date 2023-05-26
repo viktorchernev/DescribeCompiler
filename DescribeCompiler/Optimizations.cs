@@ -66,7 +66,9 @@ namespace DescribeCompiler
         private static string DoDecorator(string text)
         {
             string s = text.Substring(1, text.Length - 2);
-            return s;
+
+            //we need to remove spaces here for the translations later on
+            return s.Replace(" ", "");
         }
         private static string[] DoDecorators(Reduction r)
         {
@@ -220,15 +222,15 @@ namespace DescribeCompiler
             {
                 tag = getRandomString();
             }
-            if(u.CurFileNamespace != "")
+            if(u.CurNamespace != "")
             {
                 if (tag.StartsWith("."))
                 {
-                    tag = u.CurFileNamespace + tag;
+                    tag = u.CurNamespace + tag;
                 }
                 else if(tag.Contains(".") == false)
                 {
-                    tag = u.CurFileNamespace + "." + tag;
+                    tag = u.CurNamespace + "." + tag;
                 }
             }
 
@@ -267,6 +269,16 @@ namespace DescribeCompiler
                 }
             }
 
+            //idFile
+            if (u.ItemIdFile.ContainsKey(tag) == false)
+            {
+                u.ItemIdFile.Add(tag, new List<string>() { u.CurFile });
+            }
+            else
+            {
+                u.ItemIdFile[tag].Add(u.CurFile);
+            }
+            
 
             return tag;
         }
@@ -369,7 +381,11 @@ namespace DescribeCompiler
                 if (u.Productions.ContainsKey(head))
                 {
                     string item = u.Translations[head] + " <" + head + ">";
-                    throw new Exception("Collision! Item \"" + item + "\" - there is production head item with the same id.");
+                    string prodfile = u.ProdIdFile[head];
+                    string message = "Collision! Item \"" + item +
+                        "\" - there is production head with the same id in file: \"" +
+                        prodfile + "\"";
+                    throw new Exception(message);
                 }
                 u.Productions.Add(head, new List<string>() { right });
             }
@@ -382,10 +398,19 @@ namespace DescribeCompiler
                 if (u.Productions.ContainsKey(head))
                 {
                     string item = u.Translations[head] + " <" + head + ">";
-                    throw new Exception("Collision! Item \"" + item + "\" - there is production head item with the same id.");
+                    string prodfile = u.ProdIdFile[head];
+                    string message = "Collision! Item \"" + item +
+                        "\" - there is production head with the same id in file: \"" +
+                        prodfile + "\"";
+                    throw new Exception(message);
                 }
                 u.Productions.Add(head, rights.ToList());
             }
+
+            //idFile
+            u.ProdIdFile.Add(head, u.CurFile);
+
+            //return
             return head;
         }
 
@@ -413,7 +438,7 @@ namespace DescribeCompiler
                     foreach (string directive in directives)
                     {
                         string keyword = u.Translations[directive];
-                        if(keyword == "namespace") u.CurFileNamespace = directive;
+                        if(keyword == "namespace") u.CurNamespace = directive;
                         u.Translations.Remove(directive);
                     }
 
@@ -457,7 +482,7 @@ namespace DescribeCompiler
         public static bool DoScripture(DescribeUnfold u, Reduction r)
         {
             //reset namespace for the file
-            u.CurFileNamespace = "";
+            u.CurNamespace = "";
 
             //if we have no productions whatsoever
             //then this must be the primary file

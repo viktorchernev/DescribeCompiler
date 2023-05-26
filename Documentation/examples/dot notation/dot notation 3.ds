@@ -1,0 +1,15 @@
+
+
+
+
+
+directives ->
+	namespace <treeofall.public.culture>;
+
+
+
+culture <rnode>->
+
+	arts <gux>,
+	recreation,
+	cuisine;

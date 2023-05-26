@@ -499,6 +499,7 @@ namespace DescribeCompiler
             while (unfold.Files.Count() > 0)
             {
                 string filename = unfold.Files[0];
+                unfold.CurFile = filename;
                 bool result = ParseFile_LowVerbosity(new FileInfo(filename), unfold);
                 if (result)
                 {
@@ -583,6 +584,7 @@ namespace DescribeCompiler
             while (unfold.Files.Count() > 0)
             {
                 string filename = unfold.Files[0];
+                unfold.CurFile = filename;
                 bool result = ParseFile_MediumVerbosity(new FileInfo(filename), unfold);
                 if (result)
                 {
@@ -669,6 +671,7 @@ namespace DescribeCompiler
             while(unfold.Files.Count() > 0)
             {
                 string filename = unfold.Files[0];
+                unfold.CurFile = filename;
                 bool result = ParseFile_HighVerbosity(new FileInfo(filename), unfold);
                 if(result)
                 {
@@ -818,6 +821,7 @@ namespace DescribeCompiler
             try
             {
                 source = File.ReadAllText(fileInfo.FullName);
+                source = EncodeNonAsciiCharacters(source);
                 if (source.Length == 0)
                 {
                     LogError("Error - the file you are trying to parse is empty");
@@ -915,6 +919,7 @@ namespace DescribeCompiler
             try
             {
                 source = File.ReadAllText(fileInfo.FullName);
+                source = EncodeNonAsciiCharacters(source);
                 if (source.Length == 0)
                 {
                     LogError("Error - the file you are trying to parse is empty");
@@ -1304,7 +1309,7 @@ namespace DescribeCompiler
             Tags,                        //0.7
             Links,                       //0.8
             Decorators,                  //0.9
-            Official,                        //1.0
+            Official,                    //1.0
         }
         string GrammarNameToFullGramarName(GrammarName name)
         {
@@ -1349,22 +1354,67 @@ namespace DescribeCompiler
         }
         private string EncodeNonAsciiCharacters(string value)
         {
+            //we add a character before and after that we will not use,
+            //in order to skip if tests to see if we are not on the first or last char
+            //for null reference. The new line we keep, as it is a workaround for the
+            //runaway group last comment bug
+            value = "." + value + Environment.NewLine;
+
             //https://stackoverflow.com/questions/1615559/convert-a-unicode-string-to-an-escaped-ascii-string
             StringBuilder sb = new StringBuilder();
-            foreach (char c in value)
+            for (int i = 1; i < value.Length - 1; i++)
             {
-                if (c > 127)
+                if (value[i] > 127)
                 {
                     // This character is too big for ASCII
-                    string encodedValue = "&#x" + ((int)c).ToString("x4") + "\\;";
+                    string encodedValue = "&#x" + ((int)value[i]).ToString("x4") + "\\;";
                     sb.Append(encodedValue);
                 }
                 else
                 {
-                    sb.Append(c);
+                    if (value[i] == '-' 
+                       && value[i + 1] != '>' 
+                       && value[i - 1] != '\\')
+                    {
+                        sb.Append('\\');
+                    }
+                    else if (value[i] == '*' 
+                          && value[i + 1] != '/' 
+                          && value[i - 1] != '\\')
+                    {
+                        sb.Append('\\');
+                    }
+                    else if (value[i] == '/'
+                          && value[i + 1] != '/'
+                          && value[i - 1] != '/'
+                          && value[i + 1] != '*'
+                          && value[i - 1] != '*'
+                          && value[i - 1] != '\\')
+                    {
+                        sb.Append('\\');
+                    }
+                    else if (value[i] == '\\'
+                          && value[i - 1] != '\\'
+                          && value[i + 1] != '\\'
+                          && value[i + 1] != '-'
+                          && value[i + 1] != '*'
+                          && value[i + 1] != '/'
+                          && value[i + 1] != '<'
+                          && value[i + 1] != '>'
+                          && value[i + 1] != '['
+                          && value[i + 1] != ']'
+                          && value[i + 1] != '{'
+                          && value[i + 1] != '}'
+                          && value[i + 1] != ','
+                          && value[i + 1] != ';')
+                    {
+                        sb.Append('\\');
+                    }
+
+                    sb.Append(value[i]);
                 }
             }
-            return sb.ToString() + Environment.NewLine;
+            return sb.ToString();
         }
 
 

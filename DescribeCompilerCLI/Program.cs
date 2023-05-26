@@ -27,7 +27,7 @@ namespace DescribeCompilerCLI
                     ConsoleLogError, 
                     ConsoleLogInfo,
                     ConsoleLogParseInfo,
-                    LogVerbosity.Low);
+                    LogVerbosity.High);
 
 
             string html = "";
