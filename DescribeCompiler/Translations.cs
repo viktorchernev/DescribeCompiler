@@ -7,7 +7,11 @@ using System.Threading.Tasks;
 
 namespace DescribeCompiler
 {
-    public static class Translations
+    public interface IUnfoldTranslator
+    {
+        string TranslateUnfold(DescribeUnfold u);
+    }
+    public class UnfoldTranslator : IUnfoldTranslator
     {
         static string pageTemplate;
         static string rootTemplate;
@@ -18,18 +22,18 @@ namespace DescribeCompiler
         static string prodTemplate;
         static string linkTemplate;
 
-        static Translations()
+        static UnfoldTranslator()
         {
-            pageTemplate = ResourceUtil.ExtractResource_String(@"NotSpacedPage.html");
-            rootTemplate = ResourceUtil.ExtractResource_String(@"NotSpacedRoot.html");
-            prodTemplate = ResourceUtil.ExtractResource_String(@"NotSpacedProduction.html");
+            pageTemplate = ResourceUtil.ExtractResourceByName_String(@"Page");
+            rootTemplate = ResourceUtil.ExtractResourceByName_String(@"Root");
+            prodTemplate = ResourceUtil.ExtractResourceByName_String(@"Production");
 
-            itemTemplate = ResourceUtil.ExtractResource_String(@"NotSpacedItem.html");
-            emptyItemTemplate = ResourceUtil.ExtractResource_String(@"NotSpacedItemEmpty.html");
-            commentItemTemplate = ResourceUtil.ExtractResource_String(@"NotSpacedItemComment.html");
-            coloredItemTemplate = ResourceUtil.ExtractResource_String(@"NotSpacedItemColored.html");
+            itemTemplate = ResourceUtil.ExtractResourceByName_String(@"Item");
+            emptyItemTemplate = ResourceUtil.ExtractResourceByName_String(@"ItemEmpty");
+            commentItemTemplate = ResourceUtil.ExtractResourceByName_String(@"ItemComment");
+            coloredItemTemplate = ResourceUtil.ExtractResourceByName_String(@"ItemColored");
 
-            linkTemplate = ResourceUtil.ExtractResource_String(@"Link.html");
+            linkTemplate = ResourceUtil.ExtractResourceByName_String(@"Link");
         }
 
         //http://xahlee.info/comp/unicode_circled_numbers.html
@@ -233,7 +237,7 @@ namespace DescribeCompiler
         /// </summary>
         /// <param name="u">The unfold to be translated</param>
         /// <returns>The generated html code</returns>
-        public static string TranslateUnfold(DescribeUnfold u)
+        public string TranslateUnfold(DescribeUnfold u)
         {
             string data = "";
             foreach (string key in u.PrimaryProductions)
@@ -247,12 +251,12 @@ namespace DescribeCompiler
             return pt;
         }
 
-        static string TranslateProductionOrItem(DescribeUnfold u, string id)
+        string TranslateProductionOrItem(DescribeUnfold u, string id)
         {
             if (u.Productions.ContainsKey(id)) return TranslateProduction(u, id);
             else return TranslateItem(u, id);
         }
-        static string TranslateProduction(DescribeUnfold u, string id)
+        string TranslateProduction(DescribeUnfold u, string id)
         {
             List<string> li = new List<string>();
             if (u.Productions.ContainsKey(id)) li = u.Productions[id];
@@ -291,7 +295,7 @@ namespace DescribeCompiler
             pt = pt.Replace("{ITEMS}", items);
             return pt;
         }
-        static string TranslateItem(DescribeUnfold u, string id)
+        string TranslateItem(DescribeUnfold u, string id)
         {
             //do links
             //we are assuming there would be no backslashes in links

@@ -60,14 +60,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="describe.ico" />
+    <EmbeddedResource Include="Translations\Item.html" />
+    <EmbeddedResource Include="Translations\ItemColored.html" />
+    <EmbeddedResource Include="Translations\ItemComment.html" />
+    <EmbeddedResource Include="Translations\ItemEmpty.html" />
+    <EmbeddedResource Include="Translations\Page.html" />
+    <EmbeddedResource Include="Translations\Production.html" />
+    <EmbeddedResource Include="Translations\Root.html" />
     <EmbeddedResource Include="Translations\Link.html" />
-    <EmbeddedResource Include="Translations\NotSpacedItemColored.html" />
-    <EmbeddedResource Include="Translations\NotSpacedItemComment.html" />
-    <EmbeddedResource Include="Translations\NotSpacedItemEmpty.html" />
-    <EmbeddedResource Include="Translations\NotSpacedItem.html" />
-    <EmbeddedResource Include="Translations\NotSpacedPage.html" />
-    <EmbeddedResource Include="Translations\NotSpacedProduction.html" />
-    <EmbeddedResource Include="Translations\NotSpacedRoot.html" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GoldParserEngine\GoldParserEngine\GoldParserEngine.csproj">

@@ -63,6 +63,14 @@ namespace DescribeCompiler
         /// </summary>
         public Action<string> LogParserInfo;
 
+        /// <summary>
+        /// The translator class
+        /// </summary>
+        public IUnfoldTranslator Translator
+        { 
+            get; 
+            set; 
+        }
 
 
         /// <summary>
@@ -84,6 +92,8 @@ namespace DescribeCompiler
         public DescribeCompiler(
             LogVerbosity verbosity = LogVerbosity.High)
         {
+            Translator = new UnfoldTranslator();
+
             LogText = log;
             LogError = log;
             LogInfo = log;
@@ -146,6 +156,8 @@ namespace DescribeCompiler
             Action<string> logText, 
             LogVerbosity verbosity = LogVerbosity.High)
         {
+            Translator = new UnfoldTranslator();
+
             LogText = log;
             LogText += logText;
 
@@ -211,6 +223,8 @@ namespace DescribeCompiler
             Action<string> logError, 
             LogVerbosity verbosity = LogVerbosity.High)
         {
+            Translator = new UnfoldTranslator();
+
             LogText = log;
             LogText += logText;
 
@@ -280,6 +294,8 @@ namespace DescribeCompiler
             Action<string> logInfo, 
             LogVerbosity verbosity = LogVerbosity.High)
         {
+            Translator = new UnfoldTranslator();
+
             LogText = log;
             LogText += logText;
 
@@ -354,6 +370,8 @@ namespace DescribeCompiler
             Action<string> logParserInfo, 
             LogVerbosity verbosity = LogVerbosity.High)
         {
+            Translator = new UnfoldTranslator();
+
             LogText = log;
             LogText += logText;
 
@@ -451,6 +469,35 @@ namespace DescribeCompiler
             return result;
         }
 
+        /// <summary>
+        /// Translate a Describe source file ".ds" to a web page ".html"
+        /// </summary>
+        /// <param name="fileInfo">Represents the file to be parsed.</param>
+        /// <param name="html">The resulted HTML output.</param>
+        /// <returns>true if successful, otherwise false.</returns>
+        public bool ParseFile(FileInfo fileInfo, out string html)
+        {
+            html = null;
+            fileCounter = 0;
+            reductionCounter = 0;
+            bool result = false;
+            if (logVerbosity == LogVerbosity.Low)
+            {
+                result = ParseFile_LowVerbosity(fileInfo, out html);
+            }
+            else if (logVerbosity == LogVerbosity.Medium)
+            {
+                result = ParseFile_MediumVerbosity(fileInfo, out html);
+            }
+            else if (logVerbosity == LogVerbosity.High)
+            {
+                tokenCounter = 0;
+                reductionCounter = 0;
+                result = ParseFile_HighVerbosity(fileInfo, out html);
+            }
+            return result;
+        }
+
 
         bool ParseFolder_LowVerbosity(DirectoryInfo dirInfo, out string html)
         {
@@ -514,7 +561,7 @@ namespace DescribeCompiler
             // translate
             try
             {
-                string output = Translations.TranslateUnfold(unfold);
+                string output = Translator.TranslateUnfold(unfold);
                 html = output;
                 LogText(msg + "Ok");
 
@@ -599,7 +646,7 @@ namespace DescribeCompiler
             // translate
             try
             {
-                string output = Translations.TranslateUnfold(unfold);
+                string output = Translator.TranslateUnfold(unfold);
                 html = output;
 
                 LogText("Done!");
@@ -686,11 +733,372 @@ namespace DescribeCompiler
             // translate
             try
             {
-                string output = Translations.TranslateUnfold(unfold);
+                string output = Translator.TranslateUnfold(unfold);
                 html = output;
 
                 LogParserInfo("Done!");
                 LogText("------------------------");
+
+                LogInfo(fileCounter.ToString() + " files parsed.");
+                LogInfo("Parser red " + tokenCounter.ToString() +
+                    " tokens in " + reductionCounter.ToString() +
+                    " reductions.");
+                LogInfo("Those were translated to " + unfold.Productions.Count().ToString() +
+                    " productions, containing " + unfold.Translations.Count().ToString() +
+                    " entries.");
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                LogError("Failed to Translate the Unfold : " + ex.Message);
+                LogText("------------------------");
+                return false;
+            }
+        }
+
+        bool ParseFile_LowVerbosity(FileInfo fileInfo, out string html)
+        {
+            html = null;
+
+            //initial checks
+            fileCounter++;
+            if (!initialized)
+            {
+                LogError("Parser not innitialized.");
+                return false;
+            }
+
+            string msg = "\"" + fileInfo.FullName + "\" - ";
+            if (!File.Exists(fileInfo.FullName))
+            {
+                msg += "does not exist!";
+                LogError("msg");
+                return false;
+            }
+            string source = "";
+            try
+            {
+                source = File.ReadAllText(fileInfo.FullName);
+                source = EncodeNonAsciiCharacters(source);
+                if (source.Length == 0)
+                {
+                    msg += "file is empty!";
+                    LogError(msg);
+                    return false;
+                }
+                else if (string.IsNullOrWhiteSpace(source))
+                {
+                    msg += "file is empty!";
+                    LogError(msg);
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                msg += "failed to read: " + ex.Message;
+                LogError(msg);
+                return false;
+            }
+
+            //parse
+            StringReader reader = new StringReader(source);
+            Reduction root = null;
+            try
+            {
+                string message = "";
+                bool result = Parse_HighVerbosity(reader, out root, out message);
+                if (!result)
+                {
+                    msg += "failed to parse: " + message;
+                    LogError(msg);
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                msg += "failed to parse: " + ex.Message;
+                LogError(msg);
+                return false;
+            }
+            finally
+            {
+                reader.Dispose();
+            }
+
+            //unfold
+            DescribeUnfold unfold = new DescribeUnfold();
+            try
+            {
+                bool optimized = Optimizations.DoScripture(unfold, root);
+                if (!optimized)
+                {
+                    msg += "failed to unfold tree.";
+                    LogError(msg);
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                msg += "failed to unfold tree: " + ex.Message;
+                LogError(msg);
+                return false;
+            }
+
+            // translate
+            try
+            {
+                string output = Translator.TranslateUnfold(unfold);
+                html = output;
+                LogText(msg + "parsed successfuly");
+
+                LogInfo(fileCounter.ToString() + " files parsed.");
+                LogInfo("Parser red " + tokenCounter.ToString() +
+                    " tokens in " + reductionCounter.ToString() +
+                    " reductions.");
+                LogInfo("Those were translated to " + unfold.Productions.Count().ToString() +
+                    " productions, containing " + unfold.Translations.Count().ToString() +
+                    " entries.");
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                LogError(msg + "Failed to Translate the Unfold : " + ex.Message);
+                return false;
+            }
+        }
+        bool ParseFile_MediumVerbosity(FileInfo fileInfo, out string html)
+        {
+            html = null;
+
+            //initial checks
+            fileCounter++;
+            if (!initialized)
+            {
+                LogError("This parser isn't innitialized, and cannot be used. Create a new instance.");
+                return false;
+            }
+
+            LogText("Starting a parse operation on file: \"" + fileInfo.FullName + "\"");
+            if (!File.Exists(fileInfo.FullName))
+            {
+                LogError("Error - the file you are trying to parse does not exist");
+                LogText("------------------------");
+                return false;
+            }
+            string source = "";
+            try
+            {
+                source = File.ReadAllText(fileInfo.FullName);
+                source = EncodeNonAsciiCharacters(source);
+                if (source.Length == 0)
+                {
+                    LogError("Error - the file you are trying to parse is empty");
+                    LogText("------------------------");
+                    return false;
+                }
+                else if (string.IsNullOrWhiteSpace(source))
+                {
+                    LogError("Error - the file you are trying to parse is only white space");
+                    LogText("------------------------");
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                LogError("Failed to read the file contents: " + ex.Message);
+                LogText("------------------------");
+                return false;
+            }
+
+            //parse
+            StringReader reader = new StringReader(source);
+            Reduction root = null;
+            try
+            {
+                string message = "";
+                bool result = Parse_HighVerbosity(reader, out root, out message);
+
+                if (result)
+                {
+                    LogText("File parsed successfuly");
+                }
+                else
+                {
+                    LogError("Failed to parse the file: " + message);
+                    LogText("------------------------");
+                    string ugshdhdsshdjhjsdhshjsd = Log;
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                LogError("Failed to parse the file: " + ex.Message);
+                LogText("------------------------");
+                return false;
+            }
+            finally
+            {
+                reader.Dispose();
+            }
+
+            //unfold
+            DescribeUnfold unfold = new DescribeUnfold();
+            try
+            {
+                bool optimized = Optimizations.DoScripture(unfold, root);
+                if (optimized)
+                {
+                    LogText("Parse tree unfolded successfuly");
+                    LogParserInfo("Done!");
+                    LogText("------------------------");
+                }
+                else
+                {
+                    LogError("Failed to Unfold the parse tree");
+                    LogText("------------------------");
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                LogError("Failed to Unfold the parse tree : " + ex.Message);
+                LogText("------------------------");
+                return false;
+            }
+
+            // translate
+            try
+            {
+                string output = Translator.TranslateUnfold(unfold);
+                html = output;
+
+                LogInfo(fileCounter.ToString() + " files parsed.");
+                LogInfo("Parser red " + tokenCounter.ToString() +
+                    " tokens in " + reductionCounter.ToString() +
+                    " reductions.");
+                LogInfo("Those were translated to " + unfold.Productions.Count().ToString() +
+                    " productions, containing " + unfold.Translations.Count().ToString() +
+                    " entries.");
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                LogError("Failed to Translate the Unfold : " + ex.Message);
+                LogText("------------------------");
+                return false;
+            }
+        }
+        bool ParseFile_HighVerbosity(FileInfo fileInfo, out string html)
+        {
+            html = null;
+
+            //initial checks
+            fileCounter++;
+            if (!initialized)
+            {
+                LogError("This parser isn't innitialized, and cannot be used. Create a new instance.");
+                return false;
+            }
+            LogText("------------------------");
+            LogText("Starting a parse operation on file: \"" + fileInfo.FullName + "\"");
+            if (!File.Exists(fileInfo.FullName))
+            {
+                LogError("Error - the file you are trying to parse does not exist");
+                LogText("------------------------");
+                return false;
+            }
+
+            string source = "";
+            try
+            {
+                source = File.ReadAllText(fileInfo.FullName);
+                source = EncodeNonAsciiCharacters(source);
+                if (source.Length == 0)
+                {
+                    LogError("Error - the file you are trying to parse is empty");
+                    LogText("------------------------");
+                    return false;
+                }
+                else if (string.IsNullOrWhiteSpace(source))
+                {
+                    LogError("Error - the file you are trying to parse is only white space");
+                    LogText("------------------------");
+                    return false;
+                }
+                LogInfo("Fetched file contents - " + source.Length.ToString() + " characters long");
+            }
+            catch (Exception ex)
+            {
+                LogError("Failed to read the file contents: " + ex.Message);
+                LogText("------------------------");
+                return false;
+            }
+
+            //parse
+            StringReader reader = new StringReader(source);
+            Reduction root = null;
+            try
+            {
+                string message = "";
+                bool result = Parse_HighVerbosity(reader, out root, out message);
+
+                if (result)
+                {
+                    LogParserInfo(Environment.NewLine + "Parsing sequence: " + message + Environment.NewLine);
+                    LogText("File parsed successfuly");
+                }
+                else
+                {
+                    LogError("Failed to parse the file: " + message);
+                    LogText("------------------------");
+                    string ugshdhdsshdjhjsdhshjsd = Log;
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                LogError("Failed to parse the file: " + ex.Message);
+                LogText("------------------------");
+                return false;
+            }
+            finally
+            {
+                reader.Dispose();
+            }
+
+            //unfold
+            DescribeUnfold unfold = new DescribeUnfold();
+            try
+            {
+                bool optimized = Optimizations.DoScripture(unfold, root);
+                if (optimized)
+                {
+                    LogText("Parse tree unfolded successfuly");
+                    LogParserInfo("Done!");
+                    LogText("------------------------");
+                }
+                else
+                {
+                    LogError("Failed to Unfold the parse tree");
+                    LogText("------------------------");
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                LogError("Failed to Unfold the parse tree : " + ex.Message);
+                LogText("------------------------");
+                return false;
+            }
+
+            // translate
+            try
+            {
+                string output = Translator.TranslateUnfold(unfold);
+                html = output;
 
                 LogInfo(fileCounter.ToString() + " files parsed.");
                 LogInfo("Parser red " + tokenCounter.ToString() +
