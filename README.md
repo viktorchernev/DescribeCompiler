@@ -1,13 +1,4 @@
 # *D#scribe Markup Programming Language*  
-<pre>
-   /  \\\\     /  \\\\     /  \\\\     /  \\\\     /  \\\\     /  \\\\     /  \\\\     /  \\\\  
-  /    \\\\   /    \\\\   /    \\\\   /    \\\\   /    \\\\   _\   \\\\   /    \\\\   /    \\\\ 
- /  /\  \\\\ /    \ \\\\ /\   \ \\\\ /   /\ \\\\ /   \  \\\\ /\/    \\\\ /    \ \\\\ /    \ \\\\
- \  \/  //// \   \ \//// \ \   \//// \   \\\//// \|     //// \    /\//// \   \  //// \   \ \////
-  \    ////   \   \////   \    ////   \   \\\\    |   \////   \   \\\\    \    ////   \   \//// 
-   \  ////     \  ////     \  ////     \  ////     \  ||||     \  ////     \  ////     \  ////  
-</pre>
-![logo1](https://github.com/viktorchernev/DescribeCompiler/assets/72315339/26dc5f4b-a676-41b8-837a-ac2fad29e556)  
 ![242452146-26dc5f4b-a676-41b8-837a-ac2fad29e556aa](https://github.com/viktorchernev/DescribeCompiler/assets/72315339/4120f7a3-472c-4fbf-8d67-efa1cbd69fca)
 
 _Maintaining large data lists, made easy_  
