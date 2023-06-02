@@ -9,7 +9,7 @@ _Maintaining large data lists, made easy_
 
 D#scribe is a domain specific language used to write and maintain complex data lists that are compiled on demand to html, xaml, xml, sql, json and any other language needed. Describe is simple to use, intuitive and easy to master, and readily extendible.
 
-Second-brain apps and some websites are some of the use cases, although anything that someone would rather think about in terms of lists is a good candidate.
+Describe is created with one task in mind - to be the markup language behind a wiki of lists, and that is what the language excels at. However, you can use it to complete various niche tasks too - second-brain apps and various websites are some of the use cases, although anything that someone would rather think about in terms of lists can be a good candidate.
 
 To learn more, visit our dedicated wiki: 
 https://github.com/viktorchernev/DescribeCompiler/wiki
