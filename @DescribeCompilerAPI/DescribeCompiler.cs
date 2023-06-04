@@ -1836,7 +1836,7 @@ namespace DescribeCompiler
 
 
         //private const
-        const string COMPILER_NAME = "D#SCRIBE COMPILER v1.0";
+        const string COMPILER_NAME = "D#SCRIBE COMPILER v0.9";
         const GrammarName DEFAULT_GRAMMAR = GrammarName.Decorators;
     }
 }
