@@ -18,9 +18,8 @@ Describe is created with one task in mind - to be the markup language behind a w
 2. Compile
 ![pic2a](https://github.com/viktorchernev/DescribeCompiler/assets/72315339/d8f6ac78-2cbc-4056-b560-16273474fa4d)
 
-
 3. Result
-![pic3a](https://github.com/viktorchernev/DescribeCompiler/assets/72315339/1271422c-0f5b-4319-95d1-2cb3ed521c47)
+![pic3a](https://github.com/viktorchernev/DescribeCompiler/assets/72315339/36ae6997-82df-467e-b490-b7b9d63a860c)
 
 
 
