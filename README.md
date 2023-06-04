@@ -16,10 +16,11 @@ Describe is created with one task in mind - to be the markup language behind a w
 ![pic1](https://github.com/viktorchernev/DescribeCompiler/assets/72315339/e1ec7895-d517-4936-ba09-2a0a52da333d)  
 
 2. Compile
-![pic2](https://github.com/viktorchernev/DescribeCompiler/assets/72315339/875596e1-a7a1-4e51-9522-2f91b4fd21c7)  
+![pic2a](https://github.com/viktorchernev/DescribeCompiler/assets/72315339/d8f6ac78-2cbc-4056-b560-16273474fa4d)
+
 
 3. Result
-![pic3](https://github.com/viktorchernev/DescribeCompiler/assets/72315339/ed9cdee1-cca6-4c08-9b93-cce8ebac406c)  
+![pic3a](https://github.com/viktorchernev/DescribeCompiler/assets/72315339/1271422c-0f5b-4319-95d1-2cb3ed521c47)
 
 
 
