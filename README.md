@@ -9,7 +9,6 @@ _Maintaining large data lists, made easy_
 
 Describe is a domain specific language used to write and maintain complex data lists that are compiled on demand to html, xaml, xml, sql, json and any other language needed. Describe is simple to use, intuitive and easy to master, and readily extendible.
 
-Describe is created with one task in mind - to be the markup language behind a wiki of lists, and that is what the language excels at. However, you can use it to complete various niche tasks too - second-brain apps and various websites are some of the use cases, although anything that someone would rather think about in terms of lists can be a good candidate.
 
 ## How to
 1. Write descpibe code
