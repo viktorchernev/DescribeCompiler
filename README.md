@@ -20,7 +20,10 @@ Describe is a domain specific language used to write and maintain complex data l
 3. Result
 ![pic3a](https://github.com/viktorchernev/DescribeCompiler/assets/72315339/36ae6997-82df-467e-b490-b7b9d63a860c)
 
-
-
 To learn more, visit our dedicated wiki: 
 https://github.com/viktorchernev/DescribeCompiler/wiki
+
+## Get in touch
+
+## Releases
+* 0.9 Initial release
