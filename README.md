@@ -23,7 +23,8 @@ Describe is a domain specific language used to write and maintain complex data l
 To learn more, visit our dedicated wiki: 
 https://github.com/viktorchernev/DescribeCompiler/wiki
 
-## Get in touch
-
 ## Releases
-* 0.9 Initial release
+* 0.9 Initial release  
+
+## Get in touch  
+You can reach me at vchernev91@abv.bg or on Viber: +359-885-18-05-86
