@@ -10,7 +10,7 @@ _Maintaining large data lists, made easy_
 Describe is a domain specific language used to write and maintain complex data lists that are compiled on demand to html, xaml, xml, sql, json and any other language needed. Describe is simple to use, intuitive and easy to master, and readily extendible.
 
 
-## How to
+### How to
 1. Write descpibe code
 ![pic1](https://github.com/viktorchernev/DescribeCompiler/assets/72315339/e1ec7895-d517-4936-ba09-2a0a52da333d)  
 
@@ -23,8 +23,10 @@ Describe is a domain specific language used to write and maintain complex data l
 To learn more, visit our dedicated wiki: 
 https://github.com/viktorchernev/DescribeCompiler/wiki
 
-## Releases
-* 0.9 Initial release  
+### Get in touch  
+- Use github's issue reporter on the right
+- Send me an email vchernev91@abv.bg (might take a few days)
+- You can reach me on Viber as well: +359-885-18-05-86
 
-## Get in touch  
-You can reach me at vchernev91@abv.bg or on Viber: +359-885-18-05-86
+### Releases
+* 0.9 Initial release (public beta)  
