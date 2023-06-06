@@ -11,6 +11,7 @@ Describe is a domain specific language used to write and maintain complex data l
 
 
 ### How to
+Be sure to check out our wiki https://github.com/viktorchernev/DescribeCompiler/wiki for more information
 1. Write descpibe code
 ![pic1](https://github.com/viktorchernev/DescribeCompiler/assets/72315339/e1ec7895-d517-4936-ba09-2a0a52da333d)  
 
