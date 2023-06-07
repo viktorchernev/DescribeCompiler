@@ -12,8 +12,7 @@ Describe is a domain specific language used to write and maintain complex data l
 
 ## How to
 In order to run the `DescribeCompilerCLI.exe` you need a Windows PC with DotNet framework version 4.8 or higher.  
-In order to reference the `DescribeCompilerAPI.dll` in your DotNet projects, you need to target DotNet framework version 4.8 or higher.  
-Also, be sure to check out our [wiki](https://github.com/viktorchernev/DescribeCompiler/wiki) for the complete documentation.  
+In order to reference the `DescribeCompilerAPI.dll` in your DotNet projects, you need to target DotNet framework version 4.8 or higher. Also, be sure to check out our [wiki](https://github.com/viktorchernev/DescribeCompiler/wiki) for the complete documentation.  
   
 ### 1. Write Describe code  
 Write a title of each list, followed by an arrow `->` and the elements, one on a line, separated by comma `,` and end with a semicolon `;`. Add `[links]` in square brackets, and `<tag>` items in order to piece lists together. Add additional data as `{decorators}` in curly brackets. For more info visit the [documentation](https://github.com/viktorchernev/DescribeCompiler/wiki/Grammar-How-To) or explore Describe source codes and test cases in this [huge collection](https://github.com/viktorchernev/DataLists/tree/master/Lists).  
@@ -21,8 +20,7 @@ Write a title of each list, followed by an arrow `->` and the elements, one on a
 ![pic1](https://github.com/viktorchernev/DescribeCompiler/assets/72315339/e1ec7895-d517-4936-ba09-2a0a52da333d)  
 
 ### 2a. Compile (using CLI)  
-Run the CLI compiler by specifying the target folder (or file) as first argument and output file (or folder) as last argument.  
-Add [options](https://github.com/viktorchernev/DescribeCompiler/wiki/CliCompiler-how-to) in between, if needed.  
+Run the CLI compiler by specifying the target folder (or file) as first argument and output file (or folder) as last argument.  Add [options](https://github.com/viktorchernev/DescribeCompiler/wiki/CliCompiler-how-to) in between, if needed.  
 
 ![pic2a](https://github.com/viktorchernev/DescribeCompiler/assets/72315339/d8f6ac78-2cbc-4056-b560-16273474fa4d)
 
