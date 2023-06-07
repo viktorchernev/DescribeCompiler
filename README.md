@@ -55,3 +55,4 @@ The final output will depend on the templates used - and you can easily write [y
 
 ## Notes
 * In those first beta releases, we currently only have that one HTML template set for demonstration purposes. If you are expecting a big variety of different designs and options - there aren't many yet, so you'd have to [write your own template set](https://github.com/viktorchernev/DescribeCompiler/wiki/DescribeCompiler-templating) - it is very easy, but still I feel the need to mention it, as I don't want anyone to feel misled. I will give updates here when more templates are available.
+* In order to highlight Describe code, you can download the xml files for Notepad++ from the folder [Highlighting](https://github.com/viktorchernev/DescribeCompiler/tree/master/Highlighting), or use the instructions in said folder to set up your text editor.
