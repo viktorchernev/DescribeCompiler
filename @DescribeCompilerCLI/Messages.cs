@@ -8,6 +8,11 @@ namespace DescribeCompilerCLI
 {
     internal static class Messages
     {
+        internal static void setConsole()
+        {
+            Console.BufferHeight = Int16.MaxValue - 1;
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+        }
         internal static void printLogo3(ConsoleColor logoColor)
         {
             ConsoleColor col = Console.ForegroundColor;
