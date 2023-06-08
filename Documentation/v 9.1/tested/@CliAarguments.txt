@@ -1,0 +1,13 @@
+TEST: Test CLI args
+
+1. help
+help
+
+2. Valid in path, Valid out path
+"C:\Users\Viktor Chernev\Desktop\DataLists\Lists" "C:\Users\Viktor Chernev\Desktop\sss.html"
+
+3. Invalid in path, Valid out path
+"C:\Users\xxx\Desktop\xxx\Lists" "C:\Users\Viktor Chernev\Desktop\sss.html"
+
+2. Valid in path, Invalid out path
+"C:\Users\Viktor Chernev\Desktop\DataLists\Lists" "C:\Users\xxx\Desktop\sss.html"
