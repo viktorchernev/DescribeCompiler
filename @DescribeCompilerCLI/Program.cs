@@ -18,44 +18,25 @@ namespace DescribeCompilerCLI
         {
             Console.BufferHeight = Int16.MaxValue - 1;
             Console.ForegroundColor = ConsoleColor.DarkGray;
+            Messages.printLogo3(ConsoleColor.DarkBlue);
 
             //get cmd arguments
             string thisName = Assembly.GetExecutingAssembly().GetName().Name;
             if (args.Length < 1) 
             {
-                ConsoleLogError("Invalid argument count.");
-                ConsoleLog("usage: " + thisName + " help");
-                ConsoleLog("usage: " + thisName + " INPUT_PATH [ verbosity=<verb> ] OUTPUT_PATH");
-                ConsoleLogInfo("Press any key to exit.");
-                Console.ReadLine();
+                Messages.printNoArgumentsError(thisName);
                 return;
             }
             else if (args.Length < 2) 
             { 
                 if (args[0].ToLower() != "help")
                 {
-                    ConsoleLogError("Invalid argument 1 - " + args[0]);
-                    ConsoleLog("usage: " + thisName + " help");
-                    ConsoleLog("usage: " + thisName + " INPUT_PATH [ verbosity=<verb> ] OUTPUT_PATH");
-                    ConsoleLogInfo("Press any key to exit.");
-                    Console.ReadLine();
+                    Messages.printArgumentError(thisName, args[0], 1);
                     return;
                 }
                 else
                 {
-                    ConsoleLog("usage: " + thisName + " help");
-                    ConsoleLog("usage: " + thisName + " INPUT_PATH [ verbosity=<verb> ] OUTPUT_PATH");
-                    ConsoleLog("-----------------------------------------------------------------");
-                    ConsoleLog("verbosity - set the log verbosity of the parser:");
-                    Console.WriteLine();
-                    ConsoleLog("    l, low - low verbosity");
-                    ConsoleLog("    m, medium - medium verbosity");
-                    ConsoleLog("    h, high - high verbosity");
-                    Console.WriteLine();
-                    ConsoleLog("help - display this message");
-                    ConsoleLog("-----------------------------------------------------------------");
-                    ConsoleLogInfo("Press any key to exit.");
-                    Console.ReadLine();
+                    Messages.printHelpMessage(thisName);
                     return;
                 }
             }
@@ -72,20 +53,24 @@ namespace DescribeCompilerCLI
             }
             catch (Exception ex)
             {
-                ConsoleLogError("Invalid argument 1 - \"" + args[0] + "\" is not a valid file or folder");
-                ConsoleLogInfo("Press any key to exit.");
-                Console.ReadLine();
+                Messages.printArgumentError(thisName, args[0], 1, "is not a valid file or folder");
                 return;
             }
             try
             {
                 FileInfo finfo = new FileInfo(output);
+                DirectoryInfo di = finfo.Directory;
+                if(di.Exists == false)
+                {
+                    Messages.printArgumentError(thisName, 
+                        args[args.Length - 1], 
+                        args.Length, "is not a valid outpit file path");
+                    return;
+                }
             }
             catch (Exception ex)
             {
-                ConsoleLogError("Invalid argument " + args.Length + " - " + ex.Message);
-                ConsoleLogInfo("Press any key to exit.");
-                Console.ReadLine();
+                Messages.printArgumentError(thisName, args[args.Length - 1], args.Length, ex.Message);
                 return;
             }
             for (int i = 1; i < args.Length - 1; i++) 
@@ -96,9 +81,7 @@ namespace DescribeCompilerCLI
                     string val = cur.Substring(cur.IndexOf("=") + 1);
                     if(val == null)
                     {
-                        ConsoleLogError("Invalid argument " + (i + 1).ToString() + " - \"" + cur + "\"");
-                        ConsoleLogInfo("Press any key to exit.");
-                        Console.ReadLine();
+                        Messages.printArgumentError(thisName, cur, i + 1, "");
                         return;
                     }
                     else if(val == "low" || val == "l") verb = LogVerbosity.Low;
@@ -107,13 +90,14 @@ namespace DescribeCompilerCLI
                 }
                 else
                 {
-                    ConsoleLogError("Invalid argument " + (i + 1).ToString() + " - what is \"" + cur + "\"?");
-                    ConsoleLogInfo("Press any key to exit.");
-                    Console.ReadLine();
+                    Messages.printArgumentError(thisName, cur, i + 1, "- what is this?");
                     return;
                 }
             }
 
+
+
+            //Compile
             DescribeCompiler.DescribeCompiler comp = 
                 new DescribeCompiler.DescribeCompiler(
                     ConsoleLog, 
