@@ -1787,7 +1787,8 @@ namespace DescribeCompiler
                         sb.Append('\\');
                     }
                     else if (value[i] == '*' 
-                          && value[i + 1] != '/' 
+                          && value[i + 1] != '/'
+                          && value[i - 1] != '/'
                           && value[i - 1] != '\\')
                     {
                         sb.Append('\\');
@@ -1836,7 +1837,7 @@ namespace DescribeCompiler
 
 
         //private const
-        const string COMPILER_NAME = "D#SCRIBE COMPILER v0.9";
+        const string COMPILER_NAME = "D#SCRIBE COMPILER v0.9.1";
         const GrammarName DEFAULT_GRAMMAR = GrammarName.Decorators;
     }
 }

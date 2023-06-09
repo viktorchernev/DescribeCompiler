@@ -1,5 +1,5 @@
-BUG: There is a bug related to star comments - we might be errorneously escaping the stars for example?
-
+BUG: There is a bug related to star comments - we might be errorneously escaping the stars for example? - yes, we did that
+In EncodeNonAsciiCharacters we forgot to check if star is prefixed by "/" forward slash to not escape it
 
 directives -> namespace <treeofall.private.job>;
 
