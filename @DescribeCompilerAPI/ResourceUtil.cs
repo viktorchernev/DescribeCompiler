@@ -31,7 +31,7 @@ namespace DescribeCompiler
         /// </summary>
         /// <param name="filename">The name of the string resource</param>
         /// <returns>The retrieved string</returns>
-		public static string ExtractResource_String(string filename)
+		public static string ExtractResourceByFileExtention_String(string filename)
         {
             System.Reflection.Assembly a = System.Reflection.Assembly.GetExecutingAssembly();
 
@@ -61,7 +61,7 @@ namespace DescribeCompiler
         /// </summary>
         /// <param name="filename">The name of the string resource, without extention</param>
         /// <returns>The retrieved string</returns>
-        public static string ExtractResourceByName_String(string filename)
+        public static string ExtractResourceByFileName_String(string folder, string filename)
         {
             System.Reflection.Assembly a = System.Reflection.Assembly.GetExecutingAssembly();
 
@@ -71,10 +71,20 @@ namespace DescribeCompiler
             {
                 string[] sep = s.Split('.');
                 if (sep.Length < 1) continue;
-                if (sep.Length >= 2 && sep[sep.Length - 2] == filename)
+                if (sep.Length >= 3)
                 {
-                    resourceName = s;
-                    break;
+                    //file extention
+                    if(sep[sep.Length - 2] == filename && sep[sep.Length - 3] == folder)
+                    {
+                        resourceName = s;
+                        break;
+                    }
+                    //no file extention
+                    else if(sep[sep.Length - 1] == filename && sep[sep.Length - 2] == folder)
+                    {
+                        resourceName = s;
+                        break;
+                    }
                 }
             }
             if(resourceName == null)
@@ -100,6 +110,14 @@ namespace DescribeCompiler
                     return result;
                 }
             }
+        }
+
+        public static string[] extractResourceNames()
+        {
+            System.Reflection.Assembly a = System.Reflection.Assembly.GetExecutingAssembly();
+
+            string[] resNames = a.GetManifestResourceNames();
+            return resNames;
         }
     }
 }

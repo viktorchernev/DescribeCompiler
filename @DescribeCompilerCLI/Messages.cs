@@ -41,6 +41,15 @@ namespace DescribeCompilerCLI
             Console.WriteLine();
             Console.ForegroundColor = col;
         }
+        internal static void printSpitSuccess()
+        {
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.WriteLine("Templates outputted!");
+            Console.WriteLine("Press any key to exit.");
+
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.ReadLine();
+        }
 
         internal static void printHelpMessage(string exeName)
         {
@@ -96,6 +105,17 @@ namespace DescribeCompilerCLI
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Invalid argument " + argIndex.ToString() + " - \"" + arg + "\" " + message);
+
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.WriteLine("Press any key to exit.");
+
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.ReadLine();
+        }
+        internal static void printFatalError(string message)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Fatal error: " + message);
 
             Console.ForegroundColor = ConsoleColor.DarkGray;
             Console.WriteLine("Press any key to exit.");

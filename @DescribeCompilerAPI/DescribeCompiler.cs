@@ -90,14 +90,20 @@ namespace DescribeCompiler
         /// </summary>
         /// <param name="verbosity">The logging verbosity of the parser</param>
         public DescribeCompiler(
+            string templateName,
             LogVerbosity verbosity = LogVerbosity.High)
         {
-            Translator = new UnfoldTranslator();
-
             LogText = log;
             LogError = log;
             LogInfo = log;
             LogParserInfo = log;
+
+            Translator = new UnfoldTranslator(LogText, LogError, LogInfo, templateName);
+            if (Translator.IsInitialized() == false)
+            {
+                LogError("Failed to initialize the translator");
+                return;
+            }
 
             LogInfo("Initializing " + COMPILER_NAME);
             LoadedGrammarName = "";
@@ -153,17 +159,23 @@ namespace DescribeCompiler
         /// <param name="logText">method to log text</param>
         /// <param name="verbosity">The logging verbosity of the parser</param>
         public DescribeCompiler(
+            string templateName,
             Action<string> logText, 
             LogVerbosity verbosity = LogVerbosity.High)
         {
-            Translator = new UnfoldTranslator();
-
             LogText = log;
             LogText += logText;
 
             LogError = log;
             LogInfo = log;
             LogParserInfo = log;
+
+            Translator = new UnfoldTranslator(LogText, LogError, LogInfo, templateName);
+            if (Translator.IsInitialized() == false)
+            {
+                LogError("Failed to initialize the translator");
+                return;
+            }
 
             LogInfo("Initializing " + COMPILER_NAME);
             LoadedGrammarName = "";
@@ -219,11 +231,12 @@ namespace DescribeCompiler
         /// <param name="logError">method to log errors<</param>
         /// <param name="verbosity">The logging verbosity of the parser</param>
         public DescribeCompiler(
+            string templateName,
             Action<string> logText, 
             Action<string> logError, 
             LogVerbosity verbosity = LogVerbosity.High)
         {
-            Translator = new UnfoldTranslator();
+            Translator = new UnfoldTranslator(logText, logError, templateName);
 
             LogText = log;
             LogText += logText;
@@ -233,6 +246,13 @@ namespace DescribeCompiler
 
             LogInfo = log;
             LogParserInfo = log;
+
+            Translator = new UnfoldTranslator(LogText, LogError, LogInfo, templateName);
+            if (Translator.IsInitialized() == false)
+            {
+                LogError("Failed to initialize the translator");
+                return;
+            }
 
             LogInfo("Initializing " + COMPILER_NAME);
             LoadedGrammarName = "";
@@ -289,13 +309,12 @@ namespace DescribeCompiler
         /// <param name="logInfo">method to log less important info</param>
         /// <param name="verbosity">The logging verbosity of the parser</param>
         public DescribeCompiler(
+            string templateName,
             Action<string> logText, 
             Action<string> logError, 
             Action<string> logInfo, 
             LogVerbosity verbosity = LogVerbosity.High)
         {
-            Translator = new UnfoldTranslator();
-
             LogText = log;
             LogText += logText;
 
@@ -306,6 +325,13 @@ namespace DescribeCompiler
             LogInfo += logInfo;
 
             LogParserInfo = log;
+
+            Translator = new UnfoldTranslator(LogText, LogError, LogInfo, templateName);
+            if (Translator.IsInitialized() == false)
+            {
+                LogError("Failed to initialize the translator");
+                return;
+            }
 
             LogInfo("Initializing " + COMPILER_NAME);
             LoadedGrammarName = "";
@@ -364,14 +390,13 @@ namespace DescribeCompiler
         /// <param name="logParserInfo">method to log parser output</param>
         /// <param name="verbosity">The logging verbosity of the parser</param>
         public DescribeCompiler(
+            string templateName,
             Action<string> logText, 
             Action<string> logError, 
             Action<string> logInfo, 
             Action<string> logParserInfo, 
             LogVerbosity verbosity = LogVerbosity.High)
         {
-            Translator = new UnfoldTranslator();
-
             LogText = log;
             LogText += logText;
 
@@ -383,6 +408,13 @@ namespace DescribeCompiler
 
             LogParserInfo = log;
             LogParserInfo += logParserInfo;
+
+            Translator = new UnfoldTranslator(LogText, LogError, LogInfo, templateName);
+            if (Translator.IsInitialized() == false)
+            {
+                LogError("Failed to initialize the translator");
+                return;
+            }
 
             LogInfo("Initializing " + COMPILER_NAME);
             LoadedGrammarName = "";
@@ -509,6 +541,11 @@ namespace DescribeCompiler
                 LogError("Parser not innitialized.");
                 return false;
             }
+            if(Translator.IsInitialized() == false)
+            {
+                LogError("Translator not innitialized.");
+                return false;
+            }
 
             string msg = "\"" + dirInfo.FullName + "\" - ";
             if (!Directory.Exists(dirInfo.FullName))
@@ -590,6 +627,11 @@ namespace DescribeCompiler
             if (!initialized)
             {
                 LogError("This parser isn't innitialized, and cannot be used. Create a new instance.");
+                return false;
+            }
+            if (Translator.IsInitialized() == false)
+            {
+                LogError("This parser's translator has not been correctly innitialized.");
                 return false;
             }
             LogText("------------------------");
@@ -679,6 +721,11 @@ namespace DescribeCompiler
                 LogError("This parser isn't innitialized, and cannot be used. Create a new instance.");
                 return false;
             }
+            if (Translator.IsInitialized() == false)
+            {
+                LogError("This parser's translator has not been correctly innitialized.");
+                return false;
+            }
             LogText("------------------------");
             LogText("Starting a parse operation on folder: \"" + dirInfo.FullName + "\"");
             if (!Directory.Exists(dirInfo.FullName))
@@ -766,6 +813,11 @@ namespace DescribeCompiler
             if (!initialized)
             {
                 LogError("Parser not innitialized.");
+                return false;
+            }
+            if (Translator.IsInitialized() == false)
+            {
+                LogError("Translator not innitialized.");
                 return false;
             }
 
@@ -877,6 +929,11 @@ namespace DescribeCompiler
             if (!initialized)
             {
                 LogError("This parser isn't innitialized, and cannot be used. Create a new instance.");
+                return false;
+            }
+            if (Translator.IsInitialized() == false)
+            {
+                LogError("This parser's translator has not been correctly innitialized.");
                 return false;
             }
 
@@ -1000,6 +1057,11 @@ namespace DescribeCompiler
             if (!initialized)
             {
                 LogError("This parser isn't innitialized, and cannot be used. Create a new instance.");
+                return false;
+            }
+            if (Translator.IsInitialized() == false)
+            {
+                LogError("This parser's translator has not been correctly innitialized.");
                 return false;
             }
             LogText("------------------------");
@@ -1126,6 +1188,11 @@ namespace DescribeCompiler
                 LogError("Parser not innitialized.");
                 return false;
             }
+            if (Translator.IsInitialized() == false)
+            {
+                LogError("Translator has not been correctly innitialized.");
+                return false;
+            }
 
             string msg = "\"" + fileInfo.FullName + "\" - ";
             if (!File.Exists(fileInfo.FullName))
@@ -1215,6 +1282,11 @@ namespace DescribeCompiler
             if (!initialized)
             {
                 LogError("This parser isn't innitialized, and cannot be used. Create a new instance.");
+                return false;
+            }
+            if (Translator.IsInitialized() == false)
+            {
+                LogError("This parser's translator has not been correctly innitialized.");
                 return false;
             }
             //LogText("------------------------");
@@ -1313,6 +1385,11 @@ namespace DescribeCompiler
             if (!initialized)
             {
                 LogError("This parser isn't innitialized, and cannot be used. Create a new instance.");
+                return false;
+            }
+            if (Translator.IsInitialized() == false)
+            {
+                LogError("This parser's translator has not been correctly innitialized.");
                 return false;
             }
             LogText("------------------------");
@@ -1837,7 +1914,7 @@ namespace DescribeCompiler
 
 
         //private const
-        const string COMPILER_NAME = "D#SCRIBE COMPILER v0.9.1";
+        const string COMPILER_NAME = "Describe Compiler v0.9.1";
         const GrammarName DEFAULT_GRAMMAR = GrammarName.Decorators;
     }
 }

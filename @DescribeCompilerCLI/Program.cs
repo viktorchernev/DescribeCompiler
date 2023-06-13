@@ -21,12 +21,14 @@ namespace DescribeCompilerCLI
         static bool isdir = false;                          // is input a file or folder
         static string output = "";                          // output file or folder
         static LogVerbosity verb = LogVerbosity.Low;        // verbosity to use
+        static string templateName = null;                  // the emplate to use
         
 
         static void Main(string[] args)
         {
             Messages.setConsole();
             Messages.printLogo3(ConsoleColor.DarkBlue);
+            ConsoleLogInfo(string.Join(" ", args));
 
             //get cmd arguments
             thisName = Assembly.GetExecutingAssembly().GetName().Name;
@@ -39,14 +41,19 @@ namespace DescribeCompilerCLI
             }
             else if (args.Length < 2) 
             { 
-                if (args[0].ToLower() != "help")
+                if (args[0].ToLower() == "help")
                 {
-                    Messages.printArgumentError(thisName, args[0], 1);
+                    Messages.printHelpMessage(thisName);
+                    return;
+                }
+                else if (args[0].ToLower() == "ext")
+                {
+                    bool result = extTemplates();
                     return;
                 }
                 else
                 {
-                    Messages.printHelpMessage(thisName);
+                    Messages.printArgumentError(thisName, args[0], 1);
                     return;
                 }
             }
@@ -64,6 +71,10 @@ namespace DescribeCompilerCLI
                 {
                     if (readVerbosityArgument(cur, i) == false) return;
                 }
+                else if(cur.StartsWith("template=") && cur.Length > "template=".Length)
+                {
+                    if (readTemplateArgument(args[i], i) == false) return;
+                }
                 else
                 {
                     Messages.printArgumentError(thisName, cur, i + 1, "- what is this?");
@@ -74,6 +85,7 @@ namespace DescribeCompilerCLI
             //Compile
             DescribeCompiler.DescribeCompiler comp = 
                 new DescribeCompiler.DescribeCompiler(
+                    templateName,
                     ConsoleLog, 
                     ConsoleLogError, 
                     ConsoleLogInfo,
@@ -89,6 +101,8 @@ namespace DescribeCompilerCLI
             }
             Console.ReadLine();
         }
+
+        //read args
         private static bool readInputArgument(string arg, int argindex)
         {
             isdir = false;
@@ -149,7 +163,65 @@ namespace DescribeCompilerCLI
 
             return true;
         }
-        
+        private static bool readTemplateArgument(string arg, int argindex)
+        {
+            string val = arg.Substring(arg.IndexOf("=") + 1);
+            if (val == null)
+            {
+                Messages.printArgumentError(thisName, arg, argindex + 1, "");
+                return false;
+            }
+            else if (string.IsNullOrEmpty(val) || string.IsNullOrWhiteSpace(val))
+            {
+                Messages.printArgumentError(thisName, arg, argindex + 1, "Empty value for template name");
+                return false;
+            }
+            else
+            {
+                templateName = val;
+                return true;
+            }
+        }
+
+
+        //func
+        private static bool extTemplates()
+        {
+            try
+            {
+                string dir = Assembly.GetExecutingAssembly().Location;
+                dir = Path.GetDirectoryName(dir);
+                string[] names = ResourceUtil.extractResourceNames();
+                foreach (string s in names)
+                {
+                    if (s.StartsWith("DescribeCompiler.Templates."))
+                    {
+                        string[] sep = s.Split('.');
+                        string folder = dir + "\\Templates\\" + sep[2];
+                        string filename = sep[3];
+                        for (int i = 4; i < sep.Length; i++)
+                        {
+                            filename += "." + sep[i];
+                        }
+                        if (Directory.Exists(folder) == false)
+                        {
+                            Directory.CreateDirectory(folder);
+                        }
+                        string template = 
+                            ResourceUtil.ExtractResourceByFileName_String(sep[sep.Length - 3], sep[sep.Length - 2]);
+                        File.WriteAllText(folder + "\\" + filename, template);
+                    }
+                }
+                Messages.printSpitSuccess();
+                return true;
+            }
+            catch(Exception ex)
+            {
+                Messages.printFatalError(ex.Message);
+                return false;
+            }
+        }
+
 
         //logs
         private static void ConsoleLog(string text)

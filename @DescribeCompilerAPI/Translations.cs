@@ -1,7 +1,9 @@
 ﻿using GoldParser.ParseTree;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,10 +11,16 @@ namespace DescribeCompiler
 {
     public interface IUnfoldTranslator
     {
+        bool IsInitialized();
         string TranslateUnfold(DescribeUnfold u);
+
+        
     }
     public class UnfoldTranslator : IUnfoldTranslator
     {
+        static string defaultTemplate = "HTML_PARACORD";
+        public string selectedTemplate;
+
         static string pageTemplate;
         static string rootTemplate;
         static string itemTemplate;
@@ -22,19 +30,515 @@ namespace DescribeCompiler
         static string prodTemplate;
         static string linkTemplate;
 
-        static UnfoldTranslator()
+        public UnfoldTranslator(string template = null)
         {
-            pageTemplate = ResourceUtil.ExtractResourceByName_String(@"Page");
-            rootTemplate = ResourceUtil.ExtractResourceByName_String(@"Root");
-            prodTemplate = ResourceUtil.ExtractResourceByName_String(@"Production");
+            LogText = log;
+            LogInfo = log;
+            LogError = log;
 
-            itemTemplate = ResourceUtil.ExtractResourceByName_String(@"Item");
-            emptyItemTemplate = ResourceUtil.ExtractResourceByName_String(@"ItemEmpty");
-            commentItemTemplate = ResourceUtil.ExtractResourceByName_String(@"ItemComment");
-            coloredItemTemplate = ResourceUtil.ExtractResourceByName_String(@"ItemColored");
+            try
+            {
+                if(template != null) selectedTemplate = template;
+                else selectedTemplate = defaultTemplate;
 
-            linkTemplate = ResourceUtil.ExtractResourceByName_String(@"Link");
+                string templatesDir = Assembly.GetExecutingAssembly().Location;
+                templatesDir = Path.GetDirectoryName(templatesDir);
+                templatesDir = templatesDir + "\\Templates";
+                string tdir = templatesDir + "\\" + selectedTemplate;
+                DirectoryInfo directoryInfo = new DirectoryInfo(tdir);
+
+                if (directoryInfo.Exists)
+                {
+                    FileInfo[] fs = directoryInfo.GetFiles();
+                    foreach (FileInfo finfo in fs)
+                    {
+                        // make sure that "ItemEmpty" or "ItemComment" and all other
+                        // that start with Item are before "Item"
+                        if (finfo.Name.StartsWith("Page"))
+                            pageTemplate = File.ReadAllText(finfo.FullName);
+                        else if (finfo.Name.StartsWith("Root"))
+                            rootTemplate = File.ReadAllText(finfo.FullName);
+                        else if (finfo.Name.StartsWith("Production"))
+                            prodTemplate = File.ReadAllText(finfo.FullName);
+                        else if (finfo.Name.StartsWith("ItemEmpty"))
+                            emptyItemTemplate = File.ReadAllText(finfo.FullName);
+                        else if (finfo.Name.StartsWith("ItemComment"))
+                            commentItemTemplate = File.ReadAllText(finfo.FullName);
+                        else if (finfo.Name.StartsWith("ItemColored"))
+                            coloredItemTemplate = File.ReadAllText(finfo.FullName);
+                        else if (finfo.Name.StartsWith("Item"))
+                            itemTemplate = File.ReadAllText(finfo.FullName);
+                        else if (finfo.Name.StartsWith("Link"))
+                            linkTemplate = File.ReadAllText(finfo.FullName);
+                    }
+
+
+                    bool flag = false;
+                    if (pageTemplate == null)
+                    {
+                        LogError("No \"Page\" Template found during translation.");
+                        flag = true;
+                    }
+                    if (rootTemplate == null)
+                    {
+                        LogError("No \"Root\" Template found during translation.");
+                        flag = true;
+                    }
+                    if (prodTemplate == null)
+                    {
+                        LogError("No \"Production\" Template found during translation.");
+                        flag = true;
+                    }
+                    if (itemTemplate == null)
+                    {
+                        LogError("No \"Item\" Template found during translation.");
+                        flag = true;
+                    }
+                    if (emptyItemTemplate == null)
+                    {
+                        LogError("No \"ItemEmpty\" Template found during translation.");
+                        flag = true;
+                    }
+                    if (commentItemTemplate == null)
+                    {
+                        LogError("No \"ItemComment\" Template found during translation.");
+                        flag = true;
+                    }
+                    if (coloredItemTemplate == null)
+                    {
+                        LogError("No \"ItemColored\" Template found during translation.");
+                        flag = true;
+                    }
+                    if (linkTemplate == null)
+                    {
+                        LogError("No \"Link\" Template found during translation.");
+                        flag = true;
+                    }
+
+                    if (!flag)
+                    {
+                        LogInfo("Describe translator initialized - using template \""
+                            + selectedTemplate + "\"");
+                        _initialized = true;
+                    }
+                }
+                else
+                {
+                    pageTemplate =
+                        ResourceUtil.ExtractResourceByFileName_String(selectedTemplate, @"Page");
+                    rootTemplate =
+                        ResourceUtil.ExtractResourceByFileName_String(selectedTemplate, @"Root");
+                    prodTemplate =
+                        ResourceUtil.ExtractResourceByFileName_String(selectedTemplate, @"Production");
+                    itemTemplate =
+                        ResourceUtil.ExtractResourceByFileName_String(selectedTemplate, @"Item");
+                    emptyItemTemplate =
+                        ResourceUtil.ExtractResourceByFileName_String(selectedTemplate, @"ItemEmpty");
+                    commentItemTemplate =
+                        ResourceUtil.ExtractResourceByFileName_String(selectedTemplate, @"ItemComment");
+                    coloredItemTemplate =
+                        ResourceUtil.ExtractResourceByFileName_String(selectedTemplate, @"ItemColored");
+                    linkTemplate =
+                        ResourceUtil.ExtractResourceByFileName_String(selectedTemplate, @"Link");
+
+                    LogInfo("Translator initialized - using template \""
+                            + selectedTemplate + "\"");
+                    _initialized = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                LogError("Fatal error: " + ex.Message);
+            }
         }
+
+        public UnfoldTranslator(
+            Action<string> logText, 
+            string template = null)
+        {
+            LogText = log;
+            LogText += logText;
+
+            LogInfo = log;
+            LogError = log;
+
+            try
+            {
+                if (template != null) selectedTemplate = template;
+                else selectedTemplate = defaultTemplate;
+
+                string templatesDir = Assembly.GetExecutingAssembly().Location;
+                templatesDir = Path.GetDirectoryName(templatesDir);
+                templatesDir = templatesDir + "\\Templates";
+                string tdir = templatesDir + "\\" + selectedTemplate;
+                DirectoryInfo directoryInfo = new DirectoryInfo(tdir);
+
+                if (directoryInfo.Exists)
+                {
+                    FileInfo[] fs = directoryInfo.GetFiles();
+                    foreach (FileInfo finfo in fs)
+                    {
+                        // make sure that "ItemEmpty" or "ItemComment" and all other
+                        // that start with Item are before "Item"
+                        if (finfo.Name.StartsWith("Page"))
+                            pageTemplate = File.ReadAllText(finfo.FullName);
+                        else if (finfo.Name.StartsWith("Root"))
+                            rootTemplate = File.ReadAllText(finfo.FullName);
+                        else if (finfo.Name.StartsWith("Production"))
+                            prodTemplate = File.ReadAllText(finfo.FullName);
+                        else if (finfo.Name.StartsWith("ItemEmpty"))
+                            emptyItemTemplate = File.ReadAllText(finfo.FullName);
+                        else if (finfo.Name.StartsWith("ItemComment"))
+                            commentItemTemplate = File.ReadAllText(finfo.FullName);
+                        else if (finfo.Name.StartsWith("ItemColored"))
+                            coloredItemTemplate = File.ReadAllText(finfo.FullName);
+                        else if (finfo.Name.StartsWith("Item"))
+                            itemTemplate = File.ReadAllText(finfo.FullName);
+                        else if (finfo.Name.StartsWith("Link"))
+                            linkTemplate = File.ReadAllText(finfo.FullName);
+                    }
+
+
+                    bool flag = false;
+                    if (pageTemplate == null)
+                    {
+                        LogError("No \"Page\" Template found during translation.");
+                        flag = true;
+                    }
+                    if (rootTemplate == null)
+                    {
+                        LogError("No \"Root\" Template found during translation.");
+                        flag = true;
+                    }
+                    if (prodTemplate == null)
+                    {
+                        LogError("No \"Production\" Template found during translation.");
+                        flag = true;
+                    }
+                    if (itemTemplate == null)
+                    {
+                        LogError("No \"Item\" Template found during translation.");
+                        flag = true;
+                    }
+                    if (emptyItemTemplate == null)
+                    {
+                        LogError("No \"ItemEmpty\" Template found during translation.");
+                        flag = true;
+                    }
+                    if (commentItemTemplate == null)
+                    {
+                        LogError("No \"ItemComment\" Template found during translation.");
+                        flag = true;
+                    }
+                    if (coloredItemTemplate == null)
+                    {
+                        LogError("No \"ItemColored\" Template found during translation.");
+                        flag = true;
+                    }
+                    if (linkTemplate == null)
+                    {
+                        LogError("No \"Link\" Template found during translation.");
+                        flag = true;
+                    }
+
+                    if (!flag)
+                    {
+                        LogInfo("Describe translator initialized - using template \"" 
+                            + selectedTemplate + "\"");
+                        _initialized = true;
+                    }
+                }
+                else
+                {
+                    pageTemplate =
+                        ResourceUtil.ExtractResourceByFileName_String(selectedTemplate, @"Page");
+                    rootTemplate =
+                        ResourceUtil.ExtractResourceByFileName_String(selectedTemplate, @"Root");
+                    prodTemplate =
+                        ResourceUtil.ExtractResourceByFileName_String(selectedTemplate, @"Production");
+                    itemTemplate =
+                        ResourceUtil.ExtractResourceByFileName_String(selectedTemplate, @"Item");
+                    emptyItemTemplate =
+                        ResourceUtil.ExtractResourceByFileName_String(selectedTemplate, @"ItemEmpty");
+                    commentItemTemplate =
+                        ResourceUtil.ExtractResourceByFileName_String(selectedTemplate, @"ItemComment");
+                    coloredItemTemplate =
+                        ResourceUtil.ExtractResourceByFileName_String(selectedTemplate, @"ItemColored");
+                    linkTemplate =
+                        ResourceUtil.ExtractResourceByFileName_String(selectedTemplate, @"Link");
+
+                    LogInfo("Translator initialized - using template \""
+                            + selectedTemplate + "\"");
+                    _initialized = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                LogError("Fatal error: " + ex.Message);
+            }
+        }
+
+        public UnfoldTranslator(
+            Action<string> logText,
+            Action<string> logError,
+            string template = null)
+        {
+            LogText = log;
+            LogText += logText;
+
+            LogInfo = log;
+
+            LogError = log;
+            LogError += logError;
+
+            try
+            {
+                if (template != null) selectedTemplate = template;
+                else selectedTemplate = defaultTemplate;
+
+                string templatesDir = Assembly.GetExecutingAssembly().Location;
+                templatesDir = Path.GetDirectoryName(templatesDir);
+                templatesDir = templatesDir + "\\Templates";
+                string tdir = templatesDir + "\\" + selectedTemplate;
+                DirectoryInfo directoryInfo = new DirectoryInfo(tdir);
+
+                if (directoryInfo.Exists)
+                {
+                    FileInfo[] fs = directoryInfo.GetFiles();
+                    foreach (FileInfo finfo in fs)
+                    {
+                        // make sure that "ItemEmpty" or "ItemComment" and all other
+                        // that start with Item are before "Item"
+                        if (finfo.Name.StartsWith("Page"))
+                            pageTemplate = File.ReadAllText(finfo.FullName);
+                        else if (finfo.Name.StartsWith("Root"))
+                            rootTemplate = File.ReadAllText(finfo.FullName);
+                        else if (finfo.Name.StartsWith("Production"))
+                            prodTemplate = File.ReadAllText(finfo.FullName);
+                        else if (finfo.Name.StartsWith("ItemEmpty"))
+                            emptyItemTemplate = File.ReadAllText(finfo.FullName);
+                        else if (finfo.Name.StartsWith("ItemComment"))
+                            commentItemTemplate = File.ReadAllText(finfo.FullName);
+                        else if (finfo.Name.StartsWith("ItemColored"))
+                            coloredItemTemplate = File.ReadAllText(finfo.FullName);
+                        else if (finfo.Name.StartsWith("Item"))
+                            itemTemplate = File.ReadAllText(finfo.FullName);
+                        else if (finfo.Name.StartsWith("Link"))
+                            linkTemplate = File.ReadAllText(finfo.FullName);
+                    }
+
+
+                    bool flag = false;
+                    if (pageTemplate == null)
+                    {
+                        LogError("No \"Page\" Template found during translation.");
+                        flag = true;
+                    }
+                    if (rootTemplate == null)
+                    {
+                        LogError("No \"Root\" Template found during translation.");
+                        flag = true;
+                    }
+                    if (prodTemplate == null)
+                    {
+                        LogError("No \"Production\" Template found during translation.");
+                        flag = true;
+                    }
+                    if (itemTemplate == null)
+                    {
+                        LogError("No \"Item\" Template found during translation.");
+                        flag = true;
+                    }
+                    if (emptyItemTemplate == null)
+                    {
+                        LogError("No \"ItemEmpty\" Template found during translation.");
+                        flag = true;
+                    }
+                    if (commentItemTemplate == null)
+                    {
+                        LogError("No \"ItemComment\" Template found during translation.");
+                        flag = true;
+                    }
+                    if (coloredItemTemplate == null)
+                    {
+                        LogError("No \"ItemColored\" Template found during translation.");
+                        flag = true;
+                    }
+                    if (linkTemplate == null)
+                    {
+                        LogError("No \"Link\" Template found during translation.");
+                        flag = true;
+                    }
+
+                    if (!flag)
+                    {
+                        LogInfo("Describe translator initialized - using template \""
+                            + selectedTemplate + "\"");
+                        _initialized = true;
+                    }
+                }
+                else
+                {
+                    pageTemplate =
+                        ResourceUtil.ExtractResourceByFileName_String(selectedTemplate, @"Page");
+                    rootTemplate =
+                        ResourceUtil.ExtractResourceByFileName_String(selectedTemplate, @"Root");
+                    prodTemplate =
+                        ResourceUtil.ExtractResourceByFileName_String(selectedTemplate, @"Production");
+                    itemTemplate =
+                        ResourceUtil.ExtractResourceByFileName_String(selectedTemplate, @"Item");
+                    emptyItemTemplate =
+                        ResourceUtil.ExtractResourceByFileName_String(selectedTemplate, @"ItemEmpty");
+                    commentItemTemplate =
+                        ResourceUtil.ExtractResourceByFileName_String(selectedTemplate, @"ItemComment");
+                    coloredItemTemplate =
+                        ResourceUtil.ExtractResourceByFileName_String(selectedTemplate, @"ItemColored");
+                    linkTemplate =
+                        ResourceUtil.ExtractResourceByFileName_String(selectedTemplate, @"Link");
+
+                    LogInfo("Translator initialized - using template \""
+                            + selectedTemplate + "\"");
+                    _initialized = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                LogError("Fatal error: " + ex.Message);
+            }
+        }
+
+        public UnfoldTranslator(
+            Action<string> logText,
+            Action<string> logError,
+            Action<string> logInfo,
+            string template = null)
+        {
+            LogText = log;
+            LogText += logText;
+
+            LogInfo = log;
+            LogInfo += logInfo;
+
+            LogError = log;
+            LogError += logError;
+
+            try
+            {
+                if (template != null) selectedTemplate = template;
+                else selectedTemplate = defaultTemplate;
+
+                string templatesDir = Assembly.GetExecutingAssembly().Location;
+                templatesDir = Path.GetDirectoryName(templatesDir);
+                templatesDir = templatesDir + "\\Templates";
+                string tdir = templatesDir + "\\" + selectedTemplate;
+                DirectoryInfo directoryInfo = new DirectoryInfo(tdir);
+
+                if (directoryInfo.Exists)
+                {
+                    FileInfo[] fs = directoryInfo.GetFiles();
+                    foreach (FileInfo finfo in fs)
+                    {
+                        // make sure that "ItemEmpty" or "ItemComment" and all other
+                        // that start with Item are before "Item"
+                        if (finfo.Name.StartsWith("Page")) 
+                            pageTemplate = File.ReadAllText(finfo.FullName);
+                        else if (finfo.Name.StartsWith("Root")) 
+                            rootTemplate = File.ReadAllText(finfo.FullName);
+                        else if (finfo.Name.StartsWith("Production")) 
+                            prodTemplate = File.ReadAllText(finfo.FullName);
+                        else if (finfo.Name.StartsWith("ItemEmpty"))
+                            emptyItemTemplate = File.ReadAllText(finfo.FullName);
+                        else if (finfo.Name.StartsWith("ItemComment"))
+                            commentItemTemplate = File.ReadAllText(finfo.FullName);
+                        else if (finfo.Name.StartsWith("ItemColored"))
+                            coloredItemTemplate = File.ReadAllText(finfo.FullName);
+                        else if (finfo.Name.StartsWith("Item")) 
+                            itemTemplate = File.ReadAllText(finfo.FullName);
+                        else if (finfo.Name.StartsWith("Link")) 
+                            linkTemplate = File.ReadAllText(finfo.FullName);
+                    }
+                    
+                    
+                    bool flag = false;
+                    if (pageTemplate == null)
+                    {
+                        LogError("No \"Page\" Template found during translation.");
+                        flag = true;
+                    }
+                    if (rootTemplate == null)
+                    {
+                        LogError("No \"Root\" Template found during translation.");
+                        flag = true;
+                    }
+                    if (prodTemplate == null)
+                    {
+                        LogError("No \"Production\" Template found during translation.");
+                        flag = true;
+                    }
+                    if (itemTemplate == null)
+                    {
+                        LogError("No \"Item\" Template found during translation.");
+                        flag = true;
+                    }
+                    if (emptyItemTemplate == null)
+                    {
+                        LogError("No \"ItemEmpty\" Template found during translation.");
+                        flag = true;
+                    }
+                    if (commentItemTemplate == null)
+                    {
+                        LogError("No \"ItemComment\" Template found during translation.");
+                        flag = true;
+                    }
+                    if (coloredItemTemplate == null)
+                    {
+                        LogError("No \"ItemColored\" Template found during translation.");
+                        flag = true;
+                    }
+                    if (linkTemplate == null)
+                    {
+                        LogError("No \"Link\" Template found during translation.");
+                        flag = true;
+                    }
+
+                    if (!flag)
+                    {
+                        LogInfo("Describe translator initialized - using template \""
+                            + selectedTemplate + "\"");
+                        _initialized = true;
+                    }
+                }
+                else
+                {
+                    pageTemplate = 
+                        ResourceUtil.ExtractResourceByFileName_String(selectedTemplate,  @"Page");
+                    rootTemplate = 
+                        ResourceUtil.ExtractResourceByFileName_String(selectedTemplate, @"Root");
+                    prodTemplate = 
+                        ResourceUtil.ExtractResourceByFileName_String(selectedTemplate, @"Production");
+                    itemTemplate = 
+                        ResourceUtil.ExtractResourceByFileName_String(selectedTemplate, @"Item");
+                    emptyItemTemplate = 
+                        ResourceUtil.ExtractResourceByFileName_String(selectedTemplate, @"ItemEmpty");
+                    commentItemTemplate = 
+                        ResourceUtil.ExtractResourceByFileName_String(selectedTemplate, @"ItemComment");
+                    coloredItemTemplate = 
+                        ResourceUtil.ExtractResourceByFileName_String(selectedTemplate, @"ItemColored");
+                    linkTemplate = 
+                        ResourceUtil.ExtractResourceByFileName_String(selectedTemplate, @"Link");
+
+                    LogInfo("Translator initialized - using template \""
+                            + selectedTemplate + "\"");
+                    _initialized = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                LogError("Fatal error: " + ex.Message);
+            }
+        }
+
+
 
         //http://xahlee.info/comp/unicode_circled_numbers.html
         static Dictionary<char, string> WhiteCircledLetters = new Dictionary<char, string>()
@@ -239,6 +743,8 @@ namespace DescribeCompiler
         /// <returns>The generated html code</returns>
         public string TranslateUnfold(DescribeUnfold u)
         {
+            if (_initialized == false) return null;
+
             string data = "";
             foreach (string key in u.PrimaryProductions)
             {
@@ -347,5 +853,28 @@ namespace DescribeCompiler
             string it = itemTemplate.Replace("{ITEM}", u.Translations[id] + linkage);
             return it;
         }
+
+
+
+        public string Log
+        {
+            get;
+            private set;
+        }
+        private void log(string text)
+        {
+            if (!string.IsNullOrEmpty(Log)) Log += Environment.NewLine;
+            Log += text;
+        }
+        bool _initialized = false;
+        public bool IsInitialized()
+        {
+            return _initialized;
+        }
+
+        //log handlers
+        public Action<string> LogInfo;
+        public Action<string> LogError;
+        public Action<string> LogText;
     }
 }

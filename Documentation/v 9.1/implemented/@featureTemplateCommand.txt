@@ -1,0 +1,4 @@
+FEATURE: template command
+
+The template command sets the template set to be used.
+For example "template=HTML_PARACORD"
