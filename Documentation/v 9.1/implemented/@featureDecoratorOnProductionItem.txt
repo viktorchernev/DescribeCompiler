@@ -5,3 +5,5 @@ shopska salad (385) {color|green} ->
 	150g cucumber (29),
 	450g tomatoes (158),
 	75g sirene (198);
+
+Simply the functionality was missing

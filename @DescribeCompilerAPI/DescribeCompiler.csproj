@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="describe.ico" />
+    <EmbeddedResource Include="Templates\HTML_PARACORD\ProductionColored.html" />
     <EmbeddedResource Include="Templates\HTML_PARACORD\Item.html" />
     <EmbeddedResource Include="Templates\HTML_PARACORD\ItemColored.html" />
     <EmbeddedResource Include="Templates\HTML_PARACORD\ItemComment.html" />

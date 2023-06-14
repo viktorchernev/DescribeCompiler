@@ -13,8 +13,6 @@ namespace DescribeCompiler
     {
         bool IsInitialized();
         string TranslateUnfold(DescribeUnfold u);
-
-        
     }
     public class UnfoldTranslator : IUnfoldTranslator
     {
@@ -27,7 +25,8 @@ namespace DescribeCompiler
         static string emptyItemTemplate;
         static string commentItemTemplate;
         static string coloredItemTemplate;
-        static string prodTemplate;
+        static string productionTemplate;
+        static string coloredProductionTemplate;
         static string linkTemplate;
 
         public UnfoldTranslator(string template = null)
@@ -58,8 +57,10 @@ namespace DescribeCompiler
                             pageTemplate = File.ReadAllText(finfo.FullName);
                         else if (finfo.Name.StartsWith("Root"))
                             rootTemplate = File.ReadAllText(finfo.FullName);
+                        else if (finfo.Name.StartsWith("ProductionColored"))
+                            coloredProductionTemplate = File.ReadAllText(finfo.FullName);
                         else if (finfo.Name.StartsWith("Production"))
-                            prodTemplate = File.ReadAllText(finfo.FullName);
+                            productionTemplate = File.ReadAllText(finfo.FullName);
                         else if (finfo.Name.StartsWith("ItemEmpty"))
                             emptyItemTemplate = File.ReadAllText(finfo.FullName);
                         else if (finfo.Name.StartsWith("ItemComment"))
@@ -84,7 +85,12 @@ namespace DescribeCompiler
                         LogError("No \"Root\" Template found during translation.");
                         flag = true;
                     }
-                    if (prodTemplate == null)
+                    if (coloredProductionTemplate == null)
+                    {
+                        LogError("No \"ProductionColored\" Template found during translation.");
+                        flag = true;
+                    }
+                    if (productionTemplate == null)
                     {
                         LogError("No \"Production\" Template found during translation.");
                         flag = true;
@@ -128,7 +134,9 @@ namespace DescribeCompiler
                         ResourceUtil.ExtractResourceByFileName_String(selectedTemplate, @"Page");
                     rootTemplate =
                         ResourceUtil.ExtractResourceByFileName_String(selectedTemplate, @"Root");
-                    prodTemplate =
+                    coloredProductionTemplate =
+                        ResourceUtil.ExtractResourceByFileName_String(selectedTemplate, @"ProductionColored");
+                    productionTemplate =
                         ResourceUtil.ExtractResourceByFileName_String(selectedTemplate, @"Production");
                     itemTemplate =
                         ResourceUtil.ExtractResourceByFileName_String(selectedTemplate, @"Item");
@@ -184,8 +192,10 @@ namespace DescribeCompiler
                             pageTemplate = File.ReadAllText(finfo.FullName);
                         else if (finfo.Name.StartsWith("Root"))
                             rootTemplate = File.ReadAllText(finfo.FullName);
+                        else if (finfo.Name.StartsWith("ProductionColored"))
+                            coloredProductionTemplate = File.ReadAllText(finfo.FullName);
                         else if (finfo.Name.StartsWith("Production"))
-                            prodTemplate = File.ReadAllText(finfo.FullName);
+                            productionTemplate = File.ReadAllText(finfo.FullName);
                         else if (finfo.Name.StartsWith("ItemEmpty"))
                             emptyItemTemplate = File.ReadAllText(finfo.FullName);
                         else if (finfo.Name.StartsWith("ItemComment"))
@@ -210,7 +220,12 @@ namespace DescribeCompiler
                         LogError("No \"Root\" Template found during translation.");
                         flag = true;
                     }
-                    if (prodTemplate == null)
+                    if (coloredProductionTemplate == null)
+                    {
+                        LogError("No \"ProductionColored\" Template found during translation.");
+                        flag = true;
+                    }
+                    if (productionTemplate == null)
                     {
                         LogError("No \"Production\" Template found during translation.");
                         flag = true;
@@ -254,7 +269,9 @@ namespace DescribeCompiler
                         ResourceUtil.ExtractResourceByFileName_String(selectedTemplate, @"Page");
                     rootTemplate =
                         ResourceUtil.ExtractResourceByFileName_String(selectedTemplate, @"Root");
-                    prodTemplate =
+                    coloredProductionTemplate =
+                        ResourceUtil.ExtractResourceByFileName_String(selectedTemplate, @"ProductionColored");
+                    productionTemplate =
                         ResourceUtil.ExtractResourceByFileName_String(selectedTemplate, @"Production");
                     itemTemplate =
                         ResourceUtil.ExtractResourceByFileName_String(selectedTemplate, @"Item");
@@ -313,8 +330,10 @@ namespace DescribeCompiler
                             pageTemplate = File.ReadAllText(finfo.FullName);
                         else if (finfo.Name.StartsWith("Root"))
                             rootTemplate = File.ReadAllText(finfo.FullName);
+                        else if (finfo.Name.StartsWith("ProductionColored"))
+                            coloredProductionTemplate = File.ReadAllText(finfo.FullName);
                         else if (finfo.Name.StartsWith("Production"))
-                            prodTemplate = File.ReadAllText(finfo.FullName);
+                            productionTemplate = File.ReadAllText(finfo.FullName);
                         else if (finfo.Name.StartsWith("ItemEmpty"))
                             emptyItemTemplate = File.ReadAllText(finfo.FullName);
                         else if (finfo.Name.StartsWith("ItemComment"))
@@ -339,7 +358,12 @@ namespace DescribeCompiler
                         LogError("No \"Root\" Template found during translation.");
                         flag = true;
                     }
-                    if (prodTemplate == null)
+                    if (coloredProductionTemplate == null)
+                    {
+                        LogError("No \"ProductionColored\" Template found during translation.");
+                        flag = true;
+                    }
+                    if (productionTemplate == null)
                     {
                         LogError("No \"Production\" Template found during translation.");
                         flag = true;
@@ -383,7 +407,9 @@ namespace DescribeCompiler
                         ResourceUtil.ExtractResourceByFileName_String(selectedTemplate, @"Page");
                     rootTemplate =
                         ResourceUtil.ExtractResourceByFileName_String(selectedTemplate, @"Root");
-                    prodTemplate =
+                    coloredProductionTemplate =
+                        ResourceUtil.ExtractResourceByFileName_String(selectedTemplate, @"ProductionColored");
+                    productionTemplate =
                         ResourceUtil.ExtractResourceByFileName_String(selectedTemplate, @"Production");
                     itemTemplate =
                         ResourceUtil.ExtractResourceByFileName_String(selectedTemplate, @"Item");
@@ -444,8 +470,10 @@ namespace DescribeCompiler
                             pageTemplate = File.ReadAllText(finfo.FullName);
                         else if (finfo.Name.StartsWith("Root")) 
                             rootTemplate = File.ReadAllText(finfo.FullName);
+                        else if (finfo.Name.StartsWith("ProductionColored"))
+                            coloredProductionTemplate = File.ReadAllText(finfo.FullName);
                         else if (finfo.Name.StartsWith("Production")) 
-                            prodTemplate = File.ReadAllText(finfo.FullName);
+                            productionTemplate = File.ReadAllText(finfo.FullName);
                         else if (finfo.Name.StartsWith("ItemEmpty"))
                             emptyItemTemplate = File.ReadAllText(finfo.FullName);
                         else if (finfo.Name.StartsWith("ItemComment"))
@@ -470,7 +498,12 @@ namespace DescribeCompiler
                         LogError("No \"Root\" Template found during translation.");
                         flag = true;
                     }
-                    if (prodTemplate == null)
+                    if(coloredProductionTemplate == null)
+                    {
+                        LogError("No \"ProductionColored\" Template found during translation.");
+                        flag = true;
+                    }
+                    if (productionTemplate == null)
                     {
                         LogError("No \"Production\" Template found during translation.");
                         flag = true;
@@ -514,7 +547,9 @@ namespace DescribeCompiler
                         ResourceUtil.ExtractResourceByFileName_String(selectedTemplate,  @"Page");
                     rootTemplate = 
                         ResourceUtil.ExtractResourceByFileName_String(selectedTemplate, @"Root");
-                    prodTemplate = 
+                    coloredProductionTemplate =
+                        ResourceUtil.ExtractResourceByFileName_String(selectedTemplate, @"ProductionColored");
+                    productionTemplate = 
                         ResourceUtil.ExtractResourceByFileName_String(selectedTemplate, @"Production");
                     itemTemplate = 
                         ResourceUtil.ExtractResourceByFileName_String(selectedTemplate, @"Item");
@@ -797,7 +832,22 @@ namespace DescribeCompiler
             }
 
             //replace in template
-            string pt = prodTemplate.Replace("{TITLE}", u.Translations[id] + linkage);
+            if (u.Decorators.ContainsKey(id))
+            {
+                List<string> decorators = u.Decorators[id];
+                foreach (string s in decorators)
+                {
+                    if (s.StartsWith("color|"))
+                    {
+                        string val = s.Substring(6);
+                        string res = coloredProductionTemplate.Replace("{TITLE}", u.Translations[id] + linkage);
+                        res = res.Replace("{COLOR}", val);
+                        res = res.Replace("{ITEMS}", items);
+                        return res;
+                    }
+                }
+            }
+            string pt = productionTemplate.Replace("{TITLE}", u.Translations[id] + linkage);
             pt = pt.Replace("{ITEMS}", items);
             return pt;
         }

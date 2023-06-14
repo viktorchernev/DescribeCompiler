@@ -6,6 +6,12 @@ using System.Threading.Tasks;
 
 namespace DescribeCompilerCLI
 {
+    //https://patorjk.com/software/taag/#p=display&f=Alpha&t=DESCRIBE
+    //cool - 3D Diagonal, Alpha, Impossible, Isometric1
+    //Isometric2, Isometric3, Isometric4, Slant Relief, Small Isometric1
+    //minimalist - Bulbhead, Graceful, Modular, Ogre, Slant, Small
+    //Small Slant, Standard, Twisted, ANSI Shadow
+
     internal static class Messages
     {
         internal static void setConsole()
