@@ -1511,7 +1511,7 @@ namespace DescribeCompiler
                     case GoldParser.Parser.ParseMessage.LexicalError:
                         //Cannot recognize token
                         FailMessage = "Lexical Error:\n" +
-                                      "Position: " + _GoldParser.CurrentPosition.Line + ", " + _GoldParser.CurrentPosition.Column + "\n" +
+                                      "Position: " + (_GoldParser.CurrentPosition.Line + 1) + ", " + (_GoldParser.CurrentPosition.Column + 1) + "\n" +
                                       "Read: " + _GoldParser.CurrentToken.Data;
                         done = true;
                         break;
@@ -1523,8 +1523,8 @@ namespace DescribeCompiler
                         foreach (GrammarSymbol s in _GoldParser.ExpectedSymbols) li.Add(s.ToString());
 
                         FailMessage = "Syntax Error:\n" +
-                                      "Position: " + _GoldParser.CurrentPosition.Line + ", "
-                                      + _GoldParser.CurrentPosition.Column + "\n" +
+                                      "Position: " + (_GoldParser.CurrentPosition.Line + 1) + ", "
+                                      + (_GoldParser.CurrentPosition.Column + 1) + "\n" +
                                       "Read: \"" + _GoldParser.CurrentToken.Data + "\"\n" +
                                       "Expecting: " + String.Join(" ,", li);
                         done = true;
@@ -1593,7 +1593,7 @@ namespace DescribeCompiler
                     case GoldParser.Parser.ParseMessage.LexicalError:
                         //Cannot recognize token
                         FailMessage = "Lexical Error:\n" +
-                                      "Position: " + _GoldParser.CurrentPosition.Line + ", " + _GoldParser.CurrentPosition.Column + "\n" +
+                                      "Position: " + (_GoldParser.CurrentPosition.Line + 1) + ", " + (_GoldParser.CurrentPosition.Column + 1) + "\n" +
                                       "Read: " + _GoldParser.CurrentToken.Data;
                         done = true;
                         break;
@@ -1605,8 +1605,8 @@ namespace DescribeCompiler
                         foreach (GrammarSymbol s in _GoldParser.ExpectedSymbols) li.Add(s.ToString());
 
                         FailMessage = "Syntax Error:\n" +
-                                      "Position: " + _GoldParser.CurrentPosition.Line + ", "
-                                      + _GoldParser.CurrentPosition.Column + "\n" +
+                                      "Position: " + (_GoldParser.CurrentPosition.Line + 1) + ", "
+                                      + (_GoldParser.CurrentPosition.Column + 1) + "\n" +
                                       "Read: \"" + _GoldParser.CurrentToken.Data + "\"\n" +
                                       "Expecting: " + String.Join(" ,", li);
                         done = true;
@@ -1676,8 +1676,8 @@ namespace DescribeCompiler
                         //Cannot recognize token
                         if (Message != "") Message += " ";
                         Message += "Lexical Error:\n" +
-                                      "Position: " + _GoldParser.CurrentPosition.Line + ", " + 
-                                      _GoldParser.CurrentPosition.Column + "\n" +
+                                      "Position: " + (_GoldParser.CurrentPosition.Line + 1) + ", " + 
+                                      (_GoldParser.CurrentPosition.Column + 1) + "\n" +
                                       "Read: " + _GoldParser.CurrentToken.Data;
                         done = true;
                         break;
@@ -1690,8 +1690,8 @@ namespace DescribeCompiler
                         
                         if (Message != "") Message += " ";
                         Message += "Syntax Error:\n" +
-                                      "Position: " + _GoldParser.CurrentPosition.Line + ", "
-                                      + _GoldParser.CurrentPosition.Column + "\n" +
+                                      "Position: " + (_GoldParser.CurrentPosition.Line + 1) + ", "
+                                      + (_GoldParser.CurrentPosition.Column + 1) + "\n" +
                                       "Read: \"" + _GoldParser.CurrentToken.Data + "\"\n" +
                                       "Expecting: " + String.Join(" ,", li);
                         done = true;
