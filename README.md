@@ -55,6 +55,7 @@ The final output will depend on the templates used - and you can easily write [y
 - You can reach me on Viber as well: +359-885-18-05-86
 
 ## Releases
+* 0.9.1 (Improved templating)
 * 0.9 Initial release (public beta)  
 
 ## Notes
