@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -789,6 +790,25 @@ namespace DescribeCompiler
 
             string rt = rootTemplate.Replace("{ITEMS}", data);
             string pt = pageTemplate.Replace("{DATA}", rt);
+
+            if (pageTemplate.Contains("{TIME_STAMP}"))
+            {
+                DateTime dt = DateTime.UtcNow;
+                string time = "Built on " + dt.Day.ToString() 
+                    + " " + dt.ToString("MMMM") 
+                    + " " + dt.Year.ToString() + ", " 
+                    + dt.Hour.ToString() + ":" 
+                    + dt.Minute.ToString() + ":" 
+                    + dt.Second.ToString() + "." 
+                    + dt.Millisecond.ToString() + " (UTC)";
+                pt = pt.Replace("{TIME_STAMP}", time);
+            }
+            if (pageTemplate.Contains("{VERSION}"))
+            {
+                string ver = "Built with Describe Compiler version " + DescribeCompiler.COMPILER_VER;
+                pt = pt.Replace("{VERSION}", ver);
+            }
+
             return pt;
         }
 

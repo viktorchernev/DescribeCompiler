@@ -1914,7 +1914,8 @@ namespace DescribeCompiler
 
 
         //private const
-        const string COMPILER_NAME = "Describe Compiler v0.9.1";
+        public const string COMPILER_NAME = "Describe Compiler v0.9.2";
+        public const string COMPILER_VER = "0.9.2";
         const GrammarName DEFAULT_GRAMMAR = GrammarName.Decorators;
     }
 }

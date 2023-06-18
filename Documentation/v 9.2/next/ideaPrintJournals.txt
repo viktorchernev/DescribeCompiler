@@ -1,0 +1,3 @@
+IDEA:print journals from lists
+Prety much self explanatory - have the option to save lists in specific formats as PDF, TXT, etc.
+Also, have the ability to form views and journals out of multiple lists - similar to the idea of compound lists.
