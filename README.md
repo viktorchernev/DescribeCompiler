@@ -11,10 +11,10 @@ Describe is a domain specific language used to write and maintain complex data l
 
 
 ## How to
-In order to run the `DescribeCompilerCLI.exe` you need a Windows PC with DotNet framework version 4.8 or higher. In order to reference the `DescribeCompilerAPI.dll` in your DotNet projects, you need to target DotNet framework version 4.8 or higher. Also, be sure to check out our [wiki](https://github.com/viktorchernev/DescribeCompiler/wiki) for the complete documentation.  
+In order to run the `DescribeCompilerCLI.exe` you need a Windows PC with DotNet framework version 4.8 or higher. In order to reference the `DescribeCompilerAPI.dll` in your DotNet projects, you need to target DotNet framework version 4.8 or higher. There are no other dependencies. Also, be sure to check out our [wiki](https://github.com/viktorchernev/DescribeCompiler/wiki) for the complete documentation.  
   
 ### 0. Set up highlighting
-In order to highlight Describe code, you can download the xml files for Notepad++ from the folder [Highlighting](https://github.com/viktorchernev/DescribeCompiler/tree/master/Highlighting), or use the instructions provided in said folder to set up your preffered text editor.
+In order to highlight Describe code, you can download the xml files for Notepad++ from the folder [Highlighting](https://github.com/viktorchernev/DescribeCompiler/tree/master/Highlighting), or use the instructions provided in said folder to set up your preferred text editor.
   
 ### 1. Write Describe code  
 Write a title of each list, followed by an arrow `->` and the elements, one on a line, separated by comma `,` and end with a semicolon `;`. Add `[links]` in square brackets, and `<tag>` items in order to piece lists together. Add additional data as `{decorators}` in curly brackets. For more info visit the [documentation](https://github.com/viktorchernev/DescribeCompiler/wiki/Grammar-How-To) or explore Describe source codes and test cases in this [huge collection](https://github.com/viktorchernev/DataLists/tree/master/Lists).  
@@ -55,6 +55,7 @@ The final output will depend on the templates used - and you can easily write [y
 - You can reach me on Viber as well: +359-885-18-05-86
 
 ## Releases
+* 0.9.1 (Improved templating)
 * 0.9 Initial release (public beta)  
 
 ## Notes
