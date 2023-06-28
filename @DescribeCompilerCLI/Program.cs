@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -15,35 +16,35 @@ namespace DescribeCompilerCLI
 {
     internal class Program
     {
-        static string thisName = "";
-
+        //compiler settings
+        static bool isInputDir = false;                     // is input a file or folder
+        static bool isOutputDir = false;                    // is output a file or folder
         static string input = "";                           // file or folder to parse
-        static bool isdir = false;                          // is input a file or folder
         static string output = "";                          // output file or folder
-        static LogVerbosity verb = LogVerbosity.Low;        // verbosity to use
+        static LogVerbosity verbosity = LogVerbosity.Low;   // verbosity to use
         static string templateName = null;                  // the emplate to use
         
 
+        //main
         static void Main(string[] args)
         {
-            Messages.setConsole();
-            Messages.printLogo3(ConsoleColor.DarkBlue);
-            ConsoleLogInfo(string.Join(" ", args));
-
-            //get cmd arguments
-            thisName = Assembly.GetExecutingAssembly().GetName().Name;
+            //preset
+            Messages.presetConsole();
+            Messages.SetDarkBlueTheme();
+            Messages.printLogo3Bicolor();
+            Messages.printCmdLine(args);
 
             //1 argument mode
             if (args.Length < 1) 
             {
-                Messages.printNoArgumentsError(thisName);
+                Messages.printNoArgumentsError();
                 return;
             }
             else if (args.Length < 2) 
             { 
                 if (args[0].ToLower() == "help")
                 {
-                    Messages.printHelpMessage(thisName);
+                    Messages.printHelpMessage();
                     return;
                 }
                 else if (args[0].ToLower() == "ext")
@@ -53,7 +54,7 @@ namespace DescribeCompilerCLI
                 }
                 else
                 {
-                    Messages.printArgumentError(thisName, args[0], 1);
+                    Messages.printArgumentError(args[0], 1);
                     return;
                 }
             }
@@ -77,109 +78,131 @@ namespace DescribeCompilerCLI
                 }
                 else
                 {
-                    Messages.printArgumentError(thisName, cur, i + 1, "- what is this?");
+                    Messages.printArgumentError(cur, i, "- what is this?");
                     return;
                 }
             }
 
             //Compile
-            DescribeCompiler.DescribeCompiler comp = 
-                new DescribeCompiler.DescribeCompiler(
-                    templateName,
-                    ConsoleLog, 
-                    ConsoleLogError, 
-                    ConsoleLogInfo,
-                    ConsoleLogParseInfo,
-                    verb);
-
-            string html = "";
-            if(isdir == false) comp.ParseFile(new FileInfo(input), out html);
-            else comp.ParseFolder(new DirectoryInfo(input), out html);
-            if (html != null)
-            {
-                File.WriteAllText(output, html);
-            }
-            Console.ReadLine();
+            compile();
+            Console.ReadKey();
         }
+
 
         //read args
         private static bool readInputArgument(string arg, int argindex)
         {
-            isdir = false;
-            input = arg;
-
             try
             {
                 FileAttributes attr = File.GetAttributes(arg);
-                if ((attr & FileAttributes.Directory) == FileAttributes.Directory) isdir = true;
+                input = arg;
+                if ((attr & FileAttributes.Directory) == FileAttributes.Directory) isInputDir = true;
+                else isInputDir = false;
             }
             catch (Exception ex)
             {
-                Messages.printArgumentError(thisName, arg, argindex + 1, "is not a valid file or folder");
+                Messages.printArgumentError(arg, argindex, "is not a valid file or folder");
                 return false;
             }
             return true;
         }
         private static bool readOutputArgument(string arg, int argindex)
         {
-            output = arg;
             try
             {
-                FileInfo finfo = new FileInfo(output);
-                DirectoryInfo di = finfo.Directory;
-                if (di.Exists == false)
+                //existing file - ok
+                if (File.Exists(arg))
                 {
-                    Messages.printArgumentError(thisName,
-                        arg, argindex, "is not a valid outpit file path");
-                    return false;
+                    output = arg;
+                    isOutputDir = false;
+                    return true;
+                }
+                //existing dir - ok
+                else if (Directory.Exists(arg))
+                {
+                    output = arg;
+                    isOutputDir = true;
+                    return true;
+                }
+                else
+                {
+                    // notexisting file or dir - we want parent dir to exist
+                    DirectoryInfo di = Directory.GetParent(arg);
+                    if(di.Exists)
+                    {
+                        if (Path.GetFileName(arg) == string.Empty) isOutputDir = true;
+                        else isOutputDir = false;
+                        output = arg;
+                        return true;
+                    }
+                    else
+                    {
+                        Messages.printArgumentError(arg,
+                            argindex, "is not a valid outpit file or folder path");
+                        return false;
+                    }
                 }
             }
             catch (Exception ex)
             {
-                Messages.printArgumentError(thisName, arg, argindex, ex.Message);
+                Messages.printArgumentError(arg, argindex, ex.Message);
                 return false;
             }
-            return true;
         }
         private static bool readVerbosityArgument(string arg, int argindex)
         {
-            string val = arg.Substring(arg.IndexOf("=") + 1);
-            if (val == null)
+            try
             {
-                Messages.printArgumentError(thisName, arg, argindex + 1, "");
-                return false;
-            }
-            else if (val == "low" || val == "l") verb = LogVerbosity.Low;
-            else if (val == "medium" || val == "m") verb = LogVerbosity.Medium;
-            else if (val == "high" || val == "h") verb = LogVerbosity.High;
-            else
-            {
-                Messages.printArgumentError(thisName, 
-                    arg, 
-                    argindex + 1, 
-                    "invalid value \"" + val + "\"");
-                return false;
-            }
+                string val = arg.Substring(arg.IndexOf("=") + 1);
+                if (string.IsNullOrEmpty(val) || string.IsNullOrWhiteSpace(val))
+                {
+                    Messages.printArgumentError(arg, argindex, "");
+                    return false;
+                }
+                else if (val == "low" || val == "l") verbosity = LogVerbosity.Low;
+                else if (val == "medium" || val == "m") verbosity = LogVerbosity.Medium;
+                else if (val == "high" || val == "h") verbosity = LogVerbosity.High;
+                else
+                {
+                    Messages.printArgumentError(arg,
+                        argindex,
+                        "invalid value \"" + val + "\"");
+                    return false;
+                }
 
-            return true;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Messages.printArgumentError(arg, argindex, ex.Message);
+                return false;
+            }
         }
         private static bool readTemplateArgument(string arg, int argindex)
         {
-            string val = arg.Substring(arg.IndexOf("=") + 1);
-            if (val == null)
+            try
             {
-                Messages.printArgumentError(thisName, arg, argindex + 1, "");
-                return false;
+                string val = arg.Substring(arg.IndexOf("=") + 1);
+                if (val == null)
+                {
+                    Messages.printArgumentError(arg, argindex, "");
+                    return false;
+                }
+                else if (string.IsNullOrEmpty(val) || string.IsNullOrWhiteSpace(val))
+                {
+                    Messages.printArgumentError(arg, argindex, "Empty value for template name");
+                    return false;
+                }
+                else
+                {
+                    templateName = val;
+                    return true;
+                }
             }
-            else if (string.IsNullOrEmpty(val) || string.IsNullOrWhiteSpace(val))
+            catch (Exception ex)
             {
-                Messages.printArgumentError(thisName, arg, argindex + 1, "Empty value for template name");
+                Messages.printArgumentError(arg, argindex, ex.Message);
                 return false;
-            }
-            else
-            {
-                templateName = val;
-                return true;
             }
         }
 
@@ -212,7 +235,7 @@ namespace DescribeCompilerCLI
                         File.WriteAllText(folder + "\\" + filename, template);
                     }
                 }
-                Messages.printSpitSuccess();
+                Messages.printExtTemplatesSuccess();
                 return true;
             }
             catch(Exception ex)
@@ -221,30 +244,35 @@ namespace DescribeCompilerCLI
                 return false;
             }
         }
+        private static bool compile()
+        {
+            try
+            {
+                DescribeCompiler.DescribeCompiler comp =
+                new DescribeCompiler.DescribeCompiler(
+                    templateName,
+                    Messages.ConsoleLog,
+                    Messages.ConsoleLogError,
+                    Messages.ConsoleLogInfo,
+                    Messages.ConsoleLogParseInfo,
+                    verbosity);
 
+                string html = "";
+                if (isInputDir == false) comp.ParseFile(new FileInfo(input), out html);
+                else comp.ParseFolder(new DirectoryInfo(input), out html);
 
-        //logs
-        private static void ConsoleLog(string text)
-        {
-            Console.WriteLine(text);
-        }
-        private static void ConsoleLogInfo(string text)
-        {
-            Console.ForegroundColor = ConsoleColor.DarkGray;
-            Console.WriteLine(text);
-            Console.ForegroundColor = ConsoleColor.White;
-        }
-        private static void ConsoleLogError(string text)
-        {
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine(text);
-            Console.ForegroundColor = ConsoleColor.White;
-        }
-        private static void ConsoleLogParseInfo(string text)
-        {
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine(text);
-            Console.ForegroundColor = ConsoleColor.White;
+                if (html != null)
+                {
+                    File.WriteAllText(output, html);
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Messages.printFatalError(ex.Message);
+                return false;
+            }
         }
     }
 }
