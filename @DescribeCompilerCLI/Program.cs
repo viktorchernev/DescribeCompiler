@@ -30,7 +30,7 @@ namespace DescribeCompilerCLI
         {
             //preset
             Messages.presetConsole();
-            Messages.SetDarkBlueTheme();
+            Messages.SetVioletTheme();
             Messages.printLogo3Bicolor();
             Messages.printCmdLine(args);
 

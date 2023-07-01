@@ -1,0 +1,1 @@
+FEATURE:Multiple Translator classes for each target language switchable by target template start word before underscore.

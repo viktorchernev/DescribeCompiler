@@ -98,7 +98,12 @@ namespace DescribeCompiler
             LogInfo = log;
             LogParserInfo = log;
 
-            Translator = new UnfoldTranslator(LogText, LogError, LogInfo, templateName);
+            if(templateName.StartsWith("HTML_"))
+                Translator = new HtmlTranslator(LogText, LogError, LogInfo, templateName);
+            else if(templateName.StartsWith("JSON_"))
+                Translator = new JsonTranslator(LogText, LogError, LogInfo, templateName);
+            else
+                Translator = new HtmlTranslator(LogText, LogError, LogInfo, templateName);
             if (Translator.IsInitialized() == false)
             {
                 LogError("Failed to initialize the translator");
@@ -170,7 +175,12 @@ namespace DescribeCompiler
             LogInfo = log;
             LogParserInfo = log;
 
-            Translator = new UnfoldTranslator(LogText, LogError, LogInfo, templateName);
+            if (templateName.StartsWith("HTML_"))
+                Translator = new HtmlTranslator(LogText, LogError, LogInfo, templateName);
+            else if (templateName.StartsWith("JSON_"))
+                Translator = new JsonTranslator(LogText, LogError, LogInfo, templateName);
+            else
+                Translator = new HtmlTranslator(LogText, LogError, LogInfo, templateName);
             if (Translator.IsInitialized() == false)
             {
                 LogError("Failed to initialize the translator");
@@ -236,7 +246,7 @@ namespace DescribeCompiler
             Action<string> logError, 
             LogVerbosity verbosity = LogVerbosity.High)
         {
-            Translator = new UnfoldTranslator(logText, logError, templateName);
+            Translator = new HtmlTranslator(logText, logError, templateName);
 
             LogText = log;
             LogText += logText;
@@ -247,7 +257,12 @@ namespace DescribeCompiler
             LogInfo = log;
             LogParserInfo = log;
 
-            Translator = new UnfoldTranslator(LogText, LogError, LogInfo, templateName);
+            if (templateName.StartsWith("HTML_"))
+                Translator = new HtmlTranslator(LogText, LogError, LogInfo, templateName);
+            else if (templateName.StartsWith("JSON_"))
+                Translator = new JsonTranslator(LogText, LogError, LogInfo, templateName);
+            else Translator = new HtmlTranslator(LogText, LogError, LogInfo, templateName);
+
             if (Translator.IsInitialized() == false)
             {
                 LogError("Failed to initialize the translator");
@@ -326,7 +341,12 @@ namespace DescribeCompiler
 
             LogParserInfo = log;
 
-            Translator = new UnfoldTranslator(LogText, LogError, LogInfo, templateName);
+            if (templateName.StartsWith("HTML_"))
+                Translator = new HtmlTranslator(LogText, LogError, LogInfo, templateName);
+            else if (templateName.StartsWith("JSON_"))
+                Translator = new JsonTranslator(LogText, LogError, LogInfo, templateName);
+            else Translator = new HtmlTranslator(LogText, LogError, LogInfo, templateName);
+
             if (Translator.IsInitialized() == false)
             {
                 LogError("Failed to initialize the translator");
@@ -409,7 +429,12 @@ namespace DescribeCompiler
             LogParserInfo = log;
             LogParserInfo += logParserInfo;
 
-            Translator = new UnfoldTranslator(LogText, LogError, LogInfo, templateName);
+            if (templateName.StartsWith("HTML_"))
+                Translator = new HtmlTranslator(LogText, LogError, LogInfo, templateName);
+            else if (templateName.StartsWith("JSON_"))
+                Translator = new JsonTranslator(LogText, LogError, LogInfo, templateName);
+            else Translator = new HtmlTranslator(LogText, LogError, LogInfo, templateName);
+
             if (Translator.IsInitialized() == false)
             {
                 LogError("Failed to initialize the translator");
