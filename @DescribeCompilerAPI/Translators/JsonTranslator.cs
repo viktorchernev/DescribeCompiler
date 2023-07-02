@@ -861,6 +861,7 @@ namespace DescribeCompiler
                         res = res.Replace("{LINKS}", linkage);
                         res = res.Replace("{COLOR}", val);
                         res = res.Replace("{ITEMS}", items);
+                        if (res.Contains("{ID}")) res = res.Replace("{ID}", id);
                         return res;
                     }
                 }
@@ -869,6 +870,7 @@ namespace DescribeCompiler
                 u.Translations[id].Replace("\\", "\\\\").Replace("\"", "\\\""));
             pt = pt.Replace("{LINKS}", linkage);
             pt = pt.Replace("{ITEMS}", items);
+            if (pt.Contains("{ID}")) pt = pt.Replace("{ID}", id);
             return pt;
         }
         string TranslateItem(DescribeUnfold u, string id)
@@ -912,6 +914,7 @@ namespace DescribeCompiler
                                 u.Translations[id].Replace("\\", "\\\\")
                                 .Replace("\"", "\\\""));
                         res = res.Replace("{LINKS}", linkage);
+                        if (res.Contains("{ID}")) res = res.Replace("{ID}", id);
                         return res;
                     }
                     else if (s.StartsWith("color|"))
@@ -922,6 +925,7 @@ namespace DescribeCompiler
                             .Replace("\"", "\\\""));
                         res = res.Replace("{LINKS}", linkage);
                         res = res.Replace("{COLOR}", val);
+                        if (res.Contains("{ID}")) res = res.Replace("{ID}", id);
                         return res;
                     }
                 }
@@ -930,6 +934,7 @@ namespace DescribeCompiler
                 u.Translations[id].Replace("\\", "\\\\")
                 .Replace("\"", "\\\""));
             it = it.Replace("{LINKS}", linkage);
+            if(it.Contains("{ID}")) it = it.Replace("{ID}", id);
             return it;
         }
 
