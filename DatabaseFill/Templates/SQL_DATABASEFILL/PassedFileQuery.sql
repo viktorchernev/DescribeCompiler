@@ -1,1 +1,0 @@
-﻿INSERT INTO passedfiles(filename, filecontent) VALUES({FILE_NAME}, {FILE_CONTENT})

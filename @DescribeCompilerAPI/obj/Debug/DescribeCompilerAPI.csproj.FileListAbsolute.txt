@@ -1,0 +1,11 @@
+C:\Users\Viktor Chernev\Desktop\Language\DescribeLanguage\DescribeCompilerAPI\bin\Debug\DescribeCompiler.dll.config
+C:\Users\Viktor Chernev\Desktop\Language\DescribeLanguage\DescribeCompilerAPI\bin\Debug\DescribeCompiler.dll
+C:\Users\Viktor Chernev\Desktop\Language\DescribeLanguage\DescribeCompilerAPI\bin\Debug\DescribeCompiler.pdb
+C:\Users\Viktor Chernev\Desktop\Language\DescribeLanguage\DescribeCompilerAPI\bin\Debug\GoldParserEngine.dll
+C:\Users\Viktor Chernev\Desktop\Language\DescribeLanguage\DescribeCompilerAPI\bin\Debug\System.Buffers.dll
+C:\Users\Viktor Chernev\Desktop\Language\DescribeLanguage\DescribeCompilerAPI\bin\Debug\GoldParserEngine.pdb
+C:\Users\Viktor Chernev\Desktop\Language\DescribeLanguage\DescribeCompilerAPI\obj\Debug\DescribeCompilerAPI.csproj.AssemblyReference.cache
+C:\Users\Viktor Chernev\Desktop\Language\DescribeLanguage\DescribeCompilerAPI\obj\Debug\DescribeCompilerAPI.csproj.CoreCompileInputs.cache
+C:\Users\Viktor Chernev\Desktop\Language\DescribeLanguage\DescribeCompilerAPI\obj\Debug\DescribeCompilerAPI.csproj.CopyComplete
+C:\Users\Viktor Chernev\Desktop\Language\DescribeLanguage\DescribeCompilerAPI\obj\Debug\DescribeCompiler.dll
+C:\Users\Viktor Chernev\Desktop\Language\DescribeLanguage\DescribeCompilerAPI\obj\Debug\DescribeCompiler.pdb

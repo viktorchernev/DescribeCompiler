@@ -50,7 +50,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>d.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>39852C83D1C459DBE2293A9ED074DAA6427A6900</ManifestCertificateThumbprint>
@@ -75,7 +76,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Messages.cs" />
+    <Compile Include="Datnik.cs" />
+    <Compile Include="FunctionsMain.cs" />
+    <Compile Include="FunctionsArguments.cs" />
+    <Compile Include="FunctionsMessages.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -84,9 +88,9 @@
     <None Include="DescribeCompilerCLI_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DescribeCompiler\DescribeCompiler.csproj">
+    <ProjectReference Include="..\DescribeCompilerAPI\DescribeCompilerAPI.csproj">
       <Project>{15d27d66-cdca-44ce-8ca0-7141cdcb5a61}</Project>
-      <Name>DescribeCompiler</Name>
+      <Name>DescribeCompilerAPI</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -100,10 +104,6 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="d.ico" />
-    <Content Include="describe.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

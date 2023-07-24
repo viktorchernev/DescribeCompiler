@@ -261,7 +261,8 @@ namespace DescribeCompiler
                 Translator = new HtmlTranslator(LogText, LogError, LogInfo, templateName);
             else if (templateName.StartsWith("JSON_"))
                 Translator = new JsonTranslator(LogText, LogError, LogInfo, templateName);
-            else Translator = new HtmlTranslator(LogText, LogError, LogInfo, templateName);
+            else 
+                Translator = new HtmlTranslator(LogText, LogError, LogInfo, templateName);
 
             if (Translator.IsInitialized() == false)
             {
@@ -433,7 +434,8 @@ namespace DescribeCompiler
                 Translator = new HtmlTranslator(LogText, LogError, LogInfo, templateName);
             else if (templateName.StartsWith("JSON_"))
                 Translator = new JsonTranslator(LogText, LogError, LogInfo, templateName);
-            else Translator = new HtmlTranslator(LogText, LogError, LogInfo, templateName);
+            else 
+                Translator = new HtmlTranslator(LogText, LogError, LogInfo, templateName);
 
             if (Translator.IsInitialized() == false)
             {
@@ -488,6 +490,82 @@ namespace DescribeCompiler
             initialized = true;
         }
 
+
+        public DescribeCompiler(
+            string templateName,
+            Action<string> logText,
+            Action<string> logError,
+            Action<string> logInfo,
+            Action<string> logParserInfo,
+            IUnfoldTranslator translator,
+            LogVerbosity verbosity = LogVerbosity.High)
+        {
+            LogText = log;
+            LogText += logText;
+
+            LogError = log;
+            LogError += logError;
+
+            LogInfo = log;
+            LogInfo += logInfo;
+
+            LogParserInfo = log;
+            LogParserInfo += logParserInfo;
+
+            Translator = translator;
+
+            if (Translator.IsInitialized() == false)
+            {
+                LogError("Failed to initialize the translator");
+                return;
+            }
+
+            LogInfo("Initializing " + COMPILER_NAME);
+            LoadedGrammarName = "";
+
+            //init
+            try
+            {
+                _GoldParser = new GoldParser.Parser.Parser();
+                LogInfo("GOLD parser engine initialized");
+
+                //set verbosity
+                logVerbosity = verbosity;
+                LogInfo("Verbosity set to: " + Verbosity.ToString());
+            }
+            catch (Exception ex)
+            {
+                LogError("Failed to initialize GOLD parser: " + ex.Message);
+                return;
+            }
+
+            //preload default grammar
+            try
+            {
+                string grammarname = GrammarNameToResourceName(DEFAULT_GRAMMAR);
+                byte[] grammar = ResourceUtil.ExtractResource_ByteArray(grammarname);
+                string fullname = GrammarNameToFullGramarName(DEFAULT_GRAMMAR);
+                if (LoadGrammar(grammar))
+                {
+                    LogInfo("Preloaded grammar: \"" + fullname + "\"");
+                    if (logVerbosity != LogVerbosity.High) LogText("------------------------");
+                    LoadedGrammarName = fullname;
+                }
+                else
+                {
+                    LogInfo("Failed to preload grammar: \"" + fullname + "\"");
+                    if (logVerbosity != LogVerbosity.High) LogText("------------------------");
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                LogError("Failed to preload grammar: " + ex.Message);
+                if (logVerbosity != LogVerbosity.High) LogText("------------------------");
+                return;
+            }
+            initialized = true;
+        }
 
 
 
@@ -590,6 +668,7 @@ namespace DescribeCompiler
                 string searchMask = "*.*";
                 if (PARSE_DS_ONLY) searchMask = "*.ds";
 
+                unfold.InitialDir = dirInfo.FullName;
                 unfold.Files = Directory.GetFiles(dirInfo.FullName, searchMask, searchOption).ToList();
                 if (unfold.Files.Count() == 0)
                 {
@@ -612,10 +691,12 @@ namespace DescribeCompiler
                 bool result = ParseFile_LowVerbosity(new FileInfo(filename), unfold);
                 if (result)
                 {
+                    unfold.ParsedFiles.Add(filename);
                     unfold.Files.RemoveAt(0);
                 }
                 else
                 {
+                    unfold.FailedFiles.Add(filename);
                     return false;
                 }
             }
@@ -678,6 +759,7 @@ namespace DescribeCompiler
                 string searchMask = "*.*";
                 if (PARSE_DS_ONLY) searchMask = "*.ds";
 
+                unfold.InitialDir = dirInfo.FullName;
                 unfold.Files = Directory.GetFiles(dirInfo.FullName, searchMask, searchOption).ToList();
                 if (unfold.Files.Count() == 0)
                 {
@@ -702,10 +784,12 @@ namespace DescribeCompiler
                 bool result = ParseFile_MediumVerbosity(new FileInfo(filename), unfold);
                 if (result)
                 {
+                    unfold.ParsedFiles.Add(filename);
                     unfold.Files.RemoveAt(0);
                 }
                 else
                 {
+                    unfold.FailedFiles.Add(filename);
                     return false;
                 }
             }
@@ -770,6 +854,7 @@ namespace DescribeCompiler
                 string searchMask = "*.*";
                 if (PARSE_DS_ONLY) searchMask = "*.ds";
 
+                unfold.InitialDir = dirInfo.FullName;
                 unfold.Files = Directory.GetFiles(dirInfo.FullName, searchMask, searchOption).ToList();
                 if (unfold.Files.Count() == 0)
                 {
@@ -794,10 +879,12 @@ namespace DescribeCompiler
                 bool result = ParseFile_HighVerbosity(new FileInfo(filename), unfold);
                 if(result)
                 {
+                    unfold.ParsedFiles.Add(filename);
                     unfold.Files.RemoveAt(0);
                 }
                 else
                 {
+                    unfold.FailedFiles.Add(filename);
                     return false;
                 }
             }

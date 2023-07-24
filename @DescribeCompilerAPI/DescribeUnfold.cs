@@ -12,6 +12,10 @@ namespace DescribeCompiler
         public string CurFile;                                          //current file we are in
         public List<string> Files;                                      //list of files
 
+        public string InitialDir;
+        public List<string> ParsedFiles;
+        public List<string> FailedFiles;
+
         public Dictionary<string, List<string>> ItemIdFile;             //item id vs filepath that contains it
         public Dictionary<string, string> ProdIdFile;                   //production id vs filepath that contains it
 
@@ -31,6 +35,10 @@ namespace DescribeCompiler
             CurNamespace = "";
             CurFile = "";
             Files = new List<string>();
+
+            InitialDir = "";
+            ParsedFiles = new List<string>();
+            FailedFiles = new List<string>();
 
             ItemIdFile = new Dictionary<string, List<string>>();
             ProdIdFile = new Dictionary<string, string>();

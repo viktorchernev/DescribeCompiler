@@ -868,9 +868,18 @@ namespace DescribeCompiler
             }
             string pt = productionTemplate.Replace("{TITLE}", 
                 u.Translations[id].Replace("\\", "\\\\").Replace("\"", "\\\""));
+
+            //HAcKeD IN PLACE REMOVE
+            string cur = u.ProdIdFile[id];
+            cur = cur.Substring(u.InitialDir.Length);
+            cur = cur.Trim('\\', '/').Replace('\\', '.').Replace('/', '.');
+            if (cur.EndsWith(".ds")) cur = cur.Substring(0, cur.Length - 3);
+            pt = pt.Replace(",\"text\":", ",\"filename\":\"" + cur + "\",\"text\":");
+
             pt = pt.Replace("{LINKS}", linkage);
             pt = pt.Replace("{ITEMS}", items);
             if (pt.Contains("{ID}")) pt = pt.Replace("{ID}", id);
+
             return pt;
         }
         string TranslateItem(DescribeUnfold u, string id)
