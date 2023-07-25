@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="description" content="Describe Compiler Documentation v0.9.2">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<meta name="author" content="Demon of reason">
+	<!-- <link rel="stylesheet" type="text/css" href="styles.css" /> -->
+	<title>Documentation</title>
+</head>
+<body style="height:100%; margin:30px;">
+
+	<h1><a href="../DescribeCompilerCLI.html">DescribeCompilerCLI</a>.<a href="DescribeCompilerCLI.Messages.html">Messages</a><br />#ErrorHandlingMethods</h1><br />
+
+
+	<div style="font-weight: bold; font-style: italic; color: blue;">printExtTemplatesSuccess()</div>
+	<div>Output message saying that ext command was successfully completed</div><br/>
+
+	<div style="font-weight: bold; font-style: italic; color: blue;">printHelpMessage()</div>
+	<div>Output the help message/usage data</div><br/>
+
+	<div style="font-style: italic; color: gray;">(All the error messages below show "Press any key to exit" message and wait for user input.)</div><br/>
+
+	<div style="font-weight: bold; font-style: italic; color: blue;">printNoArgumentsError()</div>
+	<div>Output error message saying "No arguments or invalid argument count" and shows usage data</div><br/>
+	
+	<div style="font-weight: bold; font-style: italic; color: blue;">printArgumentError(string arg, int argIndex)</div>
+	<div>Output error message saying "Invalid argument <ARG_INDEX> - """ and shows usage data</div><br/>
+	
+	<div style="font-weight: bold; font-style: italic; color: blue;">printArgumentError(string arg, int argIndex, string message)</div>
+	<div>Output error message saying "Invalid argument <ARG_INDEX> - "" - " and shows usage data</div><br/>
+	
+	<div style="font-weight: bold; font-style: italic; color: blue;">printFatalError(string message)</div>
+	<div>Output error message saying that a fatal error has occured</div><br/>
+	
+	<!-- <script src="scripts.js"></script> -->
+</body>
+</html>
