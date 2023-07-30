@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="description" content="Describe Compiler Documentation v0.9.2">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<meta name="author" content="Demon of reason">
+	<!-- <link rel="stylesheet" type="text/css" href="styles.css" /> -->
+	<title>Documentation</title>
+</head>
+<body style="height:100%; margin:30px;">
+
+	<h1><a href="DescribeCompiler.html">DescribeCompiler</a><br/>#VerbosityLow</h1>
+	<br />
+	<h3>This partial class (and source file) contains the actual parsing methods for low-verbosity parser<br/>
+	</h3>
+	<br/>
+	
+	<div style="font-weight: bold; font-style: italic; color: blue;">bool ParseFolder_LowVerbosity(DirectoryInfo dirInfo, out string translated)</div>
+	<div>Compile a folder of describe source files to another language.<br/>
+	What the destination language is depends on the selected template set.</div><br/>
+	<br/>
+	
+	<div style="font-weight: bold; font-style: italic; color: blue;">bool ParseFile_LowVerbosity(FileInfo fileInfo, out string translated)</div>
+	<div>Compile a describe source file to another language.<br/>
+	What the destination language is depends on the selected template set.</div><br/>
+	<br/>
+	
+	<div style="font-weight: bold; font-style: italic; color: gray;">bool ParseFile_LowVerbosity(FileInfo fileInfo, DescribeUnfold unfold)</div>
+	<div>Parse a describe source file and store the data to a DescribeUnfold structure.</div><br/>
+	<br/>
+	
+	<div style="font-weight: bold; font-style: italic; color: gray;">bool Parse_LowVerbosity(TextReader reader, out Reduction root, out string FailMessage)</div>
+	<div>Parse a describe source file and get the parse tree in the form of GOLD parser reduction.</div><br/>
+	<br/>
+	
+	<div style="font-weight: bold; font-style: italic; color: gray;">string EncodeNonAsciiCharacters(string value)</div>
+	<div>This is a preparser that replaces problematic characters with escaped versions</div><br/>
+	<br/>
+	
+	<!-- <script src="scripts.js"></script> -->
+</body>
+</html>

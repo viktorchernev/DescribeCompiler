@@ -49,14 +49,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DescribeCompiler#LogHandlers.cs" />
+    <Compile Include="DescribeCompiler#Constructors.cs" />
+    <Compile Include="DescribeCompiler#VerbosityHigh.cs" />
+    <Compile Include="DescribeCompiler#Grammar.cs" />
+    <Compile Include="DescribeCompiler#VerbosityMedium.cs" />
+    <Compile Include="DescribeCompiler#VerbosityLow.cs" />
+    <Compile Include="DescribeCompiler#Statistics.cs" />
+    <Compile Include="DescribeCompiler#Settings.cs" />
     <Compile Include="DescribeCompiler.cs" />
     <Compile Include="DescribeUnfold.cs" />
+    <Compile Include="eGrammarName.cs" />
+    <Compile Include="eLogVerbosity.cs" />
     <Compile Include="Translators\IUnfoldTranslator.cs" />
     <Compile Include="Translators\JsonTranslator.cs" />
     <Compile Include="Optimizations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResourceUtil.cs" />
     <Compile Include="Translators\HtmlTranslator.cs" />
+    <Compile Include="DescribeCompiler#Properties.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Grammars\DescribeBasics.egt" />

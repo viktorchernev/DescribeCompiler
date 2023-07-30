@@ -7,6 +7,8 @@ namespace DescribeCompiler
         public List<string> PrimaryProductions;                         //ids of productions that are primary productions
         public Dictionary<string, List<string>> Productions;            //id of lhs item vs ids of rhs items
         public Dictionary<string, string> Translations;                 //id of item vs text of item
+        public Dictionary<string, List<string>> Links;                  //id vs links texts
+        public Dictionary<string, List<string>> Decorators;             //id vs decorators texts
 
         public string CurNamespace;                                     //current namespace we are in
         public string CurFile;                                          //current file we are in
@@ -19,8 +21,6 @@ namespace DescribeCompiler
         public Dictionary<string, List<string>> ItemIdFile;             //item id vs filepath that contains it
         public Dictionary<string, string> ProdIdFile;                   //production id vs filepath that contains it
 
-        public Dictionary<string, List<string>> Links;                  //id vs links texts
-        public Dictionary<string, List<string>> Decorators;             //id vs decorators texts
 
 
         /// <summary>
