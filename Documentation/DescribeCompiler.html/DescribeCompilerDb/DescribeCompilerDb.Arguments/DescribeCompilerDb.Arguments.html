@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="description" content="Describe Compiler Documentation v0.9.2">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<meta name="author" content="Demon of reason">
+	<!-- <link rel="stylesheet" type="text/css" href="styles.css" /> -->
+	<title>Documentation</title>
+</head>
+<body style="height:100%; margin:30px;">
+
+	<h1><a href="../DescribeCompilerDb.html">DescribeCompilerDb</a>.Arguments</h1>
+	<br />
+	<h3>This module of the CLI app contains all the methods used to read the invocation arguments from the command line that started the exe.<br/>
+	If successful, the information is stored in the Datnik structure:</h3>
+	<br/>
+	
+	<div style="font-weight: bold; font-style: italic; color: blue;">static bool readCommandArgument(string arg, int argindex)</div>
+	<div>Attempt to read the Cli Command we are going to execure<br/>
+	The index of the argument is needed for logging purposes</div><br/>
+	<br/>
+	
+	<div style="font-weight: bold; font-style: italic; color: blue;">static bool readInputArgument(string arg, int argindex)</div>
+	<div>Attempt to read the input argument and set the flag indicating wether it is a file or a folder<br/>
+	The index of the argument is needed for logging purposes</div><br/>
+	<br/>
+	
+	<div style="font-weight: bold; font-style: italic; color: blue;">static bool readOutputArgument(string arg, int argindex)</div>
+	<div>Attempt to read the output argument and set the flag indicating wether it is a file or a folder<br/>
+	The index of the argument is needed for logging purposes</div><br/>
+	<br/>
+	
+	<div style="font-weight: bold; font-style: italic; color: blue;">static bool readVerbosityArgument(string arg, int argindex)</div>
+	<div>Attempt to read the verbosity argument that indicates the verbosity level to be used with the parser<br/>
+	The index of the argument is needed for logging purposes</div><br/>
+	<br/>
+	
+	<div style="font-weight: bold; font-style: italic; color: blue;">static bool readTemplateArgument(string arg, int argindex)</div>
+	<div>Attempt to read the template argument that indicates which Translator and which template set are to be used with the parser<br/>
+	The index of the argument is needed for logging purposes</div><br/>
+	<br/>
+	
+	<!-- <script src="scripts.js"></script> -->
+</body>
+</html>

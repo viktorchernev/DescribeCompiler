@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="description" content="Describe Compiler Documentation v0.9.2">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<meta name="author" content="Demon of reason">
+	<!-- <link rel="stylesheet" type="text/css" href="styles.css" /> -->
+	<title>Documentation</title>
+</head>
+<body style="height:100%; margin:30px;">
+
+	<h1><a href="../DescribeCompilerDb.html">DescribeCompilerDb</a>.CliCommand</h1>
+	<h3>The CliCommand enum is used to describe the command that is to be executed.<br/>
+	It has 6 values:</h3>
+	<br/>
+	
+	<div style="font-weight: bold; font-style: italic; color: blue;">Update_Database</div>
+	<div>Indicates that we are doing database update command.<br/>
+	<span style="font-weight: bold; font-style: italic; color: green;">DescribeCompilerDb updateDatabase "path/saved_databases/"</span><br/>
+    <span style="font-weight: bold; font-style: italic; color: green;">DescribeCompilerDb updateDb "path/saved_databases/"</span><br/>
+    <span style="font-weight: bold; font-style: italic; color: green;">DescribeCompilerDb update-database "path/saved_databases/"</span><br/>
+    <span style="font-weight: bold; font-style: italic; color: green;">DescribeCompilerDb update-db "path/saved_databases/"</span></div><br/>
+
+	<div style="font-weight: bold; font-style: italic; color: blue;">Update_JsonFile</div>
+	<div>Indicates that we are doing ready json update command.<br/>
+	<span style="font-weight: bold; font-style: italic; color: green;">DescribeCompilerDb updateJson "path/ready_data.json"</span><br/>
+	<span style="font-weight: bold; font-style: italic; color: green;">DescribeCompilerDb update-json "path/ready_data.json"</span></div><br/>
+
+	<div style="font-weight: bold; font-style: italic; color: blue;">Produce_UploadSql</div>
+	<div>Indicates that we are doing produce upload sql command.<br/>
+	<span style="font-weight: bold; font-style: italic; color: green;">produce-uploadqueries "path/input directory/" "path/output.sql"</span><br/>
+	<span style="font-weight: bold; font-style: italic; color: green;">produce-uploadsql "path/input directory/" "path/output.sql"</span><br/>
+	<span style="font-weight: bold; font-style: italic; color: green;">produceUploadQueries "path/input directory/" "path/output.sql"</span><br/>
+	<span style="font-weight: bold; font-style: italic; color: green;">produceUploadSql "path/input directory/" "path/output.sql"</span></div></div><br/>
+
+	
+	<div style="font-weight: bold; font-style: italic; color: blue;">Produce_JsonFile</div>
+	<div>Indicates that we are doing produce json command.<br/>
+	<span style="font-weight: bold; font-style: italic; color: green;">produce-json "path/input directory/" "path/ready.json"</span><br/>
+	<span style="font-weight: bold; font-style: italic; color: green;">produceJson "path/input directory/" "path/ready.json"</span><br/>
+	</div><br/>
+	
+	<div style="font-weight: bold; font-style: italic; color: blue;">ProduceUpdate_JsonFile</div>
+	<div>Indicates that we are doing produce-update json command.<br/>
+	<span style="font-weight: bold; font-style: italic; color: green;">produceupdate-json "path/input directory/" "path/ready.sql"</span><br/>
+	<span style="font-weight: bold; font-style: italic; color: green;">produceUpdateJson "path/input directory/" "path/ready.sql"</span><br/>
+	</div><br/>
+	
+	<div style="font-weight: bold; font-style: italic; color: blue;">Download_Database</div>
+	<div>Indicates that we are doing database download command.<br/>
+	<span style="font-weight: bold; font-style: italic; color: green;">DescribeCompilerDb downloadDatabase "path/saved_databases/"</span><br/>
+	<span style="font-weight: bold; font-style: italic; color: green;">DescribeCompilerDb downloadDb "path/saved_databases/"</span><br/>
+	<span style="font-weight: bold; font-style: italic; color: green;">DescribeCompilerDb download-database "path/saved_databases/"</span><br/>
+	<span style="font-weight: bold; font-style: italic; color: green;">DescribeCompilerDb download-db "path/saved_databases/"</span></div><br/>
+	
+	<div style="font-weight: bold; font-style: italic; color: blue;">Help</div>
+	<div>Indicates that we are doing help command which outputs usage data to the console.<br/>
+	<span style="font-weight: bold; font-style: italic; color: green;">DescribeCompilerDb help</span></div><br/>
+	
+	<div style="font-weight: bold; font-style: italic; color: blue;">Undefined</div>
+	<div>Indicates that we don't have a command and need to show error message and exit the app.<br/>
+	<span style="font-weight: bold; font-style: italic; color: green;">DescribeCompilerDb help"</span></div><br/>
+	
+	<!-- <script src="scripts.js"></script> -->
+</body>
+</html>

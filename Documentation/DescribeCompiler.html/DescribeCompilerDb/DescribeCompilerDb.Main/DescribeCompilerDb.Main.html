@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="description" content="Describe Compiler Documentation v0.9.2">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<meta name="author" content="Demon of reason">
+	<!-- <link rel="stylesheet" type="text/css" href="styles.css" /> -->
+	<title>Documentation</title>
+</head>
+<body style="height:100%; margin:30px;">
+
+	<h1><a href="../DescribeCompilerDb.html">DescribeCompilerDb</a>.Main</h1>
+	<br />
+	<h3>This module of the CLI app contains all the methods used to do the actual work</h3>
+	<br/>
+	
+	<div style="font-weight: bold; font-style: italic; color: blue;">static bool Update_Database()</div>
+	<div>Download database, produce ready data file (json) and update it.<br/>
+	DownloadDatabase(...); ProduceReadyData(); UpdateReadyData();</div><br/>
+	<br/>
+	
+	<div style="font-weight: bold; font-style: italic; color: blue;">static bool Update_ReadyData()</div>
+	<div>Update the compiled .json file that is used to display the website.</div><br/>
+	<br/>
+	
+	<div style="font-weight: bold; font-style: italic; color: blue;">static bool Produce_ReadyData()</div>
+	<div>Compile a directory of ds source files to json ready to be used in the website.</div><br/>
+	<br/>
+	
+	<div style="font-weight: bold; font-style: italic; color: blue;">static bool Produce_UploadSql()</div>
+	<div>Compile a directory of ds source files to sql queries that will insert those files in the database.</div><br/>
+	<br/>
+	
+	<div style="font-weight: bold; font-style: italic; color: blue;">static bool ProduceUpdate_ReadyData()</div>
+	<div>Compile a directory of ds source files to json ready to be used in the website, then update the compiled .json file that is used to display the website.</div><br/>
+	<br/>
+	
+	<div style="font-weight: bold; font-style: italic; color: blue;">static bool Download_Database(out string outdir)</div>
+	<div>Download the website database in a separate, timestamped folder. That folder is created in the output directory.<br/>
+	<span style="font-weight: bold; font-style: italic;">outdir</span> - The path of the created timestamped directory</div><br/>
+	<br/>
+	
+	<!-- <script src="scripts.js"></script> -->
+</body>
+</html>
