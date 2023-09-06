@@ -190,7 +190,7 @@ namespace DescribeCompiler
             DescribeUnfold unfold = new DescribeUnfold();
             try
             {
-                bool optimized = Optimizations.DoScripture(unfold, root);
+                bool optimized = DefaultOptimizer.DoScripture(unfold, root);
                 if (optimized)
                 {
                     LogText("Parse tree unfolded successfuly");
@@ -314,7 +314,7 @@ namespace DescribeCompiler
             //unfold
             try
             {
-                bool optimized = Optimizations.DoScripture(unfold, root);
+                bool optimized = DefaultOptimizer.DoScripture(unfold, root);
                 if (optimized)
                 {
                     LogText("Parse tree unfolded successfuly");

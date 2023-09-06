@@ -11,27 +11,27 @@ namespace DescribeCompiler
 {
     public partial class DescribeCompiler
     {
-        bool ParseFolder_LowVerbosity(DirectoryInfo dirInfo, out string translated)
+        bool ParseFolder_HighVerbosity(DirectoryInfo dirInfo, out string html)
         {
-            translated = null;
+            html = null;
 
             //initial checks
             if (!isInitialized)
             {
-                LogError("Parser not innitialized.");
+                LogError("This parser isn't innitialized, and cannot be used. Create a new instance.");
                 return false;
             }
             if (Translator.IsInitialized() == false)
             {
-                LogError("Translator not innitialized.");
+                LogError("This parser's translator has not been correctly innitialized.");
                 return false;
             }
-
-            string msg = "\"" + dirInfo.FullName + "\" - ";
+            LogText("------------------------");
+            LogText("Starting a parse operation on folder: \"" + dirInfo.FullName + "\"");
             if (!Directory.Exists(dirInfo.FullName))
             {
-                msg += "does not exist!";
-                LogError(msg);
+                LogError("Error - the directory you are trying to parse does not exist");
+                LogText("------------------------");
                 return false;
             }
 
@@ -49,14 +49,16 @@ namespace DescribeCompiler
                 unfold.Files = Directory.GetFiles(dirInfo.FullName, searchMask, searchOption).ToList();
                 if (unfold.Files.Count() == 0)
                 {
-                    msg += "directory is empty";
-                    LogError(msg);
+                    LogError("Error - the directory you are trying to parse contains no files that fit the criteria");
+                    LogText("------------------------");
                     return false;
                 }
+                LogInfo("Fetched " + unfold.Files.Count() + " files");
             }
             catch (Exception ex)
             {
-                LogError(msg + " Failed to read the file contents: " + ex.Message);
+                LogError("Failed to read the file contents: " + ex.Message);
+                LogText("------------------------");
                 return false;
             }
 
@@ -65,7 +67,7 @@ namespace DescribeCompiler
             {
                 string filename = unfold.Files[0];
                 unfold.CurFile = filename;
-                bool result = ParseFile_LowVerbosity(new FileInfo(filename), unfold);
+                bool result = ParseFile_HighVerbosity(new FileInfo(filename), unfold);
                 if (result)
                 {
                     unfold.ParsedFiles.Add(filename);
@@ -82,10 +84,11 @@ namespace DescribeCompiler
             try
             {
                 string output = Translator.TranslateUnfold(unfold);
-                translated = output;
-                LogText(msg + "Ok");
+                html = output;
 
+                LogParserInfo("Done!");
                 LogText("------------------------");
+
                 LogInfo(FileCounter.ToString() + " files parsed.");
                 LogInfo("Parser red " + TokenCounter.ToString() +
                     " tokens in " + ReductionCounter.ToString() +
@@ -98,34 +101,36 @@ namespace DescribeCompiler
             }
             catch (Exception ex)
             {
-                LogError(msg + "Failed to Translate the Unfold : " + ex.Message);
+                LogError("Failed to Translate the Unfold : " + ex.Message);
+                LogText("------------------------");
                 return false;
             }
         }
-        bool ParseFile_LowVerbosity(FileInfo fileInfo, out string translated)
+        bool ParseFile_HighVerbosity(FileInfo fileInfo, out string html)
         {
-            translated = null;
+            html = null;
 
             //initial checks
             FileCounter++;
             if (!isInitialized)
             {
-                LogError("Parser not innitialized.");
+                LogError("This parser isn't innitialized, and cannot be used. Create a new instance.");
                 return false;
             }
             if (Translator.IsInitialized() == false)
             {
-                LogError("Translator not innitialized.");
+                LogError("This parser's translator has not been correctly innitialized.");
+                return false;
+            }
+            LogText("------------------------");
+            LogText("Starting a parse operation on file: \"" + fileInfo.FullName + "\"");
+            if (!File.Exists(fileInfo.FullName))
+            {
+                LogError("Error - the file you are trying to parse does not exist");
+                LogText("------------------------");
                 return false;
             }
 
-            string msg = "\"" + fileInfo.FullName + "\" - ";
-            if (!File.Exists(fileInfo.FullName))
-            {
-                msg += "does not exist!";
-                LogError("msg");
-                return false;
-            }
             string source = "";
             try
             {
@@ -133,21 +138,22 @@ namespace DescribeCompiler
                 source = EncodeNonAsciiCharacters(source);
                 if (source.Length == 0)
                 {
-                    msg += "file is empty!";
-                    LogError(msg);
+                    LogError("Error - the file you are trying to parse is empty");
+                    LogText("------------------------");
                     return false;
                 }
                 else if (string.IsNullOrWhiteSpace(source))
                 {
-                    msg += "file is empty!";
-                    LogError(msg);
+                    LogError("Error - the file you are trying to parse is only white space");
+                    LogText("------------------------");
                     return false;
                 }
+                LogInfo("Fetched file contents - " + source.Length.ToString() + " characters long");
             }
             catch (Exception ex)
             {
-                msg += "failed to read: " + ex.Message;
-                LogError(msg);
+                LogError("Failed to read the file contents: " + ex.Message);
+                LogText("------------------------");
                 return false;
             }
 
@@ -158,17 +164,24 @@ namespace DescribeCompiler
             {
                 string message = "";
                 bool result = Parse_HighVerbosity(reader, out root, out message);
-                if (!result)
+
+                if (result)
                 {
-                    msg += "failed to parse: " + message;
-                    LogError(msg);
+                    LogParserInfo(Environment.NewLine + "Parsing sequence: " + message + Environment.NewLine);
+                    LogText("File parsed successfuly");
+                }
+                else
+                {
+                    LogError("Failed to parse the file: " + message);
+                    LogText("------------------------");
+                    string ugshdhdsshdjhjsdhshjsd = Log;
                     return false;
                 }
             }
             catch (Exception ex)
             {
-                msg += "failed to parse: " + ex.Message;
-                LogError(msg);
+                LogError("Failed to parse the file: " + ex.Message);
+                LogText("------------------------");
                 return false;
             }
             finally
@@ -180,18 +193,24 @@ namespace DescribeCompiler
             DescribeUnfold unfold = new DescribeUnfold();
             try
             {
-                bool optimized = Optimizations.DoScripture(unfold, root);
-                if (!optimized)
+                bool optimized = DefaultOptimizer.DoScripture(unfold, root);
+                if (optimized)
                 {
-                    msg += "failed to unfold tree.";
-                    LogError(msg);
+                    LogText("Parse tree unfolded successfuly");
+                    LogParserInfo("Done!");
+                    LogText("------------------------");
+                }
+                else
+                {
+                    LogError("Failed to Unfold the parse tree");
+                    LogText("------------------------");
                     return false;
                 }
             }
             catch (Exception ex)
             {
-                msg += "failed to unfold tree: " + ex.Message;
-                LogError(msg);
+                LogError("Failed to Unfold the parse tree : " + ex.Message);
+                LogText("------------------------");
                 return false;
             }
 
@@ -199,8 +218,7 @@ namespace DescribeCompiler
             try
             {
                 string output = Translator.TranslateUnfold(unfold);
-                translated = output;
-                LogText(msg + "parsed successfuly");
+                html = output;
 
                 LogInfo(FileCounter.ToString() + " files parsed.");
                 LogInfo("Parser red " + TokenCounter.ToString() +
@@ -214,29 +232,30 @@ namespace DescribeCompiler
             }
             catch (Exception ex)
             {
-                LogError(msg + "Failed to Translate the Unfold : " + ex.Message);
+                LogError("Failed to Translate the Unfold : " + ex.Message);
+                LogText("------------------------");
                 return false;
             }
         }
-        private bool ParseFile_LowVerbosity(FileInfo fileInfo, DescribeUnfold unfold)
+        bool ParseFile_HighVerbosity(FileInfo fileInfo, DescribeUnfold unfold)
         {
             FileCounter++;
             if (!isInitialized)
             {
-                LogError("Parser not innitialized.");
+                LogError("This parser isn't innitialized, and cannot be used. Create a new instance.");
                 return false;
             }
             if (Translator.IsInitialized() == false)
             {
-                LogError("Translator has not been correctly innitialized.");
+                LogError("This parser's translator has not been correctly innitialized.");
                 return false;
             }
-
-            string msg = "\"" + fileInfo.FullName + "\" - ";
+            LogText("------------------------");
+            LogText("Starting a parse operation on file: \"" + fileInfo.FullName + "\"");
             if (!File.Exists(fileInfo.FullName))
             {
-                msg += "does not exist!";
-                LogError("msg");
+                LogError("Error - the file you are trying to parse does not exist");
+                LogText("------------------------");
                 return false;
             }
             string source = "";
@@ -246,21 +265,22 @@ namespace DescribeCompiler
                 source = EncodeNonAsciiCharacters(source);
                 if (source.Length == 0)
                 {
-                    msg += "file is empty!";
-                    LogError(msg);
+                    LogError("Error - the file you are trying to parse is empty");
+                    LogText("------------------------");
                     return false;
                 }
                 else if (string.IsNullOrWhiteSpace(source))
                 {
-                    msg += "file is empty!";
-                    LogError(msg);
+                    LogError("Error - the file you are trying to parse is only white space");
+                    LogText("------------------------");
                     return false;
                 }
+                LogInfo("Fetched file contents - " + source.Length.ToString() + " characters long");
             }
             catch (Exception ex)
             {
-                msg += "failed to read: " + ex.Message;
-                LogError(msg);
+                LogError("Failed to read the file contents: " + ex.Message);
+                LogText("------------------------");
                 return false;
             }
 
@@ -271,17 +291,24 @@ namespace DescribeCompiler
             {
                 string message = "";
                 bool result = Parse_HighVerbosity(reader, out root, out message);
-                if (!result)
+
+                if (result)
                 {
-                    msg += "failed to parse: " + message;
-                    LogError(msg);
+                    LogParserInfo(Environment.NewLine + "Parsing sequence: " + message + Environment.NewLine);
+                    LogText("File parsed successfuly");
+                }
+                else
+                {
+                    LogError("Failed to parse the file: " + message);
+                    LogText("------------------------");
+                    string ugshdhdsshdjhjsdhshjsd = Log;
                     return false;
                 }
             }
             catch (Exception ex)
             {
-                msg += "failed to parse: " + ex.Message;
-                LogError(msg);
+                LogError("Failed to parse the file: " + ex.Message);
+                LogText("------------------------");
                 return false;
             }
             finally
@@ -292,38 +319,39 @@ namespace DescribeCompiler
             //unfold
             try
             {
-                bool optimized = Optimizations.DoScripture(unfold, root);
+                bool optimized = DefaultOptimizer.DoScripture(unfold, root);
                 if (optimized)
                 {
-                    msg += "Ok";
-                    LogText(msg);
+                    LogText("Parse tree unfolded successfuly");
+                    LogParserInfo("Done!");
+                    LogText("------------------------");
+                    return true;
                 }
                 else
                 {
-                    msg += "failed to unfold tree.";
-                    LogError(msg);
+                    LogError("Failed to Unfold the parse tree");
+                    LogText("------------------------");
                     return false;
                 }
-                return true;
             }
             catch (Exception ex)
             {
-                msg += "failed to unfold tree: " + ex.Message;
-                LogError(msg);
+                LogError("Failed to Unfold the parse tree : " + ex.Message);
+                LogText("------------------------");
                 return false;
             }
 
         }
-        private bool Parse_LowVerbosity(TextReader reader, out Reduction root, out string FailMessage)
+        bool Parse_HighVerbosity(TextReader reader, out Reduction root, out string Message)
         {
-            FailMessage = "";
             if (_GoldParser == null)
             {
                 root = null;
-                FailMessage = "Bug in the describe compiler - GOLD parser instance is null.";
+                Message = "Bug in the describe compiler - GOLD parser instance is null.";
                 return false;
             }
 
+            Message = "";
             GoldParser.Parser.ParseMessage response;
             bool done = false;
             bool accepted = false;
@@ -339,8 +367,10 @@ namespace DescribeCompiler
                 {
                     case GoldParser.Parser.ParseMessage.LexicalError:
                         //Cannot recognize token
-                        FailMessage = "Lexical Error:\n" +
-                                      "Position: " + (_GoldParser.CurrentPosition.Line + 1) + ", " + (_GoldParser.CurrentPosition.Column + 1) + "\n" +
+                        if (Message != "") Message += " ";
+                        Message += "Lexical Error:\n" +
+                                      "Position: " + (_GoldParser.CurrentPosition.Line + 1) + ", " +
+                                      (_GoldParser.CurrentPosition.Column + 1) + "\n" +
                                       "Read: " + _GoldParser.CurrentToken.Data;
                         done = true;
                         break;
@@ -351,7 +381,8 @@ namespace DescribeCompiler
                         List<string> li = new List<string>();
                         foreach (GrammarSymbol s in _GoldParser.ExpectedSymbols) li.Add(s.ToString());
 
-                        FailMessage = "Syntax Error:\n" +
+                        if (Message != "") Message += " ";
+                        Message += "Syntax Error:\n" +
                                       "Position: " + (_GoldParser.CurrentPosition.Line + 1) + ", "
                                       + (_GoldParser.CurrentPosition.Column + 1) + "\n" +
                                       "Read: \"" + _GoldParser.CurrentToken.Data + "\"\n" +
@@ -361,6 +392,9 @@ namespace DescribeCompiler
 
                     case GoldParser.Parser.ParseMessage.Reduction:
                         //You don't have to do anything here.
+                        ReductionCounter++;
+                        if (Message != "") Message += " ";
+                        Message += "R(" + _GoldParser.CurrentReduction.Production.Head.Name + ");";
                         break;
 
                     case GoldParser.Parser.ParseMessage.Accept:
@@ -371,97 +405,37 @@ namespace DescribeCompiler
                         break;
 
                     case GoldParser.Parser.ParseMessage.TokenRead:
+                        TokenCounter++;
                         //You don't have to do anything here.
+                        if (Message != "") Message += " ";
+                        Message += "T(" + _GoldParser.CurrentToken.Symbol.Name + ");";
                         break;
 
                     case GoldParser.Parser.ParseMessage.InternalError:
                         //INTERNAL ERROR! Something is horribly wrong.
-                        FailMessage = "INTERNAL ERROR! Something is horribly wrong";
+                        if (Message != "") Message += " ";
+                        Message += "INTERNAL ERROR! Something is horribly wrong;";
                         done = true;
                         break;
 
                     case GoldParser.Parser.ParseMessage.NotLoadedError:
                         //This error occurs if the CGT was not loaded.                   
-                        FailMessage = "Tables not loaded";
+                        if (Message != "") Message += " ";
+                        Message += "Tables not loaded;";
                         done = true;
                         break;
 
                     case GoldParser.Parser.ParseMessage.GroupError:
                         //GROUP ERROR! Unexpected end of file
-                        FailMessage = "Runaway group";
+                        if (Message != "") Message += " ";
+                        Message += "Runaway group;";
                         done = true;
                         break;
                 }
             }
-            if (accepted) FailMessage = "Ok";
+
+            if (accepted) Message += " Accepted;";
             return accepted;
-        }
-
-
-        private string EncodeNonAsciiCharacters(string value)
-        {
-            //we add a character before and after that we will not use,
-            //in order to skip if tests to see if we are not on the first or last char
-            //for null reference. The new line we keep, as it is a workaround for the
-            //runaway group last comment bug
-            value = "." + value + Environment.NewLine;
-
-            //https://stackoverflow.com/questions/1615559/convert-a-unicode-string-to-an-escaped-ascii-string
-            StringBuilder sb = new StringBuilder();
-            for (int i = 1; i < value.Length - 1; i++)
-            {
-                if (value[i] > 127)
-                {
-                    // This character is too big for ASCII
-                    string encodedValue = "&#x" + ((int)value[i]).ToString("x4") + "\\;";
-                    sb.Append(encodedValue);
-                }
-                else
-                {
-                    if (value[i] == '-'
-                       && value[i + 1] != '>'
-                       && value[i - 1] != '\\')
-                    {
-                        sb.Append('\\');
-                    }
-                    else if (value[i] == '*'
-                          && value[i + 1] != '/'
-                          && value[i - 1] != '/'
-                          && value[i - 1] != '\\')
-                    {
-                        sb.Append('\\');
-                    }
-                    else if (value[i] == '/'
-                          && value[i + 1] != '/'
-                          && value[i - 1] != '/'
-                          && value[i + 1] != '*'
-                          && value[i - 1] != '*'
-                          && value[i - 1] != '\\')
-                    {
-                        sb.Append('\\');
-                    }
-                    else if (value[i] == '\\'
-                          && value[i - 1] != '\\'
-                          && value[i + 1] != '\\'
-                          && value[i + 1] != '-'
-                          && value[i + 1] != '*'
-                          && value[i + 1] != '/'
-                          && value[i + 1] != '<'
-                          && value[i + 1] != '>'
-                          && value[i + 1] != '['
-                          && value[i + 1] != ']'
-                          && value[i + 1] != '{'
-                          && value[i + 1] != '}'
-                          && value[i + 1] != ','
-                          && value[i + 1] != ';')
-                    {
-                        sb.Append('\\');
-                    }
-
-                    sb.Append(value[i]);
-                }
-            }
-            return sb.ToString();
         }
     }
 }

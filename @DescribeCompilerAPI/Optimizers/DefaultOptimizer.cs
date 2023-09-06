@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace DescribeCompiler
 {
-    public static class Optimizations
+    public static class DefaultOptimizer
     {
         //Misc
         private static Random random = new Random();

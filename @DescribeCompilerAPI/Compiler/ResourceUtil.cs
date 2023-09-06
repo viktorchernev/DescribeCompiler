@@ -112,6 +112,10 @@ namespace DescribeCompiler
             }
         }
 
+        /// <summary>
+        /// Retrieve the names of all embedded resources
+        /// </summary>
+        /// <returns>An array of strings containing the names</returns>
         public static string[] extractResourceNames()
         {
             System.Reflection.Assembly a = System.Reflection.Assembly.GetExecutingAssembly();
