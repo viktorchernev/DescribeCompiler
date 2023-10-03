@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace DescribeCompiler
 {
-    public static class DefaultOptimizer
+    public class DefaultOptimizer : IDescribeOptimizer
     {
         //Misc
         private static Random random = new Random();
@@ -17,17 +17,18 @@ namespace DescribeCompiler
             return new string(Enumerable.Repeat(chars, length)
                 .Select(s => s[random.Next(s.Length)]).ToArray());
         }
-        private static string GetRuleName(Reduction r)
+
+
+        //Name
+        private string GetRuleName(Reduction r)
         {
             string ruleName = r.Production.Head.Name;
             return ruleName;
         }
 
 
-        //Tagging
-
         //Tags
-        private static string DoTag(Reduction r)
+        private string DoTag(Reduction r)
         {
             string id = DoText(r[1].Data as Reduction);
             return id;
@@ -36,12 +37,12 @@ namespace DescribeCompiler
         //<links>
         //::= Link Link
         //| Link <links>
-        private static string DoLink(string text)
+        private string DoLink(string text)
         {
             string s = text.Substring(1, text.Length - 2);
             return s;
         }
-        private static string[] DoLinks(Reduction r)
+        private string[] DoLinks(Reduction r)
         {
             string s1 = DoLink(r[0].Data.ToString());
 
@@ -63,14 +64,14 @@ namespace DescribeCompiler
         //<decorators>
         //::= Decorator Decorator
         //| Decorator <decorators>
-        private static string DoDecorator(string text)
+        private string DoDecorator(string text)
         {
             string s = text.Substring(1, text.Length - 2);
 
             //we need to remove spaces here for the translations later on
             return s.Replace(" ", "");
         }
-        private static string[] DoDecorators(Reduction r)
+        private string[] DoDecorators(Reduction r)
         {
             string s1 = DoDecorator(r[0].Data.ToString());
 
@@ -92,12 +93,11 @@ namespace DescribeCompiler
 
 
         //Text
-
         //<text-chunk>
         //::= Text | EscapeHyphen | EscapeLeftArrow | EscapeRightArrow | EscapeSeparator
         //| EscapeTerminator | EscapeStar | EscapeEscape | EscapeFSlash | EscapeBSlash
         //| EscapeLeftSquare | EscapeRightSquare | EscapeLeftCurl | EscapeRightCurl
-        private static string DoTextChunk(Reduction r)
+        private string DoTextChunk(Reduction r)
         {
             GrammarSymbol sym = r.Production.Handle[0];
             string text = "";
@@ -132,7 +132,7 @@ namespace DescribeCompiler
         //<text-chunk-list>    
         //::= <text-chunk> <text-chunk>    
         //| <text-chunk> <text-chunk-list>
-        private static string DoTextChunkList(Reduction r)
+        private string DoTextChunkList(Reduction r)
         {
             string s1 = DoTextChunk(r[0].Data as Reduction);
 
@@ -154,7 +154,7 @@ namespace DescribeCompiler
         //<text>     
         //::= <text-chunk>    
         //| <text-chunk-list>
-        private static string DoText(Reduction r)
+        private string DoText(Reduction r)
         {
             string ruleName = GetRuleName(r[0].Data as Reduction);
             if (ruleName == "text-chunk")
@@ -172,12 +172,11 @@ namespace DescribeCompiler
 
 
         //ITEMS
-
         //<item>       
         //:= <text> <tag> Link Decorator
         //| <text> <tag> <links> <decorators>
         //not in that order though
-        private static string DoItem(DescribeUnfold u, Reduction r)
+        private string DoItem(DescribeUnfold u, Reduction r)
         {
             string text = null;
             string tag = null;
@@ -286,7 +285,7 @@ namespace DescribeCompiler
         //<item-or-expression>    
         //::= <item>    
         //| <expression>
-        private static string DoItemOrExpression(DescribeUnfold u, Reduction r)
+        private string DoItemOrExpression(DescribeUnfold u, Reduction r)
         {
             string ruleName = GetRuleName(r[0].Data as Reduction);
             if (ruleName == "item")
@@ -309,7 +308,7 @@ namespace DescribeCompiler
         //| <expression> <item>
         //| <expression> <expression>
         //| <expression> <item-or-expression-list>
-        private static string[] DoItemOrExpressionList(DescribeUnfold u, Reduction r)
+        private string[] DoItemOrExpressionList(DescribeUnfold u, Reduction r)
         {
             //this method is about a list of "ItemOrExpression"
             string ruleName1 = GetRuleName(r[0].Data as Reduction);
@@ -356,7 +355,7 @@ namespace DescribeCompiler
         //| <item> <producer> <item-or-expression-list> Terminator
         //| <item> <producer> <item-or-expression>
         //| <item> <producer> <item-or-expression-list>
-        private static string DoExpression(DescribeUnfold u, Reduction r)
+        private string DoExpression(DescribeUnfold u, Reduction r)
         {
             string head = DoItem(u, r[0].Data as Reduction);
 
@@ -417,7 +416,7 @@ namespace DescribeCompiler
         //<expression-list>
         //::= <expression> <expression>
         //| <expression> <expression-list>
-        private static string[] DoExpressionList(DescribeUnfold u, Reduction r, bool isPrimery = false)
+        private string[] DoExpressionList(DescribeUnfold u, Reduction r, bool isPrimery = false)
         {
             //this method is about a list of "Expression"
             string key1 = DoExpression(u, r[0].Data as Reduction);
@@ -477,9 +476,8 @@ namespace DescribeCompiler
         /// </summary>
         /// <param name="u">Unfold to be populated</param>
         /// <param name="r">Root reduction aka the parse tree</param>
-        /// <param name="isPrimary">Wether this is the first file</param>
         /// <returns>True if successful</returns>
-        public static bool DoScripture(DescribeUnfold u, Reduction r)
+        public bool DoScripture(DescribeUnfold u, Reduction r)
         {
             //reset namespace for the file
             u.CurNamespace = "";

@@ -59,15 +59,17 @@
     <Compile Include="Compiler\DescribeCompiler#Statistics.cs" />
     <Compile Include="Compiler\DescribeCompiler#Settings.cs" />
     <Compile Include="Compiler\DescribeCompiler.cs" />
-    <Compile Include="Unfolds\DescribeUnfold.cs" />
+    <Compile Include="Compiler\Optimizers\IDescribeOptimizer.cs" />
+    <Compile Include="Translators\CharacterDictionaries.cs" />
+    <Compile Include="Translators\JsonTranslator.cs" />
+    <Compile Include="Translators\DescribeTranslator.cs" />
+    <Compile Include="Translators\HtmlTranslator.cs" />
+    <Compile Include="Compiler\DescribeUnfold.cs" />
     <Compile Include="Compiler\eGrammarName.cs" />
     <Compile Include="Compiler\eLogVerbosity.cs" />
-    <Compile Include="Translators\IUnfoldTranslator.cs" />
-    <Compile Include="Translators\JsonTranslator.cs" />
-    <Compile Include="Optimizers\DefaultOptimizer.cs" />
+    <Compile Include="Compiler\Optimizers\DefaultOptimizer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Compiler\ResourceUtil.cs" />
-    <Compile Include="Translators\HtmlTranslator.cs" />
+    <Compile Include="Compiler\resourceUtil.cs" />
     <Compile Include="Compiler\DescribeCompiler#Properties.cs" />
   </ItemGroup>
   <ItemGroup>

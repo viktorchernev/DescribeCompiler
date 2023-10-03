@@ -1,0 +1,3 @@
+FEATURE: Short Version Optional Template Json Translator
+
+{SHORT_VERSION} Optional template added to the inbuilt JSON translator

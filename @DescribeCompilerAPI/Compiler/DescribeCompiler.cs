@@ -18,12 +18,12 @@ namespace DescribeCompiler
         private GoldParser.Parser.Parser _GoldParser;
 
         /// <summary>
-        /// The translator class
+        /// The optimizer class
         /// </summary>
-        public IUnfoldTranslator Translator
-        { 
-            get; 
-            set; 
+        public IDescribeOptimizer Optimizer
+        {
+            get;
+            set;
         }
 
 
@@ -59,59 +59,58 @@ namespace DescribeCompiler
         }
 
         /// <summary>
-        /// Translate a folder of Describe source files ".ds" to a web page ".html"
+        /// Translate a folder of Describe source files
         /// </summary>
-        /// <param name="dirInfo">Represents the directory of files to be parsed.</param>
-        /// <param name="translated">The resulted HTML output.</param>
-        /// <returns>true if successful, otherwise false.</returns>
-        public bool ParseFolder(DirectoryInfo dirInfo, out string translated)
+        /// <param name="dirInfo">Represents the directory of files to be parsed</param>
+        /// <param name="unfold">The unfold that will receive the data</param>
+        /// <returns>true if successful, otherwise false</returns>
+        public bool ParseFolder(DirectoryInfo dirInfo, DescribeUnfold unfold)
         {
-            translated = null;
             FileCounter = 0;
             ReductionCounter = 0;
             bool result = false;
             if (Verbosity == LogVerbosity.Low)
             {
-                result = ParseFolder_LowVerbosity(dirInfo, out translated);
+                result = ParseFolder_LowVerbosity(dirInfo, unfold);
             }
             else if (Verbosity == LogVerbosity.Medium)
             {
-                result = ParseFolder_MediumVerbosity(dirInfo, out translated);
+                result = ParseFolder_MediumVerbosity(dirInfo, unfold);
             }
             else if (Verbosity == LogVerbosity.High)
             {
                 TokenCounter = 0;
                 ReductionCounter = 0;
-                result = ParseFolder_HighVerbosity(dirInfo, out translated);
+                result = ParseFolder_HighVerbosity(dirInfo, unfold);
             }
             return result;
         }
 
         /// <summary>
-        /// Translate a Describe source file ".ds" to a web page ".html"
+        /// Parse a Describe source file
         /// </summary>
-        /// <param name="fileInfo">Represents the file to be parsed.</param>
-        /// <param name="translated">The resulted HTML output.</param>
-        /// <returns>true if successful, otherwise false.</returns>
-        public bool ParseFile(FileInfo fileInfo, out string translated)
+        /// <param name="fileInfo">Represents the file to be parsed</param>
+        /// <param name="unfold">The unfold that will receive the data</param>
+        /// <returns>true if successful, otherwise false</returns>
+        public bool ParseFile(FileInfo fileInfo, DescribeUnfold unfold)
         {
-            translated = null;
             FileCounter = 0;
             ReductionCounter = 0;
             bool result = false;
+
             if (Verbosity == LogVerbosity.Low)
             {
-                result = ParseFile_LowVerbosity(fileInfo, out translated);
+                result = ParseFile_LowVerbosity(fileInfo, unfold);
             }
             else if (Verbosity == LogVerbosity.Medium)
             {
-                result = ParseFile_MediumVerbosity(fileInfo, out translated);
+                result = ParseFile_MediumVerbosity(fileInfo, unfold);
             }
             else if (Verbosity == LogVerbosity.High)
             {
                 TokenCounter = 0;
                 ReductionCounter = 0;
-                result = ParseFile_HighVerbosity(fileInfo, out translated);
+                result = ParseFile_HighVerbosity(fileInfo, unfold);
             }
             return result;
         }

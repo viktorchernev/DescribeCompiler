@@ -1,0 +1,3 @@
+FEATURE: Short TimeStamp Optional Template Json Translator
+
+{SHORT_TIME_STAMP} Optional template added to the inbuilt JSON translator

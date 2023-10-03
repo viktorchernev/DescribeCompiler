@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DescribeCompiler
 {
@@ -11,39 +7,39 @@ namespace DescribeCompiler
         /// <summary>
         /// Ctor.
         /// </summary>
-        /// <param name="templateName">The name of the templates set to use</param>
-        public DescribeCompiler(string templateName)
+        public DescribeCompiler()
         {
             LogText = log;
             LogError = log;
             LogInfo = log;
             LogParserInfo = log;
 
-            initializeCompiler(templateName, LogVerbosity.High);
+            Optimizer = new DefaultOptimizer();
+            initializeCompiler(LogVerbosity.High);
         }
 
         /// <summary>
         /// Ctor.
         /// </summary>
-        /// <param name="templateName">The name of the templates set to use</param>
-        public DescribeCompiler(string templateName, LogVerbosity verbosity)
-        {
-            LogText = log;
-            LogError = log;
-            LogInfo = log;
-            LogParserInfo = log;
-
-            initializeCompiler(templateName, verbosity);
-        }
-
-        /// <summary>
-        /// Ctor.
-        /// </summary>
-        /// <param name="templateName">The name of the templates set to use</param>
-        /// <param name="logText">method to log text</param>
         /// <param name="verbosity">The logging verbosity of the parser</param>
         public DescribeCompiler(
-            string templateName,
+            LogVerbosity verbosity)
+        {
+            LogText = log;
+            LogError = log;
+            LogInfo = log;
+            LogParserInfo = log;
+
+            Optimizer = new DefaultOptimizer();
+            initializeCompiler(verbosity);
+        }
+
+        /// <summary>
+        /// Ctor.
+        /// </summary>
+        /// <param name="verbosity">The logging verbosity of the parser</param>
+        /// <param name="logText">method to log text</param>
+        public DescribeCompiler(
             LogVerbosity verbosity,
             Action<string> logText)
         {
@@ -54,24 +50,21 @@ namespace DescribeCompiler
             LogInfo = log;
             LogParserInfo = log;
 
-            initializeCompiler(templateName, verbosity);
+            Optimizer = new DefaultOptimizer();
+            initializeCompiler(verbosity);
         }
 
         /// <summary>
         /// Ctor.
         /// </summary>
-        /// <param name="templateName">The name of the templates set to use</param>
+        /// <param name="verbosity">The logging verbosity of the parser</param>
         /// <param name="logText">method to log text<</param>
         /// <param name="logError">method to log errors<</param>
-        /// <param name="verbosity">The logging verbosity of the parser</param>
         public DescribeCompiler(
-            string templateName,
             LogVerbosity verbosity,
             Action<string> logText,
             Action<string> logError)
         {
-            Translator = new HtmlTranslator(logText, logError, templateName);
-
             LogText = log;
             LogText += logText;
 
@@ -81,19 +74,18 @@ namespace DescribeCompiler
             LogInfo = log;
             LogParserInfo = log;
 
-            initializeCompiler(templateName, verbosity);
+            Optimizer = new DefaultOptimizer();
+            initializeCompiler(verbosity);
         }
 
         /// <summary>
         /// Ctor.
         /// </summary>
-        /// <param name="templateName">The name of the templates set to use</param>
+        /// <param name="verbosity">The logging verbosity of the parser</param>
         /// <param name="logText">method to log text</param>
         /// <param name="logError">method to log errors</param>
         /// <param name="logInfo">method to log less important info</param>
-        /// <param name="verbosity">The logging verbosity of the parser</param>
         public DescribeCompiler(
-            string templateName,
             LogVerbosity verbosity,
             Action<string> logText,
             Action<string> logError,
@@ -110,20 +102,19 @@ namespace DescribeCompiler
 
             LogParserInfo = log;
 
-            initializeCompiler(templateName, verbosity);
+            Optimizer = new DefaultOptimizer();
+            initializeCompiler(verbosity);
         }
 
         /// <summary>
         /// Ctor.
         /// </summary>
-        /// <param name="templateName">The name of the templates set to use</param>
+        /// <param name="verbosity">The logging verbosity of the parser</param>
         /// <param name="logText">method to log text</param>
         /// <param name="logError">method to log errors</param>
         /// <param name="logInfo">method to log less important info</param>
         /// <param name="logParserInfo">method to log parser output</param>
-        /// <param name="verbosity">The logging verbosity of the parser</param>
         public DescribeCompiler(
-            string templateName,
             LogVerbosity verbosity,
             Action<string> logText,
             Action<string> logError,
@@ -142,61 +133,14 @@ namespace DescribeCompiler
             LogParserInfo = log;
             LogParserInfo += logParserInfo;
 
-            initializeCompiler(templateName, verbosity);
-        }
-
-        /// <summary>
-        /// Ctor.
-        /// </summary>
-        /// <param name="templateName">The name of the templates set to use</param>
-        /// <param name="verbosity">The logging verbosity of the parser</param>
-        /// <param name="logText">method to log text</param>
-        /// <param name="logError">method to log errors</param>
-        /// <param name="logInfo">method to log less important info</param>
-        /// <param name="logParserInfo">method to log parser output</param>
-        /// <param name="translator">The translator to be used</param>
-        public DescribeCompiler(
-            string templateName,
-            LogVerbosity verbosity,
-            Action<string> logText,
-            Action<string> logError,
-            Action<string> logInfo,
-            Action<string> logParserInfo,
-            IUnfoldTranslator translator)
-        {
-            LogText = log;
-            LogText += logText;
-
-            LogError = log;
-            LogError += logError;
-
-            LogInfo = log;
-            LogInfo += logInfo;
-
-            LogParserInfo = log;
-            LogParserInfo += logParserInfo;
-
-            Translator = translator;
-
-            initializeCompiler(templateName, verbosity);
+            Optimizer = new DefaultOptimizer();
+            initializeCompiler(verbosity);
         }
 
 
 
-        private void initializeCompiler(string templateName, LogVerbosity verbosity)
+        private void initializeCompiler(LogVerbosity verbosity)
         {
-            if (templateName.StartsWith("HTML_"))
-                Translator = new HtmlTranslator(LogText, LogError, LogInfo, templateName);
-            else if (templateName.StartsWith("JSON_"))
-                Translator = new JsonTranslator(LogText, LogError, LogInfo, templateName);
-            else
-                Translator = new HtmlTranslator(LogText, LogError, LogInfo, templateName);
-            if (Translator.IsInitialized() == false)
-            {
-                LogError("Failed to initialize the translator");
-                return;
-            }
-
             LogInfo("Initializing " + COMPILER_NAME);
             LoadedGrammarName = "";
 

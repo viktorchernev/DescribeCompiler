@@ -11,19 +11,12 @@ namespace DescribeCompiler
 {
     public partial class DescribeCompiler
     {
-        bool ParseFolder_LowVerbosity(DirectoryInfo dirInfo, out string translated)
+        bool ParseFolder_LowVerbosity(DirectoryInfo dirInfo, DescribeUnfold unfold)
         {
-            translated = null;
-
             //initial checks
             if (!isInitialized)
             {
                 LogError("Parser not innitialized.");
-                return false;
-            }
-            if (Translator.IsInitialized() == false)
-            {
-                LogError("Translator not innitialized.");
                 return false;
             }
 
@@ -36,7 +29,6 @@ namespace DescribeCompiler
             }
 
             //fetch files
-            DescribeUnfold unfold = new DescribeUnfold();
             try
             {
                 SearchOption searchOption = SearchOption.AllDirectories;
@@ -65,7 +57,7 @@ namespace DescribeCompiler
             {
                 string filename = unfold.Files[0];
                 unfold.CurFile = filename;
-                bool result = ParseFile_LowVerbosity(new FileInfo(filename), unfold);
+                bool result = parseFile_LowVerbosity(new FileInfo(filename), unfold);
                 if (result)
                 {
                     unfold.ParsedFiles.Add(filename);
@@ -78,44 +70,25 @@ namespace DescribeCompiler
                 }
             }
 
-            // translate
-            try
-            {
-                string output = Translator.TranslateUnfold(unfold);
-                translated = output;
-                LogText(msg + "Ok");
+            LogText(msg + "Ok");
 
-                LogText("------------------------");
-                LogInfo(FileCounter.ToString() + " files parsed.");
-                LogInfo("Parser red " + TokenCounter.ToString() +
-                    " tokens in " + ReductionCounter.ToString() +
-                    " reductions.");
-                LogInfo("Those were translated to " + unfold.Productions.Count().ToString() +
-                    " productions, containing " + unfold.Translations.Count().ToString() +
-                    " entries.");
-
-                return true;
-            }
-            catch (Exception ex)
-            {
-                LogError(msg + "Failed to Translate the Unfold : " + ex.Message);
-                return false;
-            }
+            LogText("------------------------");
+            LogInfo(FileCounter.ToString() + " files parsed.");
+            LogInfo("Parser red " + TokenCounter.ToString() +
+                " tokens in " + ReductionCounter.ToString() +
+                " reductions.");
+            LogInfo("Those were translated to " + unfold.Productions.Count().ToString() +
+                " productions, containing " + unfold.Translations.Count().ToString() +
+                " entries.");
+            return true;
         }
-        bool ParseFile_LowVerbosity(FileInfo fileInfo, out string translated)
+        bool ParseFile_LowVerbosity(FileInfo fileInfo, DescribeUnfold unfold)
         {
-            translated = null;
-
             //initial checks
             FileCounter++;
             if (!isInitialized)
             {
                 LogError("Parser not innitialized.");
-                return false;
-            }
-            if (Translator.IsInitialized() == false)
-            {
-                LogError("Translator not innitialized.");
                 return false;
             }
 
@@ -157,7 +130,7 @@ namespace DescribeCompiler
             try
             {
                 string message = "";
-                bool result = Parse_HighVerbosity(reader, out root, out message);
+                bool result = parse_LowVerbosity(reader, out root, out message);
                 if (!result)
                 {
                     msg += "failed to parse: " + message;
@@ -177,10 +150,9 @@ namespace DescribeCompiler
             }
 
             //unfold
-            DescribeUnfold unfold = new DescribeUnfold();
             try
             {
-                bool optimized = DefaultOptimizer.DoScripture(unfold, root);
+                bool optimized = Optimizer.DoScripture(unfold, root);
                 if (!optimized)
                 {
                     msg += "failed to unfold tree.";
@@ -195,40 +167,22 @@ namespace DescribeCompiler
                 return false;
             }
 
-            // translate
-            try
-            {
-                string output = Translator.TranslateUnfold(unfold);
-                translated = output;
-                LogText(msg + "parsed successfuly");
-
-                LogInfo(FileCounter.ToString() + " files parsed.");
-                LogInfo("Parser red " + TokenCounter.ToString() +
-                    " tokens in " + ReductionCounter.ToString() +
-                    " reductions.");
-                LogInfo("Those were translated to " + unfold.Productions.Count().ToString() +
-                    " productions, containing " + unfold.Translations.Count().ToString() +
-                    " entries.");
-
-                return true;
-            }
-            catch (Exception ex)
-            {
-                LogError(msg + "Failed to Translate the Unfold : " + ex.Message);
-                return false;
-            }
+            LogText(msg + "parsed successfuly");
+            LogInfo(FileCounter.ToString() + " files parsed.");
+            LogInfo("Parser red " + TokenCounter.ToString() +
+                " tokens in " + ReductionCounter.ToString() +
+                " reductions.");
+            LogInfo("Those were translated to " + unfold.Productions.Count().ToString() +
+                " productions, containing " + unfold.Translations.Count().ToString() +
+                " entries.");
+            return true;
         }
-        private bool ParseFile_LowVerbosity(FileInfo fileInfo, DescribeUnfold unfold)
+        private bool parseFile_LowVerbosity(FileInfo fileInfo, DescribeUnfold unfold)
         {
             FileCounter++;
             if (!isInitialized)
             {
                 LogError("Parser not innitialized.");
-                return false;
-            }
-            if (Translator.IsInitialized() == false)
-            {
-                LogError("Translator has not been correctly innitialized.");
                 return false;
             }
 
@@ -270,7 +224,7 @@ namespace DescribeCompiler
             try
             {
                 string message = "";
-                bool result = Parse_HighVerbosity(reader, out root, out message);
+                bool result = parse_LowVerbosity(reader, out root, out message);
                 if (!result)
                 {
                     msg += "failed to parse: " + message;
@@ -292,7 +246,7 @@ namespace DescribeCompiler
             //unfold
             try
             {
-                bool optimized = DefaultOptimizer.DoScripture(unfold, root);
+                bool optimized = Optimizer.DoScripture(unfold, root);
                 if (optimized)
                 {
                     msg += "Ok";
@@ -314,7 +268,7 @@ namespace DescribeCompiler
             }
 
         }
-        private bool Parse_LowVerbosity(TextReader reader, out Reduction root, out string FailMessage)
+        private bool parse_LowVerbosity(TextReader reader, out Reduction root, out string FailMessage)
         {
             FailMessage = "";
             if (_GoldParser == null)
