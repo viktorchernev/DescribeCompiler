@@ -42,6 +42,7 @@ namespace DescribeCompiler.Translators
         static string itemTemplate;
         static string emptyItemTemplate;
         static string commentItemTemplate;
+        static string nlcommentItemTemplate;
         static string coloredItemTemplate;
         static string productionTemplate;
         static string coloredProductionTemplate;
@@ -77,6 +78,7 @@ namespace DescribeCompiler.Translators
                     productionTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Production");
                     itemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Item");
                     emptyItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemEmpty");
+                    nlcommentItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemCommentNl");
                     commentItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemComment");
                     coloredItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemColored");
                     linkTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Link");
@@ -122,6 +124,7 @@ namespace DescribeCompiler.Translators
                         else if (finfo.Name.StartsWith("ProductionColored")) coloredProductionTemplate = File.ReadAllText(finfo.FullName);
                         else if (finfo.Name.StartsWith("Production")) productionTemplate = File.ReadAllText(finfo.FullName);
                         else if (finfo.Name.StartsWith("ItemEmpty")) emptyItemTemplate = File.ReadAllText(finfo.FullName);
+                        else if (finfo.Name.StartsWith("ItemCommentNl")) nlcommentItemTemplate = File.ReadAllText(finfo.FullName);
                         else if (finfo.Name.StartsWith("ItemComment")) commentItemTemplate = File.ReadAllText(finfo.FullName);
                         else if (finfo.Name.StartsWith("ItemColored")) coloredItemTemplate = File.ReadAllText(finfo.FullName);
                         else if (finfo.Name.StartsWith("Item")) itemTemplate = File.ReadAllText(finfo.FullName);
@@ -166,6 +169,7 @@ namespace DescribeCompiler.Translators
                 productionTemplate = ResourceUtil.ExtractResourceByFileName_String(name, @"Production");
                 itemTemplate = ResourceUtil.ExtractResourceByFileName_String(name, @"Item");
                 emptyItemTemplate = ResourceUtil.ExtractResourceByFileName_String(name, @"ItemEmpty");
+                nlcommentItemTemplate = ResourceUtil.ExtractResourceByFileName_String(name, @"ItemCommentNl");
                 commentItemTemplate = ResourceUtil.ExtractResourceByFileName_String(name, @"ItemComment");
                 coloredItemTemplate = ResourceUtil.ExtractResourceByFileName_String(name, @"ItemColored");
                 linkTemplate = ResourceUtil.ExtractResourceByFileName_String(name, @"Link");
@@ -338,6 +342,12 @@ namespace DescribeCompiler.Translators
                     else if (s == "comment")
                     {
                         string res = commentItemTemplate.Replace("{ITEM}", u.Translations[id]);
+                        res = res.Replace("{LINKS}", linkage);
+                        return res;
+                    }
+                    else if (s == "nlcomment")
+                    {
+                        string res = nlcommentItemTemplate.Replace("{ITEM}", u.Translations[id]);
                         res = res.Replace("{LINKS}", linkage);
                         return res;
                     }

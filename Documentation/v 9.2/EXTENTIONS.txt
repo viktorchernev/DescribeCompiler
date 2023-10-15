@@ -1,0 +1,4 @@
+.ds - Describe source code file (describe scripture)
+.dr - Describe source code draft file
+.denc - Describe source code encrypted file
+.dart - Describe artifact file

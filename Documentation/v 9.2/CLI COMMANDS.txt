@@ -1,0 +1,38 @@
+logfile=PATH
+onerror=(stop|ignore|usedart)
+
+
+help
+ext
+parse-file
+parse-folder
+
+help
+DescribeCompiler help
+DescribeCompiler -h
+
+ext
+DescribeCompiler ext
+DescribeCompiler ext RESULT_PATH
+
+extone
+DescribeCompiler extone TEMPLATE_NAME
+DescribeCompiler extone TEMPLATE_NAME RESULT_PATH
+
+parse-file
+DescribeCompiler parse-file PARSE_PATH RESULT_PATH
+DescribeCompiler parse-file PARSE_PATH dsonly RESULT_PATH
+DescribeCompiler parse-file PARSE_PATH [dsonly[=true|=false]] RESULT_PATH
+DescribeCompiler parse-file PARSE_PATH [dsonly[=true|=false]] [verbosity(=high|=h|=medium|=m|=low|=l)|log-verbosity(=high|=h|=medium|=m|=low|=l)] RESULT_PATH
+DescribeCompiler parse-file PARSE_PATH [dsonly[=true|=false]] [verbosity(=high|=h|=medium|=m|=low|=l)|log-verbosity(=high|=h|=medium|=m|=low|=l)] [(make-artifacts[=true|=false]|take-artifacts[=true|=false]|use-artifacts[=true|=false]) artifacts-path=PATH] RESULT_PATH
+
+parse-folder
+DescribeCompiler parse-folder PARSE_PATH RESULT_PATH
+DescribeCompiler parse-folder PARSE_PATH [dsonly[=true|=false]] RESULT_PATH
+DescribeCompiler parse-folder PARSE_PATH [dsonly[=true|=false]][toponly[=true|=false]] RESULT_PATH
+DescribeCompiler parse-folder PARSE_PATH [dsonly[=true|=false]][toponly[=true|=false]] [verbosity(=high|=h|=medium|=m|=low|=l)|log-verbosity(=high|=h|=medium|=m|=low|=l)] RESULT_PATH
+DescribeCompiler parse-folder PARSE_PATH [dsonly[=true|=false]][toponly[=true|=false]] [verbosity(=high|=h|=medium|=m|=low|=l)|log-verbosity(=high|=h|=medium|=m|=low|=l)] [(make-artifacts[=true|=false]|take-artifacts[=true|=false]|use-artifacts[=true|=false]) artifacts-path=PATH] RESULT_PATH
+
+//[grammar-name(=basic|=b|=tags|=t|=links|=l|=decorators|=d|=official|=o)]
+[verbosity(=high|=h|=medium|=m|=low|=l)|log-verbosity(=high|=h|=medium|=m|=low|=l)]
+[(make-artifacts[=true|=false]|take-artifacts[=true|=false]|use-artifacts[=true|=false]) artifacts-path=PATH]

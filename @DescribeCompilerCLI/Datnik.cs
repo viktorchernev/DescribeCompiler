@@ -41,6 +41,15 @@ namespace DescribeCompilerCLI
 
 
 
+        ////new
+        ///// <summary>
+        ///// Wether the compiler should stop after encountering an error 
+        ///// or add the file to the list of failed files and continue with 
+        ///// the next one.
+        ///// </summary>
+        //public static bool requireSuccess;
+
+
         static Datnik()
         {
             input = "";
@@ -51,6 +60,9 @@ namespace DescribeCompilerCLI
 
             verbosity = LogVerbosity.Low;
             templateName = null;
+
+            //new
+            //requireSuccess = false;
         }
     }
 }

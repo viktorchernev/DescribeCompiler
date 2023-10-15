@@ -1,0 +1,5 @@
+FEATURE: Custom decorator.
+
+This is a way to add decorators that are not implemented, use the template for a custom decorator, and will be implemented in the front end instead.
+{custom|NAME}
+{custom|NAME|VALUE}

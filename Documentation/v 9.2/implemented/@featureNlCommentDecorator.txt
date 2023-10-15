@@ -1,0 +1,2 @@
+feature: {nlcomment} decorator
+This decorator combines the new line 

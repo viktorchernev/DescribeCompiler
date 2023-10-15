@@ -1,0 +1,3 @@
+BUG: CLI Output: "Parser red 0 tokens in 0 reductions."
+
+Feature wasn't implemented for medium and low verbosities

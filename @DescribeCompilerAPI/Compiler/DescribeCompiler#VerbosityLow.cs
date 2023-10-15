@@ -314,6 +314,7 @@ namespace DescribeCompiler
                         break;
 
                     case GoldParser.Parser.ParseMessage.Reduction:
+                        ReductionCounter++;
                         //You don't have to do anything here.
                         break;
 
@@ -325,6 +326,7 @@ namespace DescribeCompiler
                         break;
 
                     case GoldParser.Parser.ParseMessage.TokenRead:
+                        TokenCounter++;
                         //You don't have to do anything here.
                         break;
 

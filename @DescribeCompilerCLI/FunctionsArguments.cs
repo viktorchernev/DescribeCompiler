@@ -152,5 +152,52 @@ namespace DescribeCompilerCLI
                 return false;
             }
         }
+
+        ///// <summary>
+        ///// Read require success argument
+        ///// </summary>
+        ///// <param name="arg">The argument raw text</param>
+        ///// <param name="argindex">The index of the argument (for logging purposes)</param>
+        ///// <returns>True if successful</returns>
+        //internal static bool readRequireSuccessArgument(string arg, int argindex)
+        //{
+        //    try
+        //    {
+        //        string val = arg.Substring(arg.IndexOf("=") + 1);
+        //        if (val == null)
+        //        {
+        //            FunctionsMessages.printArgumentError(arg, argindex, "");
+        //            return false;
+        //        }
+        //        else if (string.IsNullOrEmpty(val) || string.IsNullOrWhiteSpace(val))
+        //        {
+        //            FunctionsMessages.printArgumentError(arg, argindex, "Empty value for require success");
+        //            return false;
+        //        }
+        //        else
+        //        {
+        //            if(val.ToLower() == "true" || val == "1")
+        //            {
+        //                Datnik.requireSuccess = true;
+        //                return true;
+        //            }
+        //            else if (val.ToLower() == "false" || val == "0")
+        //            {
+        //                Datnik.requireSuccess = false;
+        //                return true;
+        //            }
+        //            else
+        //            {
+        //                FunctionsMessages.printArgumentError(arg, argindex, "Invalid value for require success");
+        //                return false;
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        FunctionsMessages.printArgumentError(arg, argindex, ex.Message);
+        //        return false;
+        //    }
+        //}
     }
 }

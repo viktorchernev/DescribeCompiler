@@ -39,6 +39,7 @@ namespace DescribeCompiler.Translators
         static string itemTemplate;
         static string emptyItemTemplate;
         static string commentItemTemplate;
+        static string nlcommentItemTemplate;
         static string coloredItemTemplate;
         static string productionTemplate;
         static string coloredProductionTemplate;
@@ -75,6 +76,7 @@ namespace DescribeCompiler.Translators
                     itemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Item");
                     emptyItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemEmpty");
                     commentItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemComment");
+                    nlcommentItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemCommentNl");
                     coloredItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemColored");
                     linkTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Link");
 
@@ -98,6 +100,182 @@ namespace DescribeCompiler.Translators
         }
 
         /// <summary>
+        /// Ctor.
+        /// The Translator is loaded with the default templates.
+        /// </summary>
+        /// <param name="logText">method to log text</param>
+        public JsonTranslator(Action<string> logText)
+        {
+            //set default log handlers
+            LogText = log;
+            LogText += logText;
+
+            LogInfo = log;
+            LogError = log;
+
+            //try to initialize templates
+            try
+            {
+                if (!USES_TEMPLATES)
+                {
+                    IsInitialized = true;
+                    LogInfo("Translator initialized - not using templates");
+                }
+                else if (HAS_INBUILT_TEMPLATES)
+                {
+                    string n = DEFAULT_TEMPLATES_NAME;
+                    pageTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Page");
+                    rootTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Root");
+                    coloredProductionTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ProductionColored");
+                    productionTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Production");
+                    itemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Item");
+                    emptyItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemEmpty");
+                    commentItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemComment");
+                    nlcommentItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemCommentNl");
+                    coloredItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemColored");
+                    linkTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Link");
+
+                    LogInfo("Translator initialized - using template \"" + n + "\"");
+                    selectInbuiltTemplate = true;
+                    selectedTemplate = n;
+                    IsInitialized = true;
+                }
+                else
+                {
+                    LogInfo("Translator NOT initialized - Must further load templates from folder before using.");
+                    selectInbuiltTemplate = false;
+                    IsInitialized = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                IsInitialized = false;
+                LogError("Fatal error: " + ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Ctor.
+        /// The Translator is loaded with the default templates.
+        /// </summary>
+        /// <param name="logText">method to log text</param>
+        /// <param name="logError">method to log errors</param>
+        public JsonTranslator(Action<string> logText, Action<string> logError)
+        {
+            //set default log handlers
+            LogText = log;
+            LogText += logText;
+
+            LogInfo = log;
+
+            LogError = log;
+            LogError += logError;
+
+            //try to initialize templates
+            try
+            {
+                if (!USES_TEMPLATES)
+                {
+                    IsInitialized = true;
+                    LogInfo("Translator initialized - not using templates");
+                }
+                else if (HAS_INBUILT_TEMPLATES)
+                {
+                    string n = DEFAULT_TEMPLATES_NAME;
+                    pageTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Page");
+                    rootTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Root");
+                    coloredProductionTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ProductionColored");
+                    productionTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Production");
+                    itemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Item");
+                    emptyItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemEmpty");
+                    commentItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemComment");
+                    nlcommentItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemCommentNl");
+                    coloredItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemColored");
+                    linkTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Link");
+
+                    LogInfo("Translator initialized - using template \"" + n + "\"");
+                    selectInbuiltTemplate = true;
+                    selectedTemplate = n;
+                    IsInitialized = true;
+                }
+                else
+                {
+                    LogInfo("Translator NOT initialized - Must further load templates from folder before using.");
+                    selectInbuiltTemplate = false;
+                    IsInitialized = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                IsInitialized = false;
+                LogError("Fatal error: " + ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Ctor.
+        /// The Translator is loaded with the default templates.
+        /// </summary>
+        /// <param name="logText">method to log text</param>
+        /// <param name="logError">method to log errors</param>
+        /// <param name="logInfo">method to log less important info</param>
+        public JsonTranslator(Action<string> logText, Action<string> logError, Action<string> logInfo)
+        {
+            //set default log handlers
+            LogText = log;
+            LogText += logText;
+
+            LogInfo = log;
+            LogInfo += logInfo;
+
+            LogError = log;
+            LogError += logError;
+
+            //try to initialize templates
+            try
+            {
+                if (!USES_TEMPLATES)
+                {
+                    IsInitialized = true;
+                    LogInfo("Translator initialized - not using templates");
+                }
+                else if (HAS_INBUILT_TEMPLATES)
+                {
+                    string n = DEFAULT_TEMPLATES_NAME;
+                    pageTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Page");
+                    rootTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Root");
+                    coloredProductionTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ProductionColored");
+                    productionTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Production");
+                    itemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Item");
+                    emptyItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemEmpty");
+                    commentItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemComment");
+                    nlcommentItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemCommentNl");
+                    coloredItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemColored");
+                    linkTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Link");
+
+                    LogInfo("Translator initialized - using template \"" + n + "\"");
+                    selectInbuiltTemplate = true;
+                    selectedTemplate = n;
+                    IsInitialized = true;
+                }
+                else
+                {
+                    LogInfo("Translator NOT initialized - Must further load templates from folder before using.");
+                    selectInbuiltTemplate = false;
+                    IsInitialized = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                IsInitialized = false;
+                LogError("Fatal error: " + ex.Message);
+            }
+        }
+
+
+
+
+        /// <summary>
         /// Load templates from an external folder.
         /// </summary>
         /// <param name="path">The path to the desired templates folder</param>
@@ -119,6 +297,7 @@ namespace DescribeCompiler.Translators
                         else if (finfo.Name.StartsWith("ProductionColored")) coloredProductionTemplate = File.ReadAllText(finfo.FullName);
                         else if (finfo.Name.StartsWith("Production")) productionTemplate = File.ReadAllText(finfo.FullName);
                         else if (finfo.Name.StartsWith("ItemEmpty")) emptyItemTemplate = File.ReadAllText(finfo.FullName);
+                        else if (finfo.Name.StartsWith("ItemCommentNl")) nlcommentItemTemplate = File.ReadAllText(finfo.FullName);
                         else if (finfo.Name.StartsWith("ItemComment")) commentItemTemplate = File.ReadAllText(finfo.FullName);
                         else if (finfo.Name.StartsWith("ItemColored")) coloredItemTemplate = File.ReadAllText(finfo.FullName);
                         else if (finfo.Name.StartsWith("Item")) itemTemplate = File.ReadAllText(finfo.FullName);
@@ -164,6 +343,7 @@ namespace DescribeCompiler.Translators
                 itemTemplate = ResourceUtil.ExtractResourceByFileName_String(name, @"Item");
                 emptyItemTemplate = ResourceUtil.ExtractResourceByFileName_String(name, @"ItemEmpty");
                 commentItemTemplate = ResourceUtil.ExtractResourceByFileName_String(name, @"ItemComment");
+                nlcommentItemTemplate = ResourceUtil.ExtractResourceByFileName_String(name, @"ItemCommentNl");
                 coloredItemTemplate = ResourceUtil.ExtractResourceByFileName_String(name, @"ItemColored");
                 linkTemplate = ResourceUtil.ExtractResourceByFileName_String(name, @"Link");
 
@@ -351,6 +531,15 @@ namespace DescribeCompiler.Translators
                     else if (s == "comment")
                     {
                         string res = commentItemTemplate.Replace("{ITEM}", 
+                                u.Translations[id].Replace("\\", "\\\\")
+                                .Replace("\"", "\\\""));
+                        res = res.Replace("{LINKS}", linkage);
+                        if (res.Contains("{ID}")) res = res.Replace("{ID}", id);
+                        return res;
+                    }
+                    else if (s == "nlcomment")
+                    {
+                        string res = nlcommentItemTemplate.Replace("{ITEM}",
                                 u.Translations[id].Replace("\\", "\\\\")
                                 .Replace("\"", "\\\""));
                         res = res.Replace("{LINKS}", linkage);
