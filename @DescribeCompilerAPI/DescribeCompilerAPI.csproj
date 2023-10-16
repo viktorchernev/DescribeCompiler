@@ -109,6 +109,11 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <EmbeddedResource Include="Templates\JSON_COMMONER\ItemCommentNl.json" />
+    <EmbeddedResource Include="Templates\JSON_COMMONER\Decorator.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Templates\HTML_PARACORD\ItemCommentNl.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

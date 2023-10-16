@@ -44,7 +44,7 @@ namespace DescribeCompiler.Translators
         static string productionTemplate;
         static string coloredProductionTemplate;
         static string linkTemplate;
-
+        static string decoratorTemplate;
 
 
         /// <summary>
@@ -79,6 +79,7 @@ namespace DescribeCompiler.Translators
                     nlcommentItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemCommentNl");
                     coloredItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemColored");
                     linkTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Link");
+                    decoratorTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Decorator");
 
                     LogInfo("Translator initialized - using template \"" + n + "\"");
                     selectInbuiltTemplate = true;
@@ -134,6 +135,7 @@ namespace DescribeCompiler.Translators
                     nlcommentItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemCommentNl");
                     coloredItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemColored");
                     linkTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Link");
+                    decoratorTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Decorator");
 
                     LogInfo("Translator initialized - using template \"" + n + "\"");
                     selectInbuiltTemplate = true;
@@ -192,6 +194,7 @@ namespace DescribeCompiler.Translators
                     nlcommentItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemCommentNl");
                     coloredItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemColored");
                     linkTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Link");
+                    decoratorTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Decorator");
 
                     LogInfo("Translator initialized - using template \"" + n + "\"");
                     selectInbuiltTemplate = true;
@@ -252,6 +255,7 @@ namespace DescribeCompiler.Translators
                     nlcommentItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemCommentNl");
                     coloredItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemColored");
                     linkTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Link");
+                    decoratorTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Decorator");
 
                     LogInfo("Translator initialized - using template \"" + n + "\"");
                     selectInbuiltTemplate = true;
@@ -302,6 +306,7 @@ namespace DescribeCompiler.Translators
                         else if (finfo.Name.StartsWith("ItemColored")) coloredItemTemplate = File.ReadAllText(finfo.FullName);
                         else if (finfo.Name.StartsWith("Item")) itemTemplate = File.ReadAllText(finfo.FullName);
                         else if (finfo.Name.StartsWith("Link")) linkTemplate = File.ReadAllText(finfo.FullName);
+                        else if (finfo.Name.StartsWith("Decorator")) decoratorTemplate = File.ReadAllText(finfo.FullName);
                     }
 
                     LogInfo("Translator initialized - using external template \"" + path + "\"");
@@ -346,6 +351,7 @@ namespace DescribeCompiler.Translators
                 nlcommentItemTemplate = ResourceUtil.ExtractResourceByFileName_String(name, @"ItemCommentNl");
                 coloredItemTemplate = ResourceUtil.ExtractResourceByFileName_String(name, @"ItemColored");
                 linkTemplate = ResourceUtil.ExtractResourceByFileName_String(name, @"Link");
+                decoratorTemplate = ResourceUtil.ExtractResourceByFileName_String(name, @"Decorator");
 
                 LogInfo("Translator initialized - using template \"" + name + "\"");
                 selectInbuiltTemplate = true;
@@ -458,10 +464,25 @@ namespace DescribeCompiler.Translators
                 }
             }
 
+            string customDecorators = "";
             //replace in template
             if (u.Decorators.ContainsKey(id))
             {
                 List<string> decorators = u.Decorators[id];
+
+                //Get custom decorators first
+                foreach (string s in decorators)
+                {
+                    if (!s.StartsWith("custom|")) continue;
+                    string[] sep = s.Split('|');
+                    if (sep.Length < 2) continue;
+                    string decorator = decoratorTemplate.Replace("{NAME}", sep[1]);
+                    if (sep.Length > 2) decorator = decorator.Replace("{VALUE}", sep[2]);
+                    else decorator = decorator.Replace("{VALUE}", "");
+                    if (!string.IsNullOrEmpty(customDecorators)) customDecorators += ",";
+                    customDecorators += decorator;
+                }
+
                 foreach (string s in decorators)
                 {
                     if (s.StartsWith("color|"))
@@ -470,6 +491,7 @@ namespace DescribeCompiler.Translators
                         string res = coloredProductionTemplate.Replace("{TITLE}", 
                             u.Translations[id].Replace("\\", "\\\\").Replace("\"", "\\\""));
                         res = res.Replace("{LINKS}", linkage);
+                        res = res.Replace("{DECORATORS}", customDecorators);
                         res = res.Replace("{COLOR}", val);
                         res = res.Replace("{ITEMS}", items);
                         if (res.Contains("{ID}")) res = res.Replace("{ID}", id);
@@ -488,6 +510,7 @@ namespace DescribeCompiler.Translators
             pt = pt.Replace(",\"text\":", ",\"filename\":\"" + cur + "\",\"text\":");
 
             pt = pt.Replace("{LINKS}", linkage);
+            pt = pt.Replace("{DECORATORS}", customDecorators);
             pt = pt.Replace("{ITEMS}", items);
             if (pt.Contains("{ID}")) pt = pt.Replace("{ID}", id);
 
@@ -518,10 +541,25 @@ namespace DescribeCompiler.Translators
                 }
             }
 
+            string customDecorators = "";
             //replace in template
             if (u.Decorators.ContainsKey(id))
             {
                 List<string> decorators = u.Decorators[id];
+
+                //Get custom decorators first
+                foreach (string s in decorators)
+                {
+                    if (!s.StartsWith("custom|")) continue;
+                    string[] sep = s.Split('|');
+                    if (sep.Length < 2) continue;
+                    string decorator = decoratorTemplate.Replace("{NAME}", sep[1]);
+                    if (sep.Length > 2) decorator = decorator.Replace("{VALUE}", sep[2]);
+                    else decorator = decorator.Replace("{VALUE}", "");
+                    if (!string.IsNullOrEmpty(customDecorators)) customDecorators += ",";
+                    customDecorators += decorator;
+                }
+
                 foreach (string s in decorators)
                 {
                     if (s == "empty")
@@ -534,6 +572,7 @@ namespace DescribeCompiler.Translators
                                 u.Translations[id].Replace("\\", "\\\\")
                                 .Replace("\"", "\\\""));
                         res = res.Replace("{LINKS}", linkage);
+                        res = res.Replace("{DECORATORS}", customDecorators);
                         if (res.Contains("{ID}")) res = res.Replace("{ID}", id);
                         return res;
                     }
@@ -543,6 +582,7 @@ namespace DescribeCompiler.Translators
                                 u.Translations[id].Replace("\\", "\\\\")
                                 .Replace("\"", "\\\""));
                         res = res.Replace("{LINKS}", linkage);
+                        res = res.Replace("{DECORATORS}", customDecorators);
                         if (res.Contains("{ID}")) res = res.Replace("{ID}", id);
                         return res;
                     }
@@ -553,6 +593,7 @@ namespace DescribeCompiler.Translators
                             u.Translations[id].Replace("\\", "\\\\")
                             .Replace("\"", "\\\""));
                         res = res.Replace("{LINKS}", linkage);
+                        res = res.Replace("{DECORATORS}", customDecorators);
                         res = res.Replace("{COLOR}", val);
                         if (res.Contains("{ID}")) res = res.Replace("{ID}", id);
                         return res;
@@ -563,6 +604,7 @@ namespace DescribeCompiler.Translators
                 u.Translations[id].Replace("\\", "\\\\")
                 .Replace("\"", "\\\""));
             it = it.Replace("{LINKS}", linkage);
+            it = it.Replace("{DECORATORS}", customDecorators);
             if(it.Contains("{ID}")) it = it.Replace("{ID}", id);
             return it;
         }

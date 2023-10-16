@@ -1,1 +1,1 @@
-{"name":"leaf","text":"{ITEM}","id":"{ID}","links":[{LINKS}],"type":"nlcomment"}
+{"name":"leaf","text":"{ITEM}","id":"{ID}","links":[{LINKS}],"decorators":[{DECORATORS}],"type":"nlcomment"}
