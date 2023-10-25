@@ -26,6 +26,8 @@ DescribeCompiler parse-file PARSE_PATH [dsonly[=true|=false]] RESULT_PATH
 DescribeCompiler parse-file PARSE_PATH [dsonly[=true|=false]] [verbosity(=high|=h|=medium|=m|=low|=l)|log-verbosity(=high|=h|=medium|=m|=low|=l)] RESULT_PATH
 DescribeCompiler parse-file PARSE_PATH [dsonly[=true|=false]] [verbosity(=high|=h|=medium|=m|=low|=l)|log-verbosity(=high|=h|=medium|=m|=low|=l)] [(make-artifacts[=true|=false]|take-artifacts[=true|=false]|use-artifacts[=true|=false]) artifacts-path=PATH] RESULT_PATH
 
+artifacts=makeonly takeonly use no
+
 parse-folder
 DescribeCompiler parse-folder PARSE_PATH RESULT_PATH
 DescribeCompiler parse-folder PARSE_PATH [dsonly[=true|=false]] RESULT_PATH

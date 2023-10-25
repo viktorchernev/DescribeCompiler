@@ -1,0 +1,15 @@
+-h
+help
+ext
+ext "C:\Users\Viktor Chernev\Desktop\docs-scratch"
+extone
+extone RANDOM_STUFF
+extone JSON_COMMONER
+extone JSON_COMMONER "C:\Users\Viktor Chernev\Desktop\docs-scratch"
+
+
+
+random stuff
+
+
+//horse breeds [https://www.webmd.com/pets/how-many-horse-breeds] ->

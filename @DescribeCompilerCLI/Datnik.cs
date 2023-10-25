@@ -1,4 +1,5 @@
 ﻿using DescribeCompiler;
+using DescribeCompiler.Compiler;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,13 @@ namespace DescribeCompilerCLI
 {
     internal class Datnik
     {
+        /// <summary>
+        /// The output directory for the ext and extone commands
+        /// </summary>
+        public static string extOutputDir;
+
+
+
         /// <summary>
         /// The input file or folder
         /// </summary>
@@ -30,39 +38,95 @@ namespace DescribeCompilerCLI
         public static bool isOutputDir;
 
         /// <summary>
+        /// When parsing a folder, weather to parse files in top directory only
+        /// or parse files in child directories as well
+        /// </summary>
+        public static bool topOnly;
+
+        /// <summary>
+        /// Weather to omit files that are not Describe source files (".DS")
+        /// </summary>
+        public static bool dsOnly;
+
+
+
+        /// <summary>
         /// The verbosity for the parser
         /// </summary>
         public static LogVerbosity verbosity;
 
         /// <summary>
-        /// The template for the parser
+        /// Weather the compiler should stop after encountering an error 
+        /// or add the file to the list of failed files and continue with 
+        /// the next one
+        /// </summary>
+        public static bool requireSuccess;
+
+
+
+        /// <summary>
+        /// The name of the template for the parser
         /// </summary>
         public static string templateName;
 
+        /// <summary>
+        /// The path of the template for the parser
+        /// </summary>
+        public static string templatePath;
+
+        /// <summary>
+        /// Weather the template set is internal or external
+        /// </summary>
+        public static bool isInternal;
 
 
-        ////new
-        ///// <summary>
-        ///// Wether the compiler should stop after encountering an error 
-        ///// or add the file to the list of failed files and continue with 
-        ///// the next one.
-        ///// </summary>
-        //public static bool requireSuccess;
+
+        /// <summary>
+        /// Path to an external log file
+        /// </summary>
+        public static string logFilePath;
+
+        /// <summary>
+        /// Weather to output logs to an external file
+        /// </summary>
+        public static bool logToFile;
+
+
+
+        /// <summary>
+        /// Weather to and how to use artifacts
+        /// </summary>
+        public static ArtifactMode artifactMode;
+
+        /// <summary>
+        /// Path to artifacts folder
+        /// </summary>
+        public static string artifactsFolderPath;
 
 
         static Datnik()
         {
-            input = "";
-            output = "";
+            extOutputDir = null;
 
+            input = null;
+            output = null;
             isInputDir = false;
             isOutputDir = false;
+            topOnly = false;
 
+            templateName = "HTML_PARACORD";
+            templatePath = null;
+            isInternal = true;
+
+            logFilePath = null;
+            logToFile = false;
+
+            dsOnly = true;
             verbosity = LogVerbosity.Low;
-            templateName = null;
+            requireSuccess = true;
 
-            //new
-            //requireSuccess = false;
+            artifactMode = ArtifactMode.No;
+            artifactsFolderPath = null;
         }
     }
 }

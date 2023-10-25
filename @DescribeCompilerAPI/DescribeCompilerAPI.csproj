@@ -59,6 +59,7 @@
     <Compile Include="Compiler\DescribeCompiler#Statistics.cs" />
     <Compile Include="Compiler\DescribeCompiler#Settings.cs" />
     <Compile Include="Compiler\DescribeCompiler.cs" />
+    <Compile Include="Compiler\eArtifactMode.cs" />
     <Compile Include="Compiler\Optimizers\IDescribeOptimizer.cs" />
     <Compile Include="Translators\CharacterDictionaries.cs" />
     <Compile Include="Translators\JsonTranslator.cs" />

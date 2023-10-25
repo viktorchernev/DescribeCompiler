@@ -19,98 +19,231 @@ namespace DescribeCompilerCLI
         static void Main(string[] args)
         {
             //preset
-            FunctionsMessages.presetConsole();
-            FunctionsMessages.SetVioletTheme();
-            FunctionsMessages.printLogo3Bicolor();
-            FunctionsMessages.printCmdLine(args);
+            Messages.presetConsole();
+            Messages.SetDarkBlueTheme();
+            Messages.printLogo3Bicolor();
+            Messages.printCmdLine(args);
 
-            //1 argument mode
+            //read args
             if (args.Length < 1) 
             {
-                FunctionsMessages.printNoArgumentsError();
-                return;
+                Messages.printNoArgumentsError();
             }
-            else if (args.Length < 2) 
-            { 
-                if (args[0].ToLower() == "help")
-                {
-                    FunctionsMessages.printHelpMessage();
-                    return;
-                }
-                else if (args[0].ToLower() == "ext")
-                {
-                    bool result = FunctionsMain.ExtTemplates();
-                    return;
-                }
-                else
-                {
-                    FunctionsMessages.printArgumentError(args[0], 1);
-                    return;
-                }
+            //DescribeCompilerCLI help | -h
+            else if (args[0].ToLower() == "help" || args[0] == "-h")
+            {
+                Messages.printHelpMessage();
+            }
+            //DescribeCompilerCLI ext [ RESULT_PATH ]
+            else if (args[0].ToLower() == "ext")
+            {
+                ext(args);
+            }
+            //DescribeCompilerCLI extone TEMPLATE_NAME [ RESULT_PATH ]
+            else if (args[0].ToLower() == "extone")
+            {
+                extone(args);
+            }
+            //DescribeCompilerCLI parse-file PARSE_PATH RESULT_PATH
+            //[dsonly[=<verb>]] [verbosity=<verb> | log-verbosity=<verb> ] [onerror=<verb> ]
+            //[artifacts=<verb> [artifacts-path=ARTIFACTS_PATH]] [logfile=LOG_PATH ]
+            else if (args[0].ToLower() == "parse-file")
+            {
+                parseFile(args);
+            }
+            //DescribeCompilerCLI parse-folder PARSE_PATH RESULT_PATH
+            //[ dsonly[=<verb>] ] [ toponly[=true|=false] ] [ verbosity=<verb> | log-verbosity=<verb> ]
+            //[ onerror=<verb> ] [ artifacts=<verb> [artifacts-path=ARTIFACTS_PATH ]] [ logfile=LOG_PATH ]
+            else if (args[0].ToLower() == "parse-folder")
+            {
+                parseFolder(args);
+            }
+            else
+            {
+                Messages.printArgumentError(args[0], 1);
+            }
+        }
+        static void ext(string[] args)
+        {
+            bool result;
+            if (args.Length > 1)
+            {
+                result = Arguments.readTemplateFolderPathArgument(args[1], 1);
+            }
+            else
+            {
+                string dir = Assembly.GetExecutingAssembly().Location;
+                dir = Path.GetDirectoryName(dir);
+                Datnik.extOutputDir = dir;
+                result = true;
             }
 
-            //else - 2 argument mode
+            if (result)
+            {
+                MainFunctions.ExtTemplates(Datnik.extOutputDir);
+            }
+        }
+        static void extone(string[] args)
+        {
+            if (args.Length < 2)
+            {
+                Messages.printFatalError("extone takes at least 1 argument - \"TEMPLATE_NAME\"");
+            }
+            Datnik.templateName = args[1];
+
+            bool result;
+            if (args.Length > 2)
+            {
+                result = Arguments.readTemplateFolderPathArgument(args[2], 2);
+            }
+            else
+            {
+                string dir = Assembly.GetExecutingAssembly().Location;
+                dir = Path.GetDirectoryName(dir);
+                Datnik.extOutputDir = dir;
+                result = true;
+            }
+
+            if (result)
+            {
+                MainFunctions.ExtTemplate(Datnik.extOutputDir, Datnik.templateName);
+            }
+        }
+        static void parseFile(string[] args)
+        {
             //read input output
-            if (FunctionsArguments.readInputArgument(args[0], 0) == false) return;
-            if (FunctionsArguments.readOutputArgument(args[args.Length - 1], args.Length) == false) return;
+            if (Arguments.readInputFileArgument(args[1], 1) == false) return;
+            if (Arguments.readOutputFileArgument(args[2], 2) == false) return;
 
             //read other options
-            for (int i = 1; i < args.Length - 1; i++) 
+            bool haveArtifactsArgument = false;
+            bool haveArtifactsPath = false;
+            for (int i = 3; i < args.Length - 1; i++)
             {
                 string cur = args[i].ToLower();
-                if(cur.StartsWith("verbosity=") && cur.Length > "verbosity=".Length)
+
+                if (cur.StartsWith("template=") && cur.Length > "template=".Length)
                 {
-                    if (FunctionsArguments.readVerbosityArgument(cur, i) == false) return;
+                    if (Arguments.readTemplateArgument(args[i], i) == false) return;
                 }
-                else if(cur.StartsWith("template=") && cur.Length > "template=".Length)
+                else if (cur.StartsWith("dsonly="))
                 {
-                    if (FunctionsArguments.readTemplateArgument(args[i], i) == false) return;
+                    if(cur.Length > "dsonly=".Length)
+                        if (Arguments.readDsonlyArgument(cur, i) == false) return;
+                    else Datnik.dsOnly = true;
+                }
+                else if (cur.StartsWith("verbosity=") && cur.Length > "verbosity=".Length)
+                {
+                    if (Arguments.readVerbosityArgument(cur, i) == false) return;
+                }
+                else if (cur.StartsWith("log-verbosity=") && cur.Length > "log-verbosity=".Length)
+                {
+                    if (Arguments.readVerbosityArgument(cur, i) == false) return;
+                }
+                else if (cur.StartsWith("onerror=") && cur.Length > "onerror=".Length)
+                {
+                    if (Arguments.readVerbosityArgument(cur, i) == false) return;
+                }
+                else if (cur.StartsWith("artifacts=") && cur.Length > "artifacts=".Length)
+                {
+                    if (Arguments.readArtifactsArgument(cur, i) == false) return;
+                    haveArtifactsArgument = true;
+                }
+                else if (cur.StartsWith("artifacts-path=") && cur.Length > "artifacts-path=".Length)
+                {
+                    if (Arguments.readArtifactsPathArgument(cur, i) == false) return;
+                    haveArtifactsPath = true;
+                }
+                else if (cur.StartsWith("logfile=") && cur.Length > "logfile=".Length)
+                {
+                    if (Arguments.readLogfileArgument(cur, i) == false) return;
                 }
                 else
                 {
-                    FunctionsMessages.printArgumentError(cur, i, "- what is this?");
+                    Messages.printArgumentError(cur, i, "- what is this?");
                     return;
                 }
+            }
+            if(haveArtifactsArgument == false && haveArtifactsPath)
+            {
+                Messages.printWarning(
+                    "Artifacts folder path have been specified, without artifacts argument. No artifacts will be used");
             }
 
             //Compile
-            FunctionsMain.Compile();
+            MainFunctions.Compile();
+            Console.ReadKey();
+        }
+        static void parseFolder(string[] args)
+        {
+            //read input output
+            if (Arguments.readInputFolderArgument(args[1], 1) == false) return;
+            if (Arguments.readOutputFolderArgument(args[2], 2) == false) return;
+            
+            //read other options
+            bool haveArtifactsArgument = false;
+            bool haveArtifactsPath = false;
+            for (int i = 3; i < args.Length - 1; i++)
+            {
+                string cur = args[i].ToLower();
+
+                if (cur.StartsWith("template=") && cur.Length > "template=".Length)
+                {
+                    if (Arguments.readTemplateArgument(args[i], i) == false) return;
+                }
+                else if (cur.StartsWith("dsonly"))
+                {
+                    if (cur.Length > "dsonly=".Length)
+                        if (Arguments.readDsonlyArgument(cur, i) == false) return;
+                        else Datnik.dsOnly = true;
+                }
+                else if (cur.StartsWith("toponly"))
+                {
+                    if (cur.Length > "toponly=".Length)
+                        if (Arguments.readToponlyArgument(cur, i) == false) return;
+                        else Datnik.topOnly = true;
+                }
+                else if (cur.StartsWith("verbosity=") && cur.Length > "verbosity=".Length)
+                {
+                    if (Arguments.readVerbosityArgument(cur, i) == false) return;
+                }
+                else if (cur.StartsWith("log-verbosity=") && cur.Length > "log-verbosity=".Length)
+                {
+                    if (Arguments.readVerbosityArgument(cur, i) == false) return;
+                }
+                else if (cur.StartsWith("onerror=") && cur.Length > "onerror=".Length)
+                {
+                    if (Arguments.readVerbosityArgument(cur, i) == false) return;
+                }
+                else if (cur.StartsWith("artifacts=") && cur.Length > "artifacts=".Length)
+                {
+                    if (Arguments.readArtifactsArgument(cur, i) == false) return;
+                    haveArtifactsArgument = true;
+                }
+                else if (cur.StartsWith("artifacts-path=") && cur.Length > "artifacts-path=".Length)
+                {
+                    if (Arguments.readArtifactsPathArgument(cur, i) == false) return;
+                    haveArtifactsPath = true;
+                }
+                else if (cur.StartsWith("logfile=") && cur.Length > "logfile=".Length)
+                {
+                    if (Arguments.readLogfileArgument(cur, i) == false) return;
+                }
+                else
+                {
+                    Messages.printArgumentError(cur, i, "- what is this?");
+                    return;
+                }
+            }
+            if (haveArtifactsArgument == false && haveArtifactsPath)
+            {
+                Messages.printWarning(
+                    "Artifacts folder path have been specified, without artifacts argument. No artifacts will be used");
+            }
+
+            //Compile
+            MainFunctions.Compile();
             Console.ReadKey();
         }
     }
 }
-
-//help
-//ext
-//parse-file
-//parse-folder
-	
-//help
-//DescribeCompiler help
-//DescribeCompiler -h
-	
-//ext
-//DescribeCompiler ext
-//DescribeCompiler ext RESULT_PATH
-	
-//extone
-//DescribeCompiler extone TEMPLATE_NAME
-//DescribeCompiler extone TEMPLATE_NAME RESULT_PATH
-	
-//parse-file
-//DescribeCompiler parse-file PARSE_PATH RESULT_PATH
-//DescribeCompiler parse-file PARSE_PATH dsonly RESULT_PATH
-//DescribeCompiler parse-file PARSE_PATH [dsonly[=true|=false]] RESULT_PATH
-//DescribeCompiler parse-file PARSE_PATH [dsonly[=true|=false]] [verbosity(=high|=h|=medium|=m|=low|=l)|log-verbosity(=high|=h|=medium|=m|=low|=l)] RESULT_PATH
-//DescribeCompiler parse-file PARSE_PATH [dsonly[=true|=false]] [verbosity(=high|=h|=medium|=m|=low|=l)|log-verbosity(=high|=h|=medium|=m|=low|=l)] [(make-artifacts[=true|=false]|take-artifacts[=true|=false]|use-artifacts[=true|=false]) artifacts-path=PATH] RESULT_PATH
-	
-//parse-folder
-//DescribeCompiler parse-folder PARSE_PATH RESULT_PATH
-//DescribeCompiler parse-folder PARSE_PATH [dsonly[=true|=false]] RESULT_PATH
-//DescribeCompiler parse-folder PARSE_PATH [dsonly[=true|=false]][toponly[=true|=false]] RESULT_PATH
-//DescribeCompiler parse-folder PARSE_PATH [dsonly[=true|=false]][toponly[=true|=false]] [verbosity(=high|=h|=medium|=m|=low|=l)|log-verbosity(=high|=h|=medium|=m|=low|=l)] RESULT_PATH
-//DescribeCompiler parse-folder PARSE_PATH [dsonly[=true|=false]][toponly[=true|=false]] [verbosity(=high|=h|=medium|=m|=low|=l)|log-verbosity(=high|=h|=medium|=m|=low|=l)] [(make-artifacts[=true|=false]|take-artifacts[=true|=false]|use-artifacts[=true|=false]) artifacts-path=PATH] RESULT_PATH
-	
-////[grammar-name(=basic|=b|=tags|=t|=links|=l|=decorators|=d|=official|=o)]
-//[verbosity(=high|=h|=medium|=m|=low|=l)|log-verbosity(=high|=h|=medium|=m|=low|=l)]
-//[(make-artifacts[=true|=false]|take-artifacts[=true|=false]|use-artifacts[=true|=false]) artifacts-path=PATH]

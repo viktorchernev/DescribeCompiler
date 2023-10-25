@@ -10,18 +10,91 @@ using System.Threading.Tasks;
 
 namespace DescribeCompilerCLI
 {
-    internal static class FunctionsMain
+    internal static class MainFunctions
     {
+        /// <summary>
+        /// Externalize a particular inbuilt template file set
+        /// </summary>
+        /// <param name="templateName">The name of the template set</param>
+        /// <returns>True if successful, otherwise false</returns>
+        internal static bool ExtTemplate(string templateName)
+        {
+            string dir = Assembly.GetExecutingAssembly().Location;
+            dir = Path.GetDirectoryName(dir);
+            return ExtTemplate(dir, templateName);
+        }
+
+        /// <summary>
+        /// Externalize a particular inbuilt template file set
+        /// </summary>
+        /// <param name="dir">The directory to externalize to</param>
+        /// <param name="templateName">The name of the template set</param>
+        /// <returns>True if successful, otherwise false</returns>
+        internal static bool ExtTemplate(string dir, string templateName)
+        {
+            try
+            {
+                string[] names = ResourceUtil.extractResourceNames();
+                bool flag = false;
+                foreach (string s in names)
+                {
+                    if (s.StartsWith("DescribeCompiler.Templates." + templateName + "."))
+                    {
+                        flag = true;
+                        string[] sep = s.Split('.');
+                        string folder = dir + "\\Templates\\" + sep[2];
+                        string filename = sep[3];
+                        for (int i = 4; i < sep.Length; i++)
+                        {
+                            filename += "." + sep[i];
+                        }
+                        if (Directory.Exists(folder) == false)
+                        {
+                            Directory.CreateDirectory(folder);
+                        }
+                        string template =
+                            ResourceUtil.ExtractResourceByFileName_String(sep[sep.Length - 3], sep[sep.Length - 2]);
+                        File.WriteAllText(folder + "\\" + filename, template);
+                    }
+                }
+                if (flag)
+                {
+                    Messages.printExtTemplatesSuccess(dir);
+                    return true;
+                }
+                else
+                {
+                    Messages.printFatalError("There is no template named \"" + templateName + "\"");
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Messages.printFatalError(ex.Message);
+                return false;
+            }
+        }
+
         /// <summary>
         /// Externalize the inbuilt template files
         /// </summary>
         /// <returns>True if successful, otherwise false</returns>
         internal static bool ExtTemplates()
         {
+            string dir = Assembly.GetExecutingAssembly().Location;
+            dir = Path.GetDirectoryName(dir);
+            return ExtTemplates(dir);
+        }
+
+        /// <summary>
+        /// Externalize the inbuilt template files
+        /// </summary>
+        /// <param name="dir">The directory to externalize to</param>
+        /// <returns>True if successful, otherwise false</returns>
+        internal static bool ExtTemplates(string dir)
+        {
             try
             {
-                string dir = Assembly.GetExecutingAssembly().Location;
-                dir = Path.GetDirectoryName(dir);
                 string[] names = ResourceUtil.extractResourceNames();
                 foreach (string s in names)
                 {
@@ -43,15 +116,17 @@ namespace DescribeCompilerCLI
                         File.WriteAllText(folder + "\\" + filename, template);
                     }
                 }
-                FunctionsMessages.printExtTemplatesSuccess();
+                Messages.printExtTemplatesSuccess(dir);
                 return true;
             }
             catch (Exception ex)
             {
-                FunctionsMessages.printFatalError(ex.Message);
+                Messages.printFatalError(ex.Message);
                 return false;
             }
         }
+
+
 
         /// <summary>
         /// Compile source file(s)
@@ -64,16 +139,16 @@ namespace DescribeCompilerCLI
                 DescribeCompiler.DescribeCompiler comp =
                 new DescribeCompiler.DescribeCompiler(
                     Datnik.verbosity,
-                    FunctionsMessages.ConsoleLog,
-                    FunctionsMessages.ConsoleLogError,
-                    FunctionsMessages.ConsoleLogInfo,
-                    FunctionsMessages.ConsoleLogParseInfo);
+                    Messages.ConsoleLog,
+                    Messages.ConsoleLogError,
+                    Messages.ConsoleLogInfo,
+                    Messages.ConsoleLogParseInfo);
 
                 //find out which translator to use
                 JsonTranslator translator = new JsonTranslator(
-                    FunctionsMessages.ConsoleLog,
-                    FunctionsMessages.ConsoleLogError,
-                    FunctionsMessages.ConsoleLogInfo);
+                    Messages.ConsoleLog,
+                    Messages.ConsoleLogError,
+                    Messages.ConsoleLogInfo);
 
                 DescribeUnfold unfold = new DescribeUnfold();
                 bool r = false;
@@ -90,7 +165,7 @@ namespace DescribeCompilerCLI
             }
             catch (Exception ex)
             {
-                FunctionsMessages.printFatalError(ex.Message);
+                Messages.printFatalError(ex.Message);
                 return false;
             }
         }

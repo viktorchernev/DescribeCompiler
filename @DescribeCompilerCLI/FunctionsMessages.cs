@@ -13,7 +13,7 @@ namespace DescribeCompilerCLI
     //minimalist - Bulbhead, Graceful, Modular, Ogre, Slant, Small
     //Small Slant, Standard, Twisted, ANSI Shadow
 
-    internal static class FunctionsMessages
+    internal static class Messages
     {
         //settings
         static bool ONE_BASED_ARG_INDEX = true;
@@ -23,7 +23,7 @@ namespace DescribeCompilerCLI
         static ConsoleColor MOREINFO_COLOR = ConsoleColor.Green;
 
         static string thisName;
-        static FunctionsMessages()
+        static Messages()
         {
             thisName = Assembly.GetExecutingAssembly().GetName().Name;
         }
@@ -254,10 +254,10 @@ namespace DescribeCompilerCLI
 
             ConsoleLogInfo(s);
         }
-        internal static void printExtTemplatesSuccess()
+        internal static void printExtTemplatesSuccess(string path)
         {
             Console.ForegroundColor = INFO_COLOR;
-            Console.WriteLine("Templates outputted!");
+            Console.WriteLine("Templates outputted to \"" + path + "\"");
             Console.WriteLine("Press any key to exit.");
 
             Console.ForegroundColor = TEXT_COLOR;
@@ -265,22 +265,67 @@ namespace DescribeCompilerCLI
         }
         internal static void printHelpMessage()
         {
-            Console.WriteLine("usage: " + thisName + " help");
-            Console.WriteLine("usage: " + thisName + " ext");
-            Console.WriteLine("usage: " + thisName + " INPUT_PATH [ verbosity=<verb> ] OUTPUT_PATH");
-            Console.WriteLine("-----------------------------------------------------------------");
-            Console.WriteLine("verbosity - set the log verbosity of the parser:");
+            ConsoleLogInfo("-----------------------------------------------------------------");
+            Console.WriteLine("usage: " + thisName + " help | -h");
+            ConsoleLogInfo("Display this help message");
             Console.WriteLine();
-            Console.WriteLine("    l, low - low verbosity");
-            Console.WriteLine("    m, medium - medium verbosity");
-            Console.WriteLine("    h, high - high verbosity");
+            ConsoleLogInfo("-----------------------------------------------------------------");
+            Console.WriteLine("usage: " + thisName + " ext [ RESULT_PATH ]");
+            ConsoleLogInfo("externalize all the templates");
+            ConsoleLogInfo("* RESULT_PATH (optionally) - specify path to write the template folders to. Current folder will be used otherwise");
             Console.WriteLine();
-            Console.WriteLine("ext - externalize templates");
-            Console.WriteLine("help - display this message");
-            Console.WriteLine("-----------------------------------------------------------------");
+            ConsoleLogInfo("-----------------------------------------------------------------");
+            Console.WriteLine("usage: " + thisName + " extone TEMPLATE_NAME [ RESULT_PATH ]");
+            ConsoleLogInfo("externalize a specific template set");
+            ConsoleLogInfo("TEMPLATE_NAME - the template set to be externalized: \"HTML_PARACORD\" or \"JSON_COMMONER\"");
+            ConsoleLogInfo("* RESULT_PATH (optionally) - specify path to write the template folders to. Current folder will be used otherwise");
+            Console.WriteLine();
+            ConsoleLogInfo("-----------------------------------------------------------------");
+            Console.WriteLine("usage: " + thisName + " parse-file PARSE_PATH RESULT_PATH [ template=(TEMPLATE_NAME|TEMPLATE_PATH) ]\n[ dsonly[=true|=false] ] [ verbosity=<verb> | log-verbosity=<verb> ] [ onerror=<verb> ] \n[ artifacts=<verb> [artifacts-path=ARTIFACTS_PATH ]] [ logfile=LOG_PATH ]");
+            ConsoleLogInfo("template - the name (inbuilt) or path (external) of the template set to use");
+            ConsoleLogInfo("PARSE_PATH - the path of the file to parse");
+            ConsoleLogInfo("RESULT_PATH - the path of the file to write the result to (existing file or not)");
+            ConsoleLogInfo("* dsonly - weather to omit files that are not Describe source files (\".DS\"). (default is true): \"true\", \"false\"");
+            ConsoleLogInfo("* verbosity - set the log verbosity of the parser (default is high): \"l\", \"low\", \"m\", \"medium\", \"h\", \"high\"");
+            ConsoleLogInfo("* log-verbosity - can be used instead of verbosity");
+            ConsoleLogInfo("* onerror - what to do when there is an error in source code. (default is stop): \"stop\", \"ignore\", \"dart-stop\", \"dart-ignore\"");
+            ConsoleLogInfo("* artifacts - weather to use artifacts (default is no): \"m\", \"makeonly\", \"t\", \"takeonly\", \"u\", \"use\", \"n\", \"no\"");
+            ConsoleLogInfo("** ARTIFACTS_PATH - specify path of directory to store artifacts in");
+            ConsoleLogInfo("* LOG_PATH - specify path of directory or file to output logs to");
+            Console.WriteLine();
+            ConsoleLogInfo("-----------------------------------------------------------------");
+            Console.WriteLine("usage: " + thisName + " parse-folder PARSE_PATH RESULT_PATH [ template=(TEMPLATE_NAME|TEMPLATE_PATH) ]\n[ dsonly[=<verb>] ] [ toponly[=true|=false] ] [ verbosity=<verb> | log-verbosity=<verb> ]\n[ onerror=<verb> ] [ artifacts=<verb> [artifacts-path=ARTIFACTS_PATH ]] [ logfile=LOG_PATH ]");
+            ConsoleLogInfo("template - the name (inbuilt) or path (external) of the template set to use");
+            ConsoleLogInfo("PARSE_PATH - the path of the file to parse");
+            ConsoleLogInfo("RESULT_PATH - the path of the folder to write the result to (existing or not)");
+            ConsoleLogInfo("* dsonly - weather to omit files that are not Describe source files (\".DS\"). (default is true): \"true\", \"false\"");
+            ConsoleLogInfo("* toponly - weather to parse files in child directories or not. (default is false): \"true\", \"false\"");
+            ConsoleLogInfo("* verbosity - set the log verbosity of the parser (default is high): \"l\", \"low\", \"m\", \"medium\", \"h\", \"high\"");
+            ConsoleLogInfo("* log-verbosity - can be used instead of verbosity");
+            ConsoleLogInfo("* onerror - what to do when there is an error in source code. (default is stop): \"stop\", \"ignore\", \"dart-stop\", \"dart-ignore\"");
+            ConsoleLogInfo("* artifacts - weather to use artifacts (default is no): \"m\", \"makeonly\", \"t\", \"takeonly\", \"u\", \"use\", \"n\", \"no\"");
+            ConsoleLogInfo("** ARTIFACTS_PATH - specify path of directory to store artifacts in");
+            ConsoleLogInfo("* LOG_PATH - specify path of directory or file to output logs to");
+            Console.WriteLine();
+            ConsoleLogInfo("-----------------------------------------------------------------");
+            Console.WriteLine("about: " + DescribeCompiler.DescribeCompiler.COMPILER_NAME);
+            ConsoleLogInfo("Describe is a domain specific language used to write and maintain complex data lists");
+            ConsoleLogInfo("that are compiled on demand to html, xaml, xml, sql, json and any other language needed.");
+            ConsoleLogInfo("Describe is licensed under the GNU Affero General Public License v3.0");
+            ConsoleLogInfo("For more information visit https://github.com/viktorchernev/DescribeCompiler");
+            ConsoleLogInfo("-----------------------------------------------------------------");
+             
 
             Console.ForegroundColor = INFO_COLOR;
             Console.WriteLine("Press any key to exit.");
+            Console.ForegroundColor = TEXT_COLOR;
+            Console.ReadKey();
+        }
+        internal static void printWarning(string message)
+        {
+            Console.ForegroundColor = INFO_COLOR;
+            Console.WriteLine("Warning: " + message);
+            Console.WriteLine("Press any key to continue.");
 
             Console.ForegroundColor = TEXT_COLOR;
             Console.ReadKey();
@@ -291,10 +336,7 @@ namespace DescribeCompilerCLI
             Console.WriteLine("No arguments or invalid argument count.");
 
             Console.ForegroundColor = TEXT_COLOR;
-            Console.WriteLine("usage: " + thisName + " help");
-            Console.WriteLine("usage: " + thisName + " ext");
-            Console.WriteLine("usage: " + thisName + 
-                " INPUT_PATH [ verbosity=<verb> ] [ template=<name> ] OUTPUT_PATH");
+            printHelpMessage();
 
             Console.ForegroundColor = INFO_COLOR;
             Console.WriteLine("Press any key to exit.");
@@ -309,8 +351,7 @@ namespace DescribeCompilerCLI
             Console.WriteLine("Invalid argument " + argIndex.ToString() + " - \"" + arg + "\"");
 
             Console.ForegroundColor = TEXT_COLOR;
-            Console.WriteLine("usage: " + thisName + " help");
-            Console.WriteLine("usage: " + thisName + " INPUT_PATH [ verbosity=<verb> ] OUTPUT_PATH");
+            printHelpMessage();
 
             Console.ForegroundColor = INFO_COLOR;
             Console.WriteLine("Press any key to exit.");
