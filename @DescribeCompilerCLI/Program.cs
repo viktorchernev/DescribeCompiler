@@ -142,7 +142,7 @@ namespace DescribeCompilerCLI
                 }
                 else if (cur.StartsWith("onerror=") && cur.Length > "onerror=".Length)
                 {
-                    if (Arguments.readVerbosityArgument(cur, i) == false) return;
+                    if (Arguments.readOnerrorArgument(cur, i) == false) return;
                 }
                 else if (cur.StartsWith("artifacts=") && cur.Length > "artifacts=".Length)
                 {
@@ -213,7 +213,7 @@ namespace DescribeCompilerCLI
                 }
                 else if (cur.StartsWith("onerror=") && cur.Length > "onerror=".Length)
                 {
-                    if (Arguments.readVerbosityArgument(cur, i) == false) return;
+                    if (Arguments.readOnerrorArgument(cur, i) == false) return;
                 }
                 else if (cur.StartsWith("artifacts=") && cur.Length > "artifacts=".Length)
                 {
