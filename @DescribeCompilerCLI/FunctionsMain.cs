@@ -144,6 +144,13 @@ namespace DescribeCompilerCLI
                     Messages.ConsoleLogInfo,
                     Messages.ConsoleLogParseInfo);
 
+                DescribeCompiler.DescribeCompiler.PARSE_TOP_DIRECTORY_ONLY = Datnik.topOnly;
+                DescribeCompiler.DescribeCompiler.PARSE_DS_ONLY = Datnik.dsOnly;
+                DescribeCompiler.DescribeCompiler.STOP_ON_ERROR = Datnik.requireSuccess;
+                //template
+                //artifacts
+                //ARTIFACTS_PATH
+
                 //find out which translator to use
                 JsonTranslator translator = new JsonTranslator(
                     Messages.ConsoleLog,

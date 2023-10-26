@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace DescribeCompilerCLI
 {
@@ -79,6 +80,14 @@ namespace DescribeCompilerCLI
         }
         internal static void printLogo3(ConsoleColor logoColor)
         {
+            Log += @"   /\\\\     /\\\\     /\\\\     /\\\\     /\\\\     /\\\\     /\\\\     /\\\\  " + Environment.NewLine;
+            Log += @"  /  \\\\   /  \\\\   /  \\\\   /  \\\\   /  \\\\   _\ \\\\   /  \\\\   /  \\\\ " + Environment.NewLine;
+            Log += @" / /\ \\\\ /  \ \\\\ /\ \ \\\\ / /\ \\\\ /  \ \\\\ /\/  \\\\ /  \ \\\\ /  \ \\\\" + Environment.NewLine;
+            Log += @" \ \/ //// \ \ \//// \ \ \//// \ \\\//// \|   //// \  /\//// \ \  //// \ \ \////" + Environment.NewLine;
+            Log += @"  \  ////   \ \////   \  ////   \ \\\\    | \////   \ \\\\    \  ////   \ \//// " + Environment.NewLine;
+            Log += @"   \////     \////     \////     \////     \||||     \////     \////     \////  " + Environment.NewLine;
+            Log += Environment.NewLine;
+
             ConsoleColor col = Console.ForegroundColor;
             Console.ForegroundColor = logoColor;
             Console.WriteLine();
@@ -97,6 +106,14 @@ namespace DescribeCompilerCLI
         }
         internal static void printLogo2(ConsoleColor logoColor)
         {
+            Log += @"   /\\\     /\\\     /\\\     /\\\     /\\\     /\\\     /\\\     /\\\  " + Environment.NewLine;
+            Log += @"  /  \\\   /  \\\   /  \\\   /  \\\   /  \\\   _\ \\\   /  \\\   /  \\\ " + Environment.NewLine;
+            Log += @" / /\ \\\ /  \ \\\ /\ \ \\\ / /\ \\\ /  \ \\\ /\/  \\\ /  \ \\\ /  \ \\\" + Environment.NewLine;
+            Log += @" \ \/ /// \ \ \/// \ \ \/// \ \\\/// \|   /// \  /\/// \ \  /// \ \ \///" + Environment.NewLine;
+            Log += @"  \  ///   \ \///   \  ///   \ \\\    | \///   \ \\\    \  ///   \ \/// " + Environment.NewLine;
+            Log += @"   \///     \///     \///     \///     \|||     \///     \///     \///  " + Environment.NewLine;
+            Log += Environment.NewLine;
+
             ConsoleColor col = Console.ForegroundColor;
             Console.ForegroundColor = logoColor;
             Console.WriteLine();
@@ -115,6 +132,14 @@ namespace DescribeCompilerCLI
         }
         internal static void printLogo3Bicolor(ConsoleColor colorA, ConsoleColor colorB)
         {
+            Log += @"   /\\\\     /\\\\     /\\\\     /\\\\     /\\\\     /\\\\     /\\\\     /\\\\  " + Environment.NewLine;
+            Log += @"  /  \\\\   /  \\\\   /  \\\\   /  \\\\   /  \\\\   _\ \\\\   /  \\\\   /  \\\\ " + Environment.NewLine;
+            Log += @" / /\ \\\\ /  \ \\\\ /\ \ \\\\ / /\ \\\\ /  \ \\\\ /\/  \\\\ /  \ \\\\ /  \ \\\\" + Environment.NewLine;
+            Log += @" \ \/ //// \ \ \//// \ \ \//// \ \\\//// \|   //// \  /\//// \ \  //// \ \ \////" + Environment.NewLine;
+            Log += @"  \  ////   \ \////   \  ////   \ \\\\    | \////   \ \\\\    \  ////   \ \//// " + Environment.NewLine;
+            Log += @"   \////     \////     \////     \////     \||||     \////     \////     \////  " + Environment.NewLine;
+            Log += Environment.NewLine;
+
             ConsoleColor col = Console.ForegroundColor;
             Console.WriteLine();
 
@@ -256,45 +281,48 @@ namespace DescribeCompilerCLI
         }
         internal static void printExtTemplatesSuccess(string path)
         {
+            //add to log
+            Log += "Templates outputted to \"" + path + "\"" + Environment.NewLine;
+            Log += "Press any key to exit." + Environment.NewLine;
+
+            //add to console
             Console.ForegroundColor = INFO_COLOR;
             Console.WriteLine("Templates outputted to \"" + path + "\"");
             Console.WriteLine("Press any key to exit.");
-
             Console.ForegroundColor = TEXT_COLOR;
             Console.ReadKey();
         }
         internal static void printHelpMessage()
         {
             ConsoleLogInfo("-----------------------------------------------------------------");
-            Console.WriteLine("usage: " + thisName + " help | -h");
+            ConsoleLog("usage: " + thisName + " help | -h");
             ConsoleLogInfo("Display this help message");
-            Console.WriteLine();
+            ConsoleLog("");
             ConsoleLogInfo("-----------------------------------------------------------------");
-            Console.WriteLine("usage: " + thisName + " ext [ RESULT_PATH ]");
+            ConsoleLog("usage: " + thisName + " ext [ RESULT_PATH ]");
             ConsoleLogInfo("externalize all the templates");
             ConsoleLogInfo("* RESULT_PATH (optionally) - specify path to write the template folders to. Current folder will be used otherwise");
-            Console.WriteLine();
+            ConsoleLog("");
             ConsoleLogInfo("-----------------------------------------------------------------");
-            Console.WriteLine("usage: " + thisName + " extone TEMPLATE_NAME [ RESULT_PATH ]");
+            ConsoleLog("usage: " + thisName + " extone TEMPLATE_NAME [ RESULT_PATH ]");
             ConsoleLogInfo("externalize a specific template set");
             ConsoleLogInfo("TEMPLATE_NAME - the template set to be externalized: \"HTML_PARACORD\" or \"JSON_COMMONER\"");
             ConsoleLogInfo("* RESULT_PATH (optionally) - specify path to write the template folders to. Current folder will be used otherwise");
-            Console.WriteLine();
+            ConsoleLog("");
             ConsoleLogInfo("-----------------------------------------------------------------");
-            Console.WriteLine("usage: " + thisName + " parse-file PARSE_PATH RESULT_PATH [ template=(TEMPLATE_NAME|TEMPLATE_PATH) ]\n[ dsonly[=true|=false] ] [ verbosity=<verb> | log-verbosity=<verb> ] [ onerror=<verb> ] \n[ artifacts=<verb> [artifacts-path=ARTIFACTS_PATH ]] [ logfile=LOG_PATH ]");
+            ConsoleLog("usage: " + thisName + " parse-file PARSE_PATH RESULT_PATH [ template=(TEMPLATE_NAME|TEMPLATE_PATH) ]\n[ dsonly[=true|=false] ] [ verbosity=<verb> | log-verbosity=<verb> ]\n[ artifacts=<verb> [artifacts-path=ARTIFACTS_PATH ]] [ logfile=LOG_PATH ]");
             ConsoleLogInfo("template - the name (inbuilt) or path (external) of the template set to use");
             ConsoleLogInfo("PARSE_PATH - the path of the file to parse");
             ConsoleLogInfo("RESULT_PATH - the path of the file to write the result to (existing file or not)");
             ConsoleLogInfo("* dsonly - weather to omit files that are not Describe source files (\".DS\"). (default is true): \"true\", \"false\"");
             ConsoleLogInfo("* verbosity - set the log verbosity of the parser (default is high): \"l\", \"low\", \"m\", \"medium\", \"h\", \"high\"");
             ConsoleLogInfo("* log-verbosity - can be used instead of verbosity");
-            ConsoleLogInfo("* onerror - what to do when there is an error in source code. (default is stop): \"stop\", \"ignore\", \"dart-stop\", \"dart-ignore\"");
             ConsoleLogInfo("* artifacts - weather to use artifacts (default is no): \"m\", \"makeonly\", \"t\", \"takeonly\", \"u\", \"use\", \"n\", \"no\"");
             ConsoleLogInfo("** ARTIFACTS_PATH - specify path of directory to store artifacts in");
             ConsoleLogInfo("* LOG_PATH - specify path of directory or file to output logs to");
-            Console.WriteLine();
+            ConsoleLog("");
             ConsoleLogInfo("-----------------------------------------------------------------");
-            Console.WriteLine("usage: " + thisName + " parse-folder PARSE_PATH RESULT_PATH [ template=(TEMPLATE_NAME|TEMPLATE_PATH) ]\n[ dsonly[=<verb>] ] [ toponly[=true|=false] ] [ verbosity=<verb> | log-verbosity=<verb> ]\n[ onerror=<verb> ] [ artifacts=<verb> [artifacts-path=ARTIFACTS_PATH ]] [ logfile=LOG_PATH ]");
+            ConsoleLog("usage: " + thisName + " parse-folder PARSE_PATH RESULT_PATH [ template=(TEMPLATE_NAME|TEMPLATE_PATH) ]\n[ dsonly[=<verb>] ] [ toponly[=true|=false] ] [ verbosity=<verb> | log-verbosity=<verb> ]\n[ onerror=<verb> ] [ artifacts=<verb> [artifacts-path=ARTIFACTS_PATH ]] [ logfile=LOG_PATH ]");
             ConsoleLogInfo("template - the name (inbuilt) or path (external) of the template set to use");
             ConsoleLogInfo("PARSE_PATH - the path of the file to parse");
             ConsoleLogInfo("RESULT_PATH - the path of the folder to write the result to (existing or not)");
@@ -302,13 +330,13 @@ namespace DescribeCompilerCLI
             ConsoleLogInfo("* toponly - weather to parse files in child directories or not. (default is false): \"true\", \"false\"");
             ConsoleLogInfo("* verbosity - set the log verbosity of the parser (default is high): \"l\", \"low\", \"m\", \"medium\", \"h\", \"high\"");
             ConsoleLogInfo("* log-verbosity - can be used instead of verbosity");
-            ConsoleLogInfo("* onerror - what to do when there is an error in source code. (default is stop): \"stop\", \"ignore\", \"dart-stop\", \"dart-ignore\"");
+            ConsoleLogInfo("* onerror - what to do when there is an error in source code. (default is stop): \"stop\", \"ignore\"");
             ConsoleLogInfo("* artifacts - weather to use artifacts (default is no): \"m\", \"makeonly\", \"t\", \"takeonly\", \"u\", \"use\", \"n\", \"no\"");
             ConsoleLogInfo("** ARTIFACTS_PATH - specify path of directory to store artifacts in");
             ConsoleLogInfo("* LOG_PATH - specify path of directory or file to output logs to");
-            Console.WriteLine();
+            ConsoleLog("");
             ConsoleLogInfo("-----------------------------------------------------------------");
-            Console.WriteLine("about: " + DescribeCompiler.DescribeCompiler.COMPILER_NAME);
+            ConsoleLog("about: " + DescribeCompiler.DescribeCompiler.COMPILER_NAME);
             ConsoleLogInfo("Describe is a domain specific language used to write and maintain complex data lists");
             ConsoleLogInfo("that are compiled on demand to html, xaml, xml, sql, json and any other language needed.");
             ConsoleLogInfo("Describe is licensed under the GNU Affero General Public License v3.0");
@@ -317,6 +345,7 @@ namespace DescribeCompilerCLI
              
 
             Console.ForegroundColor = INFO_COLOR;
+            Log += "Press any key to exit." + Environment.NewLine;
             Console.WriteLine("Press any key to exit.");
             Console.ForegroundColor = TEXT_COLOR;
             Console.ReadKey();
@@ -324,6 +353,8 @@ namespace DescribeCompilerCLI
         internal static void printWarning(string message)
         {
             Console.ForegroundColor = INFO_COLOR;
+            Log += "Warning: " + message + Environment.NewLine;
+            Log += "Press any key to continue." + Environment.NewLine;
             Console.WriteLine("Warning: " + message);
             Console.WriteLine("Press any key to continue.");
 
@@ -333,12 +364,14 @@ namespace DescribeCompilerCLI
         internal static void printNoArgumentsError()
         {
             Console.ForegroundColor = ERROR_COLOR;
+            Log += "No arguments or invalid argument count." + Environment.NewLine;
             Console.WriteLine("No arguments or invalid argument count.");
 
             Console.ForegroundColor = TEXT_COLOR;
             printHelpMessage();
 
             Console.ForegroundColor = INFO_COLOR;
+            Log += "Press any key to exit." + Environment.NewLine;
             Console.WriteLine("Press any key to exit.");
 
             Console.ForegroundColor = TEXT_COLOR;
@@ -348,12 +381,14 @@ namespace DescribeCompilerCLI
         {
             Console.ForegroundColor = ERROR_COLOR;
             if (ONE_BASED_ARG_INDEX) argIndex++;
+            Log += "Invalid argument " + argIndex.ToString() + " - \"" + arg + "\"" + Environment.NewLine;
             Console.WriteLine("Invalid argument " + argIndex.ToString() + " - \"" + arg + "\"");
 
             Console.ForegroundColor = TEXT_COLOR;
             printHelpMessage();
 
             Console.ForegroundColor = INFO_COLOR;
+            Log += "Press any key to exit." + Environment.NewLine;
             Console.WriteLine("Press any key to exit.");
 
             Console.ForegroundColor = TEXT_COLOR;
@@ -363,9 +398,12 @@ namespace DescribeCompilerCLI
         {
             Console.ForegroundColor = ERROR_COLOR;
             if (ONE_BASED_ARG_INDEX) argIndex++;
+            Log += "Invalid argument " + argIndex.ToString() + 
+                " - \"" + arg + "\" - " + message + Environment.NewLine;
             Console.WriteLine("Invalid argument " + argIndex.ToString() + " - \"" + arg + "\" - " + message);
 
             Console.ForegroundColor = INFO_COLOR;
+            Log += "Press any key to exit." + Environment.NewLine;
             Console.WriteLine("Press any key to exit.");
 
             Console.ForegroundColor = TEXT_COLOR;
@@ -374,9 +412,11 @@ namespace DescribeCompilerCLI
         internal static void printFatalError(string message)
         {
             Console.ForegroundColor = ERROR_COLOR;
+            Log += "Fatal error: " + message + Environment.NewLine;
             Console.WriteLine("Fatal error: " + message);
 
             Console.ForegroundColor = INFO_COLOR;
+            Log += "Press any key to exit." + Environment.NewLine;
             Console.WriteLine("Press any key to exit.");
 
             Console.ForegroundColor = TEXT_COLOR;
@@ -385,24 +425,33 @@ namespace DescribeCompilerCLI
 
 
         //log
+        internal static string Log
+        {
+            get;
+            private set;
+        }
         internal static void ConsoleLog(string text)
         {
+            Log += text + Environment.NewLine;
             Console.WriteLine(text);
         }
         internal static void ConsoleLogInfo(string text)
         {
+            Log += text + Environment.NewLine;
             Console.ForegroundColor = INFO_COLOR;
             Console.WriteLine(text);
             Console.ForegroundColor = TEXT_COLOR;
         }
         internal static void ConsoleLogError(string text)
         {
+            Log += text + Environment.NewLine;
             Console.ForegroundColor = ERROR_COLOR;
             Console.WriteLine(text);
             Console.ForegroundColor = TEXT_COLOR;
         }
         internal static void ConsoleLogParseInfo(string text)
         {
+            Log += text + Environment.NewLine;
             Console.ForegroundColor = MOREINFO_COLOR;
             Console.WriteLine(text);
             Console.ForegroundColor = TEXT_COLOR;

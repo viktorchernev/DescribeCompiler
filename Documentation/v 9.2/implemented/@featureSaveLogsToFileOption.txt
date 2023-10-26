@@ -1,0 +1,10 @@
+FEATURE(CLI app): Option to save log to a file
+
+Added a Log property in Messages that acumulates all the logging and can be saved to a file.
+If we use the flag logfile=LOG_PATH we do that in Program
+
+internal static string Log
+{
+	get;
+	private set;
+}

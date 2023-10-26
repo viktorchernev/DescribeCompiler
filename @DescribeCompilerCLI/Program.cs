@@ -62,6 +62,12 @@ namespace DescribeCompilerCLI
             {
                 Messages.printArgumentError(args[0], 1);
             }
+
+            //save log to file
+            if (Datnik.logToFile)
+            {
+                File.WriteAllText(Datnik.logFilePath, Messages.Log);
+            }
         }
         static void ext(string[] args)
         {
@@ -139,10 +145,6 @@ namespace DescribeCompilerCLI
                 else if (cur.StartsWith("log-verbosity=") && cur.Length > "log-verbosity=".Length)
                 {
                     if (Arguments.readVerbosityArgument(cur, i) == false) return;
-                }
-                else if (cur.StartsWith("onerror=") && cur.Length > "onerror=".Length)
-                {
-                    if (Arguments.readOnerrorArgument(cur, i) == false) return;
                 }
                 else if (cur.StartsWith("artifacts=") && cur.Length > "artifacts=".Length)
                 {
