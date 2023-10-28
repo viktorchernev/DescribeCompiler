@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DescribeCompiler.Compiler;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -34,6 +35,25 @@ namespace DescribeCompiler
         {
             get;
             private set;
+        }
+
+        /// <summary>
+        /// The artifact mode of the parser:
+        /// Weather to Make, Take, Both or ignore artifacts all-together
+        /// </summary>
+        public ArtifactMode ArtifactMode
+        { 
+            get; 
+            set; 
+        }
+
+        /// <summary>
+        /// The path to the artifact folder to be used
+        /// </summary>
+        public string ArtifactsPath
+        {
+            get;
+            set;
         }
     }
 }

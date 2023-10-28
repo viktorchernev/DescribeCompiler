@@ -144,19 +144,50 @@ namespace DescribeCompilerCLI
                     Messages.ConsoleLogInfo,
                     Messages.ConsoleLogParseInfo);
 
+                //settings
                 DescribeCompiler.DescribeCompiler.PARSE_TOP_DIRECTORY_ONLY = Datnik.topOnly;
                 DescribeCompiler.DescribeCompiler.PARSE_DS_ONLY = Datnik.dsOnly;
                 DescribeCompiler.DescribeCompiler.STOP_ON_ERROR = Datnik.requireSuccess;
-                //template
-                //artifacts
-                //ARTIFACTS_PATH
 
-                //find out which translator to use
-                JsonTranslator translator = new JsonTranslator(
-                    Messages.ConsoleLog,
-                    Messages.ConsoleLogError,
-                    Messages.ConsoleLogInfo);
+                //options
+                comp.ArtifactMode = Datnik.artifactMode;
+                if(Datnik.artifactMode != DescribeCompiler.Compiler.ArtifactMode.No 
+                    && Datnik.artifactsFolderPath != null)
+                {
+                    comp.ArtifactsPath = Datnik.artifactsFolderPath;
+                }
 
+                //templates
+                DescribeTranslator translator = null;
+                if(Datnik.templateName.StartsWith("JSON_"))
+                {
+                    translator = new JsonTranslator(
+                        Messages.ConsoleLog,
+                        Messages.ConsoleLogError,
+                        Messages.ConsoleLogInfo);
+
+                    //internal templates already loaded
+                    if (!Datnik.isInternal) translator.LoadExternalTemplates(Datnik.templatePath);
+                }
+                else if(Datnik.templateName.StartsWith("HTML_"))
+                {
+                    translator = new HtmlTranslator();
+                    (translator as HtmlTranslator).LogText = Messages.ConsoleLog;
+                    (translator as HtmlTranslator).LogError = Messages.ConsoleLogError;
+                    (translator as HtmlTranslator).LogInfo = Messages.ConsoleLogInfo;
+
+                    //internal templates already loaded
+                    if (!Datnik.isInternal) translator.LoadExternalTemplates(Datnik.templatePath);
+                }
+                else
+                {
+                    Messages.printFatalError(
+                        "Template name does not start with \"HTML_\" or \"JSON_\"," + 
+                        " thus, it is not known which translator to use");
+                    return false;
+                }
+
+                //compile
                 DescribeUnfold unfold = new DescribeUnfold();
                 bool r = false;
                 if (Datnik.isInputDir == false) r = comp.ParseFile(new FileInfo(Datnik.input), unfold);

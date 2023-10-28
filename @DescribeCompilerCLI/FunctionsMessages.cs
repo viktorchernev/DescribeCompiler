@@ -292,6 +292,17 @@ namespace DescribeCompilerCLI
             Console.ForegroundColor = TEXT_COLOR;
             Console.ReadKey();
         }
+        internal static void printCompilationSuccess()
+        {
+            //add to log
+            Log += "Task completed successfully. Press any key to exit." + Environment.NewLine;
+
+            //add to console
+            Console.ForegroundColor = INFO_COLOR;
+            Console.WriteLine("Task completed successfully. Press any key to exit.");
+            Console.ForegroundColor = TEXT_COLOR;
+            Console.ReadKey();
+        }
         internal static void printHelpMessage()
         {
             ConsoleLogInfo("-----------------------------------------------------------------");
@@ -310,11 +321,10 @@ namespace DescribeCompilerCLI
             ConsoleLogInfo("* RESULT_PATH (optionally) - specify path to write the template folders to. Current folder will be used otherwise");
             ConsoleLog("");
             ConsoleLogInfo("-----------------------------------------------------------------");
-            ConsoleLog("usage: " + thisName + " parse-file PARSE_PATH RESULT_PATH [ template=(TEMPLATE_NAME|TEMPLATE_PATH) ]\n[ dsonly[=true|=false] ] [ verbosity=<verb> | log-verbosity=<verb> ]\n[ artifacts=<verb> [artifacts-path=ARTIFACTS_PATH ]] [ logfile=LOG_PATH ]");
+            ConsoleLog("usage: " + thisName + " parse-file PARSE_PATH RESULT_PATH [ template=(TEMPLATE_NAME|TEMPLATE_PATH) ]\n[ verbosity=<verb> | log-verbosity=<verb> ]\n[ artifacts=<verb> [artifacts-path=ARTIFACTS_PATH ]] [ logfile=LOG_PATH ]");
             ConsoleLogInfo("template - the name (inbuilt) or path (external) of the template set to use");
             ConsoleLogInfo("PARSE_PATH - the path of the file to parse");
             ConsoleLogInfo("RESULT_PATH - the path of the file to write the result to (existing file or not)");
-            ConsoleLogInfo("* dsonly - weather to omit files that are not Describe source files (\".DS\"). (default is true): \"true\", \"false\"");
             ConsoleLogInfo("* verbosity - set the log verbosity of the parser (default is high): \"l\", \"low\", \"m\", \"medium\", \"h\", \"high\"");
             ConsoleLogInfo("* log-verbosity - can be used instead of verbosity");
             ConsoleLogInfo("* artifacts - weather to use artifacts (default is no): \"m\", \"makeonly\", \"t\", \"takeonly\", \"u\", \"use\", \"n\", \"no\"");

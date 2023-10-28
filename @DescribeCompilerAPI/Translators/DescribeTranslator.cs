@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,6 +44,12 @@ namespace DescribeCompiler.Translators
             get;
             protected set;
         }
+
+
+        public abstract string TranslateUnfold(DescribeUnfold u);
+        public abstract bool LoadExternalTemplates(string path);
+        public abstract bool LoadInternalTemplates(string name);
+
     }
 }
 // After we have parsed our files and optimized the resulting parse tree to content in an Unfold

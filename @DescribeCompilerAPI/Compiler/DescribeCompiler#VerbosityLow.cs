@@ -67,6 +67,10 @@ namespace DescribeCompiler
                 {
                     unfold.FailedFiles.Add(filename);
                     if (STOP_ON_ERROR) return false;
+                    else
+                    {
+                        unfold.Files.RemoveAt(0);
+                    }
                 }
             }
 

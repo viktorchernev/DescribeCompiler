@@ -1,0 +1,4 @@
+// double initialization reported when using external templates:
+// Translator initialized - using template "JSON_COMMONER"
+// Translator initialized - using external template
+// "C:\Users\Viktor Chernev\Desktop\docs-scratch\Templates\JSON_COMMONER"

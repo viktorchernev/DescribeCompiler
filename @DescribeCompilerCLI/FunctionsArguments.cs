@@ -1,10 +1,6 @@
 ﻿using DescribeCompiler;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DescribeCompilerCLI
 {
@@ -90,7 +86,7 @@ namespace DescribeCompilerCLI
             }
             catch (Exception ex)
             {
-                Messages.printArgumentError(arg, argindex, "is not a valid file or folder");
+                Messages.printArgumentError(arg, argindex, "is not a valid file");
                 return false;
             }
         }
@@ -120,7 +116,7 @@ namespace DescribeCompilerCLI
             }
             catch (Exception ex)
             {
-                Messages.printArgumentError(arg, argindex, "is not a valid file or folder");
+                Messages.printArgumentError(arg, argindex, "is not a valid folder");
                 return false;
             }
         }
@@ -131,7 +127,7 @@ namespace DescribeCompilerCLI
         /// <param name="arg">The argument raw text</param>
         /// <param name="argindex">The index of the argument (for logging purposes)</param>
         /// <returns>True if successful</returns>
-        internal static bool readOutputArgument(string arg, int argindex)
+        internal static bool readOutputArgument(string arg, int argindex, bool isDir)
         {
             try
             {
@@ -155,8 +151,7 @@ namespace DescribeCompilerCLI
                     DirectoryInfo di = Directory.GetParent(arg);
                     if (di.Exists)
                     {
-                        if (Path.GetFileName(arg) == string.Empty) Datnik.isOutputDir = true;
-                        else Datnik.isOutputDir = false;
+                        Datnik.isOutputDir = isDir;
                         Datnik.output = arg;
                         return true;
                     }
@@ -204,17 +199,9 @@ namespace DescribeCompilerCLI
                     DirectoryInfo di = Directory.GetParent(arg);
                     if (di.Exists)
                     {
-                        if (Path.GetFileName(arg) == string.Empty)
-                        {
-                            Messages.printArgumentError(arg, argindex, "is a folder. File is required");
-                            return false;
-                        }
-                        else
-                        {
-                            Datnik.output = arg;
-                            Datnik.isOutputDir = false;
-                            return true;
-                        }
+                        Datnik.output = arg;
+                        Datnik.isOutputDir = false;
+                        return true;
                     }
                     else
                     {
@@ -241,13 +228,13 @@ namespace DescribeCompilerCLI
         {
             try
             {
-                //existing file - ok
+                //existing file - not ok
                 if (File.Exists(arg))
                 {
                     Messages.printArgumentError(arg, argindex, "is a file. Folder is required");
                     return false;
                 }
-                //existing dir - not ok
+                //existing dir - ok
                 else if (Directory.Exists(arg))
                 {
                     Datnik.output = arg;
@@ -260,17 +247,9 @@ namespace DescribeCompilerCLI
                     DirectoryInfo di = Directory.GetParent(arg);
                     if (di.Exists)
                     {
-                        if (Path.GetFileName(arg) == string.Empty)
-                        {
-                            Datnik.output = arg;
-                            Datnik.isOutputDir = true;
-                            return true;
-                        }
-                        else
-                        {
-                            Messages.printArgumentError(arg, argindex, "is a file. Folder is required");
-                            return false;
-                        }
+                        Datnik.output = arg;
+                        Datnik.isOutputDir = true;
+                        return true;
                     }
                     else
                     {
@@ -306,9 +285,8 @@ namespace DescribeCompilerCLI
                     Messages.printArgumentError(arg, argindex, "");
                     return false;
                 }
-                else if (val == "true" || val == "l") Datnik.verbosity = LogVerbosity.Low;
-                else if (val == "medium" || val == "m") Datnik.verbosity = LogVerbosity.Medium;
-                else if (val == "high" || val == "h") Datnik.verbosity = LogVerbosity.High;
+                else if (val == "true") Datnik.dsOnly = true;
+                else if (val == "false") Datnik.dsOnly = false;
                 else
                 {
                     Messages.printArgumentError(arg,
@@ -453,8 +431,7 @@ namespace DescribeCompilerCLI
                 }
                 else
                 {
-                    FileAttributes attr = File.GetAttributes(val);
-                    if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
+                    if(Directory.Exists(val))
                     {
                         Datnik.templateName = new DirectoryInfo(val).Name;
                         Datnik.templatePath = val;
@@ -464,7 +441,6 @@ namespace DescribeCompilerCLI
                     else
                     {
                         string[] names = ResourceUtil.extractResourceNames();
-                        bool flag = false;
                         foreach (string s in names)
                         {
                             if (s.StartsWith("DescribeCompiler.Templates." + val + "."))
@@ -499,27 +475,37 @@ namespace DescribeCompilerCLI
         {
             try
             {
-                //existing file - ok
-                if (File.Exists(arg))
+                string val = arg.Substring(arg.IndexOf("=") + 1);
+                if (string.IsNullOrEmpty(val) || string.IsNullOrWhiteSpace(val))
                 {
-                    Datnik.logFilePath = arg;
+                    Messages.printArgumentError(arg, argindex, "");
+                    return false;
+                }
+                //there is a bug in visual studio I think where if your path
+                //in the command line parameter is in parentheses and ends with
+                //a backslash, it is treated as an escaped backslash
+
+                //existing file - ok
+                if (File.Exists(val))
+                {
+                    Datnik.logFilePath = val;
                     Datnik.logToFile = true;
                     return true;
                 }
                 //existing dir - ok
-                else if (Directory.Exists(arg))
+                else if (Directory.Exists(val))
                 {
-                    Datnik.logFilePath = arg;
+                    Datnik.logFilePath = Path.Combine(val, "lastlog.txt");
                     Datnik.logToFile = true;
                     return true;
                 }
                 else
                 {
                     // notexisting file or dir - we want parent dir to exist
-                    DirectoryInfo di = Directory.GetParent(arg);
+                    DirectoryInfo di = Directory.GetParent(val);
                     if (di.Exists)
                     {
-                        Datnik.logFilePath = arg;
+                        Datnik.logFilePath = val;
                         Datnik.logToFile = true;
                         return true;
                     }
@@ -558,9 +544,10 @@ namespace DescribeCompilerCLI
                     Messages.printArgumentError(arg, argindex, "");
                     return false;
                 }
-                else if (val == "low" || val == "l") Datnik.verbosity = LogVerbosity.Low;
-                else if (val == "medium" || val == "m") Datnik.verbosity = LogVerbosity.Medium;
-                else if (val == "high" || val == "h") Datnik.verbosity = LogVerbosity.High;
+                else if (val == "m" || val == "makeonly") Datnik.artifactMode = DescribeCompiler.Compiler.ArtifactMode.MakeOnly;
+                else if (val == "t" || val == "takeonly") Datnik.artifactMode = DescribeCompiler.Compiler.ArtifactMode.TakeOnly;
+                else if (val == "u" || val == "use") Datnik.artifactMode = DescribeCompiler.Compiler.ArtifactMode.Use;
+                else if (val == "n" || val == "no") Datnik.artifactMode = DescribeCompiler.Compiler.ArtifactMode.No;
                 else
                 {
                     Messages.printArgumentError(arg,
@@ -588,10 +575,17 @@ namespace DescribeCompilerCLI
         {
             try
             {
-                //existing dir - ok
-                if (Directory.Exists(arg))
+                string val = arg.Substring(arg.IndexOf("=") + 1);
+                if (string.IsNullOrEmpty(val) || string.IsNullOrWhiteSpace(val))
                 {
-                    Datnik.artifactsFolderPath = arg;
+                    Messages.printArgumentError(arg, argindex, "");
+                    return false;
+                }
+
+                //existing dir - ok
+                if (Directory.Exists(val))
+                {
+                    Datnik.artifactsFolderPath = val;
                     return true;
                 }
                 else
@@ -611,6 +605,3 @@ namespace DescribeCompilerCLI
         }
     }
 }
-// If we have an error and thus not able to set the datnik
-// field, we should reset it. Otherwise we might get half-set datnik
-// structure or previous command left-overs in the future

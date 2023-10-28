@@ -1,0 +1,3 @@
+// If we have an error and thus not able to set the datnik
+// field, we should reset it. Otherwise we might get half-set datnik
+// structure or previous command left-overs in the future

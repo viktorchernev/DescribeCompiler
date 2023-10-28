@@ -107,7 +107,7 @@ namespace DescribeCompiler.Translators
         /// </summary>
         /// <param name="path">The path to the desired templates folder</param>
         /// <returns>True if successful</returns>
-        public bool LoadExternalTemplates(string path)
+        public override bool LoadExternalTemplates(string path)
         {
             try
             {
@@ -159,7 +159,7 @@ namespace DescribeCompiler.Translators
         /// </summary>
         /// <param name="name">The name of the internal folder</param>
         /// <returns>True if successful</returns>
-        public bool LoadInternalTemplates(string name)
+        public override bool LoadInternalTemplates(string name)
         {
             try
             {
@@ -193,7 +193,7 @@ namespace DescribeCompiler.Translators
         /// </summary>
         /// <param name="u">The unfold to be translated</param>
         /// <returns>The generated html code</returns>
-        public string TranslateUnfold(DescribeUnfold u)
+        public override string TranslateUnfold(DescribeUnfold u)
         {
             if (IsInitialized == false) return null;
 
