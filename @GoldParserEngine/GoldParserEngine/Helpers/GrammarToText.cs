@@ -1,10 +1,8 @@
-﻿using System;
+﻿using GoldParser.Egt;
+using GoldParser.Grammar;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using GoldParser.Egt;
-using GoldParser.Grammar;
 
 namespace GoldParser.Helpers
 {
@@ -190,7 +188,7 @@ namespace GoldParser.Helpers
         public static string characterRangeToText(GrammarCharacterRange range)
         {
             string text = "";
-            if(range.Start == range.End)
+            if (range.Start == range.End)
             {
                 text = range.Start.ToString();
             }
@@ -205,7 +203,7 @@ namespace GoldParser.Helpers
         public static string readSymbols(GrammarSymbol[] symbols)
         {
             string text = "SYMBOLS" + Environment.NewLine;
-            text += "Index".PadRight(_columnWidth, ' ') + "Name".PadRight(_columnWidth, ' ') + 
+            text += "Index".PadRight(_columnWidth, ' ') + "Name".PadRight(_columnWidth, ' ') +
                 "Type".PadRight(_columnWidth, ' ') + "Group".PadRight(_columnWidth, ' ') +
                 Environment.NewLine;
             text += "-".PadRight(_columnWidth * 4, '-') + Environment.NewLine;
@@ -373,7 +371,7 @@ namespace GoldParser.Helpers
                     if (i < state.Edges.Count - 1) edges += ", ";
                 }
             }
-            text += edges; 
+            text += edges;
 
             return text;
         }
@@ -412,7 +410,7 @@ namespace GoldParser.Helpers
             for (int i = 0; i < state.Actions.Count(); i++)
             {
                 text += lrActionToText(state.Actions[i]);
-                if(i < state.Actions.Count() - 1) text += Environment.NewLine;
+                if (i < state.Actions.Count() - 1) text += Environment.NewLine;
             }
 
             return text;

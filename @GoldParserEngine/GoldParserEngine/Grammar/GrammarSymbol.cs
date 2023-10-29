@@ -4,15 +4,15 @@
     /// Types of symbols.
     /// </summary>
 	public enum GrammarSymbolType
-	{
-		Nonterminal,
-		Terminal,
-		Noise,
-		End,
-		GroupStart,
-		GroupEnd,
-		Error = 7
-	}
+    {
+        Nonterminal,
+        Terminal,
+        Noise,
+        End,
+        GroupStart,
+        GroupEnd,
+        Error = 7
+    }
 
     /// <summary>
     /// A Grammar Symbol.

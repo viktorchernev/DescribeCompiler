@@ -1,7 +1,7 @@
-﻿using System;
+﻿using GoldParser.Egt;
+using System;
 using System.Collections.Generic;
 using System.IO;
-using GoldParser.Egt;
 
 
 namespace GoldParser.Helpers
@@ -68,7 +68,7 @@ namespace GoldParser.Helpers
 
                 return json;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new EgtException(ex.Message, ex, "ReadFile");
             }
@@ -83,11 +83,11 @@ namespace GoldParser.Helpers
         {
             try
             {
-                return "{" + Environment.NewLine + 
-                    readRecords(records, _indent) + 
+                return "{" + Environment.NewLine +
+                    readRecords(records, _indent) +
                     Environment.NewLine + "}";
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new EgtException(ex.Message, ex, "ReadRecords");
             }
@@ -201,7 +201,7 @@ namespace GoldParser.Helpers
         {
             string result = indent + _indent + "\"type\":\"" + entry.Type.ToString() + "\"";
             result += "," + Environment.NewLine;
-            switch(entry.Type)
+            switch (entry.Type)
             {
                 case EgtEntryType.Error:
                     result += indent + _indent + "\"value\":\"\"";

@@ -11,28 +11,28 @@ namespace GoldParser.Grammar
         /// <summary>
         /// The index of this production in the Production table
         /// </summary>
-        public int TableIndex 
-        { 
-            get; 
-            set; 
+        public int TableIndex
+        {
+            get;
+            set;
         }
 
         /// <summary>
         /// The symbol at the left hand side of the production
         /// </summary>
-        public GrammarSymbol Head 
-        { 
-            get; 
-            set; 
+        public GrammarSymbol Head
+        {
+            get;
+            set;
         }
 
         /// <summary>
         /// The symbols of the right hand side of the production (after the "->")
         /// </summary>
-        public List<GrammarSymbol> Handle 
-        { 
-            get; 
-            set; 
+        public List<GrammarSymbol> Handle
+        {
+            get;
+            set;
         }
 
 

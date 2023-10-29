@@ -71,10 +71,6 @@
     <Compile Include="Helpers\EgtToText.cs" />
     <Compile Include="Helpers\GrammarToJSON.cs" />
     <Compile Include="Helpers\GrammarToText.cs" />
-    <Compile Include="LoggedParser\Parser.cs" />
-    <Compile Include="LoggedParser\ParserBase.cs" />
-    <Compile Include="LoggedParser\ParserException.cs" />
-    <Compile Include="LoggedParser\ParserLexer.cs" />
     <Compile Include="Parser\Parser.cs" />
     <Compile Include="ParseTree\Position.cs" />
     <Compile Include="ParseTree\Reduction.cs" />

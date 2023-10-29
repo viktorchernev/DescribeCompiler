@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DescribeCompilerCLI
 {
-    internal class Datnik
+    public class Datnik
     {
         /// <summary>
         /// The output directory for the ext and extone commands

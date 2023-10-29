@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace DescribeCompilerCLI
 {
@@ -14,14 +9,14 @@ namespace DescribeCompilerCLI
     //minimalist - Bulbhead, Graceful, Modular, Ogre, Slant, Small
     //Small Slant, Standard, Twisted, ANSI Shadow
 
-    internal static class Messages
+    public static class Messages
     {
         //settings
-        static bool ONE_BASED_ARG_INDEX = true;
-        static ConsoleColor INFO_COLOR = ConsoleColor.DarkGray;
-        static ConsoleColor TEXT_COLOR = ConsoleColor.White;
-        static ConsoleColor ERROR_COLOR = ConsoleColor.Red;
-        static ConsoleColor MOREINFO_COLOR = ConsoleColor.Green;
+        public static bool ONE_BASED_ARG_INDEX = true;
+        public static ConsoleColor INFO_COLOR = ConsoleColor.DarkGray;
+        public static ConsoleColor TEXT_COLOR = ConsoleColor.White;
+        public static ConsoleColor ERROR_COLOR = ConsoleColor.Red;
+        public static ConsoleColor MOREINFO_COLOR = ConsoleColor.Green;
 
         static string thisName;
         static Messages()
@@ -31,35 +26,35 @@ namespace DescribeCompilerCLI
 
 
         //themes
-        internal static void SetDefaultTheme()
+        public static void SetDefaultTheme()
         {
             INFO_COLOR = ConsoleColor.DarkGray;
             TEXT_COLOR = ConsoleColor.White;
             ERROR_COLOR = ConsoleColor.Red;
             MOREINFO_COLOR = ConsoleColor.Green;
         }
-        internal static void SetVioletTheme()
+        public static void SetVioletTheme()
         {
             INFO_COLOR = ConsoleColor.DarkMagenta;
             TEXT_COLOR = ConsoleColor.White;
             ERROR_COLOR = ConsoleColor.Red;
             MOREINFO_COLOR = ConsoleColor.DarkGray;
         }
-        internal static void SetCyanTheme()
+        public static void SetCyanTheme()
         {
             INFO_COLOR = ConsoleColor.DarkMagenta;
             TEXT_COLOR = ConsoleColor.Cyan;
             ERROR_COLOR = ConsoleColor.Red;
             MOREINFO_COLOR = ConsoleColor.DarkCyan;
         }
-        internal static void SetLightBlueTheme()
+        public static void SetLightBlueTheme()
         {
             INFO_COLOR = ConsoleColor.White;
             TEXT_COLOR = ConsoleColor.Blue;
             ERROR_COLOR = ConsoleColor.Red;
             MOREINFO_COLOR = ConsoleColor.DarkCyan;
         }
-        internal static void SetDarkBlueTheme()
+        public static void SetDarkBlueTheme()
         {
             INFO_COLOR = ConsoleColor.DarkGray;
             TEXT_COLOR = ConsoleColor.DarkBlue;
@@ -69,16 +64,16 @@ namespace DescribeCompilerCLI
 
 
         //presets
-        internal static void presetConsole()
+        public static void presetConsole()
         {
             Console.BufferHeight = Int16.MaxValue - 1;
             Console.ForegroundColor = ConsoleColor.DarkGray;
         }
-        internal static void printLogo3()
+        public static void printLogo3()
         {
             printLogo3(TEXT_COLOR);
         }
-        internal static void printLogo3(ConsoleColor logoColor)
+        public static void printLogo3(ConsoleColor logoColor)
         {
             Log += @"   /\\\\     /\\\\     /\\\\     /\\\\     /\\\\     /\\\\     /\\\\     /\\\\  " + Environment.NewLine;
             Log += @"  /  \\\\   /  \\\\   /  \\\\   /  \\\\   /  \\\\   _\ \\\\   /  \\\\   /  \\\\ " + Environment.NewLine;
@@ -100,11 +95,11 @@ namespace DescribeCompilerCLI
             Console.WriteLine();
             Console.ForegroundColor = col;
         }
-        internal static void printLogo2()
+        public static void printLogo2()
         {
             printLogo2(TEXT_COLOR);
         }
-        internal static void printLogo2(ConsoleColor logoColor)
+        public static void printLogo2(ConsoleColor logoColor)
         {
             Log += @"   /\\\     /\\\     /\\\     /\\\     /\\\     /\\\     /\\\     /\\\  " + Environment.NewLine;
             Log += @"  /  \\\   /  \\\   /  \\\   /  \\\   /  \\\   _\ \\\   /  \\\   /  \\\ " + Environment.NewLine;
@@ -126,11 +121,11 @@ namespace DescribeCompilerCLI
             Console.WriteLine();
             Console.ForegroundColor = col;
         }
-        internal static void printLogo3Bicolor()
+        public static void printLogo3Bicolor()
         {
             printLogo3Bicolor(TEXT_COLOR, INFO_COLOR);
         }
-        internal static void printLogo3Bicolor(ConsoleColor colorA, ConsoleColor colorB)
+        public static void printLogo3Bicolor(ConsoleColor colorA, ConsoleColor colorB)
         {
             Log += @"   /\\\\     /\\\\     /\\\\     /\\\\     /\\\\     /\\\\     /\\\\     /\\\\  " + Environment.NewLine;
             Log += @"  /  \\\\   /  \\\\   /  \\\\   /  \\\\   /  \\\\   _\ \\\\   /  \\\\   /  \\\\ " + Environment.NewLine;
@@ -257,7 +252,7 @@ namespace DescribeCompilerCLI
 
 
         //errors
-        internal static void printCmdLine(string[] args)
+        public static void printCmdLine(string[] args)
         {
             string s = "> ";
 
@@ -279,7 +274,7 @@ namespace DescribeCompilerCLI
 
             ConsoleLogInfo(s);
         }
-        internal static void printExtTemplatesSuccess(string path)
+        public static void printExtTemplatesSuccess(string path)
         {
             //add to log
             Log += "Templates outputted to \"" + path + "\"" + Environment.NewLine;
@@ -292,7 +287,7 @@ namespace DescribeCompilerCLI
             Console.ForegroundColor = TEXT_COLOR;
             Console.ReadKey();
         }
-        internal static void printCompilationSuccess()
+        public static void printCompilationSuccess()
         {
             //add to log
             Log += "Task completed successfully. Press any key to exit." + Environment.NewLine;
@@ -303,7 +298,7 @@ namespace DescribeCompilerCLI
             Console.ForegroundColor = TEXT_COLOR;
             Console.ReadKey();
         }
-        internal static void printHelpMessage()
+        public static void printHelpMessage()
         {
             ConsoleLogInfo("-----------------------------------------------------------------");
             ConsoleLog("usage: " + thisName + " help | -h");
@@ -360,7 +355,7 @@ namespace DescribeCompilerCLI
             Console.ForegroundColor = TEXT_COLOR;
             Console.ReadKey();
         }
-        internal static void printWarning(string message)
+        public static void printWarning(string message)
         {
             Console.ForegroundColor = INFO_COLOR;
             Log += "Warning: " + message + Environment.NewLine;
@@ -371,7 +366,7 @@ namespace DescribeCompilerCLI
             Console.ForegroundColor = TEXT_COLOR;
             Console.ReadKey();
         }
-        internal static void printNoArgumentsError()
+        public static void printNoArgumentsError()
         {
             Console.ForegroundColor = ERROR_COLOR;
             Log += "No arguments or invalid argument count." + Environment.NewLine;
@@ -387,7 +382,7 @@ namespace DescribeCompilerCLI
             Console.ForegroundColor = TEXT_COLOR;
             Console.ReadKey();
         }
-        internal static void printArgumentError(string arg, int argIndex)
+        public static void printArgumentError(string arg, int argIndex)
         {
             Console.ForegroundColor = ERROR_COLOR;
             if (ONE_BASED_ARG_INDEX) argIndex++;
@@ -404,7 +399,7 @@ namespace DescribeCompilerCLI
             Console.ForegroundColor = TEXT_COLOR;
             Console.ReadKey();
         }
-        internal static void printArgumentError(string arg, int argIndex, string message)
+        public static void printArgumentError(string arg, int argIndex, string message)
         {
             Console.ForegroundColor = ERROR_COLOR;
             if (ONE_BASED_ARG_INDEX) argIndex++;
@@ -419,7 +414,7 @@ namespace DescribeCompilerCLI
             Console.ForegroundColor = TEXT_COLOR;
             Console.ReadKey();
         }
-        internal static void printFatalError(string message)
+        public static void printFatalError(string message)
         {
             Console.ForegroundColor = ERROR_COLOR;
             Log += "Fatal error: " + message + Environment.NewLine;
@@ -435,31 +430,31 @@ namespace DescribeCompilerCLI
 
 
         //log
-        internal static string Log
+        public static string Log
         {
             get;
             private set;
         }
-        internal static void ConsoleLog(string text)
+        public static void ConsoleLog(string text)
         {
             Log += text + Environment.NewLine;
             Console.WriteLine(text);
         }
-        internal static void ConsoleLogInfo(string text)
+        public static void ConsoleLogInfo(string text)
         {
             Log += text + Environment.NewLine;
             Console.ForegroundColor = INFO_COLOR;
             Console.WriteLine(text);
             Console.ForegroundColor = TEXT_COLOR;
         }
-        internal static void ConsoleLogError(string text)
+        public static void ConsoleLogError(string text)
         {
             Log += text + Environment.NewLine;
             Console.ForegroundColor = ERROR_COLOR;
             Console.WriteLine(text);
             Console.ForegroundColor = TEXT_COLOR;
         }
-        internal static void ConsoleLogParseInfo(string text)
+        public static void ConsoleLogParseInfo(string text)
         {
             Log += text + Environment.NewLine;
             Console.ForegroundColor = MOREINFO_COLOR;

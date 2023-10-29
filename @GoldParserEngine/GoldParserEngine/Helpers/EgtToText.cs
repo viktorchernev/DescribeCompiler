@@ -147,7 +147,7 @@ namespace GoldParser.Helpers
         static string readRecord(EgtRecord record)
         {
             string result = record.EntriesCount.ToString() +
-                Environment.NewLine + 
+                Environment.NewLine +
                 readEntries(record.Entries);
             return result;
         }

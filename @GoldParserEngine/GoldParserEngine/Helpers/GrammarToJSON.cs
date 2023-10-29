@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using GoldParser.Egt;
+﻿using GoldParser.Egt;
 using GoldParser.Grammar;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace GoldParser.Helpers
 {
@@ -343,7 +340,7 @@ namespace GoldParser.Helpers
                 json += indent + _indent + "\"accept-symbol-index\":" + state.Accept.TableIndex.ToString() + "," + Environment.NewLine;
             }
 
-            if(state.Edges.Count == 0)
+            if (state.Edges.Count == 0)
             {
                 json += indent + _indent + "\"edges\":[]" + Environment.NewLine;
             }
