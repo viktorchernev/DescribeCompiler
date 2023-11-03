@@ -1,0 +1,4 @@
+BUG: In the DescribeDB app, the UpdateDB command produces an artifact with 2 user names as start of the name of personal files - "DemonOfReason.DemonOfReason.file" instead of simply "DemonOfReason.file". This was necessairy the first time we uploaded the files to the new database, but should've been removed afterwords.
+
+SOLUTION: DatabaseDownloader comment the line that adds the additional folder
+//if (!string.IsNullOrEmpty(username)) curpath = Path.Combine(curpath, username);

@@ -1,0 +1,1 @@
+BUG: Change console collor back before exitting the CLI app
