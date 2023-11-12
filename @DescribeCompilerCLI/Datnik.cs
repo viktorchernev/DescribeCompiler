@@ -11,6 +11,28 @@ namespace DescribeCompilerCLI
     public class Datnik
     {
         /// <summary>
+        /// Password to decrypt input files, if parseEncryptedFiles == true
+        /// </summary>
+        public static string inputPassword;
+
+        /// <summary>
+        /// Pasword to encrypt output file(s), if encryptOutput == true
+        /// </summary>
+        public static string outputPassword;
+
+        /// <summary>
+        /// Wether to try to decrypt encrypted files (.DENC)
+        /// </summary>
+        public static bool parseEncryptedFiles;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static bool encryptOutput;
+
+
+
+        /// <summary>
         /// The output directory for the ext and extone commands
         /// </summary>
         public static string extOutputDir;
@@ -106,6 +128,11 @@ namespace DescribeCompilerCLI
 
         static Datnik()
         {
+            inputPassword = null;
+            outputPassword = null;
+            parseEncryptedFiles = false;
+            encryptOutput = false;
+
             extOutputDir = null;
 
             input = null;

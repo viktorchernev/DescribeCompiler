@@ -61,6 +61,7 @@
     <Compile Include="Compiler\DescribeCompiler.cs" />
     <Compile Include="Compiler\eArtifactMode.cs" />
     <Compile Include="Compiler\Optimizers\IDescribeOptimizer.cs" />
+    <Compile Include="Compiler\Optimizers\OptimizerForDescribe06.cs" />
     <Compile Include="Translators\CharacterDictionaries.cs" />
     <Compile Include="Translators\JsonTranslator.cs" />
     <Compile Include="Translators\DescribeTranslator.cs" />

@@ -7,6 +7,7 @@ using System.Linq;
 
 namespace DescribeCompiler
 {
+    //http://www.goldparser.org/doc/grammars/predefined-sets.htm
     public class DefaultOptimizer : IDescribeOptimizer
     {
         //Misc

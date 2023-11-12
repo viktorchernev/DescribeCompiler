@@ -1,0 +1,18 @@
+Initializing Describe Compiler v0.9.2
+GOLD parser engine initialized
+Verbosity set to: High
+Preloaded grammar: "Decorators v0.9"
+Loaded new grammar: "Basic v0.6"
+------------------------
+Starting a parse operation on file: "C:\Users\Viktor Chernev\Desktop\World-Describe\DataLists\Documentation\GrammarTests\v 0.6 Basics\testfile - production in production 3.ds"
+Fetched file contents - 90 characters long
+
+Parsing sequence: T(Text); T(Hyphen); R(text-chunk); R(text); R(item); T(RightArrow); T(NewLine); T(NewLine); T(Text); R(producer); T(Separator); R(text-chunk); R(text); R(item); T(NewLine); T(Whitespace); T(Text); T(Hyphen); R(text-chunk); R(text); R(item); T(RightArrow); T(NewLine); T(NewLine); T(Text); R(producer); T(Separator); R(text-chunk); R(text); R(item); T(NewLine); T(Text); T(Terminator); R(text-chunk); R(text); R(item); R(item-or-expression-list); T(NewLine); T(NewLine); T(Whitespace); T(Text); R(expression); T(Terminator); R(text-chunk); R(text); R(item); R(item-or-expression-list); R(item-or-expression-list); T(NewLine); T(EOF); R(expression); R(scripture); Accepted;
+
+File parsed successfuly
+Parse tree unfolded successfuly
+Done!
+------------------------
+1 files parsed.
+Parser red 26 tokens in 26 reductions.
+Those were translated to 2 productions, containing 6 entries.

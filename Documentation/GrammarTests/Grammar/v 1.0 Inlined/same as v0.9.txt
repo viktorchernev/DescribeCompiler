@@ -1,0 +1,1 @@
+Grammar version 0.9, after extended usage has turned out to be all that is needed from an official first version of the language, thus it was rebranded as version 1.0

@@ -33,7 +33,7 @@ namespace DescribeCompiler
         /// </summary>
         /// <param name="grammarName">The enumerated name of the grammar to be loaded</param>
         /// <returns>true if successful, otherwise false</returns>
-        bool ChangeGrammar(GrammarName grammarName)
+        public bool ChangeGrammar(GrammarName grammarName)
         {
             try
             {

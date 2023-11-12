@@ -1,0 +1,18 @@
+Initializing Describe Compiler v0.9.2
+GOLD parser engine initialized
+Verbosity set to: High
+Preloaded grammar: "Decorators v0.9"
+Loaded new grammar: "Links v0.8"
+------------------------
+Starting a parse operation on file: "C:\Users\Viktor Chernev\Desktop\World-Describe\DataLists\Documentation\GrammarTests\v 0.8 Links\testfile - basic 4.ds"
+Fetched file contents - 334 characters long
+
+Parsing sequence: T(Text); T(LeftArrow); R(text-chunk); R(text); T(Text); T(RightArrow); R(text-chunk); R(text); T(Link); R(tag); T(Hyphen); R(item); T(RightArrow); T(NewLine); T(NewLine); T(Text); R(producer); T(Link); R(text-chunk); R(text); T(LeftArrow); T(Text); T(RightArrow); R(text-chunk); R(text); T(Separator); R(tag); R(item); T(NewLine); T(Whitespace); T(NewLine); T(Text); T(LeftArrow); R(text-chunk); R(text); T(Text); T(RightArrow); R(text-chunk); R(text); T(NewLine); T(Whitespace); T(Link); R(tag); T(NewLine); T(Whitespace); T(Link); T(Separator); R(links); R(item); T(NewLine); T(NewLine); T(Text); T(LeftArrow); R(text-chunk); R(text); T(Text); T(RightArrow); R(text-chunk); R(text); T(Separator); R(tag); R(item); T(NewLine); T(Text); T(LeftArrow); R(text-chunk); R(text); T(Text); T(RightArrow); R(text-chunk); R(text); T(Terminator); R(tag); R(item); R(item-or-expression-list); R(item-or-expression-list); R(item-or-expression-list); T(NewLine); T(NewLine); T(EOF); R(expression); R(scripture); Accepted;
+
+File parsed successfuly
+Parse tree unfolded successfuly
+Done!
+------------------------
+1 files parsed.
+Parser red 45 tokens in 37 reductions.
+Those were translated to 1 productions, containing 5 entries.
