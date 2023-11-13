@@ -7,9 +7,8 @@ using System.Linq;
 
 namespace DescribeCompiler.Compiler.Optimizers
 {
-    public class OptimizerForDescribe07 : IDescribeOptimizer
+    public class OptimizerForDescribe08 : IDescribeOptimizer
     {
-        //Misc
         private static Random random = new Random();
         private static string getRandomString(int length = 8)
         {
@@ -34,11 +33,40 @@ namespace DescribeCompiler.Compiler.Optimizers
             return id;
         }
 
+        //<links>
+        //::= Link Link
+        //| Link <links>
+        private string DoLink(string text)
+        {
+            string s = text.Substring(1, text.Length - 2);
+            return s;
+        }
+        private string[] DoLinks(Reduction r)
+        {
+            string s1 = DoLink(r[0].Data.ToString());
+
+            string ruleName = r[1].Symbol.Name;
+            if (ruleName == "Link")
+            {
+                string s2 = DoLink(r[1].Data.ToString());
+                return new string[] { s1, s2 };
+            }
+            else
+            {
+                string[] links = DoLinks(r[1].Data as Reduction);
+                List<string> li = new List<string>() { s1 };
+                li.AddRange(links);
+                return li.ToArray();
+            }
+        }
+
+
 
         //Text
         //<text-chunk>
         //::= Text | EscapeHyphen | EscapeLeftArrow | EscapeRightArrow | EscapeSeparator
         //| EscapeTerminator | EscapeStar | EscapeEscape | EscapeFSlash | EscapeBSlash
+        //| EscapeLeftSquare | EscapeRightSquare
         private string DoTextChunk(Reduction r)
         {
             GrammarSymbol sym = r.Production.Handle[0];
@@ -57,6 +85,8 @@ namespace DescribeCompiler.Compiler.Optimizers
                 case "EscapeStar":
                 case "EscapeEscape":
                 case "EscapeFSlash":
+                case "EscapeLeftSquare":
+                case "EscapeRightSquare":
                     text = r[0].Data.ToString().Replace("\\", "");
                     break;
                 case "EscapeBSlash":
@@ -118,6 +148,7 @@ namespace DescribeCompiler.Compiler.Optimizers
         {
             string text = null;
             string tag = null;
+            string[] links = null;
 
             for (int i = 0; i < r.Count(); i++)
             {
@@ -131,6 +162,13 @@ namespace DescribeCompiler.Compiler.Optimizers
                     case "tag":
                         string t = DoTag(r[i].Data as Reduction);
                         tag = t;
+                        break;
+                    case "Link":
+                        string l = DoLink(r[i].Data.ToString());
+                        links = new string[] { l };
+                        break;
+                    case "links":
+                        links = DoLinks(r[i].Data as Reduction);
                         break;
                 }
             }
@@ -158,6 +196,8 @@ namespace DescribeCompiler.Compiler.Optimizers
             //filename addressing
             //namespace addressing
             //(tag.StartsWith("#")) //encrypted
+
+
             if (!u.Translations.Keys.Contains(tag))
             {
                 u.Translations.Add(tag, text);
@@ -166,6 +206,16 @@ namespace DescribeCompiler.Compiler.Optimizers
             {
                 //redefinition
                 u.Translations[tag] = text;
+            }
+
+            //links
+            if (links != null && links.Count() > 0)
+            {
+                if (!u.Links.Keys.Contains(tag)) u.Links.Add(tag, new List<string>());
+                foreach (string s in links)
+                {
+                    u.Links[tag].Add(s);
+                }
             }
 
             //idFile
