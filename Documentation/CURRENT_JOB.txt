@@ -2,6 +2,8 @@ Work on Grammars:
 
 -	Develop grammar for Describe v 1.1
 -	Translate older grammars to JSON and save json versions with the .egt and .grm files as well
+Test old grammers with the builder
+Add double characters to new grammar "<<" instead of "<", "[[" instead of "]" etc.
 Add v1.1 Grammar file to the compiler
 After developing an Optimizer for v1.1, run all the tests for all the versions and save the results
 Run all the tests on v1.1 Grammar using the Builder, and compare the results
@@ -10,8 +12,17 @@ Run all the tests on all older versions as well (running all the previous versio
 Work on Optimizers:
 
 Develop optimizers for Describe v0.7, v0.8, v0.9, v1.1
-Add code to actually load different optimizers when grammar is changed
 
 Work on Translators:
 
 Remove templating functionality
+
+
+
+
+
+
+
+Add code to actually load different optimizers when grammar is changed
+-	in all of the Ctors
+-	in public bool ChangeGrammar(GrammarName grammarName)

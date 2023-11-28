@@ -50,22 +50,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Compiler\DescribeCompiler#LogHandlers.cs" />
-    <Compile Include="Compiler\DescribeCompiler#Constructors.cs" />
-    <Compile Include="Compiler\DescribeCompiler#VerbosityHigh.cs" />
-    <Compile Include="Compiler\DescribeCompiler#Grammar.cs" />
-    <Compile Include="Compiler\DescribeCompiler#VerbosityMedium.cs" />
-    <Compile Include="Compiler\DescribeCompiler#VerbosityLow.cs" />
-    <Compile Include="Compiler\DescribeCompiler#Statistics.cs" />
-    <Compile Include="Compiler\DescribeCompiler#Settings.cs" />
-    <Compile Include="Compiler\DescribeCompiler.cs" />
+    <Compile Include="Compiler\Compiler\LogHandlers.cs" />
+    <Compile Include="Compiler\Compiler\Constructors.cs" />
+    <Compile Include="Compiler\Compiler\VerbosityHigh.cs" />
+    <Compile Include="Compiler\Compiler\Grammar.cs" />
+    <Compile Include="Compiler\Compiler\VerbosityMedium.cs" />
+    <Compile Include="Compiler\Compiler\VerbosityLow.cs" />
+    <Compile Include="Compiler\Compiler\Statistics.cs" />
+    <Compile Include="Compiler\Compiler\Settings.cs" />
+    <Compile Include="Compiler\Compiler\Compiler.cs" />
     <Compile Include="Compiler\eArtifactMode.cs" />
     <Compile Include="Compiler\Optimizers\IDescribeOptimizer.cs" />
     <Compile Include="Compiler\Optimizers\OptimizerForDescribe06.cs" />
     <Compile Include="Compiler\Optimizers\OptimizerForDescribe07.cs" />
     <Compile Include="Compiler\Optimizers\OptimizerForDescribe08.cs" />
     <Compile Include="Compiler\Optimizers\OptimizerForDescribe09.cs" />
-    <Compile Include="Compiler\Optimizers\OptimizerForDescribe11.cs" />
+    <Compile Include="Compiler\Optimizers\OptimizerForDescribe10.cs" />
+    <Compile Include="Compiler\Preprocessors\IDescribePreprocessor.cs" />
+    <Compile Include="Compiler\Preprocessors\PreprocessorForDescribe10.cs" />
+    <Compile Include="Compiler\Preprocessors\PreprocessorForDescribe09.cs" />
+    <Compile Include="Compiler\Preprocessors\PreprocessorForDescribe08.cs" />
+    <Compile Include="Compiler\Preprocessors\PreprocessorForDescribe07.cs" />
+    <Compile Include="Compiler\Preprocessors\PreprocessorForDescribe06.cs" />
     <Compile Include="Translators\CharacterDictionaries.cs" />
     <Compile Include="Translators\JsonTranslator.cs" />
     <Compile Include="Translators\DescribeTranslator.cs" />
@@ -76,7 +82,7 @@
     <Compile Include="Compiler\Optimizers\DefaultOptimizer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Compiler\resourceUtil.cs" />
-    <Compile Include="Compiler\DescribeCompiler#Properties.cs" />
+    <Compile Include="Compiler\Compiler\Properties.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Grammars\DescribeBasics.egt" />
