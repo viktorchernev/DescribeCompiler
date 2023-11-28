@@ -67,6 +67,72 @@ namespace DescribeCompiler.Compiler.Preprocessors
                     {
                         sb.Append('\\');
                     }
+                    else if (value[i] == '['
+                        && value[i - 1] != '['
+                        && value[i + 1] != '[')
+                    {
+                        sb.Append('\\');
+                    }
+                    else if (value[i] == ']'
+                        && value[i - 1] != ']'
+                        && value[i + 1] != ']')
+                    {
+                        sb.Append('\\');
+                    }
+                    else if (value[i] == '{'
+                        && value[i - 1] != '{'
+                        && value[i + 1] != '{')
+                    {
+                        sb.Append('\\');
+                    }
+                    else if (value[i] == '}'
+                        && value[i - 1] != '}'
+                        && value[i + 1] != '}')
+                    {
+                        sb.Append('\\');
+                    }
+                    else if (value[i] == '<'
+                        && value[i - 1] != '<'
+                        && value[i + 1] != '<')
+                    {
+                        sb.Append('\\');
+                    }
+                    else if (value[i] == '>')
+                    {
+                        if ((value[i + 1] == '\n' || value[i + 1] == '\r') 
+                            && value[i - 1] == '-')
+                        {
+                            sb.Append('>');
+                        }
+                        else if (value[i] == '>'
+                            && value[i - 1] != '>'
+                            && value[i + 1] != '>')
+                        {
+                            sb.Append('\\');
+                        }
+                    }
+                    else if (value[i] == ',')
+                    {
+                        if (value[i + 1] == '\n' || value[i + 1] == '\r')
+                        {
+                            sb.Append(',');
+                        }
+                        else
+                        {
+                            sb.Append('\\');
+                        }
+                    }
+                    else if (value[i] == ';')
+                    {
+                        if(value[i + 1] == '\n' || value[i + 1] == '\r')
+                        {
+                            sb.Append(';');
+                        }
+                        else
+                        {
+                            sb.Append('\\');
+                        }
+                    }
 
                     sb.Append(value[i]);
                 }
