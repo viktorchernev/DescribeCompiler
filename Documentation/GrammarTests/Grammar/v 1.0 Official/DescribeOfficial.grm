@@ -1,7 +1,7 @@
 ! Attributes
 "Name" = 'D#SCRIBE markup Language'
 "Author" = 'DemonOfReason'
-"Version" = '1.1'
+"Version" = '1.0'
 "About" = 'D#SCRIBE Language'
 "Character Mapping" = 'Unicode'
 "Case Sensitive" = False
@@ -11,10 +11,10 @@
 Comment Start = '/*'
 Comment End = '*/'
 Comment Line = '//'
-Link Start = '['
-Link End = ']'
-Decorator Start = '{'
-Decorator End = '}'
+Link Start = '[['
+Link End = ']]'
+Decorator Start = '{{'
+Decorator End = '}}'
 
 ! Symbols
 Hyphen = '-'
@@ -22,9 +22,13 @@ LeftArrow = '<'
 RightArrow = '>'
 Separator = ','
 Terminator = ';'
-{myWhitespace} = {Whitespace} - {LF}
-Whitespace = {myWhitespace}
-NewLine = {LF}
+!Star = '*'
+!FSlash = '/'
+!BSlash = '\'
+!LeftSquare = '['
+!RightSquare = ']'
+!LeftCurl = '{'
+!RightCurl = '}'
 
 ! Escaped symbols
 EscapeHyphen = '\-'
@@ -46,13 +50,34 @@ EscapeBSlash = '\\'
 Text = {TextCharacter}+
 
 
-! Producer
-<producer>
-    ::= Hyphen RightArrow NewLine
+! Compound
+! Preprocessor needs to doubles right arrow followed by a new line and preceded by hyphen "->\n" - "->>\n"
+! Preprocessor needs to escape single right arrows ">" - "\>"
+<producer> ::= Hyphen RightArrow RightArrow
+
+! Preprocessor needs to double comma followed by a new line ",\n" - ",,\n"
+! Preprocessor needs to escape single comas "," - "\,"
+<separator> ::= Separator Separator
+
+! Preprocessor needs to double semicolon followed by a new line ";\n" - ";;\n"
+! Preprocessor needs to escape single semicolons ";" - "\;"
+<terminator> ::= Terminator Terminator
+
+! Preprocessor needs to escape single left arrows "<" - "\<"
+<tagstart> ::= LeftArrow LeftArrow
+
+! Preprocessor needs to escape single right arrows ">" - "\>"
+<tagend> ::= RightArrow RightArrow
+
+! Preprocessor needs to escape single left square brackets "[" - "\["
+! Preprocessor needs to escape single right square brackets "]" - "\]"
+! Preprocessor needs to escape single left curly brackets "{" - "\{"
+! Preprocessor needs to escape single right curly brackets "}" - "\}"
+
+
 
 ! Tagging
-<tag>
-    ::= LeftArrow <text> RightArrow
+<tag> ::= <tagstart> <text> <tagend>
 
 <links>
     ::= Link Link
@@ -68,8 +93,6 @@ Text = {TextCharacter}+
 ! Text
 <text-chunk>
     ::= Text
-    | Separator
-    | Terminator
     | EscapeHyphen
     | EscapeLeftArrow
     | EscapeRightArrow
@@ -84,25 +107,13 @@ Text = {TextCharacter}+
     | EscapeLeftCurl
     | EscapeRightCurl
 
-<new-lines>
-    ::= NewLine NewLine
-     | NewLine <new-lines>
-
 <text-chunk-list>    
     ::= <text-chunk> <text-chunk>    
      | <text-chunk> <text-chunk-list>
-     | <text-chunk> NewLine <text-chunk>    
-     | <text-chunk> NewLine <text-chunk-list>
-     | <text-chunk> <new-lines> <text-chunk>    
-     | <text-chunk> <new-lines> <text-chunk-list>
 
 <text>     
     ::= <text-chunk>    
     | <text-chunk-list>
-    | NewLine <text-chunk>
-    | NewLine <text-chunk-list>
-    | <new-lines> <text-chunk>
-    | <new-lines> <text-chunk-list>
    
 
 
@@ -173,28 +184,23 @@ Text = {TextCharacter}+
     | <expression>
 
 <item-or-expression-list>
-    ::= <item> Separator NewLine <item>
-    | <item> Separator NewLine <expression>
+    ::= <item> <separator> <item>
+    | <item> <separator> <expression>
     | <expression> <item>
     | <expression> <expression>
     
-    | <item> Separator NewLine <item-or-expression-list>
+    | <item> <separator> <item-or-expression-list>
     | <expression> <item-or-expression-list>
 
     
+    
 
 <expression>     
-    ::= <item> <producer> Terminator NewLine
-    | <item> <producer> <item-or-expression> Terminator NewLine  
-    | <item> <producer> <item-or-expression-list> Terminator NewLine
-    | <item> <producer> <item-or-expression> NewLine
-    | <item> <producer> <item-or-expression-list> NewLine
-    
-    | <item> <producer> Terminator <new-lines>
-    | <item> <producer> <item-or-expression> Terminator <new-lines>
-    | <item> <producer> <item-or-expression-list> Terminator <new-lines>
-    | <item> <producer> <item-or-expression> <new-lines>
-    | <item> <producer> <item-or-expression-list> <new-lines>
+    ::= <item> <producer> <terminator>    
+    | <item> <producer> <item-or-expression> <terminator>   
+    | <item> <producer> <item-or-expression-list> <terminator>
+    | <item> <producer> <item-or-expression>
+    | <item> <producer> <item-or-expression-list>
 
 <expression-list>     
     ::= <expression> <expression>    

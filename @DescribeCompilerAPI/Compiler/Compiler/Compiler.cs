@@ -22,7 +22,7 @@ namespace DescribeCompiler
         /// <summary>
         /// The optimizer class
         /// </summary>
-        public IDescribeOptimizer Optimizer
+        public IDescribeOptimizer _Optimizer
         {
             get;
             set;
@@ -31,7 +31,7 @@ namespace DescribeCompiler
         /// <summary>
         /// The preprocessor class
         /// </summary>
-        public IDescribePreprocessor Preprocessor 
+        public IDescribePreprocessor _Preprocessor 
         { 
             get; 
             set; 
@@ -56,29 +56,28 @@ namespace DescribeCompiler
                     switch (grammarName)
                     {
                         case GrammarName.Basic:
-                            Optimizer = new OptimizerForDescribe06();
-                            Preprocessor = new PreprocessorForDescribe06();
+                            _Optimizer = new OptimizerForDescribe06();
+                            _Preprocessor = new PreprocessorForDescribe06();
                             break;
                         case GrammarName.Tags:
-                            Optimizer = new OptimizerForDescribe07();
-                            Preprocessor = new PreprocessorForDescribe07();
+                            _Optimizer = new OptimizerForDescribe07();
+                            _Preprocessor = new PreprocessorForDescribe07();
                             break;
                         case GrammarName.Links:
-                            Optimizer = new OptimizerForDescribe08();
-                            Preprocessor = new PreprocessorForDescribe08();
+                            _Optimizer = new OptimizerForDescribe08();
+                            _Preprocessor = new PreprocessorForDescribe08();
                             break;
                         case GrammarName.Decorators:
-                            Optimizer = new OptimizerForDescribe09();
-                            Preprocessor = new PreprocessorForDescribe09();
+                            _Optimizer = new OptimizerForDescribe09();
+                            _Preprocessor = new PreprocessorForDescribe09();
                             break;
                         case GrammarName.Official:
                         default:
-                            Optimizer = new DefaultOptimizer();
-                            //Optimizer = new OptimizerForDescribe10();
-                            Preprocessor = new PreprocessorForDescribe10();
+                            _Optimizer = new OptimizerForDescribe10();
+                            _Preprocessor = new PreprocessorForDescribe10();
                             break;
                     }
-                    Optimizer = new DefaultOptimizer();
+                    _Optimizer = new DefaultOptimizer();
                     LogInfo("Loaded new grammar: \"" + fullname + "\"");
                     return true;
                 }

@@ -36,11 +36,11 @@ namespace DescribeCompiler
         /// <summary>
         /// A string representing the full name of the compiler (with the version)
         /// </summary>
-        public static string COMPILER_NAME = "Describe Compiler v0.9.2";
+        public static string COMPILER_NAME = "Describe Compiler v0.9.3";
 
         /// <summary>
         /// A string representing the compiler version
         /// </summary>
-        public static string COMPILER_VER = "0.9.2";
+        public static string COMPILER_VER = "0.9.3";
     }
 }

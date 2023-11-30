@@ -107,7 +107,7 @@ namespace DescribeCompiler
             try
             {
                 source = File.ReadAllText(fileInfo.FullName);
-                source = Preprocessor.ProcessSource(source);
+                source = _Preprocessor.ProcessSource(source);
                 if (source.Length == 0)
                 {
                     msg += "file is empty!";
@@ -156,7 +156,7 @@ namespace DescribeCompiler
             //unfold
             try
             {
-                bool optimized = Optimizer.DoScripture(unfold, root);
+                bool optimized = _Optimizer.DoScripture(unfold, root);
                 if (!optimized)
                 {
                     msg += "failed to unfold tree.";
@@ -201,7 +201,7 @@ namespace DescribeCompiler
             try
             {
                 source = File.ReadAllText(fileInfo.FullName);
-                source = Preprocessor.ProcessSource(source);
+                source = _Preprocessor.ProcessSource(source);
                 if (source.Length == 0)
                 {
                     msg += "file is empty!";
@@ -250,7 +250,7 @@ namespace DescribeCompiler
             //unfold
             try
             {
-                bool optimized = Optimizer.DoScripture(unfold, root);
+                bool optimized = _Optimizer.DoScripture(unfold, root);
                 if (optimized)
                 {
                     msg += "Ok";

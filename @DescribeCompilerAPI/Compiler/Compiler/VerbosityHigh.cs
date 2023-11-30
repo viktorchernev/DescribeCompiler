@@ -110,7 +110,7 @@ namespace DescribeCompiler
             try
             {
                 source = File.ReadAllText(fileInfo.FullName);
-                source = Preprocessor.ProcessSource(source);
+                source = _Preprocessor.ProcessSource(source);
                 if (source.Length == 0)
                 {
                     LogError("Error - the file you are trying to parse is empty");
@@ -167,7 +167,7 @@ namespace DescribeCompiler
             //unfold
             try
             {
-                bool optimized = Optimizer.DoScripture(unfold, root);
+                bool optimized = _Optimizer.DoScripture(unfold, root);
                 if (optimized)
                 {
                     LogText("Parse tree unfolded successfuly");
@@ -217,7 +217,7 @@ namespace DescribeCompiler
             try
             {
                 source = File.ReadAllText(fileInfo.FullName);
-                source = Preprocessor.ProcessSource(source);
+                source = _Preprocessor.ProcessSource(source);
                 if (source.Length == 0)
                 {
                     LogError("Error - the file you are trying to parse is empty");
@@ -274,7 +274,7 @@ namespace DescribeCompiler
             //unfold
             try
             {
-                bool optimized = Optimizer.DoScripture(unfold, root);
+                bool optimized = _Optimizer.DoScripture(unfold, root);
                 if (optimized)
                 {
                     LogText("Parse tree unfolded successfuly");
