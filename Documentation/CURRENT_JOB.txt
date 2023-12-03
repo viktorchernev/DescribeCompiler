@@ -1,9 +1,5 @@
 Work on Grammars:
 
-After developing an Optimizer for v1.0, run all the tests for all the versions and save the results
-Run all the tests on v1.0 Grammar using the Builder, and compare the results
-Run all the tests on all older versions as well (running all the previous version tests as well) via (CompilerAPI and Builder App)
-
 Work on Optimizers:
 
 Work on Translators:
@@ -13,7 +9,7 @@ Remove templating functionality
 
 
 
-
+Рun all the tests for all the versions and save the results
 Add v1.0 Grammar file to the compiler
 Test old grammers with the builder
 Develop grammar for Describe v 1.0
