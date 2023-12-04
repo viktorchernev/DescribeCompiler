@@ -19,10 +19,10 @@ namespace DescribeCompiler.Compiler.Preprocessors
             //in order to skip if tests to see if we are not on the first or last char
             //for null reference. The new line we keep, as it is a workaround for the
             //runaway group last comment bug
-            value = "." + value + Environment.NewLine;
+            value = "." + value + Environment.NewLine + Environment.NewLine;
 
             StringBuilder sb = new StringBuilder();
-            for (int i = 1; i < value.Length - 1; i++)
+            for (int i = 1; i < value.Length - 2; i++)
             {
                 if (value[i] > 127) processNonLatin(value, sb, ref i);
                 else if (value[i] == '-') processHyphen(value, sb, ref i);
@@ -55,11 +55,11 @@ namespace DescribeCompiler.Compiler.Preprocessors
                 text = RemoveWhitespace(text);
                 if(text.StartsWith("directives->") == false) return;
 
-                string[] directives = text.Substring(12).Split(',');
+                string[] directives = text.Substring(12).TrimStart('>').Split(',');
                 foreach (string directive in directives)
                 {
                     string[] sep = directive.Split('<');
-                    if (sep[0] == "delimiter-mode") ReadDeliiterMode(sep[1]);
+                    if (sep[0] == "delimiter-mode") ReadDelimiterMode(sep[sep.Length - 1]);
                 }
             }
             catch { }
@@ -68,12 +68,12 @@ namespace DescribeCompiler.Compiler.Preprocessors
             //      delimiter-mode <bi>,
             //      namespace <treeofall.public>;
         }
-        void ReadDeliiterMode(string value)
+        void ReadDelimiterMode(string value)
         {
-            if(value == "bi>") BiLimited = true;
-            else if (value == "mono>") BiLimited = false;
-            else if (value == "2>") BiLimited = true;
-            else if (value == "1>") BiLimited = false;
+            if(value.StartsWith("bi>")) BiLimited = true;
+            else if (value.StartsWith("mono>")) BiLimited = false;
+            else if (value.StartsWith("2>")) BiLimited = true;
+            else if (value.StartsWith("1>")) BiLimited = false;
         }
         string RemoveWhitespace(string input)
         {
@@ -163,129 +163,201 @@ namespace DescribeCompiler.Compiler.Preprocessors
         // start BiLimited
         void processSquareBracketLeft(string source, StringBuilder sb, ref int i)
         {
-            // source[i] == '[' here.
-            // When we find '[' we will either escape it or double it or do nothing.
-            // If the symbol before and the symbol after is not also '[' or an
-            // escape sequence, we escape it. Otherwise, we do nothing.
-
-            if ((source[i - 1] != '[' || isEscaped(source, i - 1))
-                && source[i + 1] != '['
-                && isEscaped(source, i) == false)
+            if (BiLimited)
             {
-                // if we have an alone symbol, and we are using double symbols (BiLimited)
-                // then we escape it, otherwise we double it
-                if (BiLimited) sb.Append('\\');
-                else sb.Append('[');
+                // source[i] == '[' here.
+                // When we find '[' we will either escape it or double it or do nothing.
+                // If the symbol before and the symbol after is not also '[' or an
+                // escape sequence, we escape it. Otherwise, we do nothing.
+
+                if ((source[i - 1] != '[' || isEscaped(source, i - 1))
+                    && source[i + 1] != '['
+                    && isEscaped(source, i) == false)
+                {
+                    // if we have an alone symbol, and we are using double symbols (BiLimited)
+                    // then we escape it, otherwise we double it
+                    sb.Append('\\');
+                }
+                sb.Append(source[i]);
             }
-            sb.Append(source[i]);
+            else
+            {
+                if (isEscaped(source, i) == false)
+                {
+                    sb.Append('[');
+                }
+                sb.Append(source[i]);
+            }
         }
         void processSquareBracketRight(string source, StringBuilder sb, ref int i)
         {
-            // source[i] == ']' here.
-            // When we find ']' we will either escape it or double it or do nothing.
-            // If the symbol before and the symbol after is not also ']' or an
-            // escape sequence, we escape it. Otherwise, we do nothing.
-
-            if ((source[i - 1] != ']' || isEscaped(source, i - 1))
-                && source[i + 1] != ']'
-                && isEscaped(source, i) == false)
+            if (BiLimited)
             {
-                // if we have an alone symbol, and we are using double symbols (BiLimited)
-                // then we escape it, otherwise we double it
-                if (BiLimited) sb.Append('\\');
-                else sb.Append(']');
+                // source[i] == ']' here.
+                // When we find ']' we will either escape it or double it or do nothing.
+                // If the symbol before and the symbol after is not also ']' or an
+                // escape sequence, we escape it. Otherwise, we do nothing.
+
+                if ((source[i - 1] != ']' || isEscaped(source, i - 1))
+                    && source[i + 1] != ']'
+                    && isEscaped(source, i) == false)
+                {
+                    // if we have an alone symbol, and we are using double symbols (BiLimited)
+                    // then we escape it, otherwise we double it
+                    sb.Append('\\');
+                }
+                sb.Append(source[i]);
             }
-            sb.Append(source[i]);
+            else
+            {
+                if (isEscaped(source, i) == false)
+                {
+                    sb.Append(']');
+                }
+                sb.Append(source[i]);
+            }
         }
         void processCurlyBracketLeft(string source, StringBuilder sb, ref int i)
         {
-            // source[i] == '{' here.
-            // When we find '{' we will either escape it or double it or do nothing.
-            // If the symbol before and the symbol after is not also '{' or an
-            // escape sequence, we escape it. Otherwise, we do nothing.
-
-            if ((source[i - 1] != '{' || isEscaped(source, i - 1))
-                && source[i + 1] != '{'
-                && isEscaped(source, i) == false)
+            if (BiLimited)
             {
-                // if we have an alone symbol, and we are using double symbols (BiLimited)
-                // then we escape it, otherwise we double it
-                if (BiLimited) sb.Append('\\');
-                else sb.Append('{');
+                // source[i] == '{' here.
+                // When we find '{' we will either escape it or double it or do nothing.
+                // If the symbol before and the symbol after is not also '{' or an
+                // escape sequence, we escape it. Otherwise, we do nothing.
+
+                if ((source[i - 1] != '{' || isEscaped(source, i - 1))
+                    && source[i + 1] != '{'
+                    && isEscaped(source, i) == false)
+                {
+                    // if we have an alone symbol, and we are using double symbols (BiLimited)
+                    // then we escape it, otherwise we double it
+                    sb.Append('\\');
+                }
+                sb.Append(source[i]);
             }
-            sb.Append(source[i]);
+            else
+            {
+                if (isEscaped(source, i) == false)
+                {
+                    sb.Append('{');
+                }
+                sb.Append(source[i]);
+            }
         }
         void processCurlyBracketRight(string source, StringBuilder sb, ref int i)
         {
-            // source[i] == '}' here.
-            // When we find '}' we will either escape it or double it or do nothing.
-            // If the symbol before and the symbol after is not also '}' or an
-            // escape sequence, we escape it. Otherwise, we do nothing.
+            if (BiLimited)
+            {
+                // source[i] == '}' here.
+                // When we find '}' we will either escape it or double it or do nothing.
+                // If the symbol before and the symbol after is not also '}' or an
+                // escape sequence, we escape it. Otherwise, we do nothing.
 
-            if ((source[i - 1] != '}' || isEscaped(source, i - 1))
+                if ((source[i - 1] != '}' || isEscaped(source, i - 1))
                 && source[i + 1] != '}'
                 && isEscaped(source, i) == false)
-            {
-                // if we have an alone symbol, and we are using double symbols (BiLimited)
-                // then we escape it, otherwise we double it
-                if (BiLimited) sb.Append('\\');
-                else sb.Append('}');
+                {
+                    // if we have an alone symbol, and we are using double symbols (BiLimited)
+                    // then we escape it, otherwise we double it
+                    sb.Append('\\');
+                }
+                sb.Append(source[i]);
             }
-            sb.Append(source[i]);
+            else
+            {
+                if(isEscaped(source, i) == false)
+                {
+                    sb.Append('}');
+                }
+                sb.Append(source[i]);
+            }
         }
         void processArrowLeft(string source, StringBuilder sb, ref int i)
         {
-            // source[i] == '<' here.
-            // When we find '<' we will either escape it or double it or do nothing.
-            // If the symbol before and the symbol after is not also '<' or an
-            // escape sequence, we escape it. Otherwise, we do nothing.
-
-            if ((source[i - 1] != '<' || isEscaped(source, i - 1))
-                && source[i + 1] != '<'
-                && isEscaped(source, i) == false)
+            if (BiLimited)
             {
-                // if we have an alone symbol, and we are using double symbols (BiLimited)
-                // then we escape it, otherwise we double it
-                if (BiLimited) sb.Append('\\');
-                else sb.Append('<');
+                // source[i] == '<' here.
+                // When we find '<' we will either escape it or double it or do nothing.
+                // If the symbol before and the symbol after is not also '<' or an
+                // escape sequence, we escape it. Otherwise, we do nothing.
+
+                if (((source[i - 1] != '<' || isEscaped(source, i - 1))
+                    && source[i + 1] != '<'
+                    && isEscaped(source, i) == false)
+                        || (source[i + 1] == '<' && source[i + 2] == '<'))
+                {
+                    // if we have an alone symbol, and we are using double symbols (BiLimited)
+                    // then we escape it, otherwise we double it
+                    sb.Append('\\');
+                }
+                else if (BiLimited == false)
+                {
+                    sb.Append('<');
+                }
+                sb.Append(source[i]);
             }
-            sb.Append(source[i]);
+            else
+            {
+                if (isEscaped(source, i) == false)
+                {
+                    sb.Append('<');
+                }
+                sb.Append(source[i]);
+            }
         }
         void processArrowRight(string source, StringBuilder sb, ref int i)
         {
-            // source[i] == '>' here.
-            // When we find '>' we will either escape it or double it or do nothing.
-
-            // If the symbol before or after is also '>', or current symbol is already
-            // escaped, we do nothing.
-            if ((source[i - 1] == '>' && isEscaped(source, i - 1) == false)
-                || source[i + 1] == '>'
-                || isEscaped(source, i))
+            if (BiLimited)
             {
-                //do nothing
-            }
+                // source[i] == '>' here.
+                // When we find '>' we will either escape it or double it or do nothing.
 
-            // If the symbol before is '-' and the symbol after is either a new line
-            // ('\n' or '\r') or whitespace(s) followed by a new line or a line comment,
-            // or a delimited comment(s) followed by new line, we double the sign by
-            // adding an extra '>' symbol
-            else if (source[i - 1] == '-' && isEscaped(source, i - 1) == false)
-            {
-                if (isLineEndingWithStar(source, i)) sb.Append('>');
-                else sb.Append('\\');
-            }
+                // If the symbol before or after is also '>', or current symbol is already
+                // escaped, we do nothing.
+                if ((source[i - 1] == '>' && isEscaped(source, i - 1) == false)
+                    || source[i + 1] == '>'
+                    || isEscaped(source, i))
+                {
+                    //do nothing 
+                    //unles triple. however, we are not allowed to have text after a tag
+                    if (source[i - 2] == '>' && source[i - 1] == '>' && isEscaped(source, i - 2) == false) sb.Append('\\');
+                }
 
-            // otherwise we escape
+                // If the symbol before is '-' and the symbol after is either a new line
+                // ('\n' or '\r') or whitespace(s) followed by a new line or a line comment,
+                // or a delimited comment(s) followed by new line, we double the sign by
+                // adding an extra '>' symbol
+                else if (source[i - 1] == '-' && isEscaped(source, i - 1) == false)
+                {
+                    if (isLineEndingWithStar(source, i)) sb.Append('>');
+                    else
+                    {
+                        sb.Insert(sb.Length - 1, '\\');
+                        sb.Append('\\');
+                    }
+                }
+
+                // otherwise we escape
+                else
+                {
+                    // if we have an alone symbol, and we are using double symbols (BiLimited)
+                    // then we escape it, otherwise we double it
+                    if (BiLimited) sb.Append('\\');
+                    else sb.Append('>');
+                }
+
+                // append actual symbol
+                sb.Append(source[i]);
+            }
             else
             {
-                // if we have an alone symbol, and we are using double symbols (BiLimited)
-                // then we escape it, otherwise we double it
-                if (BiLimited) sb.Append('\\');
-                else sb.Append('>');
+                if (isEscaped(source, i) == false) sb.Append('>');
+
+                // append actual symbol
+                sb.Append(source[i]);
             }
 
-            // append actual symbol
-            sb.Append(source[i]);
         }
         // end BiLimited
 
@@ -342,7 +414,7 @@ namespace DescribeCompiler.Compiler.Preprocessors
         bool isEscaped(string source, int i)
         {
             int count = 0;
-            for (int j = i-1; j > -1; j--)
+            for (int j = i - 1; j > -1; j--)
             {
                 if (source[j] == '\\') count++;
                 else break;
@@ -352,7 +424,7 @@ namespace DescribeCompiler.Compiler.Preprocessors
         bool isEscapingEscaper(string source, int i)
         {
             int count = 0;
-            for (int j = i + 1; j > source.Length; j++)
+            for (int j = i + 1; j < source.Length; j++)
             {
                 if (source[j] == '\\') count++;
                 else break;
@@ -361,7 +433,7 @@ namespace DescribeCompiler.Compiler.Preprocessors
         }
         bool isLineEnding(string source, int i)
         {
-            for (int j = i + 1; j > source.Length; j++)
+            for (int j = i + 1; j < source.Length; j++)
             {
                 // We have Windows-style new line, so yes,
                 // the character we are testing is line ending.
@@ -390,7 +462,7 @@ namespace DescribeCompiler.Compiler.Preprocessors
             // accounted for
 
             bool inDelimitedComment = false;
-            for (int j = i + 1; j > source.Length; j++)
+            for (int j = i + 1; j < source.Length; j++)
             {
                 if(inDelimitedComment == false)
                 {
