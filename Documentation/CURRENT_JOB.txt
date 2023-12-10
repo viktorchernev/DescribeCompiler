@@ -1,9 +1,3 @@
-Work on Grammars:
-
-Work on Optimizers:
-
-Work on Translators:
-
 Remove templating functionality
 
 
