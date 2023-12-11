@@ -79,28 +79,27 @@
     <Compile Include="Compiler\DescribeUnfold.cs" />
     <Compile Include="Compiler\eGrammarName.cs" />
     <Compile Include="Compiler\eLogVerbosity.cs" />
-    <Compile Include="Compiler\Optimizers\DefaultOptimizer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Compiler\resourceUtil.cs" />
     <Compile Include="Compiler\Compiler\Properties.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Grammars\DescribeBasics.egt" />
-    <EmbeddedResource Include="Grammars\DescribeDecorators.egt" />
-    <EmbeddedResource Include="Grammars\DescribeLinks.egt" />
-    <EmbeddedResource Include="Grammars\DescribeTags.egt" />
+    <EmbeddedResource Include="Compiler\Grammars\DescribeBasics.egt" />
+    <EmbeddedResource Include="Compiler\Grammars\DescribeDecorators.egt" />
+    <EmbeddedResource Include="Compiler\Grammars\DescribeLinks.egt" />
+    <EmbeddedResource Include="Compiler\Grammars\DescribeTags.egt" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Templates\JSON_COMMONER\Page.json" />
-    <EmbeddedResource Include="Templates\HTML_PARACORD\ProductionColored.html" />
-    <EmbeddedResource Include="Templates\HTML_PARACORD\Item.html" />
-    <EmbeddedResource Include="Templates\HTML_PARACORD\ItemColored.html" />
-    <EmbeddedResource Include="Templates\HTML_PARACORD\ItemComment.html" />
-    <EmbeddedResource Include="Templates\HTML_PARACORD\ItemEmpty.html" />
-    <EmbeddedResource Include="Templates\HTML_PARACORD\Page.html" />
-    <EmbeddedResource Include="Templates\HTML_PARACORD\Production.html" />
-    <EmbeddedResource Include="Templates\HTML_PARACORD\Root.html" />
-    <EmbeddedResource Include="Templates\HTML_PARACORD\Link.html" />
+    <EmbeddedResource Include="Translators\Templates\JSON_COMMONER\Page.json" />
+    <EmbeddedResource Include="Translators\Templates\HTML_PARACORD\ProductionColored.html" />
+    <EmbeddedResource Include="Translators\Templates\HTML_PARACORD\Item.html" />
+    <EmbeddedResource Include="Translators\Templates\HTML_PARACORD\ItemColored.html" />
+    <EmbeddedResource Include="Translators\Templates\HTML_PARACORD\ItemComment.html" />
+    <EmbeddedResource Include="Translators\Templates\HTML_PARACORD\ItemEmpty.html" />
+    <EmbeddedResource Include="Translators\Templates\HTML_PARACORD\Page.html" />
+    <EmbeddedResource Include="Translators\Templates\HTML_PARACORD\Production.html" />
+    <EmbeddedResource Include="Translators\Templates\HTML_PARACORD\Root.html" />
+    <EmbeddedResource Include="Translators\Templates\HTML_PARACORD\Link.html" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GoldParserEngine\GoldParserEngine.csproj">
@@ -109,24 +108,24 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Templates\JSON_COMMONER\Item.json" />
-    <EmbeddedResource Include="Templates\JSON_COMMONER\ItemColored.json" />
-    <EmbeddedResource Include="Templates\JSON_COMMONER\ItemComment.json" />
-    <EmbeddedResource Include="Templates\JSON_COMMONER\ItemEmpty.json" />
-    <EmbeddedResource Include="Templates\JSON_COMMONER\Link.json" />
-    <EmbeddedResource Include="Templates\JSON_COMMONER\Production.json" />
-    <EmbeddedResource Include="Templates\JSON_COMMONER\ProductionColored.json" />
-    <EmbeddedResource Include="Templates\JSON_COMMONER\Root.json" />
+    <EmbeddedResource Include="Translators\Templates\JSON_COMMONER\Item.json" />
+    <EmbeddedResource Include="Translators\Templates\JSON_COMMONER\ItemColored.json" />
+    <EmbeddedResource Include="Translators\Templates\JSON_COMMONER\ItemComment.json" />
+    <EmbeddedResource Include="Translators\Templates\JSON_COMMONER\ItemEmpty.json" />
+    <EmbeddedResource Include="Translators\Templates\JSON_COMMONER\Link.json" />
+    <EmbeddedResource Include="Translators\Templates\JSON_COMMONER\Production.json" />
+    <EmbeddedResource Include="Translators\Templates\JSON_COMMONER\ProductionColored.json" />
+    <EmbeddedResource Include="Translators\Templates\JSON_COMMONER\Root.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <EmbeddedResource Include="Grammars\DescribeOfficial.egt" />
+    <EmbeddedResource Include="Compiler\Grammars\DescribeOfficial.egt" />
     <None Include="packages.config" />
-    <EmbeddedResource Include="Templates\JSON_COMMONER\ItemCommentNl.json" />
-    <EmbeddedResource Include="Templates\JSON_COMMONER\Decorator.json" />
+    <EmbeddedResource Include="Translators\Templates\JSON_COMMONER\ItemCommentNl.json" />
+    <EmbeddedResource Include="Translators\Templates\JSON_COMMONER\Decorator.json" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Templates\HTML_PARACORD\ItemCommentNl.html" />
+    <EmbeddedResource Include="Translators\Templates\HTML_PARACORD\ItemCommentNl.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

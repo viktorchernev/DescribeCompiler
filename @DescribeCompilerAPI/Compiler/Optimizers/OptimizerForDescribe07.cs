@@ -1,5 +1,6 @@
 ﻿using GoldParser.Grammar;
 using GoldParser.ParseTree;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace DescribeCompiler.Compiler.Optimizers
         }
 
 
-        //Name
+        // Name
         private string GetRuleName(Reduction r)
         {
             string ruleName = r.Production.Head.Name;
@@ -27,7 +28,8 @@ namespace DescribeCompiler.Compiler.Optimizers
         }
 
 
-        //Tags
+        // Tags
+        // <tag> ::= LeftArrow<text> RightArrow
         private string DoTag(Reduction r)
         {
             string id = DoText(r[1].Data as Reduction);
@@ -35,10 +37,10 @@ namespace DescribeCompiler.Compiler.Optimizers
         }
 
 
-        //Text
-        //<text-chunk>
-        //::= Text | EscapeHyphen | EscapeLeftArrow | EscapeRightArrow | EscapeSeparator
-        //| EscapeTerminator | EscapeStar | EscapeEscape | EscapeFSlash | EscapeBSlash
+        // Text
+        // <text-chunk>
+        // ::= Text | EscapeHyphen | EscapeLeftArrow | EscapeRightArrow | EscapeSeparator
+        // | EscapeTerminator | EscapeStar | EscapeEscape | EscapeFSlash | EscapeBSlash
         private string DoTextChunk(Reduction r)
         {
             GrammarSymbol sym = r.Production.Handle[0];
@@ -67,9 +69,9 @@ namespace DescribeCompiler.Compiler.Optimizers
             return text;
         }
 
-        //<text-chunk-list>    
-        //::= <text-chunk> <text-chunk>    
-        //| <text-chunk> <text-chunk-list>
+        // <text-chunk-list>    
+        // ::= <text-chunk> <text-chunk>    
+        // | <text-chunk> <text-chunk-list>
         private string DoTextChunkList(Reduction r)
         {
             string s1 = DoTextChunk(r[0].Data as Reduction);
@@ -89,9 +91,9 @@ namespace DescribeCompiler.Compiler.Optimizers
             }
         }
 
-        //<text>     
-        //::= <text-chunk>    
-        //| <text-chunk-list>
+        // <text>     
+        // ::= <text-chunk>    
+        // | <text-chunk-list>
         private string DoText(Reduction r)
         {
             string ruleName = GetRuleName(r[0].Data as Reduction);
@@ -109,11 +111,11 @@ namespace DescribeCompiler.Compiler.Optimizers
         }
 
 
-        //ITEMS
-        //<item>       
-        //:= <text> <tag> Link Decorator
-        //| <text> <tag> <links> <decorators>
-        //not in that order though
+        // ITEMS
+        // <item>       
+        // ::= <text>
+        // | <tag> <text>
+        // | <text> <tag>
         private string DoItem(DescribeUnfold u, Reduction r)
         {
             string text = null;
@@ -182,9 +184,9 @@ namespace DescribeCompiler.Compiler.Optimizers
             return tag;
         }
 
-        //<item-or-expression>    
-        //::= <item>    
-        //| <expression>
+        // <item-or-expression>    
+        // ::= <item>    
+        // | <expression>
         private string DoItemOrExpression(DescribeUnfold u, Reduction r)
         {
             string ruleName = GetRuleName(r[0].Data as Reduction);
@@ -201,13 +203,13 @@ namespace DescribeCompiler.Compiler.Optimizers
             else return null;
         }
 
-        //<item-or-expression-list>
-        //::= <item> Separator <item>
-        //| <item> Separator <expression>
-        //| <item> Separator <item-or-expression-list>
-        //| <expression> <item>
-        //| <expression> <expression>
-        //| <expression> <item-or-expression-list>
+        // <item-or-expression-list>
+        // ::= <item> Separator <item>
+        // | <item> Separator <expression>
+        // | <item> Separator <item-or-expression-list>
+        // | <expression> <item>
+        // | <expression> <expression>
+        // | <expression> <item-or-expression-list>
         private string[] DoItemOrExpressionList(DescribeUnfold u, Reduction r)
         {
             //this method is about a list of "ItemOrExpression"
@@ -248,13 +250,12 @@ namespace DescribeCompiler.Compiler.Optimizers
 
 
         // EXPRESSIONS
-
-        //<expression>     
-        //::= <item> <producer> Terminator    
-        //| <item> <producer> <item-or-expression> Terminator   
-        //| <item> <producer> <item-or-expression-list> Terminator
-        //| <item> <producer> <item-or-expression>
-        //| <item> <producer> <item-or-expression-list>
+        // <expression>     
+        // ::= <item> <producer> Terminator    
+        // | <item> <producer> <item-or-expression> Terminator   
+        // | <item> <producer> <item-or-expression-list> Terminator
+        // | <item> <producer> <item-or-expression>
+        // | <item> <producer> <item-or-expression-list>
         private string DoExpression(DescribeUnfold u, Reduction r)
         {
             string head = DoItem(u, r[0].Data as Reduction);
@@ -313,9 +314,9 @@ namespace DescribeCompiler.Compiler.Optimizers
             return head;
         }
 
-        //<expression-list>
-        //::= <expression> <expression>
-        //| <expression> <expression-list>
+        // <expression-list>
+        // ::= <expression> <expression>
+        // | <expression> <expression-list>
         private string[] DoExpressionList(DescribeUnfold u, Reduction r, bool isPrimery = false)
         {
             //this method is about a list of "Expression"
@@ -368,9 +369,9 @@ namespace DescribeCompiler.Compiler.Optimizers
             return null;
         }
 
-        //<scripture>
-        //::= <expression>
-        //| <expression-list>
+        // <scripture>
+        // ::= <expression>
+        // | <expression-list>
         /// <summary>
         /// Translate Gold engine parse tree (root Reduction r) to Unfold structure.
         /// </summary>

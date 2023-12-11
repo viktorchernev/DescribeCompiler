@@ -200,6 +200,11 @@ namespace DescribeCompiler
             string source = "";
             try
             {
+                if (fileInfo.FullName.Contains("technologiesAndInventions.ds"))
+                {
+                    bool lll = false;
+                }
+
                 source = File.ReadAllText(fileInfo.FullName);
                 source = _Preprocessor.ProcessSource(source);
                 if (source.Length == 0)

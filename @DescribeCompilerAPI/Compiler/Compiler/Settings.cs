@@ -29,7 +29,7 @@ namespace DescribeCompiler
         /// The grammar is usually left alone, unless there is a very good reason to be changed,
         /// which, on the other hand, makes this the de facto grammar that is used.
         /// </summary>
-        public static GrammarName DEFAULT_GRAMMAR = GrammarName.Decorators;
+        public static GrammarName DEFAULT_GRAMMAR = GrammarName.Official;
 
 
 

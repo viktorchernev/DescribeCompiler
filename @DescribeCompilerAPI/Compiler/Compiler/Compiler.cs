@@ -77,7 +77,6 @@ namespace DescribeCompiler
                             _Preprocessor = new PreprocessorForDescribe10();
                             break;
                     }
-                    _Optimizer = new DefaultOptimizer();
                     LogInfo("Loaded new grammar: \"" + fullname + "\"");
                     return true;
                 }

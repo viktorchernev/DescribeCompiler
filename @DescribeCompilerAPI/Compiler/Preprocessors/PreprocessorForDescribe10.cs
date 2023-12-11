@@ -8,7 +8,7 @@ namespace DescribeCompiler.Compiler.Preprocessors
 {
     public class PreprocessorForDescribe10 : IDescribePreprocessor
     {
-        bool BiLimited = true;
+        bool BiLimited = false;
 
 
         public string ProcessSource(string value)

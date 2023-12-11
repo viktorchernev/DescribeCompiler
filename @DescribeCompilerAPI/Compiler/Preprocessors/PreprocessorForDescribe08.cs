@@ -60,8 +60,6 @@ namespace DescribeCompiler.Compiler.Preprocessors
                           && value[i + 1] != '>'
                           && value[i + 1] != '['
                           && value[i + 1] != ']'
-                          && value[i + 1] != '{'
-                          && value[i + 1] != '}'
                           && value[i + 1] != ','
                           && value[i + 1] != ';')
                     {

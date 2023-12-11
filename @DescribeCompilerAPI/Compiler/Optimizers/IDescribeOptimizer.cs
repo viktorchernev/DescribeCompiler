@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace DescribeCompiler
 {
+    //http://www.goldparser.org/doc/grammars/predefined-sets.htm
     public interface IDescribeOptimizer
     {
         /// <summary>
