@@ -14,18 +14,6 @@ namespace DescribeCompiler.Translators
 {
     public class HtmlTranslator : DescribeTranslator
     {
-        public override bool USES_TEMPLATES
-        {
-            get { return true; }
-        }
-        public override bool HAS_INBUILT_TEMPLATES
-        {
-            get { return true; }
-        }
-        public override string DEFAULT_TEMPLATES_NAME
-        {
-            get { return "HTML_PARACORD"; }
-        }
         public override bool IsInitialized
         {
             get;
@@ -34,9 +22,7 @@ namespace DescribeCompiler.Translators
 
 
         //templates
-        public bool selectInbuiltTemplate = true;
-        public string selectedTemplate = null;
-
+        const string templatesFolderName = "HTML_PARACORD";
         static string pageTemplate;
         static string rootTemplate;
         static string itemTemplate;
@@ -64,129 +50,28 @@ namespace DescribeCompiler.Translators
             //try to initialize templates
             try
             {
-                if (!USES_TEMPLATES)
-                {
-                    IsInitialized = true;
-                    LogInfo("Translator initialized - not using templates");
-                }
-                else if (HAS_INBUILT_TEMPLATES)
-                {
-                    string n = DEFAULT_TEMPLATES_NAME;
-                    pageTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Page");
-                    rootTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Root");
-                    coloredProductionTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ProductionColored");
-                    productionTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Production");
-                    itemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Item");
-                    emptyItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemEmpty");
-                    nlcommentItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemCommentNl");
-                    commentItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemComment");
-                    coloredItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemColored");
-                    linkTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Link");
+                string n = templatesFolderName;
+                pageTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Page");
+                rootTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Root");
+                coloredProductionTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ProductionColored");
+                productionTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Production");
+                itemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Item");
+                emptyItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemEmpty");
+                nlcommentItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemCommentNl");
+                commentItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemComment");
+                coloredItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemColored");
+                linkTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Link");
 
-                    LogInfo("Translator initialized - using template \"" + n + "\"");
-                    selectInbuiltTemplate = true;
-                    selectedTemplate = n;
-                    IsInitialized = true;
-                }
-                else
-                {
-                    LogInfo("Translator NOT initialized - Must further load templates from folder before using.");
-                    selectInbuiltTemplate = false;
-                    IsInitialized = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                IsInitialized = false;
-                LogError("Fatal error: " + ex.Message);
-            }
-        }
-
-        /// <summary>
-        /// Load templates from an external folder.
-        /// </summary>
-        /// <param name="path">The path to the desired templates folder</param>
-        /// <returns>True if successful</returns>
-        public override bool LoadExternalTemplates(string path)
-        {
-            try
-            {
-                DirectoryInfo directoryInfo = new DirectoryInfo(path);
-                if (directoryInfo.Exists)
-                {
-                    FileInfo[] fs = directoryInfo.GetFiles();
-                    foreach (FileInfo finfo in fs)
-                    {
-                        // make sure that "ItemEmpty" or "ItemComment" and all other
-                        // that start with Item are before "Item"
-                        if (finfo.Name.StartsWith("Page")) pageTemplate = File.ReadAllText(finfo.FullName);
-                        else if (finfo.Name.StartsWith("Root")) rootTemplate = File.ReadAllText(finfo.FullName);
-                        else if (finfo.Name.StartsWith("ProductionColored")) coloredProductionTemplate = File.ReadAllText(finfo.FullName);
-                        else if (finfo.Name.StartsWith("Production")) productionTemplate = File.ReadAllText(finfo.FullName);
-                        else if (finfo.Name.StartsWith("ItemEmpty")) emptyItemTemplate = File.ReadAllText(finfo.FullName);
-                        else if (finfo.Name.StartsWith("ItemCommentNl")) nlcommentItemTemplate = File.ReadAllText(finfo.FullName);
-                        else if (finfo.Name.StartsWith("ItemComment")) commentItemTemplate = File.ReadAllText(finfo.FullName);
-                        else if (finfo.Name.StartsWith("ItemColored")) coloredItemTemplate = File.ReadAllText(finfo.FullName);
-                        else if (finfo.Name.StartsWith("Item")) itemTemplate = File.ReadAllText(finfo.FullName);
-                        else if (finfo.Name.StartsWith("Link")) linkTemplate = File.ReadAllText(finfo.FullName);
-                    }
-
-                    LogInfo("Translator initialized - using external template \"" + path + "\"");
-                    selectInbuiltTemplate = false;
-                    selectedTemplate = path;
-                    IsInitialized = true;
-                    return true;
-                }
-                else
-                {
-                    LogInfo("Translator Not initialized - external template path does not exist \"" + path + "\"");
-                    selectInbuiltTemplate = false;
-                    selectedTemplate = path;
-                    IsInitialized = false;
-                    return false;
-                }
-            }
-            catch (Exception ex)
-            {
-                IsInitialized = false;
-                LogError("Fatal error: " + ex.Message);
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// Load templates from an internal folder of embedded resources.
-        /// </summary>
-        /// <param name="name">The name of the internal folder</param>
-        /// <returns>True if successful</returns>
-        public override bool LoadInternalTemplates(string name)
-        {
-            try
-            {
-                pageTemplate = ResourceUtil.ExtractResourceByFileName_String(name, @"Page");
-                rootTemplate = ResourceUtil.ExtractResourceByFileName_String(name, @"Root");
-                coloredProductionTemplate = ResourceUtil.ExtractResourceByFileName_String(name, @"ProductionColored");
-                productionTemplate = ResourceUtil.ExtractResourceByFileName_String(name, @"Production");
-                itemTemplate = ResourceUtil.ExtractResourceByFileName_String(name, @"Item");
-                emptyItemTemplate = ResourceUtil.ExtractResourceByFileName_String(name, @"ItemEmpty");
-                nlcommentItemTemplate = ResourceUtil.ExtractResourceByFileName_String(name, @"ItemCommentNl");
-                commentItemTemplate = ResourceUtil.ExtractResourceByFileName_String(name, @"ItemComment");
-                coloredItemTemplate = ResourceUtil.ExtractResourceByFileName_String(name, @"ItemColored");
-                linkTemplate = ResourceUtil.ExtractResourceByFileName_String(name, @"Link");
-
-                LogInfo("Translator initialized - using template \"" + name + "\"");
-                selectInbuiltTemplate = true;
-                selectedTemplate = name;
+                LogInfo("Translator initialized - using template \"" + n + "\"");
                 IsInitialized = true;
-                return true;
             }
             catch (Exception ex)
             {
                 IsInitialized = false;
                 LogError("Fatal error: " + ex.Message);
-                return false;
             }
         }
+
 
         /// <summary>
         /// Get html code from unfold

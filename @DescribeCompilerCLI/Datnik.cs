@@ -33,13 +33,6 @@ namespace DescribeCompilerCLI
 
 
         /// <summary>
-        /// The output directory for the ext and extone commands
-        /// </summary>
-        public static string extOutputDir;
-
-
-
-        /// <summary>
         /// The input file or folder
         /// </summary>
         public static string input;
@@ -87,19 +80,9 @@ namespace DescribeCompilerCLI
 
 
         /// <summary>
-        /// The name of the template for the parser
+        /// The name of the translator for the parser
         /// </summary>
-        public static string templateName;
-
-        /// <summary>
-        /// The path of the template for the parser
-        /// </summary>
-        public static string templatePath;
-
-        /// <summary>
-        /// Weather the template set is internal or external
-        /// </summary>
-        public static bool isInternal;
+        public static string translatorName;
 
 
 
@@ -133,17 +116,13 @@ namespace DescribeCompilerCLI
             parseEncryptedFiles = false;
             encryptOutput = false;
 
-            extOutputDir = null;
-
             input = null;
             output = null;
             isInputDir = false;
             isOutputDir = false;
             topOnly = false;
 
-            templateName = "HTML_PARACORD";
-            templatePath = null;
-            isInternal = true;
+            translatorName = "HTML_PARACORD";
 
             logFilePath = null;
             logToFile = false;

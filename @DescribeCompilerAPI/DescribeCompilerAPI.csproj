@@ -72,7 +72,7 @@
     <Compile Include="Compiler\Preprocessors\PreprocessorForDescribe08.cs" />
     <Compile Include="Compiler\Preprocessors\PreprocessorForDescribe07.cs" />
     <Compile Include="Compiler\Preprocessors\PreprocessorForDescribe06.cs" />
-    <Compile Include="Translators\CharacterDictionaries.cs" />
+    <Compile Include="Translators\Dictionaries\CharacterDictionaries.cs" />
     <Compile Include="Translators\JsonTranslator.cs" />
     <Compile Include="Translators\DescribeTranslator.cs" />
     <Compile Include="Translators\HtmlTranslator.cs" />

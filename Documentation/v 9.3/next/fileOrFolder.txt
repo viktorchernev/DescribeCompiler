@@ -1,0 +1,2 @@
+// If we don't know what translator is going to be used
+// we can't know if we want to read output file or folder

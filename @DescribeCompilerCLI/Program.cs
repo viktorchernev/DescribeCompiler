@@ -34,16 +34,6 @@ namespace DescribeCompilerCLI
             {
                 Messages.printHelpMessage();
             }
-            //DescribeCompilerCLI ext [ RESULT_PATH ]
-            else if (args[0].ToLower() == "ext")
-            {
-                ext(args);
-            }
-            //DescribeCompilerCLI extone TEMPLATE_NAME [ RESULT_PATH ]
-            else if (args[0].ToLower() == "extone")
-            {
-                extone(args);
-            }
             //DescribeCompilerCLI parse-file PARSE_PATH RESULT_PATH
             //[dsonly[=<verb>]] [verbosity=<verb> | log-verbosity=<verb> ] [onerror=<verb> ]
             //[artifacts=<verb> [artifacts-path=ARTIFACTS_PATH]] [logfile=LOG_PATH ]
@@ -69,52 +59,6 @@ namespace DescribeCompilerCLI
                 File.WriteAllText(Datnik.logFilePath, Messages.Log);
             }
         }
-        static void ext(string[] args)
-        {
-            bool result;
-            if (args.Length > 1)
-            {
-                result = Arguments.readTemplateFolderPathArgument(args[1], 1);
-            }
-            else
-            {
-                string dir = Assembly.GetExecutingAssembly().Location;
-                dir = Path.GetDirectoryName(dir);
-                Datnik.extOutputDir = dir;
-                result = true;
-            }
-
-            if (result)
-            {
-                MainFunctions.ExtTemplates(Datnik.extOutputDir);
-            }
-        }
-        static void extone(string[] args)
-        {
-            if (args.Length < 2)
-            {
-                Messages.printFatalError("extone takes at least 1 argument - \"TEMPLATE_NAME\"");
-            }
-            Datnik.templateName = args[1];
-
-            bool result;
-            if (args.Length > 2)
-            {
-                result = Arguments.readTemplateFolderPathArgument(args[2], 2);
-            }
-            else
-            {
-                string dir = Assembly.GetExecutingAssembly().Location;
-                dir = Path.GetDirectoryName(dir);
-                Datnik.extOutputDir = dir;
-                result = true;
-            }
-
-            if (result)
-            {
-                MainFunctions.ExtTemplate(Datnik.extOutputDir, Datnik.templateName);
-            }
-        }
         static void parseFile(string[] args)
         {
             //read input output
@@ -128,9 +72,9 @@ namespace DescribeCompilerCLI
             {
                 string cur = args[i].ToLower();
 
-                if (cur.StartsWith("template=") && cur.Length > "template=".Length)
+                if (cur.StartsWith("translator=") && cur.Length > "translator=".Length)
                 {
-                    if (Arguments.readTemplateArgument(args[i], i) == false) return;
+                    if (Arguments.readTranslatorArgument(args[i], i) == false) return;
                 }
                 else if (cur.StartsWith("verbosity=") && cur.Length > "verbosity=".Length)
                 {
@@ -200,9 +144,9 @@ namespace DescribeCompilerCLI
             {
                 string cur = args[i].ToLower();
 
-                if (cur.StartsWith("template=") && cur.Length > "template=".Length)
+                if (cur.StartsWith("translator=") && cur.Length > "translator=".Length)
                 {
-                    if (Arguments.readTemplateArgument(args[i], i) == false) return;
+                    if (Arguments.readTranslatorArgument(args[i], i) == false) return;
                 }
                 else if (cur.StartsWith("dsonly"))
                 {

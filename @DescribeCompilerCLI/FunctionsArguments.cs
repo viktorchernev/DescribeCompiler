@@ -6,37 +6,6 @@ namespace DescribeCompilerCLI
 {
     internal static class Arguments
     {
-        /// <summary>
-        /// Read output path for "ext" command
-        /// </summary>
-        /// <param name="arg">The argument raw text</param>
-        /// <param name="argindex">The index of the argument (for logging purposes)</param>
-        /// <returns>True if successful</returns>
-        internal static bool readTemplateFolderPathArgument(string arg, int argindex)
-        {
-            try
-            {
-                if (Directory.Exists(arg))
-                {
-                    Datnik.extOutputDir = arg;
-                    return true;
-                }
-                else
-                {
-                    Messages.printArgumentError(arg,
-                            argindex, "is not a valid templates folder path");
-                    return false;
-                }
-            }
-            catch (Exception ex)
-            {
-                Messages.printArgumentError(arg, argindex, ex.Message);
-                return false;
-            }
-        }
-
-
-
 
         /// <summary>
         /// Read input file or folder
@@ -409,12 +378,12 @@ namespace DescribeCompilerCLI
         }
 
         /// <summary>
-        /// Read template argument
+        /// Read translator argument
         /// </summary>
         /// <param name="arg">The argument raw text</param>
         /// <param name="argindex">The index of the argument (for logging purposes)</param>
         /// <returns>True if successful</returns>
-        internal static bool readTemplateArgument(string arg, int argindex)
+        internal static bool readTranslatorArgument(string arg, int argindex)
         {
             try
             {
@@ -431,29 +400,8 @@ namespace DescribeCompilerCLI
                 }
                 else
                 {
-                    if(Directory.Exists(val))
-                    {
-                        Datnik.templateName = new DirectoryInfo(val).Name;
-                        Datnik.templatePath = val;
-                        Datnik.isInternal = false;
-                        return true;
-                    }
-                    else
-                    {
-                        string[] names = ResourceUtil.extractResourceNames();
-                        foreach (string s in names)
-                        {
-                            if (s.StartsWith("DescribeCompiler.Templates." + val + "."))
-                            {
-                                Datnik.templateName = val;
-                                Datnik.templatePath = "DescribeCompiler.Templates." + val;
-                                Datnik.isInternal = true;
-                                return true;
-                            }
-                        }
-                        Messages.printArgumentError(arg, argindex, "is not a valid inbuilt template name or directory path");
-                        return false;
-                    }
+                    Datnik.translatorName = val;
+                    return true;
                 }
             }
             catch (Exception ex)

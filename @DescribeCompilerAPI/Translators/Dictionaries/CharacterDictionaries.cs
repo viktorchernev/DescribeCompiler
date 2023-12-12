@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+
 
 namespace DescribeCompiler.Translators
 {
@@ -203,6 +200,5 @@ namespace DescribeCompiler.Translators
     }
 }
 // http://xahlee.info/comp/unicode_circled_numbers.html
-//
 // Those are simply dictionaries that map normal characters or integer numbers to Unicode escape sequences.
 // Those can then be used when writing translators.

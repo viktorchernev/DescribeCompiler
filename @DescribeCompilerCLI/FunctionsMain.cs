@@ -13,122 +13,6 @@ namespace DescribeCompilerCLI
     internal static class MainFunctions
     {
         /// <summary>
-        /// Externalize a particular inbuilt template file set
-        /// </summary>
-        /// <param name="templateName">The name of the template set</param>
-        /// <returns>True if successful, otherwise false</returns>
-        internal static bool ExtTemplate(string templateName)
-        {
-            string dir = Assembly.GetExecutingAssembly().Location;
-            dir = Path.GetDirectoryName(dir);
-            return ExtTemplate(dir, templateName);
-        }
-
-        /// <summary>
-        /// Externalize a particular inbuilt template file set
-        /// </summary>
-        /// <param name="dir">The directory to externalize to</param>
-        /// <param name="templateName">The name of the template set</param>
-        /// <returns>True if successful, otherwise false</returns>
-        internal static bool ExtTemplate(string dir, string templateName)
-        {
-            try
-            {
-                string[] names = ResourceUtil.extractResourceNames();
-                bool flag = false;
-                foreach (string s in names)
-                {
-                    if (s.StartsWith("DescribeCompiler.Templates." + templateName + "."))
-                    {
-                        flag = true;
-                        string[] sep = s.Split('.');
-                        string folder = dir + "\\Templates\\" + sep[2];
-                        string filename = sep[3];
-                        for (int i = 4; i < sep.Length; i++)
-                        {
-                            filename += "." + sep[i];
-                        }
-                        if (Directory.Exists(folder) == false)
-                        {
-                            Directory.CreateDirectory(folder);
-                        }
-                        string template =
-                            ResourceUtil.ExtractResourceByFileName_String(sep[sep.Length - 3], sep[sep.Length - 2]);
-                        File.WriteAllText(folder + "\\" + filename, template);
-                    }
-                }
-                if (flag)
-                {
-                    Messages.printExtTemplatesSuccess(dir);
-                    return true;
-                }
-                else
-                {
-                    Messages.printFatalError("There is no template named \"" + templateName + "\"");
-                    return false;
-                }
-            }
-            catch (Exception ex)
-            {
-                Messages.printFatalError(ex.Message);
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// Externalize the inbuilt template files
-        /// </summary>
-        /// <returns>True if successful, otherwise false</returns>
-        internal static bool ExtTemplates()
-        {
-            string dir = Assembly.GetExecutingAssembly().Location;
-            dir = Path.GetDirectoryName(dir);
-            return ExtTemplates(dir);
-        }
-
-        /// <summary>
-        /// Externalize the inbuilt template files
-        /// </summary>
-        /// <param name="dir">The directory to externalize to</param>
-        /// <returns>True if successful, otherwise false</returns>
-        internal static bool ExtTemplates(string dir)
-        {
-            try
-            {
-                string[] names = ResourceUtil.extractResourceNames();
-                foreach (string s in names)
-                {
-                    if (s.StartsWith("DescribeCompiler.Templates."))
-                    {
-                        string[] sep = s.Split('.');
-                        string folder = dir + "\\Templates\\" + sep[2];
-                        string filename = sep[3];
-                        for (int i = 4; i < sep.Length; i++)
-                        {
-                            filename += "." + sep[i];
-                        }
-                        if (Directory.Exists(folder) == false)
-                        {
-                            Directory.CreateDirectory(folder);
-                        }
-                        string template =
-                            ResourceUtil.ExtractResourceByFileName_String(sep[sep.Length - 3], sep[sep.Length - 2]);
-                        File.WriteAllText(folder + "\\" + filename, template);
-                    }
-                }
-                Messages.printExtTemplatesSuccess(dir);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                Messages.printFatalError(ex.Message);
-                return false;
-            }
-        }
-
-
-
-        /// <summary>
         /// Compile source file(s)
         /// </summary>
         /// <returns>True if successful, otherwise false</returns>
@@ -159,25 +43,21 @@ namespace DescribeCompilerCLI
 
                 //templates
                 DescribeTranslator translator = null;
-                if(Datnik.templateName.StartsWith("JSON_"))
+                if(Datnik.translatorName.ToLower().StartsWith("json_") 
+                    || Datnik.translatorName.ToLower() == "json")
                 {
                     translator = new JsonTranslator(
                         Messages.ConsoleLog,
                         Messages.ConsoleLogError,
                         Messages.ConsoleLogInfo);
-
-                    //internal templates already loaded
-                    if (!Datnik.isInternal) translator.LoadExternalTemplates(Datnik.templatePath);
                 }
-                else if(Datnik.templateName.StartsWith("HTML_"))
+                else if(Datnik.translatorName.ToLower().StartsWith("HTML_")
+                    || Datnik.translatorName.ToLower() == "html")
                 {
                     translator = new HtmlTranslator();
                     (translator as HtmlTranslator).LogText = Messages.ConsoleLog;
                     (translator as HtmlTranslator).LogError = Messages.ConsoleLogError;
                     (translator as HtmlTranslator).LogInfo = Messages.ConsoleLogInfo;
-
-                    //internal templates already loaded
-                    if (!Datnik.isInternal) translator.LoadExternalTemplates(Datnik.templatePath);
                 }
                 else
                 {

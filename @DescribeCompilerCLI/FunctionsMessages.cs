@@ -274,19 +274,6 @@ namespace DescribeCompilerCLI
 
             ConsoleLogInfo(s);
         }
-        public static void printExtTemplatesSuccess(string path)
-        {
-            //add to log
-            Log += "Templates outputted to \"" + path + "\"" + Environment.NewLine;
-            Log += "Press any key to exit." + Environment.NewLine;
-
-            //add to console
-            Console.ForegroundColor = INFO_COLOR;
-            Console.WriteLine("Templates outputted to \"" + path + "\"");
-            Console.WriteLine("Press any key to exit.");
-            Console.ForegroundColor = TEXT_COLOR;
-            Console.ReadKey();
-        }
         public static void printCompilationSuccess()
         {
             //add to log
@@ -305,19 +292,9 @@ namespace DescribeCompilerCLI
             ConsoleLogInfo("Display this help message");
             ConsoleLog("");
             ConsoleLogInfo("-----------------------------------------------------------------");
-            ConsoleLog("usage: " + thisName + " ext [ RESULT_PATH ]");
-            ConsoleLogInfo("externalize all the templates");
-            ConsoleLogInfo("* RESULT_PATH (optionally) - specify path to write the template folders to. Current folder will be used otherwise");
-            ConsoleLog("");
-            ConsoleLogInfo("-----------------------------------------------------------------");
-            ConsoleLog("usage: " + thisName + " extone TEMPLATE_NAME [ RESULT_PATH ]");
-            ConsoleLogInfo("externalize a specific template set");
-            ConsoleLogInfo("TEMPLATE_NAME - the template set to be externalized: \"HTML_PARACORD\" or \"JSON_COMMONER\"");
-            ConsoleLogInfo("* RESULT_PATH (optionally) - specify path to write the template folders to. Current folder will be used otherwise");
-            ConsoleLog("");
-            ConsoleLogInfo("-----------------------------------------------------------------");
-            ConsoleLog("usage: " + thisName + " parse-file PARSE_PATH RESULT_PATH [ template=(TEMPLATE_NAME|TEMPLATE_PATH) ]\n[ verbosity=<verb> | log-verbosity=<verb> ]\n[ artifacts=<verb> [artifacts-path=ARTIFACTS_PATH ]] [ logfile=LOG_PATH ]");
-            ConsoleLogInfo("template - the name (inbuilt) or path (external) of the template set to use");
+            ConsoleLog("usage: " + thisName + " parse-file PARSE_PATH RESULT_PATH [ translator=(TARGET_LANGUAGE|TRANSLATOR_NAME) ]\n[ verbosity=<verb> | log-verbosity=<verb> ]\n[ artifacts=<verb> [artifacts-path=ARTIFACTS_PATH ]] [ logfile=LOG_PATH ]");
+            ConsoleLogInfo("TARGET_LANGUAGE - the desired output language");
+            ConsoleLogInfo("TRANSLATOR_NAME - the name of the translator to be used");
             ConsoleLogInfo("PARSE_PATH - the path of the file to parse");
             ConsoleLogInfo("RESULT_PATH - the path of the file to write the result to (existing file or not)");
             ConsoleLogInfo("* verbosity - set the log verbosity of the parser (default is high): \"l\", \"low\", \"m\", \"medium\", \"h\", \"high\"");
@@ -327,8 +304,9 @@ namespace DescribeCompilerCLI
             ConsoleLogInfo("* LOG_PATH - specify path of directory or file to output logs to");
             ConsoleLog("");
             ConsoleLogInfo("-----------------------------------------------------------------");
-            ConsoleLog("usage: " + thisName + " parse-folder PARSE_PATH RESULT_PATH [ template=(TEMPLATE_NAME|TEMPLATE_PATH) ]\n[ dsonly[=<verb>] ] [ toponly[=true|=false] ] [ verbosity=<verb> | log-verbosity=<verb> ]\n[ onerror=<verb> ] [ artifacts=<verb> [artifacts-path=ARTIFACTS_PATH ]] [ logfile=LOG_PATH ]");
-            ConsoleLogInfo("template - the name (inbuilt) or path (external) of the template set to use");
+            ConsoleLog("usage: " + thisName + " parse-folder PARSE_PATH RESULT_PATH [ translator=(TARGET_LANGUAGE|TRANSLATOR_NAME) ]\n[ dsonly[=<verb>] ] [ toponly[=true|=false] ] [ verbosity=<verb> | log-verbosity=<verb> ]\n[ onerror=<verb> ] [ artifacts=<verb> [artifacts-path=ARTIFACTS_PATH ]] [ logfile=LOG_PATH ]");
+            ConsoleLogInfo("TARGET_LANGUAGE - the desired output language");
+            ConsoleLogInfo("TRANSLATOR_NAME - the name of the translator to be used");
             ConsoleLogInfo("PARSE_PATH - the path of the file to parse");
             ConsoleLogInfo("RESULT_PATH - the path of the folder to write the result to (existing or not)");
             ConsoleLogInfo("* dsonly - weather to omit files that are not Describe source files (\".DS\"). (default is true): \"true\", \"false\"");
