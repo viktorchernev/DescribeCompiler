@@ -17,11 +17,15 @@ namespace DescribeCompilerCLI
         public static ConsoleColor TEXT_COLOR = ConsoleColor.White;
         public static ConsoleColor ERROR_COLOR = ConsoleColor.Red;
         public static ConsoleColor MOREINFO_COLOR = ConsoleColor.Green;
+        static ConsoleColor beforeForeground;
+        static ConsoleColor beforeBackground;
 
         static string thisName;
         static Messages()
         {
             thisName = Assembly.GetExecutingAssembly().GetName().Name;
+            beforeForeground = Console.ForegroundColor;
+            beforeBackground = Console.BackgroundColor;
         }
 
 
@@ -60,6 +64,11 @@ namespace DescribeCompilerCLI
             TEXT_COLOR = ConsoleColor.DarkBlue;
             ERROR_COLOR = ConsoleColor.Red;
             MOREINFO_COLOR = ConsoleColor.DarkCyan;
+        }
+        public static void RevertConsoleColors()
+        {
+            Console.ForegroundColor = beforeForeground;
+            Console.BackgroundColor = beforeBackground;
         }
 
 

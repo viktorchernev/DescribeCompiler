@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <StartArguments>parse-folder "C:\Users\Viktor Chernev\Desktop\docs-scratch\TestData" "C:\Users\Viktor Chernev\Desktop\docs-scratch\result.json" template="JSON_COMMONER" verbosity=low logfile="C:\Users\Viktor Chernev\Desktop\docs-scratch\last-log.txt" dsonly toponly=false onerror=ignore</StartArguments>
+    <StartArguments>parse-folder "C:\Users\Viktor Chernev\Desktop\dbs\2023.12.12-200906461\Public\files" "C:\Users\Viktor Chernev\Desktop\testResult.json" translator="JSON" verbosity=low dsonly toponly=false onerror=ignore</StartArguments>
   </PropertyGroup>
   <PropertyGroup>
     <PublishUrlHistory>C:\Users\Viktor Chernev\Desktop\World-Describe\Language\DescribeLanguage\.repo\Release\0.9.2\|C:\Users\Viktor Chernev\Desktop\World-Describe\Language\DescribeLanguage\.repo\Release\|C:\Users\Viktor Chernev\Desktop\DescribeParser\%40CompilerCLI\Release\|publish\</PublishUrlHistory>

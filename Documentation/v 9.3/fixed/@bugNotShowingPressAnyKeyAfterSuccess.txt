@@ -1,0 +1,7 @@
+BUG: show press aky key to exit after successful parse operation
+fixed.
+Wasn't showing it after parsing a folder, to be precise.
+
+parse-folder "C:\Users\Viktor Chernev\Desktop\dbs\2023.12.12-200906461\Public\files" "C:\Users\Viktor Chernev\Desktop\testResult.json" translator="JSON" verbosity=low dsonly toponly=false onerror=ignore
+
+parse-file "C:\Users\Viktor Chernev\Desktop\dbs\2023.12.12-200906461\Public\files\@public.ds" "C:\Users\Viktor Chernev\Desktop\testResult.json" translator="JSON" verbosity=low

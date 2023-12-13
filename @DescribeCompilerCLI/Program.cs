@@ -18,45 +18,56 @@ namespace DescribeCompilerCLI
     {
         static void Main(string[] args)
         {
-            //preset
-            Messages.presetConsole();
-            Messages.SetDarkBlueTheme();
-            Messages.printLogo3Bicolor();
-            Messages.printCmdLine(args);
+            try
+            {
+                //preset
+                Messages.presetConsole();
+                Messages.SetDarkBlueTheme();
+                Messages.printLogo3Bicolor();
+                Messages.printCmdLine(args);
 
-            //read args
-            if (args.Length < 1) 
-            {
-                Messages.printNoArgumentsError();
-            }
-            //DescribeCompilerCLI help | -h
-            else if (args[0].ToLower() == "help" || args[0] == "-h")
-            {
-                Messages.printHelpMessage();
-            }
-            //DescribeCompilerCLI parse-file PARSE_PATH RESULT_PATH
-            //[dsonly[=<verb>]] [verbosity=<verb> | log-verbosity=<verb> ] [onerror=<verb> ]
-            //[artifacts=<verb> [artifacts-path=ARTIFACTS_PATH]] [logfile=LOG_PATH ]
-            else if (args[0].ToLower() == "parse-file")
-            {
-                parseFile(args);
-            }
-            //DescribeCompilerCLI parse-folder PARSE_PATH RESULT_PATH
-            //[ dsonly[=<verb>] ] [ toponly[=true|=false] ] [ verbosity=<verb> | log-verbosity=<verb> ]
-            //[ onerror=<verb> ] [ artifacts=<verb> [artifacts-path=ARTIFACTS_PATH ]] [ logfile=LOG_PATH ]
-            else if (args[0].ToLower() == "parse-folder")
-            {
-                parseFolder(args);
-            }
-            else
-            {
-                Messages.printArgumentError(args[0], 1);
-            }
+                //read args
+                if (args.Length < 1)
+                {
+                    Messages.printNoArgumentsError();
+                }
+                //DescribeCompilerCLI help | -h
+                else if (args[0].ToLower() == "help" || args[0] == "-h")
+                {
+                    Messages.printHelpMessage();
+                }
+                //DescribeCompilerCLI parse-file PARSE_PATH RESULT_PATH
+                //[dsonly[=<verb>]] [verbosity=<verb> | log-verbosity=<verb> ] [onerror=<verb> ]
+                //[artifacts=<verb> [artifacts-path=ARTIFACTS_PATH]] [logfile=LOG_PATH ]
+                else if (args[0].ToLower() == "parse-file")
+                {
+                    parseFile(args);
+                }
+                //DescribeCompilerCLI parse-folder PARSE_PATH RESULT_PATH
+                //[ dsonly[=<verb>] ] [ toponly[=true|=false] ] [ verbosity=<verb> | log-verbosity=<verb> ]
+                //[ onerror=<verb> ] [ artifacts=<verb> [artifacts-path=ARTIFACTS_PATH ]] [ logfile=LOG_PATH ]
+                else if (args[0].ToLower() == "parse-folder")
+                {
+                    parseFolder(args);
+                }
+                else
+                {
+                    Messages.printArgumentError(args[0], 1);
+                }
 
-            //save log to file
-            if (Datnik.logToFile)
+                //save log to file
+                if (Datnik.logToFile)
+                {
+                    File.WriteAllText(Datnik.logFilePath, Messages.Log);
+                }
+            }
+            catch (Exception ex) 
             {
-                File.WriteAllText(Datnik.logFilePath, Messages.Log);
+                Messages.printFatalError(ex.Message);
+            }
+            finally 
+            { 
+                Messages.RevertConsoleColors();
             }
         }
         static void parseFile(string[] args)
@@ -227,7 +238,7 @@ namespace DescribeCompilerCLI
 
             //Compile
             MainFunctions.Compile();
-            Console.ReadKey();
+            Messages.printCompilationSuccess();
         }
     }
 }
