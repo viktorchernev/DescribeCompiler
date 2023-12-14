@@ -1,4 +1,5 @@
 interesting bug when:
+This is the same issue like with "quirkMissingComma.txt"
 
 list ->
 
