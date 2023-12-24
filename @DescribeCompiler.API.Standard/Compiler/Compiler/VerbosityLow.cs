@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 
 
 namespace DescribeCompiler
@@ -180,6 +181,92 @@ namespace DescribeCompiler
                 " entries.");
             return true;
         }
+        bool ParseString_LowVerbosity(string source, DescribeUnfold unfold)
+        {
+            //initial checks
+            if (!isInitialized)
+            {
+                LogError("Parser not innitialized.");
+                return false;
+            }
+
+            string msg = "\"" + source.Substring(0, 36) + " ... \" - ";
+            try
+            {
+                source = _Preprocessor.ProcessSource(source);
+                if (source.Length == 0)
+                {
+                    msg += "source code is empty!";
+                    LogError(msg);
+                    return false;
+                }
+                else if (string.IsNullOrWhiteSpace(source))
+                {
+                    msg += "source code is empty!";
+                    LogError(msg);
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                msg += "failed to read source code: " + ex.Message;
+                LogError(msg);
+                return false;
+            }
+
+            //parse
+            StringReader reader = new StringReader(source);
+            Reduction root = null;
+            try
+            {
+                string message = "";
+                bool result = parse_LowVerbosity(reader, out root, out message);
+                if (!result)
+                {
+                    msg += "failed to parse: " + message;
+                    LogError(msg);
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                msg += "failed to parse: " + ex.Message;
+                LogError(msg);
+                return false;
+            }
+            finally
+            {
+                reader.Dispose();
+            }
+
+            //unfold
+            try
+            {
+                bool optimized = _Optimizer.DoScripture(unfold, root);
+                if (!optimized)
+                {
+                    msg += "failed to unfold tree.";
+                    LogError(msg);
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                msg += "failed to unfold tree: " + ex.Message;
+                LogError(msg);
+                return false;
+            }
+
+            LogText(msg + "parsed successfuly");
+            LogInfo("Parser red " + TokenCounter.ToString() +
+                " tokens in " + ReductionCounter.ToString() +
+                " reductions.");
+            LogInfo("Those were translated to " + unfold.Productions.Count().ToString() +
+                " productions, containing " + unfold.Translations.Count().ToString() +
+                " entries.");
+            return true;
+        }
+
         private bool parseFile_LowVerbosity(FileInfo fileInfo, DescribeUnfold unfold)
         {
             FileCounter++;

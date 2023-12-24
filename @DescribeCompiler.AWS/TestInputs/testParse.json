@@ -1,0 +1,6 @@
+{
+  "Command": "parse",
+  "Verbosity": "low",
+  "Translator": "JSON",
+  "Code": "directives ->> delimiter-mode <<bi>>;; fabrics ->> wool fabrics,, cotton fabrics,, silk fabrics,, synthetic fabrics;;"
+}

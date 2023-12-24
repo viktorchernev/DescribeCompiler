@@ -1,0 +1,6 @@
+{
+  "Command": "h",
+  "Verbosity": "low",
+  "Translator": "JSON",
+  "Code": "Hello World from AWS Lambda!"
+}

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 
 
 namespace DescribeCompiler
@@ -196,6 +197,104 @@ namespace DescribeCompiler
                 " entries.");
             return true;
         }
+        bool ParseString_HighVerbosity(string source, DescribeUnfold unfold)
+        {
+            //initial checks
+            if (!isInitialized)
+            {
+                LogError("This parser isn't innitialized, and cannot be used. Create a new instance.");
+                return false;
+            }
+            LogText("------------------------");
+            LogText("Starting a parse operation on source code string: \"" + source.Substring(0, 36) + " ... \"");
+            try
+            {
+                source = _Preprocessor.ProcessSource(source);
+                if (source.Length == 0)
+                {
+                    LogError("Error - the source code you are trying to parse is empty");
+                    LogText("------------------------");
+                    return false;
+                }
+                else if (string.IsNullOrWhiteSpace(source))
+                {
+                    LogError("Error - the source code you are trying to parse is only white space");
+                    LogText("------------------------");
+                    return false;
+                }
+                LogInfo("Preprocessed source code - " + source.Length.ToString() + " characters long");
+            }
+            catch (Exception ex)
+            {
+                LogError("Failed to read the source code contents: " + ex.Message);
+                LogText("------------------------");
+                return false;
+            }
+
+            //parse
+            StringReader reader = new StringReader(source);
+            Reduction root = null;
+            try
+            {
+                string message = "";
+                bool result = parse_HighVerbosity(reader, out root, out message);
+
+                if (result)
+                {
+                    LogParserInfo(Environment.NewLine + "Parsing sequence: " + message + Environment.NewLine);
+                    LogText("Source code parsed successfuly");
+                }
+                else
+                {
+                    LogError("Failed to parse the source code: " + message);
+                    LogText("------------------------");
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                LogError("Failed to parse the source code: " + ex.Message);
+                LogText("------------------------");
+                return false;
+            }
+            finally
+            {
+                reader.Dispose();
+            }
+
+            //unfold
+            try
+            {
+                bool optimized = _Optimizer.DoScripture(unfold, root);
+                if (optimized)
+                {
+                    LogText("Parse tree unfolded successfuly");
+                    LogParserInfo("Done!");
+                    LogText("------------------------");
+                }
+                else
+                {
+                    LogError("Failed to Unfold the parse tree");
+                    LogText("------------------------");
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                LogError("Failed to Unfold the parse tree : " + ex.Message);
+                LogText("------------------------");
+                return false;
+            }
+
+            LogInfo("Parser red " + TokenCounter.ToString() +
+                " tokens in " + ReductionCounter.ToString() +
+                " reductions.");
+            LogInfo("Those were translated to " + unfold.Productions.Count().ToString() +
+                " productions, containing " + unfold.Translations.Count().ToString() +
+                " entries.");
+            return true;
+        }
+
         bool parseFile_HighVerbosity(FileInfo fileInfo, DescribeUnfold unfold)
         {
             FileCounter++;
