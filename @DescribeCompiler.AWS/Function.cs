@@ -1,5 +1,4 @@
 using Amazon.Lambda.Core;
-using System.Reflection;
 
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
 [assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.SystemTextJson.DefaultLambdaJsonSerializer))]
@@ -107,7 +106,6 @@ public class InputJson
 public class OutputJson
 {
     public string Command { get; set; }
-    public string Code { get; set; }
 
     public string Result { get; set; }
     public string Logs { get; set; }
@@ -117,7 +115,6 @@ public class OutputJson
     {
         string s = "{";
         s += "\"Command\":\"" + Command + "\",";        //escape?
-        s += "\"Code\":\"" + Code + "\",";              //escape?
 
         s += "\"Result\":\"" + Result + "\",";
         s += "\"Logs\":\"" + Logs + "\",";              //escape?
@@ -126,3 +123,4 @@ public class OutputJson
         return s;
     }
 }
+//search for "AWS Explorer"
