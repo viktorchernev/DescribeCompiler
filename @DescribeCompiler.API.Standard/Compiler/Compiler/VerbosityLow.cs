@@ -190,7 +190,9 @@ namespace DescribeCompiler
                 return false;
             }
 
-            string msg = "\"" + source.Substring(0, 36) + " ... \" - ";
+            string cropped = source;
+            if (source.Length > 36) cropped = source.Substring(0, 36);
+            string msg = "\"" + cropped + " ... \" - ";
             try
             {
                 source = _Preprocessor.ProcessSource(source);

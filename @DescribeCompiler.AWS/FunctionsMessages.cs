@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Amazon.Lambda.APIGatewayEvents;
+using System;
 using System.Reflection;
 using System.Runtime.InteropServices;
 
@@ -31,7 +32,45 @@ namespace DescribeCompiler.AWS
             s += "{ \"Command\":\"" + source.Command + "\", ";
             s += "\"Translator\":\"" + source.Translator + "\", ";
             s += "\"Verbosity\":\"" + source.Verbosity + "\", ";
-            s += "\"Code\":\"" + source.Code.Substring(0, 12) + " ... \"; }";
+
+            string code = source.Code;
+            if (code.Length > 12) code = code.Substring(0, 12) + " ... ";
+            s += "\"Code\":\"" + code + "\"; }";
+            ConsoleLogInfo(s);
+        }
+        public static void printCmdLine(APIGatewayProxyRequest request)
+        {
+            string s = "> ";
+
+            string command = "null";
+            if(request.QueryStringParameters.ContainsKey("command"))
+            {
+                command = request.QueryStringParameters["command"];
+            }
+            s += "{ \"Command\":\"" + command + "\", ";
+
+            string translator = "null";
+            if (request.QueryStringParameters.ContainsKey("translator"))
+            {
+                translator = request.QueryStringParameters["translator"];
+            }
+            s += "\"Translator\":\"" + translator + "\", ";
+
+            string verbosity = "null";
+            if (request.QueryStringParameters.ContainsKey("verbosity"))
+            {
+                verbosity = request.QueryStringParameters["verbosity"];
+            }
+            s += "\"Verbosity\":\"" + verbosity + "\", ";
+
+            string code = "null";
+            if (request.QueryStringParameters.ContainsKey("code"))
+            {
+                code = request.QueryStringParameters["code"];
+                if(code.Length > 12) code = code.Substring(0, 12) + " ... ";
+            }
+            s += "\"Code\":\"" + code + "\"; }";
+
             ConsoleLogInfo(s);
         }
         public static void printCompilationSuccess()
@@ -85,7 +124,7 @@ namespace DescribeCompiler.AWS
         public static string Log
         {
             get;
-            private set;
+            set;
         }
         public static void ConsoleLog(string text)
         {

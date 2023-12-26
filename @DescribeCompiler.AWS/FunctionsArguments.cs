@@ -10,8 +10,7 @@ namespace DescribeCompiler.AWS
         /// <summary>
         /// Read verbosity argument
         /// </summary>
-        /// <param name="arg">The argument raw text</param>
-        /// <param name="argindex">The index of the argument (for logging purposes)</param>
+        /// <param name="inputJson"></param>
         /// <returns>True if successful</returns>
         internal static bool readVerbosityArgument(InputJson inputJson)
         {
@@ -44,10 +43,46 @@ namespace DescribeCompiler.AWS
         }
 
         /// <summary>
+        /// Read verbosity argument
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns>True if successful</returns>
+        internal static bool readVerbosityArgument(string value)
+        {
+            try
+            {
+                string val = value.ToLower();
+                if (string.IsNullOrEmpty(val) || string.IsNullOrWhiteSpace(val))
+                {
+                    Messages.printArgumentError(value, "Verbosity");
+                    return false;
+                }
+                else if (val == "low" || val == "l") Datnik.verbosity = LogVerbosity.Low;
+                else if (val == "medium" || val == "m") Datnik.verbosity = LogVerbosity.Medium;
+                else if (val == "high" || val == "h") Datnik.verbosity = LogVerbosity.High;
+                else
+                {
+                    Messages.printArgumentError(value,
+                        "Verbosity",
+                        "invalid value \"" + val + "\"");
+                    return false;
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Messages.printArgumentError(value, "Verbosity", ex.Message);
+                return false;
+            }
+        }
+
+
+
+        /// <summary>
         /// Read translator argument
         /// </summary>
-        /// <param name="arg">The argument raw text</param>
-        /// <param name="argindex">The index of the argument (for logging purposes)</param>
+        /// <param name="inputJson"></param>
         /// <returns>True if successful</returns>
         internal static bool readTranslatorArgument(InputJson inputJson)
         {
@@ -68,6 +103,34 @@ namespace DescribeCompiler.AWS
             catch (Exception ex)
             {
                 Messages.printArgumentError(inputJson.Translator, "Translator", ex.Message);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Read translator argument
+        /// </summary>
+        /// <param name="translator"></param>
+        /// <returns>True if successful</returns>
+        internal static bool readTranslatorArgument(string translator)
+        {
+            try
+            {
+                string val = translator.ToLower();
+                if (string.IsNullOrEmpty(val) || string.IsNullOrWhiteSpace(val))
+                {
+                    Messages.printArgumentError(translator, "Translator");
+                    return false;
+                }
+                else
+                {
+                    Datnik.translatorName = val;
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Messages.printArgumentError(translator, "Translator", ex.Message);
                 return false;
             }
         }

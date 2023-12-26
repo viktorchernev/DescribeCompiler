@@ -206,7 +206,9 @@ namespace DescribeCompiler
                 return false;
             }
             LogText("------------------------");
-            LogText("Starting a parse operation on source code string: \"" + source.Substring(0, 36) + " ... \"");
+            string cropped = source;
+            if (source.Length > 36) cropped = source.Substring(0, 36);
+            LogText("Starting a parse operation on source code string: \"" + cropped + " ... \"");
             try
             {
                 source = _Preprocessor.ProcessSource(source);

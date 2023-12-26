@@ -58,7 +58,7 @@ namespace DescribeCompiler.AWS
                 if (Function.LOG_STACK_TRACES)
                 {
                     message += Environment.NewLine +
-                        "StackTrace:" + Environment.NewLine;
+                        "StackTrace:" + ex.StackTrace + Environment.NewLine;
                 }
                 Messages.printFatalError(message);
                 return null;
