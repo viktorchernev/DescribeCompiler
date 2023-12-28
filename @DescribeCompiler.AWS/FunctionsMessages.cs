@@ -38,7 +38,7 @@ namespace DescribeCompiler.AWS
             s += "\"Code\":\"" + code + "\"; }";
             ConsoleLogInfo(s);
         }
-        public static void printCmdLine(APIGatewayProxyRequest request)
+        public static void printCmdLineForGET(APIGatewayProxyRequest request)
         {
             string s = "> ";
 
@@ -70,6 +70,22 @@ namespace DescribeCompiler.AWS
                 if(code.Length > 12) code = code.Substring(0, 12) + " ... ";
             }
             s += "\"Code\":\"" + code + "\"; }";
+
+            ConsoleLogInfo(s);
+        }
+        public static void printCmdLineForPOST(string command, string translator, string verbosity)
+        {
+            string s = "> ";
+
+            if(command == null) command = "null";
+            s += "{ \"Command\":\"" + command + "\", ";
+
+            if (translator == null) translator = "null";
+            s += "\"Translator\":\"" + translator + "\", ";
+
+            if (verbosity == null) verbosity = "null";
+            s += "\"Verbosity\":\"" + verbosity + "\", ";
+            s += "\"Code\":\"[code]\"; }";
 
             ConsoleLogInfo(s);
         }
@@ -128,18 +144,22 @@ namespace DescribeCompiler.AWS
         }
         public static void ConsoleLog(string text)
         {
+            if (text == null) text = "null";
             Log += text + Environment.NewLine;
         }
         public static void ConsoleLogInfo(string text)
         {
+            if (text == null) text = "null";
             Log += text + Environment.NewLine;
         }
         public static void ConsoleLogError(string text)
         {
+            if (text == null) text = "null";
             Log += text + Environment.NewLine;
         }
         public static void ConsoleLogParseInfo(string text)
         {
+            if (text == null) text = "null";
             Log += text + Environment.NewLine;
         }
     }

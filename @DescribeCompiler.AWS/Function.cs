@@ -1,7 +1,6 @@
-using Amazon.Lambda.Core;
 using Amazon.Lambda.APIGatewayEvents;
+using Amazon.Lambda.Core;
 using Newtonsoft.Json;
-using System.IO;
 using System.Net;
 
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
@@ -13,16 +12,165 @@ public class Function
     //https://www.youtube.com/watch?v=IHIJFVUQyFY - AWS LAMBDA For The .NET Developer
     public static readonly bool LOG_STACK_TRACES = true;
 
+
+
     /// <summary>
-    /// The main function
+    /// The main function - handles HTTP POST request invocation
     /// </summary>
-    /// <param name="request"></param>
-    /// <param name="context"></param>
-    /// <returns></returns>
+    /// <param name="request">The Http Request object</param>
+    /// <param name="context">The Aws Lambda function context</param>
+    /// <returns>A response object</returns>
     public APIGatewayProxyResponse FunctionHandler(APIGatewayProxyRequest request, ILambdaContext context)
     {
         try
         {
+            //preset
+            //do something about clearing logs or putting a 
+            //separator line in logs when starting a new job in the CLI !!!
+            Messages.Log = "";
+            Messages.printLogo();
+
+            //check
+            if (request == null)
+                throw new Exception("APIGatewayProxyRequest object is NULL");
+
+            //decode
+            byte[] data = Convert.FromBase64String(request.Body);
+            string decodedString = System.Text.Encoding.UTF8.GetString(data);
+
+            //check
+            if (decodedString.StartsWith("command=") == false)
+                throw new Exception("command string must start with \"command=\"");
+
+            // read parameters
+            string? command = null;
+            string? translator = null;
+            string? verbosity = null;
+            string? code = null;
+
+            //loop
+            string[] sep = decodedString.Split('&');
+            foreach (string param in sep)
+            {
+                if (param.StartsWith("command=")) command = param.Substring(8);
+                else if (param.StartsWith("verbosity=")) verbosity = param.Substring(10);
+                else if (param.StartsWith("translator=")) translator = param.Substring(11);
+                else if (param.StartsWith("code="))
+                {
+                    code = param.Substring(5);
+                    code = code.Replace("%3D", "=").Replace("%2B", "+").Replace("%2F", "/");
+                    byte[] cdata = Convert.FromBase64String(code);
+                    code = System.Text.Encoding.UTF8.GetString(cdata);
+                }
+            }
+            Messages.printCmdLineForPOST(command, translator, verbosity);
+
+
+            //read args
+            if (command == null)
+            {
+                Messages.printNoArgumentsError();
+                OutputJson result = new OutputJson();
+                result.Result = "Success";
+                result.Command = command;
+                result.Logs = Messages.Log.Replace("\r\n", "<br>").Replace("\n", "<br>");
+
+                var response = new APIGatewayProxyResponse
+                {
+                    StatusCode = (int)HttpStatusCode.OK,
+                    Body = JsonConvert.SerializeObject(result),
+                    Headers = new Dictionary<string, string> { { "Content-Type", "application/json" }, { "Access-Control-Allow-Origin", "*" } }
+                };
+                return response;
+            }
+            //help | -h
+            else if (command == "help" || command == "h")
+            {
+                Messages.printHelpMessage();
+                OutputJson result = new OutputJson();
+                result.Result = "Success";
+                result.Command = command;
+                result.Logs = Messages.Log.Replace("\r\n", "<br>").Replace("\n", "<br>");
+                var response = new APIGatewayProxyResponse
+                {
+                    StatusCode = (int)HttpStatusCode.OK,
+                    Body = JsonConvert.SerializeObject(result),
+                    Headers = new Dictionary<string, string> { { "Content-Type", "application/json" }, { "Access-Control-Allow-Origin", "*" } }
+                };
+                return response;
+            }
+            //parse
+            else if (command == "parse")
+            {
+                string json = parse(code, translator, verbosity);
+                OutputJson result = new OutputJson();
+                if (string.IsNullOrEmpty(json)) result.Result = "Error";
+                else result.Result = "Success";
+                result.Command = command;
+                result.Logs = Messages.Log.Replace("\r\n", "<br>").Replace("\n", "<br>");
+                result.Json = json;
+                var response = new APIGatewayProxyResponse
+                {
+                    StatusCode = (int)HttpStatusCode.OK,
+                    Body = JsonConvert.SerializeObject(result),
+                    Headers = new Dictionary<string, string> { { "Content-Type", "application/json" }, { "Access-Control-Allow-Origin", "*" } }
+                };
+                return response;
+            }
+            else
+            {
+                Messages.printArgumentError(command, "Command");
+                OutputJson result = new OutputJson();
+                result.Result = "Error";
+                result.Command = command;
+                result.Logs = Messages.Log.Replace("\r\n", "<br>").Replace("\n", "<br>");
+                var response = new APIGatewayProxyResponse
+                {
+                    StatusCode = (int)HttpStatusCode.OK,
+                    Body = JsonConvert.SerializeObject(result),
+                    Headers = new Dictionary<string, string> { { "Content-Type", "application/json" }, { "Access-Control-Allow-Origin", "*" } }
+                };
+                return response;
+            }
+        }
+        catch (Exception ex)
+        {
+            string message = ex.Message;
+            if (LOG_STACK_TRACES)
+            {
+                message += Environment.NewLine +
+                    "StackTrace:" + ex.StackTrace + Environment.NewLine;
+            }
+            Messages.printFatalError(message);
+            OutputJson result = new OutputJson();
+            result.Result = "Error";
+            //result.Command = inputJson.Command;
+            result.Logs = Messages.Log.Replace("\r\n", "<br>").Replace("\n", "<br>");
+            var response = new APIGatewayProxyResponse
+            {
+                StatusCode = (int)HttpStatusCode.OK,
+                Body = JsonConvert.SerializeObject(result),
+                Headers = new Dictionary<string, string> { { "Content-Type", "application/json" }, { "Access-Control-Allow-Origin", "*" } }
+            };
+            return response;
+        }
+    }
+
+    /// <summary>
+    /// The main function - handles HTTP GET request invocation
+    /// </summary>
+    /// <param name="request">The Http Request object</param>
+    /// <param name="context">The Aws Lambda function context</param>
+    /// <returns>A response object</returns>
+    public APIGatewayProxyResponse FunctionHandlerGET(APIGatewayProxyRequest request, ILambdaContext context)
+    {
+        try
+        {
+            //string s = JsonConvert.SerializeObject(request);
+            //Messages.ConsoleLog("APIGatewayProxyRequest object:");
+            //Messages.ConsoleLog(s);
+            //Messages.ConsoleLog("------------------------");
+
             string? command = null;
             if (request.QueryStringParameters.ContainsKey("command"))
                 command = request.QueryStringParameters["command"];
@@ -47,11 +195,7 @@ public class Function
             //separator line in logs when starting a new job in the CLI !!!
             Messages.Log = "";
             Messages.printLogo();
-            Messages.printCmdLine(request);
-            string s = JsonConvert.SerializeObject(request);
-            Messages.ConsoleLog("APIGatewayProxyRequest object:");
-            Messages.ConsoleLog(s);
-            Messages.ConsoleLog("------------------------");
+            Messages.printCmdLineForGET(request);
 
 
             //read args
@@ -61,7 +205,7 @@ public class Function
                 OutputJson result = new OutputJson();
                 result.Result = "Success";
                 result.Command = command;
-                result.Logs = Messages.Log;
+                result.Logs = Messages.Log.Replace("\r\n", "<br>").Replace("\n", "<br>");
 
                 var response = new APIGatewayProxyResponse
                 {
@@ -78,7 +222,7 @@ public class Function
                 OutputJson result = new OutputJson();
                 result.Result = "Success";
                 result.Command = command;
-                result.Logs = Messages.Log;
+                result.Logs = Messages.Log.Replace("\r\n", "<br>").Replace("\n", "<br>");
                 var response = new APIGatewayProxyResponse
                 {
                     StatusCode = (int)HttpStatusCode.OK,
@@ -95,7 +239,7 @@ public class Function
                 if (string.IsNullOrEmpty(json)) result.Result = "Error";
                 else result.Result = "Success";
                 result.Command = command;
-                result.Logs = Messages.Log;
+                result.Logs = Messages.Log.Replace("\r\n", "<br>").Replace("\n", "<br>");
                 result.Json = json;
                 var response = new APIGatewayProxyResponse
                 {
@@ -111,7 +255,7 @@ public class Function
                 OutputJson result = new OutputJson();
                 result.Result = "Error";
                 result.Command = command;
-                result.Logs = Messages.Log;
+                result.Logs = Messages.Log.Replace("\r\n", "<br>").Replace("\n", "<br>");
                 var response = new APIGatewayProxyResponse
                 {
                     StatusCode = (int)HttpStatusCode.OK,
@@ -133,7 +277,7 @@ public class Function
             OutputJson result = new OutputJson();
             result.Result = "Error";
             //result.Command = inputJson.Command;
-            result.Logs = Messages.Log;
+            result.Logs = Messages.Log.Replace("\r\n", "<br>").Replace("\n", "<br>");
             var response = new APIGatewayProxyResponse
             {
                 StatusCode = (int)HttpStatusCode.OK,
@@ -143,22 +287,14 @@ public class Function
             return response;
         }
     }
-    static string parse(string code, string translator, string verbosiy)
-    {
-        //read options
-        if (Arguments.readVerbosityArgument(verbosiy) == false) return null;
-        if (Arguments.readTranslatorArgument(translator) == false) return null;
 
-        //Compile
-        string result = MainFunctions.Compile(code);
-        Messages.printCompilationSuccess();
-
-        //return
-        return result;
-    }
-
-
-    public OutputJson FunctionHandlerOld(InputJson inputJson, ILambdaContext context)
+    /// <summary>
+    /// The main function - handles Mock Test tool invocation
+    /// </summary>
+    /// <param name="inputJson">The input object from input JSON</param>
+    /// <param name="context">The Aws Lambda function context</param>
+    /// <returns>An OutputJson object</returns>
+    public OutputJson FunctionHandlerMock(InputJson inputJson, ILambdaContext context)
     {
         try
         {
@@ -223,6 +359,22 @@ public class Function
             result.Logs = Messages.Log;
             return result;
         }
+    }
+
+
+
+    static string parse(string code, string translator, string verbosiy)
+    {
+        //read options
+        if (Arguments.readVerbosityArgument(verbosiy) == false) return null;
+        if (Arguments.readTranslatorArgument(translator) == false) return null;
+
+        //Compile
+        string result = MainFunctions.Compile(code);
+        Messages.printCompilationSuccess();
+
+        //return
+        return result;
     }
     static string parse(InputJson inputJson)
     {
