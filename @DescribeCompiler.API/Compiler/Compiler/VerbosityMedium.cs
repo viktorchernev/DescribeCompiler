@@ -271,6 +271,7 @@ namespace DescribeCompiler
             //unfold
             try
             {
+                unfold.CurFile = filename;
                 bool optimized = _Optimizer.DoScripture(unfold, root);
                 if (optimized)
                 {
