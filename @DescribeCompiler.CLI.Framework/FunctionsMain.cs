@@ -48,7 +48,7 @@ namespace DescribeCompilerCLI
                         Messages.ConsoleLogError,
                         Messages.ConsoleLogInfo);
                 }
-                else if(Datnik.translatorName.ToLower().StartsWith("HTML_")
+                else if(Datnik.translatorName.ToLower().StartsWith("html_")
                     || Datnik.translatorName.ToLower() == "html")
                 {
                     translator = new HtmlTranslator();

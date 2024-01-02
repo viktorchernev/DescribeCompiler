@@ -88,12 +88,6 @@
     <None Include="DescribeCompilerCLI_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DescribeCompilerAPI\DescribeCompilerAPI.csproj">
-      <Project>{15d27d66-cdca-44ce-8ca0-7141cdcb5a61}</Project>
-      <Name>DescribeCompilerAPI</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.8">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4.8 %28x86 and x64%29</ProductName>
@@ -104,6 +98,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DescribeCompilerAPIStandard\DescribeCompiler.API.csproj">
+      <Project>{421c3a00-e23d-455e-ad2b-9a4cc56c626c}</Project>
+      <Name>DescribeCompiler.API</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

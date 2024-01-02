@@ -63,7 +63,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GoldParserEngineStandard\GoldParserEngine.Standard.csproj" />
+    <ProjectReference Include="..\GoldParserEngineStandard\GoldParserEngine.csproj" />
   </ItemGroup>
 
 </Project>

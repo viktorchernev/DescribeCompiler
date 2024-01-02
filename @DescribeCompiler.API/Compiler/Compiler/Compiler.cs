@@ -151,7 +151,7 @@ namespace DescribeCompiler
         /// <param name="source">The describe source code to be parsed</param>
         /// <param name="unfold">The unfold that will receive the data</param>
         /// <returns>true if successful, otherwise false</returns>
-        public bool ParseString(string source, DescribeUnfold unfold)
+        public bool ParseString(string source, string filename, DescribeUnfold unfold)
         {
             FileCounter = 0;
             ReductionCounter = 0;
@@ -159,17 +159,17 @@ namespace DescribeCompiler
 
             if (Verbosity == LogVerbosity.Low)
             {
-                result = ParseString_LowVerbosity(source, unfold);
+                result = ParseString_LowVerbosity(source, filename, unfold);
             }
             else if (Verbosity == LogVerbosity.Medium)
             {
-                result = ParseString_MediumVerbosity(source, unfold);
+                result = ParseString_MediumVerbosity(source, filename, unfold);
             }
             else if (Verbosity == LogVerbosity.High)
             {
                 TokenCounter = 0;
                 ReductionCounter = 0;
-                result = ParseString_HighVerbosity(source, unfold);
+                result = ParseString_HighVerbosity(source, filename, unfold);
             }
             return result;
         }

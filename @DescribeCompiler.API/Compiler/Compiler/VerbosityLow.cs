@@ -181,7 +181,7 @@ namespace DescribeCompiler
                 " entries.");
             return true;
         }
-        bool ParseString_LowVerbosity(string source, DescribeUnfold unfold)
+        bool ParseString_LowVerbosity(string source, string filename, DescribeUnfold unfold)
         {
             //initial checks
             if (!isInitialized)
@@ -189,8 +189,18 @@ namespace DescribeCompiler
                 LogError("Parser not innitialized.");
                 return false;
             }
+            if (filename == null)
+            {
+                LogError("Null is not a valid filename.");
+                return false;
+            }
+            if (string.IsNullOrEmpty(filename) || string.IsNullOrWhiteSpace(filename))
+            {
+                LogError("Invalid filename.");
+                return false;
+            }
 
-            string msg = "[SOURCE CODE] - ";
+            string msg = filename + " - ";
             try
             {
                 source = _Preprocessor.ProcessSource(source);

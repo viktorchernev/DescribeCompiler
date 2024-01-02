@@ -197,7 +197,7 @@ namespace DescribeCompiler
                 " entries.");
             return true;
         }
-        bool ParseString_HighVerbosity(string source, DescribeUnfold unfold)
+        bool ParseString_HighVerbosity(string source, string filename, DescribeUnfold unfold)
         {
             //initial checks
             if (!isInitialized)
@@ -205,8 +205,18 @@ namespace DescribeCompiler
                 LogError("This parser isn't innitialized, and cannot be used. Create a new instance.");
                 return false;
             }
+            if (filename == null)
+            {
+                LogError("Null is not a valid filename.");
+                return false;
+            }
+            if (string.IsNullOrEmpty(filename) || string.IsNullOrWhiteSpace(filename))
+            {
+                LogError("\"" + filename + "\" is not a valid filename.");
+                return false;
+            }
             LogText("------------------------");
-            LogText("Starting a parse operation on source code string");
+            LogText("Starting a parse operation on \"" + filename + "\"");
             try
             {
                 source = _Preprocessor.ProcessSource(source);

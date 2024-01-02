@@ -41,11 +41,14 @@ public class Function
             //check
             if (decodedString.StartsWith("command=") == false)
                 throw new Exception("command string must start with \"command=\"");
+            //Messages.ConsoleLog("decodedString : " + decodedString);
+
 
             // read parameters
             string? command = null;
             string? translator = null;
             string? verbosity = null;
+            string? filename = null;
             string? code = null;
 
             //loop
@@ -55,6 +58,13 @@ public class Function
                 if (param.StartsWith("command=")) command = param.Substring(8);
                 else if (param.StartsWith("verbosity=")) verbosity = param.Substring(10);
                 else if (param.StartsWith("translator=")) translator = param.Substring(11);
+                else if (param.StartsWith("filename="))
+                {
+                    filename = param.Substring(9);
+                    filename = filename.Replace("%3D", "=").Replace("%2B", "+").Replace("%2F", "/");
+                    byte[] cdata = Convert.FromBase64String(filename);
+                    filename = System.Text.Encoding.UTF8.GetString(cdata);
+                }
                 else if (param.StartsWith("code="))
                 {
                     code = param.Substring(5);
@@ -63,7 +73,7 @@ public class Function
                     code = System.Text.Encoding.UTF8.GetString(cdata);
                 }
             }
-            Messages.printCmdLineForPOST(command, translator, verbosity);
+            Messages.printCmdLineForPOST(command, translator, verbosity, filename);
 
 
             //read args
@@ -102,7 +112,7 @@ public class Function
             //parse
             else if (command == "parse")
             {
-                string json = parse(code, translator, verbosity);
+                string json = parse(code, translator, verbosity, filename);
                 OutputJson result = new OutputJson();
                 if (string.IsNullOrEmpty(json)) result.Result = "Error";
                 else result.Result = "Success";
@@ -183,12 +193,21 @@ public class Function
             if (request.QueryStringParameters.ContainsKey("verbosity"))
                 verbosity = request.QueryStringParameters["verbosity"];
 
+            string? filename = null;
+            if (request.QueryStringParameters.ContainsKey("filename"))
+                filename = request.QueryStringParameters["filename"];
+
+            //this parameter in URL might be in ""s
+            filename = filename.Trim('"');
+            filename = filename.Trim('\'');
+
             string? code = null;
             if (request.QueryStringParameters.ContainsKey("code"))
                 code = request.QueryStringParameters["code"];
 
-            code = code.Trim('"');//remove this when implement POST
-            code = code.Trim('\'');//remove this when implement POST
+            //this parameter in URL might be in ""s
+            code = code.Trim('"');
+            code = code.Trim('\'');
 
             //preset
             //do something about clearing logs or putting a 
@@ -234,7 +253,7 @@ public class Function
             //parse
             else if (command == "parse")
             {
-                string json = parse(code, translator, verbosity);
+                string json = parse(code, translator, verbosity, filename);
                 OutputJson result = new OutputJson();
                 if (string.IsNullOrEmpty(json)) result.Result = "Error";
                 else result.Result = "Success";
@@ -363,14 +382,14 @@ public class Function
 
 
 
-    static string parse(string code, string translator, string verbosiy)
+    static string parse(string code, string translator, string verbosiy, string filename)
     {
         //read options
         if (Arguments.readVerbosityArgument(verbosiy) == false) return null;
         if (Arguments.readTranslatorArgument(translator) == false) return null;
 
         //Compile
-        string result = MainFunctions.Compile(code);
+        string result = MainFunctions.Compile(code, filename);
         Messages.printCompilationSuccess();
 
         //return
@@ -383,7 +402,7 @@ public class Function
         if (Arguments.readTranslatorArgument(inputJson) == false) return null;
 
         //Compile
-        string result = MainFunctions.Compile(inputJson.Code);
+        string result = MainFunctions.Compile(inputJson.Code, inputJson.Filename);
         Messages.printCompilationSuccess();
 
         //return
@@ -396,6 +415,8 @@ public class InputJson
     public string Command { get; set; }
     public string Verbosity { get; set; }
     public string Translator { get; set; }
+
+    public string Filename { get; set; }
     public string Code { get; set; }
 }
 public class OutputJson

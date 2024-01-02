@@ -73,7 +73,7 @@ namespace DescribeCompiler.AWS
 
             ConsoleLogInfo(s);
         }
-        public static void printCmdLineForPOST(string command, string translator, string verbosity)
+        public static void printCmdLineForPOST(string command, string translator, string verbosity, string filename)
         {
             string s = "> ";
 
@@ -85,7 +85,8 @@ namespace DescribeCompiler.AWS
 
             if (verbosity == null) verbosity = "null";
             s += "\"Verbosity\":\"" + verbosity + "\", ";
-            s += "\"Code\":\"[code]\"; }";
+            s += "\"Filename\":\"" + filename + "\", ";
+            s += "\"Code\":[CODE]; }";
 
             ConsoleLogInfo(s);
         }

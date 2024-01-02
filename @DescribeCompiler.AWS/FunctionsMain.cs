@@ -15,7 +15,7 @@ namespace DescribeCompiler.AWS
         /// </summary>
         /// <param name="code">The describe source code to be parsed</param>
         /// <returns>True if successful, otherwise false</returns>
-        internal static string Compile(string code)
+        internal static string Compile(string code, string filename)
         {
             try
             {
@@ -48,7 +48,7 @@ namespace DescribeCompiler.AWS
 
                 //compile
                 DescribeUnfold unfold = new DescribeUnfold();
-                bool r = comp.ParseString(code, unfold);
+                bool r = comp.ParseString(code, filename, unfold);
                 string result = translator.TranslateUnfold(unfold);
                 return result;
             }
