@@ -1,0 +1,1 @@
+Feature: Added ParseMultiString method for parsing source codes directly, instead of reading files
