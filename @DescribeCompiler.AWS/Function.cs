@@ -127,6 +127,23 @@ public class Function
                 };
                 return response;
             }
+            else if (command == "multi-parse")
+            {
+                string json = multiparse(code, translator, verbosity);
+                OutputJson result = new OutputJson();
+                if (string.IsNullOrEmpty(json)) result.Result = "Error";
+                else result.Result = "Success";
+                result.Command = command;
+                result.Logs = Messages.Log.Replace("\r\n", "<br>").Replace("\n", "<br>");
+                result.Json = json;
+                var response = new APIGatewayProxyResponse
+                {
+                    StatusCode = (int)HttpStatusCode.OK,
+                    Body = JsonConvert.SerializeObject(result),
+                    Headers = new Dictionary<string, string> { { "Content-Type", "application/json" }, { "Access-Control-Allow-Origin", "*" } }
+                };
+                return response;
+            }
             else
             {
                 Messages.printArgumentError(command, "Command");
@@ -381,7 +398,12 @@ public class Function
     }
 
 
+    static string multiparse(string code, string translator, string verbosiy)
+    {
 
+
+        return null;
+    }
     static string parse(string code, string translator, string verbosiy, string filename)
     {
         //read options
