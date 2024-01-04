@@ -1,8 +1,10 @@
 ﻿using DescribeCompiler.Compiler.Optimizers;
 using DescribeCompiler.Compiler.Preprocessors;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using System.Runtime.InteropServices.ComTypes;
 
 
 namespace DescribeCompiler
@@ -141,6 +143,38 @@ namespace DescribeCompiler
                 TokenCounter = 0;
                 ReductionCounter = 0;
                 result = ParseFile_HighVerbosity(fileInfo, unfold);
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// Parse multiple Describe source code string
+        /// </summary>
+        /// <param name="nameCodeList">
+        /// The list of source code strings to be parsed.
+        /// Keys are the filenames. Values are the sources.
+        /// </param>
+        /// <param name="unfold">The unfold that will receive the data</param>
+        /// <returns>true if successful, otherwise false</returns>
+        public bool ParseMultiString(List<KeyValuePair<string, string>> nameCodeList, DescribeUnfold unfold)
+        {
+            FileCounter = 0;
+            ReductionCounter = 0;
+            bool result = false;
+
+            if (Verbosity == LogVerbosity.Low)
+            {
+                result = ParseMultiString_LowVerbosity(nameCodeList, unfold);
+            }
+            else if (Verbosity == LogVerbosity.Medium)
+            {
+                result = ParseMultiString_MediumVerbosity(nameCodeList, unfold);
+            }
+            else if (Verbosity == LogVerbosity.High)
+            {
+                TokenCounter = 0;
+                ReductionCounter = 0;
+                result = ParseMultiString_HighVerbosity(nameCodeList, unfold);
             }
             return result;
         }

@@ -181,6 +181,73 @@ namespace DescribeCompiler
                 " entries.");
             return true;
         }
+        bool ParseMultiString_LowVerbosity(List<KeyValuePair<string, string>> nameCodeList, DescribeUnfold unfold)
+        {
+            //initial checks
+            if (!isInitialized)
+            {
+                LogError("Parser not innitialized.");
+                return false;
+            }
+
+            //fetch files
+            Dictionary<string, string> dict = new Dictionary<string, string>();
+            string msg = "Parsing multiple strings - ";
+            try
+            {
+                if (nameCodeList.Count == 0)
+                {
+                    msg += "no strings to parse.";
+                    LogError(msg);
+                    return false;
+                }
+                for (int i = 0; i < nameCodeList.Count; i++)
+                {
+                    unfold.Files.Add(nameCodeList[i].Key);
+                    dict.Add(nameCodeList[i].Key, nameCodeList[i].Value);
+                }
+            }
+            catch (Exception ex)
+            {
+                LogError(msg + " Failed to read the file names: " + ex.Message);
+                return false;
+            }
+
+
+            //parse files
+            while (unfold.Files.Count() > 0)
+            {
+                string filename = unfold.Files[0];
+                unfold.CurFile = filename;
+                bool result = parseString_LowVerbosity(filename, dict[filename], unfold);
+                if (result)
+                {
+                    unfold.ParsedFiles.Add(filename);
+                    unfold.Files.RemoveAt(0);
+                }
+                else
+                {
+                    unfold.FailedFiles.Add(filename);
+                    if (STOP_ON_ERROR) return false;
+                    else
+                    {
+                        unfold.Files.RemoveAt(0);
+                    }
+                }
+            }
+
+            LogText(msg + "Ok");
+
+            LogText("------------------------");
+            LogInfo(FileCounter.ToString() + " files parsed.");
+            LogInfo("Parser red " + TokenCounter.ToString() +
+                " tokens in " + ReductionCounter.ToString() +
+                " reductions.");
+            LogInfo("Those were translated to " + unfold.Productions.Count().ToString() +
+                " productions, containing " + unfold.Translations.Count().ToString() +
+                " entries.");
+            return true;
+        }
         bool ParseString_LowVerbosity(string source, string filename, DescribeUnfold unfold)
         {
             //initial checks
@@ -278,6 +345,90 @@ namespace DescribeCompiler
             return true;
         }
 
+        private bool parseString_LowVerbosity(string filename, string source, DescribeUnfold unfold)
+        {
+            FileCounter++;
+            if (!isInitialized)
+            {
+                LogError("Parser not innitialized.");
+                return false;
+            }
+
+            string msg = "\"" + filename + "\" - ";
+            string code = null;
+            try
+            {
+                if (source.Length == 0)
+                {
+                    msg += "file is empty!";
+                    LogError(msg);
+                    return false;
+                }
+                else if (string.IsNullOrWhiteSpace(source))
+                {
+                    msg += "file is empty!";
+                    LogError(msg);
+                    return false;
+                }
+                code = _Preprocessor.ProcessSource(source);
+            }
+            catch (Exception ex)
+            {
+                msg += "failed to read: " + ex.Message;
+                LogError(msg);
+                return false;
+            }
+
+            //parse
+            StringReader reader = new StringReader(code);
+            Reduction root = null;
+            try
+            {
+                string message = "";
+                bool result = parse_LowVerbosity(reader, out root, out message);
+                if (!result)
+                {
+                    msg += "failed to parse: " + message;
+                    LogError(msg);
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                msg += "failed to parse: " + ex.Message;
+                LogError(msg);
+                return false;
+            }
+            finally
+            {
+                reader.Dispose();
+            }
+
+            //unfold
+            try
+            {
+                bool optimized = _Optimizer.DoScripture(unfold, root);
+                if (optimized)
+                {
+                    msg += "Ok";
+                    LogText(msg);
+                }
+                else
+                {
+                    msg += "failed to unfold tree.";
+                    LogError(msg);
+                    return false;
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                msg += "failed to unfold tree: " + ex.Message;
+                LogError(msg);
+                return false;
+            }
+
+        }
         private bool parseFile_LowVerbosity(FileInfo fileInfo, DescribeUnfold unfold)
         {
             FileCounter++;

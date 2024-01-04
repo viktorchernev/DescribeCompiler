@@ -16,7 +16,7 @@
         /// Weather to stop if there is an error in source code, or skip the file
         /// and continue parsing.
         /// </summary>
-        public static bool STOP_ON_ERROR = true;
+        public static bool STOP_ON_ERROR = false;
 
         /// <summary>
         /// The default grammar file to be loaded with this version of the compiler.

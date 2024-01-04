@@ -195,6 +195,76 @@ namespace DescribeCompiler
 
             return true;
         }
+        bool ParseMultiString_MediumVerbosity(List<KeyValuePair<string, string>> nameCodeList, DescribeUnfold unfold)
+        {
+            //initial checks
+            if (!isInitialized)
+            {
+                LogError("This parser isn't innitialized, and cannot be used. Create a new instance.");
+                return false;
+            }
+            LogText("------------------------");
+            LogText("Starting a parse operation on multiple strings.");
+
+            //fetch files
+            Dictionary<string, string> dict = new Dictionary<string, string>();
+            try
+            {
+                if (nameCodeList.Count == 0)
+                {
+                    LogError("Error - the source code list you are trying to parse contains no source codes");
+                    LogText("------------------------");
+                    return false;
+                }
+                for (int i = 0; i < nameCodeList.Count; i++)
+                {
+                    unfold.Files.Add(nameCodeList[i].Key);
+                    dict.Add(nameCodeList[i].Key, nameCodeList[i].Value);
+                }
+                LogInfo("Fetched " + unfold.Files.Count() + " files");
+            }
+            catch (Exception ex)
+            {
+                LogError("Failed to read the file names: " + ex.Message);
+                LogText("------------------------");
+                return false;
+            }
+
+            //parse files
+            while (unfold.Files.Count() > 0)
+            {
+                string filename = unfold.Files[0];
+                unfold.CurFile = filename;
+                bool result = parseString_MediumVerbosity(filename, dict[filename], unfold);
+                if (result)
+                {
+                    unfold.ParsedFiles.Add(filename);
+                    unfold.Files.RemoveAt(0);
+                }
+                else
+                {
+                    unfold.FailedFiles.Add(filename);
+                    if (STOP_ON_ERROR) return false;
+                    else
+                    {
+                        unfold.Files.RemoveAt(0);
+                    }
+                }
+            }
+
+            //log result
+            LogText("Done!");
+            LogText("------------------------");
+
+            LogInfo(FileCounter.ToString() + " files parsed.");
+            LogInfo("Parser red " + TokenCounter.ToString() +
+                " tokens in " + ReductionCounter.ToString() +
+                " reductions.");
+            LogInfo("Those were translated to " + unfold.Productions.Count().ToString() +
+                " productions, containing " + unfold.Translations.Count().ToString() +
+                " entries.");
+            return true;
+        }
         bool ParseString_MediumVerbosity(string source, string filename, DescribeUnfold unfold)
         {
             //initial checks
@@ -303,6 +373,96 @@ namespace DescribeCompiler
             return true;
         }
 
+        bool parseString_MediumVerbosity(string filename, string source, DescribeUnfold unfold)
+        {
+            FileCounter++;
+            if (!isInitialized)
+            {
+                LogError("This parser isn't innitialized, and cannot be used. Create a new instance.");
+                return false;
+            }
+
+            //LogText("------------------------");
+            LogText("Starting a parse operation on file: \"" + filename + "\"");
+            string code = null;
+            try
+            {
+                if (source.Length == 0)
+                {
+                    LogError("Error - the file you are trying to parse is empty");
+                    LogText("------------------------");
+                    return false;
+                }
+                else if (string.IsNullOrWhiteSpace(source))
+                {
+                    LogError("Error - the file you are trying to parse is only white space");
+                    LogText("------------------------");
+                    return false;
+                }
+                code = _Preprocessor.ProcessSource(source);
+            }
+            catch (Exception ex)
+            {
+                LogError("Failed to read the file contents: " + ex.Message);
+                LogText("------------------------");
+                return false;
+            }
+
+            //parse
+            StringReader reader = new StringReader(code);
+            Reduction root = null;
+            try
+            {
+                string message = "";
+                bool result = parse_MediumVerbosity(reader, out root, out message);
+
+                if (result)
+                {
+                    LogText("File parsed successfuly");
+                }
+                else
+                {
+                    LogError("Failed to parse the file: " + message);
+                    LogText("------------------------");
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                LogError("Failed to parse the file: " + ex.Message);
+                LogText("------------------------");
+                return false;
+            }
+            finally
+            {
+                reader.Dispose();
+            }
+
+            //unfold
+            try
+            {
+                bool optimized = _Optimizer.DoScripture(unfold, root);
+                if (optimized)
+                {
+                    LogText("Parse tree unfolded successfuly");
+                    LogParserInfo("Done!");
+                    LogText("------------------------");
+                    return true;
+                }
+                else
+                {
+                    LogError("Failed to Unfold the parse tree");
+                    LogText("------------------------");
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                LogError("Failed to Unfold the parse tree : " + ex.Message);
+                LogText("------------------------");
+                return false;
+            }
+        }
         bool parseFile_MediumVerbosity(FileInfo fileInfo, DescribeUnfold unfold)
         {
             FileCounter++;
@@ -361,7 +521,6 @@ namespace DescribeCompiler
                 {
                     LogError("Failed to parse the file: " + message);
                     LogText("------------------------");
-                    string ugshdhdsshdjhjsdhshjsd = Log;
                     return false;
                 }
             }
