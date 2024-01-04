@@ -400,9 +400,24 @@ public class Function
 
     static string multiparse(string code, string translator, string verbosiy)
     {
+        //read options
+        if (Arguments.readVerbosityArgument(verbosiy) == false) return null;
+        if (Arguments.readTranslatorArgument(translator) == false) return null;
 
+        List<KeyValuePair<string, string>> list = new List<KeyValuePair<string, string>>();
+        string[] sep = code.Split(new string[] { "~~~FILE~~~" }, StringSplitOptions.RemoveEmptyEntries);
+        for(int i = 0; i < sep.Length; i++)
+        {
+            string[] pair = sep[i].Split(new string[] { "~~N~~" }, StringSplitOptions.RemoveEmptyEntries);
+            list.Add(new KeyValuePair<string, string>(pair[0], pair[1]));
+        }
 
-        return null;
+        string result = MainFunctions.CompileMulty(list);
+        if (result != null) Messages.printCompilationSuccess();
+        else Messages.printFatalError("Parser returned null");
+
+        //return
+        return result;
     }
     static string parse(string code, string translator, string verbosiy, string filename)
     {
@@ -412,7 +427,8 @@ public class Function
 
         //Compile
         string result = MainFunctions.Compile(code, filename);
-        Messages.printCompilationSuccess();
+        if (result != null) Messages.printCompilationSuccess();
+        else Messages.printFatalError("Parser returned null");
 
         //return
         return result;

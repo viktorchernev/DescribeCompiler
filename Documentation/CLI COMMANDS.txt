@@ -3,21 +3,12 @@ onerror=(stop|ignore|usedart)
 
 
 help
-ext
 parse-file
 parse-folder
 
 help
 DescribeCompiler help
 DescribeCompiler -h
-
-ext
-DescribeCompiler ext
-DescribeCompiler ext RESULT_PATH
-
-extone
-DescribeCompiler extone TEMPLATE_NAME
-DescribeCompiler extone TEMPLATE_NAME RESULT_PATH
 
 parse-file
 DescribeCompiler parse-file PARSE_PATH RESULT_PATH
