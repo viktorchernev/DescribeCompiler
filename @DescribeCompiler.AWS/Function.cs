@@ -24,6 +24,9 @@ public class Function
     {
         try
         {
+            //request.Body = @"";
+
+
             //preset
             //do something about clearing logs or putting a 
             //separator line in logs when starting a new job in the CLI !!!
@@ -129,6 +132,10 @@ public class Function
             }
             else if (command == "multi-parse")
             {
+                //output request object as JSON for testing
+                //string sssss = JsonConvert.SerializeObject(request);
+                
+
                 string json = multiparse(code, translator, verbosity);
                 OutputJson result = new OutputJson();
                 if (string.IsNullOrEmpty(json)) result.Result = "Error";
@@ -136,6 +143,12 @@ public class Function
                 result.Command = command;
                 result.Logs = Messages.Log.Replace("\r\n", "<br>").Replace("\n", "<br>");
                 result.Json = json;
+                //result.Json = sssss;
+                //string gggggg = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(json));
+                //result.Json = result.Json.Replace("Built with Describe Compiler version 0.9.4", request.Body + "{{{BODY|ENDS|HERE}}}" + gggggg);
+
+
+
                 var response = new APIGatewayProxyResponse
                 {
                     StatusCode = (int)HttpStatusCode.OK,

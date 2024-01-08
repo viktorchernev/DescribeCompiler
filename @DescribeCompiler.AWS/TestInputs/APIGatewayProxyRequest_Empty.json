@@ -1,0 +1,14 @@
+{
+  "Resource": null,
+  "Path": null,
+  "HttpMethod": null,
+  "Headers": null,
+  "MultiValueHeaders": null,
+  "QueryStringParameters": null,
+  "MultiValueQueryStringParameters": null,
+  "PathParameters": null,
+  "StageVariables": null,
+  "RequestContext": null,
+  "Body": null,
+  "IsBase64Encoded": false
+}
