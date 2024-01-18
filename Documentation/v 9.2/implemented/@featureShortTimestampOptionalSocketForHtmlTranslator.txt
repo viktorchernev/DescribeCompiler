@@ -1,4 +1,4 @@
-FEATURE: Short TimeStamp Optional Socket Html Translator
+FEATURE: Short TimeStamp Optional Socket for HTML Translator
 
 {SHORT_TIME_STAMP} Optional template added to the inbuilt HTML translator
 Note that the socket is not included in the default Page template for the HTML translator
