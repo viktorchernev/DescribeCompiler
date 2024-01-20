@@ -1,2 +1,0 @@
-FEATURE: Empty item decorator
-Items marked with the "{empty}" decorator should be translated to empty list items in html, in order to facilitate adding blank lines to html lists.

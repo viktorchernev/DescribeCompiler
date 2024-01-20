@@ -1,1 +1,0 @@
-Feature: Added ParseString method for parsing source code directly, instead of reading files

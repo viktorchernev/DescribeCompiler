@@ -1,4 +1,0 @@
-FEATURE: Short Version Optional Socket Html Translator
-
-{SHORT_VERSION} Optional template added to the inbuilt HTML translator
-Note that the socket is not included in the default Page template for the HTML translator

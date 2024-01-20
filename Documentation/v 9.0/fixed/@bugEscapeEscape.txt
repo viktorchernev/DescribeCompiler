@@ -1,3 +1,0 @@
-BUG:ESCAPE ESCAPE "\\" does not show as a symbol in html.
-simple bug with handling the text chunk symbol 
-in "private static string DoTextChunk(Reduction r)" in Optimizations

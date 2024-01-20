@@ -1,1 +1,0 @@
-FEATURE:It is now possible for custom translator class to be implemented.

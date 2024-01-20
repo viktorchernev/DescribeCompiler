@@ -1,4 +1,0 @@
-Warning: In the grammar tests for version 1.0 Official the delimiter-mode dirrectives are missing.
-This will result in errors in testing
-
-directives ->> delimiter-mode <<bi>>;;

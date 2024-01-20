@@ -1,5 +1,0 @@
-FEATURE:Group escapes
-There should be a way to escape a whole line or multiple lines - in efect saying that this whole line or whole text is a single literal
-The thilde symbol is appropriate for that:
-Single Line escaper should be a line that starts with a thilde "~" and end with the new line symbol.
-Multy line group escape should start with "~~" and end with "~~" or "~~" and a new line.

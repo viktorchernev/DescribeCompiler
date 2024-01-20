@@ -1,1 +1,0 @@
-FEATURE: Develop specific optimizers for Describe v0.6, v0.7 and v0.8

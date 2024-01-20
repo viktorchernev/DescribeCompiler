@@ -1,2 +1,0 @@
-FEATURE: rearrangings
-Having a button to rearrange a lists' items

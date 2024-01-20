@@ -1,1 +1,0 @@
-FEATURE: {random-picker} Decorator - creates a link-like functional button that, when clicked, a random item from the list is highlighted

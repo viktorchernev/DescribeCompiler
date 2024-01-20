@@ -1,3 +1,0 @@
-FEATURE: Add optional sockets "TIME_STAMP" and "VERSION"
-You can now include those sockets in a top level stencil "Page", which will result in
-adding text about the time of compilation and compiler full version, respectively

@@ -1,8 +1,0 @@
-BUG: misformed links does not show any error
-
-"
-
-	https://en.wikipedia.org\/wiki\/Nut_(fruit) | Nut (fruit), 
-	https://en.wikipedia.org\/wiki\/List_of_culinary_nuts | List of culinary nuts
-
-"

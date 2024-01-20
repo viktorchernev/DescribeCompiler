@@ -1,3 +1,0 @@
-FEATURE:Save object files
-Implement some mechanism to somehow save the resut of compilation of files and folders, and have a fast way to check if changes have been made, and reuse the old result if not, instead of compiling a new.
-This is to speed up the process and should be implemented only in a way that does that efficiently.

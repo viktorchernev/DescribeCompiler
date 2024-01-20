@@ -1,2 +1,0 @@
-FEATURE: variants
-Lists that have few variants (like timestamped versions) and can be switched between.

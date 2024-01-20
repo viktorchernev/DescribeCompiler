@@ -1,3 +1,0 @@
-BUG: When provided with invalid output path by the user, the CLI app will compile all the source and then throw an unhandled exception
-Fix: The compiler must show proper error and not proceeding to compile anything at all.
-Bug was uncovered during testing of various invalid CLI arguments

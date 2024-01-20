@@ -1,2 +1,0 @@
-FEATURE: Comment item decorator
-Items marked with the "{comment}" decorator should be translated to green and italicized list items in html, in order to be used like comment text

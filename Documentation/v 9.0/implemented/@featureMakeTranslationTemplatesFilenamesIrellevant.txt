@@ -1,1 +1,0 @@
-FEATURE: Translation templates names are searched only by filename and the extention is ignored. This way, user can more easily add his own templates and recompile the compiler. He/she still need to make those embedded resources, though.

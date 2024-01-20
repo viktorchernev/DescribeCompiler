@@ -1,6 +1,0 @@
-FEATURE: Artifacts
-
-Artifacts are compiled snippets that are kept at a specified location, that are used in the compilation process
-instead of recompiling anew, in case there is no change to the original file
-
-Using 2 properties - "ArtifactMode" and "ArtifactsPath" in DescribeCompiler#Properties.cs
