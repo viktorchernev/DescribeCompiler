@@ -1,0 +1,4 @@
+FEATURE: Sortby Decorator
+The sortby decorator is used to add a link like dot that rearranges the list
+
+{sortby|TITLE|VALUE}

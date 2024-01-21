@@ -1,0 +1,50 @@
+This produces an error at 
+"C:\Users\Viktor Chernev\Desktop\dbs\2023.11.03-224910507\Personal\files\DemonOfReason\@Personal.ds" - failed to parse: Syntax Error:
+Position: 36, 42
+Read: ","
+Expecting: Hyphen
+
+WHY?
+
+
+
+directives -> 
+	namespace <treeofall.personal>;
+
+
+PERSONAL <rnode> ->
+
+	my schemes <.MySchemes.rnode>,
+	home admin <DKwxVqaw> ->
+
+		documentation generation software <.MyHomeAdmin.dogenSoftware>
+		
+		gap {empty},
+		My Android phone apps I <.MyHomeAdmin.MyPhoneApps1>,
+		My Android phone apps II <.MyHomeAdmin.MyPhoneApps2>,
+		My Windows personalization <.MyHomeAdmin.MyPersonalizeWindows>,
+		My backup Android phone <.MyHomeAdmin.MyBackupAndroid>,
+		Install media wiki on XAMPP <.MyHomeAdmin.MyInstallMediawikiOnXampp>,
+		github \-push <.MyHomeAdmin.githubPush>,
+		github \-edit last commit message <.MyHomeAdmin.githubEditCommitMessage>;
+
+
+	my entertainment <9O7d1XN7> ->
+
+		My books <.MyEntertainment.MyBooks>,
+		My music <.MyEntertainment.MyMusic>,
+		My movies <.MyEntertainment.MyMovies>,
+		My TV shows <.MyEntertainment.MyTVshows>,
+		My pornstars <.MyEntertainment.MyPornstars>,
+		My youtube channels <.MyEntertainment.MyYoutube>;
+
+
+	my instructables <RNDGwEqh> ->
+	
+		My perform CPR <.MyInstructables.MyPerformCPR>;
+
+	my home remedies <.MyHomeRemedies.rnode>,
+	my food recipes <.MyFoodRecipes.rnode>,
+	my diet foods <MyDietFoods>,
+	my prep foods <MyPrepFoods>,
+	my food calories <MyCalories>;

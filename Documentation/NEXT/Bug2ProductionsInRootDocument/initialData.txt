@@ -1,0 +1,16 @@
+the missing coma in that JSON and cur is undefined in index.scripts.js
+
+
+normativeClick https://development.worldinlists.net/index/index.scripts.js:63
+	loadJson("normative") https://development.worldinlists.net/index/index.scripts.js:520
+	
+		addFooter(json);
+		addSmallTrees(json);
+		
+			if(json.items.length != 1) {						//json.items.length is 2, so we never go any further with population
+				console.log('FATAL: Unknown template!');
+				return;
+			}
+		
+		listreeMake();
+		addLargeTree(json.items[0].id); https://development.worldinlists.net/index/index.scripts.js:433 //so here cur is undefined

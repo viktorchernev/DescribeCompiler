@@ -1,0 +1,5 @@
+BUG: System.InvalidOperationException: 'Cannot read keys when either application does not have a console or when console input has been redirected. Try Console.Read.'
+
+Console.ReadKey(); 
+change to
+Console.Read();

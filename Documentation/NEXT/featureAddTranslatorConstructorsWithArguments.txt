@@ -1,0 +1,3 @@
+FEATURE: Add Translator Constructors With Arguments
+
+Add Translator Constructors with logging methods "Action<string> logText" etc. to the parent virtual class DescribeTranslator

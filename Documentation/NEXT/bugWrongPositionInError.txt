@@ -1,0 +1,3 @@
+BUG:Wrong possition im error message.
+The Gold parser engine gives wrong line number in error messages - most of the times wrong by 1
+I think that it is not a bug per se, but the position is 0 based, and tabs are counted as 1 symbol.

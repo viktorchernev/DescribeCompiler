@@ -1,0 +1,1 @@
+BUG: Due to template JS, links in production header does not open when clicked, instead user need to right click and select open in new tab.
