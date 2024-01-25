@@ -6,4 +6,4 @@ exclude: true
 ---
 _Tests ran against Describe Compiler v0.9.3_
 
-* [Test CLI args](/v093/tests/test-1)
+* [Test CLI args](/DescribeDocumentation/v093/tests/test-1)

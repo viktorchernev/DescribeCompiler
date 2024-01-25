@@ -6,4 +6,4 @@ exclude: true
 ---
 _Quirks fixed in Describe Compiler v0.9.3_
 
-* [Text Link Text](/v093/quirks/quirk-1)
+* [Text Link Text](/DescribeDocumentation/v093/quirks/quirk-1)
