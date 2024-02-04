@@ -1,0 +1,1 @@
+REFACTORING: There is a strange logic regarding parsing methods, where we have 2 similar parse file methods. It is a remnant from v 0.9.1 before removing translators from the compiler class

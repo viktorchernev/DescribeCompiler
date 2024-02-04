@@ -1,8 +1,0 @@
-directives -> delimiter-mode <mono>;
-
-fabrics ->
-
-	wool fabrics,
-	cotton fabrics,
-	silk fabrics,
-	synthetic fabrics;

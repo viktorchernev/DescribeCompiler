@@ -1,0 +1,1 @@
+FEATURE: Allow entries without text (just tags) in lists

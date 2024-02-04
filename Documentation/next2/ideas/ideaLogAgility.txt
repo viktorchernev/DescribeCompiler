@@ -1,0 +1,2 @@
+IDEA: Log Agility
+Might be beneficial to implement some log-management features - like deleting oldest log files in a folder if they exceed a certain size for example.

@@ -1,0 +1,1 @@
+Have an option to load settings from a config file instead of the console arguments
