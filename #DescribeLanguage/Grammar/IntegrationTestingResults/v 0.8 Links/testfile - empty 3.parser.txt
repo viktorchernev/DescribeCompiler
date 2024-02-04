@@ -1,0 +1,18 @@
+Initializing Describe Compiler v0.9.2
+GOLD parser engine initialized
+Verbosity set to: High
+Preloaded grammar: "Decorators v0.9"
+Loaded new grammar: "Links v0.8"
+------------------------
+Starting a parse operation on file: "C:\Users\Viktor Chernev\Desktop\World-Describe\DataLists\Documentation\GrammarTests\v 0.8 Links\testfile - empty 3.ds"
+Fetched file contents - 126 characters long
+
+Parsing sequence: T(Text); T(NewLine); T(LeftArrow); R(text-chunk); R(text); T(Text); T(RightArrow); R(text-chunk); R(text); T(NewLine); T(Link); R(tag); T(NewLine); T(Link); T(NewLine); T(Link); T(NewLine); T(Hyphen); R(links); R(links); R(item); T(RightArrow); T(Whitespace); T(NewLine); T(NewLine); T(Terminator); R(producer); T(NewLine); T(EOF); R(expression); R(scripture); Accepted;
+
+File parsed successfuly
+Parse tree unfolded successfuly
+Done!
+------------------------
+1 files parsed.
+Parser red 20 tokens in 11 reductions.
+Those were translated to 0 productions, containing 1 entries.
