@@ -1,0 +1,18 @@
+directives ->
+	namespace <treeofall.public.technologies.jewelry>;
+
+
+//[https://www.totalmateria.com/page.aspx?ID=CheckArticle&site=ktn&NM=230]
+noble metals [https://en.wikipedia.org/wiki/Precious_metal] <nobleMetals> ->
+
+    silver [https://en.wikipedia.org/wiki/Silver],
+    gold [https://en.wikipedia.org/wiki/Gold],
+    platinum [https://en.wikipedia.org/wiki/Platinum],
+    
+    gap {empty},
+    platinum group metals {comment},
+    palladium [https://en.wikipedia.org/wiki/Palladium],
+    rhodium [https://en.wikipedia.org/wiki/Rhodium],
+    iridium [https://en.wikipedia.org/wiki/Iridium],
+    osmium [https://en.wikipedia.org/wiki/Osmium],
+    ruthenium [https://en.wikipedia.org/wiki/Ruthenium];

@@ -1,0 +1,67 @@
+directives ->
+	namespace <treeofall.public.technologies.cultivars>;
+
+
+Citrus fruits <CitrusFruits> ->
+
+	original citrus species ->
+
+		//3 main Citruses
+		Mandarin orange (Citrus reticulata) [https://en.wikipedia.org/wiki/Mandarin_orange] <AS8lWJP8>,	
+		Pomelo (Citrus maxima) [https://en.wikipedia.org/wiki/Pomelo] <quhbwYFD>,
+		
+		Papeda (Citrus cavaleriei\, halimii\, latipes\, hystrix) 
+		[https://en.wikipedia.org/wiki/Papeda_(citrus)] 
+		<F3u0w8XE> ->
+		
+			//species recognised as Papeda https://en.wikipedia.org/wiki/Papeda_(citrus)
+			Ichang Papeda (Citrus cavaleriei) [https://en.wikipedia.org/wiki/Citrus_cavaleriei],
+			Khasi Papeda (Citrus latipes) [https://en.wikipedia.org/wiki/Citrus_latipes],
+			Mountain Citron (Citrus halimii) [https://en.wikipedia.org/wiki/Citrus_halimii],
+			Kaffir Lime or Mauritius papeda (Citrus hystrix) [https://en.wikipedia.org/wiki/Kaffir_lime] <fZrmI8IF>;
+		
+		Citron (Citrus medica) [https://en.wikipedia.org/wiki/Citron] <2gce43Y0>;
+
+
+	popular citrus fruits ->
+
+		Orange [https://en.wikipedia.org/wiki/Orange_(fruit)] <fMV23gMG>,
+		Lemon [https://en.wikipedia.org/wiki/Lemon] <7e1Oend4>,
+		Mandarin orange (Citrus reticulata) <AS8lWJP8>,	
+		Grapefruit [https://en.wikipedia.org/wiki/Grapefruit] <lbjQsVeJ>,
+		Pomelo (Citrus maxima) <quhbwYFD>,
+		
+		Lime [https://en.wikipedia.org/wiki/Lime_(fruit)] <4HG6bm0s>,
+		Citron (Citrus medica) <2gce43Y0>,
+		Kaffir Lime (Citrus hystrix) <fZrmI8IF>,
+		Bergamot orange <2gquiseR>,
+		Buddha's hand [https://en.wikipedia.org/wiki/Buddha%27s_hand] <6xH6mQMW>,
+		Tangelo [https://en.wikipedia.org/wiki/Tangelo] <CLhaBJW2>;
+
+
+
+	all citrus fruits ->
+
+		//3 main Citruses
+		\*Mandarin orange (Citrus reticulata) [https://en.wikipedia.org/wiki/Mandarin_orange],	
+		\*Pomelo (Citrus maxima) [https://en.wikipedia.org/wiki/Pomelo],
+		\*Citron ((Citrus medica) [https://en.wikipedia.org/wiki/Citron],
+		
+		//species recognised as Papeda https://en.wikipedia.org/wiki/Papeda_(citrus)
+		Ichang Papeda (Citrus cavaleriei) [https://en.wikipedia.org/wiki/Citrus_cavaleriei],
+		Khasi Papeda (Citrus latipes) [https://en.wikipedia.org/wiki/Citrus_latipes],
+		Mountain Citron (Citrus halimii) [https://en.wikipedia.org/wiki/Citrus_halimii],
+		\*Kaffir Lime or Mauritius papeda (Citrus hystrix) [https://en.wikipedia.org/wiki/Kaffir_lime],
+
+		//Papeda hybrids
+		Ichandarin \- Yuzu (Ichang Papeda x Mandarin orange) [https://en.wikipedia.org/wiki/Yuzu],
+		Ichandarin \- Sudachi (Ichang Papeda x Mandarin orange) [https://en.wikipedia.org/wiki/Sudachi],
+		Ichang lemon (Ichang Papeda x Pomelo) [https://en.wikipedia.org/wiki/Shangjuan],
+		Hyuganatsu (Yuzu x Pomelo, or Yuzu sport) [https://en.wikipedia.org/wiki/Hyuganatsu],
+		Kabosu (Ichang Papeda x bitter orange) [https://en.wikipedia.org/wiki/Kabosu],
+		
+		//Pomelo hybrids
+		\*Orange \- Mandarin orange x Pomelo [https://en.wikipedia.org/wiki/Orange_(fruit)];
+
+		// more ...
+	

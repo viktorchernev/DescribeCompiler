@@ -1,0 +1,26 @@
+directives -> 
+	namespace <treeofall.personal.MyHomeAdmin>;
+
+icon packs 
+[https://www.untitledui.com/blog/free-icon-sets#1-untitled-ui-icons] <iconPacks>->
+
+	Ionic (700+ free in 3 styles) [https://github.com/ionic-team/ionicons/tree/main][ionic.io/ionicons],
+	Untitled UI Icons (1100+ free) [untitledui.com/icons],
+	Feather Icons (287 free) [feathericons.com],
+	Unicons by IconScout (1100+ free) [iconscout.com/unicons],
+	Heroicons 1.0 (230 free) [v1.heroicons.com],
+	Heroicons 2.0 (292 free) [heroicons.com],
+	Iconoir (1151 free MIT) [iconoir.com],
+	Iconizer (1050 free) [iconizer.io],
+	css.gg Icons (704 free) [css.gg],
+	Phosphor Icons (1047 free in 6 styles MIT) [phosphoricons.com],
+	Streamline Core Line Icons (1000 free) [streamlinehq.com],
+	Tabler Icons (1950 free) [tabler-icons.io],
+	Remix Icon (2271 free in 2 styles) [remixicon.com],
+	Eva Icons (480 free in 2 styles) [akveo.github.io/eva-icons],
+	MingCute Icons (2212 free in 2 styles) [mingcute.com],
+	Tetrisly Icons (260+ free) [tetrisly.gumroad.com],
+	Doodle Icons (400+ free) [khushmeen.com/icons],
+	The Noun Project (3000000) [thenounproject.com],
+	Bootstrap Icons (1600+ free) [icons.getbootstrap.com],
+	Font Awesome Icons (2009 free) [fontawesome.com];

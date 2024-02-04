@@ -1,0 +1,38 @@
+directives -> namespace <treeofall.public.culture.cuisine.foodProducts.plantBased>;
+
+
+fruits [https://en.wikipedia.org/wiki/List_of_culinary_fruits] <fruits> ->
+
+	Apples <rv60eYBt>,
+	Pears <M5BVIBaO>,
+	Apricots <EfFbnMKm>,
+	Peaches <qMwT58zV>,
+	Quinces [https://en.wikipedia.org/wiki/Quince] <3lSCIPCg>,				//Дюли
+	Medlars [https://en.wikipedia.org/wiki/Mespilus]<1043i7BM>,				//Мушмули
+	Plums <GGEcH5Dv>,
+	Cherries <2eWPIdsV>,
+	Sour cherries <6ahS4OyK>,
+	Grapes <AyTq0Ulb>,
+	Melons <kaKd5jhM>,
+	Watermelons <1A9EoAnQ>,
+	Figs <MMXpU0dx>,
+	Strawberries <UWlH3JI5>,
+	Blueberries <mT6utQtb>,													//Синя боровинка
+	Cranberries <SzuqAyiv>,													//Червена боровинка
+	Raspberries <ZDJb7Ui3>,
+	Blackberries <Yu6sCTkr>,
+	Mulberries <0ixmdhPX>,													//Черници
+	Elderberries <gcIy8yYE>,
+	Olives <wG03Zbfh>,
+	
+	Pineapples <aJM7GtLT>,
+	Pomegranates <iThtXdr3>,
+	Mangos <4wfrqLZX>,
+	Bananas <2OcmBYVW>,
+	Oranges <Jz69CPsF>,
+	Tangerines <9ydkS47n>,
+	Lemons <MRQpKXIZ>,
+	Kiwis <zqVpLCTN>,
+	Dates [https://en.wikipedia.org/wiki/Date_palm] <0kSghm09>,
+	Breadfruits [https://en.wikipedia.org/wiki/Artocarpus] <rfS6aJS1>,
+	Pitaya (Dragon fruit) [https://en.wikipedia.org/wiki/Pitaya] <SzuqBsur>;

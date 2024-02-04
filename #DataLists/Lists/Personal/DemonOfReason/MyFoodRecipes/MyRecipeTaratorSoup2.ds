@@ -1,0 +1,30 @@
+directives -> 
+	namespace <treeofall.personal.MyFoodRecipes>;
+
+
+tarator soup (900\-950g | 484 kcal) <MyRecipeTaratorSoup2> ->
+
+	ingredients ->									//per 100g	in this recipe
+
+		1 cucumber,									//15		30
+		1 \/ 2 sprig of dill,						//43		8
+		20g wallnuts,								//654		131
+		400g yougurt 2%,							//48		192
+
+		1 \- 2 table spoons of garlic flower,		//331		3
+		some ground black pepper,
+		2 table spoons of sunflower oil,			//884		120
+		250\-300ml water;
+
+	preparation ->
+
+		wash the cucumber and grate it in a big boul,
+		chop the dill on top of the grated cucumber,
+		add salt and mix well,
+		add the yougurt and the sunflower oil on top and mix well,
+		slowly add the water with good stirring,
+		add a lot of garlic powder as it is very weak and stir till homogenous,
+		add the ground wallnuts as well and stir till homogenous,
+		add the black pepper and stir some more,
+
+		serve forth;

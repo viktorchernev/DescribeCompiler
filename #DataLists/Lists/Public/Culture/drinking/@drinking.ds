@@ -1,0 +1,49 @@
+directives ->
+	namespace <treeofall.public.culture.drinking>;
+
+drinking <rnode> ->
+
+	wine,
+	beer,
+	cider,
+	
+	gap {empty},
+	Whiskey,
+	Bourbon,
+	Scotch,
+	
+	Gin [https://www.youtube.com/watch?v=5UW2FDUqgpw] ->
+	
+	    botanicals,
+	    vapor infused gin,
+	    navy strength gin,
+		
+	    gap {empty},
+	    London dry gin,
+	    Sloe gin,
+	    Shiraz gin,
+	    Barrel aged gin,
+	    Bathtub gin,
+	    Old Tom gin,
+	    Jenever / Genever;
+	
+	Rum <drinkrum>,
+	Brandy,
+	Cognac & Armagnac,
+
+	Tequila & Mezcal [https://www.youtube.com/watch?v=UfwfwltSuNk] ->
+	    
+	    by starting product {comment},
+	    100% agave,
+	    mixto,
+
+	    gap {empty},
+	    by age {comment},
+            Blanco aka Silver (0-2 months),
+	    Joven (gold tequila),
+	    Reposado (2 months - 1 year),
+	    Anejo (1-3 years),
+	    Extra Anejo (3+ years);
+
+	Vodka,
+	Absinthe;

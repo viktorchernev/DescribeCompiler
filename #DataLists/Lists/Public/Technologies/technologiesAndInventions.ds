@@ -1,0 +1,71 @@
+directives ->
+	namespace <treeofall.public.technologies>;
+
+
+technologies [https://en.wikipedia.org/wiki/Technology] <rnode>->
+
+	locomotion <hIdTr7Pw>,
+	weapons <K3aVitDk>,
+	locks <cqK0HfXE>,
+    writing,
+	gas masks <JjxMELpU>,
+	clothing <.clothing.rnode>,
+	cleaning <.cleaning.rnode>,
+	cultivars <.cultivars.rnode>,
+	jewelry <.jewelry.rnode>;
+
+locomotion <hIdTr7Pw> ->
+
+	cars <cars> ->
+	
+		Soviet cars [https://www.cars.bg/] ->
+	
+			Moskvitch [https://en.wikipedia.org/wiki/Moskvitch],
+			Варшава,
+			ВАЗ,
+			GAZ,
+			Zaz,
+			Volga,
+			Wartburg,
+			Trabant,
+			UAZ;
+	;
+;
+		
+
+weapons <K3aVitDk> ->
+
+	blunt weapons,
+	sharp weapons,
+	ranged weapons,
+	
+	gap {empty},
+	poisons,
+	traps,
+	
+	gap {empty},
+	firearms,
+	bombs <bombs>,
+	rockets,
+	
+	gap {empty},
+	biological weapons,
+	chemical weapons,
+	nuclear weapons;
+    
+
+bombs <bombs> ->
+
+	Types of hand Grenades [https://www.youtube.com/watch?v=uxvDhmecoYQ] ->
+
+		by use role {comment},
+		Defensive granades,
+		Offensive granades,
+		
+		by type {nlcomment},
+		Fragmentation granades,
+		High Explosive (Concussion) granades,
+		Flashbang (Stun) granades,
+		Thermite granades,
+		Smoke granades;
+    ;

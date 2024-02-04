@@ -1,0 +1,225 @@
+directives ->
+	namespace <treeofall.public.science.medicine.mentalDisorders>;
+
+
+substance\-related and addictive disorders <AddictiveDisorders>->
+
+	substance related disorders <WW5Xezlw>,
+	disorders due to use of alcohol <30Pt9XPF>,
+	disorders due to use of cannabis <Qiv2KjI0>,
+	disorders due to use of synthetic cannabinoids <4W9Adlw9>,
+	disorders due to use of opioids <a06CCMIR>,
+	disorders due to use of sedative or hypnotic or anxiolytic <99ya7BWr>,
+	disorders due to use of cocaine <Rd8PikVs>,
+	disorders due to use of amphetamines <T8UaeApC>,
+	disorders due to use of synthetic cathinone <LN9O8kuC>,
+	disorders due to use of caffeine <4kigjRiK>,
+	disorders due to use of hallucinogens <p6tzLZr1>,
+	disorders due to use of nicotine <peJwBTEd>,
+	disorders due to use of volatile inhalants <zlNIbToQ>,
+	disorders due to use of dissociative drugs including ketamine and phencyclidine (PCP) <DLXHFV6r>,
+	non\-substance related disorders <Bw3cf44x>;
+
+
+
+
+
+substance related disorders <WW5Xezlw>->
+
+	substance\-induced disorder <lRQvVlk1>->
+	
+		Substance\-induced psychosis <MaRwqMOH>,
+		Substance\-induced delirium <Vyar84Kc>,
+		Substance\-induced mood disorder <Z3XNso8i>;
+	
+	substance\-induced disorder <lRQvVlk1>,
+    Substance intoxication <3vbNFw2X>,
+    Substance withdrawal <TXnyv2QJ>,
+    Substance dependence <yb3bUfdv>;
+
+
+
+
+
+disorders due to use of alcohol <30Pt9XPF>->
+
+    Alcohol use disorder <b7rGR03k>,
+    Alcoholic hallucinosis <77ZKXEM6>,
+    Alcohol withdrawal <7KFyq20A>,
+    Harmful pattern of use of alcohol <4lNhPMxA>;
+
+
+
+disorders due to use of cannabis <Qiv2KjI0>->
+
+    Cannabis use disorder <Cat4MVV0>,
+    Cannabis dependence <FrBYubIk>,
+    Cannabis intoxication <6oSmJ2bo>,
+    Harmful pattern of use of cannabis <FPSjBdL4>,
+    Cannabis withdrawal <f9QKRIRd>,
+    Cannabis\-induced delirium <AuXlLLPp>,
+    Cannabis\-induced psychosis <MJ8O3O6E>,
+    Cannabis\-induced mood disorder <qBrG5Kxl>,
+    Cannabis\-induced anxiety <Pwtw48G2>;
+
+
+
+disorders due to use of synthetic cannabinoids <4W9Adlw9>->
+
+    Episode of harmful use of synthetic cannabinoids <pNCixjeB>,
+    Harmful pattern of use of synthetic cannabinoids <HTFUZj5c>,
+    Synthetic cannabinoid dependence <GM2oXyvl>,
+    Synthetic cannabinoid intoxication <tGtONEV2>,
+    Synthetic cannabinoids withdrawal <yMmwSgRm>,
+    Synthetic cannabinoids induced delirium <DbDQltZs>,
+    Synthetic cannabinoids induced psychotic disorder <RgPngLnc>,
+    Synthetic cannabinoids induced mood disorder <0pDSUXqD>,
+    Synthetic cannabinoids induced anxiety <ZOk7uC1n>;
+
+
+
+disorders due to use of opioids <a06CCMIR>->
+
+    Episode of harmful use of Opioids <vFTAV7za>,
+    Harmful pattern of use of Opioids <mGZvPhfK>,
+    Opioid dependence <W7Z87r2m>,
+    Opioid intoxication <8aczvtD4>,
+    Opioids withdrawal <nPYHR4qT>,
+    Opioids induced delirium <hB1uHv2B>,
+    Opioids induced psychotic disorder <qAjrdxmH>,
+    Opioids induced mood disorder <EN9nHRCP>,
+    Opioids induced anxiety <FI0xx4mF>;
+
+
+
+disorders due to use of sedative or hypnotic or anxiolytic <99ya7BWr>->
+
+    Episode of harmful use of Sedative or hypnotic or anxiolytic <c2aJiIMm>,
+    Harmful pattern of use of Sedative or hypnotic or anxiolytic <Hg3mQlHM>,
+    Sedative or hypnotic or anxiolytic dependence <PBgdeLZg>,
+    Sedative or hypnotic or anxiolytic intoxication <XsOSWRwk>,
+    Sedative or hypnotic or anxiolytic withdrawal <DD78I2iK>,
+    Sedative or hypnotic or anxiolytic induced delirium <lTGNMOXf>,
+    Sedative or hypnotic or anxiolytic induced psychotic disorder <tZyugWVp>,
+    Sedative or hypnotic or anxiolytic induced mood disorder <PNiGieR7>,
+    Sedative or hypnotic or anxiolytic induced anxiety <74L6gZyM>,
+    Amnestic disorder due to use of sedatives or hypnotics or anxiolytics <wYaYarTK>,
+    Dementia due to use of sedatives or hypnotics or anxiolytics <zEF6JkVN>;
+
+
+
+disorders due to use of cocaine <Rd8PikVs>->
+
+    Episode of harmful use of Cocaine <71ldZM0E>,
+    Harmful pattern of use of Cocaine <axUHsmKH>,
+    Cocaine dependence <lqTeWKcM>,
+    Cocaine intoxication <r3HYP1dk>,
+    Cocaine withdrawal <k0wH271Q>,
+    Cocaine induced delirium <K7oAiJdF>,
+    Cocaine induced psychotic disorder <TEWGt9JD>,
+    Cocaine induced mood disorder <bRImnLBv>,
+    Cocaine induced anxiety <vErzvaJ4>,
+    Cocaine induced OCD <jsfDeiQm>,
+    Cocaine induced impulse control disorder <R8V7ciqQ>;
+
+
+
+disorders due to use of amphetamines <T8UaeApC>->
+
+    Episode of harmful use of Amphetamines <WI0V6WRB>,
+    Harmful pattern of use of Amphetamines <Kb0cGpeI>,
+    Amphetamines dependence <JR7ompiQ>,
+    Amphetamines intoxication <Wsx1WF3G>,
+    Amphetamines withdrawal <AFUUZmSi>,
+    Amphetamines induced delirium <X60F03uL>,
+    Amphetamines induced psychotic disorder <9u9fLwF5>,
+    Amphetamines induced mood disorder <ZSUJ3VkL>,
+    Amphetamines induced anxiety <CCt7AOZm>,
+    Amphetamines induced OCD <2dmJV3we>,
+    Amphetamines induced impulse control disorder <TdJkAh2S>;
+
+
+
+disorders due to use of synthetic cathinone <LN9O8kuC>->
+
+    Episode of harmful use of synthetic cathinone <XeOB3nec>,
+    Harmful pattern of use of synthetic cathinone <At5Z9Owo>,
+    Synthetic cathinone dependence <e6Iu3fJI>,
+    Synthetic cathinone intoxication <5CSX6mEt>,
+    Synthetic cathinone withdrawal <yg5JM68K>,
+    Synthetic cathinone induced delirium <Y3UXfmVj>,
+    Synthetic cathinone induced psychotic disorder <qCSIFR8i>,
+    Synthetic cathinone induced mood disorder <Y290ApFn>,
+    Synthetic cathinone induced anxiety <gSUGZkq9>,
+    Synthetic cathinone induced OCD <HG9HK3Pf>,
+    Synthetic cathinone induced impulse control disorder <RBth2pxQ>;
+
+
+
+disorders due to use of caffeine <4kigjRiK>->
+
+    Episode of harmful use of caffeine <agpVqQec>,
+    Harmful pattern of use of caffeine <r05SU0Um>,
+    Caffeine intoxication <abFzZepF>,
+    Caffeine withdrawal <dDWcA7WL>,
+    Caffeine\-induced anxiety disorder <NCEPue6x>,
+    Caffeine\-induced sleep disorder <DhQVm7pE>;
+
+
+
+disorders due to use of hallucinogens <p6tzLZr1>->
+
+    Episode of harmful use of hallucinogens <ak4sgZKP>,
+    Harmful pattern of use of hallucinogens <wyqXeq2S>,
+    Hallucinogens dependence <c1JPK0TC>,
+    Hallucinogen induced delirium <M6eAlJkr>,
+    Hallucinogens induced psychotic disorder <sPAJjaTY>,
+    Hallucinogens induced anxiety disorder <tLsAlsgU>,
+    Hallucinogens induced mood disorder <TCBJXTGc>,
+    Hallucinogen persisting perception disorder <pYZvydTa>;
+
+
+
+disorders due to use of nicotine <peJwBTEd>->
+
+    Episode of harmful use of nicotine <7p9leu3H>,
+    Harmful pattern of use of nicotine <8VULxdMI>,
+    nicotine intoxication <xoHaSK8V>,
+    nicotine withdrawal <Io31DiCr>,
+    Nicotine dependence <hIq5Ozym>;
+
+
+
+disorders due to use of volatile inhalants <zlNIbToQ>->
+
+    Episode of harmful use of volatile inhalants <4xxAcgfx>,
+    Harmful pattern of use of volatile inhalants <3mT7fEmF>,
+    Opioid dependence <DUOmIxYG>,
+    Opioid intoxication <KP7Kq7M6>,
+    Volatile inhalants withdrawal <8lbwtkVv>,
+    Volatile inhalants induced delirium <7ojeOmi0>,
+    Volatile inhalants induced psychotic disorder <iXoZBe3I>,
+    Volatile inhalants induced mood disorder <oF2SZuQC>,
+    Volatile inhalants induced anxiety <09svTSUB>;
+
+
+
+disorders due to use of dissociative drugs including ketamine and phencyclidine (PCP) <DLXHFV6r>->
+
+    Episode of harmful use of dissociative drugs including ketamine and phencyclidine (PCP) <KEJjnR81>,
+    Harmful pattern of use of dissociative drugs including ketamine and phencyclidine (PCP) <ne5FScV3>,
+    Dissociative drugs including ketamine and phencyclidine (PCP) dependence <sMH6GHhY>,
+    Dissociative drugs including ketamine and phencyclidine (PCP) intoxication <n6iLO8kC>,
+    Dissociative drugs including ketamine and phencyclidine (PCP) withdrawal <Ln39I4Km>,
+    Dissociative drugs including ketamine and phencyclidine (PCP) induced delirium <hxkadCw7>,
+    Dissociative drugs including ketamine and phencyclidine (PCP) induced psychotic disorder <ZYglXuIk>,
+    Dissociative drugs including ketamine and phencyclidine (PCP)induced mood disorder <PcmykK2A>,
+    Dissociative drugs including ketamine and phencyclidine (PCP) induced anxiety <ENequzKE>;
+
+
+
+non\-substance related disorders <Bw3cf44x>->
+
+	Gambling disorder <W7mzp3Wm>,
+	Video game addiction <23BKn2l5>,
+	Internet addiction <WGUvtPhm>;

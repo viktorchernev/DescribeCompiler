@@ -1,0 +1,5 @@
+thermopumps ->
+
+	air-water,
+	geothermal,
+	water-water;
