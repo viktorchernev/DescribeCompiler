@@ -7,7 +7,7 @@ _Maintaining large data lists, made easy_
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/viktorchernev/DescribeCompiler?color=green&logo=github)
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 
-Describe is a domain specific language used to write and maintain complex data lists that are compiled on demand to html, xaml, xml, sql, json and any other language needed. Describe is simple to use, intuitive and easy to master, and readily extendible.
+Describe is a markup language used to write and maintain complex data lists that are compiled on demand to html, xml, sql, json and any other language needed. Describe is simple to use, intuitive and easy to master, and readily extendible.
 
 
 ## How to
@@ -55,8 +55,10 @@ The final output will depend on the templates used - and you can easily write [y
 - You can reach me on Viber as well: +359-885-18-05-86
 
 ## Releases
-* 0.9.1 (Improved templating)
-* 0.9 Initial release (public beta)  
+* 0.9.3
+* 0.9.2
+* 0.9.1
+* 0.9
 
 ## Notes
-* In those first beta releases, we currently only have that one HTML template set for demonstration purposes. If you are expecting a big variety of different designs and options - there aren't many yet, so you'd have to [write your own template set](https://github.com/viktorchernev/DescribeCompiler/wiki/DescribeCompiler-templating) - it is very easy, but still I feel the need to mention it, as I don't want anyone to feel misled. I will give updates here when more templates are available.
+* We currently have inbuilt translators for HTML and JSON. If you need to target other languages, you'd have to [write your own translator] - it is very easy. I will give updates here when more templates are available.
