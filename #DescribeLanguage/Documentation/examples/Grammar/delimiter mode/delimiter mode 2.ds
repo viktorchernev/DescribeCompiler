@@ -1,0 +1,7 @@
+directives ->
+	verbosity <<high>>,
+	namespace <<treeofall.public.unsorted>>,
+	delimiter-mode <<2>>;
+
+
+unsorted <<rnode>> ->> sleep,, religion,, cars;
