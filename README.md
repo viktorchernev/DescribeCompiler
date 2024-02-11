@@ -14,7 +14,7 @@ Describe is a markup language used to write and maintain complex data lists that
 In order to run the `DescribeCompilerCLI.exe` you need a Windows PC with DotNet framework version 4.8 or higher. In order to reference the `DescribeCompilerAPI.dll` in your DotNet projects, you need to target DotNet framework version 4.8 or higher. There are no other dependencies. Also, be sure to check out our [wiki](https://github.com/viktorchernev/DescribeCompiler/wiki) for the complete documentation.  
   
 ### 0. Set up highlighting
-In order to highlight Describe code, you can download the xml files for Notepad++ from the folder [Highlighting](https://github.com/viktorchernev/DescribeCompiler/tree/master/Highlighting), or use the instructions provided in said folder to set up your preferred text editor.
+In order to highlight Describe code, you can download the xml files for Notepad++ from the folder [Highlighting](https://github.com/viktorchernev/DescribeCompiler/tree/master/%23DescribeLanguage/Highlighting), or use the instructions provided in said folder to set up your preferred text editor.
   
 ### 1. Write Describe code  
 Write a title of each list, followed by an arrow `->` and the elements, one on a line, separated by comma `,` and end with a semicolon `;`. Add `[links]` in square brackets, and `<tag>` items in order to piece lists together. Add additional data as `{decorators}` in curly brackets. For more info visit the [documentation](https://github.com/viktorchernev/DescribeCompiler/wiki/Grammar-How-To) or explore Describe source codes and test cases in this [huge collection](https://github.com/viktorchernev/DataLists/tree/master/Lists).  
@@ -23,29 +23,16 @@ Write a title of each list, followed by an arrow `->` and the elements, one on a
 
 
 ### 2a. Compile (using CLI)  
-Run the CLI compiler by specifying the target folder (or file) as first argument and output file (or folder) as last argument.  Add [options](https://github.com/viktorchernev/DescribeCompiler/wiki/CliCompiler-how-to) in between, if needed.  
+Run the CLI compiler by specifying the target folder (or file) as first argument and output file (or folder) as second argument.  Add [options](https://github.com/viktorchernev/DescribeCompiler/wiki/CliCompiler-how-to) after that, if needed.  
 
 ![pic2a](https://github.com/viktorchernev/DescribeCompiler/assets/72315339/d8f6ac78-2cbc-4056-b560-16273474fa4d)
 
-### 2b. Compile (using API)
-In order to [use the dll](https://github.com/viktorchernev/DescribeCompiler/wiki/ApiCompiler-how-to):
-1. Add a reference to the project or DLL  
-2. (OPTIONAL) Create your handlers that will be used for logging  
-3. Call the constructor in order to create the compiler class, (passing your logging handlers if any)  
-4. Call ParseFolder or ParseFile to get result:  
-
-`using DescribeCompiler;`  
-`DescribeCompiler compiler = new DescribeCompiler();`  
-  
-`string html = "";`  
-`if(isdir == false) comp.ParseFile(new FileInfo(inputPath), out html);`  
-`else comp.ParseFolder(new DirectoryInfo(inputPath), out html);`  
-  
-`if (html != null) File.WriteAllText(outputPath, html);`  
+### 2b. [Compile (using API)](https://github.com/viktorchernev/DescribeCompiler/wiki/ApiCompiler-how-to)
+### 2c. [Compile (using AWS)](https://github.com/viktorchernev/DescribeCompiler/wiki/AwsCompiler-how-to)
 
 
 ### 3. Result  
-The final output will depend on the templates used - and you can easily write [your own templates](https://github.com/viktorchernev/DescribeCompiler/wiki/DescribeCompiler-templating), or use the ones that are prebuilt for you. Here we are using a set of particular HTML templates to build a bare-bone website (you can visit a live demo of this website [here](https://viktorchernev.github.io/Describe/)).  
+The final output will depend on the translator used - and you can easily write your own translator, or use the ones that are prebuilt for you. Here we are using a set of particular HTML templates to build a bare-bone website.
   
 ![pic3a](https://github.com/viktorchernev/DescribeCompiler/assets/72315339/36ae6997-82df-467e-b490-b7b9d63a860c)
 
@@ -61,4 +48,4 @@ The final output will depend on the templates used - and you can easily write [y
 * 0.9
 
 ## Notes
-* We currently have inbuilt translators for HTML and JSON. If you need to target other languages, you'd have to [write your own translator] - it is very easy. I will give updates here when more templates are available.
+* We currently have inbuilt translators for HTML and JSON. If you need to target other languages, you'd have to write your own translator - it is very easy. I will give updates here when more translators are available.
