@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "DescribeCompilerCLI.Core": {
+    "DescribeCompiler.CLI": {
       "commandName": "Project"
     },
     "Docker": {

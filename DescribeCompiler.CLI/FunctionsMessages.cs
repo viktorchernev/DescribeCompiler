@@ -328,7 +328,7 @@ namespace DescribeCompilerCLI
             ConsoleLogInfo("RESULT_PATH - the path of the file to write the result to (existing file or not)");
             ConsoleLogInfo("* verbosity - set the log verbosity of the parser (default is high): \"l\", \"low\", \"m\", \"medium\", \"h\", \"high\"");
             ConsoleLogInfo("* log-verbosity - can be used instead of verbosity");
-            ConsoleLogInfo("* artifacts - weather to use artifacts (default is no): \"m\", \"makeonly\", \"t\", \"takeonly\", \"u\", \"use\", \"n\", \"no\"");
+            ConsoleLogInfo("* artifacts - whether to use artifacts (default is no): \"m\", \"makeonly\", \"t\", \"takeonly\", \"u\", \"use\", \"n\", \"no\"");
             ConsoleLogInfo("** ARTIFACTS_PATH - specify path of directory to store artifacts in");
             ConsoleLogInfo("* LOG_PATH - specify path of directory or file to output logs to");
             ConsoleLog("");
@@ -338,12 +338,12 @@ namespace DescribeCompilerCLI
             ConsoleLogInfo("TRANSLATOR_NAME - the name of the translator to be used");
             ConsoleLogInfo("PARSE_PATH - the path of the file to parse");
             ConsoleLogInfo("RESULT_PATH - the path of the folder to write the result to (existing or not)");
-            ConsoleLogInfo("* dsonly - weather to omit files that are not Describe source files (\".DS\"). (default is true): \"true\", \"false\"");
-            ConsoleLogInfo("* toponly - weather to parse files in child directories or not. (default is false): \"true\", \"false\"");
+            ConsoleLogInfo("* dsonly - whether to omit files that are not Describe source files (\".DS\"). (default is true): \"true\", \"false\"");
+            ConsoleLogInfo("* toponly - whether to parse files in child directories or not. (default is false): \"true\", \"false\"");
             ConsoleLogInfo("* verbosity - set the log verbosity of the parser (default is high): \"l\", \"low\", \"m\", \"medium\", \"h\", \"high\"");
             ConsoleLogInfo("* log-verbosity - can be used instead of verbosity");
             ConsoleLogInfo("* onerror - what to do when there is an error in source code. (default is stop): \"stop\", \"ignore\"");
-            ConsoleLogInfo("* artifacts - weather to use artifacts (default is no): \"m\", \"makeonly\", \"t\", \"takeonly\", \"u\", \"use\", \"n\", \"no\"");
+            ConsoleLogInfo("* artifacts - whether to use artifacts (default is no): \"m\", \"makeonly\", \"t\", \"takeonly\", \"u\", \"use\", \"n\", \"no\"");
             ConsoleLogInfo("** ARTIFACTS_PATH - specify path of directory to store artifacts in");
             ConsoleLogInfo("* LOG_PATH - specify path of directory or file to output logs to");
             ConsoleLog("");

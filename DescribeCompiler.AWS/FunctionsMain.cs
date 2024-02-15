@@ -93,11 +93,11 @@ namespace DescribeCompiler.AWS
 
 
                 //templates
-                JsonTranslator translator;
+                JsonTranslatorWOL translator;
                 if (Datnik.translatorName.ToLower().StartsWith("json_")
                     || Datnik.translatorName.ToLower() == "json")
                 {
-                    translator = new JsonTranslator(
+                    translator = new JsonTranslatorWOL(
                         Messages.ConsoleLog,
                         Messages.ConsoleLogError,
                         Messages.ConsoleLogInfo);

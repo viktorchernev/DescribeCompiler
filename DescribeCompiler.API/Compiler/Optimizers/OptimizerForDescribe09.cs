@@ -67,10 +67,23 @@ namespace DescribeCompiler.Compiler.Optimizers
         // | Decorator <decorators>
         private string DoDecorator(string text)
         {
-            string s = text.Substring(1, text.Length - 2);
+            text = text.Trim(' ');
+            text = text.TrimStart('{');
+            text = text.TrimEnd('}');
+            text = text.Trim(' ');
+            if (text.Contains('|') == false) return text;
 
+            string[] sep = text.Split('|');
+            text = sep[0];
+            for(int i = 1; i < sep.Length; i++)
+            {
+                text += '|' + sep[i];
+            }
+            return text;
+
+            //string s = text.Substring(1, text.Length - 2);
             //we need to remove spaces here for the translations later on
-            return s.Replace(" ", "");
+            //return s.Replace(" ", "");
         }
         private string[] DoDecorators(Reduction r)
         {

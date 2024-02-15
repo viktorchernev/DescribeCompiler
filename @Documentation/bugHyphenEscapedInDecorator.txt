@@ -1,0 +1,5 @@
+BUG: We are escaping hyphens inside decorators. Why?
+Because we are escaping them everywhere with the new preprocessor for Describe 1.0
+This did not matter for comments, but it does matter for the decorators, and to a lesser extent for links and tags (not much at all)
+
+Hacked some code in place, but will need to be fixed.

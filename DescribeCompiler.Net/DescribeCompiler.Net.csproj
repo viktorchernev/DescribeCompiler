@@ -100,7 +100,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DescribeCompilerAPIStandard\DescribeCompiler.API.csproj">
+    <ProjectReference Include="..\DescribeCompiler.API\DescribeCompiler.API.csproj">
       <Project>{421c3a00-e23d-455e-ad2b-9a4cc56c626c}</Project>
       <Name>DescribeCompiler.API</Name>
     </ProjectReference>

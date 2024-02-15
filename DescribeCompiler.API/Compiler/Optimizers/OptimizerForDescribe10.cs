@@ -83,18 +83,41 @@ namespace DescribeCompiler.Compiler.Optimizers
         // | Decorator <decorators>
         private string DoDecorator(string text)
         {
-            if (text[1] != '{')
-            {
-                string s = text.Substring(1, text.Length - 2);
-                //we need to remove spaces here for the translations later on
-                return s.Replace(" ", "");
-            }
-            else
-            {
-                string s = text.Substring(2, text.Length - 4);
-                //we need to remove spaces here for the translations later on
-                return s.Replace(" ", "");
-            }
+            //we undo possible escape from preprocessor.
+            //Hacked in place. Needs to be worked around.
+            if (text.Contains("\\-")) text = text.Replace("\\-", "-");
+            if (text.Contains("\\*")) text = text.Replace("\\*", "*");
+            if (text.Contains("\\/")) text = text.Replace("\\/", "/");
+            if (text.Contains("\\\\")) text = text.Replace("\\\\", "\\");
+            if (text.Contains("\\[")) text = text.Replace("\\[", "[");
+            if (text.Contains("\\]")) text = text.Replace("\\]", "]");
+            if (text.Contains("\\{")) text = text.Replace("\\{", "{");
+            if (text.Contains("\\}")) text = text.Replace("\\}", "}");
+            if (text.Contains("\\<")) text = text.Replace("\\<", "<");
+            if (text.Contains("\\>")) text = text.Replace("\\>", ">");
+            if (text.Contains("\\,")) text = text.Replace("\\,", ",");
+            if (text.Contains("\\;")) text = text.Replace("\\;", ";");
+
+            text = text.Trim(' ');
+            text = text.TrimStart('{');
+            text = text.TrimStart('{');
+            text = text.TrimEnd('}');
+            text = text.TrimEnd('}');
+            text = text.Trim(' ');
+            return text;
+
+            //if (text[1] != '{')
+            //{
+            //    string s = text.Substring(1, text.Length - 2);
+            //    //we need to remove spaces here for the translations later on
+            //    return s.Replace(" ", "");
+            //}
+            //else
+            //{
+            //    string s = text.Substring(2, text.Length - 4);
+            //    //we need to remove spaces here for the translations later on
+            //    return s.Replace(" ", "");
+            //}
         }
         private string[] DoDecorators(Reduction r)
         {

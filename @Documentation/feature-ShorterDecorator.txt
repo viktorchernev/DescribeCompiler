@@ -1,0 +1,8 @@
+FEATURE: shorter decorator
+
+The "shorter" decorator has been implemented. There are not going to be multiple "shorter-1", "shorter-2", as suggested before, but only the one.
+
+
+shorter-1, shorter-2
+shortest-1, shortest-2
+

@@ -40,7 +40,15 @@ namespace DescribeCompilerCLI
 
                 //templates
                 DescribeTranslator translator = null;
-                if(Datnik.translatorName.ToLower().StartsWith("json_") 
+                if(Datnik.translatorName.ToLower().StartsWith("json_world_of_lists")
+                    || Datnik.translatorName.ToLower() == "json_world_of_lists")
+                {
+                    translator = new JsonTranslatorWOL(
+                        Messages.ConsoleLog,
+                        Messages.ConsoleLogError,
+                        Messages.ConsoleLogInfo);
+                }
+                else if(Datnik.translatorName.ToLower().StartsWith("json_") 
                     || Datnik.translatorName.ToLower() == "json")
                 {
                     translator = new JsonTranslator(
