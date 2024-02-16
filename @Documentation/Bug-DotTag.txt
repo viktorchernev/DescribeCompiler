@@ -1,0 +1,42 @@
+This file broke something because of the "<inventions.rnode>" tag.
+We got this error when trying to load compiled JSON
+Uncaught (in promise) SyntaxError: JSON.parse: expected ',' or ']' after array element at line 1 column 557862 of the JSON data
+This is because there is no comma between 2 items - "}{" instead of "},{"
+This is probably due to putting 2 base nodes in the root file
+However, it is still mishandled by the translator and needs to be investigated!
+
+directives ->
+	
+	delimiter-mode <mono>,
+	namespace <treeofall.public>;
+
+PUBLIC <rnode> ->
+
+	TODO <HOgsuvrD>,
+    unsorted <.unsorted.rnode>,
+    
+    gap {empty},
+	culture <.culture.rnode>,
+	science <.science.rnode>,
+    inventions <inventions.rnode>,
+	technologies <.technologies.rnode>,
+	industries <.industries.rnode>,
+    
+    gap {empty},
+	obstacles <.obstacles.rnode>,
+	dark arts <.darkarts.rnode>;
+
+
+inventions <inventions.rnode> [https://en.wikipedia.org/wiki/Timeline_of_historic_inventions] ->
+
+	Lower Paleolithic {comment},
+	Simple stone tools [https://en.wikipedia.org/wiki/Oldowan],
+	Control of fire,
+	Acheulean stone tools [https://en.wikipedia.org/wiki/Acheulean],
+	Language [https://en.wikipedia.org/wiki/Origin_of_language],
+	Bone tools [https://en.wikipedia.org/wiki/Bone_tool],
+	Boats [https://en.wikipedia.org/wiki/Boat],
+	Hafting [https://en.wikipedia.org/wiki/Hafting],
+	Woodworking [https://en.wikipedia.org/wiki/Woodworking],
+	Pigments [https://en.wikipedia.org/wiki/Pigment],
+	Spears [https://en.wikipedia.org/wiki/Spear];

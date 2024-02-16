@@ -1,0 +1,5 @@
+FEATURE: CLI - One argument compilation
+The same way typescript compiler does it - 
+tsc source.ts
+is the same as 
+tsc source.ts source.js
