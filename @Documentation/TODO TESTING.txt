@@ -1,0 +1,5 @@
+Implement all the decorators
+Implement all the directives - like regex-replace or replace
+Check if we support titled links in the compiler [url | title]
+Check all default values in Compilation documentation ad in code
+Check where we support quotes "" in CMD arguments in code vs documentation
