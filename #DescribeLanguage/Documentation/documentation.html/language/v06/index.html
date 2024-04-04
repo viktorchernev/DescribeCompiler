@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Describe Basics | Documentation</title>
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="Describe Basics" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Describe Compiler Documentation" />
+<meta property="og:description" content="Describe Compiler Documentation" />
+<link rel="canonical" href="http://localhost:4000/language/v06/" />
+<meta property="og:url" content="http://localhost:4000/language/v06/" />
+<meta property="og:site_name" content="Documentation" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Describe Basics" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Describe Compiler Documentation","headline":"Describe Basics","url":"http://localhost:4000/language/v06/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Documentation" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Documentation</a></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Describe Basics</h1>
+  </header>
+  <br />
+
+  <div class="post-content">
+    <p>Describe version 0.6, codenamed Basics is the first test version of the language. It introduced the language in simple lists with separators <code class="language-plaintext highlighter-rouge">,</code>, terminators <code class="language-plaintext highlighter-rouge">;</code> and production arrows <code class="language-plaintext highlighter-rouge">-&gt;</code>.</p>
+
+<p>The GOLD parser grammar is given next<br />
+Keep in mind that the precompiler plays a role as well, and this cannot be seen from the grammar file.<br /><br /></p>
+
+<p><span style="color:blue"><em>Describe 0.6 - Basics</em></span></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>! Attributes
+"Name" = 'D#SCRIBE markup Language'
+"Author" = 'DemonOfReason'
+"Version" = '0.6'
+"About" = 'D#SCRIBE Language'
+"Character Mapping" = 'Unicode'
+"Case Sensitive" = False
+"Start Symbol" = &lt;scripture&gt;
+
+! Comments
+Comment Start = '/*'
+Comment End = '*/'
+Comment Line = '//'
+
+! Symbols
+Hyphen = '-'
+!LeftArrow = '&lt;'
+RightArrow = '&gt;'
+Separator = ','
+Terminator = ';'
+!Star = '*'
+!FSlash = '/'
+!BSlash = '\'
+
+! Escaped symbols
+EscapeHyphen = '\-'
+EscapeLeftArrow = '\&lt;'
+EscapeRightArrow = '\&gt;'
+EscapeSeparator = '\,'
+EscapeTerminator = '\;'
+EscapeStar = '\*'
+EscapeFSlash = '\/'
+EscapeBSlash = '\\'
+
+! Text
+{SpecialCharacter} = ['-''&lt;''&gt;'','';''*''/''\''\-''\&lt;''\&gt;''\,''\;''\*''\/''\\']
+{TextCharacter} = {Printable} - {SpecialCharacter}
+Text = {TextCharacter}+
+
+
+
+! Productions
+&lt;producer&gt;
+	::= Hyphen RightArrow
+
+! Text
+&lt;text-chunk&gt;
+	::= Text
+	| EscapeHyphen
+	| EscapeLeftArrow
+	| EscapeRightArrow
+	| EscapeSeparator
+	| EscapeTerminator
+	| EscapeStar
+	| EscapeEscape
+	| EscapeFSlash
+	| EscapeBSlash
+
+&lt;text-chunk-list&gt;    
+	::= &lt;text-chunk&gt; &lt;text-chunk&gt;    
+	 | &lt;text-chunk&gt; &lt;text-chunk-list&gt;
+
+&lt;text&gt;     
+	::= &lt;text-chunk&gt;    
+	| &lt;text-chunk-list&gt;
+   
+
+
+! Item
+&lt;item&gt;    
+	::= &lt;text&gt;
+
+
+! Expressions and more
+&lt;item-or-expression&gt;    
+	::= &lt;item&gt;    
+	| &lt;expression&gt;
+
+&lt;item-or-expression-list&gt;
+	::= &lt;item&gt; Separator &lt;item&gt;
+	| &lt;item&gt; Separator &lt;expression&gt;
+	| &lt;expression&gt; &lt;item&gt;
+	| &lt;expression&gt; &lt;expression&gt;
+	
+	| &lt;item&gt; Separator &lt;item-or-expression-list&gt;
+	| &lt;expression&gt; &lt;item-or-expression-list&gt;
+
+	
+	
+
+&lt;expression&gt;     
+	::= &lt;item&gt; &lt;producer&gt; Terminator    
+	| &lt;item&gt; &lt;producer&gt; &lt;item-or-expression&gt; Terminator   
+	| &lt;item&gt; &lt;producer&gt; &lt;item-or-expression-list&gt; Terminator
+	| &lt;item&gt; &lt;producer&gt; &lt;item-or-expression&gt;
+	| &lt;item&gt; &lt;producer&gt; &lt;item-or-expression-list&gt;
+
+&lt;expression-list&gt;     
+	::= &lt;expression&gt; &lt;expression&gt;    
+	| &lt;expression&gt; &lt;expression-list&gt;
+
+&lt;scripture&gt;     
+	::= &lt;expression&gt;      
+	| &lt;expression-list&gt;
+</code></pre></div></div>
+
+<br />
+<h3 id="links">Links</h3>
+<p><a href="/language/home">Back</a></p>
+
+  </div>
+
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+  
+	github: <a href="https://github.com/viktorchernev/DescribeCompiler">viktorchernev</a><br>email: <a class="u-email" href="mailto:vchernev91@abv.bg">vchernev91@abv.bg</a><!-- <h2 class="footer-heading">Documentation</h2> 
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Documentation</li><li><a class="u-email" href="mailto:vchernev91@abv.bg">vchernev91@abv.bg</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/viktorchernev"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">viktorchernev</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Describe Compiler Documentation</p>
+      </div>
+    </div>-->
+
+  </div>
+
+</footer>
+</body>
+
+</html>

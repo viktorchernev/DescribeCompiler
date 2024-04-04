@@ -4,7 +4,7 @@ title: Describe Official
 permalink: /language/v11/
 exclude: true
 ---
-Describe version 1.1, codenamed Tildes, introduced tilde inversions as an alternative way to add data to entries - "~".
+Describe version 1.1, codenamed Tildes, introduced tilde inversions as an alternative way to add data to entries - ```~```.
 
 <span style="color:blue">_Describe 1.1 - Tildes_</span>
 ```
