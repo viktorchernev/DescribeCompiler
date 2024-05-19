@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="TestFiles\06\A_basic1.ds" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="TestFiles\06\A_basic1.ds" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\AntlrRuntime\Antlr4.csproj" />
+    <ProjectReference Include="..\..\DescribeParser\DescribeParser.csproj" />
+  </ItemGroup>
+
+</Project>

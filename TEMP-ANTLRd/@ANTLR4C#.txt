@@ -1,0 +1,58 @@
+(in my parser class)
+ScriptureContext
+
+	//those are my right hand sides of the rule
+	//scripture : expression | expression_list ;
+	.expression_list()										->Expression_listContext
+	.expression()											->ExpressionContext
+	
+	//ctor just calls base ctor.
+	.Ctor() : base()
+	
+	//listener related methods
+	.EnterRule(IParseTreeListener)
+	.ExitRule(IParseTreeListener)
+	
+	//visitor related methods
+	Accept<TResult>(IParseTreeVisitor<TResult>) 			->TResult
+_______________________________________________________________________________________________________________
+(Antlr4.Runtime)
+ParserRuleContext : RuleContext
+
+	.IList<IParseTree> 										children
+	.RecognitionException									exception
+	.ParserRuleContext										EmptyContext
+	.int													ChildCount
+	.Interval												SourceInterval
+	.IToken 												Start
+	.IToken 												Stop
+	
+	.CopyFrom(ParserRuleContext)
+	~EnterRule(IParseTreeListener)
+	~ExitRule(IParseTreeListener)
+	
+	.AddChild(ITerminalNode)
+	.AddChild(RuleContext)
+	.AddChild(IToken)										->ITerminalNode
+	.AddErrorNode(IToken)									->IErrorNode
+	
+	.GetChild(int)											->IParseTree
+	.GetChild<T:IParseTree>(int)							->T:IParseTree
+	
+	.GetToken(int, int)										->ITerminalNode
+	.GetTokens(int)											->ITerminalNode[]
+	
+	.GetRuleContext<T:ParserRuleContext>(int)				->T:ParserRuleContext
+	.GetRuleContexts<T:ParserRuleContext>()					->T:ParserRuleContext[]
+	
+	.RemoveLastChild()
+	
+	.ToInfoString(Parser)									->string
+_______________________________________________________________________________________________________________
+	
+	
+	
+	
+	
+	
+	

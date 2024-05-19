@@ -1,0 +1,59 @@
+plugins {
+    id 'java'
+    id 'antlr'
+    id 'idea'
+}
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    antlr "org.antlr:antlr4:4.9.1"
+    compile "org.antlr:antlr4-runtime:4.9.1"
+    testImplementation(platform('org.junit:junit-bom:5.7.0'))
+    testImplementation('org.junit.jupiter:junit-jupiter')
+}
+
+generateGrammarSource {
+    maxHeapSize = "128m"
+    arguments += ['-package', 'me.tomassetti.examples.MarkupParser', '-visitor', '-no-listener']
+}
+compileJava.dependsOn generateGrammarSource
+
+sourceSets {
+    generated {
+        java.srcDir 'generated-src/antlr/main/'
+    }
+}
+compileJava.source sourceSets.generated.java, sourceSets.main.java
+
+clean{
+    delete "generated-src"
+}
+
+idea {
+    module {
+        sourceDirs += file("generated-src/antlr/main/")
+    }
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
+
+// this is not stricly necessary but it is useful if you are not using an IDE
+// it will create a JAR with all dependencies included
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'Main-Class': 'me.tomassetti.examples.MarkupParser.App'
+    }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
