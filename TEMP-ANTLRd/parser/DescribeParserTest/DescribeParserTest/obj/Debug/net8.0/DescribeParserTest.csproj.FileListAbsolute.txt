@@ -4,8 +4,10 @@ C:\Users\Viktor Chernev\Desktop\ANTLRd\parser\DescribeParserTest\DescribeParserT
 C:\Users\Viktor Chernev\Desktop\ANTLRd\parser\DescribeParserTest\DescribeParserTest\bin\Debug\net8.0\DescribeParserTest.dll
 C:\Users\Viktor Chernev\Desktop\ANTLRd\parser\DescribeParserTest\DescribeParserTest\bin\Debug\net8.0\DescribeParserTest.pdb
 C:\Users\Viktor Chernev\Desktop\ANTLRd\parser\DescribeParserTest\DescribeParserTest\bin\Debug\net8.0\Antlr4.Runtime.Standard.dll
+C:\Users\Viktor Chernev\Desktop\ANTLRd\parser\DescribeParserTest\DescribeParserTest\bin\Debug\net8.0\DescribeParser.dll
 C:\Users\Viktor Chernev\Desktop\ANTLRd\parser\DescribeParserTest\DescribeParserTest\bin\Debug\net8.0\Antlr4.Runtime.Standard.pdb
 C:\Users\Viktor Chernev\Desktop\ANTLRd\parser\DescribeParserTest\DescribeParserTest\bin\Debug\net8.0\Antlr4.Runtime.Standard.xml
+C:\Users\Viktor Chernev\Desktop\ANTLRd\parser\DescribeParserTest\DescribeParserTest\bin\Debug\net8.0\DescribeParser.pdb
 C:\Users\Viktor Chernev\Desktop\ANTLRd\parser\DescribeParserTest\DescribeParserTest\obj\Debug\net8.0\DescribeParserTest.csproj.AssemblyReference.cache
 C:\Users\Viktor Chernev\Desktop\ANTLRd\parser\DescribeParserTest\DescribeParserTest\obj\Debug\net8.0\DescribeParserTest.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Viktor Chernev\Desktop\ANTLRd\parser\DescribeParserTest\DescribeParserTest\obj\Debug\net8.0\DescribeParserTest.AssemblyInfoInputs.cache
@@ -17,5 +19,3 @@ C:\Users\Viktor Chernev\Desktop\ANTLRd\parser\DescribeParserTest\DescribeParserT
 C:\Users\Viktor Chernev\Desktop\ANTLRd\parser\DescribeParserTest\DescribeParserTest\obj\Debug\net8.0\DescribeParserTest.pdb
 C:\Users\Viktor Chernev\Desktop\ANTLRd\parser\DescribeParserTest\DescribeParserTest\obj\Debug\net8.0\DescribeParserTest.genruntimeconfig.cache
 C:\Users\Viktor Chernev\Desktop\ANTLRd\parser\DescribeParserTest\DescribeParserTest\obj\Debug\net8.0\ref\DescribeParserTest.dll
-C:\Users\Viktor Chernev\Desktop\ANTLRd\parser\DescribeParserTest\DescribeParserTest\bin\Debug\net8.0\DescribeParser.dll
-C:\Users\Viktor Chernev\Desktop\ANTLRd\parser\DescribeParserTest\DescribeParserTest\bin\Debug\net8.0\DescribeParser.pdb

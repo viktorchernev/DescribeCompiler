@@ -9,10 +9,78 @@
 
   <ItemGroup>
     <None Remove="TestFiles\06\A_basic1.ds" />
+    <None Remove="TestFiles\06\A_basic2.ds" />
+    <None Remove="TestFiles\06\A_basic3.ds" />
+    <None Remove="TestFiles\06\A_basic4.ds" />
+    <None Remove="TestFiles\06\A_twoRoots.ds" />
+    <None Remove="TestFiles\06\B_comments1.ds" />
+    <None Remove="TestFiles\06\B_comments2.ds" />
+    <None Remove="TestFiles\06\B_comments3.ds" />
+    <None Remove="TestFiles\06\B_comments4.ds" />
+    <None Remove="TestFiles\06\B_comments5.ds" />
+    <None Remove="TestFiles\06\C_empty1.ds" />
+    <None Remove="TestFiles\06\C_empty2.ds" />
+    <None Remove="TestFiles\06\C_empty3.ds" />
+    <None Remove="TestFiles\06\C_empty4.ds" />
+    <None Remove="TestFiles\06\D_cyrillic.ds" />
+    <None Remove="TestFiles\06\D_double_characters1.ds" />
+    <None Remove="TestFiles\06\D_double_characters2.ds" />
+    <None Remove="TestFiles\06\D_double_characters3.ds" />
+    <None Remove="TestFiles\06\D_escaped_double_characters1.ds" />
+    <None Remove="TestFiles\06\D_escaped_double_characters2.ds" />
+    <None Remove="TestFiles\06\D_escaped_double_characters3.ds" />
+    <None Remove="TestFiles\06\E_spaces_escapes_N.ds" />
+    <None Remove="TestFiles\06\E_spaces_escapes_RN.ds" />
+    <None Remove="TestFiles\06\F_production_in_production1.ds" />
+    <None Remove="TestFiles\06\F_production_in_production2.ds" />
+    <None Remove="TestFiles\06\F_production_in_production3.ds" />
+    <None Remove="TestFiles\06\F_production_in_production4.ds" />
+    <None Remove="TestFiles\06\F_production_in_production5.ds" />
+    <None Remove="TestFiles\06\F_production_in_production6.ds" />
+    <None Remove="TestFiles\06\F_production_in_production7.ds" />
+    <None Remove="TestFiles\resultTemplates\template_basic_a.md" />
+    <None Remove="TestFiles\resultTemplates\template_basic_b.md" />
+    <None Remove="TestFiles\resultTemplates\template_preprocessed_a.md" />
+    <None Remove="TestFiles\resultTemplates\template_preprocessed_b.md" />
+    <None Remove="TestFiles\resultTemplates\template_preprocessed_c.md" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="TestFiles\06\A_basic1.ds" />
+    <EmbeddedResource Include="TestFiles\06\A_basic2.ds" />
+    <EmbeddedResource Include="TestFiles\06\A_basic3.ds" />
+    <EmbeddedResource Include="TestFiles\06\A_basic4.ds" />
+    <EmbeddedResource Include="TestFiles\06\A_twoRoots.ds" />
+    <EmbeddedResource Include="TestFiles\06\B_comments1.ds" />
+    <EmbeddedResource Include="TestFiles\06\B_comments2.ds" />
+    <EmbeddedResource Include="TestFiles\06\B_comments3.ds" />
+    <EmbeddedResource Include="TestFiles\06\B_comments4.ds" />
+    <EmbeddedResource Include="TestFiles\06\B_comments5.ds" />
+    <EmbeddedResource Include="TestFiles\06\C_empty1.ds" />
+    <EmbeddedResource Include="TestFiles\06\C_empty2.ds" />
+    <EmbeddedResource Include="TestFiles\06\C_empty3.ds" />
+    <EmbeddedResource Include="TestFiles\06\C_empty4.ds" />
+    <EmbeddedResource Include="TestFiles\06\D_cyrillic.ds" />
+    <EmbeddedResource Include="TestFiles\06\D_double_characters1.ds" />
+    <EmbeddedResource Include="TestFiles\06\D_double_characters2.ds" />
+    <EmbeddedResource Include="TestFiles\06\D_double_characters3.ds" />
+    <EmbeddedResource Include="TestFiles\06\D_escaped_double_characters1.ds" />
+    <EmbeddedResource Include="TestFiles\06\D_escaped_double_characters2.ds" />
+    <EmbeddedResource Include="TestFiles\06\D_escaped_double_characters3.ds" />
+    <EmbeddedResource Include="TestFiles\06\E_spaces_escapes_N.ds" />
+    <EmbeddedResource Include="TestFiles\06\E_spaces_escapes_RN.ds" />
+    <EmbeddedResource Include="TestFiles\06\F_production_in_production1.ds" />
+    <EmbeddedResource Include="TestFiles\06\F_production_in_production2.ds" />
+    <EmbeddedResource Include="TestFiles\06\F_production_in_production3.ds" />
+    <EmbeddedResource Include="TestFiles\06\F_production_in_production4.ds" />
+    <EmbeddedResource Include="TestFiles\06\F_production_in_production5.ds" />
+    <EmbeddedResource Include="TestFiles\06\F_production_in_production6.ds" />
+    <EmbeddedResource Include="TestFiles\06\F_production_in_production7.ds" />
+    <EmbeddedResource Include="TestFiles\resultTemplates\template_basic_a.md" />
+    <EmbeddedResource Include="TestFiles\resultTemplates\template_basic_b.md" />
+    <EmbeddedResource Include="TestFiles\resultTemplates\template_preprocessed_a.md" />
+    <EmbeddedResource Include="TestFiles\resultTemplates\template_preprocessed_b.md" />
+    <EmbeddedResource Include="TestFiles\resultTemplates\template_preprocessed_c.md" />
   </ItemGroup>
 
   <ItemGroup>

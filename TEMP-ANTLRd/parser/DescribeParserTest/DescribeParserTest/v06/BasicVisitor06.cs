@@ -22,6 +22,7 @@ namespace DescribeParserTest
         public BasicVisitor06() 
         {
             _log = "";
+            _lerror = null;
         }
 
         string _log;
@@ -37,9 +38,24 @@ namespace DescribeParserTest
             }
         }
 
+        string _lerror;
+        public string LastError
+        {
+            get
+            {
+                return _lerror;
+            }
+            set
+            {
+                _lerror = value;
+            }
+        }
+
+
         public override object VisitScripture([NotNull] Describe06Parser.ScriptureContext context)
         {
             Log += Environment.NewLine + logItem(context, "scripture");
+            if (_lerror != null) return null;
             return base.VisitScripture(context);
         }
 
@@ -52,60 +68,81 @@ namespace DescribeParserTest
         public override object VisitText_chunk([NotNull] Describe06Parser.Text_chunkContext context)
         {
             Log += Environment.NewLine + logItem(context, "text_chunk");
+            if (_lerror != null) return null;
             return base.VisitText_chunk(context);
         }
         public override object VisitItem([NotNull] Describe06Parser.ItemContext context)
         {
             Log += Environment.NewLine + logItem(context, "item");
+            if (_lerror != null) return null;
             return base.VisitItem(context);
         }
         public override object VisitExpression([NotNull] Describe06Parser.ExpressionContext context)
         {
             Log += Environment.NewLine + logItem(context, "expression");
+            if (_lerror != null) return null;
             return base.VisitExpression(context);
         }
         public override object VisitExpression_list([NotNull] Describe06Parser.Expression_listContext context)
         {
             Log += Environment.NewLine + logItem(context, "expression_list");
+            if (_lerror != null) return null;
             return base.VisitExpression_list(context);
         }
         public override object VisitItem_or_expression([NotNull] Describe06Parser.Item_or_expressionContext context)
         {
             Log += Environment.NewLine + logItem(context, "item_or_expression");
+            if (_lerror != null) return null;
             return base.VisitItem_or_expression(context);
         }
         public override object VisitItem_or_expression_list([NotNull] Describe06Parser.Item_or_expression_listContext context)
         {
             Log += Environment.NewLine + logItem(context, "item_or_expression_list");
+            if (_lerror != null) return null;
             return base.VisitItem_or_expression_list(context);
         }
 
         string logItem(ParserRuleContext context, string type, bool logToConsole = true)
         {
             var exception = context.exception;
-            List<IParseTree> children = context.children.ToList();
-            Interval interval = context.SourceInterval;
 
-            string msg = type + ": ";
-            if (exception != null) msg = "! " + msg;
-
-            foreach (var child in children)
+            string msg = "";
+            if (exception != null)
             {
-                Type t = child.GetType();
-                msg += " " + t.Name;
-            }
-            msg += ";";
-
-            if (logToConsole)
-            {
-                Console.WriteLine(msg);
-                if (exception != null)
+                msg = type + ": ";
+                if (context.children == null) msg += "NULL;";
+                else
                 {
-                    Console.WriteLine("-------------------------------------------------");
-                    Console.WriteLine(exception);
-                    Console.WriteLine("-------------------------------------------------");
+                    List<IParseTree> children = context.children.ToList();
+                    foreach (var child in children)
+                    {
+                        Type t = child.GetType();
+                        msg += " " + t.Name;
+                    }
+                    msg += ";";
                 }
             }
+            else
+            {
+                _lerror = exception.Message;
+
+                msg = "! " + type + ": ";
+                if (context.children == null) msg += "NULL;";
+                else
+                {
+                    List<IParseTree> children = context.children.ToList();
+                    foreach (var child in children)
+                    {
+                        Type t = child.GetType();
+                        msg += " " + t.Name;
+                    }
+                    msg += ";";
+                }
+                msg += Environment.NewLine + exception.Message + 
+                    Environment.NewLine + exception.StackTrace;
+            }
+
+            if (logToConsole) Console.WriteLine(msg);
             return msg;
         }
         string logToken(ITerminalNode token, bool logToConsole = true)
@@ -120,28 +157,7 @@ namespace DescribeParserTest
 
 
 
-        static string GetTokenType(int type)
-        {
-            switch (type)
-            {
-                case 1: return "LINE_COMMENT";
-                case 2: return "BLOCK_COMMENT";
-                case 3: return "NEWLINE";
-                case 4: return "PRODUCER";
-                case 5: return "SEPARATOR";
-                case 6: return "TERMINATOR";
-                case 7: return "ESCAPE_ESCAPE";
-                case 8: return "ESCAPE_PRODUCER";
-                case 9: return "ESCAPE_SEPARATOR";
-                case 10: return "ESCAPE_TERMINATOR";
-                case 11: return "ESCAPE_LCOMMENT";
-                case 12: return "ESCAPE_BCOMMENT";
-                case 13: return "DATA";
-                case -1: return "EOF";
-                default: return type.ToString() + " is unknown";
-            }
-        }
-        static string GetTokenType2(int tokenType) //an alternative (possibly slower)
+        static string GetTokenType(int tokenType) //an alternative (possibly slower)
         {
             return Describe06Lexer.DefaultVocabulary.GetSymbolicName(tokenType);
         }

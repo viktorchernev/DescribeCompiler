@@ -31,6 +31,16 @@ using IToken = Antlr4.Runtime.IToken;
 [System.CLSCompliant(false)]
 public interface IDescribe06Listener : IParseTreeListener {
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="Describe06Parser.producer"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterProducer([NotNull] Describe06Parser.ProducerContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="Describe06Parser.producer"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitProducer([NotNull] Describe06Parser.ProducerContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="Describe06Parser.text_chunk"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

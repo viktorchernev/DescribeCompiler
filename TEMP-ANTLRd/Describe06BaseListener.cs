@@ -36,6 +36,18 @@ using ParserRuleContext = Antlr4.Runtime.ParserRuleContext;
 [System.CLSCompliant(false)]
 public partial class Describe06BaseListener : IDescribe06Listener {
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="Describe06Parser.producer"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterProducer([NotNull] Describe06Parser.ProducerContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="Describe06Parser.producer"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitProducer([NotNull] Describe06Parser.ProducerContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="Describe06Parser.text_chunk"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>

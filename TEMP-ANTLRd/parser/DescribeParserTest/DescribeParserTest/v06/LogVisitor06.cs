@@ -19,6 +19,7 @@ namespace DescribeParserTest
         public LogVisitor06()
         {
             _log = "";
+            _lerror = null;
         }
         
         string _log;
@@ -33,6 +34,21 @@ namespace DescribeParserTest
                 _log = value;
             }
         }
+
+        string _lerror;
+        public string LastError
+        {
+            get
+            {
+                return _lerror;
+            }
+            set
+            {
+                _lerror = value;
+            }
+        }
+
+
 
         List<bool> _booliary = new List<bool>();
 
@@ -72,50 +88,57 @@ namespace DescribeParserTest
         }
         public override string VisitScripture([NotNull] Describe06Parser.ScriptureContext context)
         {
-            logItem(context, "scripture");
+            Log += Environment.NewLine + logItem(context, "scripture");
+            if (_lerror != null) return "error";
             visitChildren(context);
             return "success";
         }
 
         public override string VisitTerminal(ITerminalNode node)
         {
-            logToken(node);
+            Log += Environment.NewLine + logToken(node);
             return "success";
         }
 
         public override string VisitText_chunk([NotNull] Describe06Parser.Text_chunkContext context)
         {
-            logItem(context, "text_chunk");
+            Log += Environment.NewLine + logItem(context, "text_chunk");
+            if (_lerror != null) return "error";
             visitChildren(context);
             return "success";
         }
         public override string VisitItem([NotNull] Describe06Parser.ItemContext context)
         {
-            logItem(context, "item");
+            Log += Environment.NewLine + logItem(context, "item");
+            if (_lerror != null) return "error";
             visitChildren(context);
             return "success";
         }
         public override string VisitExpression([NotNull] Describe06Parser.ExpressionContext context)
         {
-            logItem(context, "expression");
+            Log += Environment.NewLine + logItem(context, "expression");
+            if (_lerror != null) return "error";
             visitChildren(context);
             return "success";
         }
         public override string VisitExpression_list([NotNull] Describe06Parser.Expression_listContext context)
         {
-            logItem(context, "expression_list");
+            Log += Environment.NewLine + logItem(context, "expression_list");
+            if (_lerror != null) return "error";
             visitChildren(context);
             return "success";
         }
         public override string VisitItem_or_expression([NotNull] Describe06Parser.Item_or_expressionContext context)
         {
-            logItem(context, "item_or_expression");
+            Log += Environment.NewLine + logItem(context, "item_or_expression");
+            if (_lerror != null) return "error";
             visitChildren(context);
             return "success";
         }
         public override string VisitItem_or_expression_list([NotNull] Describe06Parser.Item_or_expression_listContext context)
         {
-            logItem(context, "item_or_expression_list");
+            Log += Environment.NewLine + logItem(context, "item_or_expression_list");
+            if (_lerror != null) return "error";
             visitChildren(context);
             return "success";
         }
@@ -140,27 +163,27 @@ namespace DescribeParserTest
             }
             return indent;
         }
-        void logItem(ParserRuleContext context, string type)
+        string logItem(ParserRuleContext context, string type, bool logToConsole = true)
         {
             string indent = getIndent();
-
             var exception = context.exception;
-            List<IParseTree> children = context.children.ToList();
-            Interval interval = context.SourceInterval;
 
-            string msg = type + ": ";
-            if (exception != null) msg = "! " + msg;
-            msg = indent + msg;
-            
-            Console.WriteLine(msg);
+            string msg = "";
             if (exception != null)
             {
-                Console.WriteLine("-------------------------------------------------");
-                Console.WriteLine(exception);
-                Console.WriteLine("-------------------------------------------------");
+                _lerror = exception.Message;
+                msg = exception.Message + Environment.NewLine + exception.StackTrace;
             }
+            else
+            {
+                msg = indent + type;
+            }
+            
+            
+            if(logToConsole) Console.WriteLine(msg);
+            return msg;
         }
-        void logToken(ITerminalNode token)
+        string logToken(ITerminalNode token, bool logToConsole = true)
         {
             string indent = getIndent();
 
@@ -168,47 +191,29 @@ namespace DescribeParserTest
             string? tokenText = token.ToString();
             if (tokenText == null) tokenText = "NULL";
 
-
-            string msg = indent;
-            Console.Write(msg);
-            Console.ForegroundColor = ConsoleColor.Green;
-            msg = "T(" + tokenType + "|'";
-            Console.Write(msg);
-            msg = ReplaceWhitespaceE(tokenText);
-            Console.ForegroundColor = ConsoleColor.DarkCyan;
-            Console.Write(msg);
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.Write("')");
-            Console.WriteLine();
-            Console.ForegroundColor = ConsoleColor.White;
-
-            msg = indent + msg;
-        }
-
-
-
-        static string GetTokenType(int type)
-        {
-            switch (type)
+            if(logToConsole)
             {
-                case 1: return "LINE_COMMENT";
-                case 2: return "BLOCK_COMMENT";
-                case 3: return "NEWLINE";
-                case 4: return "PRODUCER";
-                case 5: return "SEPARATOR";
-                case 6: return "TERMINATOR";
-                case 7: return "ESCAPE_ESCAPE";
-                case 8: return "ESCAPE_PRODUCER";
-                case 9: return "ESCAPE_SEPARATOR";
-                case 10: return "ESCAPE_TERMINATOR";
-                case 11: return "ESCAPE_LCOMMENT";
-                case 12: return "ESCAPE_BCOMMENT";
-                case 13: return "DATA";
-                case -1: return "EOF";
-                default: return type.ToString() + " is unknown";
+                string msg = indent;
+                Console.Write(msg);
+                Console.ForegroundColor = ConsoleColor.Green;
+                msg = "T(" + tokenType + "|'";
+                Console.Write(msg);
+                msg = ReplaceWhitespaceE(tokenText);
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.Write(msg);
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write("')");
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.White;
             }
+
+            string message = indent + "T(" + tokenType + "|'" + ReplaceWhitespaceE(tokenText) + "')";
+            return message;
         }
-        static string GetTokenType2(int tokenType) //an alternative (possibly slower)
+
+
+
+        static string GetTokenType(int tokenType) //an alternative (possibly slower)
         {
             return Describe06Lexer.DefaultVocabulary.GetSymbolicName(tokenType);
         }
