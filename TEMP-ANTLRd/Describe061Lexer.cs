@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generated from Describe06.g4 by ANTLR 4.13.1
+// Generated from Describe061.g4 by ANTLR 4.13.1
 
 // Unreachable code detected
 #pragma warning disable 0162
@@ -29,7 +29,7 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 
 [System.CodeDom.Compiler.GeneratedCode("ANTLR", "4.13.1")]
 [System.CLSCompliant(false)]
-public partial class Describe06Lexer : Lexer {
+public partial class Describe061Lexer : Lexer {
 	protected static DFA[] decisionToDFA;
 	protected static PredictionContextCache sharedContextCache = new PredictionContextCache();
 	public const int
@@ -53,10 +53,10 @@ public partial class Describe06Lexer : Lexer {
 	};
 
 
-	public Describe06Lexer(ICharStream input)
+	public Describe061Lexer(ICharStream input)
 	: this(input, Console.Out, Console.Error) { }
 
-	public Describe06Lexer(ICharStream input, TextWriter output, TextWriter errorOutput)
+	public Describe061Lexer(ICharStream input, TextWriter output, TextWriter errorOutput)
 	: base(input, output, errorOutput)
 	{
 		Interpreter = new LexerATNSimulator(this, _ATN, decisionToDFA, sharedContextCache);
@@ -83,7 +83,7 @@ public partial class Describe06Lexer : Lexer {
 		}
 	}
 
-	public override string GrammarFileName { get { return "Describe06.g4"; } }
+	public override string GrammarFileName { get { return "Describe061.g4"; } }
 
 	public override string[] RuleNames { get { return ruleNames; } }
 
@@ -93,7 +93,7 @@ public partial class Describe06Lexer : Lexer {
 
 	public override int[] SerializedAtn { get { return _serializedATN; } }
 
-	static Describe06Lexer() {
+	static Describe061Lexer() {
 		decisionToDFA = new DFA[_ATN.NumberOfDecisions];
 		for (int i = 0; i < _ATN.NumberOfDecisions; i++) {
 			decisionToDFA[i] = new DFA(_ATN.GetDecisionState(i), i);

@@ -18,6 +18,9 @@ scripture
 │   ├── item
 │   │   └── text_chunk
 │   │       └── T(DATA|'fabrics ')
+│   ├── producer
+│   │   ├── T(HYPHEN|'-')
+│   │   └── T(RIGHT_ARROW|'>')
 │   ├── item_or_expression_list
 │   │   ├── item
 │   │   │   └── text_chunk

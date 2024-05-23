@@ -19,6 +19,9 @@ scripture
 │   ├── item
 │   │   └── text_chunk
 │   │       └── T(DATA|'macronutrients ')
+│   ├── producer
+│   │   ├── T(HYPHEN|'-')
+│   │   └── T(RIGHT_ARROW|'>')
 │   ├── item_or_expression_list
 │   │   ├── item
 │   │   │   └── text_chunk

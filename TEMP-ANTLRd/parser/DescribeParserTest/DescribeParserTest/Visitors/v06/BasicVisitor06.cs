@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DescribeParserTest
+namespace DescribeParser.Visitors
 {
     /// <summary>
     /// This visitor class is used to log to the console the result of a 
@@ -65,6 +65,12 @@ namespace DescribeParserTest
             return base.VisitTerminal(node);
         }
 
+        public override object VisitProducer([NotNull] Describe06Parser.ProducerContext context)
+        {
+            Log += Environment.NewLine + logItem(context, "producer");
+            if (_lerror != null) return null;
+            return base.VisitProducer(context);
+        }
         public override object VisitText_chunk([NotNull] Describe06Parser.Text_chunkContext context)
         {
             Log += Environment.NewLine + logItem(context, "text_chunk");

@@ -1,8 +1,11 @@
 ﻿using Antlr4.Runtime;
 using Antlr4.Runtime.Atn;
+using System;
+using System.Diagnostics;
 using System.Reflection;
 using System.Xml.Linq;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using DescribeParser.Visitors;
 
 namespace DescribeParserTest
 {
@@ -10,8 +13,15 @@ namespace DescribeParserTest
     {
         static void Main(string[] args)
         {
+            //int stackSize = 8 * 1024 * 1024;
+            //Thread thread = new Thread(new ThreadStart(TestFiles_Describe06), stackSize);
+            //thread.Start();
+            //thread.Join();
+
+
+
             TestFiles_Describe06();
-            //TestFile_Describe06("DescribeParserTest.TestFiles._06.D_double_characters2.ds");
+            //TestFile_Describe06("DescribeParserTest.TestFiles._06.A_basic1.ds");
         }
 
 
@@ -100,11 +110,16 @@ namespace DescribeParserTest
                 CommonTokenStream tokenstream = new CommonTokenStream(lexer);
                 Describe06Parser parser = new Describe06Parser(tokenstream);
 
+                //set timer
+                Stopwatch fullwatch = new Stopwatch();
+                fullwatch.Start();
+
                 //parse
                 Describe06Parser.ScriptureContext scriptureContext = parser.scripture();
                 LogVisitor06 visitor = new LogVisitor06();
                 visitor.Visit(scriptureContext);
                 string tree = visitor.Log;
+                fullwatch.Stop();
 
                 //IDK really why this is
                 parser.BuildParseTree = true;
@@ -129,7 +144,9 @@ namespace DescribeParserTest
                 if (visitor.LastError == null)
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("Success!");
+                    TimeSpan elapsed = fullwatch.Elapsed;
+                    string formattedElapsedTime = string.Format("{0:0}.{1:000} seconds", elapsed.TotalSeconds, elapsed.Milliseconds);
+                    Console.WriteLine("Success! - took: " + formattedElapsedTime);
                     Console.WriteLine("Press any key to continue.");
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.ReadLine();

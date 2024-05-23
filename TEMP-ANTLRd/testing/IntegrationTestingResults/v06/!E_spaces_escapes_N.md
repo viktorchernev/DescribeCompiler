@@ -1,13 +1,15 @@
+Again with the new lines in console output
+
 ========================================
 Source Code (between the arrows)
 ========================================
 
-🡆fa \ br\ics\ ->
+🡆fabric     s 	->
 
-    wool\fabrics,
-    \cotton fabrics,
-    \ silk \ fabrics,
-    synthetic fabrics;🡄
+	wool   fabrics	,
+	cotton\, fabrics textiles  ,
+    silk\->fabrics,
+    syntic 		fabrics;🡄
 
 ========================================
 Parse Tree
@@ -16,38 +18,44 @@ Parse Tree
 scripture
 ├── expression
 │   ├── item
-│   │   ├── text_chunk
-│   │   │   └── T(DATA|'fa ')
-│   │   ├── text_chunk
-│   │   │   └── T(DATA|'br')
 │   │   └── text_chunk
-│   │       └── T(DATA|'cs')
+│   │       └── T(DATA|'fabric     s \t')
+│   ├── producer
+│   │   ├── T(HYPHEN|'-')
+│   │   └── T(RIGHT_ARROW|'>')
 │   ├── item_or_expression_list
 │   │   ├── item
-│   │   │   ├── text_chunk
-│   │   │   │   └── T(DATA|'\n\n    wool')
 │   │   │   └── text_chunk
-│   │   │       └── T(DATA|'abrics')
+│   │   │       └── T(DATA|'
+
+\twool   fabrics\t')
 │   │   ├── T(SEPARATOR|',')
 │   │   └── item_or_expression_list
 │   │       ├── item
 │   │       │   ├── text_chunk
-│   │       │   │   └── T(DATA|'\n    ')
+│   │       │   │   └── T(DATA|'
+\tcotton')
+│   │       │   ├── text_chunk
+│   │       │   │   └── T(ESCAPE_SEPARATOR|'\,')
 │   │       │   └── text_chunk
-│   │       │       └── T(DATA|'otton fabrics')
+│   │       │       └── T(DATA|' fabrics textiles  ')
 │   │       ├── T(SEPARATOR|',')
 │   │       └── item_or_expression_list
 │   │           ├── item
 │   │           │   ├── text_chunk
-│   │           │   │   └── T(DATA|'\n    ')
+│   │           │   │   └── T(DATA|'
+    silk')
 │   │           │   ├── text_chunk
-│   │           │   │   └── T(DATA|'silk ')
+│   │           │   │   └── T(ESCAPE_HYPHEN|'\-')
+│   │           │   ├── text_chunk
+│   │           │   │   └── T(RIGHT_ARROW|'>')
 │   │           │   └── text_chunk
 │   │           │       └── T(DATA|'fabrics')
 │   │           ├── T(SEPARATOR|',')
 │   │           └── item_or_expression
 │   │               └── item
 │   │                   └── text_chunk
-│   │                       └── T(DATA|'\n    synthetic fabrics')
+│   │                       └── T(DATA|'
+    syntic \t\tfabrics')
 │   └── T(TERMINATOR|';')
 └── T(EOF|'<EOF>')

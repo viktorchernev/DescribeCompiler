@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generated from Describe06.g4 by ANTLR 4.13.1
+// Generated from Describe061.g4 by ANTLR 4.13.1
 
 // Unreachable code detected
 #pragma warning disable 0162
@@ -25,7 +25,7 @@ using IToken = Antlr4.Runtime.IToken;
 using ParserRuleContext = Antlr4.Runtime.ParserRuleContext;
 
 /// <summary>
-/// This class provides an empty implementation of <see cref="IDescribe06Visitor{Result}"/>,
+/// This class provides an empty implementation of <see cref="IDescribe061Visitor{Result}"/>,
 /// which can be extended to create a visitor which only needs to handle a subset
 /// of the available methods.
 /// </summary>
@@ -33,9 +33,9 @@ using ParserRuleContext = Antlr4.Runtime.ParserRuleContext;
 [System.CodeDom.Compiler.GeneratedCode("ANTLR", "4.13.1")]
 [System.Diagnostics.DebuggerNonUserCode]
 [System.CLSCompliant(false)]
-public partial class Describe06BaseVisitor<Result> : AbstractParseTreeVisitor<Result>, IDescribe06Visitor<Result> {
+public partial class Describe061BaseVisitor<Result> : AbstractParseTreeVisitor<Result>, IDescribe061Visitor<Result> {
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="Describe06Parser.producer"/>.
+	/// Visit a parse tree produced by <see cref="Describe061Parser.producer"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -43,9 +43,9 @@ public partial class Describe06BaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitProducer([NotNull] Describe06Parser.ProducerContext context) { return VisitChildren(context); }
+	public virtual Result VisitProducer([NotNull] Describe061Parser.ProducerContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="Describe06Parser.text_chunk"/>.
+	/// Visit a parse tree produced by <see cref="Describe061Parser.separator"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -53,9 +53,9 @@ public partial class Describe06BaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitText_chunk([NotNull] Describe06Parser.Text_chunkContext context) { return VisitChildren(context); }
+	public virtual Result VisitSeparator([NotNull] Describe061Parser.SeparatorContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="Describe06Parser.item"/>.
+	/// Visit a parse tree produced by <see cref="Describe061Parser.terminator"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -63,9 +63,9 @@ public partial class Describe06BaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitItem([NotNull] Describe06Parser.ItemContext context) { return VisitChildren(context); }
+	public virtual Result VisitTerminator([NotNull] Describe061Parser.TerminatorContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="Describe06Parser.expression"/>.
+	/// Visit a parse tree produced by <see cref="Describe061Parser.text_chunk"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -73,9 +73,9 @@ public partial class Describe06BaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitExpression([NotNull] Describe06Parser.ExpressionContext context) { return VisitChildren(context); }
+	public virtual Result VisitText_chunk([NotNull] Describe061Parser.Text_chunkContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="Describe06Parser.item_or_expression"/>.
+	/// Visit a parse tree produced by <see cref="Describe061Parser.item"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -83,9 +83,9 @@ public partial class Describe06BaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitItem_or_expression([NotNull] Describe06Parser.Item_or_expressionContext context) { return VisitChildren(context); }
+	public virtual Result VisitItem([NotNull] Describe061Parser.ItemContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="Describe06Parser.item_or_expression_list"/>.
+	/// Visit a parse tree produced by <see cref="Describe061Parser.expression"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -93,9 +93,9 @@ public partial class Describe06BaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitItem_or_expression_list([NotNull] Describe06Parser.Item_or_expression_listContext context) { return VisitChildren(context); }
+	public virtual Result VisitExpression([NotNull] Describe061Parser.ExpressionContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="Describe06Parser.expression_list"/>.
+	/// Visit a parse tree produced by <see cref="Describe061Parser.item_or_expression"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -103,9 +103,9 @@ public partial class Describe06BaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitExpression_list([NotNull] Describe06Parser.Expression_listContext context) { return VisitChildren(context); }
+	public virtual Result VisitItem_or_expression([NotNull] Describe061Parser.Item_or_expressionContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="Describe06Parser.scripture"/>.
+	/// Visit a parse tree produced by <see cref="Describe061Parser.item_or_expression_list"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -113,5 +113,25 @@ public partial class Describe06BaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitScripture([NotNull] Describe06Parser.ScriptureContext context) { return VisitChildren(context); }
+	public virtual Result VisitItem_or_expression_list([NotNull] Describe061Parser.Item_or_expression_listContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="Describe061Parser.expression_list"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitExpression_list([NotNull] Describe061Parser.Expression_listContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="Describe061Parser.scripture"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitScripture([NotNull] Describe061Parser.ScriptureContext context) { return VisitChildren(context); }
 }

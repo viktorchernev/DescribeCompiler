@@ -62,3 +62,10 @@ F. Productins
 	F_production_in_production5.ds - Two simple nested productions. The nested production are last and second to last.
 	F_production_in_production6.ds - Two levels of nesting.
 	F_production_in_production7.ds - Two levels of nesting, both nested in the end of the file.
+
+G. Benchmarking
+
+	These files are significantly longer, and are used to benchmark the parser.
+
+	G_long50 - Single production of 50 longer items.
+	G_long100 - Single production of 100 longer items. 

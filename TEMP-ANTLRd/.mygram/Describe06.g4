@@ -1,7 +1,7 @@
 /** Describe Markup Language
  * version 0.6 (Basics)
  * Created by DemonOfReason and ChatGPT
- * Finished on 15 May 2024 */
+ * Finished on 20 May 2024 */
 
 grammar Describe06;
 
@@ -16,6 +16,7 @@ HYPHEN						: '-' ;
 RIGHT_ARROW             	: '>' ;
 SEPARATOR            		: ',' ;
 TERMINATOR           		: ';' ;
+FIRWARD_SLASH               : '/' ;
 
 ESCAPE_ESCAPE        		: '\\\\' ;
 ESCAPE_HYPHEN      			: '\\-' ;
@@ -42,6 +43,7 @@ text_chunk					: ESCAPE_ESCAPE
 							| NEWLINE
 							| HYPHEN
 							| RIGHT_ARROW
+							| FIRWARD_SLASH
 							| DATA ;
 
 item						: text_chunk (text_chunk)* ;									//text_chunk+

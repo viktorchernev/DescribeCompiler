@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DescribeParserTest
+namespace DescribeParser.Visitors
 {
     /// <summary>
     /// This visitor class is used to log to the console the result of a 
@@ -81,6 +81,8 @@ namespace DescribeParserTest
                         VisitItem_or_expression_list((Describe06Parser.Item_or_expression_listContext)child);
                     else if (child is Describe06Parser.Text_chunkContext)
                         VisitText_chunk((Describe06Parser.Text_chunkContext)child);
+                    else if (child is Describe06Parser.ProducerContext)
+                        VisitProducer((Describe06Parser.ProducerContext)child);
                 }
 
                 _booliary.RemoveAt(_booliary.Count - 1);
@@ -100,6 +102,13 @@ namespace DescribeParserTest
             return "success";
         }
 
+        public override string VisitProducer([NotNull] Describe06Parser.ProducerContext context)
+        {
+            Log += Environment.NewLine + logItem(context, "producer");
+            if (_lerror != null) return "error";
+            visitChildren(context);
+            return "success";
+        }
         public override string VisitText_chunk([NotNull] Describe06Parser.Text_chunkContext context)
         {
             Log += Environment.NewLine + logItem(context, "text_chunk");

@@ -30,6 +30,9 @@ scripture
 │   │   │   └── T(ESCAPE_ESCAPE|'\\')
 │   │   └── text_chunk
 │   │       └── T(DATA|' ')
+│   ├── producer
+│   │   ├── T(HYPHEN|'-')
+│   │   └── T(RIGHT_ARROW|'>')
 │   ├── item_or_expression_list
 │   │   ├── item
 │   │   │   ├── text_chunk

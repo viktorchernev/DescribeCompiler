@@ -1,3 +1,5 @@
+Why new lines haven't been escaped in test output
+
 ========================================
 Source Code (between the arrows)
 ========================================
@@ -22,6 +24,9 @@ scripture
 │   │   ├── item
 │   │   │   └── text_chunk
 │   │   │       └── T(DATA|'macronutrients ')
+│   │   ├── producer
+│   │   │   ├── T(HYPHEN|'-')
+│   │   │   └── T(RIGHT_ARROW|'>')
 │   │   ├── item_or_expression_list
 │   │   │   ├── item
 │   │   │   │   └── text_chunk
@@ -41,6 +46,9 @@ scripture
 │       │       └── T(DATA|'
 
 micronutrients ')
+│       ├── producer
+│       │   ├── T(HYPHEN|'-')
+│       │   └── T(RIGHT_ARROW|'>')
 │       ├── item_or_expression_list
 │       │   ├── item
 │       │   │   └── text_chunk

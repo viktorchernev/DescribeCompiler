@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generated from Describe06.g4 by ANTLR 4.13.1
+// Generated from Describe061.g4 by ANTLR 4.13.1
 
 // Unreachable code detected
 #pragma warning disable 0162
@@ -25,58 +25,70 @@ using IToken = Antlr4.Runtime.IToken;
 
 /// <summary>
 /// This interface defines a complete generic visitor for a parse tree produced
-/// by <see cref="Describe06Parser"/>.
+/// by <see cref="Describe061Parser"/>.
 /// </summary>
 /// <typeparam name="Result">The return type of the visit operation.</typeparam>
 [System.CodeDom.Compiler.GeneratedCode("ANTLR", "4.13.1")]
 [System.CLSCompliant(false)]
-public interface IDescribe06Visitor<Result> : IParseTreeVisitor<Result> {
+public interface IDescribe061Visitor<Result> : IParseTreeVisitor<Result> {
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="Describe06Parser.producer"/>.
+	/// Visit a parse tree produced by <see cref="Describe061Parser.producer"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitProducer([NotNull] Describe06Parser.ProducerContext context);
+	Result VisitProducer([NotNull] Describe061Parser.ProducerContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="Describe06Parser.text_chunk"/>.
+	/// Visit a parse tree produced by <see cref="Describe061Parser.separator"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitText_chunk([NotNull] Describe06Parser.Text_chunkContext context);
+	Result VisitSeparator([NotNull] Describe061Parser.SeparatorContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="Describe06Parser.item"/>.
+	/// Visit a parse tree produced by <see cref="Describe061Parser.terminator"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitItem([NotNull] Describe06Parser.ItemContext context);
+	Result VisitTerminator([NotNull] Describe061Parser.TerminatorContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="Describe06Parser.expression"/>.
+	/// Visit a parse tree produced by <see cref="Describe061Parser.text_chunk"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitExpression([NotNull] Describe06Parser.ExpressionContext context);
+	Result VisitText_chunk([NotNull] Describe061Parser.Text_chunkContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="Describe06Parser.item_or_expression"/>.
+	/// Visit a parse tree produced by <see cref="Describe061Parser.item"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitItem_or_expression([NotNull] Describe06Parser.Item_or_expressionContext context);
+	Result VisitItem([NotNull] Describe061Parser.ItemContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="Describe06Parser.item_or_expression_list"/>.
+	/// Visit a parse tree produced by <see cref="Describe061Parser.expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitItem_or_expression_list([NotNull] Describe06Parser.Item_or_expression_listContext context);
+	Result VisitExpression([NotNull] Describe061Parser.ExpressionContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="Describe06Parser.expression_list"/>.
+	/// Visit a parse tree produced by <see cref="Describe061Parser.item_or_expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitExpression_list([NotNull] Describe06Parser.Expression_listContext context);
+	Result VisitItem_or_expression([NotNull] Describe061Parser.Item_or_expressionContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="Describe06Parser.scripture"/>.
+	/// Visit a parse tree produced by <see cref="Describe061Parser.item_or_expression_list"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitScripture([NotNull] Describe06Parser.ScriptureContext context);
+	Result VisitItem_or_expression_list([NotNull] Describe061Parser.Item_or_expression_listContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="Describe061Parser.expression_list"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitExpression_list([NotNull] Describe061Parser.Expression_listContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="Describe061Parser.scripture"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitScripture([NotNull] Describe061Parser.ScriptureContext context);
 }

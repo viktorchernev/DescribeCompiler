@@ -1,7 +1,7 @@
 /** Describe Markup Language
  * version 0.6 (Basics)
  * Created by DemonOfReason and ChatGPT
- * Finished on 15 May 2024 */
+ * Finished on 20 May 2024 */
 
 grammar Describe06;
 

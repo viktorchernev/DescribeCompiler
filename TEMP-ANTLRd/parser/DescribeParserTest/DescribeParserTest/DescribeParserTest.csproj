@@ -38,11 +38,18 @@
     <None Remove="TestFiles\06\F_production_in_production5.ds" />
     <None Remove="TestFiles\06\F_production_in_production6.ds" />
     <None Remove="TestFiles\06\F_production_in_production7.ds" />
+    <None Remove="TestFiles\06\G_Long100.ds" />
+    <None Remove="TestFiles\06\G_Long50.ds" />
     <None Remove="TestFiles\resultTemplates\template_basic_a.md" />
     <None Remove="TestFiles\resultTemplates\template_basic_b.md" />
     <None Remove="TestFiles\resultTemplates\template_preprocessed_a.md" />
     <None Remove="TestFiles\resultTemplates\template_preprocessed_b.md" />
     <None Remove="TestFiles\resultTemplates\template_preprocessed_c.md" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="TestFiles\06\G_long100.ds" />
+    <EmbeddedResource Include="TestFiles\06\G_long50.ds" />
   </ItemGroup>
 
   <ItemGroup>

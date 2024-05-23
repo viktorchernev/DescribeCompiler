@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DescribeParserTest.v06
+namespace DescribeParser.Visitors
 {
-    internal class UnfoldVisitor06
+    internal class AstVisitor06
     {
 
     }

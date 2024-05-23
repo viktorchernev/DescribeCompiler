@@ -1,13 +1,15 @@
+Why I get "?????? ???" in the console?
+
 ========================================
 Source Code (between the arrows)
 ========================================
 
-🡆fabric     s 	->
+🡆платове ->
 
-	wool   fabrics	,
-	cotton\, fabrics textiles  ,
-    silk\->fabrics,
-    syntic 		fabrics;🡄
+	вълнени платове,
+	памучни платове,
+	копринени платове,
+	синтетични платове;🡄
 
 ========================================
 Parse Tree
@@ -17,40 +19,28 @@ scripture
 ├── expression
 │   ├── item
 │   │   └── text_chunk
-│   │       └── T(DATA|'fabric     s \t')
+│   │       └── T(DATA|'платове ')
+│   ├── producer
+│   │   ├── T(HYPHEN|'-')
+│   │   └── T(RIGHT_ARROW|'>')
 │   ├── item_or_expression_list
 │   │   ├── item
 │   │   │   └── text_chunk
-│   │   │       └── T(DATA|'
-
-\twool   fabrics\t')
+│   │   │       └── T(DATA|'\n\n\tвълнени платове')
 │   │   ├── T(SEPARATOR|',')
 │   │   └── item_or_expression_list
 │   │       ├── item
-│   │       │   ├── text_chunk
-│   │       │   │   └── T(DATA|'
-\tcotton')
-│   │       │   ├── text_chunk
-│   │       │   │   └── T(ESCAPE_SEPARATOR|'\,')
 │   │       │   └── text_chunk
-│   │       │       └── T(DATA|' fabrics textiles  ')
+│   │       │       └── T(DATA|'\n\tпамучни платове')
 │   │       ├── T(SEPARATOR|',')
 │   │       └── item_or_expression_list
 │   │           ├── item
-│   │           │   ├── text_chunk
-│   │           │   │   └── T(DATA|'
-    silk')
-│   │           │   ├── text_chunk
-│   │           │   │   └── T(ESCAPE_HYPHEN|'\-')
-│   │           │   ├── text_chunk
-│   │           │   │   └── T(RIGHT_ARROW|'>')
 │   │           │   └── text_chunk
-│   │           │       └── T(DATA|'fabrics')
+│   │           │       └── T(DATA|'\n\tкопринени платове')
 │   │           ├── T(SEPARATOR|',')
 │   │           └── item_or_expression
 │   │               └── item
 │   │                   └── text_chunk
-│   │                       └── T(DATA|'
-    syntic \t\tfabrics')
+│   │                       └── T(DATA|'\n\tсинтетични платове')
 │   └── T(TERMINATOR|';')
 └── T(EOF|'<EOF>')
