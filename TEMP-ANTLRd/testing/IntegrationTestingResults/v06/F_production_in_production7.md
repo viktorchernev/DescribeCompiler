@@ -32,64 +32,68 @@ scripture
 │   │   │       └── T(DATA|'macronutrients ')
 │   │   ├── producer
 │   │   │   ├── T(HYPHEN|'-')
-│   │   │   └── T(RIGHT_ARROW|'>')
-│   │   ├── item_or_expression_list
-│   │   │   ├── item
-│   │   │   │   └── text_chunk
-│   │   │   │       └── T(DATA|'\n\n\twater')
-│   │   │   ├── T(SEPARATOR|',')
-│   │   │   └── item_or_expression_list
-│   │   │       ├── item
-│   │   │       │   └── text_chunk
-│   │   │       │       └── T(DATA|'\n    salt')
-│   │   │       ├── T(SEPARATOR|',')
-│   │   │       └── item_or_expression_list
-│   │   │           ├── item
-│   │   │           │   ├── text_chunk
-│   │   │           │   │   └── T(DATA|'\n    fiber ')
-│   │   │           │   ├── text_chunk
-│   │   │           │   │   └── T(HYPHEN|'-')
-│   │   │           │   ├── text_chunk
-│   │   │           │   │   └── T(RIGHT_ARROW|'>')
-│   │   │           │   └── text_chunk
-│   │   │           │       └── T(DATA|'\n\n        what')
-│   │   │           ├── T(SEPARATOR|',')
-│   │   │           └── item_or_expression
-│   │   │               └── item
-│   │   │                   └── text_chunk
-│   │   │                       └── T(DATA|'\n        not')
-│   │   └── T(TERMINATOR|';')
+│   │   │   └── T(RIGHT_ARROW|'>\r\n\r\n\t')
+│   │   └── item_or_expression_list
+│   │       ├── item_or_expression_part
+│   │       │   ├── item
+│   │       │   │   └── text_chunk
+│   │       │   │       └── T(DATA|'water')
+│   │       │   └── T(SEPARATOR|',\r\n    ')
+│   │       ├── item_or_expression_part
+│   │       │   ├── item
+│   │       │   │   └── text_chunk
+│   │       │   │       └── T(DATA|'salt')
+│   │       │   └── T(SEPARATOR|',\r\n    ')
+│   │       └── expression
+│   │           ├── item
+│   │           │   └── text_chunk
+│   │           │       └── T(DATA|'fiber ')
+│   │           ├── producer
+│   │           │   ├── T(HYPHEN|'-')
+│   │           │   └── T(RIGHT_ARROW|'>\r\n\r\n        ')
+│   │           ├── item_or_expression_list
+│   │           │   ├── item_or_expression_part
+│   │           │   │   ├── item
+│   │           │   │   │   └── text_chunk
+│   │           │   │   │       └── T(DATA|'what')
+│   │           │   │   └── T(SEPARATOR|',\r\n        ')
+│   │           │   └── item
+│   │           │       └── text_chunk
+│   │           │           └── T(DATA|'not')
+│   │           └── T(TERMINATOR|';\r\n\t\r\n\t')
 │   └── expression
 │       ├── item
 │       │   └── text_chunk
-│       │       └── T(DATA|'\n\t\n\tscience ')
+│       │       └── T(DATA|'science ')
 │       ├── producer
 │       │   ├── T(HYPHEN|'-')
-│       │   └── T(RIGHT_ARROW|'>')
-│       ├── item_or_expression_list
-│       │   ├── item
-│       │   │   └── text_chunk
-│       │   │       └── T(DATA|'\n\t\t\t\n\t\tinformathics')
-│       │   ├── T(SEPARATOR|',')
-│       │   └── item_or_expression_list
-│       │       ├── item
-│       │       │   └── text_chunk
-│       │       │       └── T(DATA|'\n\t\tmedicine')
-│       │       ├── T(SEPARATOR|',')
-│       │       └── item_or_expression_list
-│       │           ├── item
-│       │           │   ├── text_chunk
-│       │           │   │   └── T(DATA|'\n\t\t\n\t\tmath ')
-│       │           │   ├── text_chunk
-│       │           │   │   └── T(HYPHEN|'-')
-│       │           │   ├── text_chunk
-│       │           │   │   └── T(RIGHT_ARROW|'>')
-│       │           │   └── text_chunk
-│       │           │       └── T(DATA|'\n\t\t\talgebra')
-│       │           ├── T(SEPARATOR|',')
-│       │           └── item_or_expression
-│       │               └── item
-│       │                   └── text_chunk
-│       │                       └── T(DATA|'\n\t\t\tgeometry')
-│       └── T(TERMINATOR|';')
+│       │   └── T(RIGHT_ARROW|'>\r\n\t\t\t\r\n\t\t')
+│       └── item_or_expression_list
+│           ├── item_or_expression_part
+│           │   ├── item
+│           │   │   └── text_chunk
+│           │   │       └── T(DATA|'informathics')
+│           │   └── T(SEPARATOR|',\r\n\t\t')
+│           ├── item_or_expression_part
+│           │   ├── item
+│           │   │   └── text_chunk
+│           │   │       └── T(DATA|'medicine')
+│           │   └── T(SEPARATOR|',\r\n\t\t\r\n\t\t')
+│           └── expression
+│               ├── item
+│               │   └── text_chunk
+│               │       └── T(DATA|'math ')
+│               ├── producer
+│               │   ├── T(HYPHEN|'-')
+│               │   └── T(RIGHT_ARROW|'>\r\n\t\t\t')
+│               ├── item_or_expression_list
+│               │   ├── item_or_expression_part
+│               │   │   ├── item
+│               │   │   │   └── text_chunk
+│               │   │   │       └── T(DATA|'algebra')
+│               │   │   └── T(SEPARATOR|',\r\n\t\t\t')
+│               │   └── item
+│               │       └── text_chunk
+│               │           └── T(DATA|'geometry')
+│               └── T(TERMINATOR|';')
 └── T(EOF|'<EOF>')

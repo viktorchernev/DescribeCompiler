@@ -68,4 +68,8 @@ G. Benchmarking
 	These files are significantly longer, and are used to benchmark the parser.
 
 	G_long50 - Single production of 50 longer items.
-	G_long100 - Single production of 100 longer items. 
+	G_long100 - Single production of 100 longer items.
+	
+	
+	
+	//want to test a -> /* jsjsj */ ; or a -> /* jsjsj *//* jsjsj */ ; - will this create empty item from space only?

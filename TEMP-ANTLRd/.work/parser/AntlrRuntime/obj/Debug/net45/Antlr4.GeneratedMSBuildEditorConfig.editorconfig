@@ -1,0 +1,5 @@
+is_global = true
+build_property.RootNamespace = Antlr4.Runtime
+build_property.ProjectDir = C:\Users\Viktor Chernev\Desktop\ANTLRd\parser\AntlrRuntime\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 

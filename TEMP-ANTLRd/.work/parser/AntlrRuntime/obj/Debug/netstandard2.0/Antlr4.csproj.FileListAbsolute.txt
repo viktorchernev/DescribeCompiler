@@ -1,0 +1,12 @@
+C:\Users\Viktor Chernev\Desktop\ANTLRd\parser\AntlrRuntime\bin\Debug\netstandard2.0\Antlr4.Runtime.Standard.deps.json
+C:\Users\Viktor Chernev\Desktop\ANTLRd\parser\AntlrRuntime\bin\Debug\netstandard2.0\Antlr4.Runtime.Standard.dll
+C:\Users\Viktor Chernev\Desktop\ANTLRd\parser\AntlrRuntime\bin\Debug\netstandard2.0\Antlr4.Runtime.Standard.pdb
+C:\Users\Viktor Chernev\Desktop\ANTLRd\parser\AntlrRuntime\bin\Debug\netstandard2.0\Antlr4.Runtime.Standard.xml
+C:\Users\Viktor Chernev\Desktop\ANTLRd\parser\AntlrRuntime\obj\Debug\netstandard2.0\Antlr4.csproj.AssemblyReference.cache
+C:\Users\Viktor Chernev\Desktop\ANTLRd\parser\AntlrRuntime\obj\Debug\netstandard2.0\Antlr4.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Viktor Chernev\Desktop\ANTLRd\parser\AntlrRuntime\obj\Debug\netstandard2.0\Antlr4.AssemblyInfoInputs.cache
+C:\Users\Viktor Chernev\Desktop\ANTLRd\parser\AntlrRuntime\obj\Debug\netstandard2.0\Antlr4.AssemblyInfo.cs
+C:\Users\Viktor Chernev\Desktop\ANTLRd\parser\AntlrRuntime\obj\Debug\netstandard2.0\Antlr4.csproj.CoreCompileInputs.cache
+C:\Users\Viktor Chernev\Desktop\ANTLRd\parser\AntlrRuntime\obj\Debug\netstandard2.0\Antlr4.Runtime.Standard.dll
+C:\Users\Viktor Chernev\Desktop\ANTLRd\parser\AntlrRuntime\obj\Debug\netstandard2.0\Antlr4.Runtime.Standard.xml
+C:\Users\Viktor Chernev\Desktop\ANTLRd\parser\AntlrRuntime\obj\Debug\netstandard2.0\Antlr4.Runtime.Standard.pdb

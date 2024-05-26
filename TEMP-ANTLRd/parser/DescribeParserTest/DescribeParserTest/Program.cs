@@ -18,10 +18,8 @@ namespace DescribeParserTest
             //thread.Start();
             //thread.Join();
 
-
-
             TestFiles_Describe06();
-            //TestFile_Describe06("DescribeParserTest.TestFiles._06.A_basic1.ds");
+            //TestFile_Describe06("DescribeParser.IntegrationTests.TestFiles._06.F_production_in_production2.ds");
         }
 
 
@@ -52,7 +50,7 @@ namespace DescribeParserTest
             Console.ForegroundColor = ConsoleColor.White;
 
             //get source code to test
-            string text = getEmbeddedResource("DescribeParserTest.TestFiles._06.A_basic1.ds");
+            string text = getEmbeddedResource("DescribeParser.IntegrationTests.TestFiles._06.A_basic1.ds");
 
             //construct parser
             AntlrInputStream inputstream = new AntlrInputStream(text);
@@ -85,9 +83,9 @@ namespace DescribeParserTest
             //get result templates
             string outputdir = @"C:\Users\Viktor Chernev\Desktop\ANTLRd\testing\IntegrationTestingResults\v06";
             string resultTemplateA = getEmbeddedResource(
-                "DescribeParserTest.TestFiles.resultTemplates.template_basic_a.md");
+                "DescribeParser.IntegrationTests.TestFiles.resultTemplates.template_basic_a.md");
             string resultTemplateB = getEmbeddedResource(
-                "DescribeParserTest.TestFiles.resultTemplates.template_basic_b.md");
+                "DescribeParser.IntegrationTests.TestFiles.resultTemplates.template_basic_b.md");
 
             //delete all ".md" files in the directory
             string[] files = Directory.GetFiles(outputdir, "*.md");
@@ -97,7 +95,7 @@ namespace DescribeParserTest
             var names = getEmbeddedResoucesNames();
             foreach (string name in names)
             {
-                if (name.StartsWith("DescribeParserTest.TestFiles._06") == false) continue;
+                if (name.StartsWith("DescribeParser.IntegrationTests.TestFiles._06") == false) continue;
                 Console.WriteLine("-------------------------------------------------");
                 Console.WriteLine("Starting a parse operation on '" + name + "'" + Environment.NewLine);
                 
@@ -174,9 +172,9 @@ namespace DescribeParserTest
             //get result templates
             string outputdir = @"C:\Users\Viktor Chernev\Desktop\ANTLRd\testing\IntegrationTestingResults\v06";
             string resultTemplateA = getEmbeddedResource(
-                "DescribeParserTest.TestFiles.resultTemplates.template_basic_a.md");
+                "DescribeParser.IntegrationTests.TestFiles.resultTemplates.template_basic_a.md");
             string resultTemplateB = getEmbeddedResource(
-                "DescribeParserTest.TestFiles.resultTemplates.template_basic_b.md");
+                "DescribeParser.IntegrationTests.TestFiles.resultTemplates.template_basic_b.md");
 
             //get source code to test
             string text = getEmbeddedResource(embeddedName);
@@ -254,7 +252,7 @@ namespace DescribeParserTest
         }
         static string ReplaceWhitespaceE(string text)
             {
-                return text.Replace(Environment.NewLine, "\\n")
+                return text.Replace("\n", "\\n")
                     .Replace("\r", "\\r")
                     .Replace("\t", "\\t");
             }
