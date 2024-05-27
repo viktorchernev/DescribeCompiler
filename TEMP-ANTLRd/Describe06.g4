@@ -52,12 +52,10 @@ text_chunk					: ESCAPE_ESCAPE
 
 item						: (text_chunk)+ ;
 
-expression					: item producer TERMINATOR    
+expression 					: item producer item_or_expression_list TERMINATOR
 							| item producer item TERMINATOR
-							| item producer expression
 							| item producer expression TERMINATOR
-							| item producer item_or_expression_list 
-							| item producer item_or_expression_list TERMINATOR ;
+							| item producer TERMINATOR ;
 
 item_or_expression_part		: item SEPARATOR
 							| expression (SEPARATOR)? ;

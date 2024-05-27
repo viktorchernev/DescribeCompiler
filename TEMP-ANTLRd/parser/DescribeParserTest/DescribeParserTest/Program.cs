@@ -13,13 +13,8 @@ namespace DescribeParserTest
     {
         static void Main(string[] args)
         {
-            //int stackSize = 8 * 1024 * 1024;
-            //Thread thread = new Thread(new ThreadStart(TestFiles_Describe06), stackSize);
-            //thread.Start();
-            //thread.Join();
-
             TestFiles_Describe06();
-            //TestFile_Describe06("DescribeParser.IntegrationTests.TestFiles._06.F_production_in_production2.ds");
+            //TestFile_Describe06("DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.F_production_in_production7.ds");
         }
 
 
@@ -50,7 +45,7 @@ namespace DescribeParserTest
             Console.ForegroundColor = ConsoleColor.White;
 
             //get source code to test
-            string text = getEmbeddedResource("DescribeParser.IntegrationTests.TestFiles._06.A_basic1.ds");
+            string text = getEmbeddedResource("DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.A_basic1.ds");
 
             //construct parser
             AntlrInputStream inputstream = new AntlrInputStream(text);
@@ -75,7 +70,32 @@ namespace DescribeParserTest
         }
 
 
-        static void TestFiles_Describe06()
+        static string PredictTerminators(string text)
+        {
+            AntlrInputStream inputstream = new AntlrInputStream(text);
+            Describe06Lexer lexer = new Describe06Lexer(inputstream);
+            CommonTokenStream tokenstream = new CommonTokenStream(lexer);
+            tokenstream.Fill();
+
+            //auto-closer
+            bool wasHyphen = false;
+            int counter = 0;
+            foreach (var token in tokenstream.GetTokens())
+            {
+                int tokenType = token.Type;
+                string type = GetTokenType(tokenType);
+                if (type == "HYPHEN") wasHyphen = true;
+                else
+                {
+                    if (type == "RIGHT_ARROW" && wasHyphen) counter++;
+                    else if (type == "TERMINATOR") counter--;
+                    wasHyphen = false;
+                }
+            }
+
+            return new string(';', counter);
+        }
+        static void TestFiles_Describe06(bool predictMissingTerminators = true)
         {
             //set console
             Console.ForegroundColor = ConsoleColor.White;
@@ -95,12 +115,17 @@ namespace DescribeParserTest
             var names = getEmbeddedResoucesNames();
             foreach (string name in names)
             {
-                if (name.StartsWith("DescribeParser.IntegrationTests.TestFiles._06") == false) continue;
+                if (name.StartsWith("DescribeParser.IntegrationTests.TestFiles.TestFilesFor06") == false) continue;
                 Console.WriteLine("-------------------------------------------------");
                 Console.WriteLine("Starting a parse operation on '" + name + "'" + Environment.NewLine);
                 
                 //get source code to test
                 string text = getEmbeddedResource(name);
+                if(predictMissingTerminators)
+                {
+                    string end = PredictTerminators(text);
+                    text += end;
+                }
 
                 //construct parser
                 AntlrInputStream inputstream = new AntlrInputStream(text);
@@ -164,7 +189,7 @@ namespace DescribeParserTest
             Console.WriteLine("Tests concluded. Press any key to exit.");
             Console.ReadLine();
         }
-        static void TestFile_Describe06(string embeddedName)
+        static void TestFile_Describe06(string embeddedName, bool predictMissingTerminators = true)
         {
             //set console
             Console.ForegroundColor = ConsoleColor.White;
@@ -178,6 +203,11 @@ namespace DescribeParserTest
 
             //get source code to test
             string text = getEmbeddedResource(embeddedName);
+            if(predictMissingTerminators)
+            {
+                string end = PredictTerminators(text);
+                text += end;
+            }
 
             //construct parser
             AntlrInputStream inputstream = new AntlrInputStream(text);

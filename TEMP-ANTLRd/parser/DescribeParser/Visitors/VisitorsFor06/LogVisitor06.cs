@@ -155,9 +155,6 @@ namespace DescribeParser.Visitors
 
 
 
-
-
-
         private string getIndent()
         {
             var indent = string.Empty;
