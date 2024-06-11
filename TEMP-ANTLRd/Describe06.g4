@@ -1,7 +1,7 @@
-/** Describe Markup Language
+/* Describe Markup Language
  * version 0.6 (Basics)
  * Created by DemonOfReason and ChatGPT
- * Finished on 26 May 2024 */
+ * Finished on 28 May 2024 */
 
 grammar Describe06;
 
@@ -28,7 +28,7 @@ ESCAPE_BCOMMENT      		: '\\/*' ;
 ESCAPE               		: '\\' ;
 
 // Define lexer rule for data
-fragment DATA_CHAR			: ~[\-<>,;*/\\] ;
+fragment DATA_CHAR			: ~[\->,;*/\\] ;
 DATA                		: DATA_CHAR+ ;
 
 // Define parser rules

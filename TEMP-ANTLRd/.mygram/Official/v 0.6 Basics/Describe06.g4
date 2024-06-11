@@ -1,7 +1,7 @@
-/** Describe Markup Language
+/* Describe Markup Language
  * version 0.6 (Basics)
  * Created by DemonOfReason and ChatGPT
- * Finished on 15 May 2024 */
+ * Finished on 28 May 2024 */
 
 grammar Describe06;
 
@@ -12,47 +12,58 @@ BLOCK_COMMENT       		: '/*' .*? '*/' -> skip ;
 NEWLINE              		: '\n'+ | '\r\n'+ ;
 
 // Define lexer rules for other tokens
-PRODUCER             		: '->' ;
-SEPARATOR            		: ',' ;
-TERMINATOR           		: ';' ;
+HYPHEN						: '-' ;
+RIGHT_ARROW             	: '>' [ \r\n\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]* ;
+SEPARATOR            		: ',' [ \r\n\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]* ;
+TERMINATOR           		: ';' [ \r\n\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]* ;
+FORWARD_SLASH               : '/' ;
 
 ESCAPE_ESCAPE        		: '\\\\' ;
-ESCAPE_PRODUCER      		: '\\->' ;
+ESCAPE_HYPHEN      			: '\\-' ;
+ESCAPE_RIGHT_ARROW      	: '\\>' ;
 ESCAPE_SEPARATOR     		: '\\,' ;
 ESCAPE_TERMINATOR    		: '\\;' ;
-
 ESCAPE_LCOMMENT      		: '\\//' ;
 ESCAPE_BCOMMENT      		: '\\/*' ;
+ESCAPE               		: '\\' ;
 
 // Define lexer rule for data
-DATA                		: . ([a-zA-Z0-9 _(){}<>[\]@#$%^&*+=~`:"?!])* ;
-
+fragment DATA_CHAR			: ~[\->,;*/\\] ;
+DATA                		: DATA_CHAR+ ;
 
 // Define parser rules
+producer					: HYPHEN RIGHT_ARROW ;
+
 text_chunk					: ESCAPE_ESCAPE
-							| ESCAPE_PRODUCER
+							| ESCAPE_HYPHEN
+							| ESCAPE_RIGHT_ARROW
 							| ESCAPE_SEPARATOR
 							| ESCAPE_TERMINATOR
 							| ESCAPE_LCOMMENT
 							| ESCAPE_BCOMMENT
+							| ESCAPE
 							| NEWLINE
+							| HYPHEN
+							| RIGHT_ARROW
+							| FORWARD_SLASH
 							| DATA ;
 
-item						: text_chunk (text_chunk)* ;
 
-expression					: item PRODUCER TERMINATOR    
-							| item PRODUCER item_or_expression TERMINATOR
-							| item PRODUCER item_or_expression_list TERMINATOR ;
 
-item_or_expression			: item
-							| expression ;
+item						: (text_chunk)+ ;
 
-item_or_expression_list		: item SEPARATOR item_or_expression
-							| expression (SEPARATOR)? item_or_expression
-							| item SEPARATOR item_or_expression_list
-							| expression (SEPARATOR)? item_or_expression_list ;
+expression 					: item producer item_or_expression_list TERMINATOR
+							| item producer item TERMINATOR
+							| item producer expression TERMINATOR
+							| item producer TERMINATOR ;
 
-expression_list				: expression (expression)+ ;
+item_or_expression_part		: item SEPARATOR
+							| expression (SEPARATOR)? ;
+
+item_or_expression_list 	: (item_or_expression_part)+ item 
+							| (item_or_expression_part)+ expression ;
+
+expression_list				: (expression)+ expression ;
 
 scripture 					: expression_list EOF
 							| expression EOF ;

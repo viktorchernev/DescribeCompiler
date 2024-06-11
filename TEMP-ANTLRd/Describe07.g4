@@ -1,19 +1,20 @@
-/** Describe Markup Language
- * version 0.6 (Basics)
+/* Describe Markup Language
+ * version 0.7 (Tags)
  * Created by DemonOfReason and ChatGPT
- * Finished on 20 May 2024 */
+ * Finished on 29 May 2024 */
 
-grammar Describe06;
+grammar Describe07;
 
 
 // Define lexer rules for comments
-LINE_COMMENT       			: '//' .*? ('\r'? '\n' | EOF) -> skip ;
+LINE_COMMENT       			: '//' .*? ('\r'? '\n') -> skip ;
 BLOCK_COMMENT       		: '/*' .*? '*/' -> skip ;
 NEWLINE              		: '\n'+ | '\r\n'+ ;
 
 // Define lexer rules for other tokens
 HYPHEN						: '-' ;
 RIGHT_ARROW             	: '>' [ \r\n\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]* ;
+LEFT_ARROW             		: '<' [ \r\n\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]* ;
 SEPARATOR            		: ',' [ \r\n\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]* ;
 TERMINATOR           		: ';' [ \r\n\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]* ;
 FORWARD_SLASH               : '/' ;
@@ -21,6 +22,7 @@ FORWARD_SLASH               : '/' ;
 ESCAPE_ESCAPE        		: '\\\\' ;
 ESCAPE_HYPHEN      			: '\\-' ;
 ESCAPE_RIGHT_ARROW      	: '\\>' ;
+ESCAPE_LEFT_ARROW      		: '\\<' ;
 ESCAPE_SEPARATOR     		: '\\,' ;
 ESCAPE_TERMINATOR    		: '\\;' ;
 ESCAPE_LCOMMENT      		: '\\//' ;
@@ -37,6 +39,7 @@ producer					: HYPHEN RIGHT_ARROW ;
 text_chunk					: ESCAPE_ESCAPE
 							| ESCAPE_HYPHEN
 							| ESCAPE_RIGHT_ARROW
+							| ESCAPE_LEFT_ARROW
 							| ESCAPE_SEPARATOR
 							| ESCAPE_TERMINATOR
 							| ESCAPE_LCOMMENT
@@ -49,20 +52,20 @@ text_chunk					: ESCAPE_ESCAPE
 							| DATA ;
 
 
+tag							: LEFT_ARROW (DATA | HYPHEN | FORWARD_SLASH | ESCAPE | ESCAPE_ESCAPE)+ RIGHT_ARROW ;
+item						: (text_chunk)+ (tag)?
+							| (tag)? (text_chunk)+ ;
 
-item						: (text_chunk)+ ;
-
-expression					: item producer TERMINATOR    
+expression 					: item producer item_or_expression_list TERMINATOR
 							| item producer item TERMINATOR
 							| item producer expression TERMINATOR
-							| item producer item_or_expression_list TERMINATOR ;
+							| item producer TERMINATOR ;
 
-item_or_expression_list		: item SEPARATOR item
-							| item SEPARATOR expression
-							| expression (SEPARATOR)? item
-							| expression (SEPARATOR)? expression
-							| item SEPARATOR item_or_expression_list
-							| expression (SEPARATOR)? item_or_expression_list ;
+item_or_expression_part		: item SEPARATOR
+							| expression (SEPARATOR)? ;
+
+item_or_expression_list 	: (item_or_expression_part)+ item 
+							| (item_or_expression_part)+ expression ;
 
 expression_list				: (expression)+ expression ;
 
