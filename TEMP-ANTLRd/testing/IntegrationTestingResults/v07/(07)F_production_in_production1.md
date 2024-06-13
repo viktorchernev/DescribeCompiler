@@ -19,8 +19,10 @@ scripture
 ├── expression
 │   ├── item
 │   │   ├── text_chunk
-│   │   │   └── T(DATA|'macronutrients <0CmyN2Mb')
-│   │   └── text_chunk
+│   │   │   └── T(DATA|'macronutrients ')
+│   │   └── tag
+│   │       ├── T(LEFT_ARROW|'<')
+│   │       ├── T(DATA|'0CmyN2Mb')
 │   │       └── T(RIGHT_ARROW|'> ')
 │   ├── producer
 │   │   ├── T(HYPHEN|'-')
@@ -30,8 +32,10 @@ scripture
 │   │   │   └── expression
 │   │   │       ├── item
 │   │   │       │   ├── text_chunk
-│   │   │       │   │   └── T(DATA|'fiber <CMxWzMs5')
-│   │   │       │   └── text_chunk
+│   │   │       │   │   └── T(DATA|'fiber ')
+│   │   │       │   └── tag
+│   │   │       │       ├── T(LEFT_ARROW|'<')
+│   │   │       │       ├── T(DATA|'CMxWzMs5')
 │   │   │       │       └── T(RIGHT_ARROW|'> ')
 │   │   │       ├── producer
 │   │   │       │   ├── T(HYPHEN|'-')
@@ -40,20 +44,26 @@ scripture
 │   │   │       │   ├── item_or_expression_part
 │   │   │       │   │   ├── item
 │   │   │       │   │   │   ├── text_chunk
-│   │   │       │   │   │   │   └── T(DATA|'what <hzAzwlx6')
-│   │   │       │   │   │   └── text_chunk
+│   │   │       │   │   │   │   └── T(DATA|'what ')
+│   │   │       │   │   │   └── tag
+│   │   │       │   │   │       ├── T(LEFT_ARROW|'<')
+│   │   │       │   │   │       ├── T(DATA|'hzAzwlx6')
 │   │   │       │   │   │       └── T(RIGHT_ARROW|'>')
 │   │   │       │   │   └── T(SEPARATOR|',\r\n        ')
 │   │   │       │   └── item
 │   │   │       │       ├── text_chunk
-│   │   │       │       │   └── T(DATA|'not <UHOcZPAm')
-│   │   │       │       └── text_chunk
+│   │   │       │       │   └── T(DATA|'not ')
+│   │   │       │       └── tag
+│   │   │       │           ├── T(LEFT_ARROW|'<')
+│   │   │       │           ├── T(DATA|'UHOcZPAm')
 │   │   │       │           └── T(RIGHT_ARROW|'>')
 │   │   │       └── T(TERMINATOR|';\r\n    \r\n    ')
 │   │   └── item
 │   │       ├── text_chunk
-│   │       │   └── T(DATA|'water <BBmOZjJa')
-│   │       └── text_chunk
+│   │       │   └── T(DATA|'water ')
+│   │       └── tag
+│   │           ├── T(LEFT_ARROW|'<')
+│   │           ├── T(DATA|'BBmOZjJa')
 │   │           └── T(RIGHT_ARROW|'>')
 │   └── T(TERMINATOR|';')
 └── T(EOF|'<EOF>')

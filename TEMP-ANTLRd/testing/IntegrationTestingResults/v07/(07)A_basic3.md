@@ -12,16 +12,20 @@ scripture
 ├── expression
 │   ├── item
 │   │   ├── text_chunk
-│   │   │   └── T(DATA|'fabrics <zAfn39Kh')
-│   │   └── text_chunk
+│   │   │   └── T(DATA|'fabrics ')
+│   │   └── tag
+│   │       ├── T(LEFT_ARROW|'<')
+│   │       ├── T(DATA|'zAfn39Kh')
 │   │       └── T(RIGHT_ARROW|'>')
 │   ├── producer
 │   │   ├── T(HYPHEN|'-')
 │   │   └── T(RIGHT_ARROW|'> ')
 │   ├── item
 │   │   ├── text_chunk
-│   │   │   └── T(DATA|'synthetic fabrics <hOy5oL3B')
-│   │   └── text_chunk
+│   │   │   └── T(DATA|'synthetic fabrics ')
+│   │   └── tag
+│   │       ├── T(LEFT_ARROW|'<')
+│   │       ├── T(DATA|'hOy5oL3B')
 │   │       └── T(RIGHT_ARROW|'> ')
 │   └── T(TERMINATOR|';')
 └── T(EOF|'<EOF>')

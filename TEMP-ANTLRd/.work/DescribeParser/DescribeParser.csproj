@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AntlrRuntime\Antlr4.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="DescribeUnfold\" />
+    <Folder Include="Parsers\ParserFor11\" />
+    <Folder Include="Parsers\ParserFor10\" />
+    <Folder Include="Parsers\ParserFor09\" />
+    <Folder Include="Parsers\ParserFor08\" />
+    <Folder Include="Parsers\ParserFor07\" />
+    <Folder Include="Visitors\VisitorsFor11\" />
+    <Folder Include="Visitors\VisitorsFor10\" />
+    <Folder Include="Visitors\VisitorsFor09\" />
+    <Folder Include="Visitors\VisitorsFor08\" />
+  </ItemGroup>
+
+</Project>

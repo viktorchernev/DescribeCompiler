@@ -1,14 +1,14 @@
 /* Describe Markup Language
  * version 0.6 (Basics)
  * Created by DemonOfReason and ChatGPT
- * Finished on 28 May 2024 */
+ * Finished on 12 June 2024 */
 
 grammar Describe06;
 
 
 // Define lexer rules for comments
 LINE_COMMENT       			: '//' .*? ('\r'? '\n' | EOF) -> skip ;
-BLOCK_COMMENT       		: '/*' .*? '*/' -> skip ;
+BLOCK_COMMENT       		: '/*' .*? ('*/' | EOF) -> skip ;
 NEWLINE              		: '\n'+ | '\r\n'+ ;
 
 // Define lexer rules for other tokens

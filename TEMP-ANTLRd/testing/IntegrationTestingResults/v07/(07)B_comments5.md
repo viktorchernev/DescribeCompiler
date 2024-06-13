@@ -17,8 +17,10 @@ scripture
 ├── expression
 │   ├── item
 │   │   ├── text_chunk
-│   │   │   └── T(DATA|'fabrics <xpXWehDW')
-│   │   └── text_chunk
+│   │   │   └── T(DATA|'fabrics ')
+│   │   └── tag
+│   │       ├── T(LEFT_ARROW|'<')
+│   │       ├── T(DATA|'xpXWehDW')
 │   │       └── T(RIGHT_ARROW|'> ')
 │   ├── producer
 │   │   ├── T(HYPHEN|'-')
@@ -27,28 +29,36 @@ scripture
 │   │   ├── item_or_expression_part
 │   │   │   ├── item
 │   │   │   │   ├── text_chunk
-│   │   │   │   │   └── T(DATA|'\r\n    wool fabrics <TcD3LcoW')
-│   │   │   │   └── text_chunk
+│   │   │   │   │   └── T(DATA|'\r\n    wool fabrics ')
+│   │   │   │   └── tag
+│   │   │   │       ├── T(LEFT_ARROW|'<')
+│   │   │   │       ├── T(DATA|'TcD3LcoW')
 │   │   │   │       └── T(RIGHT_ARROW|'>')
 │   │   │   └── T(SEPARATOR|',\r\n    ')
 │   │   ├── item_or_expression_part
 │   │   │   ├── item
 │   │   │   │   ├── text_chunk
-│   │   │   │   │   └── T(DATA|'cotton fabrics <thZBzyNc')
-│   │   │   │   └── text_chunk
+│   │   │   │   │   └── T(DATA|'cotton fabrics ')
+│   │   │   │   └── tag
+│   │   │   │       ├── T(LEFT_ARROW|'<')
+│   │   │   │       ├── T(DATA|'thZBzyNc')
 │   │   │   │       └── T(RIGHT_ARROW|'>')
 │   │   │   └── T(SEPARATOR|',\r\n    ')
 │   │   ├── item_or_expression_part
 │   │   │   ├── item
 │   │   │   │   ├── text_chunk
-│   │   │   │   │   └── T(DATA|'silk fabrics <dOlQGMJ4')
-│   │   │   │   └── text_chunk
+│   │   │   │   │   └── T(DATA|'silk fabrics ')
+│   │   │   │   └── tag
+│   │   │   │       ├── T(LEFT_ARROW|'<')
+│   │   │   │       ├── T(DATA|'dOlQGMJ4')
 │   │   │   │       └── T(RIGHT_ARROW|'>')
 │   │   │   └── T(SEPARATOR|',\r\n    ')
 │   │   └── item
 │   │       ├── text_chunk
-│   │       │   └── T(DATA|'synthetic fabrics <Ln7Y7Dme')
-│   │       └── text_chunk
+│   │       │   └── T(DATA|'synthetic fabrics ')
+│   │       └── tag
+│   │           ├── T(LEFT_ARROW|'<')
+│   │           ├── T(DATA|'Ln7Y7Dme')
 │   │           └── T(RIGHT_ARROW|'>')
 │   └── T(TERMINATOR|';')
 └── T(EOF|'<EOF>')

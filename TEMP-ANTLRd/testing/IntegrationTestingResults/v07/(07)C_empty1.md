@@ -12,8 +12,10 @@ scripture
 ├── expression
 │   ├── item
 │   │   ├── text_chunk
-│   │   │   └── T(DATA|'fabrics<c42Q6wPH')
-│   │   └── text_chunk
+│   │   │   └── T(DATA|'fabrics')
+│   │   └── tag
+│   │       ├── T(LEFT_ARROW|'<')
+│   │       ├── T(DATA|'c42Q6wPH')
 │   │       └── T(RIGHT_ARROW|'> ')
 │   ├── producer
 │   │   ├── T(HYPHEN|'-')

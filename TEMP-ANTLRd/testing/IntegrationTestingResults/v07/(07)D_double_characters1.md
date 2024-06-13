@@ -29,12 +29,12 @@ scripture
 │   │   ├── text_chunk
 │   │   │   └── T(HYPHEN|'-')
 │   │   ├── text_chunk
-│   │   │   └── T(DATA|' <45mns0l')
-│   │   ├── text_chunk
-│   │   │   └── T(HYPHEN|'-')
-│   │   ├── text_chunk
-│   │   │   └── T(DATA|'O')
-│   │   └── text_chunk
+│   │   │   └── T(DATA|' ')
+│   │   └── tag
+│   │       ├── T(LEFT_ARROW|'<')
+│   │       ├── T(DATA|'45mns0l')
+│   │       ├── T(HYPHEN|'-')
+│   │       ├── T(DATA|'O')
 │   │       └── T(RIGHT_ARROW|'>')
 │   ├── producer
 │   │   ├── T(HYPHEN|'-')
@@ -47,12 +47,11 @@ scripture
 │   │   │   │   ├── text_chunk
 │   │   │   │   │   └── T(HYPHEN|'-')
 │   │   │   │   ├── text_chunk
-│   │   │   │   │   └── T(DATA|'fabrics <')
-│   │   │   │   ├── text_chunk
-│   │   │   │   │   └── T(HYPHEN|'-')
-│   │   │   │   ├── text_chunk
-│   │   │   │   │   └── T(DATA|'5g1GJyFS')
-│   │   │   │   └── text_chunk
+│   │   │   │   │   └── T(DATA|'fabrics ')
+│   │   │   │   └── tag
+│   │   │   │       ├── T(LEFT_ARROW|'<')
+│   │   │   │       ├── T(HYPHEN|'-')
+│   │   │   │       ├── T(DATA|'5g1GJyFS')
 │   │   │   │       └── T(RIGHT_ARROW|'>')
 │   │   │   └── T(SEPARATOR|',\r\n    ')
 │   │   ├── item_or_expression_part
@@ -60,10 +59,11 @@ scripture
 │   │   │   │   ├── text_chunk
 │   │   │   │   │   └── T(HYPHEN|'-')
 │   │   │   │   ├── text_chunk
-│   │   │   │   │   └── T(DATA|'cotton fabrics <f75CKWhl')
-│   │   │   │   ├── text_chunk
-│   │   │   │   │   └── T(HYPHEN|'-')
-│   │   │   │   └── text_chunk
+│   │   │   │   │   └── T(DATA|'cotton fabrics ')
+│   │   │   │   └── tag
+│   │   │   │       ├── T(LEFT_ARROW|'<')
+│   │   │   │       ├── T(DATA|'f75CKWhl')
+│   │   │   │       ├── T(HYPHEN|'-')
 │   │   │   │       └── T(RIGHT_ARROW|'>')
 │   │   │   └── T(SEPARATOR|',\r\n    ')
 │   │   ├── item_or_expression_part
@@ -75,14 +75,13 @@ scripture
 │   │   │   │   ├── text_chunk
 │   │   │   │   │   └── T(HYPHEN|'-')
 │   │   │   │   ├── text_chunk
-│   │   │   │   │   └── T(DATA|' fabrics <68Es')
-│   │   │   │   ├── text_chunk
-│   │   │   │   │   └── T(HYPHEN|'-')
-│   │   │   │   ├── text_chunk
-│   │   │   │   │   └── T(HYPHEN|'-')
-│   │   │   │   ├── text_chunk
-│   │   │   │   │   └── T(DATA|'hujI')
-│   │   │   │   └── text_chunk
+│   │   │   │   │   └── T(DATA|' fabrics ')
+│   │   │   │   └── tag
+│   │   │   │       ├── T(LEFT_ARROW|'<')
+│   │   │   │       ├── T(DATA|'68Es')
+│   │   │   │       ├── T(HYPHEN|'-')
+│   │   │   │       ├── T(HYPHEN|'-')
+│   │   │   │       ├── T(DATA|'hujI')
 │   │   │   │       └── T(RIGHT_ARROW|'>')
 │   │   │   └── T(SEPARATOR|',\r\n    ')
 │   │   └── item
@@ -91,8 +90,10 @@ scripture
 │   │       ├── text_chunk
 │   │       │   └── T(HYPHEN|'-')
 │   │       ├── text_chunk
-│   │       │   └── T(DATA|' <mWa4QdRm')
-│   │       └── text_chunk
+│   │       │   └── T(DATA|' ')
+│   │       └── tag
+│   │           ├── T(LEFT_ARROW|'<')
+│   │           ├── T(DATA|'mWa4QdRm')
 │   │           └── T(RIGHT_ARROW|'>')
 │   └── T(TERMINATOR|';')
 └── T(EOF|'<EOF>')

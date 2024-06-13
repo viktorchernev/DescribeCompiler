@@ -17,8 +17,10 @@ scripture
 ├── expression
 │   ├── item
 │   │   ├── text_chunk
-│   │   │   └── T(DATA|'fabric     s \t<TSbLGnNG')
-│   │   └── text_chunk
+│   │   │   └── T(DATA|'fabric     s \t')
+│   │   └── tag
+│   │       ├── T(LEFT_ARROW|'<')
+│   │       ├── T(DATA|'TSbLGnNG')
 │   │       └── T(RIGHT_ARROW|'> ')
 │   ├── producer
 │   │   ├── T(HYPHEN|'-')
@@ -27,8 +29,10 @@ scripture
 │   │   ├── item_or_expression_part
 │   │   │   ├── item
 │   │   │   │   ├── text_chunk
-│   │   │   │   │   └── T(DATA|'wool   fabrics\t <QWVZ3pp9')
-│   │   │   │   └── text_chunk
+│   │   │   │   │   └── T(DATA|'wool   fabrics\t ')
+│   │   │   │   └── tag
+│   │   │   │       ├── T(LEFT_ARROW|'<')
+│   │   │   │       ├── T(DATA|'QWVZ3pp9')
 │   │   │   │       └── T(RIGHT_ARROW|'> ')
 │   │   │   └── T(SEPARATOR|',\n\t')
 │   │   ├── item_or_expression_part
@@ -38,8 +42,10 @@ scripture
 │   │   │   │   ├── text_chunk
 │   │   │   │   │   └── T(ESCAPE_SEPARATOR|'\,')
 │   │   │   │   ├── text_chunk
-│   │   │   │   │   └── T(DATA|' fabrics textiles   <75NTfebY')
-│   │   │   │   └── text_chunk
+│   │   │   │   │   └── T(DATA|' fabrics textiles   ')
+│   │   │   │   └── tag
+│   │   │   │       ├── T(LEFT_ARROW|'<')
+│   │   │   │       ├── T(DATA|'75NTfebY')
 │   │   │   │       └── T(RIGHT_ARROW|'>')
 │   │   │   └── T(SEPARATOR|',\n    ')
 │   │   ├── item_or_expression_part
@@ -51,14 +57,18 @@ scripture
 │   │   │   │   ├── text_chunk
 │   │   │   │   │   └── T(ESCAPE_RIGHT_ARROW|'\>')
 │   │   │   │   ├── text_chunk
-│   │   │   │   │   └── T(DATA|'fabrics <Sqs0lm7S')
-│   │   │   │   └── text_chunk
+│   │   │   │   │   └── T(DATA|'fabrics ')
+│   │   │   │   └── tag
+│   │   │   │       ├── T(LEFT_ARROW|'<')
+│   │   │   │       ├── T(DATA|'Sqs0lm7S')
 │   │   │   │       └── T(RIGHT_ARROW|'>')
 │   │   │   └── T(SEPARATOR|',\n    ')
 │   │   └── item
 │   │       ├── text_chunk
-│   │       │   └── T(DATA|'syntic \t\tfabrics <GcZEI9gy')
-│   │       └── text_chunk
+│   │       │   └── T(DATA|'syntic \t\tfabrics ')
+│   │       └── tag
+│   │           ├── T(LEFT_ARROW|'<')
+│   │           ├── T(DATA|'GcZEI9gy')
 │   │           └── T(RIGHT_ARROW|'>')
 │   └── T(TERMINATOR|';')
 └── T(EOF|'<EOF>')

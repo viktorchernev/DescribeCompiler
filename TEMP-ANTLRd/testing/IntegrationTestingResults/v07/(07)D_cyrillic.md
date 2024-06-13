@@ -17,8 +17,10 @@ scripture
 ├── expression
 │   ├── item
 │   │   ├── text_chunk
-│   │   │   └── T(DATA|'платове <ФЛГмссД5')
-│   │   └── text_chunk
+│   │   │   └── T(DATA|'платове ')
+│   │   └── tag
+│   │       ├── T(LEFT_ARROW|'<')
+│   │       ├── T(DATA|'ФЛГмссД5')
 │   │       └── T(RIGHT_ARROW|'> ')
 │   ├── producer
 │   │   ├── T(HYPHEN|'-')
@@ -27,28 +29,36 @@ scripture
 │   │   ├── item_or_expression_part
 │   │   │   ├── item
 │   │   │   │   ├── text_chunk
-│   │   │   │   │   └── T(DATA|'вълнени платове <ПеП0ТхЗй')
-│   │   │   │   └── text_chunk
+│   │   │   │   │   └── T(DATA|'вълнени платове ')
+│   │   │   │   └── tag
+│   │   │   │       ├── T(LEFT_ARROW|'<')
+│   │   │   │       ├── T(DATA|'ПеП0ТхЗй')
 │   │   │   │       └── T(RIGHT_ARROW|'>')
 │   │   │   └── T(SEPARATOR|',\r\n\t')
 │   │   ├── item_or_expression_part
 │   │   │   ├── item
 │   │   │   │   ├── text_chunk
-│   │   │   │   │   └── T(DATA|'памучни платове <ПТъЗАфЪа')
-│   │   │   │   └── text_chunk
+│   │   │   │   │   └── T(DATA|'памучни платове ')
+│   │   │   │   └── tag
+│   │   │   │       ├── T(LEFT_ARROW|'<')
+│   │   │   │       ├── T(DATA|'ПТъЗАфЪа')
 │   │   │   │       └── T(RIGHT_ARROW|'>')
 │   │   │   └── T(SEPARATOR|',\r\n\t')
 │   │   ├── item_or_expression_part
 │   │   │   ├── item
 │   │   │   │   ├── text_chunk
-│   │   │   │   │   └── T(DATA|'копринени платове <5Суак3ИЙ')
-│   │   │   │   └── text_chunk
+│   │   │   │   │   └── T(DATA|'копринени платове ')
+│   │   │   │   └── tag
+│   │   │   │       ├── T(LEFT_ARROW|'<')
+│   │   │   │       ├── T(DATA|'5Суак3ИЙ')
 │   │   │   │       └── T(RIGHT_ARROW|'>')
 │   │   │   └── T(SEPARATOR|',\r\n\t')
 │   │   └── item
 │   │       ├── text_chunk
-│   │       │   └── T(DATA|'синтетични платове <ЛКтрт5КН')
-│   │       └── text_chunk
+│   │       │   └── T(DATA|'синтетични платове ')
+│   │       └── tag
+│   │           ├── T(LEFT_ARROW|'<')
+│   │           ├── T(DATA|'ЛКтрт5КН')
 │   │           └── T(RIGHT_ARROW|'>')
 │   └── T(TERMINATOR|';')
 └── T(EOF|'<EOF>')

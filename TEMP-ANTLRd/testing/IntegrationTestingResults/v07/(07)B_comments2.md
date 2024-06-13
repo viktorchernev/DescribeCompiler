@@ -17,8 +17,10 @@ scripture
 ├── expression
 │   ├── item
 │   │   ├── text_chunk
-│   │   │   └── T(DATA|'fabrics <aXLBEer9')
-│   │   └── text_chunk
+│   │   │   └── T(DATA|'fabrics ')
+│   │   └── tag
+│   │       ├── T(LEFT_ARROW|'<')
+│   │       ├── T(DATA|'aXLBEer9')
 │   │       └── T(RIGHT_ARROW|'> ')
 │   ├── producer
 │   │   ├── T(HYPHEN|'-')
@@ -29,21 +31,27 @@ scripture
 │   │   │   │   ├── text_chunk
 │   │   │   │   │   └── T(DATA|'\r\n    ')
 │   │   │   │   ├── text_chunk
-│   │   │   │   │   └── T(DATA|'\r\n    cotton fabrics <evhAIQx4')
-│   │   │   │   └── text_chunk
+│   │   │   │   │   └── T(DATA|'\r\n    cotton fabrics ')
+│   │   │   │   └── tag
+│   │   │   │       ├── T(LEFT_ARROW|'<')
+│   │   │   │       ├── T(DATA|'evhAIQx4')
 │   │   │   │       └── T(RIGHT_ARROW|'>')
 │   │   │   └── T(SEPARATOR|',\r\n    ')
 │   │   ├── item_or_expression_part
 │   │   │   ├── item
 │   │   │   │   ├── text_chunk
-│   │   │   │   │   └── T(DATA|'silk fabrics <h0e5wwEY')
-│   │   │   │   └── text_chunk
+│   │   │   │   │   └── T(DATA|'silk fabrics ')
+│   │   │   │   └── tag
+│   │   │   │       ├── T(LEFT_ARROW|'<')
+│   │   │   │       ├── T(DATA|'h0e5wwEY')
 │   │   │   │       └── T(RIGHT_ARROW|'>')
 │   │   │   └── T(SEPARATOR|',\r\n    ')
 │   │   └── item
 │   │       ├── text_chunk
-│   │       │   └── T(DATA|'synthetic fabrics <WryZrSIJ')
-│   │       └── text_chunk
+│   │       │   └── T(DATA|'synthetic fabrics ')
+│   │       └── tag
+│   │           ├── T(LEFT_ARROW|'<')
+│   │           ├── T(DATA|'WryZrSIJ')
 │   │           └── T(RIGHT_ARROW|'>')
 │   └── T(TERMINATOR|';')
 └── T(EOF|'<EOF>')

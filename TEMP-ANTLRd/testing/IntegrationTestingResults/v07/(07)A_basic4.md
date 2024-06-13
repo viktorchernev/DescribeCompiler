@@ -18,8 +18,10 @@ scripture
 ├── expression
 │   ├── item
 │   │   ├── text_chunk
-│   │   │   └── T(DATA|'fabrics<wIcCuax5')
-│   │   └── text_chunk
+│   │   │   └── T(DATA|'fabrics')
+│   │   └── tag
+│   │       ├── T(LEFT_ARROW|'<')
+│   │       ├── T(DATA|'wIcCuax5')
 │   │       └── T(RIGHT_ARROW|'>')
 │   ├── producer
 │   │   ├── T(HYPHEN|'-')
@@ -28,28 +30,36 @@ scripture
 │   │   ├── item_or_expression_part
 │   │   │   ├── item
 │   │   │   │   ├── text_chunk
-│   │   │   │   │   └── T(DATA|'wool fabrics<C92Mf6yV')
-│   │   │   │   └── text_chunk
+│   │   │   │   │   └── T(DATA|'wool fabrics')
+│   │   │   │   └── tag
+│   │   │   │       ├── T(LEFT_ARROW|'<')
+│   │   │   │       ├── T(DATA|'C92Mf6yV')
 │   │   │   │       └── T(RIGHT_ARROW|'>')
 │   │   │   └── T(SEPARATOR|',\r\n    ')
 │   │   ├── item_or_expression_part
 │   │   │   ├── item
 │   │   │   │   ├── text_chunk
-│   │   │   │   │   └── T(DATA|'cotton fabrics<TxW3Yetp')
-│   │   │   │   └── text_chunk
+│   │   │   │   │   └── T(DATA|'cotton fabrics')
+│   │   │   │   └── tag
+│   │   │   │       ├── T(LEFT_ARROW|'<')
+│   │   │   │       ├── T(DATA|'TxW3Yetp')
 │   │   │   │       └── T(RIGHT_ARROW|'>')
 │   │   │   └── T(SEPARATOR|',\r\n    ')
 │   │   ├── item_or_expression_part
 │   │   │   ├── item
 │   │   │   │   ├── text_chunk
-│   │   │   │   │   └── T(DATA|'silk fabrics<08yGbnMX')
-│   │   │   │   └── text_chunk
+│   │   │   │   │   └── T(DATA|'silk fabrics')
+│   │   │   │   └── tag
+│   │   │   │       ├── T(LEFT_ARROW|'<')
+│   │   │   │       ├── T(DATA|'08yGbnMX')
 │   │   │   │       └── T(RIGHT_ARROW|'>')
 │   │   │   └── T(SEPARATOR|',\r\n    ')
 │   │   └── item
 │   │       ├── text_chunk
-│   │       │   └── T(DATA|'synthetic fabrics<7MZTHLMY')
-│   │       └── text_chunk
+│   │       │   └── T(DATA|'synthetic fabrics')
+│   │       └── tag
+│   │           ├── T(LEFT_ARROW|'<')
+│   │           ├── T(DATA|'7MZTHLMY')
 │   │           └── T(RIGHT_ARROW|'>')
 │   └── T(TERMINATOR|';\r\n')
 └── T(EOF|'<EOF>')
