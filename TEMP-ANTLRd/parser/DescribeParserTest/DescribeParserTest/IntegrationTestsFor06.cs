@@ -29,7 +29,6 @@ namespace DescribeParser.IntegrationTests
                 if (type == "HYPHEN") wasHyphen = true;
                 else
                 {
-                    if (type == "LEFT_ARROW") 
                     if (type == "RIGHT_ARROW" && wasHyphen) counter++;
                     else if (type == "TERMINATOR") counter--;
                     wasHyphen = false;

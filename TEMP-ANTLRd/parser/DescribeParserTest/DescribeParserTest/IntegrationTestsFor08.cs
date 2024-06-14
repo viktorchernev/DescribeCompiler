@@ -6,7 +6,7 @@ using System.Text.Json;
 
 namespace DescribeParser.IntegrationTests
 {
-    internal class IntegrationTestsFor07 : IntegrationTestsBase
+    internal class IntegrationTestsFor08 : IntegrationTestsBase
     {
         public static string outputDir = @"C:\Users\Viktor Chernev\Desktop\ANTLRd\testing\IntegrationTestingResults\v07";
 
@@ -336,7 +336,7 @@ namespace DescribeParser.IntegrationTests
 
             //construct lexer
             AntlrInputStream inputstream = new AntlrInputStream(text);
-            Describe07Lexer lexer = new Describe07Lexer(inputstream);
+            Describe08Lexer lexer = new Describe08Lexer(inputstream);
             CommonTokenStream tokenstream = new CommonTokenStream(lexer);
 
             //test lexer
@@ -362,13 +362,13 @@ namespace DescribeParser.IntegrationTests
 
             //construct parser
             AntlrInputStream inputstream = new AntlrInputStream(text);
-            Describe07Lexer lexer = new Describe07Lexer(inputstream);
+            Describe08Lexer lexer = new Describe08Lexer(inputstream);
             CommonTokenStream tokenstream = new CommonTokenStream(lexer);
-            Describe07Parser parser = new Describe07Parser(tokenstream);
+            Describe08Parser parser = new Describe08Parser(tokenstream);
 
             //parse
-            Describe07Parser.ScriptureContext scriptureContext = parser.scripture();
-            LogVisitor07 visitor = new LogVisitor07();
+            Describe08Parser.ScriptureContext scriptureContext = parser.scripture();
+            LogVisitor08 visitor = new LogVisitor08();
             visitor.Visit(scriptureContext);
             string tree = visitor.Log;
 
@@ -390,14 +390,14 @@ namespace DescribeParser.IntegrationTests
             //in a switch statement, with values we can know by looking
             //in the generated lexer source code. However, the problem
             //is that it won't universal like its now.
-            return Describe07Lexer.DefaultVocabulary.GetSymbolicName(tokenType);
+            return Describe08Lexer.DefaultVocabulary.GetSymbolicName(tokenType);
         }
         static int GetTokenTypeIndex(string tokenName)
         {
             var i = 1;
             while (true)
             {
-                var nameIndex = Describe07Lexer.DefaultVocabulary.GetSymbolicName(i);
+                var nameIndex = Describe08Lexer.DefaultVocabulary.GetSymbolicName(i);
                 if (nameIndex == null) return -1;
                 if (nameIndex == tokenName) return i;
                 i++;
