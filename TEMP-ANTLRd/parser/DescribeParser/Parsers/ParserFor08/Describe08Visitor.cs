@@ -50,12 +50,6 @@ public interface IDescribe08Visitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitTag([NotNull] Describe08Parser.TagContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="Describe08Parser.link"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitLink([NotNull] Describe08Parser.LinkContext context);
-	/// <summary>
 	/// Visit a parse tree produced by <see cref="Describe08Parser.item"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

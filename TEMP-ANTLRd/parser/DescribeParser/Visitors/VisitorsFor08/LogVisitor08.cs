@@ -84,8 +84,8 @@ namespace DescribeParser.Visitors
                         VisitText_chunk((Describe08Parser.Text_chunkContext)child);
                     else if (child is Describe08Parser.TagContext)
                         VisitTag((Describe08Parser.TagContext)child);
-                    else if (child is Describe08Parser.LinkContext)
-                        VisitLink((Describe08Parser.LinkContext)child);
+                    //else if (child is Describe08Parser.LinkContext)
+                    //    VisitLink((Describe08Parser.LinkContext)child);
                     else if (child is Describe08Parser.ProducerContext)
                         VisitProducer((Describe08Parser.ProducerContext)child);
                 }
@@ -128,13 +128,13 @@ namespace DescribeParser.Visitors
             visitChildren(context);
             return "success";
         }
-        public override string VisitLink([NotNull] Describe08Parser.LinkContext context)
-        {
-            Log += Environment.NewLine + logItem(context, "tag");
-            if (_lerror != null) return "error";
-            visitChildren(context);
-            return "success";
-        }
+        //public override string VisitLink([NotNull] Describe08Parser.LinkContext context)
+        //{
+        //    Log += Environment.NewLine + logItem(context, "tag");
+        //    if (_lerror != null) return "error";
+        //    visitChildren(context);
+        //    return "success";
+        //}
         public override string VisitItem([NotNull] Describe08Parser.ItemContext context)
         {
             Log += Environment.NewLine + logItem(context, "item");
@@ -243,7 +243,7 @@ namespace DescribeParser.Visitors
 
         static string GetTokenType(int tokenType)
         {
-            return Describe07Lexer.DefaultVocabulary.GetSymbolicName(tokenType);
+            return Describe08Lexer.DefaultVocabulary.GetSymbolicName(tokenType);
         }
         static string ReplaceWhitespaceE(string text)
         {

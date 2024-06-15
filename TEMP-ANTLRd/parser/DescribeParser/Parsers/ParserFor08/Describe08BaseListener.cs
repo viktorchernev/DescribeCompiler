@@ -72,18 +72,6 @@ public partial class Describe08BaseListener : IDescribe08Listener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitTag([NotNull] Describe08Parser.TagContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="Describe08Parser.link"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterLink([NotNull] Describe08Parser.LinkContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="Describe08Parser.link"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitLink([NotNull] Describe08Parser.LinkContext context) { }
-	/// <summary>
 	/// Enter a parse tree produced by <see cref="Describe08Parser.item"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>

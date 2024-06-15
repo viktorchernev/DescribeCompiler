@@ -24,7 +24,11 @@ namespace DescribeParser.IntegrationTests
             //IntegrationTestsFor07.TestFiles();
 
             //test 08
+            //IntegrationTestsFor08.TestLexer("DescribeParser.IntegrationTests.TestFiles.TestFilesFor08.A_basic1.ds");
+            //IntegrationTestsFor08.TestFile("DescribeParser.IntegrationTests.TestFiles.TestFilesFor08.A_basic1.ds");
+            IntegrationTestsFor08.TestFiles();
 
+            //test 09
         }
     }
 }

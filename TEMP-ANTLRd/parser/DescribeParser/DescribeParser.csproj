@@ -20,7 +20,6 @@
     <Folder Include="Visitors\VisitorsFor11\" />
     <Folder Include="Visitors\VisitorsFor10\" />
     <Folder Include="Visitors\VisitorsFor09\" />
-    <Folder Include="Visitors\VisitorsFor08\" />
   </ItemGroup>
 
 </Project>
