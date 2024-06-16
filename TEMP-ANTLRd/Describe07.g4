@@ -1,15 +1,14 @@
 /* Describe Markup Language
  * version 0.7 (Tags)
  * Created by DemonOfReason and ChatGPT
- * Finished on 12 June 2024 */
+ * Finished on 16 June 2024 */
 
 grammar Describe07;
 
 
 // Define lexer rules for comments
-LINE_COMMENT       			: '//' .*? ('\r'? '\n' | EOF) -> skip ;
-BLOCK_COMMENT       		: '/*' .*? ('*/' | EOF) -> skip ;
-NEWLINE              		: '\n'+ | '\r\n'+ ;
+LINE_COMMENT       			: '// ' .*? ('\r'? '\n' [ \r\n\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]* | EOF) -> skip ;
+BLOCK_COMMENT       		: '/*' .*? ('*/' [ \r\n\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]* | EOF) -> skip ;
 
 // Define lexer rules for other tokens
 HYPHEN						: '-' ;
@@ -17,6 +16,7 @@ RIGHT_ARROW             	: '>' [ \r\n\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u20
 LEFT_ARROW             		: '<' [ \r\n\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]* ;
 SEPARATOR            		: ',' [ \r\n\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]* ;
 TERMINATOR           		: ';' [ \r\n\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]* ;
+FORWARD_SLASHES             : '//' ;
 FORWARD_SLASH               : '/' ;
 
 ESCAPE_ESCAPE        		: '\\\\' ;
@@ -45,16 +45,15 @@ text_chunk					: ESCAPE_ESCAPE
 							| ESCAPE_LCOMMENT
 							| ESCAPE_BCOMMENT
 							| ESCAPE
-							| NEWLINE
 							| HYPHEN
 							| RIGHT_ARROW
+							| FORWARD_SLASHES
 							| FORWARD_SLASH
 							| DATA ;
 
 
-tag							: LEFT_ARROW (DATA | HYPHEN | FORWARD_SLASH | ESCAPE | ESCAPE_ESCAPE)+ RIGHT_ARROW ;
-item						: (text_chunk)+ (tag)?
-							| (tag)? (text_chunk)+ ;
+tag							: LEFT_ARROW (DATA | HYPHEN | FORWARD_SLASH | FORWARD_SLASHES | ESCAPE | ESCAPE_ESCAPE)+ RIGHT_ARROW ;
+item						: (text_chunk)+ (tag)? ;
 
 expression 					: item producer item_or_expression_list TERMINATOR
 							| item producer item TERMINATOR

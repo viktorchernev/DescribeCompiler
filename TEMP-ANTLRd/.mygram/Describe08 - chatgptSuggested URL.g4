@@ -82,3 +82,17 @@ expression_list				: (expression)+ expression ;
 
 scripture 					: expression_list EOF
 							| expression EOF ;
+
+
+
+
+
+
+
+
+// Define lexer rule for URL 
+//fragment SCHEME 			: 'http' 's'? | 'ftp' | 'file' | 'mailto' | 'tel' | 'data' | 'ws' 's'?
+//							| 'ldap' | 'sip' 's'? | 'sftp' | 'smb' | 'svn' | 'git' | 'nfs' | 'rtsp'
+//							| 'magnet' | 'news' | 'irc' | 'jdbc' | 'chrome' ;
+//
+//URL 						: SCHEME '://' (~[ \r\n\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000<>#"{}|\\^`]+)* ;

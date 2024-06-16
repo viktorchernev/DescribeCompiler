@@ -2,7 +2,7 @@
 Source Code (between the arrows)
 ========================================
 
-🡆fabrics -> //comment here
+🡆fabrics -> // comment here
 
     wool fabrics,
     cotton fabrics,
@@ -25,7 +25,7 @@ scripture
 │   │   ├── item_or_expression_part
 │   │   │   ├── item
 │   │   │   │   └── text_chunk
-│   │   │   │       └── T(DATA|'\r\n    wool fabrics')
+│   │   │   │       └── T(DATA|'wool fabrics')
 │   │   │   └── T(SEPARATOR|',\r\n    ')
 │   │   ├── item_or_expression_part
 │   │   │   ├── item

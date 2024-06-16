@@ -69,4 +69,4 @@ F. Productins
 
 	//want to test a -> /* jsjsj */ ; or a -> /* jsjsj *//* jsjsj */ ; - will this create empty item from space only?
 	//how does preprocessor deals with adding terminators if file ends with comment/s
-	//more thorough testing of named links - [http://dssds.com/ | dssds] or [http://dssds.com/ | dssds|assa ]
+	//comments now need space - '// '

@@ -2,7 +2,7 @@
 Source Code (between the arrows)
 ========================================
 
-🡆fabrics <aXLBEer9> -> //comment here
+🡆fabrics <aXLBEer9> -> // comment here
 
     /* wool fabrics <VevA2Eh3>, */
     cotton fabrics <evhAIQx4>,
@@ -29,9 +29,7 @@ scripture
 │   │   ├── item_or_expression_part
 │   │   │   ├── item
 │   │   │   │   ├── text_chunk
-│   │   │   │   │   └── T(DATA|'\r\n    ')
-│   │   │   │   ├── text_chunk
-│   │   │   │   │   └── T(DATA|'\r\n    cotton fabrics ')
+│   │   │   │   │   └── T(DATA|'cotton fabrics ')
 │   │   │   │   └── tag
 │   │   │   │       ├── T(LEFT_ARROW|'<')
 │   │   │   │       ├── T(DATA|'evhAIQx4')

@@ -1,6 +1,6 @@
-fabrics -> //comment here
+fabrics -> // comment here
 
     wool fabrics,
     cotton fabrics,
     silk fabrics,
-    synthetic fabrics;//comment last
+    synthetic fabrics;// comment last

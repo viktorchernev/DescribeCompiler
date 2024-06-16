@@ -2,14 +2,14 @@
 Source Code (between the arrows)
 ========================================
 
-🡆fabrics <qJobcYNC> -> //comment here
+🡆fabrics <qJobcYNC> -> // comment here
 
     wool fabrics <WmtITd8B>,
     cotton fabrics <KGkvDUZH>,
     silk fabrics <BbiZz4Ie>,
     synthetic fabrics <gCWv1P46>;
 
-//comment last🡄
+// comment last🡄
 
 ========================================
 Parse Tree
@@ -31,7 +31,7 @@ scripture
 │   │   ├── item_or_expression_part
 │   │   │   ├── item
 │   │   │   │   ├── text_chunk
-│   │   │   │   │   └── T(DATA|'\r\n    wool fabrics ')
+│   │   │   │   │   └── T(DATA|'wool fabrics ')
 │   │   │   │   └── tag
 │   │   │   │       ├── T(LEFT_ARROW|'<')
 │   │   │   │       ├── T(DATA|'WmtITd8B')

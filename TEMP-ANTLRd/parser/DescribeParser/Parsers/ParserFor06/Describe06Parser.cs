@@ -36,10 +36,10 @@ public partial class Describe06Parser : Parser {
 	protected static DFA[] decisionToDFA;
 	protected static PredictionContextCache sharedContextCache = new PredictionContextCache();
 	public const int
-		LINE_COMMENT=1, BLOCK_COMMENT=2, NEWLINE=3, HYPHEN=4, RIGHT_ARROW=5, SEPARATOR=6, 
-		TERMINATOR=7, FORWARD_SLASH=8, ESCAPE_ESCAPE=9, ESCAPE_HYPHEN=10, ESCAPE_RIGHT_ARROW=11, 
-		ESCAPE_SEPARATOR=12, ESCAPE_TERMINATOR=13, ESCAPE_LCOMMENT=14, ESCAPE_BCOMMENT=15, 
-		ESCAPE=16, DATA=17;
+		LINE_COMMENT=1, BLOCK_COMMENT=2, HYPHEN=3, RIGHT_ARROW=4, SEPARATOR=5, 
+		TERMINATOR=6, FORWARD_SLASHES=7, FORWARD_SLASH=8, ESCAPE_ESCAPE=9, ESCAPE_HYPHEN=10, 
+		ESCAPE_RIGHT_ARROW=11, ESCAPE_SEPARATOR=12, ESCAPE_TERMINATOR=13, ESCAPE_LCOMMENT=14, 
+		ESCAPE_BCOMMENT=15, ESCAPE=16, DATA=17;
 	public const int
 		RULE_producer = 0, RULE_text_chunk = 1, RULE_item = 2, RULE_expression = 3, 
 		RULE_item_or_expression_part = 4, RULE_item_or_expression_list = 5, RULE_expression_list = 6, 
@@ -50,12 +50,12 @@ public partial class Describe06Parser : Parser {
 	};
 
 	private static readonly string[] _LiteralNames = {
-		null, null, null, null, "'-'", null, null, null, "'/'", "'\\\\'", "'\\-'", 
+		null, null, null, "'-'", null, null, null, "'//'", "'/'", "'\\\\'", "'\\-'", 
 		"'\\>'", "'\\,'", "'\\;'", "'\\//'", "'\\/*'", "'\\'"
 	};
 	private static readonly string[] _SymbolicNames = {
-		null, "LINE_COMMENT", "BLOCK_COMMENT", "NEWLINE", "HYPHEN", "RIGHT_ARROW", 
-		"SEPARATOR", "TERMINATOR", "FORWARD_SLASH", "ESCAPE_ESCAPE", "ESCAPE_HYPHEN", 
+		null, "LINE_COMMENT", "BLOCK_COMMENT", "HYPHEN", "RIGHT_ARROW", "SEPARATOR", 
+		"TERMINATOR", "FORWARD_SLASHES", "FORWARD_SLASH", "ESCAPE_ESCAPE", "ESCAPE_HYPHEN", 
 		"ESCAPE_RIGHT_ARROW", "ESCAPE_SEPARATOR", "ESCAPE_TERMINATOR", "ESCAPE_LCOMMENT", 
 		"ESCAPE_BCOMMENT", "ESCAPE", "DATA"
 	};
@@ -150,9 +150,9 @@ public partial class Describe06Parser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ESCAPE_LCOMMENT() { return GetToken(Describe06Parser.ESCAPE_LCOMMENT, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ESCAPE_BCOMMENT() { return GetToken(Describe06Parser.ESCAPE_BCOMMENT, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ESCAPE() { return GetToken(Describe06Parser.ESCAPE, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NEWLINE() { return GetToken(Describe06Parser.NEWLINE, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HYPHEN() { return GetToken(Describe06Parser.HYPHEN, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode RIGHT_ARROW() { return GetToken(Describe06Parser.RIGHT_ARROW, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FORWARD_SLASHES() { return GetToken(Describe06Parser.FORWARD_SLASHES, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FORWARD_SLASH() { return GetToken(Describe06Parser.FORWARD_SLASH, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DATA() { return GetToken(Describe06Parser.DATA, 0); }
 		public Text_chunkContext(ParserRuleContext parent, int invokingState)
@@ -188,7 +188,7 @@ public partial class Describe06Parser : Parser {
 			{
 			State = 19;
 			_la = TokenStream.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 261944L) != 0)) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 262040L) != 0)) ) {
 			ErrorHandler.RecoverInline(this);
 			}
 			else {
@@ -731,16 +731,16 @@ public partial class Describe06Parser : Parser {
 		4,1,4,1,4,1,4,1,4,3,4,53,8,4,3,4,55,8,4,1,5,4,5,58,8,5,11,5,12,5,59,1,
 		5,1,5,1,5,4,5,65,8,5,11,5,12,5,66,1,5,1,5,3,5,71,8,5,1,6,4,6,74,8,6,11,
 		6,12,6,75,1,6,1,6,1,7,1,7,1,7,1,7,1,7,1,7,3,7,86,8,7,1,7,0,0,8,0,2,4,6,
-		8,10,12,14,0,1,2,0,3,5,8,17,90,0,16,1,0,0,0,2,19,1,0,0,0,4,22,1,0,0,0,
+		8,10,12,14,0,1,2,0,3,4,7,17,90,0,16,1,0,0,0,2,19,1,0,0,0,4,22,1,0,0,0,
 		6,45,1,0,0,0,8,54,1,0,0,0,10,70,1,0,0,0,12,73,1,0,0,0,14,85,1,0,0,0,16,
-		17,5,4,0,0,17,18,5,5,0,0,18,1,1,0,0,0,19,20,7,0,0,0,20,3,1,0,0,0,21,23,
+		17,5,3,0,0,17,18,5,4,0,0,18,1,1,0,0,0,19,20,7,0,0,0,20,3,1,0,0,0,21,23,
 		3,2,1,0,22,21,1,0,0,0,23,24,1,0,0,0,24,22,1,0,0,0,24,25,1,0,0,0,25,5,1,
-		0,0,0,26,27,3,4,2,0,27,28,3,0,0,0,28,29,3,10,5,0,29,30,5,7,0,0,30,46,1,
-		0,0,0,31,32,3,4,2,0,32,33,3,0,0,0,33,34,3,4,2,0,34,35,5,7,0,0,35,46,1,
-		0,0,0,36,37,3,4,2,0,37,38,3,0,0,0,38,39,3,6,3,0,39,40,5,7,0,0,40,46,1,
-		0,0,0,41,42,3,4,2,0,42,43,3,0,0,0,43,44,5,7,0,0,44,46,1,0,0,0,45,26,1,
+		0,0,0,26,27,3,4,2,0,27,28,3,0,0,0,28,29,3,10,5,0,29,30,5,6,0,0,30,46,1,
+		0,0,0,31,32,3,4,2,0,32,33,3,0,0,0,33,34,3,4,2,0,34,35,5,6,0,0,35,46,1,
+		0,0,0,36,37,3,4,2,0,37,38,3,0,0,0,38,39,3,6,3,0,39,40,5,6,0,0,40,46,1,
+		0,0,0,41,42,3,4,2,0,42,43,3,0,0,0,43,44,5,6,0,0,44,46,1,0,0,0,45,26,1,
 		0,0,0,45,31,1,0,0,0,45,36,1,0,0,0,45,41,1,0,0,0,46,7,1,0,0,0,47,48,3,4,
-		2,0,48,49,5,6,0,0,49,55,1,0,0,0,50,52,3,6,3,0,51,53,5,6,0,0,52,51,1,0,
+		2,0,48,49,5,5,0,0,49,55,1,0,0,0,50,52,3,6,3,0,51,53,5,5,0,0,52,51,1,0,
 		0,0,52,53,1,0,0,0,53,55,1,0,0,0,54,47,1,0,0,0,54,50,1,0,0,0,55,9,1,0,0,
 		0,56,58,3,8,4,0,57,56,1,0,0,0,58,59,1,0,0,0,59,57,1,0,0,0,59,60,1,0,0,
 		0,60,61,1,0,0,0,61,62,3,4,2,0,62,71,1,0,0,0,63,65,3,8,4,0,64,63,1,0,0,

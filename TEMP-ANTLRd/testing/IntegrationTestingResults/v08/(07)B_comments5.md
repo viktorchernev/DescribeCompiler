@@ -2,12 +2,12 @@
 Source Code (between the arrows)
 ========================================
 
-🡆fabrics <xpXWehDW> -> //comment here
+🡆fabrics <xpXWehDW> -> // comment here
 
     wool fabrics <TcD3LcoW>,
     cotton fabrics <thZBzyNc>,
     silk fabrics <dOlQGMJ4>,
-    synthetic fabrics <Ln7Y7Dme>;//comment last🡄
+    synthetic fabrics <Ln7Y7Dme>;// comment last🡄
 
 ========================================
 Parse Tree
@@ -29,7 +29,7 @@ scripture
 │   │   ├── item_or_expression_part
 │   │   │   ├── item
 │   │   │   │   ├── text_chunk
-│   │   │   │   │   └── T(DATA|'\r\n    wool fabrics ')
+│   │   │   │   │   └── T(DATA|'wool fabrics ')
 │   │   │   │   └── tag
 │   │   │   │       ├── T(LEFT_ARROW|'<')
 │   │   │   │       ├── T(DATA|'TcD3LcoW')

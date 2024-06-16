@@ -1,5 +1,5 @@
 This list explains the contents of the basic test files for Describe version 0.9 "Decorators".
-The strategy used here is to use some of the test files for the previous Describe version 0.8, which version, as well as version 0.6 and 0.7, 0.9 should pass as well, in order to prove backward compatibility. These tests are not extensively covering all possible edge cases, but keep in mind that we have a hundreds of files in the Describe library, that will serve as a test as well.
+The strategy used here is to use some of the test files for the previous Describe version 0.8, which version, as well as version 0.6 and 0.7, 0.9 should pass as well, in order to prove backward compatibility. Decorators has been added, as well as links in text, in order to test for conflicts with links. These tests are not extensively covering all possible edge cases, but keep in mind that we have a hundreds of files in the Describe library, that will serve as a test as well.
 
 
 A. Basics
@@ -35,4 +35,4 @@ D. Characters
 
 	//want to test a -> /* jsjsj */ ; or a -> /* jsjsj *//* jsjsj */ ; - will this create empty item from space only?
 	//how does preprocessor deals with adding terminators if file ends with comment/s
-	//more thorough testing of named links - [http://dssds.com/ | dssds] or [http://dssds.com/ | dssds|assa ]
+	//comments now need space - '// '

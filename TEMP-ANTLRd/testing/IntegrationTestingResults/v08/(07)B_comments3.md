@@ -2,7 +2,7 @@
 Source Code (between the arrows)
 ========================================
 
-🡆fabrics <QuvD4gqX> ->        //dude;
+🡆fabrics <QuvD4gqX> ->        // dude;
 
     wool fabrics <VBsu8OpW>, /* comment <*/
 /* ->Comments, man */     cotton fabrics <0RdNAvNs> ;🡄
@@ -27,7 +27,7 @@ scripture
 │   │   ├── item_or_expression_part
 │   │   │   ├── item
 │   │   │   │   ├── text_chunk
-│   │   │   │   │   └── T(DATA|'\r\n    wool fabrics ')
+│   │   │   │   │   └── T(DATA|'wool fabrics ')
 │   │   │   │   └── tag
 │   │   │   │       ├── T(LEFT_ARROW|'<')
 │   │   │   │       ├── T(DATA|'VBsu8OpW')
@@ -35,9 +35,7 @@ scripture
 │   │   │   └── T(SEPARATOR|', ')
 │   │   └── item
 │   │       ├── text_chunk
-│   │       │   └── T(NEWLINE|'\r\n')
-│   │       ├── text_chunk
-│   │       │   └── T(DATA|'     cotton fabrics ')
+│   │       │   └── T(DATA|'cotton fabrics ')
 │   │       └── tag
 │   │           ├── T(LEFT_ARROW|'<')
 │   │           ├── T(DATA|'0RdNAvNs')

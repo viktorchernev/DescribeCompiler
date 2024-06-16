@@ -22,7 +22,6 @@ namespace DescribeParser.IntegrationTests
             //auto-closer
             bool wasHyphen = false;
             bool inTag = false;
-            bool inLink = false;
             int counter = 0;
             var tokenList = tokenstream.GetTokens();
             foreach (var token in tokenList)
@@ -39,12 +38,7 @@ namespace DescribeParser.IntegrationTests
                         if (inTag) inTag = false;
                         else if (wasHyphen) counter++;
                     }
-                    else if (type == "LEFT_SQUARE") inLink = true;
-                    else if (type == "RIGHT_SQUARE") inLink = false;
-                    else if (type == "TERMINATOR")
-                    {
-                        if(inLink == false) counter--;
-                    }
+                    else if (type == "TERMINATOR") counter--;
                     wasHyphen = false;
                 }
             }
@@ -423,7 +417,6 @@ namespace DescribeParser.IntegrationTests
 
 
 
-        //embeddedFileName = "DescribeParser.IntegrationTests.TestFiles.TestFilesFor07.A_basic1.ds";
         internal static void TestLexer(string embeddedFileName)
         {
             //get source code to test

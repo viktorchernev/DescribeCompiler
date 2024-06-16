@@ -1,21 +1,21 @@
 /* Describe Markup Language
  * version 0.6 (Basics)
  * Created by DemonOfReason and ChatGPT
- * Finished on 12 June 2024 */
+ * Finished on 16 June 2024 */
 
 grammar Describe06;
 
 
 // Define lexer rules for comments
-LINE_COMMENT       			: '//' .*? ('\r'? '\n' | EOF) -> skip ;
-BLOCK_COMMENT       		: '/*' .*? ('*/' | EOF) -> skip ;
-NEWLINE              		: '\n'+ | '\r\n'+ ;
+LINE_COMMENT       			: '// ' .*? ('\r'? '\n' [ \r\n\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]* | EOF) -> skip ;
+BLOCK_COMMENT       		: '/*' .*? ('*/' [ \r\n\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]* | EOF) -> skip ;
 
 // Define lexer rules for other tokens
 HYPHEN						: '-' ;
 RIGHT_ARROW             	: '>' [ \r\n\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]* ;
 SEPARATOR            		: ',' [ \r\n\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]* ;
 TERMINATOR           		: ';' [ \r\n\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]* ;
+FORWARD_SLASHES             : '//' ;
 FORWARD_SLASH               : '/' ;
 
 ESCAPE_ESCAPE        		: '\\\\' ;
@@ -42,9 +42,9 @@ text_chunk					: ESCAPE_ESCAPE
 							| ESCAPE_LCOMMENT
 							| ESCAPE_BCOMMENT
 							| ESCAPE
-							| NEWLINE
 							| HYPHEN
 							| RIGHT_ARROW
+							| FORWARD_SLASHES
 							| FORWARD_SLASH
 							| DATA ;
 

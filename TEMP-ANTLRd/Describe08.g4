@@ -1,16 +1,15 @@
 /* Describe Markup Language
  * version 0.8 (Links)
  * Created by DemonOfReason and ChatGPT
- * Finished on 15 June 2024 */
+ * Finished on 16 June 2024 */
 
 grammar Describe08;
 
 
 // Define lexer rules for comments
-LINE_COMMENT       			: '//' .*? ('\r'? '\n' | EOF) -> skip ;
-BLOCK_COMMENT       		: '/*' .*? ('*/' | EOF) -> skip ;
+LINE_COMMENT       			: '// ' .*? ('\r'? '\n' [ \r\n\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]* | EOF) -> skip ;
+BLOCK_COMMENT       		: '/*' .*? ('*/' [ \r\n\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]* | EOF) -> skip ;
 LINK						: '[' .*? ']' [ \r\n\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]* ;
-NEWLINE              		: '\n'+ | '\r\n'+ ;
 
 // Define lexer rules for other tokens
 HYPHEN						: '-' ;
@@ -18,6 +17,7 @@ RIGHT_ARROW             	: '>' [ \r\n\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u20
 LEFT_ARROW             		: '<' [ \r\n\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]* ;
 SEPARATOR            		: ',' [ \r\n\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]* ;
 TERMINATOR           		: ';' [ \r\n\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]* ;
+FORWARD_SLASHES             : '//' ;
 FORWARD_SLASH               : '/' ;
 
 ESCAPE_ESCAPE        		: '\\\\' ;
@@ -35,7 +35,7 @@ ESCAPE               		: '\\' ;
 // Define lexer rule for data
 // Note: For some reason we don't need to escape '[' and '|'
 // and ANTLR does not like when we try to escape them
-fragment DATA_CHAR			: ~[[|\]\-<>,;*/\\] ;
+fragment DATA_CHAR			: ~[[\]\-<>,;*/\\] ;
 DATA                		: DATA_CHAR+ ;
 
 // Define parser rules
@@ -52,15 +52,14 @@ text_chunk					: ESCAPE_ESCAPE
 							| ESCAPE_LCOMMENT
 							| ESCAPE_BCOMMENT
 							| ESCAPE
-							| NEWLINE
 							| HYPHEN
-							| PIPE
 							| RIGHT_ARROW
+							| FORWARD_SLASHES
 							| FORWARD_SLASH
 							| DATA ;
 
 
-tag							: LEFT_ARROW (DATA | HYPHEN | FORWARD_SLASH | ESCAPE | ESCAPE_ESCAPE)+ RIGHT_ARROW ;
+tag							: LEFT_ARROW (DATA | HYPHEN | FORWARD_SLASH | FORWARD_SLASHES | ESCAPE | ESCAPE_ESCAPE)+ RIGHT_ARROW ;
 
 
 item 						: (text_chunk)+ (tag)?

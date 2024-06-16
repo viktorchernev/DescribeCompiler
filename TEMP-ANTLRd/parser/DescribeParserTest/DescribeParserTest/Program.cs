@@ -26,9 +26,17 @@ namespace DescribeParser.IntegrationTests
             //test 08
             //IntegrationTestsFor08.TestLexer("DescribeParser.IntegrationTests.TestFiles.TestFilesFor08.A_basic1.ds");
             //IntegrationTestsFor08.TestFile("DescribeParser.IntegrationTests.TestFiles.TestFilesFor08.A_basic1.ds");
-            IntegrationTestsFor08.TestFiles();
+            //IntegrationTestsFor08.TestFiles();
 
             //test 09
+            //IntegrationTestsFor09.TestLexer("DescribeParser.IntegrationTests.TestFiles.TestFilesFor07.D_escaped_double_characters1.ds");
+            //IntegrationTestsFor09.TestFile("DescribeParser.IntegrationTests.TestFiles.TestFilesFor07.D_escaped_double_characters1.ds");
+            //IntegrationTestsFor09.TestFiles();
+
+            //test 10
+            //IntegrationTestsFor10.TestLexer("DescribeParser.IntegrationTests.TestFiles.TestFilesFor10.D_escaped_double_characters1.ds");
+            //IntegrationTestsFor10.TestFile("DescribeParser.IntegrationTests.TestFiles.TestFilesFor10.D_escaped_double_characters1.ds");
+            //IntegrationTestsFor10.TestFiles();
         }
     }
 }
