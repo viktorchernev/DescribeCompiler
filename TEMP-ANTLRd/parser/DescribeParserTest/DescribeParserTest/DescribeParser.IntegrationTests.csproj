@@ -112,6 +112,16 @@
     <None Remove="TestFiles\TestFilesFor09\B_comments4.ds" />
     <None Remove="TestFiles\TestFilesFor09\B_comments5.ds" />
     <None Remove="TestFiles\TestFilesFor09\C_cyrillic.ds" />
+    <None Remove="TestFiles\TestFilesFor10\A_control.ds" />
+    <None Remove="TestFiles\TestFilesFor10\A_inner_commas1.ds" />
+    <None Remove="TestFiles\TestFilesFor10\A_inner_commas2.ds" />
+    <None Remove="TestFiles\TestFilesFor10\A_inner_commas3.ds" />
+    <None Remove="TestFiles\TestFilesFor10\A_producers1.ds" />
+    <None Remove="TestFiles\TestFilesFor10\A_producers2.ds" />
+    <None Remove="TestFiles\TestFilesFor10\A_producers3.ds" />
+    <None Remove="TestFiles\TestFilesFor10\A_semicolons1.ds" />
+    <None Remove="TestFiles\TestFilesFor10\A_semicolons2.ds" />
+    <None Remove="TestFiles\TestFilesFor10\A_semicolons3.ds" />
   </ItemGroup>
 
   <ItemGroup>
@@ -222,6 +232,16 @@
     <EmbeddedResource Include="TestFiles\TestFilesFor09\B_comments4.ds" />
     <EmbeddedResource Include="TestFiles\TestFilesFor09\B_comments5.ds" />
     <EmbeddedResource Include="TestFiles\TestFilesFor09\C_cyrillic.ds" />
+    <EmbeddedResource Include="TestFiles\TestFilesFor10\A_producers1.ds" />
+    <EmbeddedResource Include="TestFiles\TestFilesFor10\A_producers2.ds" />
+    <EmbeddedResource Include="TestFiles\TestFilesFor10\A_semicolons2.ds" />
+    <EmbeddedResource Include="TestFiles\TestFilesFor10\A_producers3.ds" />
+    <EmbeddedResource Include="TestFiles\TestFilesFor10\A_semicolons3.ds" />
+    <EmbeddedResource Include="TestFiles\TestFilesFor10\A_semicolons1.ds" />
+    <EmbeddedResource Include="TestFiles\TestFilesFor10\A_inner_commas3.ds" />
+    <EmbeddedResource Include="TestFiles\TestFilesFor10\A_inner_commas2.ds" />
+    <EmbeddedResource Include="TestFiles\TestFilesFor10\A_inner_commas1.ds" />
+    <EmbeddedResource Include="TestFiles\TestFilesFor10\A_control.ds" />
   </ItemGroup>
 
   <ItemGroup>
@@ -230,7 +250,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="TestFiles\TestFilesFor10\" />
     <Folder Include="TestFiles\TestFilesFor11\" />
   </ItemGroup>
 

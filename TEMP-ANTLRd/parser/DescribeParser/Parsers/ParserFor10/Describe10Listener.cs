@@ -51,16 +51,6 @@ public interface IDescribe10Listener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitText_chunk([NotNull] Describe10Parser.Text_chunkContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="Describe10Parser.tag"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterTag([NotNull] Describe10Parser.TagContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="Describe10Parser.tag"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitTag([NotNull] Describe10Parser.TagContext context);
-	/// <summary>
 	/// Enter a parse tree produced by <see cref="Describe10Parser.item"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

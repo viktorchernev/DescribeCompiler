@@ -1,34 +1,14 @@
 /* Describe Markup Language
  * version 1.0 (Lines)
  * Created by DemonOfReason and ChatGPT
- * Finished on 17 June 2024 */
+ * Finished on 16 June 2024 */
 
 grammar Describe10;
-
-
-// ----------------------------------------------------------------------------------------------------------
-// ' ' 					: A space character.
-// '\r'					: A carriage return character (ASCII 13).
-// '\n'					: A newline character (ASCII 10).
-// '\t'					: A tab character (ASCII 9).
-// '\u000B'				: A vertical tab character (ASCII 11).
-// '\u000C'				: A form feed character (ASCII 12).
-// '\u0085'				: A next line (NEL) character (Unicode character U+0085).
-// '\u00A0'				: A non-breaking space (Unicode character U+00A0).
-// '\u1680'				: An ogham space mark (Unicode character U+1680).
-// '\u2000-\u200A'		: A range of en space to hair space (Unicode characters U+2000 to U+200A, inclusive).
-// '\u2028'				: A line separator (Unicode character U+2028).
-// '\u2029'				: A paragraph separator (Unicode character U+2029).
-// '\u202F'				: A narrow no-break space (Unicode character U+202F).
-// '\u205F'				: A medium mathematical space (Unicode character U+205F).
-// '\u3000'				: An ideographic space (Unicode character U+3000).
-// ----------------------------------------------------------------------------------------------------------
 
 
 // Define lexer rules for comments
 LINE_COMMENT       			: '// ' .*? ('\r'? '\n' [ \r\n\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]* | EOF) -> skip ;
 BLOCK_COMMENT       		: '/*' .*? ('*/' [ \r\n\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]* | EOF) -> skip ;
-TAG							: '<' .+? '>' [ \r\n\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]* ;
 LINK						: '[' .*? ']' [ \r\n\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]* ;
 DECORATOR					: '{' .*? '}' [ \r\n\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]* ;
 
@@ -36,9 +16,8 @@ DECORATOR					: '{' .*? '}' [ \r\n\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\
 HYPHEN						: '-' ;
 
 //not good. need whitespace between new line
-PRODUCTION_ARROW            : '>' [ \r\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]* '\n' [ \r\n\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]*
-							| '>>' [ \r\n\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]* ;
-
+PRODUCTION_ARROW            : '>' [ \r\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]* '\n' [ \r\n\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]* ;
+DOUBLE_RIGHT_ARROW			: '>>' [ \r\n\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]*
 RIGHT_ARROW             	: '>' [ \r\n\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]* ;
 LEFT_ARROW             		: '<' [ \r\n\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]* ;
 
@@ -77,7 +56,7 @@ DATA                		: DATA_CHAR+ ;
 
 
 // Define parser rules
-producer					: HYPHEN PRODUCTION_ARROW ;
+producer					: HYPHEN ( PRODUCTION_ARROW | DOUBLE_RIGHT_ARROW );
 
 text_chunk					: ESCAPE_ESCAPE
 							| ESCAPE_HYPHEN
@@ -101,21 +80,24 @@ text_chunk					: ESCAPE_ESCAPE
 							| DATA ;
 
 
-item 						: (text_chunk)+ (TAG)?
+tag							: LEFT_ARROW (DATA | HYPHEN | FORWARD_SLASH | FORWARD_SLASHES | ESCAPE | ESCAPE_ESCAPE)+ ( RIGHT_ARROW | PRODUCTION_ARROW ) ;
+
+
+item 						: (text_chunk)+ (tag)?
 							| (text_chunk)+ (LINK)+
 							| (text_chunk)+ (DECORATOR)+
-							| (text_chunk)+ (LINK)+ TAG
-							| (text_chunk)+ TAG (LINK)+
-							| (text_chunk)+ (DECORATOR)+ TAG
-							| (text_chunk)+ TAG (DECORATOR)+
+							| (text_chunk)+ (LINK)+ tag
+							| (text_chunk)+ tag (LINK)+
+							| (text_chunk)+ (DECORATOR)+ tag
+							| (text_chunk)+ tag (DECORATOR)+
 							| (text_chunk)+ (DECORATOR)+ (LINK)+
 							| (text_chunk)+ (LINK)+ (DECORATOR)+
-							| (text_chunk)+ TAG (DECORATOR)+ (LINK)+
-							| (text_chunk)+ (DECORATOR)+ TAG (LINK)+
-							| (text_chunk)+ (DECORATOR)+ (LINK)+ TAG
-							| (text_chunk)+ TAG (LINK)+ (DECORATOR)+
-							| (text_chunk)+ (LINK)+ TAG (DECORATOR)+
-							| (text_chunk)+ (LINK)+ (DECORATOR)+ TAG ;
+							| (text_chunk)+ tag (DECORATOR)+ (LINK)+
+							| (text_chunk)+ (DECORATOR)+ tag (LINK)+
+							| (text_chunk)+ (DECORATOR)+ (LINK)+ tag
+							| (text_chunk)+ tag (LINK)+ (DECORATOR)+
+							| (text_chunk)+ (LINK)+ tag (DECORATOR)+
+							| (text_chunk)+ (LINK)+ (DECORATOR)+ tag ;
 
 
 expression 					: item producer item_or_expression_list TERMINATOR

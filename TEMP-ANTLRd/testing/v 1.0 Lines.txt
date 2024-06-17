@@ -1,0 +1,43 @@
+This list explains the contents of the basic test files for Describe version 1.0 "Lines".
+Describe version 0.9, as well as version 0.6 and 0.7, 0.8 and 0.9 should pass as well, in order to prove backward compatibility. 
+These tests are not extensively covering all possible edge cases, but keep in mind that we have a hundreds of files in the Describe library, that will serve as a test as well.
+
+
+A. Basics
+
+	Category A tastes the fact that in this version of the language, single commas ',', semicolons ';', 
+	and producers '->' are parsed as part of the data.
+	
+	A_control.ds - We want to test a simple Describe list to start with, as a control. Nothing special here
+	A_inner_commas1.ds - One inner comma.
+	A_inner_commas2.ds - Multiple inner commas, including at the start of an entry.
+	A_inner_commas3.ds - Multiple inner commas, including before producer and separator.
+	A_semicolons1.ds - One inner semicolon.
+	A_semicolons2.ds - Multiple inner semicolons, including at the start of an entry.
+	A_semicolons3.ds - Multiple inner semicolons, including before producer and separator.
+	A_producers1.ds - One inner producer.
+	A_producers2.ds - Multiple inner producers, including at the start of an entry.
+	A_producers3.ds - Multiple inner producers, including before producer and separator.
+
+
+B. Whitespaces before new lines
+
+	B_spaces.ds - Spaces before new lines in producer, separator, terminator. Multiple spaces before separator.
+	B_tabs.ds - 
+	B.exotic_spaces.ds - 
+
+
+C. Comments before new lines
+
+	C_line_comment.ds - 
+	C_block_comment.ds - 
+	C_multiple_line_comment.ds - 
+	C_multiple_block_comment.ds - 
+	C_multiple_mixed_comment.ds - 
+	C_comments_and_spaces.ds - 
+
+D. Double symbols
+
+	
+
+E. Escaped double symbols
