@@ -22,22 +22,44 @@ A. Basics
 
 B. Whitespaces before new lines
 
+	These test files of category B intend to test if having different kinds of white spaces 
+	before new lines in operators interferes with the functionality.
+
 	B_spaces.ds - Spaces before new lines in producer, separator, terminator. Multiple spaces before separator.
-	B_tabs.ds - 
-	B.exotic_spaces.ds - 
+	B_tabs.ds - Tabs before new lines in producer, separator, terminator. Multiple tabs before separator.
+	B_exotic_spaces.ds - Single exotic spaces before new lines in producer, separator, terminator.
 
 
 C. Comments before new lines
 
-	C_line_comment.ds - 
-	C_block_comment.ds - 
-	C_multiple_line_comment.ds - 
-	C_multiple_block_comment.ds - 
-	C_multiple_mixed_comment.ds - 
-	C_comments_and_spaces.ds - 
+	These test files of category C intend to test if having different kinds of comments 
+	before new lines in operators interferes with the functionality.
+
+	C_line_comment.ds - Line comments before new lines in producer, separator, terminator.
+	C_block_comment.ds - Block comments before new lines in producer, separator, terminator.
+	C_multiple_line_comment.ds - Multiple line comments before new lines in producer, separator, terminator.
+	C_multiple_block_comment.ds - Multiple block comments before new lines in producer, separator, terminator.
+	C_multiple_mixed_comment.ds - Multiple line and block comments before new lines in producer, separator, terminator.
+	C_comments_and_spaces.ds - Multiple line and block comments and spaces before new lines in producer, separator, terminator.
+
 
 D. Double symbols
 
-	
+	Files in this category tests the functionality of double symbols as separators, producers and terminators.
+
+	D_commas.ds - Same line commas with various spaces before and after.
+	D_semicolons.ds - Same line terminators with various spaces before and after.
+	D_producers.ds - Same line producers with various spaces before and after.
+
 
 E. Escaped double symbols
+
+	E_escaped_double_commas.ds - Same line commas with various spaces before and after, with one of the symbold escaped.
+	E_escaped_double_semicolons.ds - Same line terminators with various spaces before and after, with one of the symbold escaped.
+	E_escaped_double_producers.ds - Same line producers with various spaces before and after, with one of the symbold escaped.
+
+
+// Make tags as tokens in other grammars as well
+// Why not collect white spaces after symbols that are part of text_chunk, like '[', '<', '{' etc.
+// -> //comment \n does not work, as '\n' is part of the comment?
+// Add STAR symbol

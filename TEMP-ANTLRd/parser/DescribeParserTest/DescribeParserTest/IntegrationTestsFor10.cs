@@ -31,7 +31,7 @@ namespace DescribeParser.IntegrationTests
                 if (type == "HYPHEN") wasHyphen = true;
                 else
                 {
-                    if (type == "RIGHT_ARROW")
+                    if (type == "PRODUCTION_ARROW")
                     {
                         if (wasHyphen) counter++;
                     }
@@ -53,7 +53,8 @@ namespace DescribeParser.IntegrationTests
             //insert at correct index.
             //we do this because there might be a thrilling comment in our file.
             if (counter < 1) return text;
-            string tail = new string(';', counter);
+            string repeatedString = String.Concat(Enumerable.Repeat(";\n", counter));
+            string tail = '\n' + repeatedString;
             int insertionIndex = tokenList[tokenList.Count - 2].StopIndex;
             string output = text;
             if (insertionIndex == text.Length - 1) output += tail;

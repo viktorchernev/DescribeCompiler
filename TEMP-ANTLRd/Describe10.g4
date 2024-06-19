@@ -1,11 +1,12 @@
 /* Describe Markup Language
  * version 1.0 (Lines)
  * Created by DemonOfReason and ChatGPT
- * Finished on 17 June 2024 */
+ * Finished on 19 June 2024 */
 
 grammar Describe10;
 
 
+// Define lexer rules for white spaces. Linespace is the same but with new line - '\n'
 // ----------------------------------------------------------------------------------------------------------
 // ' ' 					: A space character.
 // '\r'					: A carriage return character (ASCII 13).
@@ -23,49 +24,55 @@ grammar Describe10;
 // '\u205F'				: A medium mathematical space (Unicode character U+205F).
 // '\u3000'				: An ideographic space (Unicode character U+3000).
 // ----------------------------------------------------------------------------------------------------------
+fragment WHITESPACE			: [ \r\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000] ;
+fragment LINESPACE			: [ \r\n\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000] ;
 
 
 // Define lexer rules for comments
-LINE_COMMENT       			: '// ' .*? ('\r'? '\n' [ \r\n\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]* | EOF) -> skip ;
-BLOCK_COMMENT       		: '/*' .*? ('*/' [ \r\n\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]* | EOF) -> skip ;
-TAG							: '<' .+? '>' [ \r\n\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]* ;
-LINK						: '[' .*? ']' [ \r\n\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]* ;
-DECORATOR					: '{' .*? '}' [ \r\n\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]* ;
+LINE_COMMENT       			: '// ' .*? ('\r'? '\n' LINESPACE* | EOF) -> skip ;
+BLOCK_COMMENT       		: '/*' .*? ('*/' LINESPACE* | EOF) -> skip ;
+TAG							: '<' .+? '>' LINESPACE* ;
+LINK						: '[' .*? ']' LINESPACE* ;
+DECORATOR					: '{' .*? '}' LINESPACE* ;
+
 
 // Define lexer rules for other tokens
 HYPHEN						: '-' ;
 
-//not good. need whitespace between new line
-PRODUCTION_ARROW            : '>' [ \r\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]* '\n' [ \r\n\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]*
-							| '>>' [ \r\n\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]* ;
+PRODUCTION_ARROW            : '>' WHITESPACE* BLOCK_COMMENT* '\n' LINESPACE*
+							| '>' WHITESPACE* BLOCK_COMMENT* LINE_COMMENT
+							| '>>' LINESPACE* ;
 
-RIGHT_ARROW             	: '>' [ \r\n\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]* ;
-LEFT_ARROW             		: '<' [ \r\n\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]* ;
+SEPARATOR            		: ',' WHITESPACE* BLOCK_COMMENT* '\n' LINESPACE* 
+							| ',' WHITESPACE* BLOCK_COMMENT* LINE_COMMENT
+							| ',,' LINESPACE* ;
 
-SEPARATOR            		: ',' [ \r\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]* '\n' [ \r\n\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]* 
-							| ',,' [ \r\n\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]* ;
+TERMINATOR           		: ';' WHITESPACE* BLOCK_COMMENT* ('\n' | EOF) LINESPACE* 
+							| ';' WHITESPACE* BLOCK_COMMENT* LINE_COMMENT
+							| ';;' LINESPACE* ;
 
-TERMINATOR           		: ';' [ \r\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]* '\n' [ \r\n\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]* 
-							| ';;' [ \r\n\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]* ;
+FORWARD_SLASHES             : '//' LINESPACE* ;
+FORWARD_SLASH               : '/' LINESPACE* ;
+COMMA						: ',' LINESPACE* ;
+SEMICOLON					: ';' LINESPACE* ;
+RIGHT_ARROW             	: '>' LINESPACE* ;
+RIGHT_SQUARE      			: ']' LINESPACE* ;
+RIGHT_CURL      			: '}' LINESPACE* ;
+STAR						: '*' LINESPACE* ;
 
-FORWARD_SLASHES             : '//' ;
-FORWARD_SLASH               : '/' ;
-COMMA						: ',' ;
-SEMICOLON					: ';' ;
-
-ESCAPE_ESCAPE        		: '\\\\' ;
-ESCAPE_HYPHEN      			: '\\-' ;
-ESCAPE_RIGHT_ARROW      	: '\\>' ;
-ESCAPE_LEFT_ARROW      		: '\\<' ;
-ESCAPE_RIGHT_SQUARE      	: '\\]' ;
-ESCAPE_LEFT_SQUARE      	: '\\[' ;
-ESCAPE_RIGHT_CURL      		: '\\}' ;
-ESCAPE_LEFT_CURL     	 	: '\\{' ;
-ESCAPE_SEPARATOR     		: '\\,' ;
-ESCAPE_TERMINATOR    		: '\\;' ;
-ESCAPE_LCOMMENT      		: '\\//' ;
-ESCAPE_BCOMMENT      		: '\\/*' ;
-ESCAPE               		: '\\' ;
+ESCAPE_ESCAPE        		: '\\\\' LINESPACE* ;
+ESCAPE_HYPHEN      			: '\\-' LINESPACE* ;
+ESCAPE_RIGHT_ARROW      	: '\\>' LINESPACE* ;
+ESCAPE_LEFT_ARROW      		: '\\<' LINESPACE* ;
+ESCAPE_RIGHT_SQUARE      	: '\\]' LINESPACE* ;
+ESCAPE_LEFT_SQUARE      	: '\\[' LINESPACE* ;
+ESCAPE_RIGHT_CURL      		: '\\}' LINESPACE* ;
+ESCAPE_LEFT_CURL     	 	: '\\{' LINESPACE* ;
+ESCAPE_SEPARATOR     		: '\\,' LINESPACE* ;
+ESCAPE_TERMINATOR    		: '\\;' LINESPACE* ;
+ESCAPE_LCOMMENT      		: '\\//' LINESPACE* ;
+ESCAPE_BCOMMENT      		: '\\/*' LINESPACE* ;
+ESCAPE               		: '\\' LINESPACE* ;
 
 
 // Define lexer rule for data
@@ -92,12 +99,17 @@ text_chunk					: ESCAPE_ESCAPE
 							| ESCAPE_LCOMMENT
 							| ESCAPE_BCOMMENT
 							| ESCAPE
+							
 							| HYPHEN
 							| COMMA
 							| SEMICOLON
 							| RIGHT_ARROW
+							| PRODUCTION_ARROW
+							| RIGHT_SQUARE
+							| RIGHT_CURL
 							| FORWARD_SLASHES
 							| FORWARD_SLASH
+							| STAR
 							| DATA ;
 
 

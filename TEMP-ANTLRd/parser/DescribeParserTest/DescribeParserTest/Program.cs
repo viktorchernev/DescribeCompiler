@@ -34,8 +34,8 @@ namespace DescribeParser.IntegrationTests
             //IntegrationTestsFor09.TestFiles();
 
             //test 10
-            //IntegrationTestsFor10.TestLexer("DescribeParser.IntegrationTests.TestFiles.TestFilesFor10.D_escaped_double_characters1.ds");
-            //IntegrationTestsFor10.TestFile("DescribeParser.IntegrationTests.TestFiles.TestFilesFor10.D_escaped_double_characters1.ds");
+            //IntegrationTestsFor10.TestLexer("DescribeParser.IntegrationTests.TestFiles.TestFilesFor10.E_escaped_double_producers.ds");
+            IntegrationTestsFor10.TestFile("DescribeParser.IntegrationTests.TestFiles.TestFilesFor10.E_escaped_double_producers.ds");
             //IntegrationTestsFor10.TestFiles();
         }
     }

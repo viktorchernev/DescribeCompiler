@@ -122,6 +122,21 @@
     <None Remove="TestFiles\TestFilesFor10\A_semicolons1.ds" />
     <None Remove="TestFiles\TestFilesFor10\A_semicolons2.ds" />
     <None Remove="TestFiles\TestFilesFor10\A_semicolons3.ds" />
+    <None Remove="TestFiles\TestFilesFor10\B_exotic_spaces.ds" />
+    <None Remove="TestFiles\TestFilesFor10\B_spaces.ds" />
+    <None Remove="TestFiles\TestFilesFor10\B_tabs.ds" />
+    <None Remove="TestFiles\TestFilesFor10\C_block_comment.ds" />
+    <None Remove="TestFiles\TestFilesFor10\C_comments_and_spaces.ds" />
+    <None Remove="TestFiles\TestFilesFor10\C_line_comment.ds" />
+    <None Remove="TestFiles\TestFilesFor10\C_multiple_block_comments.ds" />
+    <None Remove="TestFiles\TestFilesFor10\C_multiple_line_comments.ds" />
+    <None Remove="TestFiles\TestFilesFor10\C_multiple_mixed_comments.ds" />
+    <None Remove="TestFiles\TestFilesFor10\D_commas.ds" />
+    <None Remove="TestFiles\TestFilesFor10\D_producers.ds" />
+    <None Remove="TestFiles\TestFilesFor10\D_semicolons.ds" />
+    <None Remove="TestFiles\TestFilesFor10\E_escaped_double_commas.ds" />
+    <None Remove="TestFiles\TestFilesFor10\E_escaped_double_producers.ds" />
+    <None Remove="TestFiles\TestFilesFor10\E_escaped_double_semicolons.ds" />
   </ItemGroup>
 
   <ItemGroup>
@@ -232,6 +247,21 @@
     <EmbeddedResource Include="TestFiles\TestFilesFor09\B_comments4.ds" />
     <EmbeddedResource Include="TestFiles\TestFilesFor09\B_comments5.ds" />
     <EmbeddedResource Include="TestFiles\TestFilesFor09\C_cyrillic.ds" />
+    <EmbeddedResource Include="TestFiles\TestFilesFor10\E_escaped_double_commas.ds" />
+    <EmbeddedResource Include="TestFiles\TestFilesFor10\E_escaped_double_producers.ds" />
+    <EmbeddedResource Include="TestFiles\TestFilesFor10\D_producers.ds" />
+    <EmbeddedResource Include="TestFiles\TestFilesFor10\E_escaped_double_semicolons.ds" />
+    <EmbeddedResource Include="TestFiles\TestFilesFor10\D_semicolons.ds" />
+    <EmbeddedResource Include="TestFiles\TestFilesFor10\D_commas.ds" />
+    <EmbeddedResource Include="TestFiles\TestFilesFor10\C_block_comment.ds" />
+    <EmbeddedResource Include="TestFiles\TestFilesFor10\C_multiple_block_comments.ds" />
+    <EmbeddedResource Include="TestFiles\TestFilesFor10\C_comments_and_spaces.ds" />
+    <EmbeddedResource Include="TestFiles\TestFilesFor10\C_multiple_mixed_comments.ds" />
+    <EmbeddedResource Include="TestFiles\TestFilesFor10\C_multiple_line_comments.ds" />
+    <EmbeddedResource Include="TestFiles\TestFilesFor10\C_line_comment.ds" />
+    <EmbeddedResource Include="TestFiles\TestFilesFor10\B_exotic_spaces.ds" />
+    <EmbeddedResource Include="TestFiles\TestFilesFor10\B_tabs.ds" />
+    <EmbeddedResource Include="TestFiles\TestFilesFor10\B_spaces.ds" />
     <EmbeddedResource Include="TestFiles\TestFilesFor10\A_producers1.ds" />
     <EmbeddedResource Include="TestFiles\TestFilesFor10\A_producers2.ds" />
     <EmbeddedResource Include="TestFiles\TestFilesFor10\A_semicolons2.ds" />

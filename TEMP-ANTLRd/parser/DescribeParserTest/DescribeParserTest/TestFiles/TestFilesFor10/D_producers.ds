@@ -1,0 +1,11 @@
+fabrics ->> wool fabrics,
+	synthetic fabrics;
+
+fabrics->> wool fabrics,
+	cotton fabrics;
+
+fabrics ->>wool fabrics,
+	silk fabrics;
+
+fabrics->>wool fabrics,
+	other fabrics;
