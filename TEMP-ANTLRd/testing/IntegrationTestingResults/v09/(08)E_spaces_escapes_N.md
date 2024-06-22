@@ -19,10 +19,7 @@ scripture
 │   │   ├── text_chunk
 │   │   │   └── T(DATA|'fabric     s \t')
 │   │   ├── T(LINK|'[https://www.notube.com/watch?v=hTui12lKus]     ')
-│   │   └── tag
-│   │       ├── T(LEFT_ARROW|'<')
-│   │       ├── T(DATA|'TSbLGnNG')
-│   │       └── T(RIGHT_ARROW|'> ')
+│   │   └── T(TAG|'<TSbLGnNG> ')
 │   ├── producer
 │   │   ├── T(HYPHEN|'-')
 │   │   └── T(RIGHT_ARROW|'>\r\n\r\n\t')
@@ -31,10 +28,7 @@ scripture
 │   │   │   ├── item
 │   │   │   │   ├── text_chunk
 │   │   │   │   │   └── T(DATA|'wool   fabrics\t ')
-│   │   │   │   ├── tag
-│   │   │   │   │   ├── T(LEFT_ARROW|'<')
-│   │   │   │   │   ├── T(DATA|'QWVZ3pp9')
-│   │   │   │   │   └── T(RIGHT_ARROW|'> ')
+│   │   │   │   ├── T(TAG|'<QWVZ3pp9> ')
 │   │   │   │   └── T(LINK|'[https://www.notube.com/watch?v=hTui12lKus]')
 │   │   │   └── T(SEPARATOR|',\r\n\t')
 │   │   ├── item_or_expression_part
@@ -42,14 +36,11 @@ scripture
 │   │   │   │   ├── text_chunk
 │   │   │   │   │   └── T(DATA|'cotton')
 │   │   │   │   ├── text_chunk
-│   │   │   │   │   └── T(ESCAPE_LEFT_SQUARE|'\[')
+│   │   │   │   │   └── T(ESCAPE_LEFT_SQUARE|'\[ ')
 │   │   │   │   ├── text_chunk
-│   │   │   │   │   └── T(DATA|' fabrics textiles ')
+│   │   │   │   │   └── T(DATA|'fabrics textiles ')
 │   │   │   │   ├── T(LINK|'[https://www.notube.com/watch?v=hTui12lKus]   ')
-│   │   │   │   └── tag
-│   │   │   │       ├── T(LEFT_ARROW|'<')
-│   │   │   │       ├── T(DATA|'75NTfebY')
-│   │   │   │       └── T(RIGHT_ARROW|'>')
+│   │   │   │   └── T(TAG|'<75NTfebY>')
 │   │   │   └── T(SEPARATOR|',\r\n    ')
 │   │   ├── item_or_expression_part
 │   │   │   ├── item
@@ -65,18 +56,12 @@ scripture
 │   │   │   │   │   └── T(ESCAPE_RIGHT_SQUARE|'\]')
 │   │   │   │   ├── text_chunk
 │   │   │   │   │   └── T(DATA|'fabrics ')
-│   │   │   │   ├── tag
-│   │   │   │   │   ├── T(LEFT_ARROW|'<')
-│   │   │   │   │   ├── T(DATA|'Sqs0lm7S')
-│   │   │   │   │   └── T(RIGHT_ARROW|'>')
+│   │   │   │   ├── T(TAG|'<Sqs0lm7S>')
 │   │   │   │   └── T(LINK|'[https://www.notube.com/watch?v=hTui12lKus]')
 │   │   │   └── T(SEPARATOR|',\r\n    ')
 │   │   └── item
 │   │       ├── text_chunk
 │   │       │   └── T(DATA|'syntic \t\tfabrics ')
-│   │       └── tag
-│   │           ├── T(LEFT_ARROW|'<')
-│   │           ├── T(DATA|'GcZEI9gy')
-│   │           └── T(RIGHT_ARROW|'>')
+│   │       └── T(TAG|'<GcZEI9gy>')
 │   └── T(TERMINATOR|';')
 └── T(EOF|'<EOF>')

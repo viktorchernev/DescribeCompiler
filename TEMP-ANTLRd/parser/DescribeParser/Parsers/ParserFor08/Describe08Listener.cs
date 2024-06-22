@@ -51,16 +51,6 @@ public interface IDescribe08Listener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitText_chunk([NotNull] Describe08Parser.Text_chunkContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="Describe08Parser.tag"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterTag([NotNull] Describe08Parser.TagContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="Describe08Parser.tag"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitTag([NotNull] Describe08Parser.TagContext context);
-	/// <summary>
 	/// Enter a parse tree produced by <see cref="Describe08Parser.item"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

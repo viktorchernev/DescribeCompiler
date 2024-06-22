@@ -13,19 +13,13 @@ scripture
 │   ├── item
 │   │   ├── text_chunk
 │   │   │   └── T(DATA|'fabrics ')
-│   │   └── tag
-│   │       ├── T(LEFT_ARROW|'<')
-│   │       ├── T(DATA|'zAfn39Kh')
-│   │       └── T(RIGHT_ARROW|'>')
+│   │   └── T(TAG|'<zAfn39Kh>')
 │   ├── producer
 │   │   ├── T(HYPHEN|'-')
 │   │   └── T(RIGHT_ARROW|'> ')
 │   ├── item
 │   │   ├── text_chunk
 │   │   │   └── T(DATA|'synthetic fabrics ')
-│   │   └── tag
-│   │       ├── T(LEFT_ARROW|'<')
-│   │       ├── T(DATA|'hOy5oL3B')
-│   │       └── T(RIGHT_ARROW|'> ')
+│   │   └── T(TAG|'<hOy5oL3B> ')
 │   └── T(TERMINATOR|';')
 └── T(EOF|'<EOF>')

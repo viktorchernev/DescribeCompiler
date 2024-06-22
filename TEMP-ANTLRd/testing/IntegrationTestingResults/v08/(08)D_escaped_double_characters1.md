@@ -18,10 +18,7 @@ scripture
 │   ├── item
 │   │   ├── text_chunk
 │   │   │   └── T(DATA|'fa brics ')
-│   │   └── tag
-│   │       ├── T(LEFT_ARROW|'<')
-│   │       ├── T(DATA|'6O4fovPJ')
-│   │       └── T(RIGHT_ARROW|'>')
+│   │   └── T(TAG|'<6O4fovPJ>')
 │   ├── producer
 │   │   ├── T(HYPHEN|'-')
 │   │   └── T(RIGHT_ARROW|'>\r\n\r\n    ')
@@ -30,10 +27,7 @@ scripture
 │   │   │   ├── item
 │   │   │   │   ├── text_chunk
 │   │   │   │   │   └── T(DATA|'wool fabrics ')
-│   │   │   │   └── tag
-│   │   │   │       ├── T(LEFT_ARROW|'<')
-│   │   │   │       ├── T(DATA|'cTk1qeGz')
-│   │   │   │       └── T(RIGHT_ARROW|'>')
+│   │   │   │   └── T(TAG|'<cTk1qeGz>')
 │   │   │   └── T(SEPARATOR|',\r\n    ')
 │   │   ├── item_or_expression_part
 │   │   │   ├── item
@@ -42,10 +36,7 @@ scripture
 │   │   │   │   ├── text_chunk
 │   │   │   │   │   └── T(ESCAPE_LEFT_SQUARE|'\[')
 │   │   │   │   ├── T(LINK|'[https://www.notube.com/watch?v=hTui12lKus]')
-│   │   │   │   └── tag
-│   │   │   │       ├── T(LEFT_ARROW|'<')
-│   │   │   │       ├── T(DATA|'evssLum4')
-│   │   │   │       └── T(RIGHT_ARROW|'>')
+│   │   │   │   └── T(TAG|'<evssLum4>')
 │   │   │   └── T(SEPARATOR|',\r\n    ')
 │   │   ├── item_or_expression_part
 │   │   │   ├── item
@@ -67,17 +58,11 @@ scripture
 │   │   │   │   │   └── T(ESCAPE_RIGHT_SQUARE|'\]')
 │   │   │   │   ├── text_chunk
 │   │   │   │   │   └── T(DATA|'fabrics')
-│   │   │   │   └── tag
-│   │   │   │       ├── T(LEFT_ARROW|'<')
-│   │   │   │       ├── T(DATA|'WR31xpLW')
-│   │   │   │       └── T(RIGHT_ARROW|'>')
+│   │   │   │   └── T(TAG|'<WR31xpLW>')
 │   │   │   └── T(SEPARATOR|',\r\n    ')
 │   │   └── item
 │   │       ├── text_chunk
 │   │       │   └── T(DATA|'synthetic fabrics ')
-│   │       └── tag
-│   │           ├── T(LEFT_ARROW|'<')
-│   │           ├── T(DATA|'sfObQkOm')
-│   │           └── T(RIGHT_ARROW|'>')
+│   │       └── T(TAG|'<sfObQkOm>')
 │   └── T(TERMINATOR|';')
 └── T(EOF|'<EOF>')

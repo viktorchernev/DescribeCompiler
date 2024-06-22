@@ -21,10 +21,7 @@ scripture
 │   ├── item
 │   │   ├── text_chunk
 │   │   │   └── T(DATA|'macronutrients ')
-│   │   └── tag
-│   │       ├── T(LEFT_ARROW|'<')
-│   │       ├── T(DATA|'oVs6tsnU')
-│   │       └── T(RIGHT_ARROW|'> ')
+│   │   └── T(TAG|'<oVs6tsnU> ')
 │   ├── producer
 │   │   ├── T(HYPHEN|'-')
 │   │   └── T(RIGHT_ARROW|'>\r\n\r\n    ')
@@ -33,20 +30,14 @@ scripture
 │   │   │   ├── item
 │   │   │   │   ├── text_chunk
 │   │   │   │   │   └── T(DATA|'water ')
-│   │   │   │   └── tag
-│   │   │   │       ├── T(LEFT_ARROW|'<')
-│   │   │   │       ├── T(DATA|'9Y9uFDwu')
-│   │   │   │       └── T(RIGHT_ARROW|'>')
+│   │   │   │   └── T(TAG|'<9Y9uFDwu>')
 │   │   │   └── T(SEPARATOR|',\r\n\t')
 │   │   ├── item_or_expression_part
 │   │   │   └── expression
 │   │   │       ├── item
 │   │   │       │   ├── text_chunk
 │   │   │       │   │   └── T(DATA|'fiber ')
-│   │   │       │   ├── tag
-│   │   │       │   │   ├── T(LEFT_ARROW|'<')
-│   │   │       │   │   ├── T(DATA|'PALnQoTQ')
-│   │   │       │   │   └── T(RIGHT_ARROW|'>')
+│   │   │       │   ├── T(TAG|'<PALnQoTQ>')
 │   │   │       │   └── T(LINK|'[http://testlink.com/] ')
 │   │   │       ├── producer
 │   │   │       │   ├── T(HYPHEN|'-')
@@ -57,27 +48,18 @@ scripture
 │   │   │       │   │   │   ├── text_chunk
 │   │   │       │   │   │   │   └── T(DATA|'what ')
 │   │   │       │   │   │   ├── T(LINK|'[http://testlink.com/]')
-│   │   │       │   │   │   └── tag
-│   │   │       │   │   │       ├── T(LEFT_ARROW|'<')
-│   │   │       │   │   │       ├── T(DATA|'6hlYVfaz')
-│   │   │       │   │   │       └── T(RIGHT_ARROW|'>')
+│   │   │       │   │   │   └── T(TAG|'<6hlYVfaz>')
 │   │   │       │   │   └── T(SEPARATOR|',\r\n        ')
 │   │   │       │   └── item
 │   │   │       │       ├── text_chunk
 │   │   │       │       │   └── T(DATA|'not ')
 │   │   │       │       ├── T(LINK|'[http://testlink.com/]')
-│   │   │       │       └── tag
-│   │   │       │           ├── T(LEFT_ARROW|'<')
-│   │   │       │           ├── T(DATA|'gubSBEDe')
-│   │   │       │           └── T(RIGHT_ARROW|'>')
+│   │   │       │       └── T(TAG|'<gubSBEDe>')
 │   │   │       └── T(TERMINATOR|';\r\n\r\n\t')
 │   │   └── item
 │   │       ├── text_chunk
 │   │       │   └── T(DATA|'somth else ')
 │   │       ├── T(LINK|'[http://testlink.com/]')
-│   │       └── tag
-│   │           ├── T(LEFT_ARROW|'<')
-│   │           ├── T(DATA|'hAyLdw3m')
-│   │           └── T(RIGHT_ARROW|'>')
+│   │       └── T(TAG|'<hAyLdw3m>')
 │   └── T(TERMINATOR|';')
 └── T(EOF|'<EOF>')

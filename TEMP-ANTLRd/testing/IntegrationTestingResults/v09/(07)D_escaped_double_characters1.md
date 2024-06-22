@@ -34,10 +34,7 @@ scripture
 │   │   │   └── T(ESCAPE_HYPHEN|'\-')
 │   │   ├── text_chunk
 │   │   │   └── T(RIGHT_ARROW|'> ')
-│   │   └── tag
-│   │       ├── T(LEFT_ARROW|'<')
-│   │       ├── T(DATA|'uqkUXoj0')
-│   │       └── T(RIGHT_ARROW|'>')
+│   │   └── T(TAG|'<uqkUXoj0>')
 │   ├── producer
 │   │   ├── T(HYPHEN|'-')
 │   │   └── T(RIGHT_ARROW|'>\r\n\r\n    ')
@@ -52,10 +49,7 @@ scripture
 │   │   │   │   │   └── T(RIGHT_ARROW|'>')
 │   │   │   │   ├── text_chunk
 │   │   │   │   │   └── T(DATA|'fabrics ')
-│   │   │   │   └── tag
-│   │   │   │       ├── T(LEFT_ARROW|'<')
-│   │   │   │       ├── T(DATA|'y3rd1tuM')
-│   │   │   │       └── T(RIGHT_ARROW|'>')
+│   │   │   │   └── T(TAG|'<y3rd1tuM>')
 │   │   │   └── T(SEPARATOR|',\r\n    ')
 │   │   ├── item_or_expression_part
 │   │   │   ├── item
@@ -65,10 +59,7 @@ scripture
 │   │   │   │   │   └── T(RIGHT_ARROW|'>')
 │   │   │   │   ├── text_chunk
 │   │   │   │   │   └── T(DATA|'cotton fabrics')
-│   │   │   │   └── tag
-│   │   │   │       ├── T(LEFT_ARROW|'<')
-│   │   │   │       ├── T(DATA|'l9JX2YWw')
-│   │   │   │       └── T(RIGHT_ARROW|'>')
+│   │   │   │   └── T(TAG|'<l9JX2YWw>')
 │   │   │   └── T(SEPARATOR|',\r\n    ')
 │   │   ├── item_or_expression_part
 │   │   │   ├── item
@@ -84,10 +75,7 @@ scripture
 │   │   │   │   │   └── T(RIGHT_ARROW|'> ')
 │   │   │   │   ├── text_chunk
 │   │   │   │   │   └── T(DATA|'fabrics  ')
-│   │   │   │   └── tag
-│   │   │   │       ├── T(LEFT_ARROW|'<')
-│   │   │   │       ├── T(DATA|'INIKQpj4')
-│   │   │   │       └── T(RIGHT_ARROW|'>  ')
+│   │   │   │   └── T(TAG|'<INIKQpj4>  ')
 │   │   │   └── T(SEPARATOR|',\r\n    ')
 │   │   └── item
 │   │       ├── text_chunk
@@ -96,9 +84,6 @@ scripture
 │   │       │   └── T(ESCAPE_HYPHEN|'\-')
 │   │       ├── text_chunk
 │   │       │   └── T(RIGHT_ARROW|'>')
-│   │       └── tag
-│   │           ├── T(LEFT_ARROW|'<')
-│   │           ├── T(DATA|'gF7eKSgr')
-│   │           └── T(RIGHT_ARROW|'> ')
+│   │       └── T(TAG|'<gF7eKSgr> ')
 │   └── T(TERMINATOR|';')
 └── T(EOF|'<EOF>')

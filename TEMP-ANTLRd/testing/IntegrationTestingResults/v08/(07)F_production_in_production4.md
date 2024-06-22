@@ -27,10 +27,7 @@ scripture
 │   ├── item
 │   │   ├── text_chunk
 │   │   │   └── T(DATA|'macronutrients ')
-│   │   └── tag
-│   │       ├── T(LEFT_ARROW|'<')
-│   │       ├── T(DATA|'xkQxOfc9')
-│   │       └── T(RIGHT_ARROW|'> ')
+│   │   └── T(TAG|'<xkQxOfc9> ')
 │   ├── producer
 │   │   ├── T(HYPHEN|'-')
 │   │   └── T(RIGHT_ARROW|'>\r\n\r\n    ')
@@ -40,10 +37,7 @@ scripture
 │   │   │       ├── item
 │   │   │       │   ├── text_chunk
 │   │   │       │   │   └── T(DATA|'fiber ')
-│   │   │       │   └── tag
-│   │   │       │       ├── T(LEFT_ARROW|'<')
-│   │   │       │       ├── T(DATA|'CbALGP8d')
-│   │   │       │       └── T(RIGHT_ARROW|'> ')
+│   │   │       │   └── T(TAG|'<CbALGP8d> ')
 │   │   │       ├── producer
 │   │   │       │   ├── T(HYPHEN|'-')
 │   │   │       │   └── T(RIGHT_ARROW|'>\r\n\r\n        ')
@@ -52,28 +46,19 @@ scripture
 │   │   │       │   │   ├── item
 │   │   │       │   │   │   ├── text_chunk
 │   │   │       │   │   │   │   └── T(DATA|'what ')
-│   │   │       │   │   │   └── tag
-│   │   │       │   │   │       ├── T(LEFT_ARROW|'<')
-│   │   │       │   │   │       ├── T(DATA|'7KNUmetK')
-│   │   │       │   │   │       └── T(RIGHT_ARROW|'>')
+│   │   │       │   │   │   └── T(TAG|'<7KNUmetK>')
 │   │   │       │   │   └── T(SEPARATOR|',\r\n        ')
 │   │   │       │   └── item
 │   │   │       │       ├── text_chunk
 │   │   │       │       │   └── T(DATA|'not ')
-│   │   │       │       └── tag
-│   │   │       │           ├── T(LEFT_ARROW|'<')
-│   │   │       │           ├── T(DATA|'6qFQ0HxK')
-│   │   │       │           └── T(RIGHT_ARROW|'>')
+│   │   │       │       └── T(TAG|'<6qFQ0HxK>')
 │   │   │       └── T(TERMINATOR|';\r\n\t\r\n\t')
 │   │   ├── item_or_expression_part
 │   │   │   └── expression
 │   │   │       ├── item
 │   │   │       │   ├── text_chunk
 │   │   │       │   │   └── T(DATA|'science ')
-│   │   │       │   └── tag
-│   │   │       │       ├── T(LEFT_ARROW|'<')
-│   │   │       │       ├── T(DATA|'o8lvOnlB')
-│   │   │       │       └── T(RIGHT_ARROW|'> ')
+│   │   │       │   └── T(TAG|'<o8lvOnlB> ')
 │   │   │       ├── producer
 │   │   │       │   ├── T(HYPHEN|'-')
 │   │   │       │   └── T(RIGHT_ARROW|'>\r\n\t\t\r\n\t\t')
@@ -82,43 +67,28 @@ scripture
 │   │   │       │   │   ├── item
 │   │   │       │   │   │   ├── text_chunk
 │   │   │       │   │   │   │   └── T(DATA|'math ')
-│   │   │       │   │   │   └── tag
-│   │   │       │   │   │       ├── T(LEFT_ARROW|'<')
-│   │   │       │   │   │       ├── T(DATA|'SbQjE2YS')
-│   │   │       │   │   │       └── T(RIGHT_ARROW|'>')
+│   │   │       │   │   │   └── T(TAG|'<SbQjE2YS>')
 │   │   │       │   │   └── T(SEPARATOR|',\r\n\t\t')
 │   │   │       │   ├── item_or_expression_part
 │   │   │       │   │   ├── item
 │   │   │       │   │   │   ├── text_chunk
 │   │   │       │   │   │   │   └── T(DATA|'informathics ')
-│   │   │       │   │   │   └── tag
-│   │   │       │   │   │       ├── T(LEFT_ARROW|'<')
-│   │   │       │   │   │       ├── T(DATA|'CVOSiiAS')
-│   │   │       │   │   │       └── T(RIGHT_ARROW|'>')
+│   │   │       │   │   │   └── T(TAG|'<CVOSiiAS>')
 │   │   │       │   │   └── T(SEPARATOR|',\r\n\t\t')
 │   │   │       │   └── item
 │   │   │       │       ├── text_chunk
 │   │   │       │       │   └── T(DATA|'medicine ')
-│   │   │       │       └── tag
-│   │   │       │           ├── T(LEFT_ARROW|'<')
-│   │   │       │           ├── T(DATA|'1G0hZLJ4')
-│   │   │       │           └── T(RIGHT_ARROW|'>')
+│   │   │       │       └── T(TAG|'<1G0hZLJ4>')
 │   │   │       └── T(TERMINATOR|';\r\n    \r\n    ')
 │   │   ├── item_or_expression_part
 │   │   │   ├── item
 │   │   │   │   ├── text_chunk
 │   │   │   │   │   └── T(DATA|'water ')
-│   │   │   │   └── tag
-│   │   │   │       ├── T(LEFT_ARROW|'<')
-│   │   │   │       ├── T(DATA|'ozhHnNOU')
-│   │   │   │       └── T(RIGHT_ARROW|'>')
+│   │   │   │   └── T(TAG|'<ozhHnNOU>')
 │   │   │   └── T(SEPARATOR|',\r\n    ')
 │   │   └── item
 │   │       ├── text_chunk
 │   │       │   └── T(DATA|'salt ')
-│   │       └── tag
-│   │           ├── T(LEFT_ARROW|'<')
-│   │           ├── T(DATA|'jMBLOKGE')
-│   │           └── T(RIGHT_ARROW|'>')
+│   │       └── T(TAG|'<jMBLOKGE>')
 │   └── T(TERMINATOR|';')
 └── T(EOF|'<EOF>')

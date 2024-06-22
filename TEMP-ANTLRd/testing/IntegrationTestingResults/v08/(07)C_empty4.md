@@ -17,10 +17,7 @@ scripture
 │   ├── item
 │   │   ├── text_chunk
 │   │   │   └── T(DATA|'fabrics\r\n')
-│   │   └── tag
-│   │       ├── T(LEFT_ARROW|'<')
-│   │       ├── T(DATA|'SIrifQYp')
-│   │       └── T(RIGHT_ARROW|'>\r\n')
+│   │   └── T(TAG|'<SIrifQYp>\r\n')
 │   ├── producer
 │   │   ├── T(HYPHEN|'-')
 │   │   └── T(RIGHT_ARROW|'> \r\n\r\n')

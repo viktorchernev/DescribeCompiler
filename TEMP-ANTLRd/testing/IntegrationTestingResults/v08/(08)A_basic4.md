@@ -23,10 +23,7 @@ scripture
 │   ├── item
 │   │   ├── text_chunk
 │   │   │   └── T(DATA|'fabrics')
-│   │   ├── tag
-│   │   │   ├── T(LEFT_ARROW|'<')
-│   │   │   ├── T(DATA|'wIcCuax5')
-│   │   │   └── T(RIGHT_ARROW|'>')
+│   │   ├── T(TAG|'<wIcCuax5>')
 │   │   └── T(LINK|'[https://www.notube.com/watch?v=hTui12lKus]')
 │   ├── producer
 │   │   ├── T(HYPHEN|'-')
@@ -37,19 +34,13 @@ scripture
 │   │   │   │   ├── text_chunk
 │   │   │   │   │   └── T(DATA|'wool fabrics')
 │   │   │   │   ├── T(LINK|'[https://www.notube.com/watch?v=hTui12lKus]')
-│   │   │   │   └── tag
-│   │   │   │       ├── T(LEFT_ARROW|'<')
-│   │   │   │       ├── T(DATA|'C92Mf6yV')
-│   │   │   │       └── T(RIGHT_ARROW|'>')
+│   │   │   │   └── T(TAG|'<C92Mf6yV>')
 │   │   │   └── T(SEPARATOR|',\r\n\t\r\n    ')
 │   │   ├── item_or_expression_part
 │   │   │   ├── item
 │   │   │   │   ├── text_chunk
 │   │   │   │   │   └── T(DATA|'cotton fabrics')
-│   │   │   │   ├── tag
-│   │   │   │   │   ├── T(LEFT_ARROW|'<')
-│   │   │   │   │   ├── T(DATA|'TxW3Yetp')
-│   │   │   │   │   └── T(RIGHT_ARROW|'>\r\n\t')
+│   │   │   │   ├── T(TAG|'<TxW3Yetp>\r\n\t')
 │   │   │   │   ├── T(LINK|'[https://www.notube.com/watch?v=hTui12lKus | notube]\r\n\t')
 │   │   │   │   └── T(LINK|'[https://www.notube.com/watch?v=hTui12lKus | yestube]')
 │   │   │   └── T(SEPARATOR|',\r\n\r\n    ')
@@ -57,17 +48,11 @@ scripture
 │   │   │   ├── item
 │   │   │   │   ├── text_chunk
 │   │   │   │   │   └── T(DATA|'silk fabrics')
-│   │   │   │   └── tag
-│   │   │   │       ├── T(LEFT_ARROW|'<')
-│   │   │   │       ├── T(DATA|'08yGbnMX')
-│   │   │   │       └── T(RIGHT_ARROW|'>')
+│   │   │   │   └── T(TAG|'<08yGbnMX>')
 │   │   │   └── T(SEPARATOR|',\r\n    ')
 │   │   └── item
 │   │       ├── text_chunk
 │   │       │   └── T(DATA|'synthetic fabrics')
-│   │       └── tag
-│   │           ├── T(LEFT_ARROW|'<')
-│   │           ├── T(DATA|'7MZTHLMY')
-│   │           └── T(RIGHT_ARROW|'>')
+│   │       └── T(TAG|'<7MZTHLMY>')
 │   └── T(TERMINATOR|';\r\n')
 └── T(EOF|'<EOF>')

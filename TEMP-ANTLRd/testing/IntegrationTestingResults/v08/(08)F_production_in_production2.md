@@ -20,10 +20,7 @@ scripture
 │   │   ├── text_chunk
 │   │   │   └── T(DATA|'macronutrients ')
 │   │   ├── T(LINK|'[http://testlink.com/]')
-│   │   └── tag
-│   │       ├── T(LEFT_ARROW|'<')
-│   │       ├── T(DATA|'eQxYylc3')
-│   │       └── T(RIGHT_ARROW|'> ')
+│   │   └── T(TAG|'<eQxYylc3> ')
 │   ├── producer
 │   │   ├── T(HYPHEN|'-')
 │   │   └── T(RIGHT_ARROW|'>\r\n\r\n    ')
@@ -32,19 +29,13 @@ scripture
 │   │   │   ├── item
 │   │   │   │   ├── text_chunk
 │   │   │   │   │   └── T(DATA|'water ')
-│   │   │   │   └── tag
-│   │   │   │       ├── T(LEFT_ARROW|'<')
-│   │   │   │       ├── T(DATA|'tdgS8qBO')
-│   │   │   │       └── T(RIGHT_ARROW|'>')
+│   │   │   │   └── T(TAG|'<tdgS8qBO>')
 │   │   │   └── T(SEPARATOR|',\r\n\t')
 │   │   └── expression
 │   │       ├── item
 │   │       │   ├── text_chunk
 │   │       │   │   └── T(DATA|'fiber ')
-│   │       │   └── tag
-│   │       │       ├── T(LEFT_ARROW|'<')
-│   │       │       ├── T(DATA|'OpdFntBx')
-│   │       │       └── T(RIGHT_ARROW|'> ')
+│   │       │   └── T(TAG|'<OpdFntBx> ')
 │   │       ├── producer
 │   │       │   ├── T(HYPHEN|'-')
 │   │       │   └── T(RIGHT_ARROW|'>\r\n\r\n        ')
@@ -54,18 +45,12 @@ scripture
 │   │       │   │   │   ├── text_chunk
 │   │       │   │   │   │   └── T(DATA|'what ')
 │   │       │   │   │   ├── T(LINK|'[http://testlink.com/]')
-│   │       │   │   │   └── tag
-│   │       │   │   │       ├── T(LEFT_ARROW|'<')
-│   │       │   │   │       ├── T(DATA|'MLUxjdg8')
-│   │       │   │   │       └── T(RIGHT_ARROW|'>')
+│   │       │   │   │   └── T(TAG|'<MLUxjdg8>')
 │   │       │   │   └── T(SEPARATOR|',\r\n        ')
 │   │       │   └── item
 │   │       │       ├── text_chunk
 │   │       │       │   └── T(DATA|'not ')
-│   │       │       └── tag
-│   │       │           ├── T(LEFT_ARROW|'<')
-│   │       │           ├── T(DATA|'qkVgxZIs')
-│   │       │           └── T(RIGHT_ARROW|'>')
+│   │       │       └── T(TAG|'<qkVgxZIs>')
 │   │       └── T(TERMINATOR|';')
 │   └── T(TERMINATOR|';')
 └── T(EOF|'<EOF>')

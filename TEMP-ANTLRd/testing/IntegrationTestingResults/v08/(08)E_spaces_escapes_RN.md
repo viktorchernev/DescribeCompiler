@@ -18,10 +18,7 @@ scripture
 │   ├── item
 │   │   ├── text_chunk
 │   │   │   └── T(DATA|'fabric     s    ')
-│   │   ├── tag
-│   │   │   ├── T(LEFT_ARROW|'<')
-│   │   │   ├── T(DATA|'sJZOzSdo')
-│   │   │   └── T(RIGHT_ARROW|'>')
+│   │   ├── T(TAG|'<sJZOzSdo>')
 │   │   └── T(LINK|'[https://www.notube.com/watch?v=hTui12lKus]\t')
 │   ├── producer
 │   │   ├── T(HYPHEN|'-')
@@ -32,25 +29,19 @@ scripture
 │   │   │   │   ├── text_chunk
 │   │   │   │   │   └── T(DATA|'wool   fabrics')
 │   │   │   │   ├── T(LINK|'[https://www.notube.com/watch?v=hTui12lKus]\t')
-│   │   │   │   └── tag
-│   │   │   │       ├── T(LEFT_ARROW|'<')
-│   │   │   │       ├── T(DATA|'UlJXGWLS')
-│   │   │   │       └── T(RIGHT_ARROW|'>')
+│   │   │   │   └── T(TAG|'<UlJXGWLS>')
 │   │   │   └── T(SEPARATOR|',\r\n\t')
 │   │   ├── item_or_expression_part
 │   │   │   ├── item
 │   │   │   │   ├── text_chunk
 │   │   │   │   │   └── T(DATA|'cotton')
 │   │   │   │   ├── text_chunk
-│   │   │   │   │   └── T(ESCAPE_SEPARATOR|'\,')
+│   │   │   │   │   └── T(ESCAPE_SEPARATOR|'\, ')
 │   │   │   │   ├── text_chunk
-│   │   │   │   │   └── T(DATA|' fabrics textiles  ')
+│   │   │   │   │   └── T(DATA|'fabrics textiles  ')
 │   │   │   │   ├── text_chunk
 │   │   │   │   │   └── T(ESCAPE_RIGHT_SQUARE|'\]')
-│   │   │   │   ├── tag
-│   │   │   │   │   ├── T(LEFT_ARROW|'<')
-│   │   │   │   │   ├── T(DATA|'d4jKusMe')
-│   │   │   │   │   └── T(RIGHT_ARROW|'>')
+│   │   │   │   ├── T(TAG|'<d4jKusMe>')
 │   │   │   │   └── T(LINK|'[https://www.notube.com/watch?v=hTui12lKus]')
 │   │   │   └── T(SEPARATOR|',\r\n    ')
 │   │   ├── item_or_expression_part
@@ -61,17 +52,11 @@ scripture
 │   │   │   │   │   └── T(ESCAPE_LEFT_SQUARE|'\[')
 │   │   │   │   ├── text_chunk
 │   │   │   │   │   └── T(DATA|'fabrics ')
-│   │   │   │   └── tag
-│   │   │   │       ├── T(LEFT_ARROW|'<')
-│   │   │   │       ├── T(DATA|'Bgx8M6B1')
-│   │   │   │       └── T(RIGHT_ARROW|'>')
+│   │   │   │   └── T(TAG|'<Bgx8M6B1>')
 │   │   │   └── T(SEPARATOR|',\r\n    ')
 │   │   └── item
 │   │       ├── text_chunk
 │   │       │   └── T(DATA|'syntic \t\tfabrics ')
-│   │       └── tag
-│   │           ├── T(LEFT_ARROW|'<')
-│   │           ├── T(DATA|'7vbW9VSB')
-│   │           └── T(RIGHT_ARROW|'>')
+│   │       └── T(TAG|'<7vbW9VSB>')
 │   └── T(TERMINATOR|';')
 └── T(EOF|'<EOF>')

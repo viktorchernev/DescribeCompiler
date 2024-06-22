@@ -30,12 +30,7 @@ scripture
 │   │   │   └── T(HYPHEN|'-')
 │   │   ├── text_chunk
 │   │   │   └── T(DATA|' ')
-│   │   └── tag
-│   │       ├── T(LEFT_ARROW|'<')
-│   │       ├── T(DATA|'45mns0l')
-│   │       ├── T(HYPHEN|'-')
-│   │       ├── T(DATA|'O')
-│   │       └── T(RIGHT_ARROW|'>')
+│   │   └── T(TAG|'<45mns0l-O>')
 │   ├── producer
 │   │   ├── T(HYPHEN|'-')
 │   │   └── T(RIGHT_ARROW|'>\r\n\r\n    ')
@@ -48,11 +43,7 @@ scripture
 │   │   │   │   │   └── T(HYPHEN|'-')
 │   │   │   │   ├── text_chunk
 │   │   │   │   │   └── T(DATA|'fabrics ')
-│   │   │   │   └── tag
-│   │   │   │       ├── T(LEFT_ARROW|'<')
-│   │   │   │       ├── T(HYPHEN|'-')
-│   │   │   │       ├── T(DATA|'5g1GJyFS')
-│   │   │   │       └── T(RIGHT_ARROW|'>')
+│   │   │   │   └── T(TAG|'<-5g1GJyFS>')
 │   │   │   └── T(SEPARATOR|',\r\n    ')
 │   │   ├── item_or_expression_part
 │   │   │   ├── item
@@ -60,11 +51,7 @@ scripture
 │   │   │   │   │   └── T(HYPHEN|'-')
 │   │   │   │   ├── text_chunk
 │   │   │   │   │   └── T(DATA|'cotton fabrics ')
-│   │   │   │   └── tag
-│   │   │   │       ├── T(LEFT_ARROW|'<')
-│   │   │   │       ├── T(DATA|'f75CKWhl')
-│   │   │   │       ├── T(HYPHEN|'-')
-│   │   │   │       └── T(RIGHT_ARROW|'>')
+│   │   │   │   └── T(TAG|'<f75CKWhl->')
 │   │   │   └── T(SEPARATOR|',\r\n    ')
 │   │   ├── item_or_expression_part
 │   │   │   ├── item
@@ -76,13 +63,7 @@ scripture
 │   │   │   │   │   └── T(HYPHEN|'-')
 │   │   │   │   ├── text_chunk
 │   │   │   │   │   └── T(DATA|' fabrics ')
-│   │   │   │   └── tag
-│   │   │   │       ├── T(LEFT_ARROW|'<')
-│   │   │   │       ├── T(DATA|'68Es')
-│   │   │   │       ├── T(HYPHEN|'-')
-│   │   │   │       ├── T(HYPHEN|'-')
-│   │   │   │       ├── T(DATA|'hujI')
-│   │   │   │       └── T(RIGHT_ARROW|'>')
+│   │   │   │   └── T(TAG|'<68Es--hujI>')
 │   │   │   └── T(SEPARATOR|',\r\n    ')
 │   │   └── item
 │   │       ├── text_chunk
@@ -91,9 +72,6 @@ scripture
 │   │       │   └── T(HYPHEN|'-')
 │   │       ├── text_chunk
 │   │       │   └── T(DATA|' ')
-│   │       └── tag
-│   │           ├── T(LEFT_ARROW|'<')
-│   │           ├── T(DATA|'mWa4QdRm')
-│   │           └── T(RIGHT_ARROW|'>')
+│   │       └── T(TAG|'<mWa4QdRm>')
 │   └── T(TERMINATOR|';')
 └── T(EOF|'<EOF>')

@@ -32,9 +32,9 @@ scripture
 │   │   │   │   ├── text_chunk
 │   │   │   │   │   └── T(DATA|'cotton')
 │   │   │   │   ├── text_chunk
-│   │   │   │   │   └── T(ESCAPE_SEPARATOR|'\,')
+│   │   │   │   │   └── T(ESCAPE_SEPARATOR|'\, ')
 │   │   │   │   └── text_chunk
-│   │   │   │       └── T(DATA|' fabrics textiles  ')
+│   │   │   │       └── T(DATA|'fabrics textiles  ')
 │   │   │   └── T(SEPARATOR|',\n    ')
 │   │   ├── item_or_expression_part
 │   │   │   ├── item

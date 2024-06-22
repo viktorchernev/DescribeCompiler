@@ -37,9 +37,9 @@ public partial class Describe06Parser : Parser {
 	protected static PredictionContextCache sharedContextCache = new PredictionContextCache();
 	public const int
 		LINE_COMMENT=1, BLOCK_COMMENT=2, HYPHEN=3, RIGHT_ARROW=4, SEPARATOR=5, 
-		TERMINATOR=6, FORWARD_SLASHES=7, FORWARD_SLASH=8, ESCAPE_ESCAPE=9, ESCAPE_HYPHEN=10, 
-		ESCAPE_RIGHT_ARROW=11, ESCAPE_SEPARATOR=12, ESCAPE_TERMINATOR=13, ESCAPE_LCOMMENT=14, 
-		ESCAPE_BCOMMENT=15, ESCAPE=16, DATA=17;
+		TERMINATOR=6, FORWARD_SLASHES=7, FORWARD_SLASH=8, STAR=9, ESCAPE_ESCAPE=10, 
+		ESCAPE_HYPHEN=11, ESCAPE_RIGHT_ARROW=12, ESCAPE_SEPARATOR=13, ESCAPE_TERMINATOR=14, 
+		ESCAPE_LCOMMENT=15, ESCAPE_BCOMMENT=16, ESCAPE=17, DATA=18;
 	public const int
 		RULE_producer = 0, RULE_text_chunk = 1, RULE_item = 2, RULE_expression = 3, 
 		RULE_item_or_expression_part = 4, RULE_item_or_expression_list = 5, RULE_expression_list = 6, 
@@ -50,14 +50,13 @@ public partial class Describe06Parser : Parser {
 	};
 
 	private static readonly string[] _LiteralNames = {
-		null, null, null, "'-'", null, null, null, "'//'", "'/'", "'\\\\'", "'\\-'", 
-		"'\\>'", "'\\,'", "'\\;'", "'\\//'", "'\\/*'", "'\\'"
+		null, null, null, "'-'"
 	};
 	private static readonly string[] _SymbolicNames = {
 		null, "LINE_COMMENT", "BLOCK_COMMENT", "HYPHEN", "RIGHT_ARROW", "SEPARATOR", 
-		"TERMINATOR", "FORWARD_SLASHES", "FORWARD_SLASH", "ESCAPE_ESCAPE", "ESCAPE_HYPHEN", 
-		"ESCAPE_RIGHT_ARROW", "ESCAPE_SEPARATOR", "ESCAPE_TERMINATOR", "ESCAPE_LCOMMENT", 
-		"ESCAPE_BCOMMENT", "ESCAPE", "DATA"
+		"TERMINATOR", "FORWARD_SLASHES", "FORWARD_SLASH", "STAR", "ESCAPE_ESCAPE", 
+		"ESCAPE_HYPHEN", "ESCAPE_RIGHT_ARROW", "ESCAPE_SEPARATOR", "ESCAPE_TERMINATOR", 
+		"ESCAPE_LCOMMENT", "ESCAPE_BCOMMENT", "ESCAPE", "DATA"
 	};
 	public static readonly IVocabulary DefaultVocabulary = new Vocabulary(_LiteralNames, _SymbolicNames);
 
@@ -154,6 +153,7 @@ public partial class Describe06Parser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode RIGHT_ARROW() { return GetToken(Describe06Parser.RIGHT_ARROW, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FORWARD_SLASHES() { return GetToken(Describe06Parser.FORWARD_SLASHES, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FORWARD_SLASH() { return GetToken(Describe06Parser.FORWARD_SLASH, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STAR() { return GetToken(Describe06Parser.STAR, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DATA() { return GetToken(Describe06Parser.DATA, 0); }
 		public Text_chunkContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
@@ -188,7 +188,7 @@ public partial class Describe06Parser : Parser {
 			{
 			State = 19;
 			_la = TokenStream.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 262040L) != 0)) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 524184L) != 0)) ) {
 			ErrorHandler.RecoverInline(this);
 			}
 			else {
@@ -725,13 +725,13 @@ public partial class Describe06Parser : Parser {
 	}
 
 	private static int[] _serializedATN = {
-		4,1,17,88,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,2,7,
+		4,1,18,88,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,2,7,
 		7,7,1,0,1,0,1,0,1,1,1,1,1,2,4,2,23,8,2,11,2,12,2,24,1,3,1,3,1,3,1,3,1,
 		3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,3,3,46,8,3,1,
 		4,1,4,1,4,1,4,1,4,3,4,53,8,4,3,4,55,8,4,1,5,4,5,58,8,5,11,5,12,5,59,1,
 		5,1,5,1,5,4,5,65,8,5,11,5,12,5,66,1,5,1,5,3,5,71,8,5,1,6,4,6,74,8,6,11,
 		6,12,6,75,1,6,1,6,1,7,1,7,1,7,1,7,1,7,1,7,3,7,86,8,7,1,7,0,0,8,0,2,4,6,
-		8,10,12,14,0,1,2,0,3,4,7,17,90,0,16,1,0,0,0,2,19,1,0,0,0,4,22,1,0,0,0,
+		8,10,12,14,0,1,2,0,3,4,7,18,90,0,16,1,0,0,0,2,19,1,0,0,0,4,22,1,0,0,0,
 		6,45,1,0,0,0,8,54,1,0,0,0,10,70,1,0,0,0,12,73,1,0,0,0,14,85,1,0,0,0,16,
 		17,5,3,0,0,17,18,5,4,0,0,18,1,1,0,0,0,19,20,7,0,0,0,20,3,1,0,0,0,21,23,
 		3,2,1,0,22,21,1,0,0,0,23,24,1,0,0,0,24,22,1,0,0,0,24,25,1,0,0,0,25,5,1,

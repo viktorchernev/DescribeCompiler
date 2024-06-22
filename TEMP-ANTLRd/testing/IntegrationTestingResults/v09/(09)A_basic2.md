@@ -37,13 +37,8 @@ scripture
 │   │   ├── text_chunk
 │   │   │   └── T(DATA|'link')
 │   │   ├── text_chunk
-│   │   │   └── T(FORWARD_SLASH|'/')
-│   │   ├── text_chunk
-│   │   │   └── T(DATA|'\r\n\t')
-│   │   ├── tag
-│   │   │   ├── T(LEFT_ARROW|'<')
-│   │   │   ├── T(DATA|'i1NLckN6')
-│   │   │   └── T(RIGHT_ARROW|'> \r\n\t')
+│   │   │   └── T(FORWARD_SLASH|'/\r\n\t')
+│   │   ├── T(TAG|'<i1NLckN6> \r\n\t')
 │   │   ├── T(LINK|'[https://www.notube.com/watch?v=hTui12lKus]\r\n\t')
 │   │   └── T(DECORATOR|'{\r\n\t\tinfo | more info here\r\n\t}\r\n\t')
 │   └── T(TERMINATOR|';')

@@ -19,17 +19,15 @@ scripture
 │   │   ├── text_chunk
 │   │   │   └── T(DATA|'fa ')
 │   │   ├── text_chunk
-│   │   │   └── T(FORWARD_SLASH|'/')
+│   │   │   └── T(FORWARD_SLASH|'/ ')
 │   │   ├── text_chunk
-│   │   │   └── T(DATA|' br')
+│   │   │   └── T(DATA|'br')
 │   │   ├── text_chunk
 │   │   │   └── T(FORWARD_SLASH|'/')
 │   │   ├── text_chunk
 │   │   │   └── T(DATA|'ics')
-│   │   ├── text_chunk
-│   │   │   └── T(FORWARD_SLASH|'/')
 │   │   └── text_chunk
-│   │       └── T(DATA|' ')
+│   │       └── T(FORWARD_SLASH|'/ ')
 │   ├── producer
 │   │   ├── T(HYPHEN|'-')
 │   │   └── T(RIGHT_ARROW|'>\r\n\r\n    ')
@@ -53,13 +51,13 @@ scripture
 │   │   ├── item_or_expression_part
 │   │   │   ├── item
 │   │   │   │   ├── text_chunk
-│   │   │   │   │   └── T(FORWARD_SLASH|'/')
+│   │   │   │   │   └── T(FORWARD_SLASH|'/ ')
 │   │   │   │   ├── text_chunk
-│   │   │   │   │   └── T(DATA|' silk ')
+│   │   │   │   │   └── T(DATA|'silk ')
 │   │   │   │   ├── text_chunk
-│   │   │   │   │   └── T(FORWARD_SLASH|'/')
+│   │   │   │   │   └── T(FORWARD_SLASH|'/ ')
 │   │   │   │   └── text_chunk
-│   │   │   │       └── T(DATA|' fabrics')
+│   │   │   │       └── T(DATA|'fabrics')
 │   │   │   └── T(SEPARATOR|',\r\n    ')
 │   │   └── item
 │   │       ├── text_chunk

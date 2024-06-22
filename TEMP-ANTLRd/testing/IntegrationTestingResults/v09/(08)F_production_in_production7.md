@@ -29,10 +29,7 @@ scripture
 │   ├── item
 │   │   ├── text_chunk
 │   │   │   └── T(DATA|'macronutrients ')
-│   │   ├── tag
-│   │   │   ├── T(LEFT_ARROW|'<')
-│   │   │   ├── T(DATA|'ryQ27h6e')
-│   │   │   └── T(RIGHT_ARROW|'>')
+│   │   ├── T(TAG|'<ryQ27h6e>')
 │   │   └── T(LINK|'[https://www.notube.com/watch?v=hTui12lKus] ')
 │   ├── producer
 │   │   ├── T(HYPHEN|'-')
@@ -42,20 +39,14 @@ scripture
 │   │   │   ├── item
 │   │   │   │   ├── text_chunk
 │   │   │   │   │   └── T(DATA|'water ')
-│   │   │   │   ├── tag
-│   │   │   │   │   ├── T(LEFT_ARROW|'<')
-│   │   │   │   │   ├── T(DATA|'hAdLCBLZ')
-│   │   │   │   │   └── T(RIGHT_ARROW|'>')
+│   │   │   │   ├── T(TAG|'<hAdLCBLZ>')
 │   │   │   │   └── T(LINK|'[https://www.notube.com/watch?v=hTui12lKus]')
 │   │   │   └── T(SEPARATOR|',\r\n    ')
 │   │   ├── item_or_expression_part
 │   │   │   ├── item
 │   │   │   │   ├── text_chunk
 │   │   │   │   │   └── T(DATA|'salt ')
-│   │   │   │   ├── tag
-│   │   │   │   │   ├── T(LEFT_ARROW|'<')
-│   │   │   │   │   ├── T(DATA|'GotVxcPm')
-│   │   │   │   │   └── T(RIGHT_ARROW|'>')
+│   │   │   │   ├── T(TAG|'<GotVxcPm>')
 │   │   │   │   └── T(LINK|'[https://www.notube.com/watch?v=hTui12lKus]')
 │   │   │   └── T(SEPARATOR|',\r\n    ')
 │   │   ├── item_or_expression_part
@@ -63,10 +54,7 @@ scripture
 │   │   │       ├── item
 │   │   │       │   ├── text_chunk
 │   │   │       │   │   └── T(DATA|'fiber ')
-│   │   │       │   ├── tag
-│   │   │       │   │   ├── T(LEFT_ARROW|'<')
-│   │   │       │   │   ├── T(DATA|'CHcd0L0E')
-│   │   │       │   │   └── T(RIGHT_ARROW|'>')
+│   │   │       │   ├── T(TAG|'<CHcd0L0E>')
 │   │   │       │   └── T(LINK|'[https://www.notube.com/watch?v=hTui12lKus] ')
 │   │   │       ├── producer
 │   │   │       │   ├── T(HYPHEN|'-')
@@ -76,29 +64,20 @@ scripture
 │   │   │       │   │   ├── item
 │   │   │       │   │   │   ├── text_chunk
 │   │   │       │   │   │   │   └── T(DATA|'what ')
-│   │   │       │   │   │   ├── tag
-│   │   │       │   │   │   │   ├── T(LEFT_ARROW|'<')
-│   │   │       │   │   │   │   ├── T(DATA|'jiSw0LNV')
-│   │   │       │   │   │   │   └── T(RIGHT_ARROW|'>')
+│   │   │       │   │   │   ├── T(TAG|'<jiSw0LNV>')
 │   │   │       │   │   │   └── T(LINK|'[https://www.notube.com/watch?v=hTui12lKus]')
 │   │   │       │   │   └── T(SEPARATOR|',\r\n        ')
 │   │   │       │   └── item
 │   │   │       │       ├── text_chunk
 │   │   │       │       │   └── T(DATA|'not ')
-│   │   │       │       ├── tag
-│   │   │       │       │   ├── T(LEFT_ARROW|'<')
-│   │   │       │       │   ├── T(DATA|'TpR3PZdW')
-│   │   │       │       │   └── T(RIGHT_ARROW|'>')
+│   │   │       │       ├── T(TAG|'<TpR3PZdW>')
 │   │   │       │       └── T(LINK|'[https://www.notube.com/watch?v=hTui12lKus]')
 │   │   │       └── T(TERMINATOR|';\r\n\t\r\n\t')
 │   │   └── expression
 │   │       ├── item
 │   │       │   ├── text_chunk
 │   │       │   │   └── T(DATA|'science ')
-│   │       │   └── tag
-│   │       │       ├── T(LEFT_ARROW|'<')
-│   │       │       ├── T(DATA|'qlMb3HAO')
-│   │       │       └── T(RIGHT_ARROW|'> ')
+│   │       │   └── T(TAG|'<qlMb3HAO> ')
 │   │       ├── producer
 │   │       │   ├── T(HYPHEN|'-')
 │   │       │   └── T(RIGHT_ARROW|'>\r\n\t\t\t\r\n\t\t')
@@ -107,28 +86,19 @@ scripture
 │   │       │   │   ├── item
 │   │       │   │   │   ├── text_chunk
 │   │       │   │   │   │   └── T(DATA|'informathics ')
-│   │       │   │   │   └── tag
-│   │       │   │   │       ├── T(LEFT_ARROW|'<')
-│   │       │   │   │       ├── T(DATA|'jn0zFcnW')
-│   │       │   │   │       └── T(RIGHT_ARROW|'>')
+│   │       │   │   │   └── T(TAG|'<jn0zFcnW>')
 │   │       │   │   └── T(SEPARATOR|',\r\n\t\t')
 │   │       │   ├── item_or_expression_part
 │   │       │   │   ├── item
 │   │       │   │   │   ├── text_chunk
 │   │       │   │   │   │   └── T(DATA|'medicine ')
-│   │       │   │   │   └── tag
-│   │       │   │   │       ├── T(LEFT_ARROW|'<')
-│   │       │   │   │       ├── T(DATA|'JZmdtZj5')
-│   │       │   │   │       └── T(RIGHT_ARROW|'>')
+│   │       │   │   │   └── T(TAG|'<JZmdtZj5>')
 │   │       │   │   └── T(SEPARATOR|',\r\n\t\t\r\n\t\t')
 │   │       │   └── expression
 │   │       │       ├── item
 │   │       │       │   ├── text_chunk
 │   │       │       │   │   └── T(DATA|'math ')
-│   │       │       │   └── tag
-│   │       │       │       ├── T(LEFT_ARROW|'<')
-│   │       │       │       ├── T(DATA|'bYBIKVXn')
-│   │       │       │       └── T(RIGHT_ARROW|'> ')
+│   │       │       │   └── T(TAG|'<bYBIKVXn> ')
 │   │       │       ├── producer
 │   │       │       │   ├── T(HYPHEN|'-')
 │   │       │       │   └── T(RIGHT_ARROW|'>\r\n\t\t\t')
@@ -137,18 +107,12 @@ scripture
 │   │       │       │   │   ├── item
 │   │       │       │   │   │   ├── text_chunk
 │   │       │       │   │   │   │   └── T(DATA|'algebra ')
-│   │       │       │   │   │   └── tag
-│   │       │       │   │   │       ├── T(LEFT_ARROW|'<')
-│   │       │       │   │   │       ├── T(DATA|'nFxP8YKb')
-│   │       │       │   │   │       └── T(RIGHT_ARROW|'>')
+│   │       │       │   │   │   └── T(TAG|'<nFxP8YKb>')
 │   │       │       │   │   └── T(SEPARATOR|',\r\n\t\t\t')
 │   │       │       │   └── item
 │   │       │       │       ├── text_chunk
 │   │       │       │       │   └── T(DATA|'geometry ')
-│   │       │       │       └── tag
-│   │       │       │           ├── T(LEFT_ARROW|'<')
-│   │       │       │           ├── T(DATA|'hDNMVYP0')
-│   │       │       │           └── T(RIGHT_ARROW|'>')
+│   │       │       │       └── T(TAG|'<hDNMVYP0>')
 │   │       │       └── T(TERMINATOR|';')
 │   │       └── T(TERMINATOR|';')
 │   └── T(TERMINATOR|';')

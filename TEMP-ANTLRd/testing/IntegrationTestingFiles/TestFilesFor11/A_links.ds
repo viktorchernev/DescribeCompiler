@@ -1,0 +1,6 @@
+fabrics ->
+
+	wool fabrics [[http://someurl.net]],
+	cotton fabrics,
+	silk fabrics[[http://otherurl.net]] ,
+	synthetic fabrics [[http://url.net]] ;

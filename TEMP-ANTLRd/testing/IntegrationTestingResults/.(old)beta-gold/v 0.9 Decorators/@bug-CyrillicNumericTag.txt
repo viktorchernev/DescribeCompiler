@@ -1,0 +1,17 @@
+BUG: following tag "<ФЛГмссД5>" produces a lexical error. However, "<ФЛГмссД>" does not.
+
+
+платове <ФЛГмссД5> ->
+
+	вълнени платове <ПеП0ТхЗй>[https://www.домейн.com/watch?v=hTui12lKus],
+	памучни платове <ПТъЗАфЪа>[https://www.notube.com/watch?v=hTui12lKus],
+	копринени платове <5Суак3ИЙ>,
+	синтетични платове <ЛКтрт5КН>;
+
+
+платове <ФЛГмссД> ->
+
+	вълнени платове <ПеП0ТхЗй>[https://www.домейн.com/watch?v=hTui12lKus],
+	памучни платове <ПТъЗАфЪа>[https://www.notube.com/watch?v=hTui12lKus],
+	копринени платове <5Суак3ИЙ>,
+	синтетични платове <ЛКтрт5КН>;

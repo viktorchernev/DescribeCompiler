@@ -1,0 +1,18 @@
+Initializing Describe Compiler v0.9.3
+GOLD parser engine initialized
+Verbosity set to: High
+Preloaded grammar: "Decorators v0.9"
+Loaded new grammar: "Official v1.0"
+------------------------
+Starting a parse operation on file: "C:\Users\Viktor Chernev\Desktop\World-Describe\DataLists\Documentation\GrammarTests\v 1.0 Official\testfile - Mono - yTags basic 5.ds"
+Fetched file contents - 233 characters long
+
+Parsing sequence: T(Text); T(Hyphen); R(text-chunk); R(text); R(item); T(RightArrow); T(RightArrow); T(Text); R(producer); T(EscapeHyphen); R(text-chunk); T(Text); R(text-chunk); T(LeftArrow); R(text-chunk); R(text-chunk-list); R(text-chunk-list); R(text); T(LeftArrow); T(Text); R(tagstart); T(RightArrow); R(text-chunk); R(text); T(RightArrow); T(Terminator); R(tagend); R(tag); R(item); R(item-or-expression); T(Terminator); T(NewLine); T(NewLine); T(NewLine); T(EscapeRightArrow); R(terminator); R(expression); T(Text); R(text-chunk); T(LeftArrow); R(text-chunk); R(text-chunk-list); R(text); T(LeftArrow); T(Text); R(tagstart); T(RightArrow); R(text-chunk); R(text); T(RightArrow); T(Whitespace); T(Hyphen); R(tagend); R(tag); R(item); T(RightArrow); T(RightArrow); T(NewLine); T(NewLine); T(NewLine); T(Text); R(producer); T(LeftArrow); R(text-chunk); R(text); T(LeftArrow); T(Text); R(tagstart); T(RightArrow); R(text-chunk); R(text); T(RightArrow); T(Separator); R(tagend); R(tag); R(item); T(Separator); T(NewLine); T(Text); R(separator); T(EscapeRightArrow); R(text-chunk); T(EscapeLeftArrow); R(text-chunk); T(Text); R(text-chunk); T(LeftArrow); R(text-chunk); R(text-chunk-list); R(text-chunk-list); R(text-chunk-list); R(text); T(LeftArrow); T(Text); R(tagstart); T(RightArrow); R(text-chunk); R(text); T(RightArrow); T(Separator); R(tagend); R(tag); R(item); T(Separator); T(NewLine); T(Whitespace); T(NewLine); T(Whitespace); T(EscapeLeftArrow); R(separator); T(Text); R(text-chunk); T(EscapeRightArrow); R(text-chunk); T(Text); R(text-chunk); T(LeftArrow); R(text-chunk); R(text-chunk-list); R(text-chunk-list); R(text-chunk-list); R(text); T(LeftArrow); T(Text); R(tagstart); T(RightArrow); R(text-chunk); R(text); T(RightArrow); T(Separator); R(tagend); R(tag); R(item); T(Separator); T(NewLine); T(Whitespace); T(EscapeLeftArrow); R(separator); T(Text); R(text-chunk); T(LeftArrow); R(text-chunk); R(text-chunk-list); R(text); T(LeftArrow); T(Text); R(tagstart); T(RightArrow); R(text-chunk); R(text); T(RightArrow); T(Terminator); R(tagend); R(tag); R(item); R(item-or-expression-list); R(item-or-expression-list); R(item-or-expression-list); T(Terminator); T(NewLine); T(NewLine); T(EOF); R(terminator); R(expression); R(expression-list); R(scripture); Accepted;
+
+File parsed successfuly
+Parse tree unfolded successfuly
+Done!
+------------------------
+1 files parsed.
+Parser red 80 tokens in 86 reductions.
+Those were translated to 1 productions, containing 5 entries.

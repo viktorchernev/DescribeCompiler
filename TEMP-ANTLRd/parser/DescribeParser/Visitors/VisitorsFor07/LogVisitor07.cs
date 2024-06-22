@@ -82,8 +82,6 @@ namespace DescribeParser.Visitors
                         VisitItem_or_expression_part((Describe07Parser.Item_or_expression_partContext)child);
                     else if (child is Describe07Parser.Text_chunkContext)
                         VisitText_chunk((Describe07Parser.Text_chunkContext)child);
-                    else if (child is Describe07Parser.TagContext)
-                        VisitTag((Describe07Parser.TagContext)child);
                     else if (child is Describe07Parser.ProducerContext)
                         VisitProducer((Describe07Parser.ProducerContext)child);
                 }
@@ -115,13 +113,6 @@ namespace DescribeParser.Visitors
         public override string VisitText_chunk([NotNull] Describe07Parser.Text_chunkContext context)
         {
             Log += Environment.NewLine + logItem(context, "text_chunk");
-            if (_lerror != null) return "error";
-            visitChildren(context);
-            return "success";
-        }
-        public override string VisitTag([NotNull] Describe07Parser.TagContext context)
-        {
-            Log += Environment.NewLine + logItem(context, "tag");
             if (_lerror != null) return "error";
             visitChildren(context);
             return "success";

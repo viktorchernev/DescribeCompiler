@@ -1,0 +1,71 @@
+This list explains the contents of the basic test files for Describe version 0.8 "Links".
+The strategy used here is to use some of the test files for the previous Describe version 0.7, which version, as well as version 0.6, 0.8 should pass as well, in order to prove backward compatibility and add tags to those files. These tests are not extensively covering all possible edge cases, but keep in mind that we have a hundreds of files in the Describe library, that will serve as a test as well.
+
+
+A. Basics
+
+	This is about testing basic functionality in subtle variations - how the operators and whitespaces are handled and such.
+	These are the same test files for Describe version 0.7, but with links.
+
+	A_basic1.ds - We want to test a simple Describe list to start with, with tags and named links.
+	A_basic2.ds - Same thing, but we have one element in the list, with only links.
+	A_basic3.ds - One element on the same line as the title item, with tags and a link on the title item.
+	A_basic4.ds - Two named links on one item here.
+	A_twoRoots.ds - Two simple lists. Testing an empty link handling.
+
+
+B. Comments
+
+	This section, of course, is about testing comments integration - line comments, block comments and issues
+	that might arise from nested comments, operators in comments, etc.
+	
+	B_comments1.ds - Testing link that has been commented out. Contains lik=nks and empty links as well.
+	B_comments2.ds - This file contains the same line comment like before, but also a block comment, with link in block comment.
+	B_comments3.ds - Line and 2 block comments here, but block comments hide some functionality, with tags and links.
+	B_comments4.ds - Two line comments, but file ends with a comment. Contains links and tags. This is problematic for GOLD.
+	B_comments5.ds - Almost the same as `B_comments4.ds`, but the last comment is sticked to the last terminator.
+
+
+C. Empty
+
+	This section tests empty lists. Empty lists should be transpiled like they are single items, because they
+	are just an item with a placeholder for a list.
+	
+	C_empty1.ds - A basic single empty production, with a tag and a link.
+	C_empty2.ds - Same, but without white spaces.
+	C_empty3.ds - Testing 3 lists, one empty.
+
+
+D. Characters
+
+	D_escaped_double_characters1.ds - Escaped square brackets are tested here.
+	
+	D_cyrillic.ds - A cyrilic list to test the handling of cyrilic characters and cyrilic links.
+
+
+E. Whitespaces
+
+	Files in this group are testing for problems with whitespace handling. 
+	Those are same as the ones for version 0.7, but contain links.
+	
+	E_spaces_escapes_N.ds - This file contains a list with some escape sequences and various types of whitespaces. Linux line endings - `\n`.
+	E_spaces_escapes_RN.ds - Same as above, but line endings are windows line endings - `\r\n`.
+
+
+F. Productins
+
+	The files in this group test different variations of nested and sibling productions - expressions inside expressions, etc.
+	Those are same as the ones for version 0.6, but contain tags.
+	
+	F_production_in_production1.ds - Simple nested production. The nested production is the first element. With tags and links.
+	F_production_in_production2.ds - Simple nested production. The nested production is the last element. With tags and links.
+	F_production_in_production3.ds - Simple nested production. The nested production is the middle element. With tags and links.
+	F_production_in_production4.ds - Two simple nested productions. The nested production are first and second. With tags and links.
+	F_production_in_production5.ds - Two simple nested productions. The nested production are last and second to last. With tags and links.
+	F_production_in_production6.ds - Two levels of nesting. With tags and links.
+	F_production_in_production7.ds - Two levels of nesting, both nested in the end of the file. With tags and links.
+
+
+
+	//want to test a -> /* jsjsj */ ; or a -> /* jsjsj *//* jsjsj */ ; - will this create empty item from space only?
+	//comments now need space - '// '

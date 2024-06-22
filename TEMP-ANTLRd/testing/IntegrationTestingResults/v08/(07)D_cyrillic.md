@@ -18,10 +18,7 @@ scripture
 │   ├── item
 │   │   ├── text_chunk
 │   │   │   └── T(DATA|'платове ')
-│   │   └── tag
-│   │       ├── T(LEFT_ARROW|'<')
-│   │       ├── T(DATA|'ФЛГмссД5')
-│   │       └── T(RIGHT_ARROW|'> ')
+│   │   └── T(TAG|'<ФЛГмссД5> ')
 │   ├── producer
 │   │   ├── T(HYPHEN|'-')
 │   │   └── T(RIGHT_ARROW|'>\r\n\r\n\t')
@@ -30,35 +27,23 @@ scripture
 │   │   │   ├── item
 │   │   │   │   ├── text_chunk
 │   │   │   │   │   └── T(DATA|'вълнени платове ')
-│   │   │   │   └── tag
-│   │   │   │       ├── T(LEFT_ARROW|'<')
-│   │   │   │       ├── T(DATA|'ПеП0ТхЗй')
-│   │   │   │       └── T(RIGHT_ARROW|'>')
+│   │   │   │   └── T(TAG|'<ПеП0ТхЗй>')
 │   │   │   └── T(SEPARATOR|',\r\n\t')
 │   │   ├── item_or_expression_part
 │   │   │   ├── item
 │   │   │   │   ├── text_chunk
 │   │   │   │   │   └── T(DATA|'памучни платове ')
-│   │   │   │   └── tag
-│   │   │   │       ├── T(LEFT_ARROW|'<')
-│   │   │   │       ├── T(DATA|'ПТъЗАфЪа')
-│   │   │   │       └── T(RIGHT_ARROW|'>')
+│   │   │   │   └── T(TAG|'<ПТъЗАфЪа>')
 │   │   │   └── T(SEPARATOR|',\r\n\t')
 │   │   ├── item_or_expression_part
 │   │   │   ├── item
 │   │   │   │   ├── text_chunk
 │   │   │   │   │   └── T(DATA|'копринени платове ')
-│   │   │   │   └── tag
-│   │   │   │       ├── T(LEFT_ARROW|'<')
-│   │   │   │       ├── T(DATA|'5Суак3ИЙ')
-│   │   │   │       └── T(RIGHT_ARROW|'>')
+│   │   │   │   └── T(TAG|'<5Суак3ИЙ>')
 │   │   │   └── T(SEPARATOR|',\r\n\t')
 │   │   └── item
 │   │       ├── text_chunk
 │   │       │   └── T(DATA|'синтетични платове ')
-│   │       └── tag
-│   │           ├── T(LEFT_ARROW|'<')
-│   │           ├── T(DATA|'ЛКтрт5КН')
-│   │           └── T(RIGHT_ARROW|'>')
+│   │       └── T(TAG|'<ЛКтрт5КН>')
 │   └── T(TERMINATOR|';')
 └── T(EOF|'<EOF>')

@@ -20,10 +20,7 @@ scripture
 │   ├── item
 │   │   ├── text_chunk
 │   │   │   └── T(DATA|'macronutrients ')
-│   │   └── tag
-│   │       ├── T(LEFT_ARROW|'<')
-│   │       ├── T(DATA|'0CmyN2Mb')
-│   │       └── T(RIGHT_ARROW|'> ')
+│   │   └── T(TAG|'<0CmyN2Mb> ')
 │   ├── producer
 │   │   ├── T(HYPHEN|'-')
 │   │   └── T(RIGHT_ARROW|'>\r\n\r\n    ')
@@ -33,10 +30,7 @@ scripture
 │   │   │       ├── item
 │   │   │       │   ├── text_chunk
 │   │   │       │   │   └── T(DATA|'fiber ')
-│   │   │       │   └── tag
-│   │   │       │       ├── T(LEFT_ARROW|'<')
-│   │   │       │       ├── T(DATA|'CMxWzMs5')
-│   │   │       │       └── T(RIGHT_ARROW|'> ')
+│   │   │       │   └── T(TAG|'<CMxWzMs5> ')
 │   │   │       ├── producer
 │   │   │       │   ├── T(HYPHEN|'-')
 │   │   │       │   └── T(RIGHT_ARROW|'>\r\n\r\n        ')
@@ -45,25 +39,16 @@ scripture
 │   │   │       │   │   ├── item
 │   │   │       │   │   │   ├── text_chunk
 │   │   │       │   │   │   │   └── T(DATA|'what ')
-│   │   │       │   │   │   └── tag
-│   │   │       │   │   │       ├── T(LEFT_ARROW|'<')
-│   │   │       │   │   │       ├── T(DATA|'hzAzwlx6')
-│   │   │       │   │   │       └── T(RIGHT_ARROW|'>')
+│   │   │       │   │   │   └── T(TAG|'<hzAzwlx6>')
 │   │   │       │   │   └── T(SEPARATOR|',\r\n        ')
 │   │   │       │   └── item
 │   │   │       │       ├── text_chunk
 │   │   │       │       │   └── T(DATA|'not ')
-│   │   │       │       └── tag
-│   │   │       │           ├── T(LEFT_ARROW|'<')
-│   │   │       │           ├── T(DATA|'UHOcZPAm')
-│   │   │       │           └── T(RIGHT_ARROW|'>')
+│   │   │       │       └── T(TAG|'<UHOcZPAm>')
 │   │   │       └── T(TERMINATOR|';\r\n    \r\n    ')
 │   │   └── item
 │   │       ├── text_chunk
 │   │       │   └── T(DATA|'water ')
-│   │       └── tag
-│   │           ├── T(LEFT_ARROW|'<')
-│   │           ├── T(DATA|'BBmOZjJa')
-│   │           └── T(RIGHT_ARROW|'>')
+│   │       └── T(TAG|'<BBmOZjJa>')
 │   └── T(TERMINATOR|';')
 └── T(EOF|'<EOF>')

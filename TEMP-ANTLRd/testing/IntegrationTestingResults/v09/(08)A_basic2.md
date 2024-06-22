@@ -22,10 +22,7 @@ scripture
 │   ├── item
 │   │   ├── text_chunk
 │   │   │   └── T(DATA|'synthetic fabrics ')
-│   │   ├── tag
-│   │   │   ├── T(LEFT_ARROW|'<')
-│   │   │   ├── T(DATA|'i1NLckN6')
-│   │   │   └── T(RIGHT_ARROW|'> ')
+│   │   ├── T(TAG|'<i1NLckN6> ')
 │   │   └── T(LINK|'[https://www.notube.com/watch?v=hTui12lKus]')
 │   └── T(TERMINATOR|';')
 └── T(EOF|'<EOF>')

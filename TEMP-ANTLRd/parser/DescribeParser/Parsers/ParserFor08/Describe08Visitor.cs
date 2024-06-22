@@ -44,12 +44,6 @@ public interface IDescribe08Visitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitText_chunk([NotNull] Describe08Parser.Text_chunkContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="Describe08Parser.tag"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitTag([NotNull] Describe08Parser.TagContext context);
-	/// <summary>
 	/// Visit a parse tree produced by <see cref="Describe08Parser.item"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

@@ -144,12 +144,12 @@ namespace DescribeParser.IntegrationTests
                 Console.ReadLine();
             }
         }
-        internal static void TestFiles(bool insertMissingTerminators = true)
+        internal static void TestFiles(bool pressKey = true, bool insertMissingTerminators = true)
         {
-            TestFilesFor06(insertMissingTerminators);
-            TestFilesFor07(insertMissingTerminators);
+            TestFilesFor06(pressKey, insertMissingTerminators);
+            TestFilesFor07(pressKey, insertMissingTerminators);
         }
-        static void TestFilesFor06(bool insertMissingTerminators = true)
+        static void TestFilesFor06(bool pressKey = true, bool insertMissingTerminators = true)
         {
             //set console
             Console.ForegroundColor = ConsoleColor.White;
@@ -222,7 +222,7 @@ namespace DescribeParser.IntegrationTests
                     Console.WriteLine("Success! - took: " + formattedElapsedTime);
                     Console.WriteLine("Press any key to continue.");
                     Console.ForegroundColor = ConsoleColor.White;
-                    Console.ReadLine();
+                    if (pressKey) Console.ReadLine();
                 }
                 else
                 {
@@ -230,16 +230,16 @@ namespace DescribeParser.IntegrationTests
                     Console.WriteLine("Fail!");
                     Console.WriteLine("Press any key to continue.");
                     Console.ForegroundColor = ConsoleColor.White;
-                    Console.ReadLine();
+                    if (pressKey) Console.ReadLine();
                 }
             }
 
             //press key to exit
             Console.WriteLine("");
             Console.WriteLine("Tests for 06 concluded. Press any key to continue with 07.");
-            Console.ReadLine();
+            if (pressKey) Console.ReadLine();
         }
-        static void TestFilesFor07(bool insertMissingTerminators = true)
+        static void TestFilesFor07(bool pressKey = true, bool insertMissingTerminators = true)
         {
             //set console
             Console.ForegroundColor = ConsoleColor.White;
@@ -308,7 +308,7 @@ namespace DescribeParser.IntegrationTests
                     Console.WriteLine("Success! - took: " + formattedElapsedTime);
                     Console.WriteLine("Press any key to continue.");
                     Console.ForegroundColor = ConsoleColor.White;
-                    Console.ReadLine();
+                    if (pressKey) Console.ReadLine();
                 }
                 else
                 {
@@ -316,14 +316,14 @@ namespace DescribeParser.IntegrationTests
                     Console.WriteLine("Fail!");
                     Console.WriteLine("Press any key to continue.");
                     Console.ForegroundColor = ConsoleColor.White;
-                    Console.ReadLine();
+                    if (pressKey) Console.ReadLine();
                 }
             }
 
             //press key to exit
             Console.WriteLine("");
             Console.WriteLine("Tests for 07 concluded. Press any key to continue/exit.");
-            Console.ReadLine();
+            if (pressKey) Console.ReadLine();
         }
 
 

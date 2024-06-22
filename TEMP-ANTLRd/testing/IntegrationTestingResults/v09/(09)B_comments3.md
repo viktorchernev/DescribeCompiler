@@ -16,10 +16,7 @@ scripture
 │   ├── item
 │   │   ├── text_chunk
 │   │   │   └── T(DATA|'fabrics ')
-│   │   └── tag
-│   │       ├── T(LEFT_ARROW|'<')
-│   │       ├── T(DATA|'QuvD4gqX')
-│   │       └── T(RIGHT_ARROW|'> ')
+│   │   └── T(TAG|'<QuvD4gqX> ')
 │   ├── producer
 │   │   ├── T(HYPHEN|'-')
 │   │   └── T(RIGHT_ARROW|'>        ')
@@ -28,18 +25,12 @@ scripture
 │   │   │   ├── item
 │   │   │   │   ├── text_chunk
 │   │   │   │   │   └── T(DATA|'wool fabrics ')
-│   │   │   │   └── tag
-│   │   │   │       ├── T(LEFT_ARROW|'<')
-│   │   │   │       ├── T(DATA|'VBsu8OpW')
-│   │   │   │       └── T(RIGHT_ARROW|'>')
+│   │   │   │   └── T(TAG|'<VBsu8OpW>')
 │   │   │   └── T(SEPARATOR|', ')
 │   │   └── item
 │   │       ├── text_chunk
 │   │       │   └── T(DATA|'cotton fabrics ')
-│   │       ├── tag
-│   │       │   ├── T(LEFT_ARROW|'<')
-│   │       │   ├── T(DATA|'0RdNAvNs')
-│   │       │   └── T(RIGHT_ARROW|'> ')
+│   │       ├── T(TAG|'<0RdNAvNs> ')
 │   │       ├── T(DECORATOR|'{dec} ')
 │   │       └── T(LINK|'[https://www.notube.com/watch?v=hTui12lKus]')
 │   └── T(TERMINATOR|';')

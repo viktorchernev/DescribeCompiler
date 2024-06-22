@@ -1,0 +1,37 @@
+This list explains the contents of the basic test files for Describe version 0.9 "Decorators".
+The strategy used here is to use some of the test files for the previous Describe version 0.8, which version, as well as version 0.6 and 0.7, 0.9 should pass as well, in order to prove backward compatibility. Decorators has been added, as well as links in text, in order to test for conflicts with links. These tests are not extensively covering all possible edge cases, but keep in mind that we have a hundreds of files in the Describe library, that will serve as a test as well.
+
+
+A. Basics
+
+	This is about testing basic functionality in subtle variations - how the operators and whitespaces are handled and such.
+	These are the same test files for Describe version 0.8, but with decorators.
+
+	A_basic1.ds - We want to test a simple Describe list to start with, with tags and links. There are 2 empty decorators here as well.
+	A_basic2.ds - Same thing, but we have one element in the list, with a decorator, containing a new line.
+	A_basic3.ds - One element on the same line as the title item, with tags, link and decorator on the title item.
+	A_basic4.ds - Two named links on one item here A decorator is added, as well.
+	A_twoRoots.ds - Two simple lists. Testing an empty link handling. Decorators added.
+
+
+B. Comments
+
+	This section, of course, is about testing comments integration - line comments, block comments and issues
+	that might arise from nested comments, operators in comments, etc.
+	
+	B_comments1.ds - Testing link that has been commented out. Contains links and empty links as well. With decorators.
+	B_comments2.ds - This file contains the same line comment like before, but also a block comment, with link in block comment. A sequence of 3 empty decorators added.
+	B_comments3.ds - Line and 2 block comments here, but block comments hide some functionality, with tags, links and decorators.
+	B_comments4.ds - Two line comments, but file ends with a comment. Contains links and tags. Comment hides a decorator. This was problematic for GOLD.
+	B_comments5.ds - Almost the same as `B_comments4.ds`, but the last comment is sticked to the last terminator.
+
+
+D. Characters
+
+	D_cyrillic.ds - A cyrilic list to test the handling of cyrilic characters, cyrilic links and cyrilic decorators. 
+
+
+
+
+	//want to test a -> /* jsjsj */ ; or a -> /* jsjsj *//* jsjsj */ ; - will this create empty item from space only?
+	//comments now need space - '// '

@@ -19,9 +19,9 @@ scripture
 │   │   ├── text_chunk
 │   │   │   └── T(DATA|'fa ')
 │   │   ├── text_chunk
-│   │   │   └── T(ESCAPE_SEPARATOR|'\,')
+│   │   │   └── T(ESCAPE_SEPARATOR|'\, ')
 │   │   ├── text_chunk
-│   │   │   └── T(DATA|' br')
+│   │   │   └── T(DATA|'br')
 │   │   ├── text_chunk
 │   │   │   └── T(ESCAPE_HYPHEN|'\-')
 │   │   ├── text_chunk
@@ -29,13 +29,8 @@ scripture
 │   │   ├── text_chunk
 │   │   │   └── T(DATA|'ics')
 │   │   ├── text_chunk
-│   │   │   └── T(ESCAPE_LCOMMENT|'\//')
-│   │   ├── text_chunk
-│   │   │   └── T(DATA|' ')
-│   │   └── tag
-│   │       ├── T(LEFT_ARROW|'<')
-│   │       ├── T(DATA|'6O4fovPJ')
-│   │       └── T(RIGHT_ARROW|'>')
+│   │   │   └── T(ESCAPE_LCOMMENT|'\// ')
+│   │   └── T(TAG|'<6O4fovPJ>')
 │   ├── producer
 │   │   ├── T(HYPHEN|'-')
 │   │   └── T(RIGHT_ARROW|'>\r\n\r\n    ')
@@ -48,10 +43,7 @@ scripture
 │   │   │   │   │   └── T(ESCAPE_TERMINATOR|'\;')
 │   │   │   │   ├── text_chunk
 │   │   │   │   │   └── T(DATA|'fabrics ')
-│   │   │   │   └── tag
-│   │   │   │       ├── T(LEFT_ARROW|'<')
-│   │   │   │       ├── T(DATA|'cTk1qeGz')
-│   │   │   │       └── T(RIGHT_ARROW|'>')
+│   │   │   │   └── T(TAG|'<cTk1qeGz>')
 │   │   │   └── T(SEPARATOR|',\r\n    ')
 │   │   ├── item_or_expression_part
 │   │   │   ├── item
@@ -61,30 +53,19 @@ scripture
 │   │   │   │   │   └── T(DATA|'cotton fabrics')
 │   │   │   │   ├── text_chunk
 │   │   │   │   │   └── T(ESCAPE_LEFT_ARROW|'\<')
-│   │   │   │   └── tag
-│   │   │   │       ├── T(LEFT_ARROW|'<')
-│   │   │   │       ├── T(DATA|'cTk1qeGz')
-│   │   │   │       └── T(RIGHT_ARROW|'>')
+│   │   │   │   └── T(TAG|'<cTk1qeGz>')
 │   │   │   └── T(SEPARATOR|',\r\n    ')
 │   │   ├── item_or_expression_part
 │   │   │   ├── item
 │   │   │   │   ├── text_chunk
 │   │   │   │   │   └── T(DATA|'silk fabrics')
-│   │   │   │   └── tag
-│   │   │   │       ├── T(LEFT_ARROW|'<')
-│   │   │   │       ├── T(DATA|'cTk1qeGz')
-│   │   │   │       └── T(RIGHT_ARROW|'>  ')
+│   │   │   │   └── T(TAG|'<cTk1qeGz>  ')
 │   │   │   └── T(SEPARATOR|',\r\n    ')
 │   │   └── item
 │   │       ├── text_chunk
 │   │       │   └── T(DATA|'synthetic fabrics')
 │   │       ├── text_chunk
-│   │       │   └── T(ESCAPE_TERMINATOR|'\;')
-│   │       ├── text_chunk
-│   │       │   └── T(DATA|' ')
-│   │       └── tag
-│   │           ├── T(LEFT_ARROW|'<')
-│   │           ├── T(DATA|'cTk1qeGz')
-│   │           └── T(RIGHT_ARROW|'>')
+│   │       │   └── T(ESCAPE_TERMINATOR|'\; ')
+│   │       └── T(TAG|'<cTk1qeGz>')
 │   └── T(TERMINATOR|';')
 └── T(EOF|'<EOF>')

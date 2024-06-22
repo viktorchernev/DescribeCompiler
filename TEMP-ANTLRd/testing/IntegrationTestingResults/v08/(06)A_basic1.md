@@ -2,7 +2,7 @@
 Source Code (between the arrows)
 ========================================
 
-🡆fabrics ->
+🡆fabric*s ->
 
 	wool fabrics,
 	cotton fabrics,
@@ -16,8 +16,12 @@ Parse Tree
 scripture
 ├── expression
 │   ├── item
+│   │   ├── text_chunk
+│   │   │   └── T(DATA|'fabric')
+│   │   ├── text_chunk
+│   │   │   └── T(STAR|'*')
 │   │   └── text_chunk
-│   │       └── T(DATA|'fabrics ')
+│   │       └── T(DATA|'s ')
 │   ├── producer
 │   │   ├── T(HYPHEN|'-')
 │   │   └── T(RIGHT_ARROW|'>\r\n\r\n\t')

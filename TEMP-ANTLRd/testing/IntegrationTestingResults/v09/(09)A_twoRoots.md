@@ -24,10 +24,7 @@ scripture
 │   │   ├── item
 │   │   │   ├── text_chunk
 │   │   │   │   └── T(DATA|'macronutrients ')
-│   │   │   ├── tag
-│   │   │   │   ├── T(LEFT_ARROW|'<')
-│   │   │   │   ├── T(DATA|'Zcm0y9mS')
-│   │   │   │   └── T(RIGHT_ARROW|'> \r\n')
+│   │   │   ├── T(TAG|'<Zcm0y9mS> \r\n')
 │   │   │   └── T(DECORATOR|'{icon | nutrients.png}\r\n')
 │   │   ├── producer
 │   │   │   ├── T(HYPHEN|'-')
@@ -37,19 +34,13 @@ scripture
 │   │   │   │   ├── item
 │   │   │   │   │   ├── text_chunk
 │   │   │   │   │   │   └── T(DATA|'fiber ')
-│   │   │   │   │   ├── tag
-│   │   │   │   │   │   ├── T(LEFT_ARROW|'<')
-│   │   │   │   │   │   ├── T(DATA|'ZxMvmqeZ')
-│   │   │   │   │   │   └── T(RIGHT_ARROW|'> ')
+│   │   │   │   │   ├── T(TAG|'<ZxMvmqeZ> ')
 │   │   │   │   │   └── T(LINK|'[https://www.notube.com/watch?v=hTui12lKus]')
 │   │   │   │   └── T(SEPARATOR|',\r\n    ')
 │   │   │   └── item
 │   │   │       ├── text_chunk
 │   │   │       │   └── T(DATA|'water ')
-│   │   │       ├── tag
-│   │   │       │   ├── T(LEFT_ARROW|'<')
-│   │   │       │   ├── T(DATA|'xePTheNI')
-│   │   │       │   └── T(RIGHT_ARROW|'> ')
+│   │   │       ├── T(TAG|'<xePTheNI> ')
 │   │   │       └── T(LINK|'[https://www.notube.com/watch?v=hTui12lKus]')
 │   │   └── T(TERMINATOR|';\r\n\r\n')
 │   └── expression
@@ -58,10 +49,7 @@ scripture
 │       │   │   └── T(DATA|'micronutrients ')
 │       │   ├── T(LINK|'[] ')
 │       │   ├── T(DECORATOR|'{icon | micronutrients.png} ')
-│       │   └── tag
-│       │       ├── T(LEFT_ARROW|'<')
-│       │       ├── T(DATA|'l7qy3zi2')
-│       │       └── T(RIGHT_ARROW|'>')
+│       │   └── T(TAG|'<l7qy3zi2>')
 │       ├── producer
 │       │   ├── T(HYPHEN|'-')
 │       │   └── T(RIGHT_ARROW|'>\r\n\r\n    ')
@@ -70,17 +58,11 @@ scripture
 │       │   │   ├── item
 │       │   │   │   ├── text_chunk
 │       │   │   │   │   └── T(DATA|'vitamins (ABCDEK) ')
-│       │   │   │   └── tag
-│       │   │   │       ├── T(LEFT_ARROW|'<')
-│       │   │   │       ├── T(DATA|'6Nq8AWj7')
-│       │   │   │       └── T(RIGHT_ARROW|'>')
+│       │   │   │   └── T(TAG|'<6Nq8AWj7>')
 │       │   │   └── T(SEPARATOR|',\r\n    ')
 │       │   └── item
 │       │       ├── text_chunk
 │       │       │   └── T(DATA|'minerals (micronutrients) ')
-│       │       └── tag
-│       │           ├── T(LEFT_ARROW|'<')
-│       │           ├── T(DATA|'jG4U9bwg')
-│       │           └── T(RIGHT_ARROW|'>')
+│       │       └── T(TAG|'<jG4U9bwg>')
 │       └── T(TERMINATOR|';')
 └── T(EOF|'<EOF>')

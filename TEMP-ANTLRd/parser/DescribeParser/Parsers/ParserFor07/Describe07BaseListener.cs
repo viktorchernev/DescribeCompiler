@@ -60,18 +60,6 @@ public partial class Describe07BaseListener : IDescribe07Listener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitText_chunk([NotNull] Describe07Parser.Text_chunkContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="Describe07Parser.tag"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterTag([NotNull] Describe07Parser.TagContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="Describe07Parser.tag"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitTag([NotNull] Describe07Parser.TagContext context) { }
-	/// <summary>
 	/// Enter a parse tree produced by <see cref="Describe07Parser.item"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
