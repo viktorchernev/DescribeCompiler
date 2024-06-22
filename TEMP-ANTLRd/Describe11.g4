@@ -38,6 +38,7 @@ DECORATOR					: '{{' .*? '}}' LINESPACE* ;
 
 // Define lexer rules for other tokens
 HYPHEN						: '-' ;
+TILDE						: '~' ;
 
 PRODUCTION_ARROW            : '>' WHITESPACE* BLOCK_COMMENT* '\n' LINESPACE*
 							| '>' WHITESPACE* BLOCK_COMMENT* LINE_COMMENT
@@ -81,7 +82,7 @@ ESCAPE               		: '\\' LINESPACE* ;
 // Define lexer rule for data
 // Note: For some reason we don't need to escape '[' and '|'
 // and ANTLR does not like when we try to escape them
-fragment DATA_CHAR			: ~[{}[\]\-<>,;*/\\] ;
+fragment DATA_CHAR			: ~[{}[\]\-<>,;*~/\\] ;
 DATA                		: DATA_CHAR+ ;
 
 
@@ -121,21 +122,21 @@ text_chunk					: ESCAPE_ESCAPE
 							| DATA ;
 
 
-item 						: (text_chunk)+ (TAG)?
-							| (text_chunk)+ (LINK)+
-							| (text_chunk)+ (DECORATOR)+
-							| (text_chunk)+ (LINK)+ TAG
-							| (text_chunk)+ TAG (LINK)+
-							| (text_chunk)+ (DECORATOR)+ TAG
-							| (text_chunk)+ TAG (DECORATOR)+
-							| (text_chunk)+ (DECORATOR)+ (LINK)+
-							| (text_chunk)+ (LINK)+ (DECORATOR)+
-							| (text_chunk)+ TAG (DECORATOR)+ (LINK)+
-							| (text_chunk)+ (DECORATOR)+ TAG (LINK)+
-							| (text_chunk)+ (DECORATOR)+ (LINK)+ TAG
-							| (text_chunk)+ TAG (LINK)+ (DECORATOR)+
-							| (text_chunk)+ (LINK)+ TAG (DECORATOR)+
-							| (text_chunk)+ (LINK)+ (DECORATOR)+ TAG ;
+item 						: TILDE? (text_chunk)+ (TAG)?
+							| TILDE? (text_chunk)+ (LINK)+
+							| TILDE? (text_chunk)+ (DECORATOR)+
+							| TILDE? (text_chunk)+ (LINK)+ TAG
+							| TILDE? (text_chunk)+ TAG (LINK)+
+							| TILDE? (text_chunk)+ (DECORATOR)+ TAG
+							| TILDE? (text_chunk)+ TAG (DECORATOR)+
+							| TILDE? (text_chunk)+ (DECORATOR)+ (LINK)+
+							| TILDE? (text_chunk)+ (LINK)+ (DECORATOR)+
+							| TILDE? (text_chunk)+ TAG (DECORATOR)+ (LINK)+
+							| TILDE? (text_chunk)+ (DECORATOR)+ TAG (LINK)+
+							| TILDE? (text_chunk)+ (DECORATOR)+ (LINK)+ TAG
+							| TILDE? (text_chunk)+ TAG (LINK)+ (DECORATOR)+
+							| TILDE? (text_chunk)+ (LINK)+ TAG (DECORATOR)+
+							| TILDE? (text_chunk)+ (LINK)+ (DECORATOR)+ TAG ;
 
 
 expression 					: item producer item_or_expression_list TERMINATOR

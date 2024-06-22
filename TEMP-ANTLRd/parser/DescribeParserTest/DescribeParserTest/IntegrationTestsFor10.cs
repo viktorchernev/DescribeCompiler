@@ -9,7 +9,30 @@ namespace DescribeParser.IntegrationTests
     internal class IntegrationTestsFor10 : IntegrationTestsBase
     {
         public static string outputDir = @"C:\Users\Viktor Chernev\Desktop\ANTLRd\testing\IntegrationTestingResults\v10";
-
+        public static string[] skipFilesFor06 = new string[]
+        {
+            "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.A_basic3.ds",
+            "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.C_empty1.ds",
+            "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.C_empty2.ds",
+            "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.C_empty3.ds"
+        };
+        public static string[] skipFilesFor07 = new string[]
+        {
+            "DescribeParser.IntegrationTests.TestFiles.TestFilesFor07.A_basic3.ds",
+            "DescribeParser.IntegrationTests.TestFiles.TestFilesFor07.C_empty1.ds",
+            "DescribeParser.IntegrationTests.TestFiles.TestFilesFor07.C_empty2.ds",
+            "DescribeParser.IntegrationTests.TestFiles.TestFilesFor07.C_empty3.ds"
+        };
+        public static string[] skipFilesFor08 = new string[]
+        {
+            "DescribeParser.IntegrationTests.TestFiles.TestFilesFor08.A_basic3.ds",
+            "DescribeParser.IntegrationTests.TestFiles.TestFilesFor08.C_empty1.ds",
+            "DescribeParser.IntegrationTests.TestFiles.TestFilesFor08.C_empty2.ds"
+        };
+        public static string[] skipFilesFor09 = new string[]
+        {
+            "DescribeParser.IntegrationTests.TestFiles.TestFilesFor09.A_basic3.ds"
+        };
 
 
         static string PredictTerminators(string text)
@@ -173,6 +196,7 @@ namespace DescribeParser.IntegrationTests
             foreach (string name in names)
             {
                 if (name.StartsWith("DescribeParser.IntegrationTests.TestFiles.TestFilesFor06") == false) continue;
+                if (skipFilesFor06.Contains(name)) continue;
                 Console.WriteLine("-------------------------------------------------");
                 Console.WriteLine("Starting a parse operation on '" + name + "'" + Environment.NewLine);
 
@@ -259,6 +283,7 @@ namespace DescribeParser.IntegrationTests
             foreach (string name in names)
             {
                 if (name.StartsWith("DescribeParser.IntegrationTests.TestFiles.TestFilesFor07") == false) continue;
+                if (skipFilesFor07.Contains(name)) continue;
                 Console.WriteLine("-------------------------------------------------");
                 Console.WriteLine("Starting a parse operation on '" + name + "'" + Environment.NewLine);
 
@@ -345,6 +370,7 @@ namespace DescribeParser.IntegrationTests
             foreach (string name in names)
             {
                 if (name.StartsWith("DescribeParser.IntegrationTests.TestFiles.TestFilesFor08") == false) continue;
+                if (skipFilesFor08.Contains(name)) continue;
                 Console.WriteLine("-------------------------------------------------");
                 Console.WriteLine("Starting a parse operation on '" + name + "'" + Environment.NewLine);
 
@@ -431,6 +457,7 @@ namespace DescribeParser.IntegrationTests
             foreach (string name in names)
             {
                 if (name.StartsWith("DescribeParser.IntegrationTests.TestFiles.TestFilesFor09") == false) continue;
+                if (skipFilesFor09.Contains(name)) continue;
                 Console.WriteLine("-------------------------------------------------");
                 Console.WriteLine("Starting a parse operation on '" + name + "'" + Environment.NewLine);
 

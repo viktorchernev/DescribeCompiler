@@ -1,0 +1,6 @@
+fabrics ->
+
+	wool < fabrics <<someid>>,
+	cotton >fabrics <<someid>> ,
+	silk fabrics<<someid>> ,
+	synthetic<>fabrics;

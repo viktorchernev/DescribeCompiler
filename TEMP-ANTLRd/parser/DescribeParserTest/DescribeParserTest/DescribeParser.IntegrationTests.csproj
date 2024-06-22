@@ -122,6 +122,7 @@
     <None Remove="TestFiles\TestFilesFor10\A_semicolons1.ds" />
     <None Remove="TestFiles\TestFilesFor10\A_semicolons2.ds" />
     <None Remove="TestFiles\TestFilesFor10\A_semicolons3.ds" />
+    <None Remove="TestFiles\TestFilesFor10\A_tilde.ds" />
     <None Remove="TestFiles\TestFilesFor10\B_exotic_spaces.ds" />
     <None Remove="TestFiles\TestFilesFor10\B_spaces.ds" />
     <None Remove="TestFiles\TestFilesFor10\B_tabs.ds" />
@@ -137,6 +138,13 @@
     <None Remove="TestFiles\TestFilesFor10\E_escaped_double_commas.ds" />
     <None Remove="TestFiles\TestFilesFor10\E_escaped_double_producers.ds" />
     <None Remove="TestFiles\TestFilesFor10\E_escaped_double_semicolons.ds" />
+    <None Remove="TestFiles\TestFilesFor11\A_decorators.ds" />
+    <None Remove="TestFiles\TestFilesFor11\A_decorators2.ds" />
+    <None Remove="TestFiles\TestFilesFor11\A_links.ds" />
+    <None Remove="TestFiles\TestFilesFor11\A_links2.ds" />
+    <None Remove="TestFiles\TestFilesFor11\A_tags.ds" />
+    <None Remove="TestFiles\TestFilesFor11\A_tags2.ds" />
+    <None Remove="TestFiles\TestFilesFor11\A_tilde.ds" />
   </ItemGroup>
 
   <ItemGroup>
@@ -247,6 +255,7 @@
     <EmbeddedResource Include="TestFiles\TestFilesFor09\B_comments4.ds" />
     <EmbeddedResource Include="TestFiles\TestFilesFor09\B_comments5.ds" />
     <EmbeddedResource Include="TestFiles\TestFilesFor09\C_cyrillic.ds" />
+    <EmbeddedResource Include="TestFiles\TestFilesFor10\A_tilde.ds" />
     <EmbeddedResource Include="TestFiles\TestFilesFor10\E_escaped_double_commas.ds" />
     <EmbeddedResource Include="TestFiles\TestFilesFor10\E_escaped_double_producers.ds" />
     <EmbeddedResource Include="TestFiles\TestFilesFor10\D_producers.ds" />
@@ -272,15 +281,18 @@
     <EmbeddedResource Include="TestFiles\TestFilesFor10\A_inner_commas2.ds" />
     <EmbeddedResource Include="TestFiles\TestFilesFor10\A_inner_commas1.ds" />
     <EmbeddedResource Include="TestFiles\TestFilesFor10\A_control.ds" />
+    <EmbeddedResource Include="TestFiles\TestFilesFor11\A_links2.ds" />
+    <EmbeddedResource Include="TestFiles\TestFilesFor11\A_links.ds" />
+    <EmbeddedResource Include="TestFiles\TestFilesFor11\A_decorators2.ds" />
+    <EmbeddedResource Include="TestFiles\TestFilesFor11\A_decorators.ds" />
+    <EmbeddedResource Include="TestFiles\TestFilesFor11\A_tilde.ds" />
+    <EmbeddedResource Include="TestFiles\TestFilesFor11\A_tags2.ds" />
+    <EmbeddedResource Include="TestFiles\TestFilesFor11\A_tags.ds" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\AntlrRuntime\Antlr4.csproj" />
     <ProjectReference Include="..\..\DescribeParser\DescribeParser.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="TestFiles\TestFilesFor11\" />
   </ItemGroup>
 
 </Project>

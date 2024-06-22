@@ -1,0 +1,17 @@
+This list explains the contents of the basic test files for Describe version 1.1 "Doubles".
+Describe version 1.1, as well as version 0.6 and 0.7, 0.8, 0.9 and 1.0 should pass as well, in order to prove backward compatibility. 
+However, there are some files that won't pass the test - namely the ones that include producers '->' in the middle of lines.
+These tests are not extensively covering all possible edge cases, but keep in mind that we have a hundreds of files in the Describe library, that will serve as a test as well.
+
+
+A. Basics
+
+	Category A - basic tests.
+	
+	A_tags - Tags in double brackets '<<' and '>>'.
+	A_tags2 - Tags in double brackets '<<' and '>>'. Single brackets in text - '<' and '>'.
+	A_links - Links in double brackets '[[' and ']]'.
+	A_links2 - Links in double brackets '[[' and ']]'. Single brackets in text - '[' and ']'.
+	A_decorators - Decorators in double brackets '{{' and '}}'.
+	A_decorators2 - Decorators in double brackets '{{' and '}}'. Single brackets in text - '{' and '}'.
+	A_tilde.ds - A tilde inversion.

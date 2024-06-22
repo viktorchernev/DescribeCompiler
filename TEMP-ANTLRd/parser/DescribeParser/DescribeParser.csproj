@@ -17,7 +17,6 @@
     <Folder Include="Parsers\ParserFor09\" />
     <Folder Include="Parsers\ParserFor08\" />
     <Folder Include="Parsers\ParserFor07\" />
-    <Folder Include="Visitors\VisitorsFor11\" />
   </ItemGroup>
 
 </Project>
