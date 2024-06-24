@@ -163,7 +163,7 @@ namespace DescribeParser.Visitors
 
 
 
-        static string GetTokenType(int tokenType) //an alternative (possibly slower)
+        static string GetTokenType(int tokenType)
         {
             return Describe06Lexer.DefaultVocabulary.GetSymbolicName(tokenType);
         }
