@@ -2,13 +2,12 @@
 Source Code (between the arrows)
 ========================================
 
-🡆fabrics ->
+🡆fa \ br\ics\ ->
 
-    wool fabrics,
-    cotton fabrics,
-    silk fabrics,
-    synthetic fabrics;
-🡄
+    wool\fabrics,
+    \cotton fabrics,
+    \ silk \ fabrics,
+    synthetic fabrics;🡄
 
 ========================================
 Parse Tree
@@ -20,17 +19,17 @@ DescribeUnfold
     .FailedFiles
 
     .PrimaryProductions
-        "5UQ9GAYP" 
+        "SI2RFXE2" 
 
     .Productions
-        "5UQ9GAYP" -> "UH872ZA7", "OUQMTG74", "HMR52PAN", "F55NNG8N";
+        "SI2RFXE2" -> "QN9X63NS", "B5E0W5CC", "RF4UE4CI", "RWARBW5Y";
 
     .Translations
-        "5UQ9GAYP" - "fabrics"
-        "UH872ZA7" - "wool fabrics"
-        "OUQMTG74" - "cotton fabrics"
-        "HMR52PAN" - "silk fabrics"
-        "F55NNG8N" - "synthetic fabrics"
+        "SI2RFXE2" - "fa \ br\ics\"
+        "QN9X63NS" - "wool\fabrics"
+        "B5E0W5CC" - "\cotton fabrics"
+        "RF4UE4CI" - "\ silk \ fabrics"
+        "RWARBW5Y" - "synthetic fabrics"
 
 
     .ProdidFile (Not Implemented)

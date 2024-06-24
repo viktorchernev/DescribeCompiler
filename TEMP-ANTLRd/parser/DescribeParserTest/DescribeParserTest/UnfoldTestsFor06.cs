@@ -108,6 +108,7 @@ namespace DescribeParser.IntegrationTests
                 DescribeUnfold u = new DescribeUnfold();
                 visitor.DoScripture(u, scriptureContext);
                 string tree = u.ToString();
+                Console.WriteLine(tree);
                 //string tree = visitor.Log;
                 fullwatch.Stop();
 

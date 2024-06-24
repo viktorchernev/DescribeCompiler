@@ -16,8 +16,8 @@ namespace DescribeParser.IntegrationTests
             //RunParserTests();
 
             //test 06
-            UnfoldTestsFor06.TestFile("DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.A_basic4.ds");
-            //UnfoldTestsFor06.TestFiles(true, true);
+            //UnfoldTestsFor06.TestFile("DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.A_basic4.ds");
+            UnfoldTestsFor06.TestFiles(true, true);
 
 
         }

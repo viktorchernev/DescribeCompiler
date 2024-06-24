@@ -2,13 +2,15 @@
 Source Code (between the arrows)
 ========================================
 
-🡆fabrics ->
+🡆macronutrients ->
 
-    wool fabrics,
-    cotton fabrics,
-    silk fabrics,
-    synthetic fabrics;
-🡄
+    water,
+	fiber ->
+
+        what,
+        not;
+
+	somth else;🡄
 
 ========================================
 Parse Tree
@@ -20,17 +22,19 @@ DescribeUnfold
     .FailedFiles
 
     .PrimaryProductions
-        "5UQ9GAYP" 
+        "UXBKCLR4" 
 
     .Productions
-        "5UQ9GAYP" -> "UH872ZA7", "OUQMTG74", "HMR52PAN", "F55NNG8N";
+        "UYPXC0SU" -> "F0NJ5YGO", "JNJ4RRQI";
+        "UXBKCLR4" -> "CFENPLWL", "UYPXC0SU", "CV85T7HA";
 
     .Translations
-        "5UQ9GAYP" - "fabrics"
-        "UH872ZA7" - "wool fabrics"
-        "OUQMTG74" - "cotton fabrics"
-        "HMR52PAN" - "silk fabrics"
-        "F55NNG8N" - "synthetic fabrics"
+        "UXBKCLR4" - "macronutrients"
+        "CFENPLWL" - "water"
+        "UYPXC0SU" - "fiber"
+        "F0NJ5YGO" - "what"
+        "JNJ4RRQI" - "not"
+        "CV85T7HA" - "somth else"
 
 
     .ProdidFile (Not Implemented)
