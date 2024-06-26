@@ -16,15 +16,21 @@ DescribeUnfold
     .FailedFiles
 
     .PrimaryProductions
-        "MZHO8VX6" 
+        "QEQPHHPP" 
 
     .Productions
-        "MZHO8VX6" -> "7SGLFY9B";
+        "QEQPHHPP" -> "T4QLZLTH";
 
     .Translations
-        "MZHO8VX6" - "fabrics"
-        "7SGLFY9B" - "synthetic fabrics"
+        "QEQPHHPP" - "fabrics"
+        "T4QLZLTH" - "synthetic fabrics"
 
+    .Links
 
-    .ProdidFile (Not Implemented)
-    .ItemidFile (Not Implemented)
+    .ProdidFile
+        "QEQPHHPP" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.A_basic2.ds"
+
+    .ItemidFile
+        "QEQPHHPP" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.A_basic2.ds"
+        "T4QLZLTH" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.A_basic2.ds"
+

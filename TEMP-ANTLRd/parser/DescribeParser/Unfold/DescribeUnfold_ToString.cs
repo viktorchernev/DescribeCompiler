@@ -26,6 +26,8 @@ namespace DescribeParser
             text += PrimaryProductions_ToString();
             text += Productions_ToString();
             text += Translations_ToString();
+            text += Links_ToString();
+            text += Decorators_ToString();
             text += Environment.NewLine;
 
             //File Placement
@@ -137,21 +139,111 @@ namespace DescribeParser
             text += Environment.NewLine;
             return text;
         }
+        private string Links_ToString()
+        {
+            string text = INDENT + ".Links" + Environment.NewLine;
+            if (Links.Count == 0) return text;
+
+            foreach (KeyValuePair<string, List<Tuple<string, string>>> kvp in Links)
+            {
+                if(kvp.Value.Count == 0)
+                {
+                    text += INDENT + INDENT + '"' + kvp.Key + "\" - ";
+                    text += Environment.NewLine;
+                }
+                else if (kvp.Value.Count == 1)
+                {
+                    string link = "\"" + kvp.Value[0].Item1 + "\"";
+                    if (string.IsNullOrEmpty(kvp.Value[0].Item2) == false)
+                    {
+                        link += " | \"" + kvp.Value[0].Item2 + "\"";
+                    }
+                    text += INDENT + INDENT + '"' + kvp.Key + "\" - " + link;
+                    text += Environment.NewLine;
+                }
+                else if (kvp.Value.Count > 1)
+                {
+                    text += Environment.NewLine + INDENT + INDENT + '"' + kvp.Key + "\" -" + Environment.NewLine;
+                    for(int i = 0; i < kvp.Value.Count; i++)
+                    {
+                        string link = "\"" + kvp.Value[i].Item1 + "\"";
+                        if (string.IsNullOrEmpty(kvp.Value[i].Item2) == false)
+                        {
+                            link += " | \"" + kvp.Value[i].Item2 + "\"";
+                        }
+                        text += INDENT + INDENT + INDENT + link + Environment.NewLine;
+                    }
+                    text += Environment.NewLine;
+                }
+            }
+            text += Environment.NewLine;
+            return text;
+        }
+        private string Decorators_ToString()
+        {
+            string text = INDENT + ".Decorators" + Environment.NewLine;
+            if (Decorators.Count == 0) return text;
+
+            foreach (KeyValuePair<string, List<List<string>>> kvp in Decorators)
+            {
+                if (kvp.Value.Count == 0)
+                {
+                    text += INDENT + INDENT + '"' + kvp.Key + "\" - ";
+                    text += Environment.NewLine;
+                }
+                else if (kvp.Value.Count == 1)
+                {
+                    string decorator = "\"" + string.Join("\" | \"", kvp.Value[0]) + "\"";
+                    text += INDENT + INDENT + '"' + kvp.Key + "\" - " + decorator;
+                    text += Environment.NewLine;
+                }
+                else if (kvp.Value.Count > 1)
+                {
+                    text += Environment.NewLine + INDENT + INDENT + '"' + kvp.Key + "\" -" + Environment.NewLine;
+                    for (int i = 0; i < kvp.Value.Count; i++)
+                    {
+                        string decorator = "\"" + string.Join("\" | \"", kvp.Value[i]) + "\"";
+                        text += INDENT + INDENT + INDENT + decorator + Environment.NewLine;
+                    }
+                    text += Environment.NewLine;
+                }
+            }
+            text += Environment.NewLine;
+            return text;
+        }
 
 
         //ToString() - File Placement
         private string ProdidFile_ToString()
         {
-            string text = INDENT + ".ProdidFile (Not Implemented)" + Environment.NewLine;
+            string text = INDENT + ".ProdidFile" + Environment.NewLine;
             if (ProdidFile.Count == 0) return text;
 
+            foreach (KeyValuePair<string, List<string>> kvp in ProdidFile)
+            {
+                text += INDENT + INDENT + '"' + kvp.Key + "\" - \"" + kvp.Value[0] + "\"" + Environment.NewLine;
+                for(int i = 1; i < kvp.Value.Count; i++)
+                {
+                    text += INDENT + INDENT + INDENT + '"' + kvp.Key + "\" - \"" + kvp.Value[i] + "\"" + Environment.NewLine;
+                }
+            }
+            text += Environment.NewLine;
             return text;
         }
         private string ItemidFile_ToString()
         {
-            string text = INDENT + ".ItemidFile (Not Implemented)" + Environment.NewLine;
+            string text = INDENT + ".ItemidFile" + Environment.NewLine;
             if (ItemidFile.Count == 0) return text;
 
+            foreach (KeyValuePair<string, List<string>> kvp in ItemidFile)
+            {
+                text += INDENT + INDENT + '"' + kvp.Key + "\" - \"" + kvp.Value[0] + "\"" + Environment.NewLine;
+                for (int i = 1; i < kvp.Value.Count; i++)
+                {
+                    text += INDENT + INDENT + INDENT + '"' + kvp.Key + "\" - \"" + kvp.Value[i] + "\"" + Environment.NewLine;
+                }
+            }
+            text += Environment.NewLine;
             return text;
         }
     }

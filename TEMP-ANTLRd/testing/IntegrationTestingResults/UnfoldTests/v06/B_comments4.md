@@ -21,18 +21,27 @@ DescribeUnfold
     .FailedFiles
 
     .PrimaryProductions
-        "XXKBEAY0" 
+        "H1QA06GY" 
 
     .Productions
-        "XXKBEAY0" -> "NZD9UG2O", "6P4M92UO", "R65SCAI8", "5KN5UK5O";
+        "H1QA06GY" -> "IT1X6JA7", "BAY0NS2Y", "GEG79YKL", "MDDF73T1";
 
     .Translations
-        "XXKBEAY0" - "fabrics"
-        "NZD9UG2O" - "wool fabrics"
-        "6P4M92UO" - "cotton fabrics"
-        "R65SCAI8" - "silk fabrics"
-        "5KN5UK5O" - "synthetic fabrics"
+        "H1QA06GY" - "fabrics"
+        "IT1X6JA7" - "wool fabrics"
+        "BAY0NS2Y" - "cotton fabrics"
+        "GEG79YKL" - "silk fabrics"
+        "MDDF73T1" - "synthetic fabrics"
 
+    .Links
 
-    .ProdidFile (Not Implemented)
-    .ItemidFile (Not Implemented)
+    .ProdidFile
+        "H1QA06GY" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.B_comments4.ds"
+
+    .ItemidFile
+        "H1QA06GY" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.B_comments4.ds"
+        "IT1X6JA7" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.B_comments4.ds"
+        "BAY0NS2Y" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.B_comments4.ds"
+        "GEG79YKL" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.B_comments4.ds"
+        "MDDF73T1" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.B_comments4.ds"
+

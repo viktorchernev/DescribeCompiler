@@ -19,18 +19,27 @@ DescribeUnfold
     .FailedFiles
 
     .PrimaryProductions
-        "8KE0ZRU9" 
+        "46CO6V3A" 
 
     .Productions
-        "8KE0ZRU9" -> "KI62HNKJ", "VZZRJS7Z", "1BV26TUZ", "YRNPEMMQ";
+        "46CO6V3A" -> "TS57CV9V", "42PHHGXR", "TDX8YCUA", "T51EK9SC";
 
     .Translations
-        "8KE0ZRU9" - "fabric*s"
-        "KI62HNKJ" - "wool fabrics"
-        "VZZRJS7Z" - "cotton fabrics"
-        "1BV26TUZ" - "silk fabrics"
-        "YRNPEMMQ" - "synthetic fabrics"
+        "46CO6V3A" - "fabric*s"
+        "TS57CV9V" - "wool fabrics"
+        "42PHHGXR" - "cotton fabrics"
+        "TDX8YCUA" - "silk fabrics"
+        "T51EK9SC" - "synthetic fabrics"
 
+    .Links
 
-    .ProdidFile (Not Implemented)
-    .ItemidFile (Not Implemented)
+    .ProdidFile
+        "46CO6V3A" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.A_basic1.ds"
+
+    .ItemidFile
+        "46CO6V3A" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.A_basic1.ds"
+        "TS57CV9V" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.A_basic1.ds"
+        "42PHHGXR" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.A_basic1.ds"
+        "TDX8YCUA" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.A_basic1.ds"
+        "T51EK9SC" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.A_basic1.ds"
+

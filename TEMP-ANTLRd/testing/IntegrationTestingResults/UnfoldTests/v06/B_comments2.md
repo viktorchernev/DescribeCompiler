@@ -19,17 +19,25 @@ DescribeUnfold
     .FailedFiles
 
     .PrimaryProductions
-        "GP2DWET8" 
+        "MJ7Z6XHE" 
 
     .Productions
-        "GP2DWET8" -> "E78XBDMS", "NAWLX69S", "P9U3WJQA";
+        "MJ7Z6XHE" -> "4A6KUA8Q", "PU682EBT", "YEMZKPS5";
 
     .Translations
-        "GP2DWET8" - "fabrics"
-        "E78XBDMS" - "cotton fabrics"
-        "NAWLX69S" - "silk fabrics"
-        "P9U3WJQA" - "synthetic fabrics"
+        "MJ7Z6XHE" - "fabrics"
+        "4A6KUA8Q" - "cotton fabrics"
+        "PU682EBT" - "silk fabrics"
+        "YEMZKPS5" - "synthetic fabrics"
 
+    .Links
 
-    .ProdidFile (Not Implemented)
-    .ItemidFile (Not Implemented)
+    .ProdidFile
+        "MJ7Z6XHE" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.B_comments2.ds"
+
+    .ItemidFile
+        "MJ7Z6XHE" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.B_comments2.ds"
+        "4A6KUA8Q" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.B_comments2.ds"
+        "PU682EBT" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.B_comments2.ds"
+        "YEMZKPS5" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.B_comments2.ds"
+

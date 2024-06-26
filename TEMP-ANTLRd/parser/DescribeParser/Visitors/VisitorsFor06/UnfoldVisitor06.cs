@@ -62,10 +62,11 @@ namespace DescribeParser.Visitors
         /// <param name="u">Unfold to be populated</param>
         /// <param name="context">Root context produced by the parser aka the parse tree</param>
         /// <returns>True if successful</returns>
-        public bool DoScripture(DescribeUnfold u, Describe06Parser.ScriptureContext context)
+        public bool DoScripture(DescribeUnfold u, Describe06Parser.ScriptureContext context, string filename = "")
         {
             //reset namespace for the file
-            //u.CurNamespace = "";
+            u.LastNamespace = "";
+            u.LastFile = filename == null ? "" : filename;
 
             //if we have no productions whatsoever
             //then this must be the primary file
@@ -124,7 +125,7 @@ namespace DescribeParser.Visitors
                     foreach (string directive in directives)
                     {
                         string keyword = u.Translations[directive];
-                        if (keyword == "namespace") u.CurNamespace = directive;
+                        if (keyword == "namespace") u.LastNamespace = directive;
                         u.Translations.Remove(directive);
                     }
 
@@ -138,7 +139,7 @@ namespace DescribeParser.Visitors
             // deal with the rest of the children
             List<string> keys = new List<string>();
             if (removeKey == false) keys.Add(key1);
-            for (int i = 0; i < childCount; i++)
+            for (int i = 1; i < childCount; i++)
             {
                 var child = context.GetChild(i) as Describe06Parser.ExpressionContext;
                 string key = DoExpression(u, child);
@@ -268,6 +269,18 @@ namespace DescribeParser.Visitors
                 u.Productions.Add(head, rights.ToList());
             }
 
+            //idFile
+            string cf = u.LastFile;
+            if (string.IsNullOrEmpty(cf)) cf = "NA";
+            if (u.ProdidFile.ContainsKey(head) == false)
+            {
+                u.ProdidFile.Add(head, new List<string>() { cf });
+            }
+            else
+            {
+                u.ProdidFile[head].Add(cf);
+            }
+
             return head;
         }
 
@@ -299,14 +312,27 @@ namespace DescribeParser.Visitors
                 u.Translations[tag] = text;
             }
 
+            //add empty items for tags and decorators anyways
+            //in order to initialize them and not have nulls
+            if (!u.Links.Keys.Contains(tag))
+            {
+                u.Links.Add(tag, new List<Tuple<string, string>>());
+            }
+            if (!u.Decorators.Keys.Contains(tag))
+            {
+                u.Decorators.Add(tag, new List<List<string>>());
+            }
+
             //idFile
+            string cf = u.LastFile;
+            if (string.IsNullOrEmpty(cf)) cf = "NA";
             if (u.ItemidFile.ContainsKey(tag) == false)
             {
-                u.ItemidFile.Add(tag, new List<string>() { u.CurFile });
+                u.ItemidFile.Add(tag, new List<string>() { cf });
             }
             else
             {
-                u.ItemidFile[tag].Add(u.CurFile);
+                u.ItemidFile[tag].Add(cf);
             }
 
             return tag;

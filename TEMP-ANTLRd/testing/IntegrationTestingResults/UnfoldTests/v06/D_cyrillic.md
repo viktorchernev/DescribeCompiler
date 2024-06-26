@@ -19,18 +19,27 @@ DescribeUnfold
     .FailedFiles
 
     .PrimaryProductions
-        "MMEQHHQI" 
+        "QGF3ILNA" 
 
     .Productions
-        "MMEQHHQI" -> "7YRBZ4MK", "6Z91GUV4", "I3PP17MM", "VJAQZX7L";
+        "QGF3ILNA" -> "CF0MW6OM", "KXENOLC0", "A8Z2GJSW", "E7979VRV";
 
     .Translations
-        "MMEQHHQI" - "платове"
-        "7YRBZ4MK" - "вълнени платове"
-        "6Z91GUV4" - "памучни платове"
-        "I3PP17MM" - "копринени платове"
-        "VJAQZX7L" - "синтетични платове"
+        "QGF3ILNA" - "платове"
+        "CF0MW6OM" - "вълнени платове"
+        "KXENOLC0" - "памучни платове"
+        "A8Z2GJSW" - "копринени платове"
+        "E7979VRV" - "синтетични платове"
 
+    .Links
 
-    .ProdidFile (Not Implemented)
-    .ItemidFile (Not Implemented)
+    .ProdidFile
+        "QGF3ILNA" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_cyrillic.ds"
+
+    .ItemidFile
+        "QGF3ILNA" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_cyrillic.ds"
+        "CF0MW6OM" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_cyrillic.ds"
+        "KXENOLC0" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_cyrillic.ds"
+        "A8Z2GJSW" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_cyrillic.ds"
+        "E7979VRV" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_cyrillic.ds"
+

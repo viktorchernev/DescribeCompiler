@@ -17,16 +17,23 @@ DescribeUnfold
     .FailedFiles
 
     .PrimaryProductions
-        "35C0YZT3" 
+        "J6RRBCUV" 
 
     .Productions
-        "35C0YZT3" -> "BAD4IKD1", "HOWDOUOI";
+        "J6RRBCUV" -> "5WGSX8HN", "78GTHJRW";
 
     .Translations
-        "35C0YZT3" - "fabrics"
-        "BAD4IKD1" - "wool fabrics"
-        "HOWDOUOI" - "cotton fabrics"
+        "J6RRBCUV" - "fabrics"
+        "5WGSX8HN" - "wool fabrics"
+        "78GTHJRW" - "cotton fabrics"
 
+    .Links
 
-    .ProdidFile (Not Implemented)
-    .ItemidFile (Not Implemented)
+    .ProdidFile
+        "J6RRBCUV" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.B_comments3.ds"
+
+    .ItemidFile
+        "J6RRBCUV" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.B_comments3.ds"
+        "5WGSX8HN" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.B_comments3.ds"
+        "78GTHJRW" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.B_comments3.ds"
+

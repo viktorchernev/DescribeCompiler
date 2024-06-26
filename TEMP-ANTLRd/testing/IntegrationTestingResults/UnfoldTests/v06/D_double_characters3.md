@@ -19,18 +19,27 @@ DescribeUnfold
     .FailedFiles
 
     .PrimaryProductions
-        "SI2RFXE2" 
+        "EPL958LN" 
 
     .Productions
-        "SI2RFXE2" -> "QN9X63NS", "B5E0W5CC", "RF4UE4CI", "RWARBW5Y";
+        "EPL958LN" -> "N034VZI5", "01IGNWET", "HVIDX9EF", "LTKPX9UF";
 
     .Translations
-        "SI2RFXE2" - "fa \ br\ics\"
-        "QN9X63NS" - "wool\fabrics"
-        "B5E0W5CC" - "\cotton fabrics"
-        "RF4UE4CI" - "\ silk \ fabrics"
-        "RWARBW5Y" - "synthetic fabrics"
+        "EPL958LN" - "fa \ br\ics\"
+        "N034VZI5" - "wool\fabrics"
+        "01IGNWET" - "\cotton fabrics"
+        "HVIDX9EF" - "\ silk \ fabrics"
+        "LTKPX9UF" - "synthetic fabrics"
 
+    .Links
 
-    .ProdidFile (Not Implemented)
-    .ItemidFile (Not Implemented)
+    .ProdidFile
+        "EPL958LN" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_double_characters3.ds"
+
+    .ItemidFile
+        "EPL958LN" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_double_characters3.ds"
+        "N034VZI5" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_double_characters3.ds"
+        "01IGNWET" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_double_characters3.ds"
+        "HVIDX9EF" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_double_characters3.ds"
+        "LTKPX9UF" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_double_characters3.ds"
+

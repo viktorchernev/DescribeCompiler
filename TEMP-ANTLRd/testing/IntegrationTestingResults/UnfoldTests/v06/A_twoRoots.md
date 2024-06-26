@@ -22,24 +22,31 @@ DescribeUnfold
     .FailedFiles
 
     .PrimaryProductions
-        "CHKH0N15" "LEFDG1V2" "7V9YV5HQ" 
+        "KR4AXCRM" "T50LZLZQ" 
 
     .Productions
-        "CHKH0N15" -> "OIFZK315", "C0VAE0RB";
-        "LEFDG1V2" -> "C1P110UM", "9FYJPYR8";
-        "7V9YV5HQ" -> "J55VEVED", "SYQ3A3BQ";
+        "KR4AXCRM" -> "LWFBHZ66", "V0DO811I";
+        "T50LZLZQ" -> "1BG9BHDP", "MYFI47LD";
 
     .Translations
-        "CHKH0N15" - "macronutrients"
-        "OIFZK315" - "fiber"
-        "C0VAE0RB" - "water"
-        "LEFDG1V2" - "macronutrients"
-        "C1P110UM" - "fiber"
-        "9FYJPYR8" - "water"
-        "7V9YV5HQ" - "micronutrients"
-        "J55VEVED" - "vitamins (ABCDEK)"
-        "SYQ3A3BQ" - "minerals (micronutrients)"
+        "KR4AXCRM" - "macronutrients"
+        "LWFBHZ66" - "fiber"
+        "V0DO811I" - "water"
+        "T50LZLZQ" - "micronutrients"
+        "1BG9BHDP" - "vitamins (ABCDEK)"
+        "MYFI47LD" - "minerals (micronutrients)"
 
+    .Links
 
-    .ProdidFile (Not Implemented)
-    .ItemidFile (Not Implemented)
+    .ProdidFile
+        "KR4AXCRM" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.A_twoRoots.ds"
+        "T50LZLZQ" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.A_twoRoots.ds"
+
+    .ItemidFile
+        "KR4AXCRM" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.A_twoRoots.ds"
+        "LWFBHZ66" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.A_twoRoots.ds"
+        "V0DO811I" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.A_twoRoots.ds"
+        "T50LZLZQ" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.A_twoRoots.ds"
+        "1BG9BHDP" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.A_twoRoots.ds"
+        "MYFI47LD" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.A_twoRoots.ds"
+

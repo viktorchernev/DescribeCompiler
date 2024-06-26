@@ -106,11 +106,10 @@ namespace DescribeParser.IntegrationTests
                 Describe06Parser.ScriptureContext scriptureContext = parser.scripture();
                 UnfoldVisitor06 visitor = new UnfoldVisitor06();
                 DescribeUnfold u = new DescribeUnfold();
-                visitor.DoScripture(u, scriptureContext);
+                visitor.DoScripture(u, scriptureContext, name);
+                fullwatch.Stop();
                 string tree = u.ToString();
                 Console.WriteLine(tree);
-                //string tree = visitor.Log;
-                fullwatch.Stop();
 
                 //IDK really why this is
                 parser.BuildParseTree = true;
@@ -135,8 +134,7 @@ namespace DescribeParser.IntegrationTests
                 if (visitor.LastError == null)
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
-                    TimeSpan elapsed = fullwatch.Elapsed;
-                    string formattedElapsedTime = string.Format("{0:0}.{1:000} seconds", elapsed.TotalSeconds, elapsed.Milliseconds);
+                    string formattedElapsedTime = GetElapsedTime(fullwatch);
                     Console.WriteLine("Success! - took: " + formattedElapsedTime);
                     Console.WriteLine("Press any key to continue.");
                     Console.ForegroundColor = ConsoleColor.White;
@@ -186,7 +184,7 @@ namespace DescribeParser.IntegrationTests
             Describe06Parser.ScriptureContext scriptureContext = parser.scripture();
             UnfoldVisitor06 visitor = new UnfoldVisitor06();
             DescribeUnfold u = new DescribeUnfold();
-            visitor.DoScripture(u, scriptureContext);
+            visitor.DoScripture(u, scriptureContext, embeddedName);
             string tree = u.ToString();
             Console.WriteLine(tree);
             //string tree = visitor.Log;
@@ -230,6 +228,30 @@ namespace DescribeParser.IntegrationTests
         }
 
 
+        static string GetElapsedTime(Stopwatch watch)
+        {
+            // Old - millisecond range
+            //string formattedElapsedTime = string.Format("{0:0}.{1:000} seconds", elapsed.TotalSeconds, elapsed.Milliseconds);
+            //return formattedElapsedTime
+
+            // New - 100 Nanosecond range
+            TimeSpan elapsed = watch.Elapsed;
+
+            // Convert ticks to nanoseconds
+            double totalNanoseconds = elapsed.Ticks * 100.0;
+
+            // Calculate milliseconds, microseconds, and nanoseconds
+            int milliseconds = (int)(totalNanoseconds / 1_000_000);
+            int microseconds = (int)((totalNanoseconds % 1_000_000) / 1_000);
+            int nanoseconds = (int)(totalNanoseconds % 1_000);
+
+            // Format the elapsed time to include milliseconds, microseconds, and nanoseconds
+            string formattedElapsedTime = string.Format("{0:0}.{1:000}.{2:000}.{3:0} seconds",
+                Math.Floor(elapsed.TotalSeconds), milliseconds, microseconds, nanoseconds / 100);
+
+            //return
+            return formattedElapsedTime;
+        }
         static string GetTokenType(int tokenType)
         {
             //an alternative (possibly slower)

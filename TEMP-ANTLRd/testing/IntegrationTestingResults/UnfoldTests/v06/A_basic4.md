@@ -20,18 +20,27 @@ DescribeUnfold
     .FailedFiles
 
     .PrimaryProductions
-        "5UQ9GAYP" 
+        "R85YLF2I" 
 
     .Productions
-        "5UQ9GAYP" -> "UH872ZA7", "OUQMTG74", "HMR52PAN", "F55NNG8N";
+        "R85YLF2I" -> "FG8MEOV5", "Y6WQHWJW", "8HAFH45F", "HCI0S1SC";
 
     .Translations
-        "5UQ9GAYP" - "fabrics"
-        "UH872ZA7" - "wool fabrics"
-        "OUQMTG74" - "cotton fabrics"
-        "HMR52PAN" - "silk fabrics"
-        "F55NNG8N" - "synthetic fabrics"
+        "R85YLF2I" - "fabrics"
+        "FG8MEOV5" - "wool fabrics"
+        "Y6WQHWJW" - "cotton fabrics"
+        "8HAFH45F" - "silk fabrics"
+        "HCI0S1SC" - "synthetic fabrics"
 
+    .Links
 
-    .ProdidFile (Not Implemented)
-    .ItemidFile (Not Implemented)
+    .ProdidFile
+        "R85YLF2I" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.A_basic4.ds"
+
+    .ItemidFile
+        "R85YLF2I" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.A_basic4.ds"
+        "FG8MEOV5" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.A_basic4.ds"
+        "Y6WQHWJW" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.A_basic4.ds"
+        "8HAFH45F" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.A_basic4.ds"
+        "HCI0S1SC" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.A_basic4.ds"
+

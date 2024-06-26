@@ -16,10 +16,20 @@ namespace DescribeParser.IntegrationTests
             //RunParserTests();
 
             //test 06
-            //UnfoldTestsFor06.TestFile("DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.A_basic4.ds");
-            UnfoldTestsFor06.TestFiles(true, true);
+            //UnfoldTestsFor06.TestFile("DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.A_twoRoots.ds");
+            //UnfoldTestsFor06.TestFiles(true, true);
 
+            //test 07
+            //UnfoldTestsFor07.TestFile("DescribeParser.IntegrationTests.TestFiles.TestFilesFor07.A_twoRoots.ds");
+            //UnfoldTestsFor07.TestFiles(true, true);
 
+            //test 08
+            //UnfoldTestsFor08.TestFile("DescribeParser.IntegrationTests.TestFiles.TestFilesFor08.A_twoRoots.ds");
+            //UnfoldTestsFor08.TestFiles(true, true);
+
+            //test 09
+            //UnfoldTestsFor09.TestFile("DescribeParser.IntegrationTests.TestFiles.TestFilesFor09.A_twoRoots.ds");
+            UnfoldTestsFor09.TestFiles(true, true);
         }
         static void RunParserTests()
         {

@@ -19,18 +19,27 @@ DescribeUnfold
     .FailedFiles
 
     .PrimaryProductions
-        "KBBA1K87" 
+        "6R5F3IHD" 
 
     .Productions
-        "KBBA1K87" -> "DMXUZ3QG", "LPQUETIS", "8IKZVK7G", "BQ1IK3CU";
+        "6R5F3IHD" -> "E8F9KQ5S", "1D9N192U", "90GVNRR7", "KIRLUFHT";
 
     .Translations
-        "KBBA1K87" - "fa - br-ics-"
-        "DMXUZ3QG" - "wool-fabrics"
-        "LPQUETIS" - "-cotton fabrics"
-        "8IKZVK7G" - "- silk - fabrics"
-        "BQ1IK3CU" - "synthetic fabrics-"
+        "6R5F3IHD" - "fa - br-ics-"
+        "E8F9KQ5S" - "wool-fabrics"
+        "1D9N192U" - "-cotton fabrics"
+        "90GVNRR7" - "- silk - fabrics"
+        "KIRLUFHT" - "synthetic fabrics-"
 
+    .Links
 
-    .ProdidFile (Not Implemented)
-    .ItemidFile (Not Implemented)
+    .ProdidFile
+        "6R5F3IHD" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_double_characters1.ds"
+
+    .ItemidFile
+        "6R5F3IHD" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_double_characters1.ds"
+        "E8F9KQ5S" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_double_characters1.ds"
+        "1D9N192U" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_double_characters1.ds"
+        "90GVNRR7" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_double_characters1.ds"
+        "KIRLUFHT" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_double_characters1.ds"
+
