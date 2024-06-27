@@ -19,27 +19,41 @@ DescribeUnfold
     .FailedFiles
 
     .PrimaryProductions
-        "NKVV1FHI" 
+        "4RRQ85MN" 
 
     .Productions
-        "NKVV1FHI" -> "N33J5PE8", "N0Y7S5YB", "RD88JJJB", "Y7LHQRAL";
+        "4RRQ85MN" -> "06WSXT5R", "F1C21QZ6", "5O4UUC8P", "T947IHVV";
 
     .Translations
-        "NKVV1FHI" - "fa \, br\->ics\//"
-        "N33J5PE8" - "wool\;fabrics"
-        "N0Y7S5YB" - "\,cotton fabrics"
-        "RD88JJJB" - "silk fabrics"
-        "Y7LHQRAL" - "synthetic fabrics\;"
+        "4RRQ85MN" - "fa \, br\->ics\//"
+        "06WSXT5R" - "wool\;fabrics"
+        "F1C21QZ6" - "\,cotton fabrics"
+        "5O4UUC8P" - "silk fabrics"
+        "T947IHVV" - "synthetic fabrics\;"
 
     .Links
+        "4RRQ85MN" - 
+        "06WSXT5R" - 
+        "F1C21QZ6" - 
+        "5O4UUC8P" - 
+        "T947IHVV" - 
+
+    .Decorators
+        "4RRQ85MN" - 
+        "06WSXT5R" - 
+        "F1C21QZ6" - 
+        "5O4UUC8P" - 
+        "T947IHVV" - 
+
+    .Tildes
 
     .ProdidFile
-        "NKVV1FHI" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_escaped_double_characters2.ds"
+        "4RRQ85MN" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_escaped_double_characters2.ds"
 
     .ItemidFile
-        "NKVV1FHI" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_escaped_double_characters2.ds"
-        "N33J5PE8" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_escaped_double_characters2.ds"
-        "N0Y7S5YB" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_escaped_double_characters2.ds"
-        "RD88JJJB" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_escaped_double_characters2.ds"
-        "Y7LHQRAL" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_escaped_double_characters2.ds"
+        "4RRQ85MN" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_escaped_double_characters2.ds"
+        "06WSXT5R" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_escaped_double_characters2.ds"
+        "F1C21QZ6" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_escaped_double_characters2.ds"
+        "5O4UUC8P" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_escaped_double_characters2.ds"
+        "T947IHVV" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_escaped_double_characters2.ds"
 

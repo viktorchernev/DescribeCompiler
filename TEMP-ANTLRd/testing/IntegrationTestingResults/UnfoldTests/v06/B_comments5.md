@@ -19,27 +19,41 @@ DescribeUnfold
     .FailedFiles
 
     .PrimaryProductions
-        "N25F7L5F" 
+        "XTEGMOC5" 
 
     .Productions
-        "N25F7L5F" -> "7ZOBBZ1K", "PL5X5FVO", "CIKPMFBT", "IO269NQ1";
+        "XTEGMOC5" -> "VHOUUJTY", "8Q1A4PBN", "ZO7LOD9X", "62Q5ZY1U";
 
     .Translations
-        "N25F7L5F" - "fabrics"
-        "7ZOBBZ1K" - "wool fabrics"
-        "PL5X5FVO" - "cotton fabrics"
-        "CIKPMFBT" - "silk fabrics"
-        "IO269NQ1" - "synthetic fabrics"
+        "XTEGMOC5" - "fabrics"
+        "VHOUUJTY" - "wool fabrics"
+        "8Q1A4PBN" - "cotton fabrics"
+        "ZO7LOD9X" - "silk fabrics"
+        "62Q5ZY1U" - "synthetic fabrics"
 
     .Links
+        "XTEGMOC5" - 
+        "VHOUUJTY" - 
+        "8Q1A4PBN" - 
+        "ZO7LOD9X" - 
+        "62Q5ZY1U" - 
+
+    .Decorators
+        "XTEGMOC5" - 
+        "VHOUUJTY" - 
+        "8Q1A4PBN" - 
+        "ZO7LOD9X" - 
+        "62Q5ZY1U" - 
+
+    .Tildes
 
     .ProdidFile
-        "N25F7L5F" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.B_comments5.ds"
+        "XTEGMOC5" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.B_comments5.ds"
 
     .ItemidFile
-        "N25F7L5F" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.B_comments5.ds"
-        "7ZOBBZ1K" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.B_comments5.ds"
-        "PL5X5FVO" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.B_comments5.ds"
-        "CIKPMFBT" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.B_comments5.ds"
-        "IO269NQ1" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.B_comments5.ds"
+        "XTEGMOC5" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.B_comments5.ds"
+        "VHOUUJTY" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.B_comments5.ds"
+        "8Q1A4PBN" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.B_comments5.ds"
+        "ZO7LOD9X" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.B_comments5.ds"
+        "62Q5ZY1U" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.B_comments5.ds"
 

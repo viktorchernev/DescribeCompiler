@@ -19,25 +19,37 @@ DescribeUnfold
     .FailedFiles
 
     .PrimaryProductions
-        "MJ7Z6XHE" 
+        "GWFOFQX0" 
 
     .Productions
-        "MJ7Z6XHE" -> "4A6KUA8Q", "PU682EBT", "YEMZKPS5";
+        "GWFOFQX0" -> "9IQOYAG6", "C5KBU99F", "WY54VEE2";
 
     .Translations
-        "MJ7Z6XHE" - "fabrics"
-        "4A6KUA8Q" - "cotton fabrics"
-        "PU682EBT" - "silk fabrics"
-        "YEMZKPS5" - "synthetic fabrics"
+        "GWFOFQX0" - "fabrics"
+        "9IQOYAG6" - "cotton fabrics"
+        "C5KBU99F" - "silk fabrics"
+        "WY54VEE2" - "synthetic fabrics"
 
     .Links
+        "GWFOFQX0" - 
+        "9IQOYAG6" - 
+        "C5KBU99F" - 
+        "WY54VEE2" - 
+
+    .Decorators
+        "GWFOFQX0" - 
+        "9IQOYAG6" - 
+        "C5KBU99F" - 
+        "WY54VEE2" - 
+
+    .Tildes
 
     .ProdidFile
-        "MJ7Z6XHE" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.B_comments2.ds"
+        "GWFOFQX0" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.B_comments2.ds"
 
     .ItemidFile
-        "MJ7Z6XHE" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.B_comments2.ds"
-        "4A6KUA8Q" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.B_comments2.ds"
-        "PU682EBT" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.B_comments2.ds"
-        "YEMZKPS5" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.B_comments2.ds"
+        "GWFOFQX0" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.B_comments2.ds"
+        "9IQOYAG6" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.B_comments2.ds"
+        "C5KBU99F" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.B_comments2.ds"
+        "WY54VEE2" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.B_comments2.ds"
 

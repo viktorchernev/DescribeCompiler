@@ -12,6 +12,9 @@ namespace DescribeParser.IntegrationTests
 
 
 
+        /// <summary>
+        /// Preprocessor method for 09
+        /// </summary>
         static string PredictTerminators(string text)
         {
             AntlrInputStream inputstream = new AntlrInputStream(text);

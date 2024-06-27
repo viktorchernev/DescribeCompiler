@@ -17,7 +17,7 @@ namespace DescribeParser
         //main data
         public List<string> PrimaryProductions;                         //ids of productions that are primary productions
         public Dictionary<string, List<string>> Productions;            //id of left-hand side item, ids of right-hand side items
-        //public Dictionary<string, List<string>> Tildes;            	//id of item, ids of tildes
+        public Dictionary<string, List<string>> Tildes;            	    //id of item, ids of tildes
         public Dictionary<string, string> Translations;                 //id of item, text of item
         public Dictionary<string, List<Tuple<string, string>>> Links;   //id of item, links texts
         public Dictionary<string, List<List<string>>> Decorators;       //id of item, decorators texts
@@ -47,7 +47,7 @@ namespace DescribeParser
 
             PrimaryProductions = new List<string>();
             Productions = new Dictionary<string, List<string>>();
-            //Tildes = new Dictionary<string, List<string>>();
+            Tildes = new Dictionary<string, List<string>>();
             Translations = new Dictionary<string, string>();
             Links = new Dictionary<string, List<Tuple<string, string>>>();
             Decorators = new Dictionary<string, List<List<string>>>();

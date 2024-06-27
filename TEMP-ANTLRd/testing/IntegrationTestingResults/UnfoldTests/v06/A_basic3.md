@@ -14,21 +14,29 @@ DescribeUnfold
     .FailedFiles
 
     .PrimaryProductions
-        "2Q9N9LT6" 
+        "JX0A4D5C" 
 
     .Productions
-        "2Q9N9LT6" -> "85GGQL9D";
+        "JX0A4D5C" -> "VCDRFV2F";
 
     .Translations
-        "2Q9N9LT6" - "fabrics"
-        "85GGQL9D" - "synthetic fabrics"
+        "JX0A4D5C" - "fabrics"
+        "VCDRFV2F" - "synthetic fabrics"
 
     .Links
+        "JX0A4D5C" - 
+        "VCDRFV2F" - 
+
+    .Decorators
+        "JX0A4D5C" - 
+        "VCDRFV2F" - 
+
+    .Tildes
 
     .ProdidFile
-        "2Q9N9LT6" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.A_basic3.ds"
+        "JX0A4D5C" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.A_basic3.ds"
 
     .ItemidFile
-        "2Q9N9LT6" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.A_basic3.ds"
-        "85GGQL9D" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.A_basic3.ds"
+        "JX0A4D5C" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.A_basic3.ds"
+        "VCDRFV2F" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.A_basic3.ds"
 

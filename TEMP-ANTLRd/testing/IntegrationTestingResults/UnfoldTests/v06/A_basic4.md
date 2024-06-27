@@ -20,27 +20,41 @@ DescribeUnfold
     .FailedFiles
 
     .PrimaryProductions
-        "R85YLF2I" 
+        "APMDR8NL" 
 
     .Productions
-        "R85YLF2I" -> "FG8MEOV5", "Y6WQHWJW", "8HAFH45F", "HCI0S1SC";
+        "APMDR8NL" -> "OOXVI3OP", "109VET3D", "CCF5GF55", "IPT4DO2W";
 
     .Translations
-        "R85YLF2I" - "fabrics"
-        "FG8MEOV5" - "wool fabrics"
-        "Y6WQHWJW" - "cotton fabrics"
-        "8HAFH45F" - "silk fabrics"
-        "HCI0S1SC" - "synthetic fabrics"
+        "APMDR8NL" - "fabrics"
+        "OOXVI3OP" - "wool fabrics"
+        "109VET3D" - "cotton fabrics"
+        "CCF5GF55" - "silk fabrics"
+        "IPT4DO2W" - "synthetic fabrics"
 
     .Links
+        "APMDR8NL" - 
+        "OOXVI3OP" - 
+        "109VET3D" - 
+        "CCF5GF55" - 
+        "IPT4DO2W" - 
+
+    .Decorators
+        "APMDR8NL" - 
+        "OOXVI3OP" - 
+        "109VET3D" - 
+        "CCF5GF55" - 
+        "IPT4DO2W" - 
+
+    .Tildes
 
     .ProdidFile
-        "R85YLF2I" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.A_basic4.ds"
+        "APMDR8NL" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.A_basic4.ds"
 
     .ItemidFile
-        "R85YLF2I" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.A_basic4.ds"
-        "FG8MEOV5" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.A_basic4.ds"
-        "Y6WQHWJW" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.A_basic4.ds"
-        "8HAFH45F" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.A_basic4.ds"
-        "HCI0S1SC" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.A_basic4.ds"
+        "APMDR8NL" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.A_basic4.ds"
+        "OOXVI3OP" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.A_basic4.ds"
+        "109VET3D" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.A_basic4.ds"
+        "CCF5GF55" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.A_basic4.ds"
+        "IPT4DO2W" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.A_basic4.ds"
 

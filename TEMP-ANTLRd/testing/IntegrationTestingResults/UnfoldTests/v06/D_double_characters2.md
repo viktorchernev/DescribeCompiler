@@ -19,27 +19,41 @@ DescribeUnfold
     .FailedFiles
 
     .PrimaryProductions
-        "FMOQ5I3L" 
+        "6NXG6F7Q" 
 
     .Productions
-        "FMOQ5I3L" -> "4ZPD2UBB", "ZBGLQH5W", "3ZXDDFGQ", "S2GRFO3O";
+        "6NXG6F7Q" -> "HK5Z8R91", "JU4F24U3", "5AXKINOF", "1SE425BK";
 
     .Translations
-        "FMOQ5I3L" - "fa / br/ics/"
-        "4ZPD2UBB" - "wool/fabrics"
-        "ZBGLQH5W" - "/cotton fabrics"
-        "3ZXDDFGQ" - "/ silk / fabrics"
-        "S2GRFO3O" - "synthetic fabrics/"
+        "6NXG6F7Q" - "fa / br/ics/"
+        "HK5Z8R91" - "wool/fabrics"
+        "JU4F24U3" - "/cotton fabrics"
+        "5AXKINOF" - "/ silk / fabrics"
+        "1SE425BK" - "synthetic fabrics/"
 
     .Links
+        "6NXG6F7Q" - 
+        "HK5Z8R91" - 
+        "JU4F24U3" - 
+        "5AXKINOF" - 
+        "1SE425BK" - 
+
+    .Decorators
+        "6NXG6F7Q" - 
+        "HK5Z8R91" - 
+        "JU4F24U3" - 
+        "5AXKINOF" - 
+        "1SE425BK" - 
+
+    .Tildes
 
     .ProdidFile
-        "FMOQ5I3L" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_double_characters2.ds"
+        "6NXG6F7Q" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_double_characters2.ds"
 
     .ItemidFile
-        "FMOQ5I3L" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_double_characters2.ds"
-        "4ZPD2UBB" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_double_characters2.ds"
-        "ZBGLQH5W" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_double_characters2.ds"
-        "3ZXDDFGQ" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_double_characters2.ds"
-        "S2GRFO3O" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_double_characters2.ds"
+        "6NXG6F7Q" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_double_characters2.ds"
+        "HK5Z8R91" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_double_characters2.ds"
+        "JU4F24U3" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_double_characters2.ds"
+        "5AXKINOF" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_double_characters2.ds"
+        "1SE425BK" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_double_characters2.ds"
 

@@ -16,7 +16,9 @@ namespace DescribeParser.IntegrationTests
         public static string outputDir = @"C:\Users\Viktor Chernev\Desktop\ANTLRd\testing\IntegrationTestingResults\UnfoldTests\v09";
 
 
-
+        /// <summary>
+        /// Preprocessor method for 09
+        /// </summary>
         static string PredictTerminators(string text)
         {
             AntlrInputStream inputstream = new AntlrInputStream(text);
@@ -144,9 +146,9 @@ namespace DescribeParser.IntegrationTests
         }
         internal static void TestFiles(bool pressKey = true, bool insertMissingTerminators = true)
         {
-            //TestFilesFor06(pressKey, insertMissingTerminators);
-            //TestFilesFor07(pressKey, insertMissingTerminators);
-            //TestFilesFor08(pressKey, insertMissingTerminators);
+            TestFilesFor06(pressKey, insertMissingTerminators);
+            TestFilesFor07(pressKey, insertMissingTerminators);
+            TestFilesFor08(pressKey, insertMissingTerminators);
             TestFilesFor09(pressKey, insertMissingTerminators);
         }
         static void TestFilesFor06(bool pressKey = true, bool insertMissingTerminators = true)
@@ -252,10 +254,6 @@ namespace DescribeParser.IntegrationTests
             string resultTemplateB = getEmbeddedResource(
                 "DescribeParser.IntegrationTests.TestFiles.resultTemplates.template_basic_b.md");
 
-            //delete all ".md" files in the directory
-            string[] files = Directory.GetFiles(outputdir, "*.md");
-            foreach (string file in files) File.Delete(file);
-
             //get test files
             var names = getEmbeddedResoucesNames();
             foreach (string name in names)
@@ -343,10 +341,6 @@ namespace DescribeParser.IntegrationTests
             string resultTemplateB = getEmbeddedResource(
                 "DescribeParser.IntegrationTests.TestFiles.resultTemplates.template_basic_b.md");
 
-            //delete all ".md" files in the directory
-            string[] files = Directory.GetFiles(outputdir, "*.md");
-            foreach (string file in files) File.Delete(file);
-
             //get test files
             var names = getEmbeddedResoucesNames();
             foreach (string name in names)
@@ -433,10 +427,6 @@ namespace DescribeParser.IntegrationTests
                 "DescribeParser.IntegrationTests.TestFiles.resultTemplates.template_basic_a.md");
             string resultTemplateB = getEmbeddedResource(
                 "DescribeParser.IntegrationTests.TestFiles.resultTemplates.template_basic_b.md");
-
-            //delete all ".md" files in the directory
-            string[] files = Directory.GetFiles(outputdir, "*.md");
-            foreach (string file in files) File.Delete(file);
 
             //get test files
             var names = getEmbeddedResoucesNames();

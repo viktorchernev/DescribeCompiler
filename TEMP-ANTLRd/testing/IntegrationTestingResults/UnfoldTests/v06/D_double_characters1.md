@@ -19,27 +19,41 @@ DescribeUnfold
     .FailedFiles
 
     .PrimaryProductions
-        "6R5F3IHD" 
+        "21A36SSW" 
 
     .Productions
-        "6R5F3IHD" -> "E8F9KQ5S", "1D9N192U", "90GVNRR7", "KIRLUFHT";
+        "21A36SSW" -> "SMVY7LA3", "1X8X0M7E", "0G8SXY66", "IZOJACKV";
 
     .Translations
-        "6R5F3IHD" - "fa - br-ics-"
-        "E8F9KQ5S" - "wool-fabrics"
-        "1D9N192U" - "-cotton fabrics"
-        "90GVNRR7" - "- silk - fabrics"
-        "KIRLUFHT" - "synthetic fabrics-"
+        "21A36SSW" - "fa - br-ics-"
+        "SMVY7LA3" - "wool-fabrics"
+        "1X8X0M7E" - "-cotton fabrics"
+        "0G8SXY66" - "- silk - fabrics"
+        "IZOJACKV" - "synthetic fabrics-"
 
     .Links
+        "21A36SSW" - 
+        "SMVY7LA3" - 
+        "1X8X0M7E" - 
+        "0G8SXY66" - 
+        "IZOJACKV" - 
+
+    .Decorators
+        "21A36SSW" - 
+        "SMVY7LA3" - 
+        "1X8X0M7E" - 
+        "0G8SXY66" - 
+        "IZOJACKV" - 
+
+    .Tildes
 
     .ProdidFile
-        "6R5F3IHD" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_double_characters1.ds"
+        "21A36SSW" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_double_characters1.ds"
 
     .ItemidFile
-        "6R5F3IHD" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_double_characters1.ds"
-        "E8F9KQ5S" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_double_characters1.ds"
-        "1D9N192U" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_double_characters1.ds"
-        "90GVNRR7" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_double_characters1.ds"
-        "KIRLUFHT" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_double_characters1.ds"
+        "21A36SSW" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_double_characters1.ds"
+        "SMVY7LA3" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_double_characters1.ds"
+        "1X8X0M7E" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_double_characters1.ds"
+        "0G8SXY66" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_double_characters1.ds"
+        "IZOJACKV" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_double_characters1.ds"
 

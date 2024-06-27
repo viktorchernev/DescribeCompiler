@@ -49,6 +49,7 @@ DescribeUnfold
         "5Суак3ИЙ" - 
         "ЛКтрт5КН" - 
 
+    .Tildes
 
     .ProdidFile
         "ФЛГмссД" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor09.C_cyrillic.ds"

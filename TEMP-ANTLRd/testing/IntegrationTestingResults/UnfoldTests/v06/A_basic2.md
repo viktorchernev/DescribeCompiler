@@ -16,21 +16,29 @@ DescribeUnfold
     .FailedFiles
 
     .PrimaryProductions
-        "QEQPHHPP" 
+        "WD0V2DA2" 
 
     .Productions
-        "QEQPHHPP" -> "T4QLZLTH";
+        "WD0V2DA2" -> "D3SLYBSJ";
 
     .Translations
-        "QEQPHHPP" - "fabrics"
-        "T4QLZLTH" - "synthetic fabrics"
+        "WD0V2DA2" - "fabrics"
+        "D3SLYBSJ" - "synthetic fabrics"
 
     .Links
+        "WD0V2DA2" - 
+        "D3SLYBSJ" - 
+
+    .Decorators
+        "WD0V2DA2" - 
+        "D3SLYBSJ" - 
+
+    .Tildes
 
     .ProdidFile
-        "QEQPHHPP" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.A_basic2.ds"
+        "WD0V2DA2" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.A_basic2.ds"
 
     .ItemidFile
-        "QEQPHHPP" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.A_basic2.ds"
-        "T4QLZLTH" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.A_basic2.ds"
+        "WD0V2DA2" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.A_basic2.ds"
+        "D3SLYBSJ" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.A_basic2.ds"
 

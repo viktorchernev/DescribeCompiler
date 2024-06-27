@@ -19,27 +19,41 @@ DescribeUnfold
     .FailedFiles
 
     .PrimaryProductions
-        "QGF3ILNA" 
+        "AGUSUNGP" 
 
     .Productions
-        "QGF3ILNA" -> "CF0MW6OM", "KXENOLC0", "A8Z2GJSW", "E7979VRV";
+        "AGUSUNGP" -> "F2BQEKLP", "Y92NR795", "9RO6G72C", "D51ZY63Z";
 
     .Translations
-        "QGF3ILNA" - "платове"
-        "CF0MW6OM" - "вълнени платове"
-        "KXENOLC0" - "памучни платове"
-        "A8Z2GJSW" - "копринени платове"
-        "E7979VRV" - "синтетични платове"
+        "AGUSUNGP" - "платове"
+        "F2BQEKLP" - "вълнени платове"
+        "Y92NR795" - "памучни платове"
+        "9RO6G72C" - "копринени платове"
+        "D51ZY63Z" - "синтетични платове"
 
     .Links
+        "AGUSUNGP" - 
+        "F2BQEKLP" - 
+        "Y92NR795" - 
+        "9RO6G72C" - 
+        "D51ZY63Z" - 
+
+    .Decorators
+        "AGUSUNGP" - 
+        "F2BQEKLP" - 
+        "Y92NR795" - 
+        "9RO6G72C" - 
+        "D51ZY63Z" - 
+
+    .Tildes
 
     .ProdidFile
-        "QGF3ILNA" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_cyrillic.ds"
+        "AGUSUNGP" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_cyrillic.ds"
 
     .ItemidFile
-        "QGF3ILNA" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_cyrillic.ds"
-        "CF0MW6OM" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_cyrillic.ds"
-        "KXENOLC0" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_cyrillic.ds"
-        "A8Z2GJSW" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_cyrillic.ds"
-        "E7979VRV" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_cyrillic.ds"
+        "AGUSUNGP" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_cyrillic.ds"
+        "F2BQEKLP" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_cyrillic.ds"
+        "Y92NR795" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_cyrillic.ds"
+        "9RO6G72C" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_cyrillic.ds"
+        "D51ZY63Z" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_cyrillic.ds"
 

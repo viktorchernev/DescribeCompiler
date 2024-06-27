@@ -19,27 +19,41 @@ DescribeUnfold
     .FailedFiles
 
     .PrimaryProductions
-        "BKCSNOLX" 
+        "CHCUOIHC" 
 
     .Productions
-        "BKCSNOLX" -> "9XHYJUVY", "SVNHUKJP", "Q0O7MP5E", "W9SDC19B";
+        "CHCUOIHC" -> "86SUJS4A", "NLTA548B", "YHORPRD6", "CMM0RE0B";
 
     .Translations
-        "BKCSNOLX" - "fa \-> br\->ics"
-        "9XHYJUVY" - "wool fabrics"
-        "SVNHUKJP" - "cotton fabrics"
-        "Q0O7MP5E" - "silk fabrics"
-        "W9SDC19B" - "synthetic fabrics"
+        "CHCUOIHC" - "fa \-> br\->ics"
+        "86SUJS4A" - "wool fabrics"
+        "NLTA548B" - "cotton fabrics"
+        "YHORPRD6" - "silk fabrics"
+        "CMM0RE0B" - "synthetic fabrics"
 
     .Links
+        "CHCUOIHC" - 
+        "86SUJS4A" - 
+        "NLTA548B" - 
+        "YHORPRD6" - 
+        "CMM0RE0B" - 
+
+    .Decorators
+        "CHCUOIHC" - 
+        "86SUJS4A" - 
+        "NLTA548B" - 
+        "YHORPRD6" - 
+        "CMM0RE0B" - 
+
+    .Tildes
 
     .ProdidFile
-        "BKCSNOLX" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_escaped_double_characters1.ds"
+        "CHCUOIHC" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_escaped_double_characters1.ds"
 
     .ItemidFile
-        "BKCSNOLX" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_escaped_double_characters1.ds"
-        "9XHYJUVY" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_escaped_double_characters1.ds"
-        "SVNHUKJP" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_escaped_double_characters1.ds"
-        "Q0O7MP5E" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_escaped_double_characters1.ds"
-        "W9SDC19B" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_escaped_double_characters1.ds"
+        "CHCUOIHC" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_escaped_double_characters1.ds"
+        "86SUJS4A" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_escaped_double_characters1.ds"
+        "NLTA548B" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_escaped_double_characters1.ds"
+        "YHORPRD6" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_escaped_double_characters1.ds"
+        "CMM0RE0B" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.D_escaped_double_characters1.ds"
 

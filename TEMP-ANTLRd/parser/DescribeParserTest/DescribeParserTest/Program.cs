@@ -14,22 +14,7 @@ namespace DescribeParser.IntegrationTests
         static void Main(string[] args)
         {
             //RunParserTests();
-
-            //test 06
-            //UnfoldTestsFor06.TestFile("DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.A_twoRoots.ds");
-            //UnfoldTestsFor06.TestFiles(true, true);
-
-            //test 07
-            //UnfoldTestsFor07.TestFile("DescribeParser.IntegrationTests.TestFiles.TestFilesFor07.A_twoRoots.ds");
-            //UnfoldTestsFor07.TestFiles(true, true);
-
-            //test 08
-            //UnfoldTestsFor08.TestFile("DescribeParser.IntegrationTests.TestFiles.TestFilesFor08.A_twoRoots.ds");
-            //UnfoldTestsFor08.TestFiles(true, true);
-
-            //test 09
-            //UnfoldTestsFor09.TestFile("DescribeParser.IntegrationTests.TestFiles.TestFilesFor09.A_twoRoots.ds");
-            UnfoldTestsFor09.TestFiles(true, true);
+            RunUnfoldTests();
         }
         static void RunParserTests()
         {
@@ -67,6 +52,38 @@ namespace DescribeParser.IntegrationTests
             //IntegrationTestsFor11.TestLexer("DescribeParser.IntegrationTests.TestFiles.TestFilesFor11.A_tags2.ds");
             //IntegrationTestsFor11.TestFile("DescribeParser.IntegrationTests.TestFiles.TestFilesFor11.A_tags2.ds");
             ParserTestsFor11.TestFiles(false, true);
+            Console.ReadLine();
+        }
+        static void RunUnfoldTests()
+        {
+            //test 06
+            //UnfoldTestsFor06.TestFile("DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.A_twoRoots.ds");
+            UnfoldTestsFor06.TestFiles(false, true);
+            Console.ReadLine();
+
+            //test 07
+            //UnfoldTestsFor07.TestFile("DescribeParser.IntegrationTests.TestFiles.TestFilesFor07.A_twoRoots.ds");
+            UnfoldTestsFor07.TestFiles(false, true);
+            Console.ReadLine();
+
+            //test 08
+            //UnfoldTestsFor08.TestFile("DescribeParser.IntegrationTests.TestFiles.TestFilesFor08.A_twoRoots.ds");
+            UnfoldTestsFor08.TestFiles(false, true);
+            Console.ReadLine();
+
+            //test 09
+            //UnfoldTestsFor09.TestFile("DescribeParser.IntegrationTests.TestFiles.TestFilesFor09.A_twoRoots.ds");
+            UnfoldTestsFor09.TestFiles(false, true);
+            Console.ReadLine();
+
+            //test 10
+            //UnfoldTestsFor10.TestFile("DescribeParser.IntegrationTests.TestFiles.TestFilesFor10.A_twoRoots.ds");
+            UnfoldTestsFor10.TestFiles(false, true);
+            Console.ReadLine();
+
+            //test 11
+            //UnfoldTestsFor11.TestFile("DescribeParser.IntegrationTests.TestFiles.TestFilesFor11.A_twoRoots.ds");
+            UnfoldTestsFor11.TestFiles(false, true);
             Console.ReadLine();
         }
     }

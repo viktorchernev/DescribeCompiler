@@ -31,6 +31,7 @@ DescribeUnfold
         "zAfn39Kh" - "color" | "red"
         "hOy5oL3B" - 
 
+    .Tildes
 
     .ProdidFile
         "zAfn39Kh" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor09.A_basic3.ds"

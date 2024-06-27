@@ -21,27 +21,41 @@ DescribeUnfold
     .FailedFiles
 
     .PrimaryProductions
-        "H1QA06GY" 
+        "N5BEY6U1" 
 
     .Productions
-        "H1QA06GY" -> "IT1X6JA7", "BAY0NS2Y", "GEG79YKL", "MDDF73T1";
+        "N5BEY6U1" -> "C9HNLKM4", "2SSZI4ZD", "DQRZMJA7", "AI6KFW0R";
 
     .Translations
-        "H1QA06GY" - "fabrics"
-        "IT1X6JA7" - "wool fabrics"
-        "BAY0NS2Y" - "cotton fabrics"
-        "GEG79YKL" - "silk fabrics"
-        "MDDF73T1" - "synthetic fabrics"
+        "N5BEY6U1" - "fabrics"
+        "C9HNLKM4" - "wool fabrics"
+        "2SSZI4ZD" - "cotton fabrics"
+        "DQRZMJA7" - "silk fabrics"
+        "AI6KFW0R" - "synthetic fabrics"
 
     .Links
+        "N5BEY6U1" - 
+        "C9HNLKM4" - 
+        "2SSZI4ZD" - 
+        "DQRZMJA7" - 
+        "AI6KFW0R" - 
+
+    .Decorators
+        "N5BEY6U1" - 
+        "C9HNLKM4" - 
+        "2SSZI4ZD" - 
+        "DQRZMJA7" - 
+        "AI6KFW0R" - 
+
+    .Tildes
 
     .ProdidFile
-        "H1QA06GY" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.B_comments4.ds"
+        "N5BEY6U1" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.B_comments4.ds"
 
     .ItemidFile
-        "H1QA06GY" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.B_comments4.ds"
-        "IT1X6JA7" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.B_comments4.ds"
-        "BAY0NS2Y" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.B_comments4.ds"
-        "GEG79YKL" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.B_comments4.ds"
-        "MDDF73T1" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.B_comments4.ds"
+        "N5BEY6U1" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.B_comments4.ds"
+        "C9HNLKM4" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.B_comments4.ds"
+        "2SSZI4ZD" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.B_comments4.ds"
+        "DQRZMJA7" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.B_comments4.ds"
+        "AI6KFW0R" - "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.B_comments4.ds"
 
