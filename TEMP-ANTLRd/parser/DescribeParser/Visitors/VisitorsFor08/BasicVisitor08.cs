@@ -17,9 +17,9 @@ namespace DescribeParser.Visitors
     /// property - "Log". Also, logging to the console can be turned off 
     /// alltogether.
     /// </summary>
-    public class BasicVisitor06 : Describe06BaseVisitor<object>
+    public class BasicVisitor08 : Describe08BaseVisitor<object>
     {
-        public BasicVisitor06() 
+        public BasicVisitor08()
         {
             _log = "";
             _lerror = null;
@@ -52,7 +52,7 @@ namespace DescribeParser.Visitors
         }
 
 
-        public override object VisitScripture([NotNull] Describe06Parser.ScriptureContext context)
+        public override object VisitScripture([NotNull] Describe08Parser.ScriptureContext context)
         {
             Log += Environment.NewLine + logItem(context, "scripture");
             if (_lerror != null) return null;
@@ -65,43 +65,43 @@ namespace DescribeParser.Visitors
             return base.VisitTerminal(node);
         }
 
-        public override object VisitProducer([NotNull] Describe06Parser.ProducerContext context)
+        public override object VisitProducer([NotNull] Describe08Parser.ProducerContext context)
         {
             Log += Environment.NewLine + logItem(context, "producer");
             if (_lerror != null) return null;
             return base.VisitProducer(context);
         }
-        public override object VisitText_chunk([NotNull] Describe06Parser.Text_chunkContext context)
+        public override object VisitText_chunk([NotNull] Describe08Parser.Text_chunkContext context)
         {
             Log += Environment.NewLine + logItem(context, "text_chunk");
             if (_lerror != null) return null;
             return base.VisitText_chunk(context);
         }
-        public override object VisitItem([NotNull] Describe06Parser.ItemContext context)
+        public override object VisitItem([NotNull] Describe08Parser.ItemContext context)
         {
             Log += Environment.NewLine + logItem(context, "item");
             if (_lerror != null) return null;
             return base.VisitItem(context);
         }
-        public override object VisitExpression([NotNull] Describe06Parser.ExpressionContext context)
+        public override object VisitExpression([NotNull] Describe08Parser.ExpressionContext context)
         {
             Log += Environment.NewLine + logItem(context, "expression");
             if (_lerror != null) return null;
             return base.VisitExpression(context);
         }
-        public override object VisitExpression_list([NotNull] Describe06Parser.Expression_listContext context)
+        public override object VisitExpression_list([NotNull] Describe08Parser.Expression_listContext context)
         {
             Log += Environment.NewLine + logItem(context, "expression_list");
             if (_lerror != null) return null;
             return base.VisitExpression_list(context);
         }
-        public override object VisitItem_or_expression_list([NotNull] Describe06Parser.Item_or_expression_listContext context)
+        public override object VisitItem_or_expression_list([NotNull] Describe08Parser.Item_or_expression_listContext context)
         {
             Log += Environment.NewLine + logItem(context, "item_or_expression_list");
             if (_lerror != null) return null;
             return base.VisitItem_or_expression_list(context);
         }
-        public override object VisitItem_or_expression_part([NotNull] Describe06Parser.Item_or_expression_partContext context)
+        public override object VisitItem_or_expression_part([NotNull] Describe08Parser.Item_or_expression_partContext context)
         {
             Log += Environment.NewLine + logItem(context, "item_or_expression_part");
             if (_lerror != null) return null;
@@ -165,7 +165,7 @@ namespace DescribeParser.Visitors
 
         static string GetTokenType(int tokenType)
         {
-            return Describe06Lexer.DefaultVocabulary.GetSymbolicName(tokenType);
+            return Describe08Lexer.DefaultVocabulary.GetSymbolicName(tokenType);
         }
         static string ReplaceWhitespaceE(string text)
         {
