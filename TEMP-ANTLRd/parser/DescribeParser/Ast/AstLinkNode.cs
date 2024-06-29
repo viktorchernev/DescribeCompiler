@@ -3,49 +3,81 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace DescribeParser.Ast
 {
-    public class AstLinkNode
+    public class AstLinkNode : AstNode
     {
-        public string Url
-        { 
-            get;
-            internal set; 
-        }
-        public string? Title
+        //OpenBracket
+        public AstTextNode Url;
+        public AstTextNode? Title;
+        public AstTextNode? Letter;
+        //CloseBracket
+
+
+        public AstLinkNode(AstTextNode url)
         {
-            get;
-            internal set;
+            initialize(url);
         }
-        public char? Letter
+        public AstLinkNode(AstTextNode url, AstSourcePosition position)
+            : base(position)
         {
-            get;
-            internal set;
+            initialize(url);
+        }
+        public AstLinkNode(AstTextNode url, AstNode parent)
+            : base(parent)
+        {
+            initialize(url);
+        }
+        public AstLinkNode(AstTextNode url, AstSourcePosition position, AstNode parent)
+            : base(position, parent)
+        {
+            initialize(url);
+        }
+        public AstLinkNode(AstTextNode url, AstNode parent, AstSourcePosition position)
+            : base(parent, position)
+        {
+            initialize(url);
         }
 
 
-        public AstLinkNode(string url)
+
+        void initialize(AstTextNode url)
         {
             Url = url;
-            Title = null;
-            Letter = null;
+            Position = new AstSourcePosition(url.Position);
         }
-        public AstLinkNode(string url, string title)
+        void initialize(AstTextNode url, AstTextNode title)
         {
             Url = url;
-            Title = title;
-            if(string.IsNullOrEmpty(title) || string.IsNullOrWhiteSpace(title))
+            Position = new AstSourcePosition(url.Position);
+        }
+        void initialize(List<AstTextNode> chunks)
+        {
+            if (chunks == null)
             {
-                Letter = null;
+                Chunks = new List<AstTextNode>();
+                return;
             }
-            Letter = title[0];
-        }
-        public AstLinkNode(string url, string title, char letter)
-        {
-            Url = url;
-            Title = title;
-            Letter = letter;
+
+            Chunks = chunks;
+            if (chunks.Count == 0) return;
+
+            // calculate source position for this object
+            AstSourcePosition p0 = chunks[0].Position;
+            AstSourcePosition p1 = chunks[chunks.Count - 1].Position;
+            if (p0 == null || p1 == null) return;
+
+            // assign source position for this object
+            AstSourcePosition pos = new AstSourcePosition();
+            pos.FirstIndex = p0.FirstIndex;
+            pos.FirstLine = p0.FirstLine;
+            pos.FirstColumn = p0.FirstColumn;
+            pos.LastIndex = p0.LastIndex;
+            pos.LastLine = p0.LastLine;
+            pos.LastColumn = p0.LastColumn;
+            Position = pos;
         }
     }
 }
