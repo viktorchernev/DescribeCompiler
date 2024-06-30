@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DescribeParser.Ast
 {
-    public class AstSourcePosition
+    public class SourcePosition
     {
         public int FirstIndex
         {
@@ -42,7 +42,7 @@ namespace DescribeParser.Ast
 
 
 
-        public AstSourcePosition(AstSourcePosition position)
+        public SourcePosition(SourcePosition position)
         {
             FirstIndex = position.FirstIndex;
             FirstLine = position.FirstLine;
@@ -52,7 +52,7 @@ namespace DescribeParser.Ast
             LastLine = position.LastLine;
             LastColumn = position.LastColumn;
         }
-        public AstSourcePosition(int firstIndex, int firstLine, int firstColumn, int lastIndex, int lastLine, int lastColumn)
+        public SourcePosition(int firstIndex, int firstLine, int firstColumn, int lastIndex, int lastLine, int lastColumn)
         {
             FirstIndex = firstIndex;
             FirstLine = firstLine;
