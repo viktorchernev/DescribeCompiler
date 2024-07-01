@@ -9,9 +9,9 @@ namespace DescribeParser.Ast
 {
     public class AstNlCommentDecoratorNode : AstSimpleDecoratorNode
     {
-        public AstNlCommentDecoratorNode(AstLeafNode open, AstLeafNode name, AstLeafNode close)
+        public AstNlCommentDecoratorNode(AstTokenNode open, AstTokenNode name, AstTokenNode close)
             : base(open, name, close) { }
-        public AstNlCommentDecoratorNode(AstLeafNode open, AstLeafNode name, AstLeafNode close, AstBranchNode parent)
+        public AstNlCommentDecoratorNode(AstTokenNode open, AstTokenNode name, AstTokenNode close, AstMinorBranchNode parent)
             : base(open, name, close, parent) { }
 
 

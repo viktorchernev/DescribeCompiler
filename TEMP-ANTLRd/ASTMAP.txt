@@ -1,0 +1,46 @@
+SourcePosition
+	.int 													FirstIndex
+    .int													FirstLine
+    .int 													FirstColumn
+    .int													LastIndex
+    .int													LastLine
+    .int													LastColumn
+	
+	.Ctor(SourcePosition)
+	.Ctor(int, itn, int, int, int, int)
+__________________________________________________________________________
+AstNode
+	.SourcePosition? Position
+	.AstBranchNode? Parent
+	
+	.Ctor()
+	.Ctor(SourcePosition)
+	.Ctor(AstBranchNode)
+	.Ctor(AstBranchNode, SourcePosition)
+	.Ctor(SourcePosition, AstBranchNode)
+	
+	.ToString()												->string
+	.ToJson()												->string
+	.ToCode()												->string
+__________________________________________________________________________
+AstLeafNode : AstNode
+    .string 												Text
+    .string?												Trivia
+	
+	.Ctor(string, ...)
+	.Ctor(string, string, ...)
+	
+	.ToString()												->string
+	.ToJson()												->string
+	.ToCode()												->string
+__________________________________________________________________________
+AstBranchNode : AstNode
+	.List<AstNode> 											Chunks
+	
+	.Ctor(AstNode, ...)
+	.Ctor(List<AstNode>, ...)
+	
+	.ToString()												->string
+	.ToJson()												->string
+	.ToCode()												->string
+__________________________________________________________________________

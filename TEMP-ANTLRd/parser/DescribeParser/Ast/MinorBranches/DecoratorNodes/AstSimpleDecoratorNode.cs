@@ -9,7 +9,7 @@ namespace DescribeParser.Ast
 {
     public class AstSimpleDecoratorNode : AstDecoratorNode
     {
-        public AstLeafNode OpenBracket 
+        public AstTokenNode OpenBracket 
         { 
             get
             {
@@ -20,7 +20,7 @@ namespace DescribeParser.Ast
                 Chunks[0] = value;
             }
         }
-        public AstLeafNode Name
+        public AstTokenNode Name
         {
             get
             {
@@ -31,7 +31,7 @@ namespace DescribeParser.Ast
                 Chunks[1] = value;
             }
         }
-        public AstLeafNode CloseBracket
+        public AstTokenNode CloseBracket
         {
             get
             {
@@ -44,10 +44,10 @@ namespace DescribeParser.Ast
         }
 
 
-        public AstSimpleDecoratorNode(AstLeafNode open, AstLeafNode name, AstLeafNode close) 
-            : base(new List<AstLeafNode>() { open, name, close}) { }
-        public AstSimpleDecoratorNode(AstLeafNode open, AstLeafNode name, AstLeafNode close, AstBranchNode parent)
-            : base(new List<AstLeafNode>() { open, name, close }, parent) { }
+        public AstSimpleDecoratorNode(AstTokenNode open, AstTokenNode name, AstTokenNode close) 
+            : base(new List<AstTokenNode>() { open, name, close}) { }
+        public AstSimpleDecoratorNode(AstTokenNode open, AstTokenNode name, AstTokenNode close, AstMinorBranchNode parent)
+            : base(new List<AstTokenNode>() { open, name, close }, parent) { }
 
 
 

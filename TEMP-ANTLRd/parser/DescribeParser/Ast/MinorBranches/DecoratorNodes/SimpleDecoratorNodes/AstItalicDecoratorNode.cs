@@ -8,10 +8,10 @@ namespace DescribeParser.Ast
 {
     public class AstItalicDecoratorNode : AstSimpleDecoratorNode 
     {
-        public AstItalicDecoratorNode(AstLeafNode open, AstLeafNode name, AstLeafNode close)
+        public AstItalicDecoratorNode(AstTokenNode open, AstTokenNode name, AstTokenNode close)
             : base(open, name, close) { }
 
-        public AstItalicDecoratorNode(AstLeafNode open, AstLeafNode name, AstLeafNode close, AstBranchNode parent)
+        public AstItalicDecoratorNode(AstTokenNode open, AstTokenNode name, AstTokenNode close, AstMinorBranchNode parent)
             : base(open, name, close, parent) { }
 
 

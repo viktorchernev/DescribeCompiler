@@ -8,12 +8,12 @@ namespace DescribeParser.Ast
 {
     public class AstCustomDoubleDecoratorNode : AstTripleDecoratorNode 
     {
-        public AstCustomDoubleDecoratorNode(AstLeafNode open, AstLeafNode category, 
-            AstLeafNode name, AstLeafNode value, AstLeafNode close)
+        public AstCustomDoubleDecoratorNode(AstTokenNode open, AstTokenNode category, 
+            AstTokenNode name, AstTokenNode value, AstTokenNode close)
             : base(open, category, name, value, close) { }
 
-        public AstCustomDoubleDecoratorNode(AstLeafNode open, AstLeafNode category,
-            AstLeafNode name, AstLeafNode value, AstLeafNode close, AstBranchNode parent)
+        public AstCustomDoubleDecoratorNode(AstTokenNode open, AstTokenNode category,
+            AstTokenNode name, AstTokenNode value, AstTokenNode close, AstMinorBranchNode parent)
             : base(open, category, name, value, close, parent) { }
 
         public override string ToString()

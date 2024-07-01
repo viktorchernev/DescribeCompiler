@@ -10,7 +10,7 @@ namespace DescribeParser.Ast
 {
     public class AstDoubleDecoratorNode : AstDecoratorNode
     {
-        public AstLeafNode OpenBracket 
+        public AstTokenNode OpenBracket 
         { 
             get
             {
@@ -21,7 +21,7 @@ namespace DescribeParser.Ast
                 Chunks[0] = value;
             }
         }
-        public AstLeafNode Name
+        public AstTokenNode Name
         {
             get
             {
@@ -32,7 +32,7 @@ namespace DescribeParser.Ast
                 Chunks[1] = value;
             }
         }
-        public AstLeafNode Value
+        public AstTokenNode Value
         {
             get
             {
@@ -43,7 +43,7 @@ namespace DescribeParser.Ast
                 Chunks[2] = value;
             }
         }
-        public AstLeafNode CloseBracket
+        public AstTokenNode CloseBracket
         {
             get
             {
@@ -56,10 +56,10 @@ namespace DescribeParser.Ast
         }
 
 
-        public AstDoubleDecoratorNode(AstLeafNode open, AstLeafNode name, AstLeafNode value, AstLeafNode close)
-            : base(new List<AstLeafNode>() { open, name, value, close }) { }
-        public AstDoubleDecoratorNode(AstLeafNode open, AstLeafNode name, AstLeafNode value, AstLeafNode close, AstBranchNode parent)
-            : base(new List<AstLeafNode>() { open, name, value, close }, parent) { }
+        public AstDoubleDecoratorNode(AstTokenNode open, AstTokenNode name, AstTokenNode value, AstTokenNode close)
+            : base(new List<AstTokenNode>() { open, name, value, close }) { }
+        public AstDoubleDecoratorNode(AstTokenNode open, AstTokenNode name, AstTokenNode value, AstTokenNode close, AstMinorBranchNode parent)
+            : base(new List<AstTokenNode>() { open, name, value, close }, parent) { }
 
 
         public override string ToString()

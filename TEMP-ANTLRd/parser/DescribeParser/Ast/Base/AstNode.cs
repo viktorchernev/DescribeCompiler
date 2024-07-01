@@ -6,40 +6,24 @@ using System.Threading.Tasks;
 
 namespace DescribeParser.Ast
 {
+    /// <summary>
+    /// The base class for the AST
+    /// </summary>
     public abstract class AstNode
     {
-        public SourcePosition? Position;
-        public AstBranchNode? Parent;
-
-        public AstNode()
-        {
-            Position = null;
-            Parent = null;
-        }
-        public AstNode(SourcePosition position)
-        {
-            Position = position;
-            Parent = null;
-        }
-        public AstNode(AstBranchNode parent)
-        {
-            Parent = parent;
-            Position = null;
-        }
-        public AstNode(SourcePosition position, AstBranchNode parent)
-        {
-            Position = position;
-            Parent = parent;
-        }
-        public AstNode(AstBranchNode parent, SourcePosition position)
-        {
-            Position = position;
-            Parent = parent;
-        }
-
-
+        /// <summary>
+        /// Get a string representation of an AST object for logging purposes
+        /// </summary>
         public abstract new string ToString();
+
+        /// <summary>
+        /// Get a JSON string representation of an AST object for logging purposes
+        /// </summary>
         public abstract string ToJson();
+
+        /// <summary>
+        /// Get a source code string representation of an AST object
+        /// </summary>
         public abstract string ToCode();
     }
 }

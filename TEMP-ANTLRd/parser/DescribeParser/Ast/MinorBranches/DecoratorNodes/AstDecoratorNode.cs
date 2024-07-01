@@ -7,27 +7,29 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace DescribeParser.Ast
 {
-    public class AstDecoratorNode : AstBranchNode
+    public class AstDecoratorNode : AstNode, IAstBranchNode, IAstChildNode
     {
+
+
         public AstDecoratorNode()
         { }
         public AstDecoratorNode(SourcePosition position)
             : base(position) { }
-        public AstDecoratorNode(AstBranchNode parent)
+        public AstDecoratorNode(AstMinorBranchNode parent)
             : base(parent) { }
-        public AstDecoratorNode(SourcePosition position, AstBranchNode parent)
+        public AstDecoratorNode(SourcePosition position, AstMinorBranchNode parent)
             : base(position, parent) { }
-        public AstDecoratorNode(AstBranchNode parent, SourcePosition position)
+        public AstDecoratorNode(AstMinorBranchNode parent, SourcePosition position)
             : base(parent, position) { }
 
-        public AstDecoratorNode(AstLeafNode chunk)
+        public AstDecoratorNode(AstTokenNode chunk)
             : base(chunk) { }
-        public AstDecoratorNode(AstLeafNode chunk, AstBranchNode parent)
+        public AstDecoratorNode(AstTokenNode chunk, AstMinorBranchNode parent)
             : base(chunk, parent) { }
 
-        public AstDecoratorNode(List<AstLeafNode> chunks)
+        public AstDecoratorNode(List<AstTokenNode> chunks)
             :base(chunks){ }
-        public AstDecoratorNode(List<AstLeafNode> chunks, AstBranchNode parent)
+        public AstDecoratorNode(List<AstTokenNode> chunks, AstMinorBranchNode parent)
             : base(chunks, parent) { }
 
 
