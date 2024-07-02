@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DescribeParser.Ast
+﻿namespace DescribeParser.Ast
 {
     /// <summary>
     /// The base class for the AST

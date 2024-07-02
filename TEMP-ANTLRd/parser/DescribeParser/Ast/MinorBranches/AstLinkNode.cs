@@ -1,10 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace DescribeParser.Ast
 {
@@ -119,8 +113,13 @@ namespace DescribeParser.Ast
         /// </summary>
         public List<AstLeafNode> Leafs
         {
-            get;
-            set;
+            get
+            {
+                var li = new List<AstLeafNode>() { OpenBracket, Url };
+                if (Title != null) li.Add(Title);
+                if (Letter != null) li.Add(Letter);
+                return li;
+            }
         }
 
         /// <summary>
@@ -130,9 +129,10 @@ namespace DescribeParser.Ast
         {
             get
             {
-                List<object> os = new List<object>();
-                for (int i = 0; i < Leafs.Count; i++) os.Add(Leafs[i]);
-                return os;
+                var li = new List<object>() { OpenBracket, Url };
+                if (Title != null) li.Add(Title);
+                if (Letter != null) li.Add(Letter);
+                return li;
             }
         }
 
@@ -159,10 +159,11 @@ namespace DescribeParser.Ast
 
 
         // Internal Ctor - to prevent external instantiation
+        /// <summary>
+        /// Internal constructor to prevent external instantiation of <see cref="AstLinkNode"/>.
+        /// </summary>
         internal AstLinkNode()
-        {
-            Leafs = new List<AstLeafNode>();
-        }
+        { }
 
 
 
@@ -211,8 +212,8 @@ namespace DescribeParser.Ast
         public override string ToCode()
         {
             string s = OpenBracket.ToCode() + Url.ToCode();
-            if (Title != null) s += Title.ToCode();
-            if (Letter != null) s += Letter.ToCode();
+            if (Title != null) s += "|" + Title.ToCode();
+            if (Letter != null) s += "|" + Letter.ToCode();
             s += CloseBracket.ToCode();
             return s;
         }

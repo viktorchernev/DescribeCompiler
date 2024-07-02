@@ -1,14 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DescribeParser.Ast
+﻿namespace DescribeParser.Ast
 {
+    /// <summary>
+    /// Represents a child node in an abstract syntax tree (AST).
+    /// </summary>
     public interface IAstChildNode
     {
-        public SourcePosition? Position { get; set; }
-        public IAstBranchNode? Parent { get; set; }
+        /// <summary>
+        /// Gets the position of the node within the source code.
+        /// </summary>
+        /// <value>
+        /// A <see cref="SourcePosition"/> object representing the position of the node,
+        /// or <c>null</c> if the position is not set.
+        /// </value>
+        public SourcePosition? Position { get; }
+
+        /// <summary>
+        /// Gets the parent node of this node.
+        /// </summary>
+        /// <value>
+        /// An <see cref="IAstBranchNode"/> object representing the parent of this node,
+        /// or <c>null</c> if the parent is not set.
+        /// </value>
+        public IAstBranchNode? Parent { get; }
     }
 }

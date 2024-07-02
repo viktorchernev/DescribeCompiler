@@ -1,11 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace DescribeParser.Ast
 {
@@ -68,16 +61,21 @@ namespace DescribeParser.Ast
         /// </summary>
         public List<AstLeafNode> Leafs
         { 
-            get;
-            set; 
+            get
+            {
+                return new List<AstLeafNode>() { OpenBracket, Id, CloseBracket };
+            }
         }
 
         /// <summary>
         /// Get the Leaf Nodes that make the Tag object as objects
         /// </summary>
         public List<object> Children
-        { 
-            get;
+        {
+            get
+            {
+                return new List<object>() { OpenBracket, Id, CloseBracket };
+            }
         }
 
 
@@ -104,10 +102,11 @@ namespace DescribeParser.Ast
 
 
         // Internal Ctor - to prevent external instantiation
+        /// <summary>
+        /// Internal constructor to prevent external instantiation of <see cref="AstTagNode"/>.
+        /// </summary>
         internal AstTagNode()
-        {
-            Leafs = new List<AstLeafNode>();
-        }
+        { }
 
 
 
