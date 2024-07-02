@@ -6,26 +6,35 @@ using System.Threading.Tasks;
 
 namespace DescribeParser.Ast
 {
-    public class AstExpressionNode : AstNode, IAstBranchNode, IAstChildNode
+    public class AstExpressionLineNode : AstNode, IAstBranchNode, IAstChildNode
     {
         // Vars
-        public AstItemNode TitleItem
+        public IAstBranchNode? Body
         {
             get;
             internal set;
         }
-        public AstLeafNode ProductionArrow
+        public AstLeafNode Punctuation
         {
-            get;
-            internal set; 
-        }
-        public List<AstExpressionLineNode> Lines
-        { 
             get; 
-            internal set; 
+            internal set;
         }
 
         // Properties
+        public bool HasBody
+        {
+            get 
+            { 
+                return Body != null; 
+            }
+        }
+        public bool HasPunctuation
+        {
+            get
+            {
+                return Punctuation != null;
+            }
+        }
 
         // IAstBranchNode
         public List<AstLeafNode> Leafs
@@ -52,9 +61,11 @@ namespace DescribeParser.Ast
         }
 
 
+
         // Internal Ctor - to prevent external instantiation
-        internal AstExpressionNode()
+        internal AstExpressionLineNode()
         { }
+
 
 
         // ToString()

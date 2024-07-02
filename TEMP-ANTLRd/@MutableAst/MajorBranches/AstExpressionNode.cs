@@ -12,17 +12,17 @@ namespace DescribeParser.Ast
         public AstItemNode TitleItem
         {
             get;
-            internal set;
+            set;
         }
         public AstLeafNode ProductionArrow
         {
-            get;
-            internal set; 
+            get; 
+            set; 
         }
-        public List<AstExpressionLineNode> Lines
+        public List<AstExpressionLine> Lines
         { 
             get; 
-            internal set; 
+            set; 
         }
 
         // Properties
@@ -52,9 +52,7 @@ namespace DescribeParser.Ast
         }
 
 
-        // Internal Ctor - to prevent external instantiation
-        internal AstExpressionNode()
-        { }
+        // Ctors
 
 
         // ToString()

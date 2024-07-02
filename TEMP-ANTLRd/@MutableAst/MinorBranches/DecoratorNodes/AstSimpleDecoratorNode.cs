@@ -9,19 +9,13 @@ namespace DescribeParser.Ast
 {
     public class AstSimpleDecoratorNode : AstDecoratorNode
     {
-        // Vars
-        public AstSimpleDecoratorType DecoratorType
-        {
-            get;
-            internal set;
-        }
         public AstLeafNode OpenBracket 
         { 
             get
             {
                 return Leafs[0];
             }
-            internal set
+            set
             {
                 Leafs[0] = value;
             }
@@ -32,7 +26,7 @@ namespace DescribeParser.Ast
             {
                 return Leafs[1];
             }
-            internal set
+            set
             {
                 Leafs[1] = value;
             }
@@ -43,21 +37,20 @@ namespace DescribeParser.Ast
             {
                 return Leafs[2];
             }
-            internal set
+            set
             {
                 Leafs[2] = value;
             }
         }
 
 
+        public AstSimpleDecoratorNode(AstLeafNode open, AstLeafNode name, AstLeafNode close) 
+            : base(new List<AstLeafNode>() { open, name, close}) { }
+        public AstSimpleDecoratorNode(AstLeafNode open, AstLeafNode name, AstLeafNode close, IAstBranchNode parent)
+            : base(new List<AstLeafNode>() { open, name, close }, parent) { }
 
-        // Internal Ctor - to prevent external instantiation
-        internal AstSimpleDecoratorNode()
-        { }
 
 
-
-        // ToString()
         public override string ToString()
         {
             string s = "(SIMPLE_DECORATOR : ";

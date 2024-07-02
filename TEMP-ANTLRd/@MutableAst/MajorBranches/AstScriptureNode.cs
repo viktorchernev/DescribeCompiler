@@ -1,27 +1,33 @@
-﻿namespace DescribeParser.Ast
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DescribeParser.Ast
 {
     public class AstScriptureNode : AstNode, IAstBranchNode
     {
         // Vars
-        public string? FileName
+        public string FileName
         {
             get;
-            internal set;
+            private set;
         }
-        public string? Namespace
+        public string Namespace
         {
             get;
-            internal set;
+            private set;
         }
         public List<AstExpressionNode> Expressions
         {
             get;
-            internal set;
+            set;
         }
         public Exception Exception
         {
             get;
-            internal set;
+            private set;
         }
 
         // Properties
@@ -84,10 +90,7 @@
         }
 
 
-
-        // Internal Ctor - to prevent external instantiation
-        internal AstScriptureNode()
-        { }
+        // Ctors
 
 
 

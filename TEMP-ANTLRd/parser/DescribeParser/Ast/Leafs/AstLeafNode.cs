@@ -10,9 +10,22 @@ namespace DescribeParser.Ast
     public class AstLeafNode : AstNode, IAstChildNode
     {
         // Vars
-        public AstLeafType LeafType;
-        public string Text;
-        public string? Trivia;
+        public AstLeafType LeafType
+        {
+            get;
+            internal set;
+        }
+        public string Text
+        {
+            get;
+            internal set;
+        }
+        public string? Trivia
+        {
+            get;
+            internal set;
+        }
+
 
         // IAstChildNode
         public SourcePosition? Position 
@@ -27,81 +40,10 @@ namespace DescribeParser.Ast
         }
 
 
-        // Ctors
-        public AstLeafNode(AstLeafType leaftype, string text)
+        // Internal Ctor - to prevent external instantiation
+        internal AstLeafNode()
         {
-            LeafType = leaftype;
-            Text = text;
-            Position = null;
-            Parent = null;
-        }
-        public AstLeafNode(AstLeafType leaftype, string text, SourcePosition position) 
-        {
-            LeafType = leaftype;
-            Text = text;
-            Position = position;
-            Parent = null;
-        }
-        public AstLeafNode(AstLeafType leaftype, string text, IAstBranchNode parent)
-        {
-            LeafType = leaftype;
-            Text = text;
-            Position = null;
-            Parent = parent;
-        }
-        public AstLeafNode(AstLeafType leaftype, string text, SourcePosition position, IAstBranchNode parent)
-        {
-            LeafType = leaftype;
-            Text = text;
-            Position = position;
-            Parent = parent;
-        }
-        public AstLeafNode(AstLeafType leaftype, string text, IAstBranchNode parent, SourcePosition position)
-        {
-            LeafType = leaftype;
-            Text = text;
-            Position = position;
-            Parent = parent;
-        }
-        public AstLeafNode(AstLeafType leaftype, string text, string trivia)
-        {
-            LeafType = leaftype;
-            Text = text;
-            Trivia = trivia;
-            Position = null;
-            Parent = null;
-        }
-        public AstLeafNode(AstLeafType leaftype, string text, string trivia, SourcePosition position)
-        {
-            LeafType = leaftype;
-            Text = text;
-            Trivia = trivia;
-            Position = position;
-            Parent = null;
-        }
-        public AstLeafNode(AstLeafType leaftype, string text, string trivia, IAstBranchNode parent)
-        {
-            LeafType = leaftype;
-            Text = text;
-            Trivia = trivia;
-            Position = null;
-            Parent = parent;
-        }
-        public AstLeafNode(AstLeafType leaftype, string text, string trivia, SourcePosition position, IAstBranchNode parent)
-        {
-            LeafType = leaftype;
-            Text = text;
-            Trivia = trivia;
-            Position = position;
-            Parent = parent;
-        }
-        public AstLeafNode(AstLeafType leaftype, string text, string trivia, IAstBranchNode parent, SourcePosition position)
-        {
-            LeafType = leaftype;
-            Text = text;
-            Trivia = trivia;
-            Position = position;
-            Parent = parent;
+            Text = "";
         }
 
 

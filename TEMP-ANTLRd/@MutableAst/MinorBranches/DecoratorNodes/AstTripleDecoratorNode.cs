@@ -8,70 +8,77 @@ using System.Xml.Linq;
 
 namespace DescribeParser.Ast
 {
-    public class AstDoubleDecoratorNode : AstDecoratorNode
+    public class AstTripleDecoratorNode : AstDecoratorNode
     {
-        public AstDoubleDecoratorType DecoratorType
-        {
-            get;
-            internal set;
-        }
-        public AstLeafNode OpenBracket 
+        public AstLeafNode OpenBracket
         { 
             get
             {
                 return Leafs[0];
             }
-            internal set
+            set
             {
                 Leafs[0] = value;
+            }
+        }
+        public AstLeafNode Category
+        {
+            get
+            {
+                return Leafs[1];
+            }
+            set
+            {
+                Leafs[1] = value;
             }
         }
         public AstLeafNode Name
         {
             get
             {
-                return Leafs[1];
+                return Leafs[2];
             }
-            internal set
+            set
             {
-                Leafs[1] = value;
+                Leafs[2] = value;
             }
         }
         public AstLeafNode Value
         {
             get
             {
-                return Leafs[2];
+                return Leafs[3];
             }
-            internal set
+            set
             {
-                Leafs[2] = value;
+                Leafs[3] = value;
             }
         }
         public AstLeafNode CloseBracket
         {
             get
             {
-                return Leafs[3];
+                return Leafs[4];
             }
-            internal set
+            set
             {
-                Leafs[3] = value;
+                Leafs[4] = value;
             }
         }
 
 
+        public AstTripleDecoratorNode(AstLeafNode open, AstLeafNode category,
+            AstLeafNode name, AstLeafNode value, AstLeafNode close)
+                : base(new List<AstLeafNode>() { open, category, name, value, close }) { }
 
-        // Internal Ctor - to prevent external instantiation
-        internal AstDoubleDecoratorNode()
-        { }
+        public AstTripleDecoratorNode(AstLeafNode open, AstLeafNode category,
+            AstLeafNode name, AstLeafNode value, AstLeafNode close, IAstBranchNode parent)
+            : base(new List<AstLeafNode>() { open, category, name, value, close }, parent) { }
 
 
-
-        // ToString()
         public override string ToString()
         {
-            string s = "(DOUBLE_DECORATOR : ";
+            string s = "(TRIPLE_DECORATOR : ";
             for (int i = 0; i < Leafs.Count - 1; i++)
             {
                 s += "\"" + Leafs[i].ToCode() + "\", ";

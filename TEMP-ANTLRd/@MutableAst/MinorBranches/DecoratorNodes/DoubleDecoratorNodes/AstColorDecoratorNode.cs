@@ -8,22 +8,22 @@ namespace DescribeParser.Ast
 {
     public class AstColorDecoratorNode : AstDoubleDecoratorNode 
     {
-        public AstColorDecoratorNode(AstTokenNode open, AstTokenNode name, AstTokenNode value, AstTokenNode close)
+        public AstColorDecoratorNode(AstLeafNode open, AstLeafNode name, AstLeafNode value, AstLeafNode close)
             : base(open, name, value, close) { }
 
-        public AstColorDecoratorNode(AstTokenNode open, AstTokenNode name, AstTokenNode value, AstTokenNode close, AstMinorBranchNode parent)
+        public AstColorDecoratorNode(AstLeafNode open, AstLeafNode name, AstLeafNode value, AstLeafNode close, IAstBranchNode parent)
             : base(open, name, value, close, parent) { }
 
         public override string ToString()
         {
             string s = "(ColorDecorator : ";
-            for (int i = 0; i < Chunks.Count - 1; i++)
+            for (int i = 0; i < Leafs.Count - 1; i++)
             {
-                s += "\"" + Chunks[i].ToCode() + "\", ";
+                s += "\"" + Leafs[i].ToCode() + "\", ";
             }
-            if (Chunks.Count > 0)
+            if (Leafs.Count > 0)
             {
-                s += "\"" + Chunks[Chunks.Count - 1].ToCode() + "\"";
+                s += "\"" + Leafs[Leafs.Count - 1].ToCode() + "\"";
             }
             s += ")";
 

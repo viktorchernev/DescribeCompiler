@@ -10,82 +10,86 @@ namespace DescribeParser.Ast
 {
     public class AstTripleDecoratorNode : AstDecoratorNode
     {
-        public AstTokenNode OpenBracket
+        public AstTripleDecoratorType DecoratorType
+        {
+            get;
+            internal set;
+        }
+        public AstLeafNode OpenBracket
         { 
             get
             {
-                return Chunks[0];
+                return Leafs[0];
             }
             set
             {
-                Chunks[0] = value;
+                Leafs[0] = value;
             }
         }
-        public AstTokenNode Category
+        public AstLeafNode Category
         {
             get
             {
-                return Chunks[1];
+                return Leafs[1];
             }
             set
             {
-                Chunks[1] = value;
+                Leafs[1] = value;
             }
         }
-        public AstTokenNode Name
+        public AstLeafNode Name
         {
             get
             {
-                return Chunks[2];
+                return Leafs[2];
             }
             set
             {
-                Chunks[2] = value;
+                Leafs[2] = value;
             }
         }
-        public AstTokenNode Value
+        public AstLeafNode Value
         {
             get
             {
-                return Chunks[3];
+                return Leafs[3];
             }
             set
             {
-                Chunks[3] = value;
+                Leafs[3] = value;
             }
         }
-        public AstTokenNode CloseBracket
+        public AstLeafNode CloseBracket
         {
             get
             {
-                return Chunks[4];
+                return Leafs[4];
             }
             set
             {
-                Chunks[4] = value;
+                Leafs[4] = value;
             }
         }
 
 
-        public AstTripleDecoratorNode(AstTokenNode open, AstTokenNode category, 
-            AstTokenNode name, AstTokenNode value, AstTokenNode close)
-                : base(new List<AstTokenNode>() { open, category, name, value, close }) { }
-
-        public AstTripleDecoratorNode(AstTokenNode open, AstTokenNode category, 
-            AstTokenNode name, AstTokenNode value, AstTokenNode close, AstMinorBranchNode parent)
-            : base(new List<AstTokenNode>() { open, category, name, value, close }, parent) { }
+ 
+        // Internal Ctor - to prevent external instantiation
+        internal AstTripleDecoratorNode()
+        { }
 
 
+
+        // ToString()
         public override string ToString()
         {
             string s = "(TRIPLE_DECORATOR : ";
-            for (int i = 0; i < Chunks.Count - 1; i++)
+            for (int i = 0; i < Leafs.Count - 1; i++)
             {
-                s += "\"" + Chunks[i].ToCode() + "\", ";
+                s += "\"" + Leafs[i].ToCode() + "\", ";
             }
-            if (Chunks.Count > 0)
+            if (Leafs.Count > 0)
             {
-                s += "\"" + Chunks[Chunks.Count - 1].ToCode() + "\"";
+                s += "\"" + Leafs[Leafs.Count - 1].ToCode() + "\"";
             }
             s += ")";
 

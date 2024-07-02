@@ -19,8 +19,8 @@ namespace DescribeParser
         public Dictionary<string, List<string>> Productions;            //id of left-hand side item, ids of right-hand side items
         public Dictionary<string, List<string>> Tildes;            	    //id of item, ids of tildes
         public Dictionary<string, string> Translations;                 //id of item, text of item
-        public Dictionary<string, List<Tuple<string, string>>> Links;   //id of item, links texts
-        public Dictionary<string, List<List<string>>> Decorators;       //id of item, decorators texts
+        public Dictionary<string, List<Tuple<string, string>>> Links;       //id of item, links texts
+        public Dictionary<string, List<List<string>>> Decorators;           //id of item, decorators texts
 
         //main data place inside files
         public Dictionary<string, List<string>> ItemidFile;             //item id, filepath(s) that contains it

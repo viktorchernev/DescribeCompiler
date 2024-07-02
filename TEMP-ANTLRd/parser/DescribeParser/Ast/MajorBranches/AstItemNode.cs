@@ -9,30 +9,30 @@ namespace DescribeParser.Ast
     public class AstItemNode : AstNode, IAstBranchNode, IAstChildNode
     {
         // Vars
-        AstLeafNode Tilde
+        public AstLeafNode Tilde
         {
             get;
-            set;
+            internal set;
         }
-        AstLeafNode Text
+        public AstLeafNode Text
         {
             get;
-            set;
+            internal set;
         }
-        AstTagNode? Tag
+        public AstTagNode? Tag
         {
             get;
-            set;
+            internal set;
         }
-        List<AstLinkNode>? Links
+        public List<AstLinkNode>? Links
         {
             get;
-            set;
+            internal set;
         }
-        List<AstDecoratorNode>? Decorators
+        public List<AstDecoratorNode>? Decorators
         {
             get;
-            set;
+            internal set;
         }
 
         // Properties
@@ -65,20 +65,33 @@ namespace DescribeParser.Ast
             {
                 throw new NotImplementedException();
             }
-            set
-            {
-                throw new NotImplementedException();
-            }
         }
         public List<AstLeafNode> Leafs
         {
             get
             {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
+                List<AstLeafNode> li = new List<AstLeafNode>();
+                li.Add(Text);
+                if (Tag != null) 
+                { 
+                    li.AddRange(Tag.Leafs); 
+                }
+                if (Links != null) 
+                { 
+                    for(int i = 0; i < Links.Count; i++)
+                    {
+                        if (Links[i] != null) li.AddRange(Links[i].Leafs);
+                    }
+                }
+                if (Decorators != null)
+                {
+                    for (int i = 0; i < Decorators.Count; i++)
+                    {
+                        if (Decorators[i] != null) li.AddRange(Decorators[i].Leafs);
+                    }
+                }
+
+                return li;
             }
         }
 
@@ -95,7 +108,11 @@ namespace DescribeParser.Ast
         }
 
 
-        // Ctors
+
+        // Internal Ctor - to prevent external instantiation
+        internal AstItemNode()
+        { }
+ 
 
 
         // ToString()

@@ -158,10 +158,71 @@ namespace DescribeParser.Ast
 
 
 
-        // Internal Ctor - to prevent external instantiation
-        internal AstLinkNode()
+        // Ctors
+        /// <summary>
+        /// Ctor.
+        /// </summary>
+        /// <param name="open">The open bracket of the Link object</param>
+        /// <param name="url">The url of the Link object</param>
+        /// <param name="close">The closing bracket of the Link object</param>
+        /// <param name="parent">The parent item</param>
+        public AstLinkNode(AstLeafNode open, AstLeafNode url, AstLeafNode close, 
+            IAstBranchNode parent = null)
         {
-            Leafs = new List<AstLeafNode>();
+            OpenBracket = open;
+            Url = url;
+            Title = null;
+            Letter = null;
+            CloseBracket = close;
+
+            Parent = parent;
+            //calculate Position
+        }
+
+        /// <summary>
+        /// Ctor.
+        /// </summary>
+        /// <param name="open">The open bracket of the Link object</param>
+        /// <param name="url">The url of the Link object</param>
+        /// <param name="titlePipe">The pipe before the Title of the Link object</param>
+        /// <param name="title">The Title of the Link object</param>
+        /// <param name="close">The closing bracket of the Link object</param>
+        /// <param name="parent">The parent item</param>
+        public AstLinkNode(AstLeafNode open, AstLeafNode url, AstLeafNode title, 
+            AstLeafNode close, IAstBranchNode parent = null)
+        {
+            OpenBracket = open;
+            Url = url;
+            Title = title;
+            Letter = null;
+            CloseBracket = close;
+
+            Parent = parent;
+            //calculate Position
+        }
+
+        /// <summary>
+        /// Ctor.
+        /// </summary>
+        /// <param name="open">The open bracket of the Link object</param>
+        /// <param name="url">The url of the Link object</param>
+        /// <param name="titlePipe">The pipe before the Title of the Link object</param>
+        /// <param name="title">The Title of the Link object</param>
+        /// <param name="letterPipe">The pipe before the Letter of the Link object</param>
+        /// <param name="letter">The Letter of the Link object</param>
+        /// <param name="close">The closing bracket of the Link object</param>
+        /// <param name="parent">The parent item</param>
+        public AstLinkNode(AstLeafNode open, AstLeafNode url, AstLeafNode title, 
+            AstLeafNode letter, AstLeafNode close, IAstBranchNode parent = null)
+        {
+            OpenBracket = open;
+            Url = url;
+            Title = title;
+            Letter = letter;
+            CloseBracket = close;
+
+            Parent = parent;
+            //calculate Position
         }
 
 

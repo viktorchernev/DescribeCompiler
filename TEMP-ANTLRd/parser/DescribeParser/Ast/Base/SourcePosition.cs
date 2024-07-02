@@ -10,12 +10,12 @@ namespace DescribeParser.Ast
     {
         public int FirstIndex
         {
-            get;
+            get; 
             internal set;
         }
         public int FirstLine
         {
-            get;
+            get; 
             internal set;
         }
         public int FirstColumn
@@ -38,28 +38,6 @@ namespace DescribeParser.Ast
         {
             get;
             internal set;
-        }
-
-
-
-        public SourcePosition(SourcePosition position)
-        {
-            FirstIndex = position.FirstIndex;
-            FirstLine = position.FirstLine;
-            FirstColumn = position.FirstColumn;
-
-            LastIndex = position.LastIndex;
-            LastLine = position.LastLine;
-            LastColumn = position.LastColumn;
-        }
-        public SourcePosition(int firstIndex, int firstLine, int firstColumn, int lastIndex, int lastLine, int lastColumn)
-        {
-            FirstIndex = firstIndex;
-            FirstLine = firstLine;
-            FirstColumn = firstColumn;
-            LastIndex = lastIndex;
-            LastLine = lastLine;
-            LastColumn = lastColumn;
         }
     }
 }

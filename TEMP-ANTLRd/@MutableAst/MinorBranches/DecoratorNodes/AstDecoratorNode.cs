@@ -54,13 +54,68 @@ namespace DescribeParser.Ast
         }
 
 
-
-        // Internal Ctor - to prevent external instantiation
-        internal AstDecoratorNode()
+        public AstDecoratorNode()
         {
             Leafs = new List<AstLeafNode>();
+            Position = null;
+            Parent = null;
+        }
+        public AstDecoratorNode(SourcePosition position)
+        {
+            Leafs = new List<AstLeafNode>();
+            Position = position;
+            Parent = null;
+        }
+        public AstDecoratorNode(IAstBranchNode parent)
+        {
+            Leafs = new List<AstLeafNode>();
+            Position = null;
+            Parent = parent;
+        }
+        public AstDecoratorNode(SourcePosition position, IAstBranchNode parent)
+        {
+            Leafs = new List<AstLeafNode>();
+            Position = position;
+            Parent = parent;
+        }
+        public AstDecoratorNode(IAstBranchNode parent, SourcePosition position)
+        {
+            Leafs = new List<AstLeafNode>();
+            Position = position;
+            Parent = parent;
         }
 
+        public AstDecoratorNode(AstLeafNode chunk)
+        {
+            Leafs = new List<AstLeafNode>() { chunk };
+            if (chunk.Position == null) Position = null;
+            else Position = new SourcePosition(chunk.Position);
+            Parent = null;
+        }
+        public AstDecoratorNode(AstLeafNode chunk, IAstBranchNode parent)
+        {
+            Leafs = new List<AstLeafNode>() { chunk };
+            if (chunk.Position == null) Position = null;
+            else Position = new SourcePosition(chunk.Position);
+            Parent = parent;
+        }
+
+        public AstDecoratorNode(List<AstLeafNode> chunks)
+        {
+            Leafs = chunks;
+            Parent = null;
+            Position = null;
+            
+            //calculate Position
+        }
+        public AstDecoratorNode(List<AstLeafNode> chunks, IAstBranchNode parent)
+        {
+            Leafs = chunks;
+            Parent = parent;
+            Position = null;
+
+            //calculate Position
+        }
 
 
         // ToString()

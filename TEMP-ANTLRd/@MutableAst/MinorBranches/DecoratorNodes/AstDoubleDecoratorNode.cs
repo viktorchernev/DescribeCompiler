@@ -4,24 +4,19 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace DescribeParser.Ast
 {
-    public class AstSimpleDecoratorNode : AstDecoratorNode
+    public class AstDoubleDecoratorNode : AstDecoratorNode
     {
-        // Vars
-        public AstSimpleDecoratorType DecoratorType
-        {
-            get;
-            internal set;
-        }
         public AstLeafNode OpenBracket 
         { 
             get
             {
                 return Leafs[0];
             }
-            internal set
+            set
             {
                 Leafs[0] = value;
             }
@@ -32,35 +27,44 @@ namespace DescribeParser.Ast
             {
                 return Leafs[1];
             }
-            internal set
+            set
             {
                 Leafs[1] = value;
+            }
+        }
+        public AstLeafNode Value
+        {
+            get
+            {
+                return Leafs[2];
+            }
+            set
+            {
+                Leafs[2] = value;
             }
         }
         public AstLeafNode CloseBracket
         {
             get
             {
-                return Leafs[2];
+                return Leafs[3];
             }
-            internal set
+            set
             {
-                Leafs[2] = value;
+                Leafs[3] = value;
             }
         }
 
 
+        public AstDoubleDecoratorNode(AstLeafNode open, AstLeafNode name, AstLeafNode value, AstLeafNode close)
+            : base(new List<AstLeafNode>() { open, name, value, close }) { }
+        public AstDoubleDecoratorNode(AstLeafNode open, AstLeafNode name, AstLeafNode value, AstLeafNode close, IAstBranchNode parent)
+            : base(new List<AstLeafNode>() { open, name, value, close }, parent) { }
 
-        // Internal Ctor - to prevent external instantiation
-        internal AstSimpleDecoratorNode()
-        { }
 
-
-
-        // ToString()
         public override string ToString()
         {
-            string s = "(SIMPLE_DECORATOR : ";
+            string s = "(DOUBLE_DECORATOR : ";
             for (int i = 0; i < Leafs.Count - 1; i++)
             {
                 s += "\"" + Leafs[i].ToCode() + "\", ";

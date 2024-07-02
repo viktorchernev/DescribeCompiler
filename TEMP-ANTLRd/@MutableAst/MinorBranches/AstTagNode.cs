@@ -24,7 +24,7 @@ namespace DescribeParser.Ast
             {
                 return Leafs[0];
             }
-            internal set
+            set
             {
                 Leafs[0] = value;
             }
@@ -39,7 +39,7 @@ namespace DescribeParser.Ast
             {
                 return Leafs[1];
             }
-            internal set
+            set
             {
                 Leafs[1] = value;
             }
@@ -54,7 +54,7 @@ namespace DescribeParser.Ast
             {
                 return Leafs[2];
             }
-            internal set
+            set
             {
                 Leafs[2] = value;
             }
@@ -103,10 +103,36 @@ namespace DescribeParser.Ast
 
 
 
-        // Internal Ctor - to prevent external instantiation
-        internal AstTagNode()
+        // Ctor
+        /// <summary>
+        /// Ctor.
+        /// </summary>
+        /// <param name="open">The open bracket of the Tag object</param>
+        /// <param name="id">The id of the Tag object</param>
+        /// <param name="close">The closing bracket of the Tag object</param>
+        public AstTagNode(AstLeafNode open, AstLeafNode id, AstLeafNode close)
         {
-            Leafs = new List<AstLeafNode>();
+            OpenBracket = open;
+            Id = id;
+            CloseBracket = close;
+            Parent = null;
+            //calculate Position
+        }
+
+        /// <summary>
+        /// Ctor.
+        /// </summary>
+        /// <param name="open">The open bracket of the Tag object</param>
+        /// <param name="id">The id of the Tag object</param>
+        /// <param name="close">The closing bracket of the Tag object</param>
+        /// <param name="parent">The parent item</param>
+        public AstTagNode(AstLeafNode open, AstLeafNode id, AstLeafNode close, IAstBranchNode parent)
+        {
+            OpenBracket = open;
+            Id = id;
+            CloseBracket = close;
+            Parent = parent;
+            //calculate Position
         }
 
 
