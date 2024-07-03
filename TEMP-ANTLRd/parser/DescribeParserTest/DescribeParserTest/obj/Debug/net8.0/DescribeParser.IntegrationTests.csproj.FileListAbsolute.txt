@@ -19,3 +19,4 @@ C:\Users\Viktor Chernev\Desktop\ANTLRd\parser\DescribeParserTest\DescribeParserT
 C:\Users\Viktor Chernev\Desktop\ANTLRd\parser\DescribeParserTest\DescribeParserTest\obj\Debug\net8.0\DescribeParser.IntegrationTests.pdb
 C:\Users\Viktor Chernev\Desktop\ANTLRd\parser\DescribeParserTest\DescribeParserTest\obj\Debug\net8.0\DescribeParser.IntegrationTests.genruntimeconfig.cache
 C:\Users\Viktor Chernev\Desktop\ANTLRd\parser\DescribeParserTest\DescribeParserTest\obj\Debug\net8.0\ref\DescribeParser.IntegrationTests.dll
+C:\Users\Viktor Chernev\Desktop\ANTLRd\parser\DescribeParserTest\DescribeParserTest\bin\Debug\net8.0\Newtonsoft.Json.dll

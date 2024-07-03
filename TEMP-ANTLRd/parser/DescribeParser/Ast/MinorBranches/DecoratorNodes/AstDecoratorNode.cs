@@ -1,13 +1,10 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace DescribeParser.Ast
 {
+    /// <summary>
+    /// Represents a decorator node in the abstract syntax tree (AST).
+    /// </summary>
     public class AstDecoratorNode : AstNode, IAstBranchNode, IAstChildNode
     {
         // IAstBranchNode
@@ -17,7 +14,7 @@ namespace DescribeParser.Ast
         public List<AstLeafNode> Leafs
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -56,6 +53,9 @@ namespace DescribeParser.Ast
 
 
         // Internal Ctor - to prevent external instantiation
+        /// <summary>
+        /// Internal constructor to prevent external instantiation of <see cref="AstDecoratorNode"/>.
+        /// </summary>
         internal AstDecoratorNode()
         {
             Leafs = new List<AstLeafNode>();
@@ -88,17 +88,12 @@ namespace DescribeParser.Ast
         /// </summary>
         public override string ToJson()
         {
-            //var jsonObject = new
-            //{
-            //    openBracket = JsonConvert.DeserializeObject(OpenBracket.ToJson()),
-            //    url = JsonConvert.DeserializeObject(Url.ToJson()),
-            //    title = Title != null ? JsonConvert.DeserializeObject(Title.ToJson()) : null,
-            //    letter = Letter != null ? JsonConvert.DeserializeObject(Letter.ToJson()) : null,
-            //    closeBracket = JsonConvert.DeserializeObject(CloseBracket.ToJson())
-            //};
+            var jsonObject = new
+            {
+                Leafs = Leafs?.Select(leaf => leaf?.ToJson()).ToList()
+            };
 
-            //return JsonConvert.SerializeObject(jsonObject);
-            return null;
+            return JsonConvert.SerializeObject(jsonObject);
         }
 
         /// <summary>
@@ -106,11 +101,13 @@ namespace DescribeParser.Ast
         /// </summary>
         public override string ToCode()
         {
-            string s = "";
-            for(int i = 0; i < Leafs.Count; i++)
+            string s = Leafs[0].ToCode();
+            s += Leafs[1].ToCode();
+            for (int i = 2; i < Leafs.Count - 1; i++)
             {
-                s += Leafs[i].ToCode();
+                s += "|" + Leafs[i].ToCode();
             }
+            s += Leafs[Leafs.Count - 1].ToCode();
             return s;
         }
     }

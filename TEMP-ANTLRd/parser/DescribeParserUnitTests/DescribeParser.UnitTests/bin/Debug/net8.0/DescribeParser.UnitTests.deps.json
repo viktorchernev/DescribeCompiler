@@ -325,7 +325,8 @@
       },
       "DescribeParser/1.0.0": {
         "dependencies": {
-          "Antlr4.Runtime.Standard": "4.13.1"
+          "Antlr4.Runtime.Standard": "4.13.1",
+          "Newtonsoft.Json": "13.0.1"
         },
         "runtime": {
           "DescribeParser.dll": {}

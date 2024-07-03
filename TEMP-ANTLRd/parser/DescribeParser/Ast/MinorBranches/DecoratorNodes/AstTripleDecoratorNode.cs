@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -8,13 +9,23 @@ using System.Xml.Linq;
 
 namespace DescribeParser.Ast
 {
+    /// <summary>
+    /// Represents a triple decorator node - "{ Category | Name | Value }", in the abstract syntax tree (AST).
+    /// </summary>
     public class AstTripleDecoratorNode : AstDecoratorNode
     {
+        /// <summary>
+        /// Gets the type of the Triple Decorator node.
+        /// </summary>
         public AstTripleDecoratorType DecoratorType
         {
             get;
             internal set;
         }
+
+        /// <summary>
+        /// The Leaf Node representing the open bracket of the Triple Decorator object - "{ Category | Name | Value }"
+        /// </summary>
         public AstLeafNode OpenBracket
         { 
             get
@@ -26,6 +37,10 @@ namespace DescribeParser.Ast
                 Leafs[0] = value;
             }
         }
+
+        /// <summary>
+        /// The Leaf Node representing the Category of the Triple Decorator object - "{ Category | Name | Value }"
+        /// </summary>
         public AstLeafNode Category
         {
             get
@@ -37,6 +52,10 @@ namespace DescribeParser.Ast
                 Leafs[1] = value;
             }
         }
+
+        /// <summary>
+        /// The Leaf Node representing the Name of the Triple Decorator object - "{ Category | Name | Value }"
+        /// </summary>
         public AstLeafNode Name
         {
             get
@@ -48,6 +67,10 @@ namespace DescribeParser.Ast
                 Leafs[2] = value;
             }
         }
+
+        /// <summary>
+        /// The Leaf Node representing the Value of the Triple Decorator object - "{ Category | Name | Value }"
+        /// </summary>
         public AstLeafNode Value
         {
             get
@@ -59,6 +82,10 @@ namespace DescribeParser.Ast
                 Leafs[3] = value;
             }
         }
+
+        /// <summary>
+        /// The Leaf Node representing the closing bracket of the Triple Decorator object - "{ Category | Name | Value }"
+        /// </summary>
         public AstLeafNode CloseBracket
         {
             get
@@ -72,14 +99,20 @@ namespace DescribeParser.Ast
         }
 
 
- 
+
         // Internal Ctor - to prevent external instantiation
+        /// <summary>
+        /// Internal constructor to prevent external instantiation of <see cref="AstTripleDecoratorNode"/>.
+        /// </summary>
         internal AstTripleDecoratorNode()
         { }
 
 
 
         // ToString()
+        /// <summary>
+        /// Get a string representation of the Decorator object for logging purposes
+        /// </summary>
         public override string ToString()
         {
             string s = "(TRIPLE_DECORATOR : ";
@@ -94,6 +127,24 @@ namespace DescribeParser.Ast
             s += ")";
 
             return s;
+        }
+
+        /// <summary>
+        /// Get a JSON string representation of the Decorator object for logging purposes
+        /// </summary>
+        public override string ToJson()
+        {
+            var jsonObject = new
+            {
+                decoratorType = DecoratorType.ToString(),
+                openBracket = JsonConvert.DeserializeObject(OpenBracket.ToJson()),
+                category = JsonConvert.DeserializeObject(Category.ToJson()),
+                name = JsonConvert.DeserializeObject(Name.ToJson()),
+                value = JsonConvert.DeserializeObject(Value.ToJson()),
+                closeBracket = JsonConvert.DeserializeObject(CloseBracket.ToJson())
+            };
+
+            return JsonConvert.SerializeObject(jsonObject);
         }
     }
 }

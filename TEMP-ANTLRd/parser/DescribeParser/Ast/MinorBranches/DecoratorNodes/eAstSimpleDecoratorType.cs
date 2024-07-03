@@ -6,14 +6,39 @@ using System.Threading.Tasks;
 
 namespace DescribeParser.Ast
 {
+    /// <summary>
+    /// Specifies the type of simple decorator in an abstract syntax tree (AST).
+    /// </summary>
     public enum AstSimpleDecoratorType
     {
+        /// <summary>
+        /// Represents a bold decorator type.
+        /// </summary>
         BoldDecorator,
+
+        /// <summary>
+        /// Represents an italic decorator type.
+        /// </summary>
         ItalicDecorator,
+
+        /// <summary>
+        /// Represents a striked-through decorator type.
+        /// </summary>
         StrikedDecorator,
+
+        /// <summary>
+        /// Represents an underline decorator type.
+        /// </summary>
         UnderlineDecorator,
 
+        /// <summary>
+        /// Represents a comment decorator type.
+        /// </summary>
         CommentDecorator,
-        NlCommentDecorator,
+
+        /// <summary>
+        /// Represents a new line comment decorator type.
+        /// </summary>
+        NlCommentDecorator
     }
 }
