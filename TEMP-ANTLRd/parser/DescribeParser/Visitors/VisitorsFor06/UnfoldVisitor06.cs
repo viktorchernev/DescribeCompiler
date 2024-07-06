@@ -61,6 +61,7 @@ namespace DescribeParser.Visitors
         /// </summary>
         /// <param name="u">Unfold to be populated</param>
         /// <param name="context">Root context produced by the parser aka the parse tree</param>
+        /// <param name="filename">The file name of the file that was parsed</param>
         /// <returns>True if successful</returns>
         public bool DoScripture(DescribeUnfold u, Describe06Parser.ScriptureContext context, string filename = "")
         {
@@ -295,7 +296,7 @@ namespace DescribeParser.Visitors
             {
                 var child = context.GetChild(i) as Describe06Parser.Text_chunkContext;
                 ITerminalNode token = child.GetChild(0) as ITerminalNode;
-                string s = token.GetText();
+                string? s = token?.GetText();
                 text += s;
             }
             text = text.Trim();

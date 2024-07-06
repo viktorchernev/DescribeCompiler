@@ -3,7 +3,7 @@
     /// <summary>
     /// Represents a branch node in an abstract syntax tree (AST).
     /// </summary>
-    public interface IAstBranchNode
+    public interface IAstBranchNode : IAstNode
     {
         /// <summary>
         /// Gets the list of leaf nodes associated with this branch node.
@@ -26,7 +26,7 @@
     /// Represents a generic branch node in an abstract syntax tree (AST) that can contain children of a specified type.
     /// </summary>
     /// <typeparam name="T">The type of the children nodes.</typeparam>
-    public interface IAstBranchNode<T>
+    public interface IAstBranchNode<T> : IAstNode
     {
         /// <summary>
         /// Gets the list of leaf nodes associated with this branch node.

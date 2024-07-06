@@ -3,7 +3,7 @@
     /// <summary>
     /// Represents a child node in an abstract syntax tree (AST).
     /// </summary>
-    public interface IAstChildNode
+    public interface IAstChildNode : IAstNode
     {
         /// <summary>
         /// Gets the position of the node within the source code.

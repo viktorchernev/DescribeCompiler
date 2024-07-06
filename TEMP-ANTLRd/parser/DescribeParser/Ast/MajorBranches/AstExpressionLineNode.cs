@@ -127,7 +127,7 @@ namespace DescribeParser.Ast
         public override string ToString()
         {
             string s = "ExpressionLine : " + Environment.NewLine;
-            s += (Body as AstNode)?.ToString() + Environment.NewLine;
+            s += Body?.ToString() + Environment.NewLine;
             s += Punctuation?.ToString() + Environment.NewLine;
 
             return s;
@@ -140,7 +140,7 @@ namespace DescribeParser.Ast
         {
             var jsonObject = new
             {
-                body = (Body as AstNode)?.ToJson(),
+                body = Body?.ToJson(),
                 punctuation = Punctuation?.ToJson(),
             };
 
@@ -155,7 +155,7 @@ namespace DescribeParser.Ast
             string s = "";
             if (Body != null)
             {
-                s += (Body as AstNode)?.ToCode();
+                s += Body?.ToCode();
             }
             s += Punctuation?.ToCode();
             return s;

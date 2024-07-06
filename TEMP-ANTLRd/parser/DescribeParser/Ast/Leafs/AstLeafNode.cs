@@ -27,9 +27,18 @@ namespace DescribeParser.Ast
         }
 
         /// <summary>
-        /// Gets the additional trivia associated with the leaf node.
+        /// Gets the leading trivia associated with the leaf node.
         /// </summary>
-        public string? Trivia
+        public string? LeadingTrivia
+        {
+            get;
+            internal set;
+        }
+
+        /// <summary>
+        /// Gets the trailing trivia associated with the leaf node.
+        /// </summary>
+        public string? TrailingTrivia
         {
             get;
             internal set;
@@ -45,7 +54,30 @@ namespace DescribeParser.Ast
         {
             get
             {
-                return Trivia != null;
+                if (LeadingTrivia == null && TrailingTrivia == null) return false;
+                return true;
+            }
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether the <see cref="AstLeafNode"/> has leading trivia.
+        /// </summary>
+        public bool HasLeadingTrivia
+        {
+            get
+            {
+                return LeadingTrivia == null ;
+            }
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether the <see cref="AstLeafNode"/> has trailing trivia.
+        /// </summary>
+        public bool HasTrailingTrivia
+        {
+            get
+            {
+                return TrailingTrivia == null;
             }
         }
 
@@ -92,10 +124,14 @@ namespace DescribeParser.Ast
         {
             string s = "(AstLeafNode / ";
             s += LeafType.ToString() + " : ";
-            s += "\"" + Text + "\"";
-            if (!string.IsNullOrEmpty(Trivia))
+            if (!string.IsNullOrEmpty(LeadingTrivia))
             {
-                s += ", \"" + Trivia + "\"";
+                s += ", \"" + LeadingTrivia + "\"";
+            }
+            s += "\"" + Text + "\"";
+            if (!string.IsNullOrEmpty(TrailingTrivia))
+            {
+                s += ", \"" + TrailingTrivia + "\"";
             }
             s += ")";
 
@@ -112,7 +148,8 @@ namespace DescribeParser.Ast
             {
                 leafType = LeafType,
                 text = Text,
-                trivia = Trivia
+                leadingTrivia = LeadingTrivia,
+                trailingTrivia = TrailingTrivia,
             };
 
             return JsonConvert.SerializeObject(jsonObject);
@@ -124,10 +161,15 @@ namespace DescribeParser.Ast
         /// <returns>A string representing the code generated from the <see cref="AstLeafNode"/>.</returns>
         public override string ToCode()
         {
-            string s = Text;
-            if (!string.IsNullOrEmpty(Trivia))
+            string s = "";
+            if (!string.IsNullOrEmpty(LeadingTrivia))
             {
-                s += Trivia;
+                s += LeadingTrivia;
+            }
+            s += Text;
+            if (!string.IsNullOrEmpty(TrailingTrivia))
+            {
+                s += TrailingTrivia;
             }
             return s;
         }

@@ -1,0 +1,83 @@
+https://tomassetti.me/?s
+https://tomassetti.me/thank-you/
+https://tomassetti.me/guide-parsing-algorithms-terminology/
+https://tomassetti.me/parsing-in-csharp/
+---------------------------------------------------------------------------
+https://www.google.com/search?q=how+to+build+a+lalr+grammar&oq=how+to+build+a+lalr+grammar&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRifBdIBCTIzMjE1ajBqN6gCD7ACAQ&client=ms-android-samsung-ss&sourceid=chrome-mobile&ie=UTF-8&chrome_dse_attribution=1
+how to build a lalr grammar
+https://www.google.com/search?q=parsers+for+c+sharp&client=ms-android-samsung-ss&sca_esv=c1f14eea029e1e8c&ei=3b4CZt3KKtKtxc8PjeS4wAo&oq=parsers+for+c+sharp&gs_lp=EhNtb2JpbGUtZ3dzLXdpei1zZXJwIhNwYXJzZXJzIGZvciBjIHNoYXJwMgYQABgWGB4yCxAAGIAEGIoFGIYDMgsQABiABBiKBRiGAzIFECEYoAEyBRAhGKABSL13UNkZWPJzcAN4AZABAJgB8QGgAd4aqgEGMC4xNi4zuAEDyAEA-AEBmAIUoALBHqgCAMICChAAGEcY1gQYsAPCAgsQABiABBiKBRiRAsICBRAAGIAEwgILEC4YgAQYxwEY0QPCAgUQLhiABMICChAAGIAEGIoFGEPCAhAQLhiABBiKBRhDGMcBGNEDwgILEC4YgAQYxwEYrwHCAgsQLhivARjHARiABMICChAuGIAEGIoFGEPCAgcQLhiABBgKwgIIEAAYFhgeGA_CAgoQABgeGA0YDxgKwgIKEAAYFhgeGA8YCsICCBAAGB4YDRgPwgIHECEYChigAZgDAogGAZAGCJIHBjEuMTAuOaAH5HE&sclient=mobile-gws-wiz-serp
+parsers for c sharp
+---------------------------------------------------------------------------
+https://tomassetti.me/parsing-in-csharp/ - Parsing In C#: Tools And Libraries
+GPLEX + Gardens Point Parser Generator | Coco/R
+ANTLR [https://tomassetti.me/getting-started-with-antlr-in-csharp/]
+Coco/R
+Grammatica
+Hime Parser Generator
+LLLPG
+IronMeta
+Pegasus
+Sparche
+Parseq, Parsley and LanguageExt.Parsec
+Pidgin
+---------------------------------------------------------------------------
+Regular languages can be parsed with regular expressions only 
+Regular languages can be parsed or expressed by Finite State Machine
+If a grammar of a language has recursive, or nested, elements it is not a regular language
+Regular grammar - Regular language
+Context-free grammar - Context-free language
+Parsing Expression Grammar (PEG) - Context-free language
+DOT language - Graphviz [https://en.wikipedia.org/wiki/Graphviz]
+top-down parsing and bottom-up parsing
+Lookahead and Backtracking
+
+I have context-free language
+I want Left-recursive Rules to be supported
+LL(1) - means lookahead 1 token LL(*) means infinite lookahead
+---------------------------------------------------------------------------
+https://tomassetti.me/parsing-in-csharp/
+
+ANTLR [https://tomassetti.me/getting-started-with-antlr-in-csharp/]
+Official - [https://www.antlr.org/]
+Grammars - [https://github.com/antlr/grammars-v4]
+Tutorials:
+[https://www.youtube.com/watch?v=bfiAvWZWnDA]
+[https://tomassetti.me/antlr-mega-tutorial/]
+[https://tomassetti.me/getting-started-with-antlr-in-csharp/]
+
+Thas 2 versions:
+original by sharwell [https://github.com/tunnelvisionlabs/antlr4cs]
+new standard runtime [https://github.com/antlr/antlr4]
+I need the new standard runtime!
+
+In VS code:
+[https://marketplace.visualstudio.com/items?itemName=mike-lischke.vscode-antlr4] - ANTLR4 grammar syntax support
+[https://www.nuget.org/packages/Antlr4.Runtime.Standard/] - Antlr4.Runtime.Standard
+
+Without VS code:
+[https://tomassetti.me/antlr-mega-tutorial/][https://github.com/gabriele-tomassetti/antlr-mega-tutorial]
+Download ANTLR - [https://www.antlr.org/download.html]
+Will need runtime in the C# project [https://www.nuget.org/packages/Antlr4.Runtime.Standard/4.13.1]
+Will need to use the Java tool or VS Code extention in order to be able to use the .net standard runtime.
+We have the book for ANTLR4
+Official docs - [https://github.com/antlr/antlr4/blob/master/doc/index.md]
+Online editor - [http://lab.antlr.org/]
+---------------------------------------------------------------------------
+antlr4.jar -Xlog																//produce empty log file, nothing more
+antlr4.jar -Xlog "Empty.g4"														//produce empty log file, nothing more
+antlr4.jar -Xlog -Dlanguage=JavaScript "Empty.g4"								//produce empty log file, nothing more
+antlr4.jar -Dlanguage=CSharp Spreadsheet.g4										//success
+antlr4.jar -Xlog -Dlanguage=CSharp Spreadsheet.g4								//success
+antlr4.jar -Xlog -Dlanguage=JavaScript Spreadsheet.g4							//success
+antlr4.jar -Xlog -Dlanguage=Cpp Spreadsheet.g4									//success
+antlr4.jar -Xlog -Dlanguage=CSharp DescribeBasics.g4							//use this!
+antlr4.jar -Xlog -Dlanguage=CSharp -visitor -no-listener DescribeBasics.g4		//use this!
+antlr4.jar -Xlog -Dlanguage=CSharp -visitor -listener Describe06.g4
+
+https://www.antlr.org/download.html												ANTLR runtime downloads
+https://github.com/antlr/antlr4/blob/master/doc/csharp-target.md				tutorial on C# runtime
+https://tomassetti.me/getting-started-with-antlr-in-csharp/						LEARN, UNIT TEST
+https://tomassetti.me/antlr-mega-tutorial/										ANTLR mega tutorial
+https://www.antlr.org/tools.html												ANTLR tools
+https://blog.knoldus.com/testing-grammar-using-antlr4-testrig-grun/				ANTLR TestRig aka Grun
+https://www.antlr3.org/works/													ANTLR works IDE (ANTLR 3)

@@ -3,7 +3,7 @@
     /// <summary>
     /// The base class for the AST
     /// </summary>
-    public abstract class AstNode
+    public abstract class AstNode : IAstNode
     {
         /// <summary>
         /// Get a string representation of an AST object for logging purposes
