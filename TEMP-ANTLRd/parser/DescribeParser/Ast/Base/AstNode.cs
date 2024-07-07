@@ -19,5 +19,13 @@
         /// Get a source code string representation of an AST object
         /// </summary>
         public abstract string ToCode();
+
+
+        protected static string replaceWhitespaceE(string text)
+        {
+            return text.Replace("\n", "\\n")
+                .Replace("\r", "\\r")
+                .Replace("\t", "\\t");
+        }
     }
 }

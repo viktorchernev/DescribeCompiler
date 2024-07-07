@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="TestFiles\resultTemplates\template_ast_a.md" />
+    <None Remove="TestFiles\resultTemplates\template_ast_b.md" />
+    <None Remove="TestFiles\resultTemplates\template_ast_c.md" />
+    <None Remove="TestFiles\resultTemplates\template_ast_d.md" />
     <None Remove="TestFiles\TestFilesFor06\A_basic1.ds" />
     <None Remove="TestFiles\TestFilesFor06\A_basic2.ds" />
     <None Remove="TestFiles\TestFilesFor06\A_basic3.ds" />
@@ -148,6 +152,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="TestFiles\resultTemplates\template_ast_d.md" />
+    <EmbeddedResource Include="TestFiles\resultTemplates\template_ast_c.md" />
+    <EmbeddedResource Include="TestFiles\resultTemplates\template_ast_b.md" />
+    <EmbeddedResource Include="TestFiles\resultTemplates\template_ast_a.md" />
     <EmbeddedResource Include="TestFiles\TestFilesFor06\G_long100a.ds" />
     <EmbeddedResource Include="TestFiles\TestFilesFor06\G_long100.ds" />
     <EmbeddedResource Include="TestFiles\TestFilesFor06\G_long50.ds" />

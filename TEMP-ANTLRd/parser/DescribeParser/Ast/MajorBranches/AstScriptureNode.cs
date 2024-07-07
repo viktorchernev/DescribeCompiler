@@ -9,6 +9,8 @@ namespace DescribeParser.Ast
     public class AstScriptureNode : AstNode, IAstBranchNode
     {
         // Vars
+        List<AstExpressionNode> _expressions;
+
         /// <summary>
         /// The string representing the filename of the Scripture object
         /// </summary>
@@ -32,8 +34,19 @@ namespace DescribeParser.Ast
         /// </summary>
         public List<AstExpressionNode> Expressions
         {
-            get;
-            internal set;
+            get
+            {
+                return _expressions;
+            }
+            internal set
+            {
+                _expressions = value;
+                if (_expressions == null) return;
+                for (int i = 0; i < _expressions.Count; i++)
+                {
+                    if (_expressions[i] != null) _expressions[i].Parent = this;
+                }
+            }
         }
 
         /// <summary>
@@ -152,17 +165,29 @@ namespace DescribeParser.Ast
         /// </summary>
         public override string ToString()
         {
-            string s = "Scripture : " + Environment.NewLine;
-            if (FileName != null) s += "\"" + FileName.ToString() + "\"" + Environment.NewLine;
-            if (Namespace != null) s += "\"" + Namespace.ToString() + "\"" + Environment.NewLine;
-            for (int i = 0; i < Expressions.Count; i++)
-            {
-                if (Expressions[i] != null) s += Expressions[i].ToString() + Environment.NewLine;
-            }
+            string indent = "    ";
+            string s = "Scripture : " + Environment.NewLine + Environment.NewLine;
+
+            if (FileName != null)
+                s += indent + "filename - \"" + FileName.ToString() + "\"" + Environment.NewLine;
+            else s += indent + "filename - NULL" + Environment.NewLine;
+
+            if (Namespace != null)
+                s += indent + "namespace - \"" + Namespace.ToString() + "\"" + Environment.NewLine;
+            else s += indent + "namespace - NULL" + Environment.NewLine;
 
             if (Exception != null)
+                s += indent + "Exception - \"" + Exception.Message + "\", \"" + Exception.StackTrace + "\"";
+            else s += indent + "Exception - NULL" + Environment.NewLine + Environment.NewLine;
+
+            for (int i = 0; i < Expressions.Count; i++)
             {
-                s += "(Exception : \"" + Exception.Message + "\", \"" + Exception.StackTrace + "\")";
+                if (Expressions[i] != null)
+                {
+                    string txt = Expressions[i].ToString();
+                    txt = txt.Replace(Environment.NewLine, Environment.NewLine + indent);
+                    s += indent + txt + Environment.NewLine;
+                }
             }
 
             return s;
@@ -173,15 +198,41 @@ namespace DescribeParser.Ast
         /// </summary>
         public override string ToJson()
         {
+            // Lines
+            List<object?>? es = null;
+            if (Expressions != null)
+            {
+                es = new List<object?>();
+                foreach (var expression in Expressions)
+                {
+                    string? jsonExpr = expression.ToJson();
+                    if (jsonExpr != null)
+                    {
+                        es.Add(JsonConvert.DeserializeObject(jsonExpr));
+                    }
+                    else es.Add(null);
+                }
+            }
+
+            // Exception
+            object? exceptionJsonObject = null;
+            if(Exception != null) 
+            {
+                exceptionJsonObject = new { message = Exception.Message, type = Exception.GetType().FullName };
+            }
+
+            // Json object
             var jsonObject = new
             {
                 filename = FileName,
                 nspace = Namespace,
                 expressions = Expressions?.Select(expression => JsonConvert.DeserializeObject(expression.ToJson())).ToList(),
-                exception = Exception != null ? new { message = Exception.Message, type = Exception.GetType().FullName } : null
+                exception = exceptionJsonObject
             };
 
-            return JsonConvert.SerializeObject(jsonObject);
+            // Json string
+            string s = JsonConvert.SerializeObject(jsonObject);
+            return s;
         }
 
         /// <summary>

@@ -5,6 +5,12 @@ namespace DescribeParser.Ast
     public class AstLinkNode : AstNode, IAstBranchNode, IAstChildNode
     {
         // Values
+        private AstLeafNode _open;
+        private AstLeafNode _url;
+        private AstLeafNode? _title;
+        private AstLeafNode? _letter;
+        private AstLeafNode _close;
+
         /// <summary>
         /// The Leaf Node representing the open bracket of the Link object
         /// </summary>
@@ -12,11 +18,12 @@ namespace DescribeParser.Ast
         {
             get
             {
-                return Leafs[0];
+                return _open;
             }
-            set
+            internal set
             {
-                Leafs[0] = value;
+                _open = value;
+                if (_open != null) _open.Parent = this;
             }
         }
 
@@ -27,11 +34,12 @@ namespace DescribeParser.Ast
         {
             get
             {
-                return Leafs[1];
+                return _url;
             }
-            set
+            internal set
             {
-                Leafs[1] = value;
+                _url = value;
+                if (_url != null) _url.Parent = this;
             }
         }
 
@@ -42,12 +50,12 @@ namespace DescribeParser.Ast
         {
             get
             {
-                AstLeafNode n = Leafs[3];
-                return n;
+                return _title;
             }
-            set
+            internal set
             {
-                Leafs[3] = value;
+                _title = value;
+                if (_title != null) _title.Parent = this;
             }
         }
 
@@ -58,12 +66,12 @@ namespace DescribeParser.Ast
         {
             get
             {
-                AstLeafNode n = Leafs[5];
-                return n;
+                return _letter;
             }
-            set
+            internal set
             {
-                Leafs[5] = value;
+                _letter = value;
+                if (_letter != null) _letter.Parent = this;
             }
         }
 
@@ -74,13 +82,15 @@ namespace DescribeParser.Ast
         {
             get
             {
-                return Leafs[4];
+                return _close;
             }
-            set
+            internal set
             {
-                Leafs[4] = value;
+                _close = value;
+                if (_close != null) _close.Parent = this;
             }
         }
+
 
 
         // Properties
@@ -115,10 +125,7 @@ namespace DescribeParser.Ast
         {
             get
             {
-                var li = new List<AstLeafNode>() { OpenBracket, Url };
-                if (Title != null) li.Add(Title);
-                if (Letter != null) li.Add(Letter);
-                return li;
+                return new List<AstLeafNode>() { OpenBracket, Url, Title, Letter, CloseBracket };
             }
         }
 
@@ -129,10 +136,7 @@ namespace DescribeParser.Ast
         {
             get
             {
-                var li = new List<object>() { OpenBracket, Url };
-                if (Title != null) li.Add(Title);
-                if (Letter != null) li.Add(Letter);
-                return li;
+                return new List<object>() { OpenBracket, Url, Title, Letter, CloseBracket };
             }
         }
 
@@ -163,7 +167,8 @@ namespace DescribeParser.Ast
         /// Internal constructor to prevent external instantiation of <see cref="AstLinkNode"/>.
         /// </summary>
         internal AstLinkNode()
-        { }
+        {
+        }
 
 
 
@@ -173,18 +178,17 @@ namespace DescribeParser.Ast
         /// </summary>
         public override string ToString()
         {
-            string s = "(Link : ";
+            string s = "";
             for (int i = 0; i < Leafs.Count - 1; i++)
             {
                 if (Leafs[i] == null) s += "NULL";
-                else s += "\"" + Leafs[i].ToCode() + "\", ";
+                else s += "\"" + replaceWhitespaceE(Leafs[i].ToCode()) + "\" ";
             }
             if (Leafs.Count > 0)
             {
                 if (Leafs[Leafs.Count - 1] == null) s += "NULL";
-                else s += "\"" + Leafs[Leafs.Count - 1].ToCode() + "\"";
+                else s += " \"" + replaceWhitespaceE(Leafs[Leafs.Count - 1].ToCode()) + "\"";
             }
-            s += ")";
 
             return s;
         }
@@ -194,15 +198,42 @@ namespace DescribeParser.Ast
         /// </summary>
         public override string ToJson()
         {
+            // OpenBracket
+            string? jo = OpenBracket?.ToJson();
+            object? o = null;
+            if (jo != null) o = JsonConvert.DeserializeObject(jo);
+
+            // Url
+            string? ju = Url?.ToJson();
+            object? u = null;
+            if (ju != null) u = JsonConvert.DeserializeObject(ju);
+
+            // Title
+            string? jt = Title?.ToJson();
+            object? t = null;
+            if (jt != null) t = JsonConvert.DeserializeObject(jt);
+
+            // Letter
+            string? jl = Letter?.ToJson();
+            object? l = null;
+            if (jl != null) l = JsonConvert.DeserializeObject(jl);
+
+            // CloseBracket
+            string? jc = CloseBracket?.ToJson();
+            object? c = null;
+            if (jc != null) c = JsonConvert.DeserializeObject(jc);
+
+            // Json object
             var jsonObject = new
             {
-                openBracket = JsonConvert.DeserializeObject(OpenBracket.ToJson()),
-                url = JsonConvert.DeserializeObject(Url.ToJson()),
-                title = Title != null ? JsonConvert.DeserializeObject(Title.ToJson()) : null,
-                letter = Letter != null ? JsonConvert.DeserializeObject(Letter.ToJson()) : null,
-                closeBracket = JsonConvert.DeserializeObject(CloseBracket.ToJson())
+                openBracket = o,
+                url = u,
+                title = t,
+                letter = l,
+                closeBracket = c
             };
 
+            // Json string
             return JsonConvert.SerializeObject(jsonObject);
         }
 

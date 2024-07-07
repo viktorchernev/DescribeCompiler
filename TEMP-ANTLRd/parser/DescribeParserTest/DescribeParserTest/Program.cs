@@ -14,7 +14,8 @@ namespace DescribeParser.IntegrationTests
         static void Main(string[] args)
         {
             //RunParserTests();
-            RunUnfoldTests();
+            //RunUnfoldTests();
+            RunAstTests();
         }
         static void RunParserTests()
         {
@@ -84,6 +85,18 @@ namespace DescribeParser.IntegrationTests
             //test 11
             //UnfoldTestsFor11.TestFile("DescribeParser.IntegrationTests.TestFiles.TestFilesFor11.A_twoRoots.ds");
             UnfoldTestsFor11.TestFiles(false, true);
+            Console.ReadLine();
+        }
+        static void RunAstTests()
+        {
+            //test 06
+            //AstTestsFor06.TestFile("DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.A_basic1.ds");
+            //AstTestsFor06.TestFiles(false, true);
+            //Console.ReadLine();
+
+            //test 07
+            //AstTestsFor07.TestFile("DescribeParser.IntegrationTests.TestFiles.TestFilesFor07.A_twoRoots.ds");
+            AstTestsFor07.TestFiles(false, true);
             Console.ReadLine();
         }
     }

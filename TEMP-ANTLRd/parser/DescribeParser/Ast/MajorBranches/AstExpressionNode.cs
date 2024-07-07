@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System.Linq.Expressions;
 namespace DescribeParser.Ast
 {
     /// <summary>
@@ -7,13 +8,24 @@ namespace DescribeParser.Ast
     public class AstExpressionNode : AstNode, IAstBranchNode, IAstChildNode
     {
         // Vars
+        private AstItemNode _title;
+        private AstLeafNode _prod;
+        private List<AstExpressionLineNode>? _linesList;
+
         /// <summary>
         /// The Leaf Node representing the title symbol of the Expression object
         /// </summary>
         public AstItemNode TitleItem
         {
-            get;
-            internal set;
+            get
+            {
+                return _title;
+            }
+            internal set
+            {
+                _title = value;
+                if (_title != null) _title.Parent = this;
+            }
         }
 
         /// <summary>
@@ -21,17 +33,35 @@ namespace DescribeParser.Ast
         /// </summary>
         public AstLeafNode ProductionArrow
         {
-            get;
-            internal set; 
+            get
+            {
+                return _prod;
+            }
+            internal set
+            {
+                _prod = value;
+                if (_prod != null) _prod.Parent = this;
+            }
         }
 
         /// <summary>
         /// The List representing the Expression Line objects of this Scripture object
         /// </summary>
         public List<AstExpressionLineNode> Lines
-        { 
-            get; 
-            internal set; 
+        {
+            get
+            {
+                return _linesList;
+            }
+            internal set
+            {
+                _linesList = value;
+                if (_linesList == null) return;
+                for (int i = 0; i < _linesList.Count; i++)
+                {
+                    if (_linesList[i] != null) _linesList[i].Parent = this;
+                }
+            }
         }
 
 
@@ -165,12 +195,24 @@ namespace DescribeParser.Ast
         /// </summary>
         public override string ToString()
         {
-            string s = "Expression : " + Environment.NewLine;
-            s += TitleItem.ToString() + Environment.NewLine;
-            s += ProductionArrow.ToString() + Environment.NewLine;
+            string indent = "    ";
+            string s = "Expression : " + Environment.NewLine + Environment.NewLine;
+
+            string head = Environment.NewLine + TitleItem.ToString();
+            head = head.Replace(Environment.NewLine, Environment.NewLine + indent + indent);
+            s += indent + "titleItem - " + head.TrimStart() + Environment.NewLine;
+
+            s += indent + "productionArrow - " + ProductionArrow.ToString() + Environment.NewLine + Environment.NewLine;
+
             for (int i = 0; i < Lines.Count; i++)
             {
-                if (Lines[i] != null) s += Lines[i].ToString() + Environment.NewLine;
+                if(Lines[i] != null)
+                {
+                    string curl = Environment.NewLine + Lines[i].ToString();
+                    curl = curl.Replace(Environment.NewLine, Environment.NewLine + indent + indent);
+                    s += indent + "line - " + curl.TrimStart() + Environment.NewLine;
+                }
+                else s += indent + "line - NULL" + Environment.NewLine;
             }
 
             return s;
@@ -181,14 +223,43 @@ namespace DescribeParser.Ast
         /// </summary>
         public override string ToJson()
         {
+            // TitleItem
+            string? jt = TitleItem?.ToJson();
+            object? t = null;
+            if (jt != null) t = JsonConvert.DeserializeObject(jt);
+
+            // ProductionArrow
+            string? ja = ProductionArrow?.ToJson();
+            object? a = null;
+            if (ja != null) a = JsonConvert.DeserializeObject(ja);
+
+            // Lines
+            List<object?>? ls = null;
+            if (Lines != null)
+            {
+                ls = new List<object?>();
+                foreach (var line in Lines)
+                {
+                    string? jsonLine = line.ToJson();
+                    if (jsonLine != null)
+                    {
+                        ls.Add(JsonConvert.DeserializeObject(jsonLine));
+                    }
+                    else ls.Add(null);
+                }
+            }
+
+            // Json object
             var jsonObject = new
             {
-                title = TitleItem?.ToJson(),
-                arrow = ProductionArrow?.ToJson(),
-                lines = Lines?.Select(line => JsonConvert.DeserializeObject(line.ToJson())).ToList(),
+                title = t,
+                arrow = a,
+                lines = ls
             };
 
-            return JsonConvert.SerializeObject(jsonObject);
+            // Json string
+            string s = JsonConvert.SerializeObject(jsonObject);
+            return s;
         }
 
         /// <summary>

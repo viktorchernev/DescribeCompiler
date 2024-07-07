@@ -14,6 +14,13 @@ namespace DescribeParser.Ast
     /// </summary>
     public class AstTripleDecoratorNode : AstDecoratorNode
     {
+        // Vars
+        private AstLeafNode _open;
+        private AstLeafNode _cat;
+        private AstLeafNode _name;
+        private AstLeafNode _value;
+        private AstLeafNode _close;
+
         /// <summary>
         /// Gets the type of the Triple Decorator node.
         /// </summary>
@@ -27,14 +34,15 @@ namespace DescribeParser.Ast
         /// The Leaf Node representing the open bracket of the Triple Decorator object - "{ Category | Name | Value }"
         /// </summary>
         public AstLeafNode OpenBracket
-        { 
+        {
             get
             {
-                return Leafs[0];
+                return _open;
             }
-            set
+            internal set
             {
-                Leafs[0] = value;
+                _open = value;
+                if (_open != null) _open.Parent = this;
             }
         }
 
@@ -45,11 +53,12 @@ namespace DescribeParser.Ast
         {
             get
             {
-                return Leafs[1];
+                return _cat;
             }
-            set
+            internal set
             {
-                Leafs[1] = value;
+                _cat = value;
+                if (_cat != null) _cat.Parent = this;
             }
         }
 
@@ -60,11 +69,12 @@ namespace DescribeParser.Ast
         {
             get
             {
-                return Leafs[2];
+                return _name;
             }
-            set
+            internal set
             {
-                Leafs[2] = value;
+                _name = value;
+                if (_name != null) _name.Parent = this;
             }
         }
 
@@ -75,11 +85,12 @@ namespace DescribeParser.Ast
         {
             get
             {
-                return Leafs[3];
+                return _value;
             }
-            set
+            internal set
             {
-                Leafs[3] = value;
+                _value = value;
+                if (_value != null) _value.Parent = this;
             }
         }
 
@@ -90,11 +101,37 @@ namespace DescribeParser.Ast
         {
             get
             {
-                return Leafs[4];
+                return _close;
             }
-            set
+            internal set
             {
-                Leafs[4] = value;
+                _close = value;
+                if (_close != null) _close.Parent = this;
+            }
+        }
+
+
+
+        // IAstBranchNode
+        /// <summary>
+        /// Get or Set the Leaf Nodes that make the Link object
+        /// </summary>
+        public override List<AstLeafNode> Leafs
+        {
+            get
+            {
+                return new List<AstLeafNode>() { OpenBracket, Category, Name, Value,  CloseBracket };
+            }
+        }
+
+        /// <summary>
+        /// Get the Leaf Nodes that make the Link object as objects
+        /// </summary>
+        public override List<object> Children
+        {
+            get
+            {
+                return new List<object>() { OpenBracket, Category, Name, Value, CloseBracket };
             }
         }
 
@@ -115,16 +152,15 @@ namespace DescribeParser.Ast
         /// </summary>
         public override string ToString()
         {
-            string s = "(TRIPLE_DECORATOR : ";
+            string s = "";
             for (int i = 0; i < Leafs.Count - 1; i++)
             {
-                s += "\"" + Leafs[i].ToCode() + "\", ";
+                s += "\"" + replaceWhitespaceE(Leafs[i].ToCode()) + "\" ";
             }
             if (Leafs.Count > 0)
             {
-                s += "\"" + Leafs[Leafs.Count - 1].ToCode() + "\"";
+                s += " \"" + replaceWhitespaceE(Leafs[Leafs.Count - 1].ToCode()) + "\"";
             }
-            s += ")";
 
             return s;
         }
@@ -134,14 +170,39 @@ namespace DescribeParser.Ast
         /// </summary>
         public override string ToJson()
         {
+            // OpenBracket
+            string? jo = OpenBracket?.ToJson();
+            object? o = null;
+            if (jo != null) o = JsonConvert.DeserializeObject(jo);
+
+            // Category
+            string? jy = Category?.ToJson();
+            object? y = null;
+            if (jy != null) y = JsonConvert.DeserializeObject(jy);
+
+            // Name
+            string? jn = Name?.ToJson();
+            object? n = null;
+            if (jn != null) n = JsonConvert.DeserializeObject(jn);
+
+            // Value
+            string? jv = Value?.ToJson();
+            object? v = null;
+            if (jv != null) v = JsonConvert.DeserializeObject(jv);
+
+            // CloseBracket
+            string? jc = CloseBracket?.ToJson();
+            object? c = null;
+            if (jc != null) c = JsonConvert.DeserializeObject(jc);
+
             var jsonObject = new
             {
                 decoratorType = DecoratorType.ToString(),
-                openBracket = JsonConvert.DeserializeObject(OpenBracket.ToJson()),
-                category = JsonConvert.DeserializeObject(Category.ToJson()),
-                name = JsonConvert.DeserializeObject(Name.ToJson()),
-                value = JsonConvert.DeserializeObject(Value.ToJson()),
-                closeBracket = JsonConvert.DeserializeObject(CloseBracket.ToJson())
+                openBracket = o,
+                category = y,
+                name = n,
+                value = v,
+                closeBracket = c
             };
 
             return JsonConvert.SerializeObject(jsonObject);

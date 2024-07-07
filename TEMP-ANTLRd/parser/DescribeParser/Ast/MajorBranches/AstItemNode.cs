@@ -13,13 +13,26 @@ namespace DescribeParser.Ast
     public class AstItemNode : AstNode, IAstBranchNode, IAstChildNode
     {
         // Vars
+        private AstLeafNode? _tilde;
+        private AstLeafNode _text;
+        private AstTagNode? _tag;
+        private List<AstLinkNode>? _linksList;
+        private List<AstDecoratorNode>? _decoratorsList;
+
         /// <summary>
         /// The Leaf Node representing the tilde symbol of the Item object
         /// </summary>
         public AstLeafNode? Tilde
         {
-            get;
-            internal set;
+            get
+            {
+                return _tilde;
+            }
+            internal set
+            {
+                _tilde = value;
+                if(_tilde != null) _tilde.Parent = this;
+            }
         }
 
         /// <summary>
@@ -27,8 +40,15 @@ namespace DescribeParser.Ast
         /// </summary>
         public AstLeafNode Text
         {
-            get;
-            internal set;
+            get
+            {
+                return _text;
+            }
+            internal set
+            {
+                _text = value;
+                if (_text != null) _text.Parent = this;
+            }
         }
 
         /// <summary>
@@ -36,8 +56,15 @@ namespace DescribeParser.Ast
         /// </summary>
         public AstTagNode? Tag
         {
-            get;
-            internal set;
+            get
+            {
+                return _tag;
+            }
+            internal set
+            {
+                _tag = value;
+                if (_tag != null) _tag.Parent = this;
+            }
         }
 
         /// <summary>
@@ -45,8 +72,19 @@ namespace DescribeParser.Ast
         /// </summary>
         public List<AstLinkNode>? Links
         {
-            get;
-            internal set;
+            get
+            {
+                return _linksList;
+            }
+            internal set
+            {
+                _linksList = value;
+                if (_linksList == null) return; 
+                for(int i = 0; i < _linksList.Count; i++)
+                {
+                    if (_linksList[i] != null) _linksList[i].Parent = this;
+                }
+            }
         }
 
         /// <summary>
@@ -54,8 +92,19 @@ namespace DescribeParser.Ast
         /// </summary>
         public List<AstDecoratorNode>? Decorators
         {
-            get;
-            internal set;
+            get
+            {
+                return _decoratorsList;
+            }
+            internal set
+            {
+                _decoratorsList = value;
+                if (_decoratorsList == null) return;
+                for (int i = 0; i < _decoratorsList.Count; i++)
+                {
+                    if (_decoratorsList[i] != null) _decoratorsList[i].Parent = this;
+                }
+            }
         }
 
 
@@ -185,26 +234,36 @@ namespace DescribeParser.Ast
         /// </summary>
         public override string ToString()
         {
-            string s = "Item : " + Environment.NewLine;
-            if (Tilde != null) s += "\"" + Tilde.ToString() + "\"" + Environment.NewLine;
-            s += "\"" + Text.ToString() + "\"" + Environment.NewLine;
-            if (Tag != null) s += "\"" + Tag.ToString() + "\"" + Environment.NewLine;
-            
-            if(Links != null && Links.Count > 0)
+            string indent = "    ";
+            string s = "Item : " + Environment.NewLine + Environment.NewLine;
+
+            if (Tilde != null) s += indent + "tilde - \"" + Tilde.ToString() + "\"" + Environment.NewLine;
+            else s += indent + "tilde - NULL" + Environment.NewLine;
+
+            s += indent + "text - " + Text.ToString() + Environment.NewLine;
+
+            if (Tag != null) s += indent + "tag - \"" + Tag.ToString() + "\"" + Environment.NewLine;
+            else s += indent + "tag - NULL" + Environment.NewLine;
+
+            if (Links != null && Links.Count > 0)
             {
                 for(int i = 0; i < Links.Count; i++)
                 {
-                    if (Links[i] != null) s += "\"" + Links[i].ToString() + "\"" + Environment.NewLine;
+                    if (Links[i] != null) s += indent + "link - \"" + Links[i].ToString() + "\"" + Environment.NewLine;
+                    else s += indent + "link - NULL" + Environment.NewLine;
                 }
             }
+            else s += indent + "links - NULL" + Environment.NewLine;
 
             if (Decorators != null && Decorators.Count > 0)
             {
                 for (int i = 0; i < Decorators.Count; i++)
                 {
-                    if (Decorators[i] != null) s += "\"" + Decorators[i].ToString() + "\"" + Environment.NewLine;
+                    if (Decorators[i] != null) s += indent + "decorator - \"" + Decorators[i].ToString() + "\"" + Environment.NewLine;
+                    else s += indent + "decorator - NULL" + Environment.NewLine;
                 }
             }
+            else s += indent + "decorators - NULL" + Environment.NewLine;
 
             return s;
         }
@@ -214,16 +273,66 @@ namespace DescribeParser.Ast
         /// </summary>
         public override string ToJson()
         {
+            // TildeItem
+            string? jt = Tilde?.ToJson();
+            object? t = null;
+            if (jt != null) t = JsonConvert.DeserializeObject(jt);
+
+            // Text
+            string? je = Text?.ToJson();
+            object? e = null;
+            if (je != null) e = JsonConvert.DeserializeObject(je);
+
+            // Tag
+            string? ja = Tag?.ToJson();
+            object? a = null;
+            if (ja != null) a = JsonConvert.DeserializeObject(ja);
+
+            // Links
+            List<object?>? ls = null;
+            if (Links != null)
+            {
+                ls = new List<object?>();
+                foreach (var link in Links)
+                {
+                    string? jsonLink = link.ToJson();
+                    if (jsonLink != null)
+                    {
+                        ls.Add(JsonConvert.DeserializeObject(jsonLink));
+                    }
+                    else ls.Add(null);
+                }
+            }
+
+            // Decorators
+            List<object?>? lsd = null;
+            if (Decorators != null)
+            {
+                lsd = new List<object?>();
+                foreach (var decorator in Decorators)
+                {
+                    string? jsonDecorator = decorator.ToJson();
+                    if (jsonDecorator != null)
+                    {
+                        lsd.Add(JsonConvert.DeserializeObject(jsonDecorator));
+                    }
+                    else lsd.Add(null);
+                }
+            }
+
+            // Json object
             var jsonObject = new
             {
-                tilde = Tilde?.ToJson(),
-                text = Text != null ? JsonConvert.DeserializeObject(Text.ToJson()) : null,
-                tag = Tag?.ToJson(),
-                links = Links?.Select(link => JsonConvert.DeserializeObject(link.ToJson())).ToList(),
-                decorators = Decorators?.Select(decorator => JsonConvert.DeserializeObject(decorator.ToJson())).ToList()
+                tilde = t,
+                text = e,
+                tag = a,
+                links = ls,
+                decorators = lsd
             };
 
-            return JsonConvert.SerializeObject(jsonObject);
+            // Json string
+            string s = JsonConvert.SerializeObject(jsonObject);
+            return s;
         }
 
         /// <summary>

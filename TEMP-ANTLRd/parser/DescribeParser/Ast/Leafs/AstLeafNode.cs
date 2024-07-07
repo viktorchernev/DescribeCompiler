@@ -122,18 +122,15 @@ namespace DescribeParser.Ast
         /// <returns>A string representing the <see cref="AstLeafNode"/>.</returns>
         public override string ToString()
         {
-            string s = "(AstLeafNode / ";
+            string s = "AstLeafNode/";
             s += LeafType.ToString() + " : ";
             if (!string.IsNullOrEmpty(LeadingTrivia))
-            {
-                s += ", \"" + LeadingTrivia + "\"";
-            }
-            s += "\"" + Text + "\"";
-            if (!string.IsNullOrEmpty(TrailingTrivia))
-            {
-                s += ", \"" + TrailingTrivia + "\"";
-            }
-            s += ")";
+                s += "\"" + replaceWhitespaceE(LeadingTrivia) + "\" ";
+
+            s += " \"" + replaceWhitespaceE(Text) + "\" ";
+
+            if (!string.IsNullOrEmpty(TrailingTrivia)) 
+                s += " \"" + replaceWhitespaceE(TrailingTrivia) + "\"";
 
             return s;
         }
@@ -146,13 +143,14 @@ namespace DescribeParser.Ast
         {
             var jsonObject = new
             {
-                leafType = LeafType,
+                leafType = LeafType.ToString(),
                 text = Text,
                 leadingTrivia = LeadingTrivia,
                 trailingTrivia = TrailingTrivia,
             };
 
-            return JsonConvert.SerializeObject(jsonObject);
+            string s = JsonConvert.SerializeObject(jsonObject);
+            return s;
         }
 
         /// <summary>

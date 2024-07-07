@@ -74,5 +74,36 @@ namespace DescribeParser.Ast
 
             return pos;
         }
+
+        /// <summary>
+        /// Creates a consolidated <see cref="SourcePosition"/> based on the provided array of positions.
+        /// </summary>
+        /// <param name="positions">An array of <see cref="SourcePosition"/> instances.</param>
+        /// <returns>A single <see cref="SourcePosition"/> 
+        /// that spans from the minimum first index to the maximum last index of the input positions.
+        /// </returns>
+        public static SourcePosition CreateSourcePosition(params SourcePosition[] positions)
+        {
+            SourcePosition pos0 = positions[0];
+            SourcePosition pos1 = positions[0];
+
+            for(int i = 1; i < positions.Length; i++)
+            {
+                if (positions[i] == null) continue;
+                if (positions[i].FirstIndex < pos0.FirstIndex) pos0 = positions[i];
+                if (positions[i].LastIndex > pos1.LastIndex) pos1 = positions[i];
+            }
+
+            SourcePosition pos = new SourcePosition();
+            pos.FirstIndex = pos0.FirstIndex;
+            pos.FirstLine = pos0.FirstLine;
+            pos.FirstColumn = pos0.FirstColumn;
+
+            pos.LastIndex = pos1.LastIndex;
+            pos.LastLine = pos1.LastLine;
+            pos.LastColumn = pos1.LastColumn;
+
+            return pos;
+        }
     }
 }

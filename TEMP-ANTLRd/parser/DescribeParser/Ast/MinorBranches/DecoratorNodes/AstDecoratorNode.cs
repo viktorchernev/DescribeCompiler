@@ -5,29 +5,23 @@ namespace DescribeParser.Ast
     /// <summary>
     /// Represents a decorator node in the abstract syntax tree (AST).
     /// </summary>
-    public class AstDecoratorNode : AstNode, IAstBranchNode, IAstChildNode
+    public abstract class AstDecoratorNode : AstNode, IAstBranchNode, IAstChildNode
     {
         // IAstBranchNode
         /// <summary>
         /// Get or Set the Leaf Nodes that make the Link object
         /// </summary>
-        public List<AstLeafNode> Leafs
+        public abstract List<AstLeafNode> Leafs
         {
             get;
-            internal set;
         }
 
         /// <summary>
         /// Get the Leaf Nodes that make the Link object as objects
         /// </summary>
-        public List<object> Children
+        public abstract List<object> Children
         {
-            get
-            {
-                List<object> os = new List<object>();
-                for (int i = 0; i < Leafs.Count; i++) os.Add(Leafs[i]);
-                return os;
-            }
+            get;
         }
 
 
@@ -58,7 +52,6 @@ namespace DescribeParser.Ast
         /// </summary>
         internal AstDecoratorNode()
         {
-            Leafs = new List<AstLeafNode>();
         }
 
 
@@ -69,16 +62,15 @@ namespace DescribeParser.Ast
         /// </summary>
         public override string ToString()
         {
-            string s = "(Decorator : ";
+            string s = "";
             for (int i = 0; i < Leafs.Count - 1; i++)
             {
-                s += "\"" + Leafs[i].ToCode() + "\", ";
+                s += "\"" + replaceWhitespaceE(Leafs[i].ToCode()) + "\" ";
             }
             if (Leafs.Count > 0)
             {
-                s += "\"" + Leafs[Leafs.Count - 1].ToCode() + "\"";
+                s += " \"" + replaceWhitespaceE(Leafs[Leafs.Count - 1].ToCode()) + "\"";
             }
-            s += ")";
 
             return s;
         }
@@ -88,11 +80,29 @@ namespace DescribeParser.Ast
         /// </summary>
         public override string ToJson()
         {
+            // Leafs
+            List<object?>? ls = null;
+            if (Leafs != null)
+            {
+                ls = new List<object?>();
+                foreach (var leaf in Leafs)
+                {
+                    string? jsonLeaf = leaf.ToJson();
+                    if (jsonLeaf != null)
+                    {
+                        ls.Add(JsonConvert.DeserializeObject(jsonLeaf));
+                    }
+                    else ls.Add(null);
+                }
+            }
+
+            // Json object
             var jsonObject = new
             {
-                Leafs = Leafs?.Select(leaf => leaf?.ToJson()).ToList()
+                Leafs = ls
             };
 
+            // Json string
             return JsonConvert.SerializeObject(jsonObject);
         }
 

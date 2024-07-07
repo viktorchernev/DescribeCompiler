@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace DescribeParser.Ast
 {
@@ -8,6 +9,10 @@ namespace DescribeParser.Ast
     public class AstTagNode : AstNode, IAstBranchNode, IAstChildNode
     {
         // Values
+        private AstLeafNode _open;
+        private AstLeafNode _id;
+        private AstLeafNode _close;
+
         /// <summary>
         /// The Leaf Node representing the open bracket of the Tag object
         /// </summary>
@@ -15,11 +20,12 @@ namespace DescribeParser.Ast
         {
             get
             {
-                return Leafs[0];
+                return _open;
             }
             internal set
             {
-                Leafs[0] = value;
+                _open = value;
+                if (_open != null) _open.Parent = this;
             }
         }
 
@@ -30,11 +36,12 @@ namespace DescribeParser.Ast
         {
             get
             {
-                return Leafs[1];
+                return _id;
             }
             internal set
             {
-                Leafs[1] = value;
+                _id = value;
+                if (_id != null) _id.Parent = this;
             }
         }
 
@@ -45,11 +52,12 @@ namespace DescribeParser.Ast
         {
             get
             {
-                return Leafs[2];
+                return _close;
             }
             internal set
             {
-                Leafs[2] = value;
+                _close = value;
+                if (_close != null) _close.Parent = this;
             }
         }
 
@@ -60,7 +68,7 @@ namespace DescribeParser.Ast
         /// Get or Set the Leaf Nodes that make the Tag object
         /// </summary>
         public List<AstLeafNode> Leafs
-        { 
+        {
             get
             {
                 return new List<AstLeafNode>() { OpenBracket, Id, CloseBracket };
@@ -106,7 +114,8 @@ namespace DescribeParser.Ast
         /// Internal constructor to prevent external instantiation of <see cref="AstTagNode"/>.
         /// </summary>
         internal AstTagNode()
-        { }
+        {
+        }
 
 
 
@@ -116,16 +125,15 @@ namespace DescribeParser.Ast
         /// </summary>
         public override string ToString()
         {
-            string s = "(Tag : ";
+            string s = "";
             for (int i = 0; i < Leafs.Count - 1; i++)
             {
-                s += "\"" + Leafs[i].ToCode() + "\", ";
+                s += "\"" + replaceWhitespaceE(Leafs[i].ToCode()) + "\" ";
             }
             if (Leafs.Count > 0)
             {
-                s += "\"" + Leafs[Leafs.Count - 1].ToCode() + "\"";
+                s += " \"" + replaceWhitespaceE(Leafs[Leafs.Count - 1].ToCode()) + "\"";
             }
-            s += ")";
 
             return s;
         }
@@ -135,13 +143,30 @@ namespace DescribeParser.Ast
         /// </summary>
         public override string ToJson()
         {
+            // OpenBracket
+            string? jo = OpenBracket?.ToJson();
+            object? o = null;
+            if (jo != null) o = JsonConvert.DeserializeObject(jo);
+
+            // Id
+            string? jd = Id?.ToJson();
+            object? d = null;
+            if (jd != null) d = JsonConvert.DeserializeObject(jd);
+
+            // CloseBracket
+            string? jc = CloseBracket?.ToJson();
+            object? c = null;
+            if (jc != null) c = JsonConvert.DeserializeObject(jc);
+
+            // Json object
             var jsonObject = new
             {
-                openBracket = JsonConvert.DeserializeObject(OpenBracket.ToJson()),
-                id = JsonConvert.DeserializeObject(Id.ToJson()),
-                closeBracket = JsonConvert.DeserializeObject(CloseBracket.ToJson())
+                openBracket = o,
+                id = d,
+                closeBracket = c
             };
 
+            // Json string
             return JsonConvert.SerializeObject(jsonObject);
         }
 

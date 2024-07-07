@@ -13,14 +13,24 @@ namespace DescribeParser.Ast
     public class AstExpressionLineNode : AstNode, IAstBranchNode, IAstChildNode
     {
         // Vars
+        private IAstBranchNode? _body;
+        private AstLeafNode? _punctuation;
+
         /// <summary>
         /// The Item Node or Expression Node representing the Body symbol 
         /// of the Expression line object
         /// </summary>
         public IAstBranchNode? Body
         {
-            get;
-            internal set;
+            get
+            {
+                return _body;
+            }
+            internal set
+            {
+                _body = value;
+                if (_body != null && _body is IAstChildNode) (_body as IAstChildNode).Parent = this;
+            }
         }
 
         /// <summary>
@@ -28,8 +38,15 @@ namespace DescribeParser.Ast
         /// </summary>
         public AstLeafNode? Punctuation
         {
-            get; 
-            internal set;
+            get
+            {
+                return _punctuation;
+            }
+            internal set
+            {
+                _punctuation = value;
+                if (_punctuation != null) _punctuation.Parent = this;
+            }
         }
 
 
@@ -126,9 +143,19 @@ namespace DescribeParser.Ast
         /// </summary>
         public override string ToString()
         {
-            string s = "ExpressionLine : " + Environment.NewLine;
-            s += Body?.ToString() + Environment.NewLine;
-            s += Punctuation?.ToString() + Environment.NewLine;
+            string indent = "    ";
+            string s = "ExpressionLine : " + Environment.NewLine + Environment.NewLine;
+
+            if (Body != null)
+            {
+                string body = Environment.NewLine + Body.ToString();
+                body = body.Replace(Environment.NewLine, Environment.NewLine + indent + indent);
+                s += indent + "body - " + body.TrimStart() + Environment.NewLine;
+            }
+            else s += indent + "body - NULL" + Environment.NewLine;
+
+            if (Punctuation != null) s += indent + "punctuation - " + Punctuation.ToString() + Environment.NewLine;
+            else s += indent + "punctuation - NULL" + Environment.NewLine;
 
             return s;
         }
@@ -138,13 +165,26 @@ namespace DescribeParser.Ast
         /// </summary>
         public override string ToJson()
         {
+            // Body
+            string? jb = Body?.ToJson();
+            object? b = null;
+            if (jb != null) b = JsonConvert.DeserializeObject(jb);
+
+            // Punctuation
+            string? jp = Punctuation?.ToJson();
+            object? p = null;
+            if (jp != null) p = JsonConvert.DeserializeObject(jp);
+
+            // Json object
             var jsonObject = new
             {
-                body = Body?.ToJson(),
-                punctuation = Punctuation?.ToJson(),
+                body = b,
+                punctuation = p
             };
 
-            return JsonConvert.SerializeObject(jsonObject);
+            // Json string
+            string s = JsonConvert.SerializeObject(jsonObject);
+            return s;
         }
 
         /// <summary>

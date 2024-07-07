@@ -14,6 +14,10 @@ namespace DescribeParser.Ast
     public class AstSimpleDecoratorNode : AstDecoratorNode
     {
         // Vars
+        private AstLeafNode _open;
+        private AstLeafNode _name;
+        private AstLeafNode _close;
+
         /// <summary>
         /// Gets the type of the Simple Decorator node.
         /// </summary>
@@ -27,14 +31,15 @@ namespace DescribeParser.Ast
         /// The Leaf Node representing the open bracket of the Simple Decorator object - "{ Name }"
         /// </summary>
         public AstLeafNode OpenBracket 
-        { 
+        {
             get
             {
-                return Leafs[0];
+                return _open;
             }
             internal set
             {
-                Leafs[0] = value;
+                _open = value;
+                if (_open != null) _open.Parent = this;
             }
         }
 
@@ -45,11 +50,12 @@ namespace DescribeParser.Ast
         {
             get
             {
-                return Leafs[1];
+                return _name;
             }
             internal set
             {
-                Leafs[1] = value;
+                _name = value;
+                if (_name != null) _name.Parent = this;
             }
         }
 
@@ -60,11 +66,37 @@ namespace DescribeParser.Ast
         {
             get
             {
-                return Leafs[2];
+                return _close;
             }
             internal set
             {
-                Leafs[2] = value;
+                _close = value;
+                if (_close != null) _close.Parent = this;
+            }
+        }
+
+
+
+        // IAstBranchNode
+        /// <summary>
+        /// Get or Set the Leaf Nodes that make the Link object
+        /// </summary>
+        public override List<AstLeafNode> Leafs
+        {
+            get
+            {
+                return new List<AstLeafNode>() { OpenBracket, Name, CloseBracket };
+            }
+        }
+
+        /// <summary>
+        /// Get the Leaf Nodes that make the Link object as objects
+        /// </summary>
+        public override List<object> Children
+        {
+            get
+            {
+                return new List<object>() { OpenBracket, Name, CloseBracket };
             }
         }
 
@@ -85,16 +117,15 @@ namespace DescribeParser.Ast
         /// </summary>
         public override string ToString()
         {
-            string s = "(SIMPLE_DECORATOR : ";
+            string s = "";
             for (int i = 0; i < Leafs.Count - 1; i++)
             {
-                s += "\"" + Leafs[i].ToCode() + "\", ";
+                s += "\"" + replaceWhitespaceE(Leafs[i].ToCode()) + "\" ";
             }
             if (Leafs.Count > 0)
             {
-                s += "\"" + Leafs[Leafs.Count - 1].ToCode() + "\"";
+                s += " \"" + replaceWhitespaceE(Leafs[Leafs.Count - 1].ToCode()) + "\"";
             }
-            s += ")";
 
             return s;
         }
@@ -104,14 +135,31 @@ namespace DescribeParser.Ast
         /// </summary>
         public override string ToJson()
         {
+            // OpenBracket
+            string? jo = OpenBracket?.ToJson();
+            object? o = null;
+            if (jo != null) o = JsonConvert.DeserializeObject(jo);
+
+            // Name
+            string? jn = Name?.ToJson();
+            object? n = null;
+            if (jn != null) n = JsonConvert.DeserializeObject(jn);
+
+            // CloseBracket
+            string? jc = CloseBracket?.ToJson();
+            object? c = null;
+            if (jc != null) c = JsonConvert.DeserializeObject(jc);
+
+            // Json object
             var jsonObject = new
             {
                 decoratorType = DecoratorType.ToString(),
-                openBracket = JsonConvert.DeserializeObject(OpenBracket.ToJson()),
-                name = JsonConvert.DeserializeObject(Name.ToJson()),
-                closeBracket = JsonConvert.DeserializeObject(CloseBracket.ToJson())
+                openBracket = o,
+                name = n,
+                closeBracket = c
             };
 
+            // Json string
             return JsonConvert.SerializeObject(jsonObject);
         }
     }
