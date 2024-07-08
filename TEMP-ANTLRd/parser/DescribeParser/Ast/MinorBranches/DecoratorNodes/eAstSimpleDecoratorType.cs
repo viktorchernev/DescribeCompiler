@@ -12,6 +12,16 @@ namespace DescribeParser.Ast
     public enum AstSimpleDecoratorType
     {
         /// <summary>
+        /// The type of the decorator node is unknown.
+        /// </summary>
+        Unknown,
+
+        /// <summary>
+        /// Represents an empty decorator type.
+        /// </summary>
+        EmptyDecorator,
+
+        /// <summary>
         /// Represents a bold decorator type.
         /// </summary>
         BoldDecorator,

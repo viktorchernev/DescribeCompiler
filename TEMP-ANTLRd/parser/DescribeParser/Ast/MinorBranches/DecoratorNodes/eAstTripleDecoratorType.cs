@@ -6,6 +6,11 @@
     public enum AstTripleDecoratorType
     {
         /// <summary>
+        /// The type of the decorator node is unknown.
+        /// </summary>
+        Unknown,
+
+        /// <summary>
         /// Represents a custom double decorator type.
         /// </summary>
         CustomDoubleDecorator,

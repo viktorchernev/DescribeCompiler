@@ -6,6 +6,11 @@
     public enum AstDoubleDecoratorType
     {
         /// <summary>
+        /// The type of the decorator node is unknown.
+        /// </summary>
+        Unknown,
+
+        /// <summary>
         /// Represents a color decorator type.
         /// </summary>
         ColorDecorator,

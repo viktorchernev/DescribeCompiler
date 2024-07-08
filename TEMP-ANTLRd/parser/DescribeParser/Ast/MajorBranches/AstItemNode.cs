@@ -205,7 +205,7 @@ namespace DescribeParser.Ast
         public SourcePosition? Position
         {
             get;
-            internal set;
+            set;
         }
 
         /// <summary>

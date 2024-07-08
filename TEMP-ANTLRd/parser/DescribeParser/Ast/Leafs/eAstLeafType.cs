@@ -15,6 +15,10 @@
         /// </summary>
         Text,
 
+        /// <summary>
+        /// The leaf node represents tilde.
+        /// </summary>
+        Tilde,
 
 
         /// <summary>

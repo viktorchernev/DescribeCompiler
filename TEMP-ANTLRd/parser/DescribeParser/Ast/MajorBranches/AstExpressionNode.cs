@@ -166,7 +166,7 @@ namespace DescribeParser.Ast
         public SourcePosition? Position
         {
             get;
-            internal set;
+            set;
         }
 
         /// <summary>
@@ -175,7 +175,7 @@ namespace DescribeParser.Ast
         public IAstBranchNode? Parent
         {
             get;
-            internal set;
+            set;
         }
 
 
