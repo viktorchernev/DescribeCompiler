@@ -91,12 +91,32 @@ namespace DescribeParser.IntegrationTests
         {
             //test 06
             //AstTestsFor06.TestFile("DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.A_basic1.ds");
-            //AstTestsFor06.TestFiles(false, true);
-            //Console.ReadLine();
+            AstTestsFor06.TestFiles(false, true);
+            Console.ReadLine();
 
             //test 07
             //AstTestsFor07.TestFile("DescribeParser.IntegrationTests.TestFiles.TestFilesFor07.A_twoRoots.ds");
             AstTestsFor07.TestFiles(false, true);
+            Console.ReadLine();
+
+            //test 08
+            //AstTestsFor08.TestFile("DescribeParser.IntegrationTests.TestFiles.TestFilesFor08.A_twoRoots.ds");
+            AstTestsFor08.TestFiles(false, true);
+            Console.ReadLine();
+
+            //test 09
+            //AstTestsFor09.TestFile("DescribeParser.IntegrationTests.TestFiles.TestFilesFor09.A_twoRoots.ds");
+            AstTestsFor09.TestFiles(false, true);
+            Console.ReadLine();
+
+            //test 10
+            //AstTestsFor10.TestFile("DescribeParser.IntegrationTests.TestFiles.TestFilesFor10.A_twoRoots.ds");
+            AstTestsFor10.TestFiles(false, true);
+            Console.ReadLine();
+
+            //test 11
+            //AstTestsFor11.TestFile("DescribeParser.IntegrationTests.TestFiles.TestFilesFor11.A_twoRoots.ds");
+            AstTestsFor11.TestFiles(false, true);
             Console.ReadLine();
         }
     }

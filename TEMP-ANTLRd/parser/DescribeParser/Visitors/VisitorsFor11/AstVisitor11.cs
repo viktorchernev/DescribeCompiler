@@ -529,6 +529,8 @@ namespace DescribeParser.Visitors
         // do Position
         private SourcePosition doPosition(ITerminalNode firstToken, ITerminalNode lastToken)
         {
+            if (lastToken == null) return doPosition(firstToken);
+
             int startIndex, startLine, startCol, endIndex, endLine, endCol;
             startIndex = startLine = startCol = -1;
             endIndex = endLine = endCol = -1;

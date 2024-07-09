@@ -59,7 +59,19 @@ namespace DescribeParser.Ast
 
             line.Body = body;
             line.Punctuation = punctoation;
-            line.Position = CreateSourcePosition((body as IAstChildNode).Position, punctoation.Position);
+
+            if(body != null && punctoation != null)
+            {
+                line.Position = CreateSourcePosition((body as IAstChildNode).Position, punctoation.Position);
+            }
+            else if(body != null)
+            {
+                line.Position = CreateSourcePosition((body as IAstChildNode).Position);
+            }
+            else if (punctoation != null)
+            {
+                line.Position = CreateSourcePosition(punctoation.Position);
+            }
 
             return line;
         }

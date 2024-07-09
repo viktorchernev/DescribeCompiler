@@ -193,10 +193,6 @@ namespace DescribeParser.IntegrationTests
             string resultTemplateD = getEmbeddedResource(
                 "DescribeParser.IntegrationTests.TestFiles.resultTemplates.template_ast_d.md");
 
-            //delete all ".md" files in the directory
-            string[] files = Directory.GetFiles(outputdir, "*.md");
-            foreach (string file in files) File.Delete(file);
-
             //get test files
             var names = getEmbeddedResoucesNames();
             foreach (string name in names)

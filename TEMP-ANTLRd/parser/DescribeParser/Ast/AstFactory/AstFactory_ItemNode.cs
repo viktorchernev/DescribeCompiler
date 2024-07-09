@@ -51,7 +51,11 @@ namespace DescribeParser.Ast
             item.Decorators = null;
             item.Parent = parent;
 
-            item.Position = CreateSourcePosition(text.Position, tag.Position);
+            if(tag != null)
+            {
+                item.Position = CreateSourcePosition(text.Position, tag.Position);
+            }
+            else item.Position = CreateSourcePosition(text.Position);
 
             return item;
         }
@@ -88,7 +92,7 @@ namespace DescribeParser.Ast
                     }
                 }
             }
-            item.Position = CreateSourcePosition(text.Position, tag.Position, linkPos);
+            item.Position = CreateSourcePosition(text.Position, tag?.Position, linkPos);
 
             return item;
         }

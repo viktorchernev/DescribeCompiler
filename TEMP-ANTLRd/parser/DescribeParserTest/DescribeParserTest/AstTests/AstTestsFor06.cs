@@ -165,7 +165,7 @@ namespace DescribeParser.IntegrationTests
 
             //press key to exit
             Console.WriteLine("");
-            Console.WriteLine("Tests concluded. Press any key to exit.");
+            Console.WriteLine("Tests for 06 concluded. Press any key to continue/exit.");
             if (pressKey) Console.ReadLine();
         }
         internal static void TestFile(string embeddedName, bool insertMissingTerminators = true)
