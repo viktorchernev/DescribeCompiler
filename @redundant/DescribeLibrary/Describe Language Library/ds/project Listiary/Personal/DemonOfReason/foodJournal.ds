@@ -1,0 +1,174 @@
+directives -> 
+	namespace <treeofall.drafts>;
+
+
+food journal <foodJournal> ->
+
+
+	week 20 {comment},
+	15 May Mon (2160) 76.0 kg {comment},
+
+		kifli w sirene - 250g x 270 (675),
+		salad w tomatoes cucs sirene - 975g (495) ->
+			
+			tomatoes 470g x 19 (90),
+			cucumbers 265g x 13 (35),
+			sirene 140g x 264 (370);
+				
+		chicken breast on pan ~600g x 165 (990),
+
+	gap {empty},
+	16 May Tue (1922) {comment},
+	
+		400g Kiselo Mlqko x 48 (192),
+		140g Kifla x 133 (186),
+		140g Kifla x 133 (186),
+		55g salty sticks x 403 (222),
+		400ml stevia based juice x5 (20),
+		500g kapama x ~173 (865) {color|purple},
+		87g bread x 265 (231),
+		400ml stevia based juice x5 (20),
+	
+	gap {empty},
+	17 May Wed (2291) 75.0 kg {comment},
+	
+		1 big banana x 89 (223),
+		1 green apple x 58 (120),
+		80g kebapche x 253 (202),
+		290g rice with vegerables x 99 (287) {color|purple},
+		1 banana (223),
+		1 pear x 57 (57),
+		670g kapama x ~173 (1159) {color|purple},
+		400ml stevia based juice x5 (20),
+
+	gap {empty},
+	18 May Thi (1946) 74.8 kg {comment},
+	
+		400g rice with chicken x 166 (664) {color|purple},
+		400ml stevia based juice x5 (20),
+		175g bread x (425),
+		55g pretzel sticks x 416 (229),
+		150g pear x 57 (86),
+		salad w tomatoes cucs sirene - 975g (492) ->
+		
+			tomatoes 400g x 19 (76),
+			cucumbers 150g x 13 (20),
+			sirene 150g x 264 (396);
+
+		600ml stevia based juice x5 (30),
+	
+	gap {empty},
+	19 May Fri 74.4 kg {comment},
+	
+		tea with 1 tbsp of honey,
+		600g chicken soup,
+		60g pretzel sticks,
+		MANY BEERS,
+
+
+	gap {empty},
+	week 21 {comment},
+	22 May Mon {comment},
+
+		250g kifli,
+		1 big Mario chicken {color|purple},
+		400ml tripe soup,
+		330ml ayran,
+		MORE,
+
+	gap {empty},
+	23 May Tue (2302) 75.1 kg {comment},
+	
+		avocado toasts (532) ->
+		
+			150g avocado x 160 (240),
+			110g bread x 265 (292);
+		
+		150ml tomato juice x 17 (26),
+		200ml banana juice x 52 (104),
+		100g banana (89),
+		650g bonito fish x 130 (845),
+		200ml banana juice x 52 (104),
+		100g baked corn x 365 (365),
+		150g ice cream x 158 (237),
+	
+	gap {empty},
+	24 May Wen (2836) 75.4 kg {comment},
+	
+		2 pear x 57 (114),
+		250g kifli x 270 (675),
+		260g roast potatoes x 300 (780) {color|purple},
+		120g roast meckerel x 222 x 305 (365),
+		400ml sour milk x 48 (192),
+		720g chicken w cabbage x 79 (568) {color|purple},
+		90g ice cream x 158 (142),
+
+	gap {empty},
+	25 May Thi (2069) 74.7 kg {comment},
+	
+		avocado toasts (516) ->
+
+			140g avocado x 160 (224),
+			110g bread x 265 (292);
+		
+		140g parlenka x 265 (371),
+		200g chicken shish x 164 (328),
+		50g snejanka salad x 160 (80),
+		50g bean ljutenica salad x 243 (122),
+		
+		120g sirene x 264 (317),
+		130g cuc x 19 (25),
+		480g tomato x 35 (168),
+		90g ice cream x 158 (142),
+	
+	gap {empty},
+	26 May Fri 73.9 kg {comment},
+	
+		120g meckerel x 222 x 305 (366),
+		50g potato roast x~300 (150) {color|purple},
+		400ml banana juice (208),
+		250g kifli x 270 (675),
+		10g rafaello bonbon x 623 (62), 
+		MANY BEERS and peanuts,
+
+	gap {empty},
+	week 22 {comment},
+	29 May Mon (1887) {comment},
+	
+		250g kifli (675),
+		100g green apple (58),
+		70g hooligan smach x 435 (305),
+		60g pretzel sticks x 410 (246),
+		500g soup (250),
+		60g roast corn (219),
+		40g bread (106),
+		200g cucumbers (28),
+	
+	gap {empty},
+	30 May Tue (1857) 74.7 kg {comment},
+	
+		protein milk breakfast x ? (400),
+		175g pretzel sticks x 410 (718),
+		500g torteloni (614) ->
+		
+			250g torteloni x220? (520),
+			200g basil tomato paste x 47? (94);
+		
+		100g boiled potato x 125 (125),
+	
+	gap {empty},
+	31 May Wed (1941) 74.1 kg {comment},
+	
+		150g pear x 57 (85),
+		150g banana (133),
+		400g sour milk (192),
+		400ml tripe soup (300),
+		40g bread (106),
+		
+		shopska salad (385) {color|green} ->
+		
+			150g cucumber (29),
+			450g tomatoes (158),
+			75g sirene (198);
+		
+		430g paned chicken liver with onion x 172 (740) {color|purple};

@@ -1,0 +1,9 @@
+directives -> 
+	namespace <treeofall.personal.MyHomeAdmin>;
+
+
+image generator AI <imageGeneration> ->
+
+	stable diffusion,
+	Mid Journey,
+	DALL-E 3 (Free) {color|green};

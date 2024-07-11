@@ -1,0 +1,37 @@
+directives -> 
+	namespace <treeofall.personal.MyFoodRecipes>;
+
+
+tripe soup with milk <MyRecipeTripeSoupWMilk> ->
+
+	ingredients ->
+
+		2 kg Tripe,
+		2 blocks of veil broth,
+		4 \- 5 cloves of garlic,
+		hot pepper,
+		wine vinegar,
+
+		1 L milk,
+		30 \- 40g butter,
+		1 \- 2 soup spoons red pepper,
+		1 soup spoon of sunflower oil;
+	
+	preparation ->
+	
+		put the tripe in a pressure cooker,
+		crumble the broth cubes,
+		add water,
+		boil 45\-60 min after pressure builds up,
+		let cool and remove lard,
+		cut the tripe to pieces,
+		
+		melt butter in a pan,
+		add some oil,
+		add paprika and stir,
+		add 1 L of the broth from the tripe,
+		slowly add warm milk,
+		warm the mixture and add salt if necessairy,
+		
+		add 70+ g tripe in a cup and add some of the mixture,
+		serve forth;

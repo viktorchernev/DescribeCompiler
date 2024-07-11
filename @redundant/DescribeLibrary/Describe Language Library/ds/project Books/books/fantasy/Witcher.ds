@@ -1,0 +1,32 @@
+directives ->
+
+	namespace <treeofall.public.books>;
+
+
+The Witcher <.witcher> [https://en.wikipedia.org/wiki/The_Witcher] ->
+	
+	The Witcher (1990),
+    
+	Sword of Destiny (2015)
+    [https://en.wikipedia.org/wiki/Sword_of_Destiny],
+    
+	The Last Wish (2007)
+    [https://en.wikipedia.org/wiki/The_Last_Wish],
+    
+	Blood of Elves (2008)
+    [https://en.wikipedia.org/wiki/Blood_of_Elves],
+    
+	Time of Contempt (2013)
+    [https://en.wikipedia.org/wiki/Time_of_Contempt],
+    
+	Baptism of Fire (2014)
+    [https://en.wikipedia.org/wiki/Baptism_of_Fire_(novel)],
+    
+	The Tower of the Swallow (2016)
+    [https://en.wikipedia.org/wiki/The_Tower_of_the_Swallow],
+    
+	The Lady of the Lake (2017)
+    [https://en.wikipedia.org/wiki/The_Lady_of_the_Lake_(Sapkowski_novel)],
+    
+	Season of Storms (2018)
+    [https://en.wikipedia.org/wiki/Season_of_Storms];

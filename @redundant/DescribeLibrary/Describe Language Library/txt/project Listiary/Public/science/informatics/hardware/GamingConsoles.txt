@@ -1,0 +1,30 @@
+directives ->
+	namespace <treeofall.public.science.informatics.hardware>;
+
+
+gaming consoles <gamingConsoles> ->
+
+	Xbox <8UTwsuis>,
+	Xbox 360 <ZzKyLRog>,
+	Xbox One <PwFVOrCI>,
+	Xbox Series X and Series S <YI9I0u8y>,
+
+	//https://www.psu.com/news/history-of-playstation-ps1-ps2-ps3-ps4-and-ps5-launch-prices-specs-and-games/
+    gap {empty},
+	PlayStation 1 <rhBV5X5U>,
+	PlayStation 2 <3me6aJmQ>,
+	PlayStation 3 <rqXGt2SP>,
+	PlayStation 4 <QkINRvMp>,
+	PlayStation 5 <vl7UmLrD>,
+
+	//https://nintendo.fandom.com/wiki/List_of_Nintendo_systems
+    gap {empty},
+	NES <4CI2WX7G>,
+	SNES <AWoYjtye>,
+	Nintendo 64 <5NTyyB7d>,
+	Nintendo GameCube <ctNbOqcB>,
+	Wii <asREKMdm>,
+	
+    gap {empty},
+	PSP <toAeEJyJ>,
+	Nintendo Switch <SAZryO1s>;

@@ -1,0 +1,22 @@
+directives ->
+	
+	delimiter-mode <mono>,
+	namespace <treeofall.public.movies>;
+
+movies <.rnode> ->
+
+	Transformers {comment},
+    Transformers (2007) <jUQB79oA>,
+	Transformers: Revenge of the Fallen (2009) <8eMGisQH>,
+	Transformers: Dark of the Moon (2011) <4pH5kWGP>,
+	Transformers: Age of Extinction (2014) <a0crTfGG>,
+	Transformers: The Last Knight (2017) <kodJGcwC>,
+	Bumblebee (2018) <tdIFum0p>,
+	
+    gap {empty},
+	Training Day [https://en.wikipedia.org/wiki/Training_Day] <8716GHZb>,
+	Armageddon [https://en.wikipedia.org/wiki/Armageddon_(1998_film)] <fgf8wtlE>,
+	
+	Westerns {nlcomment},
+	Django Unchained [https://en.wikipedia.org/wiki/Django_Unchained] <JzUu0a5b>,
+	The Hateful Eight [https://en.wikipedia.org/wiki/The_Hateful_Eight] <jyeRNAfR>;

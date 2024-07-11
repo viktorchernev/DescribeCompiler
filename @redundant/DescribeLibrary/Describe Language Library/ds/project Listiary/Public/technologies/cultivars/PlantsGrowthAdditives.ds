@@ -1,0 +1,43 @@
+directives ->
+	namespace <treeofall.public.technologies.cultivars>;
+
+
+plants growth additives <plantsGrowthAdditives> ->
+
+	chemicals ->
+
+		pH regulation {comment},
+		pH Down Grow,
+		pH Down Bloom,
+		pH Up,
+		
+		poisons {nlcomment},
+		fungicides,
+		insecticides,
+		disinfectants,
+		
+		fertilisers {nlcomment},
+		grow,
+		bloom,
+		micro,
+		
+		additional fertilisers {nlcomment},
+		cal-mag,
+		sugar shot,
+		enzymes+,
+		microfauna,
+		
+        gap {empty},
+		bloom booster,
+		root stimulator,
+
+        gap {empty},
+		flowering enhancer,
+		final solution;
+
+
+	microfauna ->
+
+		trichoderma,
+		endomycorrhizae,
+		rhizobacteria;

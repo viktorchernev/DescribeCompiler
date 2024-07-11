@@ -1,0 +1,46 @@
+directives ->
+	namespace <treeofall.public.science.informatics.hardware>;
+
+
+//https://www.arcserve.com/blog/data-storage-lifespans-how-long-will-media-really-last | arcserve - data storage lifespans ...
+//https://www.youtube.com/watch?v=78raYWFWv6s | habiba - Magnetic Storage Media
+//https://www.youtube.com/watch?v=AvXXkB2jic0 | 108 Rare and Bizarre Media Types - 108 Rare and Bizarre Media Types
+//https://www.loc.gov/preservation/care/deterioratebrochure.html
+
+
+data storage devices <dataStorageDevices> ->
+
+	physical storage {comment},
+	Paper ~(50\-100s of years) [https://en.wikipedia.org/wiki/Printing_and_writing_paper] <BNaJ2Db9>,
+	Stone inscriptions ~(100\-10 000 years) [] <vEXGsveM>,
+	Metal inscriptions ~(forever) [] <JNrwLd8y>,
+	Filmstrip (10\-25 years) [https://en.wikipedia.org/wiki/Filmstrip] <WfEEHedd>,
+	Microdots [https://en.wikipedia.org/wiki/Microdot] <TYd2R5Fx>,
+
+	mechanical storage {nlcomment},
+	Punch cards and tape [https://en.wikipedia.org/wiki/Punched_card] <5gOJ71x6>,
+	Phonograph cylinder [https://en.wikipedia.org/wiki/Phonograph_cylinder] <WJHAlVob>,
+	Phonograph record aka Vinyl [https://en.wikipedia.org/wiki/Phonograph_record] <VGUeFrE7>,
+
+	magnetic storage media {nlcomment},
+	Magnetic tape (10\-20 years) 
+	[https://en.wikipedia.org/wiki/Magnetic-tape_data_storage]
+	[https://www.techtarget.com/searchdatabackup/definition/tape-backup] 
+	<vNlkMRto>,
+	Cassette tape (10\-20 years) [https://en.wikipedia.org/wiki/Cassette_tape] <2JM1S3ZI>,
+	Floppy disk (3\-5+ years) [https://en.wikipedia.org/wiki/Floppy_disk] <hQy3OzX3>,
+	Hard disk drives (3\-5 years) [https://en.wikipedia.org/wiki/Hard_disk_drive] <Zg1a8HWy>,
+	
+	optical storage media{nlcomment},
+	Punch cards and tape [https://en.wikipedia.org/wiki/Punched_card] <5gOJ71x6>,
+	CDs and DVDs (2\-5 years) [https://en.wikipedia.org/wiki/Compact_disc] <6OVb0oPb>,
+	M \- DISC \, Millennial Disc (1000+ years) [https://en.wikipedia.org/wiki/M-DISC] <oMGIXJZc>,
+	//experimental optical disks (10 000 000+ years)?
+	5D data crystal (13 800 000 000+ years) [https://en.wikipedia.org/wiki/5D_optical_data_storage] <W7QxS9EC>,
+	
+	solid state storage media {nlcomment},
+	Nintendo cartridge (10\-20 years) [https://en.wikipedia.org/wiki/Nintendo_Game_Card] <CB9tKAuh>,
+	Flash storage (5\-10+ years) [https://en.wikipedia.org/wiki/Flash_memory] <aPrAKp3K>,
+	SD card (5\-10 years) [https://en.wikipedia.org/wiki/SD_card] <PlwW8W2Q>,
+	SSD (5\-10 years) [https://en.wikipedia.org/wiki/Solid-state_drive] <k3xTSm5N>,
+	Smart card (3\-10 years) [https://en.wikipedia.org/wiki/Smart_card] <H3W5v7oq>;

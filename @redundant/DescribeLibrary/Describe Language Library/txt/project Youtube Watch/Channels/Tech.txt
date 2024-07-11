@@ -1,0 +1,19 @@
+directives -> 
+	language-version <1.1>,
+	namespace <ytwatch>;
+
+
+tech <BZepqSEv>->
+
+	TechAltar [https://www.youtube.com/channel/UCtZO3K2p8mqFwiKWb9k7fXA] <pbFs3lV5>,					// tech companies review
+	ColdFusion [https://www.youtube.com/user/coldfustion] <nHbyaH53>,									// tech
+	Mental Outlaw [https://www.youtube.com/user/MentalOutlawStudios] <ocihiCVc>,						// privacy and more
+	Undecided with Matt Ferrell [https://www.youtube.com/user/mtf169] <UkTXHYK1>,						// tech popular newsy
+	Branch Education [https://www.youtube.com/channel/UCdp4_l1vPmpN-gDbUwhaRUQ] <U26XMOdz>,				// how does it work tech
+	CHM Tech [https://www.youtube.com/user/hotmonkey000] <nbu40P2O>,									// short tech videos
+	JerryRigEverything [https://www.youtube.com/user/JerryRigEverything] <h3A6v0Ca>,					// smartphone reviews
+	Mrwhosetheboss [https://www.youtube.com/user/Mrwhosetheboss] <kfw2LlMh>,							// smartphone reviews
+	LGR [https://www.youtube.com/user/phreakindee] <e4JX1iLr>,											// old PC technology
+	Odd Tinkering [https://www.youtube.com/channel/UCf_suVrG2dA5BTjJhNLwthQ] <NMswIuBE>,				// restorations
+	TronicsFix [https://www.youtube.com/channel/UCfOrKQtC1tDfGf_fFVb8pYw] <nMHiUeMu>,					// fixing hardware
+	Thomas Schwenke [https://www.youtube.com/user/ehochzwei] <OzCp8k9C>;								// 3d animation how it works

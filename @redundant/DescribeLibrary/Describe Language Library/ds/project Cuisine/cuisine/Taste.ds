@@ -1,0 +1,24 @@
+directives -> namespace <cuisine>;
+
+
+taste <taste> ->
+
+	the 5 tastes <d4bqU8rL>,
+	roles of the 5 tastes <t2bSBurs>;
+	
+the 5 tastes <d4bqU8rL> ->
+
+	sweet <5zco4DR2>,
+	sour <7cjxevmF>,
+	salty <Mviml9oA>,
+	bitter <mKe2fo8Z>,
+	umami <9SPRKYeH>;
+
+roles of the 5 tastes [https://www.ajinomoto.com/aboutus/umami/why-is-umami-important-to-us] <t2bSBurs>->
+
+	SWEET \- to ensure adequate intake of carbs for energy <RVejaFj6>,
+	UMAMI \- to ensure adequate intake of proteins for growth and maintenance of the body <Qa2tiW92>,
+	SALTY \- to ensure adequate intake of salt to regulate the water in the body <eJxMgV5y>,
+	
+	SOUR \- to prevent intake of toxic substances and to detect ripeness <KbCtjYXS>,
+	BITTER \- to prevent intake of poisonous substances <dwlJKZ94>;

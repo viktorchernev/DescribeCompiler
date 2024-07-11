@@ -1,0 +1,8 @@
+directives ->
+	language-version <1.1>,
+	namespace <recreation.games>;
+
+
+card games <cardGames> -> 
+	
+	poker games <pokerGames>;

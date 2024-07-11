@@ -1,0 +1,26 @@
+directives -> 
+	namespace <treeofall.personal.MyHomeRemedies>;
+
+
+naturally lower cholestarol <MyHomeRemediesLowerCholesterol> ->
+
+	Reduce saturated fats ->
+	Saturated fats\, found primarily in red meat and full\-fat dairy products\, raise your total cholesterol. 
+	Decreasing your consumption of saturated fats can reduce your low\-density lipoprotein (LDL) cholesterol \- the "bad" cholesterol.;
+	
+	Eliminate trans fats ->
+	Trans fats\, sometimes listed on food labels as "partially hydrogenated vegetable oil" are often used in margarines and store\-bought cookies\, crackers and cakes. Trans fats raise overall cholesterol levels.;
+	
+	Eat foods rich in omega\-3 fatty acids ->
+	Omega\-3 fatty acids don't affect LDL cholesterol. But they have other heart\-healthy benefits\, including reducing blood pressure. Foods with omega\-3 fatty acids include salmon\, mackerel\, herring\, walnuts and flaxseeds.;
+	
+	Increase soluble fiber ->
+	Soluble fiber can reduce the absorption of cholesterol into your bloodstream. 
+	Soluble fiber is found in such foods as oatmeal\, kidney beans\, Brussels sprouts\, apples and pears.;
+	
+
+local links ->
+
+	reduce cholesterol \- mayoclinic
+	[https://www.mayoclinic.org/diseases-conditions/high-blood-cholesterol/in-depth/reduce-cholesterol/art-20045935];
+	

@@ -1,0 +1,96 @@
+directives ->
+	language-version <1.1>,
+	namespace <cinema.movies>;
+
+super hero movies <.fantasy.superhero> ->
+
+	~ wikipedia.org [https://en.wikipedia.org/wiki/Marvel_Cinematic_Universe] <source>,
+	~ common knowledge <source>,
+
+
+	//Phase 1
+	Marvel - The Infinity Saga {comment},
+	Iron Man (2008) [https://en.wikipedia.org/wiki/Iron_Man_(2008_film)],
+	The Incredible Hulk (2008) [https://en.wikipedia.org/wiki/The_Incredible_Hulk_(film)],
+	Iron Man 2 (2010) [https://en.wikipedia.org/wiki/Iron_Man_2],
+	Thor (2011) [https://en.wikipedia.org/wiki/Thor_(film)],
+	Captain America: The First Avenger (2011) [https://en.wikipedia.org/wiki/Captain_America:_The_First_Avenger],
+	
+	//Transition
+	The Avengers (2012) [https://en.wikipedia.org/wiki/The_Avengers_(2012_film)],
+	
+	//Phase 2
+	Iron Man 3 (2013) [https://en.wikipedia.org/wiki/Iron_Man_3],
+	Thor: The Dark World (2013) [https://en.wikipedia.org/wiki/Thor:_The_Dark_World],
+	Captain America: The Winter Soldier (2014) [https://en.wikipedia.org/wiki/Captain_America:_The_Winter_Soldier],
+	Guardians of the Galaxy (2014) [https://en.wikipedia.org/wiki/Guardians_of_the_Galaxy_(film)],
+	Avengers: Age of Ultron (2015) [https://en.wikipedia.org/wiki/Avengers:_Age_of_Ultron],
+	Ant-Man (2015) [https://en.wikipedia.org/wiki/Ant-Man_(film)],
+	
+	//Phase 3
+	Captain America: Civil War (2016) [https://en.wikipedia.org/wiki/Captain_America:_Civil_War],
+	Doctor Strange (2016) [https://en.wikipedia.org/wiki/Doctor_Strange_(2016_film)],
+	Guardians of the Galaxy Vol. 2 (2017) [https://en.wikipedia.org/wiki/Guardians_of_the_Galaxy_Vol._2],
+	Spider-Man: Homecoming (2017) [https://en.wikipedia.org/wiki/Spider-Man:_Homecoming],
+	Thor: Ragnarok (2017) [https://en.wikipedia.org/wiki/Thor:_Ragnarok],
+	Black Panther (2018) [https://en.wikipedia.org/wiki/Black_Panther_(film)],
+	Avengers: Infinity War (2018) [https://en.wikipedia.org/wiki/Avengers:_Infinity_War],
+	Ant-Man and the Wasp (2018) [https://en.wikipedia.org/wiki/Ant-Man_and_the_Wasp],
+	Captain Marvel (2019) [https://en.wikipedia.org/wiki/Captain_Marvel_(film)],
+	Avengers: Endgame (2019) [https://en.wikipedia.org/wiki/Avengers:_Endgame],
+	Spider-Man: Far From Home (2019) [https://en.wikipedia.org/wiki/Spider-Man:_Far_From_Home],
+	
+	
+	//Phase 4
+	Marvel - The Multiverse Saga {comment},
+	Black Widow (2021) [https://en.wikipedia.org/wiki/Black_Widow_(2021_film)],
+	Shang-Chi and the Legend of the Ten Rings (2021) [https://en.wikipedia.org/wiki/Shang-Chi_and_the_Legend_of_the_Ten_Rings],
+	Eternals (2021) [https://en.wikipedia.org/wiki/Eternals_(film)],
+	Spider-Man: No Way Home (2021) [https://en.wikipedia.org/wiki/Spider-Man:_No_Way_Home],
+	Doctor Strange in the Multiverse of Madness (2022) [https://en.wikipedia.org/wiki/Doctor_Strange_in_the_Multiverse_of_Madness],
+	Thor: Love and Thunder (2022) [https://en.wikipedia.org/wiki/Thor:_Love_and_Thunder],
+	Black Panther: Wakanda Forever (2022) [https://en.wikipedia.org/wiki/Black_Panther:_Wakanda_Forever],
+
+	//Phase 5
+	Ant-Man and the Wasp: Quantumania (2023) [https://en.wikipedia.org/wiki/Ant-Man_and_the_Wasp:_Quantumania],
+	Guardians of the Galaxy Vol. 3 (2023) [https://en.wikipedia.org/wiki/Guardians_of_the_Galaxy_Vol._3],
+	The Marvels (2023) [https://en.wikipedia.org/wiki/The_Marvels],
+	Deadpool & Wolverine (2024) [https://en.wikipedia.org/wiki/Deadpool_%26_Wolverine],
+	Captain America: Brave New World (2025) [https://en.wikipedia.org/wiki/Captain_America:_Brave_New_World],
+	Thunderbolts (2025) [https://en.wikipedia.org/wiki/Thunderbolts_(film)],
+
+	//Phase 6
+	The Fantastic Four (2025) [https://en.wikipedia.org/wiki/The_Fantastic_Four_(2025_film)],
+	Blade (2025) [https://en.wikipedia.org/wiki/Blade_(2025_film)],
+	Avengers 5 (2026) [https://en.wikipedia.org/wiki/Avengers_5],
+	Avengers: Secret Wars (2027) [https://en.wikipedia.org/wiki/Avengers_5],
+	
+	
+	DC {nlcomment},
+	Man of Steel (2013) [https://en.wikipedia.org/wiki/Man_of_Steel_(film)],
+	Batman v Superman: Dawn of Justice (2016) [https://en.wikipedia.org/wiki/Batman_v_Superman:_Dawn_of_Justice],
+	Suicide Squad (2016) [https://en.wikipedia.org/wiki/Suicide_Squad_(2016_film)],
+	Wonder Woman (2017) [https://en.wikipedia.org/wiki/Wonder_Woman_(2017_film)],
+	Justice League (2017) [https://en.wikipedia.org/wiki/Justice_League_(film)],
+	Aquaman (2018) [https://en.wikipedia.org/wiki/Aquaman_(film)],
+	Shazam! (2019) [https://en.wikipedia.org/wiki/Shazam!_(film)],
+	Birds of Prey (2020) [https://en.wikipedia.org/wiki/Birds_of_Prey_(2020_film)],
+	Wonder Woman 1984 (2020) [https://en.wikipedia.org/wiki/Wonder_Woman_1984],
+	Zack Snyder's Justice League (2021) [https://en.wikipedia.org/wiki/Zack_Snyder%27s_Justice_League],
+	The Suicide Squad (2021) [https://en.wikipedia.org/wiki/The_Suicide_Squad_(film)],
+	Black Adam (2022) [https://en.wikipedia.org/wiki/Black_Adam_(film)],
+	Shazam! Fury of the Gods (2023) [https://en.wikipedia.org/wiki/Shazam!_Fury_of_the_Gods],
+	The Flash (2023) [https://en.wikipedia.org/wiki/The_Flash_(film)],
+	Blue Beetle (2023) [https://en.wikipedia.org/wiki/Blue_Beetle_(film)],
+	Aquaman and the Lost Kingdom (2023) [https://en.wikipedia.org/wiki/Aquaman_and_the_Lost_Kingdom],
+	
+	other {nlcomment},
+	Deadpool (2016) [https://en.wikipedia.org/wiki/Deadpool_(film)],
+	Deadpool 2 (2018) [https://en.wikipedia.org/wiki/Deadpool_2],
+	
+	Venom (2018) [https://en.wikipedia.org/wiki/Venom_(2018_film)],	
+	Venom: Let There Be Carnage (2021) [https://en.wikipedia.org/wiki/Venom:_Let_There_Be_Carnage],
+	
+	The Wolverine (2013) [https://en.wikipedia.org/wiki/The_Wolverine_(film)],
+	Daredevil (2003) [https://en.wikipedia.org/wiki/Daredevil_(film)],
+	X-Men (2000) [https://en.wikipedia.org/wiki/X-Men_(film)];

@@ -1,0 +1,48 @@
+directives ->
+	namespace <treeofall.public.technologies.clothing>;
+
+
+clothing <rnode>->
+
+	general types of clothing ->
+	
+	    from head down,
+	    from face back,
+	    from showders down,
+	    from waist down,
+	    from hands up,
+	    from feet up;
+	    
+	gap {empty},
+	male clothing <JiZc7cYu>,
+	female clothing <8wMbAerE>;
+
+	
+
+	male clothing  <JiZc7cYu>->
+		male underwear <GxlXQxXw>,
+		male middlewear <kB4JekM2>,
+		male outerwear <wiehdpd8>;
+
+
+
+	male underwear  <GxlXQxXw>->
+		underwear <Ffa8450k>,
+		socks <lJH3jdiw>,
+		shirts <ffWheaye>;
+
+	male middlewear <kB4JekM2>->
+		blouses <fYKu1O11>,
+		leggings <wKPxsJAt>,
+		wool socks <NPKF4Ga1>;
+
+	male outerwear  <wiehdpd8>->
+		upper body <x0cQjtD2>,
+		jackets <soXE2qS3>,
+		pants <6CxXapzc>,
+		shoes <WCC8BZEN>,
+
+		hats <8myGEi8H>,
+		gloves <xeeOfS5P>,
+		scarfs <QZvvTcxs>,
+		backpacks <IxAmmqdD>;

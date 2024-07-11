@@ -1,0 +1,36 @@
+directives -> 
+	namespace <treeofall.personal.MyHomeAdmin>;
+
+
+My Android phone apps II <MyPhoneApps2> ->
+
+	Apps ->
+
+		\*AudioBooks,
+		Broshura.bg,
+		\*DuckDuckGo,
+		Facebook,
+		Flightradar24,
+		\*Messenger,
+		Mullvad VPN,
+		My A1,
+		\*Revolut,
+		Shazam,
+		Shreddit,
+		\*Signal,
+		SIM Card Reader,
+		Sinoptik.bg,
+		Smart Switch,
+		\*Tor Browser,
+		Translate,
+		\*Viber,
+		\*Voice Recorder,
+		\*Voice Recorder Lite,
+		Voyo.BG,
+		Wikipedia;
+
+	Games ->
+
+		Burger Shop 2,
+		Plants vs. Zombies FREE,
+		Triviador;

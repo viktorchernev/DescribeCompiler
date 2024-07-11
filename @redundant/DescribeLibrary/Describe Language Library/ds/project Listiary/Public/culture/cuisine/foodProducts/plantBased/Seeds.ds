@@ -1,0 +1,41 @@
+directives -> namespace <treeofall.public.culture.cuisine.foodProducts.plantBased>;
+
+
+seeds [https://en.wikipedia.org/wiki/List_of_edible_seeds] <seeds> ->
+
+	
+	Wheat [https://en.wikipedia.org/wiki/Wheat] <CNpaGX08>,						//Пшеница
+	Rye [https://en.wikipedia.org/wiki/Rye] <Oc6ZTvek>,							//Ръж
+	Triticale [https://en.wikipedia.org/wiki/Triticale] <e4umfvgc>,				//Тритикале - Пшеница x Ръж
+	Oats [https://en.wikipedia.org/wiki/Oat] <JtU92qHL>,						//Овес
+	Barley [https://en.wikipedia.org/wiki/Barley] <hSq0kXef>, 					//Ечемик 
+	Millet [https://en.wikipedia.org/wiki/Proso_millet] <PJqp6D7O>,				//Просо
+	Rice [https://en.wikipedia.org/wiki/Rice] <CPKm116X>,						//Ориз
+	Corn (Maize) [https://en.wikipedia.org/wiki/Maize] <rfKao3ZG>,				//Царевица
+	Chickpeas [https://en.wikipedia.org/wiki/Chickpea] <7hB50sJY>,				//Нахут, Леблебия
+	Beans [https://en.wikipedia.org/wiki/Bean] <vpRrY5oO>,						//Боб
+	Lentils [https://en.wikipedia.org/wiki/Lentil] <8CAZB0GN>,					//Леща
+	Peas [https://en.wikipedia.org/wiki/Pea] <tNZwVMvH>,						//Грах
+	Soybean [https://en.wikipedia.org/wiki/Soybean] <EB5G2ODI>,					//Соя
+	Fava beans [https://en.wikipedia.org/wiki/Vicia_faba] <agSfOOPb>,			//Бакла
+	
+	Amaranth [https://en.wikipedia.org/wiki/Amaranth_grain] <aUVyPH5B>,			//Щир
+	Quinoa [https://en.wikipedia.org/wiki/Quinoa] <ltZL0Hpz>,					//Киноа
+	Chia [https://en.wikipedia.org/wiki/Chia_seed] <DCPoEly4>,					//Чиа
+	Flaxseed [https://en.wikipedia.org/wiki/Flax] <07q7evzb>,					//Лен
+	Sesame seeds [https://en.wikipedia.org/wiki/Sesame] <uji09vhR>,				//Сусам
+	Buckwheat [https://en.wikipedia.org/wiki/Buckwheat] <E1vbT15U>,				//Елда
+	
+	
+	Sunflower seeds [https://en.wikipedia.org/wiki/Sunflower_seed] <oMF7jsAS>,	//Слънчогледови семки
+	Pumpkin seeds [https://en.wikipedia.org/wiki/Pumpkin_seed] <yfL8yhaW>,		//Тиквени семки
+	Melon seeds [https://en.wikipedia.org/wiki/Egusi] <fOPKoOpR>,				//Семки от пъпеш
+	Watermelon seeds [https://en.wikipedia.org/wiki/Watermelon] <ULqLA1XP>,		//Семки от диня
+	Poppy seeds [https://en.wikipedia.org/wiki/Poppy_seed] <cRpSOPGw>,			//Маково семе
+	Hemp seeds [https://en.wikipedia.org/wiki/Hemp] <jdhUo81Z>,					//Конопено семе
+
+	Sorghum [https://en.wikipedia.org/wiki/Sorghum] <699KvpO0>,					//Сорго
+	Teff [https://en.wikipedia.org/wiki/Teff] <McoZCT98>,						//Теф
+	Fonio [https://en.wikipedia.org/wiki/Fonio] <nQueqgBo>,						//Фонио, Ача
+	Hanza [https://en.wikipedia.org/wiki/Boscia_senegalensis] <xeCrGGki>,
+	Bread nut [https://en.wikipedia.org/wiki/Brosimum_alicastrum] <tpU0eHNC>;

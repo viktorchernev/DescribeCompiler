@@ -1,0 +1,43 @@
+directives -> 
+	namespace <treeofall.personal.MyEntertainment>;
+
+
+@VentureCity [https://www.youtube.com/@VentureCity] <j1mfwiRn> ->
+
+	The 100 Year Journey to Proxima Centauri B (Sci-Fi Documentary) [https://www.youtube.com/watch?v=r4sYJfPw0Rk],
+	FARMING in the Future: 2050 (A.I. Scarecrows) [https://www.youtube.com/watch?v=OS7eu7fWPZk],
+	BIOTECHNOLOGY in the Future: 2050 (Artificial Biology) [https://www.youtube.com/watch?v=uvsyIlKhVlQ],
+	The Next 200 Years of SPACE COLONIZATION (Timelapse) [https://www.youtube.com/watch?v=rqUaaEsFW_M],
+	THE FIRST 2 YEARS ON MARS (Prequel Timelapse) [https://www.youtube.com/watch?v=2tr6rJrv8hs],
+	TIMELAPSE OF TERRAFORMING MARS (Turning Red Green) [https://www.youtube.com/watch?v=NzEqmQVov0w],
+	Real Images from Space [https://www.youtube.com/watch?v=t4UsmbFyJbk],
+	TIMELAPSE INTERNATIONAL SPACE STATION (ISS tribute 2031) [https://www.youtube.com/watch?v=mXJgHucPdrc],
+	TIMELAPSE OF FUTURE SPACECRAFT: 2025 - 3000+ [https://www.youtube.com/watch?v=RL74Jb4OU9U],
+	TIMELAPSE (2027 - 3000+): How A.I. Will Control Video Games (..and Humans) [https://www.youtube.com/watch?v=ZWsSkY8EvF4],
+	MOON BASE - THE FIRST 10\,000 DAYS (Timelapse) [https://www.youtube.com/watch?v=XOhz7ZBZ_1U],
+	TIMELAPSE OF ARTIFICIAL INTELLIGENCE (2028 – 3000+) [https://www.youtube.com/watch?v=63yr9dlI0cU],
+	HOW TO BECOME A MARS ASTRONAUT (Future Colonization Training Guide) [https://www.youtube.com/watch?v=dxgeHtkpnEc],
+	THE FIRST 10\,000 DAYS ON MARS (Timelapse) [https://www.youtube.com/watch?v=G3hPH_bc0Ww],
+	NASA 1958 - 2100 (Timelapse of past & future technology) [https://www.youtube.com/watch?v=2qaDEt7PCMI],
+	Was 2020 A Simulation? (Science & Math of the Simulation Theory) [https://www.youtube.com/watch?v=c9p9NE4Pji0],
+	TIMELAPSE OF FUTURE TECHNOLOGY: 2022 - 4000+ [https://www.youtube.com/watch?v=wD6hyGXRcgk],
+	Making Money in a Futuristic World (Jobs and Future Business Ideas) [https://www.youtube.com/watch?v=quMIbxaE4OE],
+	Uploading Memories: Elon Musk's Brain Chip (Neuralink Future Technology) [https://www.youtube.com/watch?v=SXiRyTVHjfk],
+	The Science of Driving The Cybertruck on Mars (Elon Musk) [https://www.youtube.com/watch?v=W-JgFq6bzms],
+	Amazon's Robotic Empire: Jeff Bezos' Smart Warehouses [https://www.youtube.com/watch?v=AKCJsvZdBmI],
+	Professor Elon Musk on Artificial Intelligence (and the Basics of AI) - Documentary [https://www.youtube.com/watch?v=1Pql2nNR80k],
+	What Will the Solar Cities of the Future Look Like? [https://www.youtube.com/watch?v=5G-AojIVp6g],
+	Elon Musk: The Scientist Behind the CEO (and How He Teaches Himself) Documentary [https://www.youtube.com/watch?v=q-g7BPdSmP4],
+	Starship: How Elon Musk is Building a Railroad to Space (SpaceX) [https://www.youtube.com/watch?v=VnUwB7xrlcE],
+	The Self Driving City of the Future (and Elon Musk's Robotaxis) [https://www.youtube.com/watch?v=oGxlAMpGrco],
+	3D Printing Human Parts: The Future of Our Bodies [https://www.youtube.com/watch?v=NiwrtPoKHlg],
+	The Rebels Who Are Taking Apart Tesla Cars [https://www.youtube.com/watch?v=fIXxlg69QJA],
+	Why the Future of Tech is in Origami (Space Development\, Batteries\, Humans) [https://www.youtube.com/watch?v=lGU1xOW0Sus],
+	2050 The Future of Youtube: Internet Balloons\, AR Stories\, and Audience Gaming [https://www.youtube.com/watch?v=cHEfDV8VyDk],
+	Space Inc: The new space businesses and tech [https://www.youtube.com/watch?v=JpQbDcc7lWA],
+	Robots Cooking: The Restaurant of the Future [https://www.youtube.com/watch?v=zCaDJOGnkuo],
+	Elon Musk: The City of the Future [https://www.youtube.com/watch?v=L054Xd97_rk],
+	Why the Future of Farming is in Cities - The Big Money in Vertical Farming [https://www.youtube.com/watch?v=LiNI-JUFtsA],
+	Gaming Inc: The business of E-Sports [https://www.youtube.com/watch?v=_Fxw_WZnzsg],
+	Amazon’s City of The Future [https://www.youtube.com/watch?v=ZjraUKJRIt8],
+	The Future Tech for Fighting Plastic Pollution [https://www.youtube.com/watch?v=D7vRm1E5rn0];

@@ -1,0 +1,18 @@
+directives ->
+	language-version <1.1>,
+	namespace <cinema.movies>;
+
+comedy <.comedy> ->
+
+	~ common knowledge <source>,
+
+	Taxi <jxSBYaeM> [https://en.wikipedia.org/wiki/Taxi_(film_series)] ->
+
+		Taxi (1998) [https://en.wikipedia.org/wiki/Taxi_(1998_film)],
+		Taxi 2 (2000) [https://en.wikipedia.org/wiki/Taxi_2],
+		Taxi 3 (2003) [https://en.wikipedia.org/wiki/Taxi_3],
+		Taxi 4 (2007) [https://en.wikipedia.org/wiki/Taxi_4],
+		Taxi 5 (2018) [https://en.wikipedia.org/wiki/Taxi_5],
+
+		remakes {nlcomment},
+		Taxi (2004) [https://en.wikipedia.org/wiki/Taxi_(2004_film)];

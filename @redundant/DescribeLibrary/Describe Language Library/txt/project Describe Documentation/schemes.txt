@@ -1,0 +1,16 @@
+directives -> 
+	language-version <0.9>,
+	namespace <documentation.schemes>;
+
+
+schemes <rnode>->
+
+	source credibility <J4j6KbeM>;
+
+
+source credibility <J4j6KbeM> ->
+
+	questionable (Q) <CJclsgRT>,
+	mundane (M) <3GknaYve>,
+	credible (C) <Fxu0QKUP>,
+	canonical (A) <qOHgF0K6>;

@@ -1,0 +1,92 @@
+directives -> namespace <cuisine>;
+
+
+types of cooking salt <cooksalt> ->
+
+    by source of origin <naclcsoo>,
+    short list <naclcshli>,
+    long list <naclcloli>,
+    typrs of seasoned salt;
+    
+famous types of salt for cooking <naclcshli> ->
+
+    thekitchn.com 
+    [https://www.thekitchn.com/types-of-salt-23589308]
+    {custom|source},
+    
+    wikipedia.org
+    [https://en.wikipedia.org/wiki/List_of_edible_salts]
+    {custom|source},
+    
+    unseasoned {comment},
+    Table salt [https://en.wikipedia.org/wiki/Salt],
+    Kosher salt [https://en.wikipedia.org/wiki/Kosher_salt],
+    Himalayan pink salt [https://en.wikipedia.org/wiki/Himalayan_salt],
+    Hawaiian red salt [https://en.wikipedia.org/wiki/Alaea_salt],
+    Sea salt flakes [https://en.wikipedia.org/wiki/Sea_salt],
+    Fleur de sel [https://en.wikipedia.org/wiki/Fleur_de_sel],
+    Sel gris [https://en.wikipedia.org/wiki/Sel_gris],
+    
+    seasoned {nlcomment},
+    Smoked salt [https://en.wikipedia.org/wiki/Smoked_salt],
+    Asin tibuok [https://en.wikipedia.org/wiki/As%C3%ADn_tibuok],
+    Bamboo salt [https://en.wikipedia.org/wiki/Jugyeom],
+    Black lava salt,
+    There are all kinds of seasoned salt too {comment};
+
+by source of origin <naclcsoo> ->
+
+    Rock salt (Halite mined) {color|red},
+    Sea salt (extracted or collected) {color|blue},
+    Cyclic salt (deposited by the wind) {color|gray};
+
+all types of salts for cooking <naclcloli> ->
+
+    wikipedia.org
+    [https://en.wikipedia.org/wiki/List_of_edible_salts]
+    {custom|source},
+    
+    
+    Rock salt (Halite)
+    {color|red}{custom|colorlegend},
+    Sea salt
+    {color|blue}{custom|colorlegend},
+    Cyclic salt
+    {color|gray}{custom|colorlegend},
+
+
+    Alpenbergkern salt {color|red},
+    Anatolian (Çankırı) salt {color|red},
+    Anglesey sea salt {color|blue},
+    Bahamas sea salt {color|blue},
+    Balinese sea salt {color|blue},
+    Croatian sea salt {color|blue},
+    Cyprian pyramid salt {color|blue},
+    Çamaltı (Billur) salt {color|blue},
+    Dead sea salt {color|blue},
+    Egyptian frost salt {color|red},
+    Einville salt {color|blue},
+    Fleur de sel {color|blue},
+    Guerrero negro {color|blue},
+    Himalayan salt {color|blue},
+    Ilocano Asin {color|red},
+    Kalahari Salt {color|blue},
+    Kala namak {color|red},
+    Kampot sea salt {color|blue},
+    Kanawha Valley salt {color|blue},
+    Khoisan salt pearls {color|gray},
+    Lake Grassmere salt {color|blue},
+    Maldon sea salt {color|blue},
+    Maras salt {color|blue},
+    Mongolian lake salt {color|blue},
+    Murray River salt flakes {color|blue},
+    Namibian salt pearls {color|gray},
+    Oregon salt {color|blue},
+    Persian blue salt {color|red},
+    Sal de Tavira {color|blue},
+    Sale Marino di Trapani {color|blue},
+    Sel gris {color|blue},
+    Sel de Guérande {color|blue},
+    Sugpo Asin {color|blue},
+    Utah salt {color|red},
+    Yellowstone salt {color|red};

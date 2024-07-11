@@ -1,0 +1,17 @@
+directives ->
+	language-version <1.1>,
+	namespace <cinema.movies>;
+
+westerns <.westerns> ->
+
+	~ chat GPT <source>,
+
+	The Good, the Bad and the Ugly [https://en.wikipedia.org/wiki/The_Good,_the_Bad_and_the_Ugly],
+	Once Upon a Time in the West [https://en.wikipedia.org/wiki/Once_Upon_a_Time_in_the_West],
+	Unforgiven [https://en.wikipedia.org/wiki/Unforgiven],
+	The Magnificent Seven [https://en.wikipedia.org/wiki/The_Magnificent_Seven],
+	Butch Cassidy and the Sundance Kid [https://en.wikipedia.org/wiki/Butch_Cassidy_and_the_Sundance_Kid],
+	The Wild Bunch [https://en.wikipedia.org/wiki/The_Wild_Bunch],
+	True Grit [https://en.wikipedia.org/wiki/True_Grit_(2010_film)],
+	Django Unchained [https://en.wikipedia.org/wiki/Django_Unchained],
+	The Hateful Eight [https://en.wikipedia.org/wiki/The_Hateful_Eight];

@@ -1,0 +1,39 @@
+directives ->
+	namespace <treeofall.public.science.informatics.software>;
+
+
+licensing <licensing> ->
+	software license types <0nKDl8rq>,
+	popular FOSS software licenses <P0oMoyov>;
+
+
+
+FOSS software licenses (popular) <P0oMoyov>->
+
+	Creative Commons Attribution ShareAlike 4.0 <ceOdBvXh>,						//Wikipedia
+	Creative Commons Attribution ShareAlike 3.0 <UBVRBRKd>,
+	Creative Commons Attribution 4.0 <w5Vp9VCV>,
+	Creative Commons Attribution 3.0 <1WPh13Mv>,
+	Creative Commons CC0 Waiver <xKYdP12L>,
+	
+	GNU AGPLv3 <zhyVKQPn>,														//Related internet services must have source available
+	GNU GPLv3 <AuXrPwJR>,
+	GNU LGPLv3 <wYVYA8i9>,														//Derivative works might be distributed under different license
+	
+	Mozilla Public License 2.0 <lrIVzpBk>,
+	Apache License 2.0 <Lu0sDWq8>,
+	MIT License <XDS9Jv3V>,
+	Boost Software License 1.0 <2sfpuloh>;
+
+	
+software licenses <0nKDl8rq>->
+
+	proprietary software ->
+		Trade secret,
+		Proprietary license;
+		
+	free and open\-source software (FOSS) ->
+		Freeware\/Shareware\/Freemium,								//cannot sublicense or modify
+		Copyleft FOSS license (e.g. GPL),							//derivatives should be under same license
+		Permissive FOSS license (e.g. BSD license),					//can do anything but can't redistribute under different license
+		Public domain (not licensed); 								//can do anything

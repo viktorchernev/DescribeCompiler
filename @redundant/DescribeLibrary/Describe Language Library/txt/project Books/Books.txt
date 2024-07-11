@@ -1,0 +1,47 @@
+directives ->
+	language-version <1.1>,
+	namespace <books>;
+
+books <.rnode> ->
+
+	~ chat GPT <source>,
+
+	by type {comment},
+	non-fiction <.nonfiction>,
+	cookbooks <.cookbooks>,
+	textbooks <.textbooks>,
+	reference books <.refbooks>,
+	dictionaries <.dict>,
+	encyclopedias <.encyclop>,	
+
+	gap {empty},
+	novels <.novels>,
+	graphic novels <.comics>,
+	poetry <.poetry>,
+	art books <.artbooks>,
+	children's books <.children>,
+	religious texts <.religious>,
+	
+
+	by genre {nlcomment},
+	mathematics <.BXpK2VkK>,
+	informatics <.cCf9WCxy>,
+	physics <.dvjWV95n>,
+	astronomy <.Wv0drMDZ>,
+	mechanics <.d9rcknTb>,
+	chemistry <.P8QidKj6>,
+	biology <.YfqPw0dC>,
+	medicine <.cBxHfHcP>,
+	psychology <.9GgWVUNz>,
+    sociology <.O7XDMKRU>,
+	finance <.wzIsl8J5>,
+	law <.9MUKBVMy>,
+    
+    gap {empty},
+	fantasy <.nfantasy>,
+	science fiction <.nscifi>,
+	historical fiction <.nhifi>,
+	literary fiction <.lifi>,
+	mystery <.nmystery>,
+	thriller <.nthril>,
+	horror <.nhorror>;

@@ -1,0 +1,188 @@
+directives ->
+	namespace <treeofall.public.technologies.cultivars>;
+
+
+local links ->
+
+	pepperscale.com [https://www.pepperscale.com/hot-pepper-list/],
+	cayennediane.com [https://www.cayennediane.com/big-list-of-hot-peppers/],
+	bonnieplants.com [https://bonnieplants.com/blogs/garden-fundamentals/pepper-heat-levels],
+	en.wikipedia.org [https://en.wikipedia.org/wiki/Hottest_chili_pepper],
+	hotfarm.eu [https://hotfarm.eu/category/semena/];
+
+
+Hot peppers cultivars <CultivarsHotPeppers> ->
+
+	Mild ->
+
+		Bell Pepper (0 \- 0 SHU),										//Bright, Sweet
+		Gypsy Pepper (0 \- 0 SHU),										//Sweet, Floral
+		Purple Beauty Pepper (0 \- 0 SHU), 								//Sweet
+		Melrose Pepper (0 \- 0 SHU), 									//Sweet
+		Carmen Pepper (0 \- 0 SHU), 									//Sweet
+		California Wonder Pepper (0 \- 0 SHU), 							//Bitter, Sweet
+		Peperone di Senise (0 \- 0 SHU),								//Sweet, Nutty, Smoky
+		Fushimi Pepper (0 \- 0 SHU),									//Sweet
+		Elephant Ears Pepper (0 \- 0 SHU),								//Sweet, Fruity
+		Habanada Pepper (0 \- 0 SHU),									//Sweet, Fruity, Floral
+		Tangerine Dream Pepper (0 \- 100 SHU),							//Sweet
+		Chilly Chili (1 \- 100 SHU),									//Neutral
+		Shishito Pepper (50 \- 2000 SHU),								//Sweet, Grassy, Citrusy, Smoky
+		Trinidad Perfume (0 \- 500 SHU),								//Sweet, Fruity, Citrusy, Tropical
+		Banana Pepper (0 \- 500 SHU),									//Sweet, Tangy
+		Pepperoncini (100 \- 500 SHU),									//Sweet, Tangy
+		Pimento Pepper (100 \- 500 SHU),								//Sweet
+		Mariachi Pepper (500 \- 600 SHU),								//Sweet
+		Santa Fe Grande Pepper (500 \- 700 SHU),						//Sweet, Smoky
+		Holy Mole Pepper (700 \- 800 SHU),								//Nutty, Tangy
+		Aji Dulce (0 \- 1000 SHU),										//Sweet, Smoky, Peppery
+		Medusa Pepper (1 \- 1000 SHU),									//Sweet
+		Mexibell Pepper (100 \- 1000 SHU),								//Sweet
+		Italian Long Hot Pepper (100 \- 1000 SHU),						//Sweet
+		Cubanelle Pepper (100 \- 1000 SHU),								//Sweet
+		Piquillo Pepper (500 \- 1000 SHU),								//Sweet, Smoky, Tart
+		Beaver Dam Pepper (500 \- 1000 SHU),							//Sweet
+		Mad Hatter Pepper (500 \- 1000 SHU),							//Sweet, Fruity, Citrusy, Floral
+		Peppadew Pepper (1100 \- 1200 SHU),								//Sweet
+		Aji Panca (1000 \- 1500 SHU),									//Sweet, Fruity, Smoky
+		Ancho Pepper (1000 \- 1500 SHU),								//Sweet, Smoky, Earthy
+		Poblano Pepper (1000 \- 1500 SHU),								//Earthy
+		Kashmiri Chili (1000 \- 2000 SHU),								//Sweet, Fruity
+		Guindilla Pepper (1000 \- 2000 SHU),							//Sweet
+		Padron Pepper (500 \- 2500 SHU),								//Earthy, Nutty, Sweet
+		Anaheim Pepper (500 \- 2500 SHU),								//Fruity, Sweet
+		Chilaca Pepper (1000 \- 2500 SHU),								//Sweet, Floral
+		Pasilla Pepper (1000 \- 2500 SHU),								//Sweet, Fruity, Earthy
+		Rocotillo Pepper (1500 \- 2500 SHU),							//Sweet, Tropical
+		Cascabel Pepper (1000 \- 3000 SHU),								//Earthy, Nutty
+		Mulato Pepper (2500 \- 3000 SHU);								//Smoky, Sweet, Earthy
+
+	Medium ->
+
+		NuMex Big Jim (2500	\- 3000),									//Bright, Sweet
+		Cajun Belle Pepper (500 \- 4000 SHU),							//Sweet
+		Espelette Pepper (500 \- 4000 SHU),								//Sweet, Fruity, Smoky
+		NuMex Centennial (1000 \- 5000 SHU),							//Bitter, Bright
+		Sangria Pepper (1 000 \- 5 000 SHU),							//Neutral
+		Cherry Bomb Pepper (2 500 \- 5 000 SHU),						//Sweet
+		Cowhorn Pepper (2 500 \- 5 000 SHU),							//Sweet
+		Guajillo Pepper (2 500 \- 5 000 SHU),							//Tangy, Crisp, Smoky
+		Jalafuego Pepper (4 000 \- 6 000 SHU),							//Bright, Grassy
+		Chimayo Pepper (4 000 \- 6 000 SHU),							//Smoky, Earthy
+		Sandia Pepper (5 000 \- 7 000 SHU),								//Sweet
+		Hatch Pepper (1 000 \- 8 000 SHU),								//Buttery, Earthy
+		Jalapeno Pepper (2 500 \- 8 000 SHU),							//Bright, Grassy
+		Purple Jalapeno Pepper (2 500 \- 8 000 SHU),					//Bright, Sweet
+		Chipotle Pepper (2 500 \- 8 000 SHU),							//Smoky, Earthy
+		Puya Pepper	Puya Pepper (5 000 \- 8 000 SHU),					//Sweet, Fruity, Bitter
+		Pretty in Purple Pepper (4 000 \- 8 000 SHU),					//Neutral
+		Fresno Pepper (2 500 \- 10 000 SHU),							//Sweet, Fruity, Smoky
+		Hungarian Wax Pepper (5 000 \- 10 000 SHU),						//Sweet, Tangy
+		Black Hungarian Pepper (5 000 \- 10 000 SHU),					//Sweet
+		Aleppo Pepper (10 000 \- 10 000 SHU),							//Bright, Tart, Earthy, Salty
+		Peter Pepper (10 000 \- 23 000 SHU),							//Bright, Sweet
+		Serrano Pepper (10 000 \- 23 000 SHU),							//Bright, Grassy
+		Sport Pepper (10 000 \- 23 000 SHU),							//Neutral, Tangy
+		Bishop's Crown Pepper (5 000 \- 30 000 SHU),					//Sweet, Fruity
+		Hinkelhatz Pepper (5 000 \- 30 000 SHU),						//Neutral
+		Royal Black Pepper (5 000 \- 30 000 SHU),						//Neutral
+		Black Prince Pepper (5 000 \- 30 000 SHU),						//Neutral
+		Count Dracula Pepper (5 000 \- 30 000 SHU),						//Neutral
+		Bulgarian Carrot Pepper (5 000 \- 30 000 SHU),					//Sweet, Fruity, Crisp
+		Fish Pepper	Fish pepper (5 000 \- 30 000 SHU),					//Bright
+		Bolivian Rainbow Pepper (10 000 \- 30 000 SHU),					//Neutral
+		Black Pearl Pepper (10 000 \- 30 000 SHU),						//Sweet, Citrusy
+		Manzano Pepper (12 000 \- 30 000 SHU),							//Sweet, Citrusy
+		Japones Pepper (15 000 \- 30 000 SHU),							//Neutral
+		Lemon Drop Pepper (15 000 \- 30 000 SHU),						//Sweet, Fruity, Citrusy
+		Chile De Arbol (15 000 \- 30 000 SHU),							//Nutty, Smoky
+		Jwala Pepper (20 000 \- 30 000 SHU),							//Sweet, Fruity
+		Inca Red Drop Pepper (10 000 \- 30 000 SHU),					//Fruity, Sweet
+		Aji Colorado (20 000 \- 30 000 SHU),							//Fruity, Sweet
+		Aji Pineapple (20 000 \- 30 000 SHU),							//Fruity, Sweet, Tropical
+		Little Elf Pepper (20 000 \- 30 000 SHU),						//Earthy
+		Bod'e Pepper (30 000 \- 32 000 SHU),							//Fruity, Sweet, Smoky
+		Black Cobra Pepper (20 000 \- 40 000 SHU),						//Neutral, Bitter
+		Calabrian Pepper (25000 \- 40000 SHU),							//Sweet, Fruity, Smoky, Salty
+		NuMex Twilight (30 000 \- 50 000 SHU),							//Salty, Bitter, Bright
+		Rooster Spur Pepper (30 000 \- 50 000 SHU),						//Peppery
+		Explosive Ember Pepper (30 000 \- 50 000 SHU),					//Sweet
+		Filius Blue Pepper (30 000 \- 50 000 SHU),						//Neutral
+		Aurora Pepper (30 000 \- 50 000 SHU),							//Neutral
+		Aji Amarillo (30 000 \- 50 000 SHU),							//Sweet, Fruity, Tropical, Bright
+		Aji Charapita (30 000 \- 50 000 SHU),							//Sweet, Fruity
+		Aji Omnicolor (30 000 \- 50 000 SHU),							//Fruity, Sweet
+		Tabasco Pepper (30 000 \- 50 000 SHU),							//Sweet, Smoky, Fruity
+		Cayenne Pepper (30 000 \- 50 000 SHU),							//Neutral
+		Super Chili Pepper (40 000 \- 50 000 SHU),						//Neutral
+		Satan's Kiss Pepper (40 000 \- 50 000 SHU),						//Neutral
+		Buena Mulata Pepper (30 000 \- 50 000 SHU),						//Sweet
+		Urfa Biber (Isot Pepper) (30 000 \- 50 000 SHU),				//Earthy, Smoky, Sweet, Tangy, Salty
+		Black Cuban Pepper (40 000 \- 58 000 SHU),						//Neutral
+		Pequin Pepper (40 000 \- 60 000 SHU);							//Smoky, Fruity
+
+	Extra hot ->
+
+		Dundicut Pepper (55 000 \- 65 000 SHU),							//Fruity, Earthy
+		Calico Pepper (50 000 \- 70 000 SHU),							//Neutral
+		Tien Tsin Pepper (50 000 \- 75 000 SHU),						//Neutral
+		Cheiro Roxa (60 000 \- 80 000 SHU),								//Fruity, Sweet, Bitter
+		Prairie Fire Pepper (70 000 \- 80 000 SHU),						//Fruity, Tangy
+		Rocoto Pepper aka Capsicum Pubescens (30 000 \- 100 000 SHU),	//Sweet, Fruity, Grassy
+		Malagueta Pepper (50 000 \- 100 000 SHU),						//Sweet, Tangy
+		Byadgi Chili (50 000 \- 100 000 SHU),							//Sweet
+		Chiltepin Pepper (50 000 \- 100 000 SHU),						//Smoky, Earthy
+		Thai Pepper (50 000 \- 100 000 SHU),							//Fruity
+		Charleston Hot Pepper (70 000 \- 100 000 SHU),					//Neutral
+		Siling Labuyo (80 000 \- 100 000 SHU),							//Neutral
+		Apache Pepper (80 000 \- 100 000 SHU),							//Sweet
+		Peri\-Peri Pepper (50 000 \- 100 000 SHU),						//Smoky, Sweet
+		Datil Pepper (100 000 \- 300 000 SHU),							//Sweet, Fruity, Tropical
+		Cumari do Para (50 000 \- 300 000 SHU),							//Fruity, Sweet, Tropical
+		Madame Jeanette Pepper (125 000 \- 325 000 SHU),				//Sweet, Tropical
+		Aji Chombo (125 000 \- 325 000 SHU),							//Sweet, Fruity, Tropical
+		Devil's Tongue Pepper (125 000 \- 325 000 SHU),					//Sweet, Fruity, Citrusy
+		Wiri Wiri Pepper (100 000 \- 350 000 SHU),						//Fruity, Tangy
+		Scotch Bonnet Pepper (100 000 \- 350 000 SHU),					//Sweet, Fruity, Tropical, Earthy
+		Habanero Pepper (100 000 \- 350 000 SHU),						//Sweet, Fruity, Tropical, Smoky
+		Peruvian White Habanero (100 000 \- 350 000 SHU),				//Sweet, Fruity
+		Goat Pepper (100 000 \- 350 000 SHU),							//Sweet, Tropical
+		Peach Habanero (150 000 \- 350 000 SHU),						//Sweet, Fruity
+		Fatalii Pepper (125 000 \- 400 000 SHU),						//Sweet, Fruity, Citrusy
+		Hot Paper Lantern (150 000 \- 400 000 SHU);						//Sweet, Smoky
+
+	Super hot ->
+
+		Caribbean Red Habanero (300 000 \- 445 000 SHU),				//Sweet, Fruity, Tropical, Smoky
+		Roatan Pumpkin Habanero (100 000 \- 500 000 SHU),				//Sweet, Fruity, Citrusy
+		Red Savina Habanero (350 000 \- 577 000 SHU),					//Sweet, Fruity
+		Chocolate Habanero (425 000 \- 577 000 SHU),					//Sweet, Fruity, Earthy, Smoky
+		7 Pot Bubblegum (800 000 \- 1 000 000 SHU),						//Sweet, Fruity
+		7 Pot Jonah (800 000 \- 1 000 000 SHU),							//Sweet, Fruity
+		Bhut Jolokia Chocolate (800 000 \- 1 001 304 SHU),				//Sweet, Fruity, Earthy, Smoky
+		Ghost Pepper (855 000 \- 1 041 427 SHU),						//Sweet, Fruity, Earthy
+		Trinidad 7 Pot Pepper (1 000 000 \- 1 200 000 SHU),				//Sweet, Fruity, Nutty
+		Infinity Pepper (1 067 286 \- 1 250 000 SHU),					//Sweet, Fruity
+		7 Pot Primo (800 000 \- 1 268 250 SHU),							//Sweet, Fruity, Citrusy, Floral
+		7 Pot Barrackpore (1 000 000 \- 1 300 000 SHU),					//Sweet, Fruity, Bright, Bitter
+		7 Pot Brain Strain (1 000 000 \- 1 350 000 SHU),				//Sweet, Fruity
+		Naga Viper (900 000 \- 1 382 118 SHU),							//Sweet, Fruity, Tangy
+		Trinidad Scorpion "Butch\-T" (800 000 \- 1 463 700 SHU),		//Sweet, Fruity
+		Naga Morich	(1 000 000 \- 1 500 000 SHU),						//Sweet, Fruity
+		Death Spiral Pepper (1 300 000 \- 1 500 000 SHU),				//Sweet, Citrusy, Floral
+		Dorset Naga (1 000 000 \- 1 598 227 SHU),						//Sweet, Fruity, Floral
+		7 Pot Douglah (923 889 \- 1 853 986 SHU),						//Sweet, Fruity, Earthy, Nutty
+		Trinidad Moruga Scorpion (1 200 000 \- 2 000 000 SHU),			//Sweet, Fruity
+		Trinidad Scorpion Chocolate (1 200 000 \- 2 000 000 SHU),		//Sweet, Fruity, Earthy, Smoky
+		Apocalypse Scorpion Pepper (1 200 000 \- 2 000 000 SHU),		//Sweet, Fruity, Floral
+		Chocolate Bhutlah (1 500 000 \- 2 000 000 SHU),					//Sweet, Fruity, Earthy, Smoky
+		Carolina Reaper (1 400 000 \- 2 200 000 SHU),					//Sweet, Fruity
+		Komodo Dragon Pepper (1 400 000 \- 2 200 000 SHU),				//Sweet, Fruity
+		Dragon's Breath Pepper (2 480 000 \- 2 480 000 SHU),			//Sweet, Fruity
+		Apollo Pepper (3 000 000 \- 3 000 000 SHU),						//Sweet, Fruity, Earthy
+		Pepper X (3 180 000 \- 3 180 000 SHU);							//Sweet, Fruity
+
+	Also ->
+		
+		Pepper Spray (2 000 000 \- 5 300 000 SHU),
+		Capsaicin (15 000 000 \- 16 000 000 SHU);

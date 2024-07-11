@@ -1,0 +1,19 @@
+directives -> namespace <treeofall.public.unsorted>;
+
+
+crypto currency consensus mechanisms <cryptoConsensusMechanisms> ->
+
+	Proof of Work,
+	Proof of Stake,
+	Delegated proof of stake,
+	Proof of space and time (capacity),
+	Proof of Authority (reputation),
+	Practical Byzantine fault tolerance,
+	Unique node list,
+	Direct acyclic graph (DAG);
+
+
+links ->
+
+	12 Consensus Mechanisms + How they Work (Pros\/Cons)
+	[https://www.youtube.com/watch?v=3QCykHU89To];

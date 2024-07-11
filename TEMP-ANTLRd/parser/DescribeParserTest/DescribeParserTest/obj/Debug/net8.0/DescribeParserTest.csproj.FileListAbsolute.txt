@@ -1,5 +1,0 @@
-C:\Users\Viktor Chernev\Desktop\ANTLRd\parser\DescribeParserTest\DescribeParserTest\obj\Debug\net8.0\DescribeParserTest.csproj.AssemblyReference.cache
-C:\Users\Viktor Chernev\Desktop\ANTLRd\parser\DescribeParserTest\DescribeParserTest\obj\Debug\net8.0\DescribeParserTest.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Viktor Chernev\Desktop\ANTLRd\parser\DescribeParserTest\DescribeParserTest\obj\Debug\net8.0\DescribeParserTest.AssemblyInfoInputs.cache
-C:\Users\Viktor Chernev\Desktop\ANTLRd\parser\DescribeParserTest\DescribeParserTest\obj\Debug\net8.0\DescribeParserTest.AssemblyInfo.cs
-C:\Users\Viktor Chernev\Desktop\ANTLRd\parser\DescribeParserTest\DescribeParserTest\obj\Debug\net8.0\DescribeParserTest.csproj.CoreCompileInputs.cache

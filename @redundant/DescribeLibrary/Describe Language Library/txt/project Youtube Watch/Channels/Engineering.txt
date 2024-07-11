@@ -1,0 +1,22 @@
+directives -> 
+	language-version <1.1>,
+	namespace <ytwatch>;
+
+
+engineering <rEa5iPox> ->
+
+	Maker's Muse [https://www.youtube.com/user/TheMakersMuse] <I3dd33Jv>,
+	Jared Owen [https://www.youtube.com/user/captainranic] <rM2s1wyX>,
+	ENGINEERING TODAY [https://www.youtube.com/channel/UCaC97sX6xzQKvPLkZ9AbC-A] <w7xCYdoP>,
+	Curious Elephant [https://www.youtube.com/channel/UCZUlf2TKB8vATuo5-s1N-5Q] <qpeghiRp>,
+	Mark Rober [https://www.youtube.com/user/onemeeeliondollars] <3vUyd3Jc>,
+	The Thought Emporium [https://www.youtube.com/user/TheChemlife] <uU0zUNNM>,
+	Real Engineering [https://www.youtube.com/channel/UCR1IuLEqb6UEA_zQ81kwXfg] <siKOWoBP>,
+	styropyro [https://www.youtube.com/user/styropyro] <AaZ5fHfS>,
+	Be Smart [https://www.youtube.com/user/itsokaytobesmart] <oP5H5AM3>,
+	Veritasium [https://www.youtube.com/user/1veritasium] <ws3nZU75>,
+	Curious Droid [https://www.youtube.com/channel/UC726J5A0LLFRxQ0SZqr2mYQ] <TVdnMfzS>,
+	Smarter Every Day 2 [https://www.youtube.com/user/FunnerEveryDay] <8vO93bNW>,
+	SmarterEveryDay [https://www.youtube.com/user/destinws2] <byds7uX0>,
+	Vsauce [https://www.youtube.com/user/Vsauce] <ot2aDmkb>,
+	Integza [https://www.youtube.com/channel/UC2avWDLN1EI3r1RZ_dlSxCw] <RljJ75dp>;

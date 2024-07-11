@@ -1,0 +1,12 @@
+directives ->
+
+	namespace <treeofall.public.books>;
+
+books <.rnode> ->
+
+    sci-fi <.scifi>,
+	fantasy <.y6Qj3HDE>,
+    
+    gap {empty},
+    science <.O7XDMKRU>,
+    textbooks <.textbooks>;

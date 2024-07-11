@@ -1,0 +1,89 @@
+directives ->
+	namespace <treeofall.public.science.medicine>;
+
+
+human nutrition <humanNutrition> ->
+
+	macronutrients <7BfDtacB>,
+	micronutrients <XxivUl1V>;
+
+macronutrients <7BfDtacB> ->
+
+	carbohydrates <tdWoA3cr>,
+	fats <ThM0ytun>,
+	proteins <ugBSKqjO>,
+	
+	fiber <skkURA3I>,
+	water <PxMNW1pE>;
+
+micronutrients <XxivUl1V> ->
+
+	vitamins <peqrqXgP>,
+	minerals <ejY93JTn>;
+
+
+
+
+carbohydrates <tdWoA3cr> ->
+	monosaccharides <hDJ91BYB>, 
+	disaccharides <zNGQSdkv>,
+	polysaccharides <dhimsLz3>;
+
+
+
+fats <ThM0ytun> ->
+	saturated <nPQS9id0>,
+	unsaturated <BD0SEbWW>,
+	trans\-unsaturated <6xJnPdmg>;
+
+
+
+fiber <skkURA3I> ->
+	insoluble dietary fiber <gLGN8h8c>,
+	soluble dietary fiber <blkHKmDM>;
+
+
+
+vitamins <peqrqXgP> ->
+
+	vitamin A (all\-trans\-retinol and all\-trans\-retinyl\-esters and all\-trans\-beta\-carotene and other provitamin A carotenoids) <Qa15Xhwf>,
+	vitamin B1 (thiamine) <2gi8qAtI>,
+	vitamin B2 (riboflavin) <0VkoVMYv>,
+	vitamin B3 (niacin) <JFtjrxaC>,
+	vitamin B5 (pantothenic acid) <1ozjfrZu>,
+	vitamin B6 (pyridoxine) <TPuHzcfU>,
+	vitamin B7 (biotin) <oDRbs9mK>,
+	vitamin B9 (folic acid or folate) <NBIcpPcZ>,
+	vitamin B12 (cobalamins) <6yGpceTL>,
+	vitamin C (ascorbic acid) <cQWP0y9S>,
+	vitamin D (calciferols) <2RapLcaY>,
+	vitamin E (tocopherols and tocotrienols) <LuUJvuBv>,
+	vitamin K (phylloquinone and menaquinones) <3X6rSYRw>;
+
+
+
+minerals <ejY93JTn> ->
+
+	macrominerals <8AEHendO>,
+	trace minerals <XKH1kZOO>;
+
+macrominerals <8AEHendO> ->
+
+	Calcium <3vigElIV>,
+	Chlorine <Rs0xDaa0>,
+	Magnesium <r9IaK2iW>,
+	Phosphorus <Cxr2qmgG>,
+	Potassium <gYrURVBl>,
+	Sodium <VLQZXJoW>;
+
+trace minerals <XKH1kZOO> ->
+
+	Cobalt <r0nYHcAc>,
+    Copper <q98UCaQS>,
+    Chromium <bGodqy6g>,
+    Iodine <Qse4hQom>,
+    Iron <Kb9z7KA4>,
+    Manganese <bIlc2FyR>,
+    Molybdenum <0ggWGwkT>,
+    Selenium (Se) <VGJnbQQR>,
+    Zinc <hvqprDIF>;

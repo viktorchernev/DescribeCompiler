@@ -1,0 +1,75 @@
+directives ->
+
+	namespace <treeofall.public.books>;
+
+
+Assassin's creed <.assassinCreed> [https://en.wikipedia.org/wiki/Assassin%27s_Creed_(book_series)] ->
+	
+	Book 1: Renaissance - Oliver Bowden
+    [https://en.wikipedia.org/wiki/Assassin%27s_Creed_(book_series)#Renaissance_(2009)]
+    {shorter|Renaissance - Oliver Bowden},
+    
+	Book 2: Brotherhood - Oliver Bowden
+    [https://en.wikipedia.org/wiki/Assassin%27s_Creed_(book_series)#Brotherhood_(2010)]
+    {shorter|Brotherhood - Oliver Bowden},
+    
+	Book 3: The secret Crusade - Oliver Bowden
+    [https://en.wikipedia.org/wiki/Assassin%27s_Creed_(book_series)#The_Secret_Crusade_(2011)]
+    {shorter|The secret Crusade - Oliver Bowden},
+    
+	Book 4: Revelations - Oliver Bowden
+    [https://en.wikipedia.org/wiki/Assassin%27s_Creed_(book_series)#Revelations_(2011)]
+    {shorter|Revelations - Oliver Bowden},
+    
+	Book 5: Forsaken - Oliver Bowden
+    [https://en.wikipedia.org/wiki/Assassin%27s_Creed_(book_series)#Forsaken_(2012)]
+    {shorter|Forsaken - Oliver Bowden},
+    
+	Book 6: Black flag - Oliver Bowden
+    [https://en.wikipedia.org/wiki/Assassin%27s_Creed_(book_series)#Black_Flag_(2013)]
+    {shorter|Black flag - Oliver Bowden},
+    
+	Book 7: Unity - Oliver Bowden
+    [https://en.wikipedia.org/wiki/Assassin%27s_Creed_(book_series)#Unity_(2014)]
+    {shorter|Unity - Oliver Bowden},
+    
+	Book 8: Underworld - Oliver Bowden
+    [https://en.wikipedia.org/wiki/Assassin%27s_Creed_(book_series)#Underworld_(2015)]
+    {shorter|Underworld - Oliver Bowden},
+    
+    The Official Movie Novelization - Christie Golden
+    [https://en.wikipedia.org/wiki/Assassin%27s_Creed_(book_series)#The_Official_Movie_Novelization_(2016)]
+    {shorter|The Official Movie Novelization},
+    
+    Origins – Desert Oath - Andrew Holmes (2017)
+    [https://en.wikipedia.org/wiki/Assassin%27s_Creed_(book_series)#Origins_%E2%80%93_Desert_Oath_(2017)]
+    {shorter|Origins – Desert Oath},
+    
+    Odyssey - Gordon Doherty (2018)
+    [https://en.wikipedia.org/wiki/Assassin%27s_Creed_(book_series)#Odyssey_(2018)]
+    {shorter|Odyssey - Gordon Doherty},
+    
+    Valhalla – Geirmund's Saga - Matthew J. Kirby (2020)
+    [https://en.wikipedia.org/wiki/Assassin%27s_Creed_(book_series)#Valhalla_%E2%80%93_Geirmund's_Saga_(2020)]
+	{shorter|Valhalla – Geirmund's Saga},
+    
+    Valhalla – Sword of the White Horse - Elsa Sjunneson (2022)
+    [https://en.wikipedia.org/wiki/Assassin%27s_Creed_(book_series)#Valhalla_%E2%80%93_Sword_of_the_White_Horse_(2022)]
+    {shorter|Sword of the White Horse},
+    
+    The Golden City - Jaleigh Johnson (2023)
+    [https://en.wikipedia.org/wiki/Assassin%27s_Creed_(book_series)#The_Golden_City_(2023)]
+    {shorter|The Golden City - Jaleigh Johnson},
+    
+    Mirage – Daughter of No One - Maria Lewis (2023)
+    [https://en.wikipedia.org/wiki/Assassin%27s_Creed_(book_series)#Mirage_%E2%80%93_Daughter_of_No_One_(2023)]
+    {shorter|Mirage – Daughter of No One},
+    
+    gap {empty},
+    The Ming Storm - Yan Leisheng (2019)
+    [https://en.wikipedia.org/wiki/Assassin%27s_Creed_(book_series)#The_Ming_Storm_(2019)]
+    {shorter|The Ming Storm - Y. Leisheng},
+    
+    The Desert Threat - Yan Leisheng (2021)
+    [https://en.wikipedia.org/wiki/Assassin%27s_Creed_(book_series)#The_Desert_Threat_(2021)]
+    {shorter|The Desert Threat - Y. Leisheng};

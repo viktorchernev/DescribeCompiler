@@ -1,0 +1,30 @@
+directives -> namespace <cuisine>;
+
+
+types of olive oil <typesOfOliveOils>
+[https://brightland.co/blogs/field-notes/types-of-olive-oil]
+[https://www.theolivetap.com/blog/types-of-olive-oils]
+[https://www.internationaloliveoil.org/] 
+[https://en.wikipedia.org/wiki/Olive_oil#Commercial_grades] ->
+
+	Extra Virgin ->
+	
+		premium extra virgin olive oil,
+		extra virgin olive oil;
+	
+	Virgin ->
+	
+		fine virgin olive oil, 
+		virgin olive oil,
+		semi-fine virgin olive oil;
+	
+	Refined and Pure,
+	Extra Light and Light,
+	Olive Pomace,
+
+	Flavored ->
+	
+		lemon olive oil,
+		chili olive oil,
+		garlic olive oil,
+		basil olive oil;

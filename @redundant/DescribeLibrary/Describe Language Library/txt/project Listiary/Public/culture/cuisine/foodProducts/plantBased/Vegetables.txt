@@ -1,0 +1,26 @@
+directives -> namespace <treeofall.public.culture.cuisine.foodProducts.plantBased>;
+
+
+// (M) My own experience and commonsense - DemonOfReason
+
+vegetables [https://en.wikipedia.org/wiki/Vegetable] <vegetables> ->
+
+	Avocados <C4Rh0Ovz>,
+	Leafy vegetables <VFJ9qyyw>,
+	Cabbage <wvbSEwY9>,
+	Turnips <daLEzqlE>,
+	Tomatoes <j26sM59m>,
+	Cucumbers <0sjWyQMZ>,
+	Onions <wiGcsa29>,
+	Garlics <KJgejw4n>,
+	Carrots <AdbbVFPI>,
+	Beets <1JrnxaAe>,
+	Green beans <w9QLFxUH>,
+	Okra <fnsMu7ez>,
+	Peas <n5bglfaY>,
+	Potatoes <shvEZ3Rw>,
+	Eggplants <fbwD8kaC>,
+	Zucchini <ZsQ4uzHM>,
+	Pumpkins <b2e49Xmb>,
+	Peppers <MSLC7619>,
+	Hot peppers <RJBUpRUe>;

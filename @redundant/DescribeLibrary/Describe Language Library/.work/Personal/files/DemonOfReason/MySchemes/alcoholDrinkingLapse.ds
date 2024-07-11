@@ -1,0 +1,13 @@
+directives -> 
+	namespace <treeofall.personal.MySchemes>;
+
+
+alcohol drinking lapse <alcoholDrinkingLapse> ->
+
+	1s (a day without drinking) <EvmKdb64>,
+	3s (2 days without drinking\, drink on 3rd) <wtVzav6P>,
+	3S (3 days without drinking\, drink on 4th) <Bt5m5XQu>,
+	5s (4 days without drinking\, drink on 5th) <NfT6rkKv>,
+	5S (5 days without drinking\, drink on 6th) <AA8cMSpt>,
+	7s (6 days without drinking\, drink on 7th) <P2JHuqyD>,
+	MORE (more than a week without alcohol) <h6ZKlYaq>;

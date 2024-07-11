@@ -1,0 +1,11 @@
+directives -> 
+	language-version <1.1>,
+	namespace <ytwatch>;
+
+
+finance and precious metals <8W1f4ukN> ->
+
+	sreetips [https://www.youtube.com/user/sreetips] <6sk5Bey9>,												// Precious m refining
+	Strategic Wealth Preservation \- SWP [https://www.youtube.com/channel/UC-Ay6AYTEP4j0WRNpq_dZWQ] <yle7crpN>, 	// Precious m buying
+	Whiteboard Crypto [https://www.youtube.com/channel/UCsYYksPHiGqXHPoHI-fm5sg] <Ymtw4jQ5>,					// Crypto explained
+	Slidebean [https://www.youtube.com/c/Slidebean] <Oczz8T21>;													// Investment

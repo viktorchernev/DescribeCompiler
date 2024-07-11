@@ -1,0 +1,85 @@
+directives -> namespace <treeofall.public.unsorted>;
+
+
+emotions <emotions> ->
+
+	surprised ->
+
+		Startled -> Shocked, Dismayed;
+		Confused -> Disillusioned, Perplexed;
+		Amazed -> Astonished, Awe;
+		Excited -> Eager, Energetic;
+		;
+
+	happy ->
+
+		Playful -> Aroused, Cheeky;
+		Content -> Free, Joyful;
+		Interested -> Curious, Inquisitive;
+		Proud -> Successful, Confident;
+		Accepted -> Respected, Valued;
+		Powerful -> Courageous, Creative;
+		Peaceful -> Loving, Thankful;
+		Trusting -> Sensitive, Intimate;
+		Optimistic -> Hopeful, Inspired;
+		;
+
+	sad ->
+
+		Lonely -> Isolated, Abandoned;
+		Vulnerable -> Victimized, Fragile;
+		Despair -> Grief, Powerless;
+		Guilty -> Ashamed, Remorseful;
+		Depressed -> Inferior, Empty;
+		Hurt -> Embarrased, Disappointed;
+		;
+
+	disgusted ->
+
+		Disapproving -> Judgemental, Embarrased;
+		Disappointed -> Appalled, Revolted;
+		Awful -> Nauseated, Detestible;
+		Repelled -> Horrified, Hessitant;
+		;
+
+	angry ->
+
+		Let down -> Betrayed, Resentful;
+		Humiliated -> Disrespected, Ridiculed;
+		Bitter -> Indignant, Violated;
+		Mad -> Furious, Jealous;
+		Aggressive -> Provoked, Hostile;
+		Frustrated -> Infuriated, Annoyed;
+		Distant -> Withdrawn, Numb;
+		Critical -> Skeptical, Dismissive;
+		;
+
+	fearful ->
+
+		Scared -> Helpless, Frightened;
+		Anxious -> Overwhelmed, Worried;
+		Insecure -> Inadequate, Inferior;
+		Weak -> Worthless, Insignificant;
+		Rejected -> Excluded, Persecuted;
+		Threatened -> Nervous, Exposed;
+		;
+
+	bad ->
+
+		Bored -> Indifferent, Apathetic;
+		Busy -> Pressured, Rushed;
+		Stressed -> Overwhelmed, Out of control;
+		Tired -> Sleepy, Unfocussed;
+		;
+
+
+	local links ->
+
+		Emotion_classification
+		[https://en.wikipedia.org/wiki/Emotion_classification],
+
+		40 Words For Emotions You've Felt\, But Couldn't Explain 
+		[https://thoughtcatalog.com/brianna-wiest/2016/02/40-words-for-emotions-youve-felt-but-couldnt-explain/],
+		
+		quora.com 
+		[https://www.quora.com/Where-can-I-find-a-list-of-human-emotions];

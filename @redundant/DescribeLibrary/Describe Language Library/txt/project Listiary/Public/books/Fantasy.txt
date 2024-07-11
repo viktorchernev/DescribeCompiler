@@ -1,0 +1,26 @@
+directives ->
+
+	namespace <treeofall.public.books>;
+
+fantasy <.y6Qj3HDE> ->
+
+	types of fantasy ->
+
+      High fantasy [https://en.wikipedia.org/wiki/High_fantasy],
+      Low fantasy [https://en.wikipedia.org/wiki/Low_fantasy],
+      Dark fantasy [https://en.wikipedia.org/wiki/Dark_fantasy],
+      Hard fantasy [https://en.wikipedia.org/wiki/Hard_fantasy],
+      Heroic fantasy [https://en.wikipedia.org/wiki/Sword_and_sorcery],
+      Historical fantasy [https://en.wikipedia.org/wiki/Historical_fantasy];
+
+
+	gap {empty},
+	Dungeons & Dragons - Forgotten Realms <.FX1HQyhd> {shorter|D&D - Forgotten Realms},
+	Harry Potter <.harryPotter>,
+	Diablo <.diablo> [https://en.wikipedia.org/wiki/List_of_Diablo_novels],
+    World of Warcraft <.wow> [https://eu.forums.blizzard.com/en/wow/t/warcraft-books-in-chronological-order/91471/2],
+	Assassin's creed <.assassinCreed>,
+    The Witcher <.witcher>,
+	A song of ice and fire <.songIceFire> [https://en.wikipedia.org/wiki/A_Song_of_Ice_and_Fire],
+	Lord of the rings <.lotr>,
+    Bartimaeus Sequence <.bartemius>;

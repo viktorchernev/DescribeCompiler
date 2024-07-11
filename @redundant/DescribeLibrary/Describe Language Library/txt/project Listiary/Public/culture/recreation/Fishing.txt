@@ -1,0 +1,13 @@
+directives -> namespace <treeofall.public.culture.recreation.fishing>;
+
+
+fishing <rnode> ->
+
+	hucks <ztQLf8w5>,
+	knots <iGL9Nxzb>,
+	baits <fishingBaits>;
+
+knots <iGL9Nxzb> ->
+
+	Uni knot <xaIh3wWS>,
+	Loop knot <0xMRaW9A>;

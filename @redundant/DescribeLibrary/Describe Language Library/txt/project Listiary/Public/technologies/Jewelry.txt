@@ -1,0 +1,66 @@
+directives ->
+	namespace <treeofall.public.technologies.jewelry>;
+
+
+jewelry <rnode> ->
+
+	types of jewelry 
+	[https://en.wikipedia.org/wiki/List_of_jewellery_types]
+	[https://www.jewelrywise.com/jewelry-101] ->
+	
+	    rings,
+	    necklaces,
+	    earrings,
+	    bracelets,
+	    anklets,
+	    pins,
+	    cuff links,
+	    watches;
+	
+	noble metals <nobleMetals>,
+	gems [https://www.gia.edu/gem-encyclopedia] ->
+
+	    alexandrite [https://www.gia.edu/alexandrite],
+	    amber [https://www.gia.edu/amber],
+	    amethyst [https://www.gia.edu/amethyst],
+	    ametrine [https://www.gia.edu/ametrine],
+	    aquamarine [https://www.gia.edu/aquamarine],
+	    citrine [https://www.gia.edu/citrine],
+	    diamond [https://www.gia.edu/diamond],
+	    fancy color diamond [https://www.gia.edu/fancy-color-diamond],
+	    emerald [https://www.gia.edu/emerald],
+	    garnet [https://www.gia.edu/garnet],
+	    iolite [https://www.gia.edu/iolite],
+	    jade [https://www.gia.edu/jade],
+	    kunzite [https://www.gia.edu/kunzite],
+	    lapis lazuli [https://www.gia.edu/lapis-lazuli],
+	    moonstone [https://www.gia.edu/moonstone],
+	    morganite [https://www.gia.edu/morganite],
+	    opal [https://www.gia.edu/opal],
+	    pearl [https://www.gia.edu/pearl],
+	    peridot [https://www.gia.edu/peridot],
+	    rose quartz [https://www.gia.edu/rose-quartz],
+	    ruby [https://www.gia.edu/ruby],
+	    sapphire [https://www.gia.edu/sapphire],
+	    spinel [https://www.gia.edu/spinel],
+	    sunstone [https://www.gia.edu/sunstone],
+	    tanzanite [https://www.gia.edu/tanzanite],
+	    topaz [https://www.gia.edu/topaz],
+	    tourmaline [https://www.gia.edu/tourmaline],
+	    turquoise [https://www.gia.edu/turquoise],
+	    zircon [https://www.gia.edu/zircon];
+	   
+	gap {empty}, 
+	valuable shells ->
+
+		cones,
+		volutes,
+		cowries,
+		murexes,
+		scallops,
+		thorny oysters,
+		
+		periwinkles,
+		oysters,
+		limpets;
+	;

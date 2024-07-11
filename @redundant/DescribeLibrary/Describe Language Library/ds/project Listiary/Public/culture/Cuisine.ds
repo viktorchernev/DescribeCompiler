@@ -1,0 +1,19 @@
+directives -> namespace <treeofall.public.culture.cuisine>;
+
+cuisine <rnode> ->
+
+    taste <taste>,
+    types of diets <typesOfDiets>,
+    types of olive oil <typesOfOliveOils>,
+    types of cooking salt <.cooksalt>,
+
+    gap {empty},
+    eating utencil skills <eatingUtencilSkills>,
+    cooking equipment <urCBCq69>,
+    eating equipment <ZLcixxK4>,	
+
+    gap {empty},
+    food products <.foodProducts.rnode>,
+    types of food <foodTypes>,
+    drinks <drinks>,
+    dishes <XutYzYPm>;

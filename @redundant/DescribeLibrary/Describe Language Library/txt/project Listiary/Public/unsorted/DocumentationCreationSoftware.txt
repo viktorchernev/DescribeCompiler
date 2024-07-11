@@ -1,0 +1,36 @@
+directives -> namespace <treeofall.public.unsorted>;
+
+
+documentation software <documentationCreationSoftware> ->
+
+	paid ->
+
+		Document360,
+		Nuclino,
+		ProProfs,
+		ClickHelp,
+		iA Writer,
+		Tettra,
+		Whatfix,
+		Bit.ai,
+		KnowAll,
+		HelpDocs;
+
+	free ->
+
+		\*Docusaurus,
+		\*GitHub,
+		MarkdownPad,
+		Read the Docs,
+		\*Doxygen,
+		SimpleMDE,
+		Dropbox Paper,
+		Apiary,
+		Typora,
+		\*Sphinx,
+		Confluence;
+
+
+	local links ->
+
+		document360.com blog [https://document360.com/blog/software-documentation-tools/];

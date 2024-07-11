@@ -1,0 +1,30 @@
+directives ->
+
+	namespace <treeofall.public.books>;
+
+
+A song of ice and fire <.songIceFire> [https://en.wikipedia.org/wiki/A_Song_of_Ice_and_Fire] ->
+	
+	Book 1: A game of thrones - George R. R. Martin (1996)
+    [https://en.wikipedia.org/wiki/A_Game_of_Thrones]
+    {shorter| A game of thrones - G. R. R. Martin},
+    
+	Book 2: A clash of kings - George R. R. Martin (1999)
+    [https://en.wikipedia.org/wiki/A_Clash_of_Kings]
+    {shorter| A clash of kings - G. R. R. Martin},
+    
+	Book 3: A storm of swords - George R. R. Martin (2000)
+    [https://en.wikipedia.org/wiki/A_Storm_of_Swords]
+    {shorter| A storm of swords - G. R. R. Martin},
+    
+	Book 4: A feast for crows - George R. R. Martin (2005)
+    [https://en.wikipedia.org/wiki/A_Feast_for_Crows]
+    {shorter| A feast for crows - G. R. R. Martin},
+   
+	Book 5: A dance with dragons - George R. R. Martin (2011)
+    [https://en.wikipedia.org/wiki/A_Dance_with_Dragons]
+    {shorter| A dance with dragons - G. R. R. Martin},
+
+	Fire & Blood - George R. R. Martin 
+    [https://en.wikipedia.org/wiki/Fire_%26_Blood_(novel)]
+    {shorter|Fire & Blood - G. R. R. Martin};

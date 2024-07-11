@@ -1,0 +1,62 @@
+directives -> namespace <treeofall.personal.MyEntertainment>;
+
+
+My TV shows [https://www.imdb.com/chart/toptv/] <MyTVshows> ->
+
+	Historical ->
+		Rome [https://en.wikipedia.org/wiki/Rome_(TV_series)] <pXl6ryQz>,
+		Chernobyl [https://en.wikipedia.org/wiki/Chernobyl_(miniseries)] <T97OoCWa>,
+		Vikings [https://en.wikipedia.org/wiki/Vikings_(TV_series)] <NabbrqKR>,
+		For All Mankind [https://en.wikipedia.org/wiki/For_All_Mankind_(TV_series)] <uE0dRUFD>;
+
+
+	Fantasy ->
+		Game of Thrones [https://en.wikipedia.org/wiki/Game_of_Thrones] <TXN7L9ls>,
+		House of the Dragon [https://en.wikipedia.org/wiki/House_of_the_Dragon] <OBlHh6qd>;
+
+
+	Sci\-fi ->
+		The Expanse [https://en.wikipedia.org/wiki/The_Expanse_(TV_series)] <8xDD2AQ8>,
+		The Orvile [https://en.wikipedia.org/wiki/The_Orville] <lvF0RSYI>,
+		Firefly [https://en.wikipedia.org/wiki/Firefly_(TV_series)] <OjopjCw0>;
+
+
+	Commedy ->
+		The Office [https://en.wikipedia.org/wiki/The_Office] <LpYvaxiT>,
+		Seinfeld [https://en.wikipedia.org/wiki/Seinfeld] <OHnQMf0i>,
+		Friends [https://en.wikipedia.org/wiki/Friends] <A2FlZzMH>,
+		House [https://en.wikipedia.org/wiki/House_(TV_series)] <rqrjbSBc>,
+		The IT Crowd [https://en.wikipedia.org/wiki/The_IT_Crowd] <npJFjM47>;
+
+
+	Crime ->
+		Narcos [https://en.wikipedia.org/wiki/Narcos] <BAp9hqPT>,
+		Breaking Bad [https://en.wikipedia.org/wiki/Breaking_Bad] <8hsfc2Gs>,
+		Better Call Saul [https://en.wikipedia.org/wiki/Better_Call_Saul] <B4IEqtyx>,
+		The Sopranos [https://en.wikipedia.org/wiki/The_Sopranos] <9xX0gwjy>,
+		Dexter [https://en.wikipedia.org/wiki/Dexter_(TV_series)] <6w36pXIR>,
+		Shameless [https://en.wikipedia.org/wiki/Shameless_(American_TV_series)] <h9giYPTS>,
+		Sons of Anarchy [https://en.wikipedia.org/wiki/Sons_of_Anarchy] <GDCRodHD>,
+		Trailer Park Boys [https://en.wikipedia.org/wiki/Trailer_Park_Boys] <mYWPpYrK>,
+		Prison Break [https://en.wikipedia.org/wiki/Prison_Break] <L6Xc7sk9>;
+
+
+	Animated ->
+		Final Space [https://en.wikipedia.org/wiki/Final_Space] <H1BoBbNi>,
+		Rick and Morty [https://en.wikipedia.org/wiki/Rick_and_Morty] <6QO0xqRP>,
+		South Park [https://en.wikipedia.org/wiki/South_Park] <PjRsgnp0>,
+		The Simpsons [https://en.wikipedia.org/wiki/The_Simpsons] <MA7DP3Ky>,
+		Futurama [https://en.wikipedia.org/wiki/Futurama] <NR9IL3sl>,
+		American Dad [https://en.wikipedia.org/wiki/American_Dad!] <twqQG5xF>,
+		Family Guy [https://en.wikipedia.org/wiki/Family_Guy] <MxVmV3Il>,
+		Disenchantment [https://en.wikipedia.org/wiki/Disenchantment_(TV_series)] <MhBIbLaU>,
+		SpongeBob SquarePants [https://en.wikipedia.org/wiki/SpongeBob_SquarePants] <TigFEN1S>,
+		Regular Show [https://en.wikipedia.org/wiki/Regular_Show] <XFg4PHAb>,
+        
+        //lesser known
+        Robotomy [https://en.wikipedia.org/wiki/Robotomy];
+
+	Retro ->
+		Renegade [https://en.wikipedia.org/wiki/Renegade_(TV_series)] <a9TNZ6DA>,
+		The X\-Files [https://en.wikipedia.org/wiki/The_X-Files] <AGzvat9l>,
+		Highlander [https://en.wikipedia.org/wiki/Highlander:_The_Series] <PTAg5oNb>;

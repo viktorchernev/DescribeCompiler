@@ -1,0 +1,12 @@
+directives -> 
+	namespace <treeofall.drafts>;
+
+
+DRAFTS <rnode> ->
+
+	alcoholism medications <U4jCNNrI>,
+	types of optical disks <01PcEhwl>,
+	food journal <foodJournal>;
+	
+	//dog types <dogTypes.dr>,
+	//dog breeds <dogBreeds.dr>;

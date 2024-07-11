@@ -1,0 +1,7 @@
+directives ->
+	namespace <treeofall.public.technologies.cleaning>;
+
+
+cleaning <rnode> ->
+
+	laundry <laundry>;

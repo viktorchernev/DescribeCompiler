@@ -1,0 +1,162 @@
+directives ->
+	namespace <treeofall.public.culture.recreation>;
+
+
+cinema <FLMLZUEM> ->
+
+	comedies {nlcomment},
+	Taxi <jxSBYaeM>,
+	
+	adventure {nlcomment},
+	Transformers [https://en.wikipedia.org/wiki/Transformers_(film_series)],
+	Indiana Jones <69rQLmps>,
+
+	super hero {nlcomment},
+	Avengers,
+	Ant Man,
+	Batman,
+	Black Panther,
+	Captain America,
+	Daredevil,
+	Deadpool,
+	Doctor Strange,
+	Fantastic Four,
+	Guardians of the Galaxy,
+	Hulk,
+	Iron Man,
+	Super-Man,
+	Thor,
+	Venom,
+	Wolverine,
+	X-Men,
+
+	action {nlcomment},
+	Fast and Furious <SstC3hHC>,
+	Killer Elite (2011) [https://en.wikipedia.org/wiki/Killer_Elite_(film)],
+
+	fantasy {nlcomment},
+	Harry Potter,
+	Fantastic Beasts,
+	Lord of the Rings,
+	Hobbit,
+	Dungeons & Dragons <IGGCxiAY>,
+	Warcraft [https://en.wikipedia.org/wiki/Warcraft_(film)],
+	Pirates of the Caribbean <xv3HlPd3>,
+	Stardust,
+	Eragon (2006),
+	Maleficent,
+
+	sci-fi {nlcomment},
+	Star Wars,
+	Avatar,
+	The Matrix <NjbH0kn7>,
+	Planet of the Apes,
+	Terminator,
+
+	dystopian {nlcomment},
+	Snowpiercer,
+	Mortal Engines (2018),
+	The hunger games,
+	V for Vendetta,
+	Gattaca,
+	Blade Runner,
+
+
+	horror {nlcomment},
+	The Purge [https://en.wikipedia.org/wiki/The_Purge],
+	The Platform (2019),
+	The Maze Runner,
+	Alien,
+	Saw;
+
+	//Minority Report
+    	//Soylent Green
+    	//Children of Men
+    	//A.I. Artificial Intelligence
+    	//Willow, // series
+
+
+
+	Dungeons & Dragons <IGGCxiAY> [https://en.wikipedia.org/wiki/Dungeons_%26_Dragons_(film_series)] ->
+
+		Dungeons & Dragons (2000),
+		Dungeons & Dragons: Wrath of the Dragon God (2005),
+		Dungeons & Dragons 3: The Book of Vile Darkness (2012),
+		Dungeons & Dragons: Honor Among Thieves (2023);
+	
+	Pirates of the Caribbean <xv3HlPd3>
+	[https://en.wikipedia.org/wiki/Pirates_of_the_Caribbean_(film_series)] ->
+
+		The Curse of the Black Pearl (2003) 
+		[https://en.wikipedia.org/wiki/Pirates_of_the_Caribbean:_The_Curse_of_the_Black_Pearl],
+	
+		Dead Man's Chest (2006)
+		[https://en.wikipedia.org/wiki/Pirates_of_the_Caribbean:_Dead_Man%27s_Chest],
+	
+		At World's End (2007)
+		[https://en.wikipedia.org/wiki/Pirates_of_the_Caribbean:_At_World%27s_End],
+	
+		On Stranger Tides (2011)
+		[https://en.wikipedia.org/wiki/Pirates_of_the_Caribbean:_On_Stranger_Tides],
+	
+		Dead Men Tell No Tales (2017)
+		[https://en.wikipedia.org/wiki/Pirates_of_the_Caribbean:_Dead_Men_Tell_No_Tales];
+
+
+	Fast and Furious <SstC3hHC> [https://en.wikipedia.org/wiki/Fast_%26_Furious] ->
+	
+	    The Fast and the Furious (2001) [https://en.wikipedia.org/wiki/The_Fast_and_the_Furious_%282001_film%29],
+	    2 Fast 2 Furious (2003) [https://en.wikipedia.org/wiki/2_Fast_2_Furious],
+	    The Fast and the Furious: Tokyo Drift (2006) [https://en.wikipedia.org/wiki/The_Fast_and_the_Furious%3A_Tokyo_Drift],
+	    Fast & Furious (2009) [https://en.wikipedia.org/wiki/Fast_%26_Furious_%282009_film%29],
+	    Fast Five (2011) [https://en.wikipedia.org/wiki/Fast_Five],
+	    Fast & Furious 6 (2013) [https://en.wikipedia.org/wiki/Fast_%26_Furious_6],
+	    Furious 7 (2015) [https://en.wikipedia.org/wiki/Furious_7],
+	    The Fate of the Furious (2017) [https://en.wikipedia.org/wiki/The_Fate_of_the_Furious],
+	    Fast & Furious Presents: Hobbs & Shaw (2019) [https://en.wikipedia.org/wiki/Hobbs_%26_Shaw],
+	    F9 (2021) [https://en.wikipedia.org/wiki/F9_%28film%29],
+	    Fast X (2023) [https://en.wikipedia.org/wiki/Fast_X],
+	
+	    shorts {nlcomment},
+	    The Turbo Charged Prelude for 2 Fast 2 Furious (2003) [https://en.wikipedia.org/wiki/The_Turbo_Charged_Prelude_for_2_Fast_2_Furious],
+	    Los Bandoleros (2009) [https://en.wikipedia.org/wiki/Los_Bandoleros_%28film%29],
+	    
+	    series {nlcomment},
+	    Fast & Furious Spy Racers (2019–2021) [https://en.wikipedia.org/wiki/Fast_%26_Furious_Spy_Racers];
+	
+	The Matrix <NjbH0kn7> [https://en.wikipedia.org/wiki/The_Matrix_%28franchise%29] ->
+
+	    The Matrix (1999) [https://en.wikipedia.org/wiki/The_Matrix],
+	    The Matrix Reloaded (2003) [https://en.wikipedia.org/wiki/The_Matrix_Reloaded],
+	    The Matrix Revolutions (2003) [https://en.wikipedia.org/wiki/The_Matrix_Revolutions],
+	    The Matrix Resurrections (2021) [https://en.wikipedia.org/wiki/The_Matrix_Resurrections];
+	
+	Indiana Jones <69rQLmps> [https://en.wikipedia.org/wiki/Indiana_Jones] ->
+
+	    Raiders of the Lost Ark (1981) 
+	    [https://en.wikipedia.org/wiki/Raiders_of_the_Lost_Ark],
+	    
+	    Indiana Jones and the Temple of Doom (1984) 
+	    [https://en.wikipedia.org/wiki/Indiana_Jones_and_the_Temple_of_Doom],
+	    
+	    Indiana Jones and the Last Crusade (1989)
+	    [https://en.wikipedia.org/wiki/Indiana_Jones_and_the_Last_Crusade],
+	    
+	    gap {empty},
+	    Indiana Jones and the Kingdom of the Crystal Skull (2008)
+	    [https://en.wikipedia.org/wiki/Indiana_Jones_and_the_Kingdom_of_the_Crystal_Skull],
+	    
+	    Indiana Jones and the Dial of Destiny (2023)
+	    [https://en.wikipedia.org/wiki/Indiana_Jones_and_the_Dial_of_Destiny];
+   
+	
+	Taxi <jxSBYaeM> [https://en.wikipedia.org/wiki/Taxi_(film_series)] ->
+
+		Taxi (1998) [https://en.wikipedia.org/wiki/Taxi_(1998_film)],
+		Taxi 2 (2000) [https://en.wikipedia.org/wiki/Taxi_2],
+		Taxi 3 (2003) [https://en.wikipedia.org/wiki/Taxi_3],
+		Taxi 4 (2007) [https://en.wikipedia.org/wiki/Taxi_4],
+		Taxi 5 (2018) [https://en.wikipedia.org/wiki/Taxi_5],
+		
+		remakes {nlcomment},
+		Taxi (2004) [https://en.wikipedia.org/wiki/Taxi_(2004_film)];

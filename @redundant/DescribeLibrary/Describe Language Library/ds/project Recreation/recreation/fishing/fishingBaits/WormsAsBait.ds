@@ -1,0 +1,11 @@
+directives -> 
+	language-version <1.1>,
+	namespace <recreation.fishing>;
+
+
+// (M) Tailored Tackle - Types of Fish Bait for Beginner Fishing https://tailoredtackle.com/types-of-fish-bait-beginner-fishing/
+worms as bait <wormsAsBait> ->
+
+	Earthworms [https://en.wikipedia.org/wiki/Earthworm] <7d5QPRjR>,
+	Redworms [https://en.wikipedia.org/wiki/Eisenia_fetida] <45rItTWx>,
+	Leeches [https://en.wikipedia.org/wiki/Leech] <tEEVq57a>;

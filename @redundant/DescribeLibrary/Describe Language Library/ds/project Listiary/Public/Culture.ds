@@ -1,0 +1,15 @@
+directives ->
+	namespace <treeofall.public.culture>;
+
+
+culture [https://en.wikipedia.org/wiki/Culture] <rnode>->
+
+	arts <guxvT8Mb>,
+	music <.music.rnode>,
+	recreation <.recreation.rnode>,
+	
+	gap {empty},
+	cuisine <.cuisine.rnode>,
+    drinking <.drinking.rnode>,
+	places <zXXu7P9Y>,
+	pop culture <popCulture>;

@@ -1,0 +1,46 @@
+directives -> namespace <treeofall.public.science.informatics.software.games>;
+
+
+// https://lifehacker.com/10-of-the-best-text-based-adventure-games-you-never-kne-1848770935/slides/2
+text games <textgames> ->
+
+	The Dreamhold [https://en.wikipedia.org/wiki/The_Dreamhold] <94d7FP7B>,
+	Colossal Cave Adventure [https://en.wikipedia.org/wiki/Colossal_Cave_Adventure] <UMAkbvw0>,
+	Scott Adams' Pirate Adventure [https://en.wikipedia.org/wiki/Pirate_Adventure] <8EuuORrQ>,
+	Hitchhiker's Guide to the Galaxy [https://en.wikipedia.org/wiki/The_Hitchhiker%27s_Guide_to_the_Galaxy_(video_game)] <etIMy2KT>,
+	Rogue [https://en.wikipedia.org/wiki/Rogue_(video_game)] <2vNuTGRA>,
+	Zork I: The Great Underground Empire [https://en.wikipedia.org/wiki/Zork] <BAWFc59D>,
+	Zork II: The Wizard of Frobozz [https://en.wikipedia.org/wiki/Zork] <KCvlnpfh>,
+	Zork III: The Dungeon Master [https://en.wikipedia.org/wiki/Zork] <KK0UQosI>;
+
+
+arcade games <arcade> ->
+	X \- Men <U0LyMahF>,
+	NBA Jam <Otfedw8y>,
+	Mortal Kombat 2 <3a1cE76G>,
+	Deytona USA <OkCnB0DN>,
+	The Simpsons Arcade game <DFZc5dyt>,
+	TMNT Turtles in Time <eqrMyCdN>,
+	Metal Slug X <oyczRq8A>,
+	Cadillacs and Dinosaurs  <ULToN2G6>;
+
+retro PC games (2000s) <retropc> ->
+
+	Counter\-Strike <WUb8JESP>, 
+	Diablo II <QAVUgL9Z>,
+	Heroes of Might and Magic III <8yy54JTj>,
+	Need for Speed: Porsche Unleashed <z4OeIFrS>,
+
+	Re \- Volt <mXQKQWHd>,
+	SimCity 4 <eAB0m6q4>,
+	Moorhuhn <ozsnyAoB>,
+	Sven <AVsVr8Yb>,
+	Elasto Mania <22qrcVly>,
+	Stephen King's F13 <QMexWWlo>;
+
+PC games <mwYCiF6e> ->
+
+	Banished [https://en.wikipedia.org/wiki/Banished_(video_game)] <pc>,
+	Farthest Frontier <6ABec6Zo>,
+	Horizon Zero Dawn <HDu7xnqR>,
+	Call of Duty <CodGames>;

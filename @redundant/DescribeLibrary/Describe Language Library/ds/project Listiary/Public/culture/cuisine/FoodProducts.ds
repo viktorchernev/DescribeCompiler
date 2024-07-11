@@ -1,0 +1,34 @@
+directives -> namespace <treeofall.public.culture.cuisine.foodProducts>;
+
+
+food products <rnode> ->
+
+        minerals <minerals>,
+	
+        gap {empty},
+	plant based {comment},
+	vegetables <.plantBased.vegetables>,
+	fruits <.plantBased.fruits>,
+	nuts <.plantBased.nuts>,
+	seeds <.plantBased.seeds>,
+	herbs and spices <.plantBased.spices>,
+	
+        gap {empty},
+	animal based {comment},
+	shellfish <7DgeKiPg>,
+	crustaceans <LKzpvzyJ>,
+	insects <Qm2hLfcd>,
+	
+        gap {empty},
+	fish <lkJghvQW>,
+	birds <bBiaYQr4>,
+	mammals <Q4BLNMIT>,
+
+        gap {empty},
+        milk,
+        eggs,
+
+        gap {empty},
+	other {comment},
+	microorganisms <CPkkk1KZ>,
+	mushrooms <jcjSF7uX>;

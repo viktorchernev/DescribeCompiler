@@ -1,0 +1,10 @@
+directives ->
+	namespace <treeofall.public.industries>;
+	
+	
+industries [https://en.wikipedia.org/wiki/Industry_classification] <rnode> ->
+
+	Primary industry <U4fdLLHQ>,
+	Secondary industry <c37QXYgQ>,
+	Tertiary industry <zkfx9OOU>,
+	Quaternary industry <tHfv9jUD>;

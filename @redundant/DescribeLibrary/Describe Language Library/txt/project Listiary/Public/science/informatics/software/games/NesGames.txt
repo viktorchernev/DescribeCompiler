@@ -1,0 +1,146 @@
+directives -> namespace <treeofall.public.science.informatics.software.games>;
+
+
+//https://www.nintendolife.com/games/browse?system=nes
+
+NES games <nes> ->
+
+	popular games <K67yCQqR>,
+	all licensed games <M8RaXxVB>,			//should be 716
+	homebrew games <Wp4UGsvU>;
+
+
+
+popular games <K67yCQqR> ->
+
+	Super Mario Bros. <tIJcj08U>,
+	Super Mario Bros. 2 <iSmtW7HL>,
+	Super Mario Bros. 3 <v5lLtAzr>,
+	Dr. Mario <4qNzAcmg>,
+
+	Teenage Mutant Ninja Turtles <TbimFGvO>,
+	Teenage Mutant Ninja Turtles II: The Arcade Game <47u1jTUF>,
+	Teenage Mutant Ninja Turtles II: The Manhattan Project <cZYTJ9b8>,
+	
+	Adventure Island <tr8TgBG3>,
+	Adventure Island II <aSeVyEze>,
+	Adventure Island III <fwKQGILe>,
+	
+	Donkey Kong <7hQ7iyBw>,
+	Donkey Kong Classics <ZqKlrASN>,
+	Donkey Kong: Original Edition <T1fAg2zK>,
+	Donkey Kong Jr. <8z03xTWp>,
+	
+	Pac\-Man <UOaupYib>,
+	
+	The Flintstones: The Surprise At Dinosaur Peak <6cTJdZul>,
+	The Flintstones: The Rescue of Dino & Hoppy <RdkWJS0Z>,
+	
+	Chip 'n Dale Rescue Rangers <GpAsay2x>,
+	Contra <491cLp7n>,
+	
+	Duck Hunt <x1c4uP5T>,
+	Tetris <tHS1qBij>,
+	Tennis <Rw6y6nq1>,
+	Soccer <1nk3EunU>,
+	Tank <oc31vVt7>,
+	Slalom <Oij0lOQJ>,
+	
+	Battletoads <tdIxHOQo>,
+	Battletoads & Double Dragon <emRDx9rb>,
+	Tetris 2 <pJMz4tJb>,
+	Pipe Dream <gdc3bNzq>;
+
+
+
+all licensed games <M8RaXxVB> ->
+
+	Mega Man 2 <m4TqzTwl>,
+	Mega Man 3 <gUryrGyF>,
+	Bubble Bobble <OfOk00Zl>,
+	Kirbys Adventure <EIBFcWXp>,
+	Punch Out <SocqdQrP>,
+	Castlevania <MVPpciB0>,
+	Castlevania III Draculas Curse <qItOhNyv>,
+	Batman the Video Game <ermqRqIJ>,
+	Lifeforce <7CgDoIl7>,
+	Ducktales <x8YfkuJf>,
+	Legend of Zelda <HLZTmIHE>,
+	Ninja Gaiden 2 <zrLvoB7f>,
+	Gargoyles Quest 2 <MGrZB8Mi>,
+	Mighty Final Fight <hwaizSKu>,
+	
+	//https://www.youtube.com/watch?v=FWAoaoHDeM0 - Top 100 NES Games [Part 1] || ?1980s NOSTALGIA that WILL make YOU CRY?
+	Tiny Toon Adventures <ddJgbMGe>,
+	Tiny Toon Adventures 2 \- Trouble in WackyLand <NW7P24WV>,
+	Popeye <AJMCMyam>,
+	Snow Brothers <fO1qmqVA>,
+	GALG <BtoR4Rja>,
+	Contra <px1NL43p>,
+	Super Contra <DhBMVa2h>,
+	Flipul <A7NIPFas>,
+	Kung Fu <jwAlLqN4>,
+	Twin Bee <B0AzzIyG>,
+	Pooyans <z9OXQWEm>,
+	The Punisher <sFtbWEvk>,
+	Front Line <WIoY4SeX>,
+	Captain America and the Avengers <TGLeZDs2>,
+	Donkey Kong <IGSQ0CcM>,
+	Donkey Kong Jr <rX2G6vi7>,
+	Donkey Kong 3 <FacqdaLh>,
+	Baloon Fight <e1EJLkNp>,
+	Tag Team Wrestling <X1TPvftU>,
+	Batman \- Return of the Joker <pbrhZYai>,
+	Jackal <iOY8lBYs>,
+	The Little Mermaid <4vv98TBG>,
+	1943 \- The Battle of Midway <JNsFcSLk>,
+	Ice Climber <rHBBsoIG>,
+	F1 Race <clU9utWW>,
+	City Connections <agl7LPEW>,
+	Spelunker <akXLpVFP>,
+	Gun.Smoke <CyQd9X9Q>,
+	Macross <nojcsE44>,
+	Lunar Pool <volIR6bF>,
+	MAPPY <aV4X9kWF>,
+	Bomber Man 2 <pdBTsPS0>,
+	Antarctic Adventure <8RrUv18q>,
+	Road Fighter <NeBWJh5i>,
+	Track n Field <9hO3zuz1>,
+	Silk Worm <APcy4HWL>,
+	Pinball <DEYr2BTv>,
+	Elevator Action <Fq2p2RMI>,
+	Gyruss <icTLAYBO>,
+	Monster in My Pocket <c0UgYKvF>,
+	Nuts n Milk <H0TFJNq7>,
+	Arabian <NdyI1J8t>,
+	The Jungle Book <CUQbyLKo>,
+	Dig Dug <CKPBrxW4>,
+	Prince of Persia <4xhB7H9U>,
+	Space Harier <wV8gk2WS>,
+	Lode Runner <1leE4TR6>,
+	Mega man 6 <ppD87oPa>,
+	Karateka <H3OEm7v5>,
+	Star Force <V5pcNoEJ>,
+	Excite Bike <x7KGSSAk>,
+	Life Force <glVSEAWI>,
+	Dragon Fighter <GhZroSp4>,
+	Soccer <zjs9oytB>,
+	Metroid <k3LAeJHy>,
+	Tennis <3niBlc1V>,
+	Rush n Attack <igWpPWff>,
+	Ninja Kun <RPQtjA5r>,
+	The Goonies 2 <1TrKyWo6>,
+	M.U.S.C.L.E. \- Tag Team Match <rXaIcDwN>,
+	Blaster Master <XqtO2XO2>,
+	Ninja Hattori Kun <s1JSuqgM>,
+	Bubble Bobble Part 2 <1ZOojfvm>,
+	G.I. Joe \- A Real American Hero <63BMjxOy>,
+	TMNT \- Tournament Fighters <hdxImaEC>,
+	Ninja Gaiden III <V5R2fAmB>,
+	The legend of Zelda <1OQDzHo2>;
+
+
+
+homebrew games <Wp4UGsvU> ->
+
+	Chumlee's Adventure: The Quest for Pinky <Jq2ULJn4>;

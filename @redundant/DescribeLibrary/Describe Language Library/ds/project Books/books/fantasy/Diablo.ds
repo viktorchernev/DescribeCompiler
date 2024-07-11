@@ -1,0 +1,46 @@
+directives ->
+
+	namespace <treeofall.public.books>;
+
+
+Diablo <.diablo> ->
+
+	Diablo - Demonsbane - Robert B. Marks
+    [https://diablo-archive.fandom.com/wiki/Demonsbane]
+	{shorter|Demonsbane - R. B. Marks},
+	
+	Diablo - Legacy Of Blood - Richard A. Knaak
+    [https://diablo-archive.fandom.com/wiki/Legacy_of_Blood]
+    {shorter|Legacy Of Blood - R. A. Knaak},
+	
+	Diablo - The Black Road - Mel Odom
+    [https://diablo-archive.fandom.com/wiki/The_Black_Road]
+	{shorter|The Black Road - M. Odom},
+	
+	Diablo - The Kingdom Of Shadow - Richard A. Knaak
+    [https://diablo-archive.fandom.com/wiki/The_Kingdom_of_Shadow]
+	{shorter|The Kingdom Of Shadow},
+	
+	Diablo - Moon of the Spider - Richard A. Knaak
+    [https://diablo-archive.fandom.com/wiki/Moon_of_the_Spider_(novel)]
+	{shorter|Moon of the Spider - R. A. Knaak}, 
+	
+	The sin war trilogy 01 - Birthright - Richard A. Knaak
+    [https://diablo-archive.fandom.com/wiki/Birthright]
+    {shorter|The Sin war - Birthright},
+	
+	The sin war trilogy 02 - Scales of the serpent - Richard A. Knaak
+    [https://diablo-archive.fandom.com/wiki/Scales_of_the_Serpent]
+    {shorter|The Sin war - Scales of the serpent},
+	
+	The sin war trilogy 03 - The veiled prophet - Richard A. Knaak
+    [https://diablo-archive.fandom.com/wiki/The_Veiled_Prophet]
+    {shorter|The Sin war - The veiled prophet},
+	
+	Diablo 3 Book of Cain - Flint Dille
+    [https://diablo.fandom.com/wiki/Book_of_Cain_(Diablo_III)]
+    {shorter|Diablo 3 - Book of Cain},
+	
+	Diablo 3 Story Book - Wayfarer - Cameron Dayton
+    [https://diablo.fandom.com/wiki/Wayfarer]
+    {shorter|Diablo 3 - Wayfarer};

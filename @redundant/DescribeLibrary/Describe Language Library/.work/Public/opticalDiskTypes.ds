@@ -1,0 +1,19 @@
+directives -> 
+	namespace <treeofall.drafts>;
+
+
+types of optical disks <01PcEhwl> ->
+
+	CD (2\-5 years) [https://en.wikipedia.org/wiki/Compact_disc] <6OVb0oPb>,
+	CD\-R (WORM) (2\-5 years) [https://en.wikipedia.org/wiki/CD-R] <wX4Dh8S2>,
+	CD\-RW (2\-5 years) [https://en.wikipedia.org/wiki/CD-RW] <BXv4acuR>,
+	
+	DVD (2\-5 years) [https://en.wikipedia.org/wiki/DVD] <HUY5JHvC>,
+	DVD\-R (2\-5 years) [https://en.wikipedia.org/wiki/DVD_recordable] <uzaFewts>,
+	DVD+R (2\-5 years) [https://en.wikipedia.org/wiki/DVD_recordable#DVD+R_and_DVD+RW_(DVD_%22plus%22)] <kvircWfX>,
+	DVD\-RW (2\-5 years) [https://en.wikipedia.org/wiki/DVD_recordable] <7ZlIcjBy>,
+	DVD+RW (2\-5 years) [https://en.wikipedia.org/wiki/DVD_recordable#DVD+R_and_DVD+RW_(DVD_%22plus%22)] <744k2kQA>,
+	DVD\-RAM (2\-5 years) [https://en.wikipedia.org/wiki/DVD-RAM] <nnJvNseB>,
+	
+	Blu\-Ray (2\-5 years) [https://en.wikipedia.org/wiki/Blu-ray] <92nkENR5>,
+	HD DVD (2\-5 years) [https://en.wikipedia.org/wiki/HD_DVD] <zrLpaTqu>;

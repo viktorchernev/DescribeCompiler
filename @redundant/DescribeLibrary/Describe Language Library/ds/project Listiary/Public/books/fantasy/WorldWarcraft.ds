@@ -1,0 +1,106 @@
+directives ->
+
+	namespace <treeofall.public.books>;
+
+
+World of Warcraft <.wow> [https://eu.forums.blizzard.com/en/wow/t/warcraft-books-in-chronological-order/91471/2] ->
+	
+    Book 1: Of Blood and Honor - Chris Metzen
+    [https://wowwiki-archive.fandom.com/wiki/Of_Blood_and_Honor]
+	{shorter|Of Blood and Honor - C. Metzen},
+    
+    Book 2: Day of the dragon - Richard A. Knaak
+    [https://wowwiki-archive.fandom.com/wiki/Day_of_the_Dragon]
+	{shorter|Day of the dragon - R. A. Knaak},
+    
+    Book 3: Lord of the Clans - Christie Golden
+    [https://wowpedia.fandom.com/wiki/Lord_of_the_Clans]
+	{shorter|Lord of the Clans - C. Golden},
+    
+    Book 4: The last guardian - Jeff Grubb
+    [https://wowpedia.fandom.com/wiki/The_Last_Guardian]
+	{shorter|The last guardian - J. Grubb},
+    
+    Book 5: War of the Ancients Trilogy - The Well of Eternity - Richard A. Knaak
+    [https://wowpedia.fandom.com/wiki/The_Well_of_Eternity]
+    {shorter|The Well of Eternity - R. A. Knaak},
+    
+    Book 6: War of the Ancients Trilogy - The Demon Soul - Richard A. Knaak
+    [https://wowpedia.fandom.com/wiki/The_Demon_Soul]
+    {shorter|The Demon Soul - R. A. Knaak},
+    
+    Book 7: War of the Ancients Trilogy - The Sundering - Richard A. Knaak
+    [https://wowpedia.fandom.com/wiki/The_Sundering]
+    {shorter|The Sundering - R. A. Knaak},
+
+    Book 8: Cycle of Hatred - Keith R.A. DeCandido
+    [https://wowpedia.fandom.com/wiki/Cycle_of_Hatred]
+	{shorter|Cycle of Hatred - DeCandido},
+    
+    Book 9: Rise of the Horde - Christie Golden
+    [https://wowpedia.fandom.com/wiki/Rise_of_the_Horde]
+	{shorter|Rise of the Horde - C. Golden},
+    
+    Book 10: Tides of Darkness - Aaron Rosenberg
+    [https://wowpedia.fandom.com/wiki/Tides_of_Darkness]
+	{shorter|Tides of Darkness - A. Rosenberg},
+    
+    Book 11: Beyond the Dark Portal - Aaron Rosenberg and Christie Golden 
+    [https://wowpedia.fandom.com/wiki/Beyond_the_Dark_Portal]
+	{shorter|Beyond the Dark Portal},
+    
+    Book 12: Night of the Dragon - Richard A. Knaak
+    [https://wowpedia.fandom.com/wiki/Night_of_the_Dragon]
+	{shorter|Night of the Dragon - R. A. Knaak},
+    
+    Book 13: Arthas: Rise of the Lich King - Christie Golden
+    [https://wowpedia.fandom.com/wiki/Arthas:_Rise_of_the_Lich_King]
+	{shorter|Rise of the Lich King - C. Goldman},
+    
+    Book 14: Stormrage - Richard A. Knaak
+    [https://wowpedia.fandom.com/wiki/Stormrage]
+	{shorter|Stormrage - Richard A. Knaak},
+    
+    Book 15: The Shattering: Prelude to Cataclysm - Christie Golden
+    [https://wowpedia.fandom.com/wiki/The_Shattering:_Prelude_to_Cataclysm]
+	{shorter|Prelude to Cataclysm - C. Golden},
+    
+    Book 16: Thrall: Twilight of the Aspects - Christie Golden
+    [https://wowpedia.fandom.com/wiki/Thrall:_Twilight_of_the_Aspects]
+	{shorter|Twilight of the Aspects - C. Golden},
+    
+    Book 17: Wolfheart - Richard A. Knaak
+    [https://wowpedia.fandom.com/wiki/Wolfheart]
+	{shorter|Wolfheart - Richard A. Knaak},
+    
+    Book 18: Jaina Proudmoore: Tides of War - Christie Golden
+    [https://wowpedia.fandom.com/wiki/Jaina_Proudmoore:_Tides_of_War]
+	{shorter|Tides of War - C. Golden},
+    
+    Book 19: Dawn of the Aspects - Richard A. Knaak
+    [https://wowpedia.fandom.com/wiki/Dawn_of_the_Aspects]
+	{shorter|Dawn of the Aspects - R. A. Knaak},
+    
+    Book 20: Vol’jin: Shadows of the Horde - Michael Stackpole
+    [https://wowpedia.fandom.com/wiki/Vol%27jin:_Shadows_of_the_Horde]
+	{shorter|Shadows of the Horde - M. Stackpole},
+    
+    Book 21: War Crimes - Christie Golden
+    [https://wowpedia.fandom.com/wiki/War_Crimes]
+	{shorter|War Crimes - C. Golden},
+    
+    Book 22: Illidan - William King
+    [https://wowpedia.fandom.com/wiki/World_of_Warcraft:_Illidan]
+	{shorter|Illidan - William King},
+    
+    Book 23: Traveler - Greg Weisman
+    [https://wowpedia.fandom.com/wiki/Traveler]
+	{shorter|Traveler - Greg Weisman},
+	
+    Book 24: Traveler: The Spiral Path - Greg Weisman
+	[https://wowpedia.fandom.com/wiki/Traveler:_The_Spiral_Path]
+	{shorter|The Spiral Path - Greg Weisman},
+	
+    Book 25: Before the Storm - Madeleine Roux
+	[https://wowpedia.fandom.com/wiki/Before_the_Storm]
+	{shorter|Before the Storm - M. Roux};

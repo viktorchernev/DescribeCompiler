@@ -1,0 +1,267 @@
+directives ->
+	language-version <1.1>,
+	namespace <cinema.movies>;
+
+
+animation <.animation> ->
+
+	~ chat GPT <source>,
+	~ wikipedia.org [https://en.wikipedia.org/] <source>,
+	~ common knowledge <source>,
+
+
+	Toy Story [https://en.wikipedia.org/wiki/Toy_Story_(franchise)] ->
+		Toy Story (1995) [https://en.wikipedia.org/wiki/Toy_Story],
+		Toy Story 2 (1999) [https://en.wikipedia.org/wiki/Toy_Story_2],
+		Toy Story 3 (2010) [https://en.wikipedia.org/wiki/Toy_Story_3],
+		Toy Story 4 (2019) [https://en.wikipedia.org/wiki/Toy_Story_4],
+		Lightyear (2022) [https://en.wikipedia.org/wiki/Lightyear_(film)];
+
+
+    Monsters, Inc. [https://en.wikipedia.org/wiki/Monsters,_Inc._(franchise)] ->
+		Monsters, Inc. (2001) [https://en.wikipedia.org/wiki/Monsters,_Inc.],
+		Monsters University (2013) [https://en.wikipedia.org/wiki/Monsters_University];
+
+
+	Shrek [https://en.wikipedia.org/wiki/Shrek_(franchise)] ->
+		Shrek (2001) [https://en.wikipedia.org/wiki/Shrek],
+		Shrek 2 (2004) [https://en.wikipedia.org/wiki/Shrek_2],
+		Shrek the Third (2007) [https://en.wikipedia.org/wiki/Shrek_the_Third],
+		Shrek Forever After (2010) [https://en.wikipedia.org/wiki/Shrek_Forever_After],
+		Shrek the Halls (2007) [https://en.wikipedia.org/wiki/Shrek_the_Halls],
+		Scared Shrekless (2010) [https://en.wikipedia.org/wiki/Scared_Shrekless],
+		Puss in Boots (2011) [https://en.wikipedia.org/wiki/Puss_in_Boots_(2011_film)],
+		Puss in Boots: The Last Wish (2022) [https://en.wikipedia.org/wiki/Puss_in_Boots:_The_Last_Wish];
+
+
+	Ice Age [https://en.wikipedia.org/wiki/Ice_Age_(franchise)] ->
+		Ice Age (2002) [https://en.wikipedia.org/wiki/Ice_Age_(2002_film)],
+		Ice Age: The Meltdown (2006) [https://en.wikipedia.org/wiki/Ice_Age:_The_Meltdown],
+		Ice Age: Dawn of the Dinosaurs (2009) [https://en.wikipedia.org/wiki/Ice_Age:_Dawn_of_the_Dinosaurs],
+		Ice Age: Continental Drift (2012) [https://en.wikipedia.org/wiki/Ice_Age:_Continental_Drift],
+		Ice Age: Collision Course (2016) [https://en.wikipedia.org/wiki/Ice_Age:_Collision_Course],
+		The Ice Age Adventures of Buck Wild (2022) [https://en.wikipedia.org/wiki/The_Ice_Age_Adventures_of_Buck_Wild];
+
+
+	Finding Nemo [https://en.wikipedia.org/wiki/Finding_Nemo_(franchise)] ->
+		Finding Nemo (2003) [https://en.wikipedia.org/wiki/Finding_Nemo],
+		Finding Dory (2016) [https://en.wikipedia.org/wiki/Finding_Dory];
+
+
+	The Incredibles ->
+		The Incredibles (2004) [https://en.wikipedia.org/wiki/The_Incredibles],
+		Incredibles 2 (2018) [https://en.wikipedia.org/wiki/Incredibles_2],
+
+
+	Cloudy with a Chance of Meatballs ->
+		Cloudy with a Chance of Meatballs (2009) [https://en.wikipedia.org/wiki/Cloudy_with_a_Chance_of_Meatballs_(film)],
+		Cloudy with a Chance of Meatballs 2 (2013) [https://en.wikipedia.org/wiki/Cloudy_with_a_Chance_of_Meatballs_2];
+	
+	
+	Teenage Mutant Ninja Turtles [https://en.wikipedia.org/wiki/Teenage_Mutant_Ninja_Turtles_in_film] ->
+		Teenage Mutant Ninja Turtles (1990) [https://en.wikipedia.org/wiki/Teenage_Mutant_Ninja_Turtles_(1990_film)],
+		Teenage Mutant Ninja Turtles II: The Secret of the Ooze (1991) [https://en.wikipedia.org/wiki/Teenage_Mutant_Ninja_Turtles_II:_The_Secret_of_the_Ooze],
+		Teenage Mutant Ninja Turtles III (1993) [https://en.wikipedia.org/wiki/Teenage_Mutant_Ninja_Turtles_III],
+		TMNT (2007) [https://en.wikipedia.org/wiki/TMNT_(film)],
+		Teenage Mutant Ninja Turtles (2014) [https://en.wikipedia.org/wiki/Teenage_Mutant_Ninja_Turtles_(2014_film)],
+		Teenage Mutant Ninja Turtles: Out of the Shadows (2016) [https://en.wikipedia.org/wiki/Teenage_Mutant_Ninja_Turtles:_Out_of_the_Shadows],
+		Teenage Mutant Ninja Turtles: Mutant Mayhem (2023) [https://en.wikipedia.org/wiki/Teenage_Mutant_Ninja_Turtles:_Mutant_Mayhem];
+
+
+	Madagascar [https://en.wikipedia.org/wiki/Madagascar_(franchise)] ->
+		Madagascar (2005) [https://en.wikipedia.org/wiki/Madagascar_(2005_film)],
+		Madagascar: Escape 2 Africa (2008) [https://en.wikipedia.org/wiki/Madagascar:_Escape_2_Africa],
+		Madagascar 3: Europe's Most Wanted (2012) [https://en.wikipedia.org/wiki/Madagascar_3:_Europe%27s_Most_Wanted],
+		Penguins of Madagascar (2014) [https://en.wikipedia.org/wiki/Penguins_of_Madagascar];
+
+
+	Happy Feet ->
+		Happy Feet (2006) [https://en.wikipedia.org/wiki/Happy_Feet],
+		Happy Feet Two (2011) [https://en.wikipedia.org/wiki/Happy_Feet_Two];
+	
+	
+	Open Season [https://en.wikipedia.org/wiki/Open_Season_(film_series)] ->
+		Open Season (2006) [https://en.wikipedia.org/wiki/Open_Season_(2006_film)],
+		Open Season 2 (2008) [https://en.wikipedia.org/wiki/Open_Season_2],
+		Open Season 3 (2010) [https://en.wikipedia.org/wiki/Open_Season_3],
+		Open Season: Scared Silly (2015) [https://en.wikipedia.org/wiki/Open_Season:_Scared_Silly],
+		Boog and Elliot's Midnight Bun Run (2007);
+
+	
+	Cars [https://en.wikipedia.org/wiki/Cars_(franchise)] ->
+		Cars (2006)	[https://en.wikipedia.org/wiki/Cars_(film)],
+		Cars 2 (2011) [https://en.wikipedia.org/wiki/Cars_2],
+		Cars 3 (2017) [https://en.wikipedia.org/wiki/Cars_3],
+		Planes (2013) [https://en.wikipedia.org/wiki/Planes_(film)],
+		Planes: Fire & Rescue (2014) [https://en.wikipedia.org/wiki/Planes:_Fire_%26_Rescue];
+	
+	
+	Kung Fu Panda [https://en.wikipedia.org/wiki/Kung_Fu_Panda] ->
+		Kung Fu Panda (2008) [https://en.wikipedia.org/wiki/Kung_Fu_Panda_(film)],
+		Kung Fu Panda 2 (2011) [https://en.wikipedia.org/wiki/Kung_Fu_Panda_2],
+		Kung Fu Panda 3 (2016) [https://en.wikipedia.org/wiki/Kung_Fu_Panda_3],
+		Kung Fu Panda 4 (2024) [https://en.wikipedia.org/wiki/Kung_Fu_Panda_4],
+		Secrets of the Furious Five (2008) [https://en.wikipedia.org/wiki/Secrets_of_the_Furious_Five],
+		Secrets of the Masters (2011) [https://en.wikipedia.org/wiki/Kung_Fu_Panda:_Secrets_of_the_Masters],
+		Secrets of the Scroll (2016) [https://en.wikipedia.org/wiki/Kung_Fu_Panda:_Secrets_of_the_Scroll],
+		Panda Paws (2016),
+		Kung Fu Panda Holiday (2010) [https://en.wikipedia.org/wiki/Kung_Fu_Panda_Holiday];
+	
+	
+	Monsters vs. Aliens [https://en.wikipedia.org/wiki/Monsters_vs._Aliens_(franchise)] ->
+		Monsters vs. Aliens (2009) [https://en.wikipedia.org/wiki/Monsters_vs._Aliens]
+		B.O.B.'s Big Break (2009) [https://en.wikipedia.org/wiki/B.O.B.%27s_Big_Break],
+		Night of the Living Carrots (2011) [https://en.wikipedia.org/wiki/Night_of_the_Living_Carrots],
+		Mutant Pumpkins from Outer Space (2009) [https://en.wikipedia.org/wiki/Monsters_vs._Aliens:_Mutant_Pumpkins_from_Outer_Space];
+
+
+	Despicable Me [https://en.wikipedia.org/wiki/Despicable_Me] ->
+		Despicable Me (2010) [https://en.wikipedia.org/wiki/Despicable_Me_(film)],
+		Despicable Me 2 (2013) [https://en.wikipedia.org/wiki/Despicable_Me_2],
+		Despicable Me 3 (2017) [https://en.wikipedia.org/wiki/Despicable_Me_3],
+		Despicable Me 4 (2024) [https://en.wikipedia.org/wiki/Despicable_Me_4],
+		Minions (2015) [https://en.wikipedia.org/wiki/Minions_(film)],
+		Minions: The Rise of Gru (2022) [https://en.wikipedia.org/wiki/Minions:_The_Rise_of_Gru];
+
+
+	Rio ->
+		Rio (2011) [https://en.wikipedia.org/wiki/Rio_(2011_film)],
+		Rio 2 (2014) [https://en.wikipedia.org/wiki/Rio_2];
+	
+	
+	Hotel Transylvania ->
+		Hotel Transylvania (2012) [https://en.wikipedia.org/wiki/Hotel_Transylvania_(film)],
+		Hotel Transylvania 2 (2015) [https://en.wikipedia.org/wiki/Hotel_Transylvania_2],
+		Hotel Transylvania 3: Summer Vacation (2018) [https://en.wikipedia.org/wiki/Hotel_Transylvania_3:_Summer_Vacation],
+		Hotel Transylvania: Transformania (2022) [https://en.wikipedia.org/wiki/Hotel_Transylvania:_Transformania];
+	
+	
+	Wreck-It Ralph [https://en.wikipedia.org/wiki/Wreck-It_Ralph_(franchise)] ->
+		Wreck-It Ralph (2012) [https://en.wikipedia.org/wiki/Wreck-It_Ralph],
+		Ralph Breaks the Internet (2018) [https://en.wikipedia.org/wiki/Ralph_Breaks_the_Internet];
+	
+	
+	The Croods [https://en.wikipedia.org/wiki/The_Croods_(franchise)] ->
+		The Croods (2013) [https://en.wikipedia.org/wiki/The_Croods],
+		The Croods: A New Age (2020) [https://en.wikipedia.org/wiki/The_Croods:_A_New_Age];
+	
+	
+	Frozen [https://en.wikipedia.org/wiki/Frozen_(franchise)] ->
+		Frozen (2013) [https://en.wikipedia.org/wiki/Frozen_(2013_film)],
+		Frozen II (2019) [https://en.wikipedia.org/wiki/Frozen_II];
+	
+	
+	The Lego Movie [https://en.wikipedia.org/wiki/The_Lego_Movie_(franchise)] ->
+		The Lego Movie (2014) [https://en.wikipedia.org/wiki/The_Lego_Movie],
+		The Lego Batman Movie (2017) [https://en.wikipedia.org/wiki/The_Lego_Batman_Movie],
+		The Lego Ninjago Movie (2017) [https://en.wikipedia.org/wiki/The_Lego_Ninjago_Movie],
+		The Lego Movie 2: The Second Part (2019) [https://en.wikipedia.org/wiki/The_Lego_Movie_2:_The_Second_Part];
+	
+	
+	How to Train Your Dragon [https://en.wikipedia.org/wiki/How_to_Train_Your_Dragon] ->
+		How to Train Your Dragon (2010) [https://en.wikipedia.org/wiki/How_to_Train_Your_Dragon_(2010_film)],
+		How to Train Your Dragon 2 (2014) [https://en.wikipedia.org/wiki/How_to_Train_Your_Dragon_2],
+		How to Train Your Dragon: The Hidden World (2019) [https://en.wikipedia.org/wiki/How_to_Train_Your_Dragon:_The_Hidden_World],
+		Legend of the Boneknapper Dragon (2010) [https://en.wikipedia.org/wiki/How_to_Train_Your_Dragon:_The_Hidden_World],
+		Book of Dragons (2010) [https://en.wikipedia.org/wiki/How_to_Train_Your_Dragon#Book_of_Dragons_(2011)],
+		Gift of the Night Fury (2011) [https://en.wikipedia.org/wiki/Gift_of_the_Night_Fury],
+		Dawn of the Dragon Racers (2014) [https://en.wikipedia.org/wiki/Dawn_of_the_Dragon_Racers],
+		How to Train Your Dragon: Homecoming (2019) [https://en.wikipedia.org/wiki/How_to_Train_Your_Dragon:_Homecoming];
+
+
+	The SpongeBob SquarePants ->
+		The SpongeBob SquarePants Movie (2004) [https://en.wikipedia.org/wiki/The_SpongeBob_SquarePants_Movie],
+		The SpongeBob Movie: Sponge Out of Water (2015) [https://en.wikipedia.org/wiki/The_SpongeBob_Movie:_Sponge_Out_of_Water];
+	
+	
+	Angry Birds ->
+		The Angry Birds Movie (2016) [https://en.wikipedia.org/wiki/The_Angry_Birds_Movie],
+		The Angry Birds Movie 2 (2019) [https://en.wikipedia.org/wiki/The_Angry_Birds_Movie_2];
+	
+	
+	The Secret Life of Pets ->
+		The Secret Life of Pets (2016) [https://en.wikipedia.org/wiki/The_Secret_Life_of_Pets],
+		The Secret Life of Pets 2 (2019) [https://en.wikipedia.org/wiki/The_Secret_Life_of_Pets_2];
+	
+	
+	Megamind [https://en.wikipedia.org/wiki/Megamind_(franchise)] ->
+		Megamind (2010) [https://en.wikipedia.org/wiki/Megamind],
+		Megamind vs. the Doom Syndicate (2024) [https://en.wikipedia.org/wiki/Megamind_vs._the_Doom_Syndicate];
+	
+	
+	The Boss Baby [https://en.wikipedia.org/wiki/The_Boss_Baby_(franchise)] ->
+		The Boss Baby (2017) [https://en.wikipedia.org/wiki/The_Boss_Baby],
+		The Boss Baby: Family Business (2021) [https://en.wikipedia.org/wiki/The_Boss_Baby:_Family_Business];
+	
+	
+	A Bug's Life (1998) [https://en.wikipedia.org/wiki/A_Bug%27s_Life],
+	Robots (2005) [https://en.wikipedia.org/wiki/Robots_(2005_film)],
+	Barnyard (2006) [https://en.wikipedia.org/wiki/Barnyard_(film)],
+	Over the Hedge (2006) [https://en.wikipedia.org/wiki/Over_the_Hedge_(film)],
+	Flushed Away (2006) [https://en.wikipedia.org/wiki/Flushed_Away],
+	The Ant Bully (2006) [https://en.wikipedia.org/wiki/The_Ant_Bully_(film)],
+	Monster House (2006) [https://en.wikipedia.org/wiki/Monster_House_(film)],
+	Ratatouille (2007) [https://en.wikipedia.org/wiki/Ratatouille_(film)],
+	Surf's Up (2007) [https://en.wikipedia.org/wiki/Surf%27s_Up_(film)],
+    Bee Movie (2007) [https://en.wikipedia.org/wiki/Bee_Movie],
+    Meet the Robinsons (2007) [https://en.wikipedia.org/wiki/Meet_the_Robinsons],
+    Horton Hears a Who! (2008) [https://en.wikipedia.org/wiki/Horton_Hears_a_Who!_(film)],
+	WALL-E (2008) [https://en.wikipedia.org/wiki/WALL-E],
+	Bolt (2008) [https://en.wikipedia.org/wiki/Bolt_(2008_film)],
+    Fly Me to the Moon (2008) [https://en.wikipedia.org/wiki/Fly_Me_to_the_Moon_(2008_film)],
+    Igor (2008) [https://en.wikipedia.org/wiki/Igor_(film)],
+    Delgo (2008) [https://en.wikipedia.org/wiki/Delgo],
+    The Tale of Despereaux (2008) [https://en.wikipedia.org/wiki/The_Tale_of_Despereaux_(film)],
+    Coraline (2009) [https://en.wikipedia.org/wiki/Coraline_(film)],
+	Up (2009) [https://en.wikipedia.org/wiki/Up_(2009_film)],
+    9 (2009) [https://en.wikipedia.org/wiki/9_(2009_animated_film)],
+    Planet 51 (2009) [https://en.wikipedia.org/wiki/Planet_51],
+    Fantastic Mr. Fox (2009) [https://en.wikipedia.org/wiki/Fantastic_Mr._Fox_(film)],
+    Tangled (2010) [https://en.wikipedia.org/wiki/Tangled],
+	Arthur Christmas (2011) [https://en.wikipedia.org/wiki/Arthur_Christmas],
+    Rango (2011) [https://en.wikipedia.org/wiki/Rango_(2011_film)],
+	The Adventures of Tintin (2011) [https://en.wikipedia.org/wiki/The_Adventures_of_Tintin_(film)],
+    Gnomeo & Juliet (2011) [https://en.wikipedia.org/wiki/Gnomeo_%26_Juliet],
+	Ronal the Barbarian (2011) [https://en.wikipedia.org/wiki/Ronal_the_Barbarian],
+    Dr. Seuss' The Lorax (2012) [https://en.wikipedia.org/wiki/The_Lorax_(film)],
+    Brave (2012) [https://en.wikipedia.org/wiki/Brave_(2012_film)],
+	Rise of the Guardians (2012) [https://en.wikipedia.org/wiki/Rise_of_the_Guardians],
+    Escape from Planet Earth (2013) [https://en.wikipedia.org/wiki/Escape_from_Planet_Earth],
+	Epic (2013) [https://en.wikipedia.org/wiki/Epic_(2013_film)],
+	Turbo (2013) [https://en.wikipedia.org/wiki/Turbo_(film)],
+    Free Birds (2013) [https://en.wikipedia.org/wiki/Free_Birds],
+	Mr. Peabody & Sherman (2014) [https://en.wikipedia.org/wiki/Mr._Peabody_%26_Sherman],
+	The Boxtrolls (2014) [https://en.wikipedia.org/wiki/The_Boxtrolls],
+    Big Hero 6 (2014) [https://en.wikipedia.org/wiki/Big_Hero_6_(film)],
+	The Book of Life (2014) [https://en.wikipedia.org/wiki/The_Book_of_Life_(2014_film)],
+    Home (2015) [https://en.wikipedia.org/wiki/Home_(2015_film)],
+    Shaun the Sheep Movie (2015) [https://en.wikipedia.org/wiki/Shaun_the_Sheep_Movie],
+    Inside Out (2015) [https://en.wikipedia.org/wiki/Inside_Out_(2015_film)],
+    The Good Dinosaur (2015) [https://en.wikipedia.org/wiki/The_Good_Dinosaur],
+    The Peanuts Movie (2015) [https://en.wikipedia.org/wiki/The_Peanuts_Movie],
+    Zootopia (2016) [https://en.wikipedia.org/wiki/Zootopia_(franchise)],
+    Kubo and the Two Strings (2016) [https://en.wikipedia.org/wiki/Kubo_and_the_Two_Strings],
+    Storks (2016) [https://en.wikipedia.org/wiki/Storks_(film)],
+    Trolls (2016) [https://en.wikipedia.org/wiki/Trolls_(film)],
+    Moana (2016) [https://en.wikipedia.org/wiki/Moana_(2016_film)],
+    Sing (2016) [https://en.wikipedia.org/wiki/Sing_(2016_American_film)],
+    Coco (2017) [https://en.wikipedia.org/wiki/Coco_(2017_film)],
+    Ferdinand (2017) [https://en.wikipedia.org/wiki/Ferdinand_(film)],
+    Captain Underpants: The First Epic Movie (2017) [https://en.wikipedia.org/wiki/Captain_Underpants:_The_First_Epic_Movie],
+    The Emoji Movie (2017) [https://en.wikipedia.org/wiki/The_Emoji_Movie],
+    Early Man (2018) [https://en.wikipedia.org/wiki/Early_Man_(film)],
+    Peter Rabbit (2018) [https://en.wikipedia.org/wiki/Peter_Rabbit_(film)],
+    Sherlock Gnomes (2018) [https://en.wikipedia.org/wiki/Sherlock_Gnomes],
+    Smallfoot (2018) [https://en.wikipedia.org/wiki/Smallfoot_(film)],
+    Spider-Man: Into the Spider-Verse (2018) [https://en.wikipedia.org/wiki/Spider-Man:_Into_the_Spider-Verse],
+    The Grinch (2018) [https://en.wikipedia.org/wiki/The_Grinch_(film)],
+    Abominable (2019) [https://en.wikipedia.org/wiki/Abominable_(2019_film)],
+    Missing Link (2019) [https://en.wikipedia.org/wiki/Missing_Link_(2019_film)],
+    Spies in Disguise (2019) [https://en.wikipedia.org/wiki/Spies_in_Disguise],
+    Onward (2020) [https://en.wikipedia.org/wiki/Onward_(film)],
+    Trolls World Tour (2020) [https://en.wikipedia.org/wiki/Trolls_World_Tour],
+    Scoob! (2020) [https://en.wikipedia.org/wiki/Scoob!],
+    Soul (2020) [https://en.wikipedia.org/wiki/Soul_(2020_film)],
+    Wolfwalkers (2020) [https://en.wikipedia.org/wiki/Wolfwalkers],
+    Raya and the Last Dragon (2021) [https://en.wikipedia.org/wiki/Raya_and_the_Last_Dragon],
+	The Super Mario Bros. Movie (2023) [https://en.wikipedia.org/wiki/The_Super_Mario_Bros._Movie];

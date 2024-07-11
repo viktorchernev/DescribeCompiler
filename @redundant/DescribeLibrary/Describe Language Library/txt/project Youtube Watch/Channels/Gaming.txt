@@ -1,0 +1,20 @@
+directives -> 
+	language-version <1.1>,
+	namespace <ytwatch>;
+
+
+gaming <edXDEuLy>->
+
+	Alex_The_Magician [https://www.youtube.com/channel/UCmmDd6zpr0DiNXEV1-aY78g] <57jFScpK>,			// Heroes 3
+	Norovo [https://www.youtube.com/channel/UC9Z-w0L3f_F-oyWNY_hrDlw] <EByelgYN>,						// Heroes 3
+	LowkoTV [https://www.youtube.com/user/Felixje0] <xLZdXnKD>,											// Starcraft 2
+	BlyOnFire [https://www.youtube.com/channel/UCK5SPkqU-7KicZFQUXipGgg] <rUnesEwQ>,					// Starcraft 2
+	HuShang Tutorials [https://www.youtube.com/channel/UC_2FZDFti08MI5WRaZUZSIQ] <gV4Kyil6>,			// Starcraft 2
+	Dbrunski125 [https://www.youtube.com/channel/UCFc8CBNDUFLc1hN5UayNR8g] <iKQ13rIt>,					// Diablo 2
+	CarbotAnimations [https://www.youtube.com/user/CarbotAnimations] <YEg9hOpc>,						// carbot
+	SpaceX \- KSP [https://www.youtube.com/channel/UCWARraXlBgkBU5YYY8XPJxw] <PsbylDxJ>,				// Kerbal Space Program
+	PZA Total war [https://www.youtube.com/channel/UC7ZdmUmjOH5TziSB5teWdQg] <lS0kMYeA>,				// Total war
+	Hornster [https://www.youtube.com/channel/UCTn2oRbEeUKbXyoAZgYPfGw] <Ed5AQ0Mx>,						// Among us
+	Nintendo Life [https://www.youtube.com/c/nintendolife] <7fN8uvxo>,									// NES, Switch, etc
+	Daily Dose of Gaming [https://www.youtube.com/channel/UCmdmZp1K_kjXYBKgyqg_5LA] <p5MKpcUg>,
+	SergiuHellDragoonHQ [https://www.youtube.com/user/SergiuHellDragoonHQ] <46BEr3M8>;					// some dipshittery

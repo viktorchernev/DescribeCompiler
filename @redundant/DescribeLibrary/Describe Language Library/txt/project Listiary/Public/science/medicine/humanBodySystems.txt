@@ -1,0 +1,24 @@
+directives ->
+	namespace <treeofall.public.science.medicine>;
+
+
+systems of the human body 
+[https://en.m.wikipedia.org/wiki/List_of_systems_of_the_human_body]
+<humanBodySystems> ->
+
+    Nervous system,
+
+    Integumentary system,
+    Skeletal system,
+    Muscular system,
+
+    Endocrine system,
+    Cardiovascular system,
+    Lymphatic system,
+
+    Respiratory system,
+    Digestive system,
+    Urinary system,
+
+    Reproductive system male,
+    Reproductive system female;

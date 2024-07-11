@@ -1,0 +1,7 @@
+directives -> 
+	namespace <treeofall.personal.MyHomeAdmin>;
+
+
+github \-edit last commit message <githubEditCommitMessage> ->
+
+	git commit \-\-amend \-m "new message" <UDwxmPKs>;

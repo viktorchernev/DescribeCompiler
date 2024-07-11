@@ -1,0 +1,14 @@
+directives ->
+	namespace <treeofall.public.science.sociology>;
+
+
+western world generation names [https://en.wikipedia.org/wiki/Generation] <generationsNames>->
+
+	The Lost Generation (1883 to 1900) [https://en.wikipedia.org/wiki/Lost_Generation] <JsyzYHuw>,
+	The Greatest Generation (1901 to 1927) [https://en.wikipedia.org/wiki/Greatest_Generation] <KhSGPUI1>,
+	The Silent Generation (1928 to 1945) [https://en.wikipedia.org/wiki/Silent_Generation] <t7Uwiqsf>,
+	Baby boomers (1946 to 1964) [https://en.wikipedia.org/wiki/Baby_boomers] <3A1Ol6mI>,
+	Generation X (1965 to 1980) [https://en.wikipedia.org/wiki/Generation_X] <tMgqgTXs>,
+	Millennials (1981 to 1996) [https://en.wikipedia.org/wiki/Millennials] <BgiQuRpa>,
+	Generation Z (1997 to 2012) [https://en.wikipedia.org/wiki/Generation_Z] <nDy7fFXa>,
+	Generation Alpha (early to mid 2010s \- mid 2020s to early 2030s) [https://en.wikipedia.org/wiki/Generation_Alpha] <GSTmG1tc>;

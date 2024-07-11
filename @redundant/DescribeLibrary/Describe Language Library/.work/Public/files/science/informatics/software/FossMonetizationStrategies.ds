@@ -1,0 +1,18 @@
+directives ->
+	namespace <treeofall.public.science.informatics.software>;
+
+
+open\-source software monetization strategies <FossMonetizationStrategies>->
+
+	OpenSaaS <GZjt2n85>,
+	Paid support <x3mDMvCH>,
+	Paid certification and training <4rNhrOQZ>,
+	Dual licensing <MYlFwggV>,												//GPL is good
+	Open core <4MolhvVz>,													//main code free, some parts proprietary
+	Paid extra features or functionalities <mTIWac6L>,						//freemium
+	Paid feature development <YlTOSTXF>,									//get paid to develop extra functionality to your OSS
+	Donations and sponsorship <26wErAEy>,									//GitHub Sponsors, Open Collective, Patreon
+	
+	User sharing <lltjyceO>,
+	Brand value boost <onRU5rMF>,
+	Long term indirect benefits <FZywn69a>;									//make the industry better to make more profit from other paid services

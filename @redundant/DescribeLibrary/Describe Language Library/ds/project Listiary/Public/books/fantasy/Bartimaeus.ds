@@ -1,0 +1,22 @@
+directives ->
+
+	namespace <treeofall.public.books>;
+
+
+Bartimaeus Sequence <.bartemius> [https://en.wikipedia.org/wiki/Bartimaeus_Sequence] ->
+	
+	The Amulet of Samarkand - Jonathan Stroud (2003)
+	[https://en.wikipedia.org/wiki/The_Amulet_of_Samarkand]
+	{shorter|The Amulet of Samarkand},
+	
+	The Golem's Eye - Jonathan Stroud (2004)
+	[https://en.wikipedia.org/wiki/The_Golem%27s_Eye]
+	{shorter|The Golem's Eye},
+	
+	Ptolemy's Gate - Jonathan Stroud (2005)
+	[https://en.wikipedia.org/wiki/Ptolemy%27s_Gate]
+	{shorter|Ptolemy's Gate},
+	
+	The Ring of Solomon - Jonathan Stroud (2010)
+	[https://en.wikipedia.org/wiki/The_Ring_of_Solomon]
+	{shorter|The Ring of Solomon};

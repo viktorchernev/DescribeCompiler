@@ -1,0 +1,27 @@
+directives ->
+	namespace <treeofall.public.science.medicine.mentalDisorders>;
+
+
+neuro\-developmental disorders <NeurodevelopmentalDisorders>->
+
+    Intellectual disability <1iJmUNhh>,
+    Language disorder <d0OGO1lw>,
+    Speech sound disorder <WCCUYF5H>,
+    Stuttering <ooiM68bd>,
+    Social communication disorder <zS9FtiJX>,
+    Communication disorder <bU0QaA3Q>,
+    Autism spectrum disorder <NjBmdsbw>,
+    Attention deficit hyperactivity disorder (ADHD and ADD) <m8GLzTiS>,
+    Developmental coordination disorder <mJxL01yg>,
+    Tourette syndrome <SHXJ4uAz>,
+    Tic disorder <7i9cwDH3>,
+    Dyslexia<tIx7TnDu>,
+    Dyscalculia <GsRhVMwh>;
+
+
+
+Autism spectrum disorder <NjBmdsbw>->
+
+	Asperger syndrome <2q3e9dNW>,
+	Classic autism <eXRmxZrc>,
+	Rett syndrome <VmiQa7Cy>;

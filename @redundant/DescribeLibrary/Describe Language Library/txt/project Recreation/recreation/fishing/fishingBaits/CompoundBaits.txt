@@ -1,0 +1,17 @@
+directives -> 
+	language-version <1.1>,
+	namespace <recreation.fishing>;
+
+
+compound baits <compoundBaits> ->
+
+    protein balls <42v5SHRP>,
+	Bread <ucbT9vZu>,
+	Kacamak <BbEgwHM3>;
+
+
+	protein balls <42v5SHRP> ->
+
+		bottom bait rigs <gfQ7R4Lu>,
+		wafters <WMZz6fjK>,
+		pop ups <ICpN1OUi>;

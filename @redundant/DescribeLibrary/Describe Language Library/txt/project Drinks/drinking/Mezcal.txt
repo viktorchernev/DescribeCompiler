@@ -1,0 +1,20 @@
+directives ->
+	namespace <drinking>;
+
+drinking <rnode> ->
+
+	wine,
+	beer,
+	cider,
+	
+	gap {empty},
+	Whiskey,
+	Bourbon,
+	Scotch,
+	Gin <.drinkgin>,
+	Rum <drinkrum>,
+	Brandy,
+	Cognac & Armagnac,
+	Tequila & Mezcal <.drinkmezcal>,
+	Vodka,
+	Absinthe;

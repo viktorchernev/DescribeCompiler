@@ -1,0 +1,8 @@
+directives -> 
+	namespace <documentation>;
+
+
+DOCUMENTATION <rnode> ->
+
+	schemes <.schemes.rnode>,
+	decorator test list <tests>;

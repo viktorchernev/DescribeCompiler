@@ -1,0 +1,12 @@
+directives ->
+	language-version <1.1>,
+	namespace <hacking>;
+
+
+	hacking phases <phases> ->
+
+	    Reconnaissance, 
+	    Scanning, 
+	    Gaining Access, 
+	    Maintaining Access, 
+	    Clearing Track;

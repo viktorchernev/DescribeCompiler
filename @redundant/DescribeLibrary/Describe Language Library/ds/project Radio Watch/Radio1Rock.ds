@@ -1,0 +1,10 @@
+directives ->
+	language-version <1.1>,
+	namespace <radiowatch.bg>;
+
+Radio 1 Rock playlist <onerock> ->
+
+	April 2024 {comment},
+	Monday 15 <.onerock.20240415>,
+	Tuesday 16 <.onerock.20240416>,
+	Wednesday 17 <.onerock.20240417>;

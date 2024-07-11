@@ -1,0 +1,7 @@
+directives -> namespace <treeofall.public.science.informatics.software.machinesAndEmulators>;
+
+
+emulators <rnode> ->
+
+	BlueStacks (Android on PC) <aDEViigi>,
+	Mesen (NES on PC) <uwjXnkWI>;

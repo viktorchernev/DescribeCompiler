@@ -1,0 +1,10 @@
+directives -> 
+	namespace <treeofall.personal.MyFoodRecipes>;
+
+
+my food recipes <rnode> ->
+
+	cucumber salad <MyRecipeCucumberSalad>,
+	tarator soup (variant 1) <MyRecipeTaratorSoup1>,
+	tarator soup (variant 2) <MyRecipeTaratorSoup2>,
+	tripe soup with milk <MyRecipeTripeSoupWMilk>;

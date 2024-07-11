@@ -1,0 +1,10 @@
+directives -> namespace <treeofall.public.unsorted>;
+
+
+personality types <personalityTraits> ->
+
+	Machiavellianist,
+	Sociopath,
+	Psychopath,
+	Narcisist,
+	Dark Empath;

@@ -1,0 +1,44 @@
+directives -> 
+	namespace <treeofall.personal.MyToBuy>;
+	
+	
+to buy <.rnode> ->
+    
+    home renovation ->
+    
+    	a vidia,
+    	sheet of fibran,
+		20 - 2 buckets and basin{color| gray},
+		7 - substr for roses{color| gray};
+   
+    internet-related ->
+    
+	  50 - domain,
+      7 - cloud storage [https://restoreprivacy.com/cloud-storage/best/],
+      8 - github,
+      20 - boosteroid,
+      10 - mullvad VPN;
+   
+   	hygiene ->
+    
+		20 - mop bucket and mop,
+		25 - gloves {color| gray},
+		20 - toilet paper pack,
+		15 - washing powder{color| gray},
+		10 - liquid soap {color| gray};
+    
+    personal ->
+	
+		20 - multivitamins C...{color| gray},
+		14 - Nebilet+ {color| gray},
+        7 - Залпам 5/5 {color| gray},
+		10 - shampoo {color|gray},
+		10 - depilatory cream {color| gray},
+		10 - dental floss {color|gray};
+
+    bills ->
+	
+		22 - internet {color| gray},
+		12 - phone minutes {color| gray};
+
+    ;

@@ -1,0 +1,20 @@
+directives -> 
+	language-version <1.1>,
+	namespace <ytwatch>;
+
+
+hobbies <zW2ehVp6>->
+
+	Stitch Sisters [https://www.youtube.com/channel/UCuBcWWG0QvylWUsiJSsPxCw] <cQTOTj2w>,
+	Primitive Skills [https://www.youtube.com/channel/UCs8DNFOxYen3kuj87aWKG9g] <IZED7HYE>,
+	BosnianBill [https://www.youtube.com/user/bosnianbill] <pEzCZSPH>,
+	LockPickingLawyer [https://www.youtube.com/channel/UCm9K6rby98W8JigLoZOh6FQ] <pnzJ9mV7>,
+	Window Cleaning Venture [https://www.youtube.com/channel/UCivThmijnDnOvDOWnzMtN0A] <rjZ152dL>,
+	ChrisFix [https://www.youtube.com/user/PaintballOO7] <04Byrqut>,
+	Crown & Caliber [https://www.youtube.com/user/crownandcaliber] <Bq4qU9sz>,
+	Project Kamp [https://www.youtube.com/channel/UCcGXEidw0qjNdq7Gii8gHgg] <wELBhyJn>,
+	Boxlapse [https://www.youtube.com/channel/UCiL9l2J57t5OG2aZ0huswZw] <uH0MZOYl>,
+	Epic Gardening [https://www.youtube.com/user/EpicGardening] <zFJKjys7>,
+	Boomer Shroomer [https://www.youtube.com/channel/UCxyBY9WU_RPgCGcca7RGq0w] <FNNLf9c4>,
+	90 Second Mycology [https://www.youtube.com/channel/UCJEHCl2fZS8lyl185Jg02-Q] <xM9d4VRK>,
+	Twitch Fishing [https://www.youtube.com/channel/UCMzNvAM4mXxhmF95zmwt6jw] <SrwVwTfg>;

@@ -1,0 +1,60 @@
+directives ->
+	language-version <1.1>,
+	namespace <cinema.movies>;
+
+fantasy <.fantasy> ->
+
+	~ chat GPT <source>,
+	~ common knowledge <source>,
+	
+	super hero movies <.fantasy.superhero>,
+	
+	gap {empty},
+	Warcraft (2016) [https://en.wikipedia.org/wiki/Warcraft_(film)],
+	Stardust (2007) [https://en.wikipedia.org/wiki/Stardust_(2007_film)],
+	Eragon (2006) [https://en.wikipedia.org/wiki/Eragon_(film)],
+	Maleficent (2014) [https://en.wikipedia.org/wiki/Maleficent_(film)],
+	
+	Harry Potter [https://en.wikipedia.org/wiki/Harry_Potter_(film_series)] ->
+	
+		Harry Potter and the Philosopher's Stone (2001) [https://en.wikipedia.org/wiki/Harry_Potter_and_the_Philosopher%27s_Stone_(film)],
+		Harry Potter and the Chamber of Secrets (2002) [https://en.wikipedia.org/wiki/Harry_Potter_and_the_Chamber_of_Secrets_(film)],
+		Harry Potter and the Prisoner of Azkaban (2004) [https://en.wikipedia.org/wiki/Harry_Potter_and_the_Prisoner_of_Azkaban_(film)],
+		Harry Potter and the Goblet of Fire (2005) [https://en.wikipedia.org/wiki/Harry_Potter_and_the_Goblet_of_Fire_(film)],
+		Harry Potter and the Order of the Phoenix (2007) [https://en.wikipedia.org/wiki/Harry_Potter_and_the_Order_of_the_Phoenix_(film)],
+		Harry Potter and the Half-Blood Prince (2009) [https://en.wikipedia.org/wiki/Harry_Potter_and_the_Half-Blood_Prince_(film)],
+		Harry Potter and the Deathly Hallows – Part 1 (2010) [https://en.wikipedia.org/wiki/Harry_Potter_and_the_Deathly_Hallows_%E2%80%93_Part_1],
+		Harry Potter and the Deathly Hallows – Part 2 (2011) [https://en.wikipedia.org/wiki/Harry_Potter_and_the_Deathly_Hallows_%E2%80%93_Part_2];
+	
+	Fantastic Beasts [https://en.wikipedia.org/wiki/Fantastic_Beasts] ->
+	
+		 Fantastic Beasts and Where to Find Them (2016) [https://en.wikipedia.org/wiki/Fantastic_Beasts_and_Where_to_Find_Them_(film)],
+		 Fantastic Beasts: The Crimes of Grindelwald (2018) [https://en.wikipedia.org/wiki/Fantastic_Beasts:_The_Crimes_of_Grindelwald],
+		 Fantastic Beasts: The Secrets of Dumbledore (2022) [https://en.wikipedia.org/wiki/Fantastic_Beasts:_The_Secrets_of_Dumbledore];
+
+	Lord of the Rings [https://en.wikipedia.org/wiki/The_Lord_of_the_Rings_(film_series)] ->
+	
+		The Fellowship of the Ring (2001) [https://en.wikipedia.org/wiki/The_Lord_of_the_Rings:_The_Fellowship_of_the_Ring],
+		The Two Towers (2002) [https://en.wikipedia.org/wiki/The_Lord_of_the_Rings:_The_Two_Towers],
+		The Return of the King (2003) [https://en.wikipedia.org/wiki/The_Lord_of_the_Rings:_The_Return_of_the_King];
+	
+	The Hobbit [https://en.wikipedia.org/wiki/The_Hobbit_(film_series)] ->
+	
+		An Unexpected Journey (2012) [https://en.wikipedia.org/wiki/The_Hobbit:_An_Unexpected_Journey],
+		The Desolation of Smaug (2013) [https://en.wikipedia.org/wiki/The_Hobbit:_The_Desolation_of_Smaug],
+		The Battle of the Five Armies (2014) [https://en.wikipedia.org/wiki/The_Hobbit:_The_Battle_of_the_Five_Armies];
+
+	Dungeons & Dragons <IGGCxiAY> [https://en.wikipedia.org/wiki/Dungeons_%26_Dragons_(film_series)] ->
+
+		Dungeons & Dragons (2000),
+		Dungeons & Dragons: Wrath of the Dragon God (2005),
+		Dungeons & Dragons 3: The Book of Vile Darkness (2012),
+		Dungeons & Dragons: Honor Among Thieves (2023);
+	
+	Pirates of the Caribbean <xv3HlPd3> [https://en.wikipedia.org/wiki/Pirates_of_the_Caribbean_(film_series)] ->
+
+		The Curse of the Black Pearl (2003) [https://en.wikipedia.org/wiki/Pirates_of_the_Caribbean:_The_Curse_of_the_Black_Pearl],
+		Dead Man's Chest (2006) [https://en.wikipedia.org/wiki/Pirates_of_the_Caribbean:_Dead_Man%27s_Chest],
+		At World's End (2007) [https://en.wikipedia.org/wiki/Pirates_of_the_Caribbean:_At_World%27s_End],
+		On Stranger Tides (2011) [https://en.wikipedia.org/wiki/Pirates_of_the_Caribbean:_On_Stranger_Tides],
+		Dead Men Tell No Tales (2017) [https://en.wikipedia.org/wiki/Pirates_of_the_Caribbean:_Dead_Men_Tell_No_Tales];

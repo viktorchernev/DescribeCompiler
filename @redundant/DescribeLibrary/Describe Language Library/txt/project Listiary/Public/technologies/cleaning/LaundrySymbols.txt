@@ -1,0 +1,119 @@
+directives ->
+	namespace <treeofall.public.technologies.cleaning>;
+
+
+// symbols "°C" and "°F" has been simplified to " C" and " F" due to inability 
+// of the current parser to parse the "°" symbol
+
+
+laundry symbols <laundrySymbols> ->
+
+	ironing symbols <eKJY3asB>,
+	dry\-cleaning symbols <jeS6UX4W>,
+	washing symbols <ej3KQiWy>,
+	drying symbols <fbW7SwTp>;
+
+
+
+ironing symbols <eKJY3asB> ->
+
+	Cool iron (110 C\/230 F) <kGSKiZvC>,
+	Warm iron (150 C\/300 F) <UIl7u5Yg>,
+	Hot iron (200 C\/390 F) <VeV3sZVz>,
+	No steam iron <fIPlWAb0>,
+	Do not iron <hUIjg2tw>;
+
+
+
+dry\-cleaning symbols <jeS6UX4W> ->
+
+	Do not dry clean <uTVIDYhG>,
+	Do not wet clean <fPg0pi0b>,
+	Dry clean <4IMQpdfq>,
+	Any solvent (A) <jn7XJMGh>,
+	Any solvent\, delicate (A\-) <jn8XJMGh>,
+	Any solvent\, very delicate (A=) <jg8XJMGh>,
+	Any solvent except Trichloroethylene (F) <1DoLvpQ5>,
+	Any solvent except Trichloroethylene\, delicate (F\-) <1DokvpQ5>,
+	Any solvent except Trichloroethylene\, very delicate (F=) <1D0mvpQ5>,
+	Petroleum solvents only (P) <uiXXshVn>,
+	Petroleum solvents only\, delicate (P\-) <u1XXshVn>,
+	Petroleum solvents only\, very delicate (P=) <uiXSshVn>,
+	Wet cleaning (W) <Iz84wgYu>;
+
+
+		
+washing symbols <ej3KQiWy> ->
+
+	how to wash <UwbCqkwR>,
+	water temperature <0lqy8GXX>,
+	bleach usage <iHcSNgjK>;
+
+	how to wash <UwbCqkwR>->
+	
+		Do not wash <w8TgnTpY>,
+		Do not wring <p8GljozI>,
+		Hand wash <9Am2YFwi>,
+		Wring <sAJsNLYD>,
+		Machine wash <rWzfLMKx>,
+		Machine wash \- permanent press (\-) <VvqAOGw8>,
+		Machine wash \- gentle and delicate (=) <EeMRUfyo>;
+
+	water temperature <0lqy8GXX> ->
+	
+		Cold (30 C\/80 F)(.) <Ic8DwSpS>,
+		Warm (40 C\/105 F)(..) <YCtwRsPo>,
+		Warm\-hot (50 C\/120 F)(...) <dzPcivRx>,
+		Hot (60 C\/140 F)(.. ..) <Hjp58aOM>,
+		Sanitize (70 C\/160 F)(... ..) <ptMvucE7>,
+		(95 C) (... ...) <o8uTyhjk>;
+	
+	bleach usage <iHcSNgjK> ->
+	
+		OK to bleach <shx54noE>,
+		Do Not bleach <bkw5HlXs>,
+		Use chlorine bleach <bkw5Hlzs>,
+		Non\-chlorine bleach if Needed <tvEoQLvQ>;
+
+
+
+drying symbols <fbW7SwTp> ->
+	
+	air drying <zmJCZb7m>,
+	basic dryer cycles <raTOegEK>,
+	permanent press dry <yRTaFph6>,
+	gentle dry cycle <NnKYrapr>;
+
+	air drying <zmJCZb7m> ->
+		
+		Dry <PCh5Datu>,
+		Do not dry <23IYROPM>,
+		Drip dry <XLxdAwZe>,
+		Dry in the shade <4o3sOOOA>,
+		Hang dry <sSfpMSGd>,
+		Dry flat <yzq869Sf>;
+
+	basic dryer cycles <raTOegEK> ->
+	
+		Tumble dry <My3H3Exq>,
+		Do not tumble dry <x8gfuQ6v>,
+		No heat dry <56atRv1X>,
+		Normal dry cycle \- low heat <wDw0YnPb>,
+		Normal dry cycle \- medium heat <lq76SN7s>,
+		Normal dry cycle \- high heat <aNQ9xlvm>,
+		Short cycle <Af4bPIT8>,
+		Reduced moisture <mTUSck1R>,
+		Low heat <EuW3fPtj>,
+		No steam finishing <dWw90bCI>;
+	
+	permanent press dry <yRTaFph6> ->
+	
+		Permanent press \- No heat <cRmeiHTR>,
+		Permanent press \- Low heat <i2qu8gC4>,
+		Permanent press \- Medium heat <Gu2NdRXI>;
+	
+	gentle dry cycle <NnKYrapr> ->
+	
+		Gentle dry cycle \- No heat <IEr69Qbh>,
+		Gentle dry cycle \- Low heat <7l8Umd03>,
+		Gentle dry cycle \- Medium heat <V13CBQWK>;

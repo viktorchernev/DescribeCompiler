@@ -1,0 +1,22 @@
+directives -> 
+	namespace <treeofall.personal.MyHomeAdmin>;
+
+
+second brain apps <secondBrainApps> ->
+
+	//[https://www.taskade.com/blog/best-knowledge-base-apps/] 
+	Taskade (freemium),
+	OneNote (free w microsoft acc),
+	Obsidian (freemium),
+	Roam Research (paid) {color|red},
+	Notion (freemium),
+	Evernote (freemium),
+	Bear App (freemium),
+	
+	gap {empty},
+	Standard Notes (oss freemium),
+	Craft,
+	Emacs Org Mode,
+	RemNote,
+	Tana,
+	Guru;

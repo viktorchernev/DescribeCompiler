@@ -1,0 +1,16 @@
+directives ->
+	namespace <treeofall.public.technologies.cultivars>;
+
+
+TODO <TODO> ->
+
+	cherry,
+	potato,
+	cucumber,
+	pumpkin,
+	squash,
+	zucchini,
+	melons
+	salad,
+	apple,
+	peach;

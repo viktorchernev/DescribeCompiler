@@ -1,0 +1,26 @@
+directives -> 
+	namespace <treeofall.personal.MyHomeAdmin>;
+
+
+My Android phone apps I <MyPhoneApps1> ->
+
+	Adobe Acrobat Reader <pNGdWYSv>,
+	Wikipedia <S98LrGvj>,
+	Notepad++ <1V6t077r>,
+	Broshura.bg <HD1RkHIX>,
+	All Backup Restore \- Darez Hiko <nYHXksdv>,
+	DuckDuckGo <RoO7GAo8>,
+	Files \- Google <B3mkRdir>,
+	File Manager + <QZWShBLK>,
+	Schreddit <1khT8Y9J>,
+	Signal <2LbLt9lG>,
+	Sim Card Reader <Y2QqeiFK>,
+	Sinoptik.bg <0ZHLWKNQ>,
+	Shazam <dDGfcVAm>,
+	Google translate <4dsFCW8Q>,
+
+	Viber <xP3oueqS>,
+	Messenger <fXciRywr>,
+
+	Call Recorder <8Ksq3GnD>,
+	Sound Recorder <2nwA0AHd>;

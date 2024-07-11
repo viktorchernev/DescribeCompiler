@@ -1,0 +1,35 @@
+directives ->
+	namespace <treeofall.public.technologies.cultivars>;
+
+
+Avocado cultivars <CultivarsAvocado>
+[https://homesteadandchill.com/20-avocado-varieties-type-a-b-explained/] ->
+
+    Type A ->
+    
+         Hass, 
+         Pinterton, 
+         Lamb Hass, 
+         Carmen Hass, 
+         Gwen, 
+         Reed, 
+         Mexicola Grande, 
+         Stewart, 
+         Holiday, 
+         Pryor (aka Fantastic), 
+         Opal (aka Lila);
+
+    Type B ->
+
+         Fuerte, 
+         Bacon, 
+         Zutano, 
+         Sir Prize, 
+         Joey, 
+         Winter Mexican, 
+         Brogdon, 
+         Wilma aka Brazos Belle;
+
+    Type AB ->
+
+           Wurtz;

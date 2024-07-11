@@ -1,0 +1,14 @@
+directives ->
+	language-version <1.1>,
+	namespace <recreation.hobbies>;
+
+
+model building <modelBuilding> ->
+
+	rocketry <1YlXCOjc>,
+	aircraft <JZeJHVqO>,
+	military machinery <aZPvmze6>,
+	cars <nTrzaTaW>,
+	trains <1TaVzIFf>,
+	ships <xGkMoNL4>,
+	buildings <ecvobwPf>;
