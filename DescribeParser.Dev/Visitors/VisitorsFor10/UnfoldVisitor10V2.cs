@@ -10,7 +10,7 @@ using System.Linq.Expressions;
 
 namespace DescribeParser.Visitors
 {
-    public class UnfoldVisitor09 : Describe09BaseVisitor<object>, IUnfoldVisitor
+    public class UnfoldVisitor10V2 : Describe10BaseVisitor<object>, IUnfoldVisitorV2
     {
         // Misc
         private static Random random = new Random();
@@ -23,7 +23,7 @@ namespace DescribeParser.Visitors
 
 
         // Ctor & Properties
-        public UnfoldVisitor09()
+        public UnfoldVisitor10V2()
         {
             _log = "";
             _lerror = null;
@@ -56,6 +56,7 @@ namespace DescribeParser.Visitors
         }
 
 
+
         /// <summary>
         /// Translate ANTLR4 parser parse tree (root ScriptureContext context) to Unfold structure.
         /// "scripture : expression_list EOF | expression EOF;"
@@ -64,12 +65,12 @@ namespace DescribeParser.Visitors
         /// <param name="context">Root context produced by the parser aka the parse tree</param>
         /// <param name="filename">The file name of the file that was parsed</param>
         /// <returns>True if successful</returns>
-        public bool DoScripture(DescribeUnfold u, ParserRuleContext context, string filename = "")
+        public bool DoScripture(DescribeUnfoldV2 u, ParserRuleContext context, string filename = "")
         {
-            if (context is not Describe09Parser.ScriptureContext)
-                throw new Exception("context is Not Describe09Parser.ScriptureContext");
+            if (context is not Describe10Parser.ScriptureContext)
+                throw new Exception("context is Not Describe10Parser.ScriptureContext");
 
-            return DoScripture(u, context as Describe09Parser.ScriptureContext, filename);
+            return DoScripture(u, context as Describe10Parser.ScriptureContext, filename);
         }
 
         /// <summary>
@@ -79,7 +80,7 @@ namespace DescribeParser.Visitors
         /// <param name="u">Unfold to be populated</param>
         /// <param name="context">Root context produced by the parser aka the parse tree</param>
         /// <returns>True if successful</returns>
-        public bool DoScripture(DescribeUnfold u, Describe09Parser.ScriptureContext context, string filename = "")
+        public bool DoScripture(DescribeUnfoldV2 u, Describe10Parser.ScriptureContext context, string filename = "")
         {
             //reset namespace for the file
             u.LastNamespace = "";
@@ -91,15 +92,15 @@ namespace DescribeParser.Visitors
 
             //Unfold the scripture
             IParseTree child = context.GetChild(0);
-            if (child is Describe09Parser.ExpressionContext)
+            if (child is Describe10Parser.ExpressionContext)
             {
-                string key2 = DoExpression(u, child as Describe09Parser.ExpressionContext);
+                string key2 = DoExpression(u, child as Describe10Parser.ExpressionContext);
                 if (isPrimary) u.PrimaryProductions.Add(key2);
                 return true;
             }
-            else if (child is Describe09Parser.Expression_listContext)
+            else if (child is Describe10Parser.Expression_listContext)
             {
-                string[] keys = DoExpressionList(u, child as Describe09Parser.Expression_listContext, true);
+                string[] keys = DoExpressionList(u, child as Describe10Parser.Expression_listContext, true);
                 if (isPrimary)
                 {
                     for (int i = 0; i < keys.Length; i++)
@@ -118,10 +119,10 @@ namespace DescribeParser.Visitors
         /// Translate ANTLR4 parser expression_list to Unfold structure.
         /// "expression_list : expression+ expression;"
         /// </summary>
-        private string[] DoExpressionList(DescribeUnfold u, Describe09Parser.Expression_listContext context, bool isPrimery = false)
+        private string[] DoExpressionList(DescribeUnfoldV2 u, Describe10Parser.Expression_listContext context, bool isPrimery = false)
         {
             int childCount = context.ChildCount;
-            var firstChild = context.GetChild(0) as Describe09Parser.ExpressionContext;
+            var firstChild = context.GetChild(0) as Describe10Parser.ExpressionContext;
             string key1 = DoExpression(u, firstChild);
 
             //We want to find out now if this first expression in the expression list
@@ -158,7 +159,7 @@ namespace DescribeParser.Visitors
             if (removeKey == false) keys.Add(key1);
             for (int i = 1; i < childCount; i++)
             {
-                var child = context.GetChild(i) as Describe09Parser.ExpressionContext;
+                var child = context.GetChild(i) as Describe10Parser.ExpressionContext;
                 string key = DoExpression(u, child);
                 keys.Add(key);
             }
@@ -173,7 +174,7 @@ namespace DescribeParser.Visitors
         ///	"item_or_expression_part : item SEPARATOR"
         /// "item_or_expression_part : expression (SEPARATOR)? ;"
         /// </summary>
-        private string[] DoItemOrExpressionList(DescribeUnfold u, Describe09Parser.Item_or_expression_listContext context)
+        private string[] DoItemOrExpressionList(DescribeUnfoldV2 u, Describe10Parser.Item_or_expression_listContext context)
         {
             int childCount = context.ChildCount;
             List<string> keys = new List<string>();
@@ -181,30 +182,30 @@ namespace DescribeParser.Visitors
             //deal with item_or_expression_part
             for (int i = 0; i < childCount - 1; i++)
             {
-                var ch = context.GetChild(i) as Describe09Parser.Item_or_expression_partContext;
+                var ch = context.GetChild(i) as Describe10Parser.Item_or_expression_partContext;
                 var child = ch.GetChild(0);
-                if (child is Describe09Parser.ItemContext)
+                if (child is Describe10Parser.ItemContext)
                 {
-                    string k = DoItem(u, child as Describe09Parser.ItemContext);
+                    string k = DoItem(u, child as Describe10Parser.ItemContext);
                     keys.Add(k);
                 }
-                else if (child is Describe09Parser.ExpressionContext)
+                else if (child is Describe10Parser.ExpressionContext)
                 {
-                    string k = DoExpression(u, child as Describe09Parser.ExpressionContext);
+                    string k = DoExpression(u, child as Describe10Parser.ExpressionContext);
                     keys.Add(k);
                 }
             }
 
             //deal with last child
             var lastChild = context.GetChild(childCount - 1);
-            if (lastChild is Describe09Parser.ItemContext)
+            if (lastChild is Describe10Parser.ItemContext)
             {
-                string k = DoItem(u, lastChild as Describe09Parser.ItemContext);
+                string k = DoItem(u, lastChild as Describe10Parser.ItemContext);
                 keys.Add(k);
             }
-            else if (lastChild is Describe09Parser.ExpressionContext)
+            else if (lastChild is Describe10Parser.ExpressionContext)
             {
-                string k = DoExpression(u, lastChild as Describe09Parser.ExpressionContext);
+                string k = DoExpression(u, lastChild as Describe10Parser.ExpressionContext);
                 keys.Add(k);
             }
 
@@ -219,10 +220,10 @@ namespace DescribeParser.Visitors
         /// "expression : item producer expression TERMINATOR"
         /// "expression : item producer TERMINATOR ;"
         /// </summary>
-        private string DoExpression(DescribeUnfold u, Describe09Parser.ExpressionContext context)
+        private string DoExpression(DescribeUnfoldV2 u, Describe10Parser.ExpressionContext context)
         {
             int childCount = context.ChildCount;
-            var firstChild = context.GetChild(0) as Describe09Parser.ItemContext;
+            var firstChild = context.GetChild(0) as Describe10Parser.ItemContext;
             string head = DoItem(u, firstChild);
 
             //find out which kind of expression we have
@@ -236,9 +237,9 @@ namespace DescribeParser.Visitors
             }
 
             //otherwise continue as normal production
-            else if (thirdChild is Describe09Parser.ItemContext)
+            else if (thirdChild is Describe10Parser.ItemContext)
             {
-                string right = DoItem(u, thirdChild as Describe09Parser.ItemContext);
+                string right = DoItem(u, thirdChild as Describe10Parser.ItemContext);
 
                 //check for id collision item with same id is redefinition,
                 //but 2 productions heads with same id is collision
@@ -251,11 +252,21 @@ namespace DescribeParser.Visitors
                         prodfile + "\"";
                     throw new Exception(message);
                 }
-                u.Productions.Add(head, new List<string>() { right });
+
+                if (right.StartsWith('~'))
+                {
+                    u.Tildes.Add(head, new List<string>() { right.Substring(1) });
+                    u.Productions.Add(head, new List<string>());
+                }
+                else
+                {
+                    u.Tildes.Add(head, new List<string>());
+                    u.Productions.Add(head, new List<string>() { right.Substring(1) });
+                }
             }
-            else if (thirdChild is Describe09Parser.ExpressionContext)
+            else if (thirdChild is Describe10Parser.ExpressionContext)
             {
-                string right = DoExpression(u, thirdChild as Describe09Parser.ExpressionContext);
+                string right = DoExpression(u, thirdChild as Describe10Parser.ExpressionContext);
                 //check for id collision item with same id is redefinition,
                 //but 2 productions heads with same id is collision
                 if (u.Productions.ContainsKey(head))
@@ -267,11 +278,12 @@ namespace DescribeParser.Visitors
                         prodfile + "\"";
                     throw new Exception(message);
                 }
+                u.Tildes.Add(head, new List<string>());
                 u.Productions.Add(head, new List<string>() { right });
             }
-            else if (thirdChild is Describe09Parser.Item_or_expression_listContext)
+            else if (thirdChild is Describe10Parser.Item_or_expression_listContext)
             {
-                string[] rights = DoItemOrExpressionList(u, thirdChild as Describe09Parser.Item_or_expression_listContext);
+                string[] rights = DoItemOrExpressionList(u, thirdChild as Describe10Parser.Item_or_expression_listContext);
                 //check for id collision item with same id is redefinition,
                 //but 2 productions heads with same id is collision
                 if (u.Productions.ContainsKey(head))
@@ -283,7 +295,16 @@ namespace DescribeParser.Visitors
                         prodfile + "\"";
                     throw new Exception(message);
                 }
-                u.Productions.Add(head, rights.ToList());
+
+                List<string> tildes = new List<string>();
+                List<string> items = new List<string>();
+                for (int i = 0; i <  rights.Length; i++)
+                {
+                    if (rights[i].StartsWith('~')) tildes.Add(rights[i].Substring(1));
+                    else items.Add(rights[i]);
+                }
+                u.Tildes.Add(head, tildes);
+                u.Productions.Add(head, items);
             }
 
             //idFile
@@ -302,35 +323,36 @@ namespace DescribeParser.Visitors
         }
 
         /// <summary>
-        /// "item : (text_chunk)+ (TAG)?"
-        /// "item : (text_chunk)+ (LINK)+"
-        /// "item : (text_chunk)+ (DECORATOR)+"
-        /// "item : (text_chunk)+ (LINK)+ TAG"
-        /// "item : (text_chunk)+ TAG(LINK)+"
-        /// "item : (text_chunk)+ (DECORATOR)+ TAG"
-        /// "item : (text_chunk)+ TAG(DECORATOR)+"
-        /// "item : (text_chunk)+ (DECORATOR)+ (LINK)+"
-        /// "item : (text_chunk)+ (LINK)+ (DECORATOR)+"
-        /// "item : (text_chunk)+ TAG (DECORATOR)+ (LINK)+"
-        /// "item : (text_chunk)+ (DECORATOR)+ TAG(LINK)+"
-        /// "item : (text_chunk)+ (DECORATOR)+ (LINK)+ TAG"
-        /// "item : (text_chunk)+ TAG(LINK)+ (DECORATOR)+"
-        /// "item : (text_chunk)+ (LINK)+ TAG(DECORATOR)+"
-        /// "item : (text_chunk)+ (LINK)+ (DECORATOR)+ TAG ;"
+        /// "TILDE? item : (text_chunk)+ (TAG)?"
+        /// "TILDE? item : (text_chunk)+ (LINK)+"
+        /// "TILDE? item : (text_chunk)+ (DECORATOR)+"
+        /// "TILDE? item : (text_chunk)+ (LINK)+ TAG"
+        /// "TILDE? item : (text_chunk)+ TAG(LINK)+"
+        /// "TILDE? item : (text_chunk)+ (DECORATOR)+ TAG"
+        /// "TILDE? item : (text_chunk)+ TAG(DECORATOR)+"
+        /// "TILDE? item : (text_chunk)+ (DECORATOR)+ (LINK)+"
+        /// "TILDE? item : (text_chunk)+ (LINK)+ (DECORATOR)+"
+        /// "TILDE? item : (text_chunk)+ TAG (DECORATOR)+ (LINK)+"
+        /// "TILDE? item : (text_chunk)+ (DECORATOR)+ TAG(LINK)+"
+        /// "TILDE? item : (text_chunk)+ (DECORATOR)+ (LINK)+ TAG"
+        /// "TILDE? item : (text_chunk)+ TAG(LINK)+ (DECORATOR)+"
+        /// "TILDE? item : (text_chunk)+ (LINK)+ TAG(DECORATOR)+"
+        /// "TILDE? item : (text_chunk)+ (LINK)+ (DECORATOR)+ TAG ;"
         /// </summary>
-        private string DoItem(DescribeUnfold u, Describe09Parser.ItemContext context)
+        private string DoItem(DescribeUnfoldV2 u, Describe10Parser.ItemContext context)
         {
             int childCount = context.ChildCount;
             string text = "";
             string tag = "";
             List<string> links = new List<string>();
             List<string> decorators = new List<string>();
+            bool isTilde = false;
             for (int i = 0; i < childCount; i++)
             {
                 var child = context.GetChild(i);
-                if(child is Describe09Parser.Text_chunkContext)
+                if(child is Describe10Parser.Text_chunkContext)
                 {
-                    ITerminalNode token = (child as Describe09Parser.Text_chunkContext).GetChild(0) as ITerminalNode;
+                    ITerminalNode token = (child as Describe10Parser.Text_chunkContext).GetChild(0) as ITerminalNode;
                     string s = token.GetText();
                     text += s;
                 }
@@ -364,6 +386,10 @@ namespace DescribeParser.Visitors
                         {
                             decorators.Add(s);
                         }
+                    }
+                    else if (type == "TILDE")
+                    {
+                        isTilde = true;
                     }
                 }
             }
@@ -404,7 +430,7 @@ namespace DescribeParser.Visitors
                         DescribeLink l = new DescribeLink();
                         l.Url = url; l.Title = title;
                         u.Links[tag].Add(l);
-                    } 
+                    }
                 }
             }
 
@@ -427,19 +453,19 @@ namespace DescribeParser.Visitors
                     {
                         string[] sep = decorator.Split('|', StringSplitOptions.RemoveEmptyEntries);
                         List<string> ds = sep.ToList();
-                        for(int i = 0; i < ds.Count; i++) ds[i] = ds[i].Trim();
+                        for (int i = 0; i < ds.Count; i++) ds[i] = ds[i].Trim();
 
                         DescribeDecorator d = new DescribeDecorator();
                         if (ds.Count == 1)
                         {
                             d.Name = ds[0];
                         }
-                        else if (ds.Count == 2) 
+                        else if (ds.Count == 2)
                         {
                             d.Name = ds[0];
                             d.Value = ds[1];
                         }
-                        else if(ds.Count == 3)
+                        else if (ds.Count == 3)
                         {
                             d.Category = ds[0];
                             d.Name = ds[1];
@@ -462,6 +488,7 @@ namespace DescribeParser.Visitors
                 u.ItemidFile[tag].Add(cf);
             }
 
+            if (isTilde) tag = "~" + tag;
             return tag;
         }
 
@@ -469,7 +496,7 @@ namespace DescribeParser.Visitors
 
         static string GetTokenType(int tokenType)
         {
-            return Describe09Lexer.DefaultVocabulary.GetSymbolicName(tokenType);
+            return Describe10Lexer.DefaultVocabulary.GetSymbolicName(tokenType);
         }
     }
 }

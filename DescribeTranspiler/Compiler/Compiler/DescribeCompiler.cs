@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using DescribeParser.Visitors;
 using Antlr4.Runtime;
 using DescribeParser;
+using DescribeParser.Unfold;
 
 
 namespace DescribeTranspiler

@@ -1,4 +1,5 @@
 ﻿using DescribeParser;
+using DescribeParser.Unfold;
 
 namespace DescribeTranspiler.Translators
 {
@@ -16,7 +17,7 @@ namespace DescribeTranspiler.Translators
 
 
         /// <summary>
-        /// Translade an unfold structure. This is the main method.
+        /// Translate an unfold structure. This is the main method.
         /// </summary>
         /// <param name="u">The unfold structure to translate.</param>
         /// <returns>The resulted string in the target language.</returns>

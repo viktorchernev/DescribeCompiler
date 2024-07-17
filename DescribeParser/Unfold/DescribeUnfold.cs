@@ -5,44 +5,86 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
 
-namespace DescribeParser
+namespace DescribeParser.Unfold
 {
-
-    //unfold.Files		    ->		unfold.AllFiles
-    //unfold.CurFile		->		unfold.LastFile
-
+    /// <summary>
+    /// Represents the data structure for describing unfolded data with links and decorators.
+    /// Basically, DescribeUnfoldV2 is DescribeUnfold with Link and Decorator structures.
+    /// </summary>
     public partial class DescribeUnfold
     {
+        // should be removed or smth
+        // probably offset to a ParseJob class
+        public string LastNamespace;    //current namespace we are in
+        public string LastFile;         //current file we are in
+        public string InitialDir;       //the starting directory
+
+
         //file stats
-        public List<string> AllFiles;                                   //list of files that have been parsed or failed
-        public List<string> ParsedFiles;                                //list of files that have been parsed successfully
-        public List<string> FailedFiles;                                //list of files that have been parsed unsuccessfully
+        /// <summary>
+        /// Gets or sets the list of all files that have been parsed or failed.
+        /// </summary>
+        public List<string> AllFiles { get; set; }
+
+        /// <summary>
+        /// Gets or sets the list of files that have been parsed successfully.
+        /// </summary>
+        public List<string> ParsedFiles { get; set; }
+
+        /// <summary>
+        /// Gets or sets the list of files that have been parsed unsuccessfully.
+        /// </summary>
+        public List<string> FailedFiles { get; set; }
+
+
 
         //main data
-        public List<string> PrimaryProductions;                         //ids of productions that are primary productions
-        public Dictionary<string, List<string>> Productions;            //id of left-hand side item, ids of right-hand side items
-        public Dictionary<string, List<string>> Tildes;            	    //id of item, ids of tildes
-        public Dictionary<string, string> Translations;                 //id of item, text of item
-        public Dictionary<string, List<Tuple<string, string>>> Links;       //id of item, links texts
-        public Dictionary<string, List<List<string>>> Decorators;           //id of item, decorators texts
+        /// <summary>
+        /// Gets or sets the list of primary production IDs.
+        /// </summary>
+        public List<string> PrimaryProductions { get; set; }
+
+        /// <summary>
+        /// Gets or sets the dictionary of productions (head item ID - body items ID's).
+        /// </summary>
+        public Dictionary<string, List<string>> Productions { get; set; }
+
+        /// <summary>
+        /// Gets or sets the dictionary of tildes (head item ID - body items ID's).
+        /// </summary>
+        public Dictionary<string, List<string>> Tildes { get; set; }
+
+        /// <summary>
+        /// Gets or sets the dictionary of translations (item ID - item Text).
+        /// </summary>
+        public Dictionary<string, string> Translations { get; set; }
+
+        /// <summary>
+        /// Gets or sets the dictionary of links (item ID - links for that item).
+        /// </summary>
+        public Dictionary<string, List<DescribeLink>> Links { get; set; }
+
+        /// <summary>
+        /// Gets or sets the dictionary of decorators (item ID - decorators for that item).
+        /// </summary>
+        public Dictionary<string, List<DescribeDecorator>> Decorators { get; set; }
+
+
 
         //main data place inside files
-        public Dictionary<string, List<string>> ItemidFile;             //item id, filepath(s) that contains it
-        public Dictionary<string, List<string>> ProdidFile;             //production id, filepath that contains it
+        /// <summary>
+        /// Files that contain items (item ID - filenames for that item).
+        /// </summary>
+        public Dictionary<string, List<string>> ItemidFile { get; set; }
 
-        //Those are mostly used by the parser.
-        //By naming them LastFile instead of CurFile
-        //we made them part of the parsing metrics instead
-        //of an ugly remnant and a place not to touch.
-        public string LastNamespace;                                     //current namespace we are in
-        public string LastFile;                                          //current file we are in
-        //public string FirstNamespace;
-        //public string FirstFile;
-        public string InitialDir;
+        /// <summary>
+        /// Files that contain productions (item ID - filenames for that production).
+        /// </summary>
+        public Dictionary<string, List<string>> ProdidFile { get; set; }
 
 
         /// <summary>
-        /// Ctor.
+        /// Initializes a new instance of the <see cref="DescribeUnfold"/> class.
         /// </summary>
         public DescribeUnfold()
         {
@@ -54,11 +96,14 @@ namespace DescribeParser
             Productions = new Dictionary<string, List<string>>();
             Tildes = new Dictionary<string, List<string>>();
             Translations = new Dictionary<string, string>();
-            Links = new Dictionary<string, List<Tuple<string, string>>>();
-            Decorators = new Dictionary<string, List<List<string>>>();
+            Links = new Dictionary<string, List<DescribeLink>>();
+            Decorators = new Dictionary<string, List<DescribeDecorator>>();
 
             ItemidFile = new Dictionary<string, List<string>>();
             ProdidFile = new Dictionary<string, List<string>>();
         }
     }
 }
+
+// We might implement a thread-safe version in the future, using thread-safe
+// dictionaries and collections, such as ConcurrentDictionary<TKey, TValue> and ConcurrentBag<T>

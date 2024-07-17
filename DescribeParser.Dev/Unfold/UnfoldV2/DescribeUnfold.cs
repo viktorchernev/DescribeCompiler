@@ -13,6 +13,12 @@ namespace DescribeParser.Unfold
     /// </summary>
     public partial class DescribeUnfoldV2
     {
+        // should be removed or smth
+        // probably offset to a ParseJob class
+        public string LastNamespace;    //current namespace we are in
+        public string LastFile;         //current file we are in
+
+
         //file stats
         /// <summary>
         /// Gets or sets the list of all files that have been parsed or failed.

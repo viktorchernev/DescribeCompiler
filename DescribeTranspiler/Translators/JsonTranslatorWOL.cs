@@ -1,4 +1,5 @@
 ﻿using DescribeParser;
+using DescribeParser.Unfold;
 using System;
 using System.Collections.Generic;
 
@@ -277,10 +278,10 @@ namespace DescribeTranspiler.Translators
             string linkage = "";
             if (u.Links.ContainsKey(id))
             {
-                List<Tuple<string, string>> links = u.Links[id];
+                List<DescribeLink> links = u.Links[id];
                 for (int i = 0; i < links.Count; i++)
                 {
-                    string url = links[i].Item1.Replace("\\", "");
+                    string url = links[i].Url.Replace("\\", "");
                     if (url.StartsWith("http") == false)
                     {
                         url = "https://" + links[i];
@@ -296,30 +297,29 @@ namespace DescribeTranspiler.Translators
             //replace in template
             if (u.Decorators.ContainsKey(id))
             {
-                List<List<string>> decorators = u.Decorators[id];
+                List<DescribeDecorator> decorators = u.Decorators[id];
 
                 //Get custom decorators first
-                foreach (List<string> ls in decorators)
+                foreach (DescribeDecorator d in decorators)
                 {
-                    if (!ls[0].StartsWith("custom")) continue;
-                    if (ls.Count < 2) continue;
-                    string decorator = decoratorTemplate.Replace("{NAME}", ls[0]);
-                    decorator = decorator.Replace("{VALUE}", ls[1]);
+                    if (d.Name != "custom") continue;
+                    if (d.Category == null) continue;
+                    string decorator = decoratorTemplate.Replace("{NAME}", d.Name);
+                    decorator = decorator.Replace("{VALUE}", d.Value);
                     //decorator = decorator.Replace("{VALUE}", "");
                     if (!string.IsNullOrEmpty(customDecorators)) customDecorators += ",";
                     customDecorators += decorator;
                 }
 
-                foreach (List<string> ls in decorators)
+                foreach (DescribeDecorator d in decorators)
                 {
-                    if (ls[0].StartsWith("color"))
+                    if (d.Name == "color")
                     {
-                        string val = ls[1];
                         string res = coloredProductionTemplate.Replace("{TITLE}",
                             u.Translations[id].Replace("\\", "\\\\").Replace("\"", "\\\""));
                         res = res.Replace("{LINKS}", linkage);
                         res = res.Replace("{DECORATORS}", customDecorators);
-                        res = res.Replace("{COLOR}", val);
+                        res = res.Replace("{COLOR}", d.Value);
                         res = res.Replace("{ITEMS}", items);
                         if (res.Contains("{ID}")) res = res.Replace("{ID}", id);
                         return res;
@@ -353,10 +353,10 @@ namespace DescribeTranspiler.Translators
             string linkage = "";
             if (u.Links.ContainsKey(id))
             {
-                List<Tuple<string, string>> links = u.Links[id];
+                List<DescribeLink> links = u.Links[id];
                 for (int i = 0; i < links.Count; i++)
                 {
-                    string url = links[i].Item1.Replace("\\", "");
+                    string url = links[i].Url.Replace("\\", "");
                     if (url.StartsWith("http") == false)
                     {
                         url = "https://" + url;
@@ -382,7 +382,7 @@ namespace DescribeTranspiler.Translators
             //replace in template
             if (u.Decorators.ContainsKey(id))
             {
-                List<List<string>> decorators = u.Decorators[id];
+                List<DescribeDecorator> decorators = u.Decorators[id];
 
                 //Get custom decorators first
                 //foreach (List<string> ls in decorators)
@@ -410,13 +410,13 @@ namespace DescribeTranspiler.Translators
                 //    shortvers = "\"shortvers\":[" + shortvers + "],";
                 //}
 
-                foreach (List<string> ls in decorators)
+                foreach (DescribeDecorator d in decorators)
                 {
-                    if (ls[0] == "empty")
+                    if (d.Name == "empty")
                     {
                         return emptyItemTemplate;
                     }
-                    else if (ls[0] == "comment")
+                    else if (d.Name == "comment")
                     {
                         string res = commentItemTemplate.Replace("{ITEM}",
                                 u.Translations[id].Replace("\\", "\\\\")
@@ -426,7 +426,7 @@ namespace DescribeTranspiler.Translators
                         if (res.Contains("{ID}")) res = res.Replace("{ID}", id);
                         return res;
                     }
-                    else if (ls[0] == "nlcomment")
+                    else if (d.Name == "nlcomment")
                     {
                         string res = nlcommentItemTemplate.Replace("{ITEM}",
                                 u.Translations[id].Replace("\\", "\\\\")
@@ -436,16 +436,15 @@ namespace DescribeTranspiler.Translators
                         if (res.Contains("{ID}")) res = res.Replace("{ID}", id);
                         return res;
                     }
-                    else if (ls[0].StartsWith("color"))
+                    else if (d.Name == "color")
                     {
-                        string val = ls[1];
                         string res = coloredItemTemplate.Replace("{ITEM}",
                             u.Translations[id].Replace("\\", "\\\\")
                             .Replace("\"", "\\\""));
                         res = res.Replace("{LINKS}", linkage);
                         res = res.Replace("{DECORATORS}", customDecorators);
                         res = res.Replace("{SHORTVERS}", shortvers);
-                        res = res.Replace("{COLOR}", val);
+                        res = res.Replace("{COLOR}", d.Value);
                         if (res.Contains("{ID}")) res = res.Replace("{ID}", id);
                         return res;
                     }

@@ -1,4 +1,5 @@
 ﻿using DescribeParser;
+using DescribeParser.Unfold;
 using System;
 using System.Collections.Generic;
 
@@ -145,10 +146,10 @@ namespace DescribeTranspiler.Translators
             string linkage = "";
             if (u.Links.ContainsKey(id))
             {
-                List<Tuple<string, string>> links = u.Links[id];
+                List<DescribeLink> links = u.Links[id];
                 for (int i = 0; i < links.Count; i++)
                 {
-                    string url = links[i].Item1;
+                    string url = links[i].Url;
                     url = url.Replace("\\", "");
                     if (url.StartsWith("http") == false)
                     {
@@ -164,16 +165,14 @@ namespace DescribeTranspiler.Translators
             //replace in template
             if (u.Decorators.ContainsKey(id))
             {
-                List<List<string>> decorators = u.Decorators[id];
-                foreach (List<string> ls in decorators)
+                List<DescribeDecorator> decorators = u.Decorators[id];
+                foreach (DescribeDecorator decorator in decorators)
                 {
-                    string name = ls[0];
-                    if (name.StartsWith("color|"))
+                    if (decorator.Name == "color")
                     {
-                        string val = name.Substring(6);
                         string res = coloredProductionTemplate.Replace("{TITLE}", u.Translations[id]);
                         res = res.Replace("{LINKS}", linkage);
-                        res = res.Replace("{COLOR}", val);
+                        res = res.Replace("{COLOR}", decorator.Value);
                         res = res.Replace("{ITEMS}", items);
                         return res;
                     }
@@ -194,10 +193,10 @@ namespace DescribeTranspiler.Translators
             string linkage = "";
             if (u.Links.ContainsKey(id))
             {
-                List<Tuple<string, string>> links = u.Links[id];
+                List<DescribeLink> links = u.Links[id];
                 for (int i = 0; i < links.Count; i++)
                 {
-                    string url = links[i].Item1;
+                    string url = links[i].Url;
                     url = url.Replace("\\", "");
                     if (url.StartsWith("http") == false)
                     {
@@ -213,32 +212,30 @@ namespace DescribeTranspiler.Translators
             //replace in template
             if (u.Decorators.ContainsKey(id))
             {
-                List<List<string>> decorators = u.Decorators[id];
-                foreach (List<string> ls in decorators)
+                List<DescribeDecorator> decorators = u.Decorators[id];
+                foreach (DescribeDecorator decorator in decorators)
                 {
-                    string name = ls[0];
-                    if (name == "empty")
+                    if (decorator.Name == "empty")
                     {
                         return emptyItemTemplate;
                     }
-                    else if (name == "comment")
+                    else if (decorator.Name == "comment")
                     {
                         string res = commentItemTemplate.Replace("{ITEM}", u.Translations[id]);
                         res = res.Replace("{LINKS}", linkage);
                         return res;
                     }
-                    else if (name == "nlcomment")
+                    else if (decorator.Name == "nlcomment")
                     {
                         string res = nlcommentItemTemplate.Replace("{ITEM}", u.Translations[id]);
                         res = res.Replace("{LINKS}", linkage);
                         return res;
                     }
-                    else if (name.StartsWith("color|"))
+                    else if (decorator.Name == "color")
                     {
-                        string val = name.Substring(6);
                         string res = coloredItemTemplate.Replace("{ITEM}", u.Translations[id]);
                         res = res.Replace("{LINKS}", linkage);
-                        res = res.Replace("{COLOR}", val);
+                        res = res.Replace("{COLOR}", decorator.Value);
                         return res;
                     }
                 }

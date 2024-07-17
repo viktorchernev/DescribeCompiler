@@ -10,7 +10,7 @@ using System.Linq.Expressions;
 
 namespace DescribeParser.Visitors
 {
-    public class UnfoldVisitor09 : Describe09BaseVisitor<object>, IUnfoldVisitor
+    public class UnfoldVisitor09V2 : Describe09BaseVisitor<object>, IUnfoldVisitorV2
     {
         // Misc
         private static Random random = new Random();
@@ -23,7 +23,7 @@ namespace DescribeParser.Visitors
 
 
         // Ctor & Properties
-        public UnfoldVisitor09()
+        public UnfoldVisitor09V2()
         {
             _log = "";
             _lerror = null;
@@ -64,7 +64,7 @@ namespace DescribeParser.Visitors
         /// <param name="context">Root context produced by the parser aka the parse tree</param>
         /// <param name="filename">The file name of the file that was parsed</param>
         /// <returns>True if successful</returns>
-        public bool DoScripture(DescribeUnfold u, ParserRuleContext context, string filename = "")
+        public bool DoScripture(DescribeUnfoldV2 u, ParserRuleContext context, string filename = "")
         {
             if (context is not Describe09Parser.ScriptureContext)
                 throw new Exception("context is Not Describe09Parser.ScriptureContext");
@@ -79,7 +79,7 @@ namespace DescribeParser.Visitors
         /// <param name="u">Unfold to be populated</param>
         /// <param name="context">Root context produced by the parser aka the parse tree</param>
         /// <returns>True if successful</returns>
-        public bool DoScripture(DescribeUnfold u, Describe09Parser.ScriptureContext context, string filename = "")
+        public bool DoScripture(DescribeUnfoldV2 u, Describe09Parser.ScriptureContext context, string filename = "")
         {
             //reset namespace for the file
             u.LastNamespace = "";
@@ -118,7 +118,7 @@ namespace DescribeParser.Visitors
         /// Translate ANTLR4 parser expression_list to Unfold structure.
         /// "expression_list : expression+ expression;"
         /// </summary>
-        private string[] DoExpressionList(DescribeUnfold u, Describe09Parser.Expression_listContext context, bool isPrimery = false)
+        private string[] DoExpressionList(DescribeUnfoldV2 u, Describe09Parser.Expression_listContext context, bool isPrimery = false)
         {
             int childCount = context.ChildCount;
             var firstChild = context.GetChild(0) as Describe09Parser.ExpressionContext;
@@ -173,7 +173,7 @@ namespace DescribeParser.Visitors
         ///	"item_or_expression_part : item SEPARATOR"
         /// "item_or_expression_part : expression (SEPARATOR)? ;"
         /// </summary>
-        private string[] DoItemOrExpressionList(DescribeUnfold u, Describe09Parser.Item_or_expression_listContext context)
+        private string[] DoItemOrExpressionList(DescribeUnfoldV2 u, Describe09Parser.Item_or_expression_listContext context)
         {
             int childCount = context.ChildCount;
             List<string> keys = new List<string>();
@@ -219,7 +219,7 @@ namespace DescribeParser.Visitors
         /// "expression : item producer expression TERMINATOR"
         /// "expression : item producer TERMINATOR ;"
         /// </summary>
-        private string DoExpression(DescribeUnfold u, Describe09Parser.ExpressionContext context)
+        private string DoExpression(DescribeUnfoldV2 u, Describe09Parser.ExpressionContext context)
         {
             int childCount = context.ChildCount;
             var firstChild = context.GetChild(0) as Describe09Parser.ItemContext;
@@ -318,7 +318,7 @@ namespace DescribeParser.Visitors
         /// "item : (text_chunk)+ (LINK)+ TAG(DECORATOR)+"
         /// "item : (text_chunk)+ (LINK)+ (DECORATOR)+ TAG ;"
         /// </summary>
-        private string DoItem(DescribeUnfold u, Describe09Parser.ItemContext context)
+        private string DoItem(DescribeUnfoldV2 u, Describe09Parser.ItemContext context)
         {
             int childCount = context.ChildCount;
             string text = "";

@@ -1,6 +1,7 @@
 ﻿using Antlr4.Runtime;
 using Antlr4.Runtime.Misc;
 using Antlr4.Runtime.Tree;
+using DescribeParser.Unfold;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -409,7 +410,7 @@ namespace DescribeParser.Visitors
             //links
             if (!u.Links.Keys.Contains(tag))
             {
-                u.Links.Add(tag, new List<Tuple<string, string>>());
+                u.Links.Add(tag, new List<DescribeLink>());
             }
             if (links.Count() > 0)
             {
@@ -418,21 +419,25 @@ namespace DescribeParser.Visitors
                     int pipeIndex = link.IndexOf('|');
                     if (pipeIndex <= 0)
                     {
-                        u.Links[tag].Add(new Tuple<string, string>(link, ""));
+                        DescribeLink l = new DescribeLink();
+                        l.Url = link;
+                        u.Links[tag].Add(l);
                     }
                     else
                     {
                         string url = link.Substring(0, pipeIndex).Trim();
                         string title = link.Substring(pipeIndex + 1).Trim();
-                        u.Links[tag].Add(new Tuple<string, string>(url, title));
-                    } 
+                        DescribeLink l = new DescribeLink();
+                        l.Url = url; l.Title = title;
+                        u.Links[tag].Add(l);
+                    }
                 }
             }
 
             //decorators
             if (!u.Decorators.Keys.Contains(tag))
             {
-                u.Decorators.Add(tag, new List<List<string>>());
+                u.Decorators.Add(tag, new List<DescribeDecorator>());
             }
             if (decorators != null && decorators.Count() > 0)
             {
@@ -440,14 +445,32 @@ namespace DescribeParser.Visitors
                 {
                     if (decorator.Contains('|') == false)
                     {
-                        List<string> d = new List<string>() { decorator.Trim() };
+                        DescribeDecorator d = new DescribeDecorator();
+                        d.Name = decorator.Trim();
                         u.Decorators[tag].Add(d);
                     }
                     else
                     {
                         string[] sep = decorator.Split('|', StringSplitOptions.RemoveEmptyEntries);
-                        List<string> d = sep.ToList();
-                        for(int i = 0; i < d.Count; i++) d[i] = d[i].Trim();
+                        List<string> ds = sep.ToList();
+                        for (int i = 0; i < ds.Count; i++) ds[i] = ds[i].Trim();
+
+                        DescribeDecorator d = new DescribeDecorator();
+                        if (ds.Count == 1)
+                        {
+                            d.Name = ds[0];
+                        }
+                        else if (ds.Count == 2)
+                        {
+                            d.Name = ds[0];
+                            d.Value = ds[1];
+                        }
+                        else if (ds.Count == 3)
+                        {
+                            d.Category = ds[0];
+                            d.Name = ds[1];
+                            d.Value = ds[2];
+                        }
                         u.Decorators[tag].Add(d);
                     }
                 }

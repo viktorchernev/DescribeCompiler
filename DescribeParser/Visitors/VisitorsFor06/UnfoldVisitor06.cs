@@ -1,6 +1,7 @@
 ﻿using Antlr4.Runtime;
 using Antlr4.Runtime.Misc;
 using Antlr4.Runtime.Tree;
+using DescribeParser.Unfold;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -334,11 +335,11 @@ namespace DescribeParser.Visitors
             //in order to initialize them and not have nulls
             if (!u.Links.Keys.Contains(tag))
             {
-                u.Links.Add(tag, new List<Tuple<string, string>>());
+                u.Links.Add(tag, new List<DescribeLink>());
             }
             if (!u.Decorators.Keys.Contains(tag))
             {
-                u.Decorators.Add(tag, new List<List<string>>());
+                u.Decorators.Add(tag, new List<DescribeDecorator>());
             }
 
             //idFile

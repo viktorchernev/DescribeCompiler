@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DescribeParser
+namespace DescribeParser.Unfold
 {
     public partial class DescribeUnfold
     {
-        private readonly string INDENT = "    ";
+        public string INDENT = "    ";
 
 
         public override string ToString()
@@ -61,7 +61,7 @@ namespace DescribeParser
 
             for (int i = 0; i < ParsedFiles.Count; i++)
             {
-                text += INDENT + INDENT + '"' + AllFiles[i] + '"' + Environment.NewLine;
+                text += INDENT + INDENT + '"' + ParsedFiles[i] + '"' + Environment.NewLine;
             }
 
             text += Environment.NewLine;
@@ -74,7 +74,7 @@ namespace DescribeParser
 
             for (int i = 0; i < FailedFiles.Count; i++)
             {
-                text += INDENT + INDENT + '"' + AllFiles[i] + '"' + Environment.NewLine;
+                text += INDENT + INDENT + '"' + FailedFiles[i] + '"' + Environment.NewLine;
             }
 
             text += Environment.NewLine;
@@ -175,7 +175,7 @@ namespace DescribeParser
             string text = INDENT + ".Links" + Environment.NewLine;
             if (Links.Count == 0) return text;
 
-            foreach (KeyValuePair<string, List<Tuple<string, string>>> kvp in Links)
+            foreach (KeyValuePair<string, List<DescribeLink>> kvp in Links)
             {
                 if(kvp.Value.Count == 0)
                 {
@@ -184,12 +184,11 @@ namespace DescribeParser
                 }
                 else if (kvp.Value.Count == 1)
                 {
-                    string link = "\"" + kvp.Value[0].Item1 + "\"";
-                    if (string.IsNullOrEmpty(kvp.Value[0].Item2) == false)
-                    {
-                        link += " | \"" + kvp.Value[0].Item2 + "\"";
-                    }
-                    text += INDENT + INDENT + '"' + kvp.Key + "\" - " + link;
+                    DescribeLink l = kvp.Value[0];
+                    string ltxt = "\"" + l.Url + "\"";
+                    if (l.Title != null) ltxt = " | \"" + l.Title + "\"";
+                    if (l.Letter != null) ltxt = " | \"" + l.Letter + "\"";
+                    text += INDENT + INDENT + '"' + kvp.Key + "\" - " + ltxt;
                     text += Environment.NewLine;
                 }
                 else if (kvp.Value.Count > 1)
@@ -197,12 +196,11 @@ namespace DescribeParser
                     text += Environment.NewLine + INDENT + INDENT + '"' + kvp.Key + "\" -" + Environment.NewLine;
                     for(int i = 0; i < kvp.Value.Count; i++)
                     {
-                        string link = "\"" + kvp.Value[i].Item1 + "\"";
-                        if (string.IsNullOrEmpty(kvp.Value[i].Item2) == false)
-                        {
-                            link += " | \"" + kvp.Value[i].Item2 + "\"";
-                        }
-                        text += INDENT + INDENT + INDENT + link + Environment.NewLine;
+                        DescribeLink l = kvp.Value[i];
+                        string ltxt = "\"" + l.Url + "\"";
+                        if (l.Title != null) ltxt = " | \"" + l.Title + "\"";
+                        if (l.Letter != null) ltxt = " | \"" + l.Letter + "\"";
+                        text += INDENT + INDENT + INDENT + ltxt + Environment.NewLine;
                     }
                     text += Environment.NewLine;
                 }
@@ -215,7 +213,7 @@ namespace DescribeParser
             string text = INDENT + ".Decorators" + Environment.NewLine;
             if (Decorators.Count == 0) return text;
 
-            foreach (KeyValuePair<string, List<List<string>>> kvp in Decorators)
+            foreach (KeyValuePair<string, List<DescribeDecorator>> kvp in Decorators)
             {
                 if (kvp.Value.Count == 0)
                 {
@@ -224,8 +222,11 @@ namespace DescribeParser
                 }
                 else if (kvp.Value.Count == 1)
                 {
-                    string decorator = "\"" + string.Join("\" | \"", kvp.Value[0]) + "\"";
-                    text += INDENT + INDENT + '"' + kvp.Key + "\" - " + decorator;
+                    DescribeDecorator d = kvp.Value[0];
+                    string dtxt = "\"" + d.Name + "\"";
+                    if (d.Value != null) dtxt = " | \"" + d.Value + "\"";
+                    if (d.Category != null) dtxt = "\"" + d.Category + "\" | " + dtxt;
+                    text += INDENT + INDENT + '"' + kvp.Key + "\" - " + dtxt;
                     text += Environment.NewLine;
                 }
                 else if (kvp.Value.Count > 1)
@@ -233,8 +234,11 @@ namespace DescribeParser
                     text += Environment.NewLine + INDENT + INDENT + '"' + kvp.Key + "\" -" + Environment.NewLine;
                     for (int i = 0; i < kvp.Value.Count; i++)
                     {
-                        string decorator = "\"" + string.Join("\" | \"", kvp.Value[i]) + "\"";
-                        text += INDENT + INDENT + INDENT + decorator + Environment.NewLine;
+                        DescribeDecorator d = kvp.Value[0];
+                        string dtxt = "\"" + d.Name + "\"";
+                        if (d.Value != null) dtxt = " | \"" + d.Value + "\"";
+                        if (d.Category != null) dtxt = "\"" + d.Category + "\" | " + dtxt;
+                        text += INDENT + INDENT + INDENT + dtxt + Environment.NewLine;
                     }
                     text += Environment.NewLine;
                 }
