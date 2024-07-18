@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace DescribeTranspiler.Translators
 {
-    public class HtmlTranslator : DescribeTranslator
+    public class HtmlBasicTranslator : DescribeTranslator
     {
         public override bool IsInitialized
         {
@@ -16,7 +16,7 @@ namespace DescribeTranspiler.Translators
 
 
         //templates
-        const string templatesFolderName = "HTML_PARACORD";
+        const string templatesFolderName = "HTML_PLAIN";
         static string pageTemplate;
         static string rootTemplate;
         static string itemTemplate;
@@ -34,7 +34,7 @@ namespace DescribeTranspiler.Translators
         /// Ctor.
         /// The Translator is loaded with the default templates.
         /// </summary>
-        public HtmlTranslator()
+        public HtmlBasicTranslator()
         {
             //set default log handlers
             LogText = log;

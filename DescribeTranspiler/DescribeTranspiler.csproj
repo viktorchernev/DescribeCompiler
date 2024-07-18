@@ -7,6 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Translators\Templates\HTML_PLAIN\Item.html" />
+    <None Remove="Translators\Templates\HTML_PLAIN\ItemColored.html" />
+    <None Remove="Translators\Templates\HTML_PLAIN\ItemComment.html" />
+    <None Remove="Translators\Templates\HTML_PLAIN\ItemCommentNl.html" />
+    <None Remove="Translators\Templates\HTML_PLAIN\ItemEmpty.html" />
+    <None Remove="Translators\Templates\HTML_PLAIN\Link.html" />
+    <None Remove="Translators\Templates\HTML_PLAIN\Page.html" />
+    <None Remove="Translators\Templates\HTML_PLAIN\Production.html" />
+    <None Remove="Translators\Templates\HTML_PLAIN\ProductionColored.html" />
+    <None Remove="Translators\Templates\HTML_PLAIN\Root.html" />
     <None Remove="Translators\Templates\HTML_PARACORD\Item.html" />
     <None Remove="Translators\Templates\HTML_PARACORD\ItemColored.html" />
     <None Remove="Translators\Templates\HTML_PARACORD\ItemComment.html" />
@@ -28,20 +38,32 @@
     <None Remove="Translators\Templates\JSON_COMMONER\Production.json" />
     <None Remove="Translators\Templates\JSON_COMMONER\ProductionColored.json" />
     <None Remove="Translators\Templates\JSON_COMMONER\Root.json" />
-    <None Remove="Translators\Templates\JSON_WORLD_OF_LISTS\Decorator.json" />
-    <None Remove="Translators\Templates\JSON_WORLD_OF_LISTS\Item.json" />
-    <None Remove="Translators\Templates\JSON_WORLD_OF_LISTS\ItemColored.json" />
-    <None Remove="Translators\Templates\JSON_WORLD_OF_LISTS\ItemComment.json" />
-    <None Remove="Translators\Templates\JSON_WORLD_OF_LISTS\ItemCommentNl.json" />
-    <None Remove="Translators\Templates\JSON_WORLD_OF_LISTS\ItemEmpty.json" />
-    <None Remove="Translators\Templates\JSON_WORLD_OF_LISTS\Link.json" />
-    <None Remove="Translators\Templates\JSON_WORLD_OF_LISTS\Page.json" />
-    <None Remove="Translators\Templates\JSON_WORLD_OF_LISTS\Production.json" />
-    <None Remove="Translators\Templates\JSON_WORLD_OF_LISTS\ProductionColored.json" />
-    <None Remove="Translators\Templates\JSON_WORLD_OF_LISTS\Root.json" />
+    <None Remove="Translators\Templates\JSON_LISTIARY\Decorator.json" />
+    <None Remove="Translators\Templates\JSON_LISTIARY\Item.json" />
+    <None Remove="Translators\Templates\JSON_LISTIARY\ItemColored.json" />
+    <None Remove="Translators\Templates\JSON_LISTIARY\ItemComment.json" />
+    <None Remove="Translators\Templates\JSON_LISTIARY\ItemCommentNl.json" />
+    <None Remove="Translators\Templates\JSON_LISTIARY\ItemEmpty.json" />
+    <None Remove="Translators\Templates\JSON_LISTIARY\Link.json" />
+    <None Remove="Translators\Templates\JSON_LISTIARY\Page.json" />
+    <None Remove="Translators\Templates\JSON_LISTIARY\Production.json" />
+    <None Remove="Translators\Templates\JSON_LISTIARY\ProductionColored.json" />
+    <None Remove="Translators\Templates\JSON_LISTIARY\Root.json" />
+    <None Remove="Translators\Templates\SQL_DATABASEFILL\FailedFileQuery.sql" />
+    <None Remove="Translators\Templates\SQL_DATABASEFILL\PassedFileQuery.sql" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Translators\Templates\HTML_PLAIN\Item.html" />
+    <EmbeddedResource Include="Translators\Templates\HTML_PLAIN\ItemColored.html" />
+    <EmbeddedResource Include="Translators\Templates\HTML_PLAIN\ItemComment.html" />
+    <EmbeddedResource Include="Translators\Templates\HTML_PLAIN\ItemCommentNl.html" />
+    <EmbeddedResource Include="Translators\Templates\HTML_PLAIN\ItemEmpty.html" />
+    <EmbeddedResource Include="Translators\Templates\HTML_PLAIN\Link.html" />
+    <EmbeddedResource Include="Translators\Templates\HTML_PLAIN\Page.html" />
+    <EmbeddedResource Include="Translators\Templates\HTML_PLAIN\Production.html" />
+    <EmbeddedResource Include="Translators\Templates\HTML_PLAIN\ProductionColored.html" />
+    <EmbeddedResource Include="Translators\Templates\HTML_PLAIN\Root.html" />
     <EmbeddedResource Include="Translators\Templates\HTML_PARACORD\Item.html" />
     <EmbeddedResource Include="Translators\Templates\HTML_PARACORD\ItemColored.html" />
     <EmbeddedResource Include="Translators\Templates\HTML_PARACORD\ItemComment.html" />
@@ -63,17 +85,23 @@
     <EmbeddedResource Include="Translators\Templates\JSON_COMMONER\Production.json" />
     <EmbeddedResource Include="Translators\Templates\JSON_COMMONER\ProductionColored.json" />
     <EmbeddedResource Include="Translators\Templates\JSON_COMMONER\Root.json" />
-    <EmbeddedResource Include="Translators\Templates\JSON_WORLD_OF_LISTS\Decorator.json" />
-    <EmbeddedResource Include="Translators\Templates\JSON_WORLD_OF_LISTS\Item.json" />
-    <EmbeddedResource Include="Translators\Templates\JSON_WORLD_OF_LISTS\ItemColored.json" />
-    <EmbeddedResource Include="Translators\Templates\JSON_WORLD_OF_LISTS\ItemComment.json" />
-    <EmbeddedResource Include="Translators\Templates\JSON_WORLD_OF_LISTS\ItemCommentNl.json" />
-    <EmbeddedResource Include="Translators\Templates\JSON_WORLD_OF_LISTS\ItemEmpty.json" />
-    <EmbeddedResource Include="Translators\Templates\JSON_WORLD_OF_LISTS\Link.json" />
-    <EmbeddedResource Include="Translators\Templates\JSON_WORLD_OF_LISTS\Page.json" />
-    <EmbeddedResource Include="Translators\Templates\JSON_WORLD_OF_LISTS\Production.json" />
-    <EmbeddedResource Include="Translators\Templates\JSON_WORLD_OF_LISTS\ProductionColored.json" />
-    <EmbeddedResource Include="Translators\Templates\JSON_WORLD_OF_LISTS\Root.json" />
+    <EmbeddedResource Include="Translators\Templates\JSON_LISTIARY\Decorator.json" />
+    <EmbeddedResource Include="Translators\Templates\JSON_LISTIARY\Item.json" />
+    <EmbeddedResource Include="Translators\Templates\JSON_LISTIARY\ItemColored.json" />
+    <EmbeddedResource Include="Translators\Templates\JSON_LISTIARY\ItemComment.json" />
+    <EmbeddedResource Include="Translators\Templates\JSON_LISTIARY\ItemCommentNl.json" />
+    <EmbeddedResource Include="Translators\Templates\JSON_LISTIARY\ItemEmpty.json" />
+    <EmbeddedResource Include="Translators\Templates\JSON_LISTIARY\Link.json" />
+    <EmbeddedResource Include="Translators\Templates\JSON_LISTIARY\Page.json" />
+    <EmbeddedResource Include="Translators\Templates\JSON_LISTIARY\Production.json" />
+    <EmbeddedResource Include="Translators\Templates\JSON_LISTIARY\ProductionColored.json" />
+    <EmbeddedResource Include="Translators\Templates\JSON_LISTIARY\Root.json" />
+    <EmbeddedResource Include="Translators\Templates\SQL_DATABASEFILL\FailedFileQuery.sql" />
+    <EmbeddedResource Include="Translators\Templates\SQL_DATABASEFILL\PassedFileQuery.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MySql.Data" Version="9.0.0" />
   </ItemGroup>
 
   <ItemGroup>

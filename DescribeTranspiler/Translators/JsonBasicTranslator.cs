@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace DescribeTranspiler.Translators
 {
-    public class JsonTranslatorWOL : DescribeTranslator
+    public class JsonBasicTranslator : DescribeTranslator
     {
         public override bool IsInitialized
         {
@@ -16,7 +16,7 @@ namespace DescribeTranspiler.Translators
 
 
         //templates
-        const string templatesFolderName = "JSON_WORLD_OF_LISTS";
+        const string templatesFolderName = "JSON_COMMONER";
         static string pageTemplate;
         static string rootTemplate;
         static string itemTemplate;
@@ -34,7 +34,7 @@ namespace DescribeTranspiler.Translators
         /// Ctor.
         /// The Translator is loaded with the default templates.
         /// </summary>
-        public JsonTranslatorWOL()
+        public JsonBasicTranslator()
         {
             //set default log handlers
             LogText = log;
@@ -72,7 +72,7 @@ namespace DescribeTranspiler.Translators
         /// The Translator is loaded with the default templates.
         /// </summary>
         /// <param name="logText">method to log text</param>
-        public JsonTranslatorWOL(Action<string> logText)
+        public JsonBasicTranslator(Action<string> logText)
         {
             //set default log handlers
             LogText = log;
@@ -113,7 +113,7 @@ namespace DescribeTranspiler.Translators
         /// </summary>
         /// <param name="logText">method to log text</param>
         /// <param name="logError">method to log errors</param>
-        public JsonTranslatorWOL(Action<string> logText, Action<string> logError)
+        public JsonBasicTranslator(Action<string> logText, Action<string> logError)
         {
             //set default log handlers
             LogText = log;
@@ -157,7 +157,7 @@ namespace DescribeTranspiler.Translators
         /// <param name="logText">method to log text</param>
         /// <param name="logError">method to log errors</param>
         /// <param name="logInfo">method to log less important info</param>
-        public JsonTranslatorWOL(Action<string> logText, Action<string> logError, Action<string> logInfo)
+        public JsonBasicTranslator(Action<string> logText, Action<string> logError, Action<string> logInfo)
         {
             //set default log handlers
             LogText = log;
@@ -281,10 +281,11 @@ namespace DescribeTranspiler.Translators
                 List<DescribeLink> links = u.Links[id];
                 for (int i = 0; i < links.Count; i++)
                 {
-                    string url = links[i].Url.Replace("\\", "");
+                    string url = links[i].Url;
+                    url = url.Replace("\\", "");
                     if (url.StartsWith("http") == false)
                     {
-                        url = "https://" + links[i];
+                        url = "https://" + url;
                     }
                     string template = linkTemplate.Replace("{HTTPS}", url);
                     template = template.Replace("{TEXT}", CharacterDictionariesHtml.BlackCircledLettersI[i]);
@@ -304,6 +305,7 @@ namespace DescribeTranspiler.Translators
                 {
                     if (d.Name != "custom") continue;
                     if (d.Category == null) continue;
+
                     string decorator = decoratorTemplate.Replace("{NAME}", d.Name);
                     decorator = decorator.Replace("{VALUE}", d.Value);
                     //decorator = decorator.Replace("{VALUE}", "");
@@ -331,7 +333,7 @@ namespace DescribeTranspiler.Translators
 
             //HAcKeD IN PLACE REMOVE
             string cur = u.ProdidFile[id][0];
-            cur = cur.Substring(u.InitialDir.Length);
+            if(u.InitialDir != null) cur = cur.Substring(u.InitialDir.Length);
             cur = cur.Trim('\\', '/').Replace('\\', '.').Replace('/', '.');
             if (cur.EndsWith(".ds")) cur = cur.Substring(0, cur.Length - 3);
             pt = pt.Replace(",\"text\":", ",\"filename\":\"" + cur + "\",\"text\":");
@@ -362,53 +364,30 @@ namespace DescribeTranspiler.Translators
                         url = "https://" + url;
                     }
                     string template = linkTemplate.Replace("{HTTPS}", url);
-
-                    if (url.StartsWith("https://en.wikipedia.org/"))
-                    {
-                        template = template.Replace("{TEXT}", CharacterDictionariesHtml.BlackCircledLetters['W']);
-                    }
-                    else
-                    {
-                        template = template.Replace("{TEXT}", CharacterDictionariesHtml.BlackCircledLettersI[i]);
-                    }
-
+                    template = template.Replace("{TEXT}", CharacterDictionariesHtml.BlackCircledLettersI[i]);
                     if (linkage.Length > 0) linkage += ",";
                     linkage += template;
                 }
             }
 
             string customDecorators = "";
-            string shortvers = "";
             //replace in template
             if (u.Decorators.ContainsKey(id))
             {
                 List<DescribeDecorator> decorators = u.Decorators[id];
 
                 //Get custom decorators first
-                //foreach (List<string> ls in decorators)
-                //{
-                //    if (s.StartsWith("shorter|") || s.StartsWith("shorter |"))
-                //    {
-                //        string[] sss = s.Split('|');
-                //        if (!string.IsNullOrEmpty(shortvers)) shortvers += ",";
-                //        shortvers += "\"" + sss[1].Trim() + "\"";
-                //    }
-                //    else if (!s.StartsWith("custom|") && !s.StartsWith("custom |")) continue;
-                //    else
-                //    {
-                //        string[] sep = s.Split('|');
-                //        if (sep.Length < 2) continue;
-                //        string decorator = decoratorTemplate.Replace("{NAME}", sep[1].Trim());
-                //        if (sep.Length > 2) decorator = decorator.Replace("{VALUE}", sep[2].Trim());
-                //        else decorator = decorator.Replace("{VALUE}", "");
-                //        if (!string.IsNullOrEmpty(customDecorators)) customDecorators += ",";
-                //        customDecorators += decorator;
-                //    }
-                //}
-                //if (shortvers.Length > 0)
-                //{
-                //    shortvers = "\"shortvers\":[" + shortvers + "],";
-                //}
+                foreach (DescribeDecorator d in decorators)
+                {
+                    if (d.Name != "custom") continue;
+                    if (d.Category == null) continue;
+
+                    string decorator = decoratorTemplate.Replace("{NAME}", d.Name);
+                    decorator = decorator.Replace("{VALUE}", d.Value);
+                    //decorator = decorator.Replace("{VALUE}", "");
+                    if (!string.IsNullOrEmpty(customDecorators)) customDecorators += ",";
+                    customDecorators += decorator;
+                }
 
                 foreach (DescribeDecorator d in decorators)
                 {
@@ -443,7 +422,6 @@ namespace DescribeTranspiler.Translators
                             .Replace("\"", "\\\""));
                         res = res.Replace("{LINKS}", linkage);
                         res = res.Replace("{DECORATORS}", customDecorators);
-                        res = res.Replace("{SHORTVERS}", shortvers);
                         res = res.Replace("{COLOR}", d.Value);
                         if (res.Contains("{ID}")) res = res.Replace("{ID}", id);
                         return res;
@@ -455,10 +433,10 @@ namespace DescribeTranspiler.Translators
                 .Replace("\"", "\\\""));
             it = it.Replace("{LINKS}", linkage);
             it = it.Replace("{DECORATORS}", customDecorators);
-            it = it.Replace("{SHORTVERS}", shortvers);
             if (it.Contains("{ID}")) it = it.Replace("{ID}", id);
             return it;
         }
+
 
 
         //log

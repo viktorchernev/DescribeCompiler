@@ -1,0 +1,1 @@
+﻿INSERT INTO failed_files(name, content) VALUES('{FILE_NAME}', '{FILE_CONTENT}');
