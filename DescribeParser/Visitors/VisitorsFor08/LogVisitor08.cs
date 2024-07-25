@@ -51,7 +51,6 @@ namespace DescribeParser.Visitors
 
 
         List<bool> _booliary = new List<bool>();
-
         void visitChildren(ParserRuleContext context)
         {
             int childCount = context.ChildCount;

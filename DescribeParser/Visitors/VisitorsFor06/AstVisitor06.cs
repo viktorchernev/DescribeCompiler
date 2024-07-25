@@ -1,4 +1,5 @@
-﻿using Antlr4.Runtime.Tree;
+﻿using Antlr4.Runtime;
+using Antlr4.Runtime.Tree;
 using DescribeParser.Ast;
 using System;
 using System.Collections.Generic;
@@ -54,7 +55,7 @@ namespace DescribeParser.Visitors
         /// <param name="context">Root context produced by the parser aka the parse tree</param>
         /// <param name="filename">The file name of the file that was parsed</param>
         /// <returns>The AstScriptureNode representing the syntax tree</returns>
-        public AstScriptureNode DoScripture(Describe06Parser.ScriptureContext context, string filename = "")
+        public AstScriptureNode TranslateScripture(Describe06Parser.ScriptureContext context, string filename = "")
         {
             List<AstExpressionNode> expressions = new List<AstExpressionNode>();
             IParseTree child = context.GetChild(0);
@@ -71,6 +72,8 @@ namespace DescribeParser.Visitors
             var scripture = AstFactory.CreateScriptureNode(filename, expressions, context.exception);
             return scripture;
         }
+
+
 
         /// <summary>
         /// Translate ANTLR4 parser expression_list to an Abstract Syntax Tree.

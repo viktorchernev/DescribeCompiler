@@ -1,0 +1,190 @@
+﻿using Antlr4.Runtime;
+using DescribeParser.Ast;
+using DescribeParser.Unfold;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DescribeParser.Visitors
+{
+    public class UniversalAstVisitor
+    {
+        // Vars
+        string _log;
+        string _lerror;
+        AstVisitor06 visitor06;
+        AstVisitor07 visitor07;
+        AstVisitor08 visitor08;
+        AstVisitor09 visitor09;
+        AstVisitor10 visitor10;
+        AstVisitor11 visitor11;
+
+        public string Log
+        {
+            get
+            {
+                return _log;
+            }
+            set
+            {
+                _log = value;
+            }
+        }
+
+        public string LastError
+        {
+            get
+            {
+                return _lerror;
+            }
+            set
+            {
+                _lerror = value;
+            }
+        }
+
+
+        // Ctor
+        public UniversalAstVisitor()
+        {
+            _log = "";
+            _lerror = null;
+
+            visitor06 = new AstVisitor06();
+            visitor07 = new AstVisitor07();
+            visitor08 = new AstVisitor08();
+            visitor09 = new AstVisitor09();
+            visitor10 = new AstVisitor10();
+            visitor11 = new AstVisitor11();
+        }
+
+
+        public AstScriptureNode TranslateContext(ParserRuleContext context, string filename = "")
+        {
+            string? fullTypeName = context.GetType().FullName;
+            if (fullTypeName == null)
+            {
+                LastError = "Invalid context type.";
+                throw new Exception("Invalid context type.");
+            }
+            string[] parts = fullTypeName.Split('.');
+            if (parts.Length < 2)
+            {
+                LastError = "Invalid context - type \"" + fullTypeName + "\" is not valid.";
+                throw new Exception("Invalid context - type \"" + fullTypeName + "\" is not valid.");
+            }
+            string ver = parts[parts.Length - 2];
+
+            switch(ver)
+            {
+                case "Describe06Parser": return TranslateContext06(context, filename);
+                case "Describe07Parser": return TranslateContext07(context, filename);
+                case "Describe08Parser": return TranslateContext08(context, filename);
+                case "Describe09Parser": return TranslateContext09(context, filename);
+                case "Describe10Parser": return TranslateContext10(context, filename);
+                case "Describe11Parser": return TranslateContext11(context, filename);
+                default:
+                    LastError = "Invalid context - type \"" + fullTypeName + "\" is not valid.";
+                    throw new Exception("Invalid context - type \"" + fullTypeName + "\" is not valid.");
+            }
+        }
+        public AstScriptureNode TranslateContext06(ParserRuleContext context, string filename = "")
+        {
+            visitor06.LastError = null;
+            visitor06.Log = "";
+            if(context is Describe06Parser.ScriptureContext)
+            {
+                AstScriptureNode result = visitor06.TranslateScripture(context as Describe06Parser.ScriptureContext, filename);
+                LastError = visitor06.LastError;
+                Log = visitor06.Log;
+                return result;
+            }
+
+            string? fullTypeName = context.GetType().FullName;
+            LastError = "Invalid context - type \"" + fullTypeName + "\" is not valid.";
+            throw new Exception("Invalid context - type \"" + fullTypeName + "\" is not valid.");
+        }
+        public AstScriptureNode TranslateContext07(ParserRuleContext context, string filename = "")
+        {
+            visitor07.LastError = null;
+            visitor07.Log = "";
+            if (context is Describe07Parser.ScriptureContext)
+            {
+                AstScriptureNode result = visitor07.TranslateScripture(context as Describe07Parser.ScriptureContext, filename);
+                LastError = visitor07.LastError;
+                Log = visitor07.Log;
+                return result;
+            }
+
+            string? fullTypeName = context.GetType().FullName;
+            LastError = "Invalid context - type \"" + fullTypeName + "\" is not valid.";
+            throw new Exception("Invalid context - type \"" + fullTypeName + "\" is not valid.");
+        }
+        public AstScriptureNode TranslateContext08(ParserRuleContext context, string filename = "")
+        {
+            visitor08.LastError = null;
+            visitor08.Log = "";
+            if (context is Describe08Parser.ScriptureContext)
+            {
+                AstScriptureNode result = visitor08.TranslateScripture(context as Describe08Parser.ScriptureContext, filename);
+                LastError = visitor08.LastError;
+                Log = visitor08.Log;
+                return result;
+            }
+
+            string? fullTypeName = context.GetType().FullName;
+            LastError = "Invalid context - type \"" + fullTypeName + "\" is not valid.";
+            throw new Exception("Invalid context - type \"" + fullTypeName + "\" is not valid.");
+        }
+        public AstScriptureNode TranslateContext09(ParserRuleContext context, string filename = "")
+        {
+            visitor09.LastError = null;
+            visitor09.Log = "";
+            if (context is Describe09Parser.ScriptureContext)
+            {
+                AstScriptureNode result = visitor09.TranslateScripture(context as Describe09Parser.ScriptureContext, filename);
+                LastError = visitor09.LastError;
+                Log = visitor09.Log;
+                return result;
+            }
+
+            string? fullTypeName = context.GetType().FullName;
+            LastError = "Invalid context - type \"" + fullTypeName + "\" is not valid.";
+            throw new Exception("Invalid context - type \"" + fullTypeName + "\" is not valid.");
+        }
+        public AstScriptureNode TranslateContext10(ParserRuleContext context, string filename = "")
+        {
+            visitor10.LastError = null;
+            visitor10.Log = "";
+            if (context is Describe10Parser.ScriptureContext)
+            {
+                AstScriptureNode result = visitor10.TranslateScripture(context as Describe10Parser.ScriptureContext, filename);
+                LastError = visitor10.LastError;
+                Log = visitor10.Log;
+                return result;
+            }
+
+            string? fullTypeName = context.GetType().FullName;
+            LastError = "Invalid context - type \"" + fullTypeName + "\" is not valid.";
+            throw new Exception("Invalid context - type \"" + fullTypeName + "\" is not valid.");
+        }
+        public AstScriptureNode TranslateContext11(ParserRuleContext context, string filename = "")
+        {
+            visitor11.LastError = null;
+            visitor11.Log = "";
+            if (context is Describe11Parser.ScriptureContext)
+            {
+                AstScriptureNode result = visitor11.TranslateScripture(context as Describe11Parser.ScriptureContext, filename);
+                LastError = visitor11.LastError;
+                Log = visitor11.Log;
+                return result;
+            }
+
+            string? fullTypeName = context.GetType().FullName;
+            LastError = "Invalid context - type \"" + fullTypeName + "\" is not valid.";
+            throw new Exception("Invalid context - type \"" + fullTypeName + "\" is not valid.");
+        }
+    }
+}

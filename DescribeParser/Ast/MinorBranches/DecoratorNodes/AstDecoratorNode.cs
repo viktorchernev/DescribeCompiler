@@ -9,7 +9,7 @@ namespace DescribeParser.Ast
     {
         // IAstBranchNode
         /// <summary>
-        /// Get or Set the Leaf Nodes that make the Link object
+        /// Get or Set the Leaf Nodes that make the Decorator object
         /// </summary>
         public abstract List<AstLeafNode> Leafs
         {
@@ -17,7 +17,7 @@ namespace DescribeParser.Ast
         }
 
         /// <summary>
-        /// Get the Leaf Nodes that make the Link object as objects
+        /// Get the Leaf Nodes that make the Decorator object, as objects
         /// </summary>
         public abstract List<object> Children
         {
@@ -27,7 +27,7 @@ namespace DescribeParser.Ast
 
         // IAstChildNode
         /// <summary>
-        /// Get the SourcePosition of this Link object
+        /// Get the SourcePosition of this Decorator object
         /// </summary>
         public SourcePosition? Position
         {
@@ -36,7 +36,7 @@ namespace DescribeParser.Ast
         }
 
         /// <summary>
-        /// Get the Parent of this Link object
+        /// Get the Parent of this Decorator object
         /// </summary>
         public IAstBranchNode? Parent
         {

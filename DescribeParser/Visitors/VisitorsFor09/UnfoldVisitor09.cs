@@ -10,7 +10,7 @@ using System.Linq.Expressions;
 
 namespace DescribeParser.Visitors
 {
-    public class UnfoldVisitor09 : Describe09BaseVisitor<object>, IUnfoldVisitor
+    public class UnfoldVisitor09 : Describe09BaseVisitor<object>
     {
         // Misc
         private static Random random = new Random();
@@ -56,21 +56,6 @@ namespace DescribeParser.Visitors
         }
 
 
-        /// <summary>
-        /// Translate ANTLR4 parser parse tree (root ScriptureContext context) to Unfold structure.
-        /// "scripture : expression_list EOF | expression EOF;"
-        /// </summary>
-        /// <param name="u">Unfold to be populated</param>
-        /// <param name="context">Root context produced by the parser aka the parse tree</param>
-        /// <param name="filename">The file name of the file that was parsed</param>
-        /// <returns>True if successful</returns>
-        public bool DoScripture(DescribeUnfold u, ParserRuleContext context, string filename = "")
-        {
-            if (context is not Describe09Parser.ScriptureContext)
-                throw new Exception("context is Not Describe09Parser.ScriptureContext");
-
-            return DoScripture(u, context as Describe09Parser.ScriptureContext, filename);
-        }
 
         /// <summary>
         /// Translate ANTLR4 parser parse tree (root ScriptureContext context) to Unfold structure.
@@ -79,11 +64,11 @@ namespace DescribeParser.Visitors
         /// <param name="u">Unfold to be populated</param>
         /// <param name="context">Root context produced by the parser aka the parse tree</param>
         /// <returns>True if successful</returns>
-        public bool DoScripture(DescribeUnfold u, Describe09Parser.ScriptureContext context, string filename = "")
+        public bool TranslateScripture(DescribeUnfold u, Describe09Parser.ScriptureContext context, string filename = "")
         {
             //reset namespace for the file
-            u.LastNamespace = "";
-            u.LastFile = filename == null ? "" : filename;
+            u.ParseJob.LastNamespace = "";
+            u.ParseJob.LastFile = filename == null ? "" : filename;
 
             //if we have no productions whatsoever
             //then this must be the primary file
@@ -142,7 +127,7 @@ namespace DescribeParser.Visitors
                     foreach (string directive in directives)
                     {
                         string keyword = u.Translations[directive];
-                        if (keyword == "namespace") u.LastNamespace = directive;
+                        if (keyword == "namespace") u.ParseJob.LastNamespace = directive;
                         u.Translations.Remove(directive);
                     }
 
@@ -287,7 +272,7 @@ namespace DescribeParser.Visitors
             }
 
             //idFile
-            string cf = u.LastFile;
+            string cf = u.ParseJob.LastFile;
             if (string.IsNullOrEmpty(cf)) cf = "NA";
             if (u.ProdidFile.ContainsKey(head) == false)
             {
@@ -451,7 +436,7 @@ namespace DescribeParser.Visitors
             }
 
             //idFile
-            string cf = u.LastFile;
+            string cf = u.ParseJob.LastFile;
             if (string.IsNullOrEmpty(cf)) cf = "NA";
             if (u.ItemidFile.ContainsKey(tag) == false)
             {

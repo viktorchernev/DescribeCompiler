@@ -137,7 +137,7 @@ namespace DescribeTranspiler.Listiary.Translators
             for (int i = 0; i < u.ParsedFiles.Count; i++)
             {
                 string cur = u.ParsedFiles[i];
-                cur = cur.Substring(u.InitialDir.Length);
+                cur = cur.Substring(u.ParseJob.InitialDir.Length);
                 cur = cur.Trim('\\', '/').Replace('\\', '.').Replace('/', '.');
                 if (cur.EndsWith(".ds")) cur = cur.Substring(0, cur.Length - 3);
                 if (filenames.Contains(cur)) return null;
@@ -154,7 +154,7 @@ namespace DescribeTranspiler.Listiary.Translators
             for (int i = 0; i < u.FailedFiles.Count; i++)
             {
                 string cur = u.FailedFiles[i];
-                cur = cur.Substring(u.InitialDir.Length);
+                cur = cur.Substring(u.ParseJob.InitialDir.Length);
                 cur = cur.Trim('\\', '/').Replace('\\', '.').Replace('/', '.');
                 if (cur.EndsWith(".ds")) cur = cur.Substring(0, cur.Length - 3);
                 if (filenames.Contains(cur)) return null;

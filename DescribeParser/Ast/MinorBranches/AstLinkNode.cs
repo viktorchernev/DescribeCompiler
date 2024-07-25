@@ -2,6 +2,9 @@
 
 namespace DescribeParser.Ast
 {
+    /// <summary>
+    /// Represents an Ast Link object.
+    /// </summary>
     public class AstLinkNode : AstNode, IAstBranchNode, IAstChildNode
     {
         // Values

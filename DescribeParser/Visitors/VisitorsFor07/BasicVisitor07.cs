@@ -12,20 +12,26 @@ namespace DescribeParser.Visitors
     /// <summary>
     /// This visitor class is used to log to the console the result of a 
     /// parse operation, in a sequential manner, leaving the order to the
-    /// underlying ANTLR4 parser. The difference here is that the methods
-    /// also accumulate the strings that are logged to the console in a 
-    /// property - "Log". Also, logging to the console can be turned off 
-    /// alltogether.
+    /// underlying ANTLR4 parser.
     /// </summary>
     public class BasicVisitor07 : Describe07BaseVisitor<object>
     {
+        /// <summary>
+        /// Ctor.
+        /// </summary>
         public BasicVisitor07() 
         {
             _log = "";
             _lerror = null;
         }
 
+        // Vars
         string _log;
+        string _lerror;
+
+        /// <summary>
+        /// Gets or sets all the logs for this instance.
+        /// </summary>
         public string Log
         { 
             get
@@ -38,7 +44,11 @@ namespace DescribeParser.Visitors
             }
         }
 
-        string _lerror;
+        /// <summary>
+        /// Gets the last error for this instance. 
+        /// If there was an error, this string contains the message, 
+        /// and if there weren't any errors, this will be `null`.
+        /// </summary>
         public string LastError
         {
             get
@@ -52,55 +62,109 @@ namespace DescribeParser.Visitors
         }
 
 
+
+        // Methods
+        /// <summary>
+        /// Visit a <see cref="Describe07Parser.ScriptureContext"/> object, and log it.
+        /// </summary>
+        /// <param name="context">The <see cref="Describe07Parser.ScriptureContext"/> object to visit.</param>
+        /// <returns>?</returns>
         public override object VisitScripture([NotNull] Describe07Parser.ScriptureContext context)
         {
             Log += Environment.NewLine + logItem(context, "scripture");
             if (_lerror != null) return null;
             return base.VisitScripture(context);
         }
-
+        
+        /// <summary>
+        /// Visit an <see cref="ITerminalNode"/> object, and log it.
+        /// </summary>
+        /// <param name="node">The <see cref="ITerminalNode"/> object to visit.</param>
+        /// <returns>?</returns>
         public override object VisitTerminal(ITerminalNode node)
         {
             Log += Environment.NewLine + logToken(node);
             return base.VisitTerminal(node);
         }
 
+
+        /// <summary>
+        /// Visit a <see cref="Describe07Parser.ProducerContext"/> object, and log it.
+        /// </summary>
+        /// <param name="context">The <see cref="Describe07Parser.ProducerContext"/> object to visit.</param>
+        /// <returns>?</returns>
         public override object VisitProducer([NotNull] Describe07Parser.ProducerContext context)
         {
             Log += Environment.NewLine + logItem(context, "producer");
             if (_lerror != null) return null;
             return base.VisitProducer(context);
         }
+
+        /// <summary>
+        /// Visit a <see cref="Describe07Parser.Text_chunkContext"/> object, and log it.
+        /// </summary>
+        /// <param name="context">The <see cref="Describe07Parser.Text_chunkContext"/> object to visit.</param>
+        /// <returns>?</returns>
         public override object VisitText_chunk([NotNull] Describe07Parser.Text_chunkContext context)
         {
             Log += Environment.NewLine + logItem(context, "text_chunk");
             if (_lerror != null) return null;
             return base.VisitText_chunk(context);
         }
+
+        /// <summary>
+        /// Visit a <see cref="Describe07Parser.ItemContext"/> object, and log it.
+        /// </summary>
+        /// <param name="context">The <see cref="Describe07Parser.ItemContext"/> object to visit.</param>
+        /// <returns>?</returns>
         public override object VisitItem([NotNull] Describe07Parser.ItemContext context)
         {
             Log += Environment.NewLine + logItem(context, "item");
             if (_lerror != null) return null;
             return base.VisitItem(context);
         }
+
+        /// <summary>
+        /// Visit a <see cref="Describe07Parser.ExpressionContext"/> object, and log it.
+        /// </summary>
+        /// <param name="context">The <see cref="Describe07Parser.ExpressionContext"/> object to visit.</param>
+        /// <returns>?</returns>
         public override object VisitExpression([NotNull] Describe07Parser.ExpressionContext context)
         {
             Log += Environment.NewLine + logItem(context, "expression");
             if (_lerror != null) return null;
             return base.VisitExpression(context);
         }
+
+        /// <summary>
+        /// Visit a <see cref="Describe07Parser.Expression_listContext"/> object, and log it.
+        /// </summary>
+        /// <param name="context">The <see cref="Describe07Parser.Expression_listContext"/> object to visit.</param>
+        /// <returns>?</returns>
         public override object VisitExpression_list([NotNull] Describe07Parser.Expression_listContext context)
         {
             Log += Environment.NewLine + logItem(context, "expression_list");
             if (_lerror != null) return null;
             return base.VisitExpression_list(context);
         }
+
+        /// <summary>
+        /// Visit a <see cref="Describe07Parser.Item_or_expression_listContext"/> object, and log it.
+        /// </summary>
+        /// <param name="context">The <see cref="Describe07Parser.Item_or_expression_listContext"/> object to visit.</param>
+        /// <returns>?</returns>
         public override object VisitItem_or_expression_list([NotNull] Describe07Parser.Item_or_expression_listContext context)
         {
             Log += Environment.NewLine + logItem(context, "item_or_expression_list");
             if (_lerror != null) return null;
             return base.VisitItem_or_expression_list(context);
         }
+
+        /// <summary>
+        /// Visit a <see cref="Describe07Parser.Item_or_expression_partContext"/> object, and log it.
+        /// </summary>
+        /// <param name="context">The <see cref="Describe07Parser.Item_or_expression_partContext"/> object to visit.</param>
+        /// <returns>?</returns>
         public override object VisitItem_or_expression_part([NotNull] Describe07Parser.Item_or_expression_partContext context)
         {
             Log += Environment.NewLine + logItem(context, "item_or_expression_part");

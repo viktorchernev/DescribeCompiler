@@ -1,0 +1,153 @@
+	AstTagNode : AstNode, IAstBranchNode, IAstChildNode
+	
+		// Data
+		.AstLeafNode 							OpenBracket
+		.AstLeafNode 							Id
+		.AstLeafNode 							CloseBracket
+		
+		// IAstBranchNode
+		.List<AstLeafNode>						Leafs
+		.List<object>							Children
+		
+		// IAstChildNode
+        .SourcePosition? 						Position
+        .IAstBranchNode?						Parent
+
+		// AstNode
+		:ToString()			->string
+		:ToJson()			->string
+		:ToCode()			->string
+	
+	
+	
+	AstLinkNode : AstNode, IAstBranchNode, IAstChildNode
+	
+		// Data
+		.AstLeafNode 							OpenBracket
+		.AstLeafNode							Url
+		.AstLeafNode? 							Title
+		.AstLeafNode?							Letter
+		.AstLeafNode 							CloseBracket
+		
+		// Properties
+		.bool									HasTitle
+		.bool									HasLetter
+		
+		// IAstBranchNode
+		.List<AstLeafNode>						Leafs
+		.List<object>							Children
+		
+		// IAstChildNode
+		.SourcePosition? 						Position
+		.IAstBranchNode? 						Parent
+	
+		// AstNode
+		:ToString()			->string
+		:ToJson()			->string
+		:ToCode()			->string
+		
+		
+	
+	AstSimpleDecoratorType
+		.BoldDecorator
+		.ItalicDecorator
+		.StrikedDecorator
+		.UnderlineDecorator
+		.CommentDecorator
+		.NlCommentDecorator
+	AstDoubleDecoratorType
+		.ColorDecorator,
+		.BgColorDecorator,
+		.CustomDecorator,
+		.EnlistDecorator
+	AstTripleDecoratorType
+		.CustomDoubleDecorator
+	
+	
+	
+	AstDecoratorNode : AstNode, IAstBranchNode, IAstChildNode
+	
+		// IAstBranchNode
+		.List<AstLeafNode>						Leafs
+		.List<object>							Children
+		
+		// IAstChildNode
+		.SourcePosition? 						Position
+		.IAstBranchNode? 						Parent
+	
+		// AstNode
+		:ToString()			->string
+		:ToJson()			->string
+		:ToCode()			->string
+		
+	
+	
+	AstSimpleDecoratorNode : AstDecoratorNode
+
+        // Vars
+        .AstSimpleDecoratorType 				DecoratorType
+        .AstLeafNode 							OpenBracket 
+        .AstLeafNode 							Name
+        .AstLeafNode							CloseBracket
+
+		// IAstBranchNode
+		:List<AstLeafNode>						Leafs
+		:List<object>							Children
+		
+		// IAstChildNode
+		:SourcePosition? 						Position
+		:IAstBranchNode? 						Parent
+	
+		// AstNode
+		.ToString()			->string
+		.ToJson()			->string
+		:ToCode()			->string
+	
+	
+	
+	AstDoubleDecoratorNode : AstDecoratorNode
+
+        // Vars
+        .AstDoubleDecoratorType 				DecoratorType
+        .AstLeafNode 							OpenBracket 
+        .AstLeafNode 							Name
+		.AstLeafNode 							Value
+        .AstLeafNode							CloseBracket
+
+		// IAstBranchNode
+		:List<AstLeafNode>						Leafs
+		:List<object>							Children
+		
+		// IAstChildNode
+		:SourcePosition? 						Position
+		:IAstBranchNode? 						Parent
+	
+		// AstNode
+		.ToString()			->string
+		.ToJson()			->string
+		:ToCode()			->string
+
+
+
+	AstTripleDecoratorNode : AstDecoratorNode
+
+        // Vars
+        .AstDoubleDecoratorType 				DecoratorType
+        .AstLeafNode 							OpenBracket 
+		.AstLeafNode 							Category
+        .AstLeafNode 							Name
+		.AstLeafNode 							Value
+        .AstLeafNode							CloseBracket
+
+		// IAstBranchNode
+		:List<AstLeafNode>						Leafs
+		:List<object>							Children
+		
+		// IAstChildNode
+		:SourcePosition? 						Position
+		:IAstBranchNode? 						Parent
+	
+		// AstNode
+		.ToString()			->string
+		.ToJson()			->string
+		:ToCode()			->string

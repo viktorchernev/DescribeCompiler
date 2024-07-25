@@ -11,8 +11,7 @@ namespace DescribeParser.Visitors
 {
     /// <summary>
     /// This visitor class is used to log to the console the result of a 
-    /// parse poeration, in a sequential manner, leaving the order to the
-    /// underlying ANTLR4 parser.
+    /// parse operation.
     /// </summary>
     public class LogVisitor06 : Describe06BaseVisitor<object>
     {
@@ -50,8 +49,7 @@ namespace DescribeParser.Visitors
 
 
 
-        List<bool> _booliary = new List<bool>();
-
+        private List<bool> _booliary = new List<bool>();
         void visitChildren(ParserRuleContext context)
         {
             int childCount = context.ChildCount;
@@ -88,6 +86,7 @@ namespace DescribeParser.Visitors
                 _booliary.RemoveAt(_booliary.Count - 1);
             }
         }
+
         public override string VisitScripture([NotNull] Describe06Parser.ScriptureContext context)
         {
             Log += Environment.NewLine + logItem(context, "scripture");

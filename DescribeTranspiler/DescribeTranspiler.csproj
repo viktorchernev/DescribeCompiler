@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Translators\Templates\XML_PLAIN\Item.xml" />
+    <None Remove="Translators\Templates\XML_PLAIN\ItemColored.xml" />
+    <None Remove="Translators\Templates\XML_PLAIN\ItemComment.xml" />
+    <None Remove="Translators\Templates\XML_PLAIN\ItemCommentNl.xml" />
+    <None Remove="Translators\Templates\XML_PLAIN\ItemEmpty.xml" />
+    <None Remove="Translators\Templates\XML_PLAIN\Link.xml" />
     <None Remove="Translators\Templates\HTML_PLAIN\Item.html" />
     <None Remove="Translators\Templates\HTML_PLAIN\ItemColored.html" />
     <None Remove="Translators\Templates\HTML_PLAIN\ItemComment.html" />
@@ -49,11 +55,21 @@
     <None Remove="Translators\Templates\JSON_LISTIARY\Production.json" />
     <None Remove="Translators\Templates\JSON_LISTIARY\ProductionColored.json" />
     <None Remove="Translators\Templates\JSON_LISTIARY\Root.json" />
-    <None Remove="Translators\Templates\SQL_DATABASEFILL\FailedFileQuery.sql" />
-    <None Remove="Translators\Templates\SQL_DATABASEFILL\PassedFileQuery.sql" />
+    <None Remove="Translators\Templates\SQL_FILEFILL\FailedFileQuery.sql" />
+    <None Remove="Translators\Templates\SQL_FILEFILL\PassedFileQuery.sql" />
+    <None Remove="Translators\Templates\XML_PLAIN\Page.xml" />
+    <None Remove="Translators\Templates\XML_PLAIN\Production.xml" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Translators\Templates\XML_PLAIN\Item.xml" />
+    <EmbeddedResource Include="Translators\Templates\XML_PLAIN\ItemColored.xml" />
+    <EmbeddedResource Include="Translators\Templates\XML_PLAIN\ItemComment.xml" />
+    <EmbeddedResource Include="Translators\Templates\XML_PLAIN\ItemCommentNl.xml" />
+    <EmbeddedResource Include="Translators\Templates\XML_PLAIN\ItemEmpty.xml" />
+    <EmbeddedResource Include="Translators\Templates\XML_PLAIN\Link.xml" />
+    <EmbeddedResource Include="Translators\Templates\XML_PLAIN\Page.xml" />
+    <EmbeddedResource Include="Translators\Templates\XML_PLAIN\Production.xml" />
     <EmbeddedResource Include="Translators\Templates\HTML_PLAIN\Item.html" />
     <EmbeddedResource Include="Translators\Templates\HTML_PLAIN\ItemColored.html" />
     <EmbeddedResource Include="Translators\Templates\HTML_PLAIN\ItemComment.html" />
@@ -96,8 +112,8 @@
     <EmbeddedResource Include="Translators\Templates\JSON_LISTIARY\Production.json" />
     <EmbeddedResource Include="Translators\Templates\JSON_LISTIARY\ProductionColored.json" />
     <EmbeddedResource Include="Translators\Templates\JSON_LISTIARY\Root.json" />
-    <EmbeddedResource Include="Translators\Templates\SQL_DATABASEFILL\FailedFileQuery.sql" />
-    <EmbeddedResource Include="Translators\Templates\SQL_DATABASEFILL\PassedFileQuery.sql" />
+    <EmbeddedResource Include="Translators\Templates\SQL_FILEFILL\FailedFileQuery.sql" />
+    <EmbeddedResource Include="Translators\Templates\SQL_FILEFILL\PassedFileQuery.sql" />
   </ItemGroup>
 
   <ItemGroup>

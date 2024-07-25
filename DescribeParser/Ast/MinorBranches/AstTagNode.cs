@@ -14,7 +14,7 @@ namespace DescribeParser.Ast
         private AstLeafNode _close;
 
         /// <summary>
-        /// The Leaf Node representing the open bracket of the Tag object
+        /// The Leaf Node representing the open bracket of the Tag object.
         /// </summary>
         public AstLeafNode OpenBracket
         {
@@ -65,7 +65,7 @@ namespace DescribeParser.Ast
 
         // IAstBranchNode
         /// <summary>
-        /// Get or Set the Leaf Nodes that make the Tag object
+        /// Get the Leaf Nodes that make the Tag object
         /// </summary>
         public List<AstLeafNode> Leafs
         {
@@ -76,7 +76,7 @@ namespace DescribeParser.Ast
         }
 
         /// <summary>
-        /// Get the Leaf Nodes that make the Tag object as objects
+        /// Get the Leaf Nodes that make the Tag object, as objects
         /// </summary>
         public List<object> Children
         {

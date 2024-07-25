@@ -159,7 +159,7 @@ namespace DescribeParser.Ast
         /// <param name="tilde">The tilde node of the item.</param>
         /// <param name="parent">The optional parent node of the item.</param>
         /// <returns>The created AstItemNode.</returns>
-        public static AstItemNode CreateItemNode(AstLeafNode text, AstLeafNode tilde,
+        public static AstItemNode CreateItemNode(AstLeafNode tilde, AstLeafNode text,
             IAstBranchNode parent = null)
         {
             AstItemNode item = new AstItemNode();

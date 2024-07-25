@@ -34,7 +34,7 @@ namespace DescribeParser.Ast
         }
 
         /// <summary>
-        /// Creates an <see cref="AstSimpleDecoratorNode"/> with the specified type, open bracket, name, and close bracket.
+        /// Creates an <see cref="AstSimpleDecoratorNode"/> with the specified open bracket, name, and close bracket.
         /// </summary>
         /// <param name="open">The open bracket node of the decorator.</param>
         /// <param name="name">The name node of the decorator.</param>
@@ -86,14 +86,14 @@ namespace DescribeParser.Ast
         }
 
         /// <summary>
-        /// Creates an <see cref="AstDoubleDecoratorNode"/> with the specified type, open bracket, name, value, and close bracket.
+        /// Creates an <see cref="AstDoubleDecoratorNode"/> with the specified open bracket, name, value, and close bracket.
         /// </summary>
         /// <param name="open">The open bracket node of the decorator.</param>
         /// <param name="name">The name node of the decorator.</param>
         /// <param name="value">The value node of the decorator.</param>
         /// <param name="close">The close bracket node of the decorator.</param>
         /// <param name="parent">The parent node, if any. Default is null.</param>
-        /// <returns>An <see cref="AstDoubleDecoratorNode"/> with the specified type, open bracket, name, value, and close bracket.</returns>
+        /// <returns>An <see cref="AstDoubleDecoratorNode"/> with the specified open bracket, name, value, and close bracket.</returns>
         public static AstDoubleDecoratorNode CreateDoubleDecoratorNode(AstLeafNode open, 
             AstLeafNode name, AstLeafNode value, AstLeafNode close, IAstBranchNode parent = null)
         {
@@ -142,7 +142,7 @@ namespace DescribeParser.Ast
         }
 
         /// <summary>
-        /// Creates an <see cref="AstTripleDecoratorNode"/> with the specified type, open bracket, category, name, value, and close bracket.
+        /// Creates an <see cref="AstTripleDecoratorNode"/> with the specified open bracket, category, name, value, and close bracket.
         /// </summary>
         /// <param name="open">The open bracket node of the decorator.</param>
         /// <param name="category">The category node of the decorator.</param>
@@ -150,7 +150,7 @@ namespace DescribeParser.Ast
         /// <param name="value">The value node of the decorator.</param>
         /// <param name="close">The close bracket node of the decorator.</param>
         /// <param name="parent">The parent node, if any. Default is null.</param>
-        /// <returns>An <see cref="AstTripleDecoratorNode"/> with the specified type, open bracket, category, name, value, and close bracket.</returns>
+        /// <returns>An <see cref="AstTripleDecoratorNode"/> with the specified open bracket, category, name, value, and close bracket.</returns>
         public static AstTripleDecoratorNode CreateTripleDecoratorNode(AstLeafNode open, 
             AstLeafNode category, AstLeafNode name, AstLeafNode value, AstLeafNode close,
             IAstBranchNode parent = null)

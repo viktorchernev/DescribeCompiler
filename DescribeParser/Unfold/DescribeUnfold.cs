@@ -8,21 +8,20 @@ using static System.Net.Mime.MediaTypeNames;
 namespace DescribeParser.Unfold
 {
     /// <summary>
-    /// Represents the data structure for describing unfolded data with links and decorators.
-    /// Basically, DescribeUnfoldV2 is DescribeUnfold with Link and Decorator structures.
+    /// Represents the data structure for containing unfolded data, with links and decorators.
     /// </summary>
     public partial class DescribeUnfold
     {
-        // should be removed or smth
-        // probably offset to a ParseJob class
-        public string LastNamespace;    //current namespace we are in
-        public string LastFile;         //current file we are in
-        public string InitialDir;       //the starting directory
+        /// <summary>
+        /// Gets or sets the parse job object for the Unfold.
+        /// This class is used in the parsing process and does not need to be accessed directly.
+        /// </summary>
+        public DescribeParseJob ParseJob { get; set; }
 
 
         //file stats
         /// <summary>
-        /// Gets or sets the list of all files that have been parsed or failed.
+        /// Gets or sets the list of all files.
         /// </summary>
         public List<string> AllFiles { get; set; }
 
@@ -73,12 +72,12 @@ namespace DescribeParser.Unfold
 
         //main data place inside files
         /// <summary>
-        /// Files that contain items (item ID - filenames for that item).
+        /// Gets or sets the item/file dictionary (item ID - filenames for that item).
         /// </summary>
         public Dictionary<string, List<string>> ItemidFile { get; set; }
 
         /// <summary>
-        /// Files that contain productions (item ID - filenames for that production).
+        /// Gets or sets the production/file dictionary (item ID - filenames for that production).
         /// </summary>
         public Dictionary<string, List<string>> ProdidFile { get; set; }
 
@@ -88,6 +87,8 @@ namespace DescribeParser.Unfold
         /// </summary>
         public DescribeUnfold()
         {
+            ParseJob = new DescribeParseJob();
+
             AllFiles = new List<string>();
             ParsedFiles = new List<string>();
             FailedFiles = new List<string>();

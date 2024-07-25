@@ -1,0 +1,32 @@
+	Extreact documentation comments to markdown files
+	
+		- Unfold
+		- Ast
+		Visitors
+		- Parsers
+	
+	Check documentation comments for errors
+	
+		- Unfold
+		Ast
+		Visitors
+		x Parsers
+	
+	Write unit-tests
+
+		- Unfold
+		Ast
+		Visitors
+		Parsers
+
+	Look at Null warnings
+	Look at exceptions
+	Figure out project properties
+
+
+
+
+
+
+	Check if deserializing an Unfold that is not empty gets rid of the older values?
+	Do the LastError in visitors accumulate errors, or is it only the last that persists?

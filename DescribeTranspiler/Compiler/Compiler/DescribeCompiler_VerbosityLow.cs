@@ -60,7 +60,7 @@ namespace DescribeTranspiler
             while (unfold.AllFiles.Count() > 0)
             {
                 string filename = unfold.AllFiles[0];
-                unfold.LastFile = filename;
+                unfold.ParseJob.LastFile = filename;
                 bool result = parseFile_LowVerbosity(new FileInfo(filename), unfold);
                 if (result)
                 {
@@ -155,7 +155,7 @@ namespace DescribeTranspiler
             //unfold
             try
             {
-                bool optimized = _Visitor.DoScripture(unfold, root);
+                bool optimized = TranslateContext(unfold, root);
                 if (!optimized)
                 {
                     msg += "failed to unfold tree.";
@@ -217,7 +217,7 @@ namespace DescribeTranspiler
             while (unfold.AllFiles.Count() > 0)
             {
                 string filename = unfold.AllFiles[0];
-                unfold.LastFile = filename;
+                unfold.ParseJob.LastFile = filename;
                 bool result = parseString_LowVerbosity(filename, dict[filename], unfold);
                 if (result)
                 {
@@ -313,8 +313,8 @@ namespace DescribeTranspiler
             //unfold
             try
             {
-                unfold.LastFile = filename;
-                bool optimized = _Visitor.DoScripture(unfold, root);
+                unfold.ParseJob.LastFile = filename;
+                bool optimized = TranslateContext(unfold, root);
                 if (!optimized)
                 {
                     msg += "failed to unfold tree.";
@@ -339,6 +339,27 @@ namespace DescribeTranspiler
             return true;
         }
 
+
+        bool TranslateContext(DescribeUnfold u, ParserRuleContext context, string filename = "")
+        {
+            switch (LanguageVersion)
+            {
+                case DescribeVersion.Version06:
+                    return _Visitor.TranslateContext06(u, context, filename);
+                case DescribeVersion.Version07:
+                    return _Visitor.TranslateContext07(u, context, filename);
+                case DescribeVersion.Version08:
+                    return _Visitor.TranslateContext08(u, context, filename);
+                case DescribeVersion.Version09:
+                    return _Visitor.TranslateContext09(u, context, filename);
+                case DescribeVersion.Version10:
+                    return _Visitor.TranslateContext10(u, context, filename);
+                case DescribeVersion.Version11:
+                    return _Visitor.TranslateContext11(u, context, filename);
+                default:
+                    return false;
+            }
+        }
 
 
         private bool parseFile_LowVerbosity(FileInfo fileInfo, DescribeUnfold unfold)
@@ -407,7 +428,7 @@ namespace DescribeTranspiler
             //unfold
             try
             {
-                bool optimized = _Visitor.DoScripture(unfold, root);
+                bool optimized = TranslateContext(unfold, root);
                 if (optimized)
                 {
                     msg += "Ok";
@@ -485,7 +506,7 @@ namespace DescribeTranspiler
             //unfold
             try
             {
-                bool optimized = _Visitor.DoScripture(unfold, root);
+                bool optimized = TranslateContext(unfold, root);
                 if (optimized)
                 {
                     msg += "Ok";

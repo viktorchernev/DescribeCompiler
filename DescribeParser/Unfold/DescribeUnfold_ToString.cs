@@ -8,9 +8,19 @@ namespace DescribeParser.Unfold
 {
     public partial class DescribeUnfold
     {
+        /// <summary>
+        /// Gets or sets the indent used in the ToString() method.
+        /// </summary>
         public string INDENT = "    ";
 
 
+        /// <summary>
+        /// Get a string representation of a <see cref="DescribeUnfold"/>.
+        /// Used for logging.
+        /// </summary>
+        /// <returns>
+        /// String, representing the <see cref="DescribeUnfold"/>.
+        /// </returns>
         public override string ToString()
         {
             string text = "DescribeUnfold";
