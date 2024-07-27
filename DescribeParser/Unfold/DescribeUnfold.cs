@@ -16,7 +16,7 @@ namespace DescribeParser.Unfold
         /// Gets or sets the parse job object for the Unfold.
         /// This class is used in the parsing process and does not need to be accessed directly.
         /// </summary>
-        public DescribeParseJob ParseJob { get; set; }
+        public IDescribeParseJob ParseJob { get; set; }
 
 
         //file stats
@@ -87,7 +87,7 @@ namespace DescribeParser.Unfold
         /// </summary>
         public DescribeUnfold()
         {
-            ParseJob = new DescribeParseJob();
+            ParseJob = new SimpleParseJob();
 
             AllFiles = new List<string>();
             ParsedFiles = new List<string>();

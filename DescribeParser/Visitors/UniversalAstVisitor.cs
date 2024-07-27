@@ -1,14 +1,12 @@
 ﻿using Antlr4.Runtime;
 using DescribeParser.Ast;
-using DescribeParser.Unfold;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DescribeParser.Visitors
 {
+    /// <summary>
+    /// An Ast visitor for all Describe Language versions in one class.
+    /// Used to build Abstract Syntax Tree.
+    /// </summary>
     public class UniversalAstVisitor
     {
         // Vars
@@ -21,6 +19,9 @@ namespace DescribeParser.Visitors
         AstVisitor10 visitor10;
         AstVisitor11 visitor11;
 
+        /// <summary>
+        /// Gets or sets all the logs for this instance.
+        /// </summary>
         public string Log
         {
             get
@@ -33,6 +34,11 @@ namespace DescribeParser.Visitors
             }
         }
 
+        /// <summary>
+        /// Gets the last error for this instance. 
+        /// If there was an error, this string contains the message, 
+        /// and if there weren't any errors, this will be `null`.
+        /// </summary>
         public string LastError
         {
             get
@@ -47,6 +53,9 @@ namespace DescribeParser.Visitors
 
 
         // Ctor
+        /// <summary>
+        /// Ctor.
+        /// </summary>
         public UniversalAstVisitor()
         {
             _log = "";
@@ -61,6 +70,12 @@ namespace DescribeParser.Visitors
         }
 
 
+        /// <summary>
+        /// Determines the language version of the <see cref="ParserRuleContext"/> 
+        /// object by its type, and performs the translate action on it.
+        /// </summary>
+        /// <param name="context">The <see cref="ParserRuleContext"/> object to translate.</param>
+        /// <returns>true if successful, false if not.</returns>
         public AstScriptureNode TranslateContext(ParserRuleContext context, string filename = "")
         {
             string? fullTypeName = context.GetType().FullName;
@@ -90,6 +105,12 @@ namespace DescribeParser.Visitors
                     throw new Exception("Invalid context - type \"" + fullTypeName + "\" is not valid.");
             }
         }
+
+        /// <summary>
+        /// Translates the <see cref="ParserRuleContext"/> object using in LogVisitor06 (Describe v06).
+        /// </summary>
+        /// <param name="context">The <see cref="ParserRuleContext"/> object to translate.</param>
+        /// <returns>true if successful, false if not.</returns>
         public AstScriptureNode TranslateContext06(ParserRuleContext context, string filename = "")
         {
             visitor06.LastError = null;
@@ -106,6 +127,12 @@ namespace DescribeParser.Visitors
             LastError = "Invalid context - type \"" + fullTypeName + "\" is not valid.";
             throw new Exception("Invalid context - type \"" + fullTypeName + "\" is not valid.");
         }
+
+        /// <summary>
+        /// Translates the <see cref="ParserRuleContext"/> object using in LogVisitor07 (Describe v07).
+        /// </summary>
+        /// <param name="context">The <see cref="ParserRuleContext"/> object to translate.</param>
+        /// <returns>true if successful, false if not.</returns>
         public AstScriptureNode TranslateContext07(ParserRuleContext context, string filename = "")
         {
             visitor07.LastError = null;
@@ -122,6 +149,12 @@ namespace DescribeParser.Visitors
             LastError = "Invalid context - type \"" + fullTypeName + "\" is not valid.";
             throw new Exception("Invalid context - type \"" + fullTypeName + "\" is not valid.");
         }
+
+        /// <summary>
+        /// Translates the <see cref="ParserRuleContext"/> object using in LogVisitor08 (Describe v08).
+        /// </summary>
+        /// <param name="context">The <see cref="ParserRuleContext"/> object to translate.</param>
+        /// <returns>true if successful, false if not.</returns>
         public AstScriptureNode TranslateContext08(ParserRuleContext context, string filename = "")
         {
             visitor08.LastError = null;
@@ -138,6 +171,12 @@ namespace DescribeParser.Visitors
             LastError = "Invalid context - type \"" + fullTypeName + "\" is not valid.";
             throw new Exception("Invalid context - type \"" + fullTypeName + "\" is not valid.");
         }
+
+        /// <summary>
+        /// Translates the <see cref="ParserRuleContext"/> object using in LogVisitor09 (Describe v09).
+        /// </summary>
+        /// <param name="context">The <see cref="ParserRuleContext"/> object to translate.</param>
+        /// <returns>true if successful, false if not.</returns>
         public AstScriptureNode TranslateContext09(ParserRuleContext context, string filename = "")
         {
             visitor09.LastError = null;
@@ -154,6 +193,12 @@ namespace DescribeParser.Visitors
             LastError = "Invalid context - type \"" + fullTypeName + "\" is not valid.";
             throw new Exception("Invalid context - type \"" + fullTypeName + "\" is not valid.");
         }
+
+        /// <summary>
+        /// Translates the <see cref="ParserRuleContext"/> object using in LogVisitor10 (Describe v10).
+        /// </summary>
+        /// <param name="context">The <see cref="ParserRuleContext"/> object to translate.</param>
+        /// <returns>true if successful, false if not.</returns>
         public AstScriptureNode TranslateContext10(ParserRuleContext context, string filename = "")
         {
             visitor10.LastError = null;
@@ -170,6 +215,12 @@ namespace DescribeParser.Visitors
             LastError = "Invalid context - type \"" + fullTypeName + "\" is not valid.";
             throw new Exception("Invalid context - type \"" + fullTypeName + "\" is not valid.");
         }
+
+        /// <summary>
+        /// Translates the <see cref="ParserRuleContext"/> object using in LogVisitor11 (Describe v11).
+        /// </summary>
+        /// <param name="context">The <see cref="ParserRuleContext"/> object to translate.</param>
+        /// <returns>true if successful, false if not.</returns>
         public AstScriptureNode TranslateContext11(ParserRuleContext context, string filename = "")
         {
             visitor11.LastError = null;

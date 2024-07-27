@@ -162,7 +162,7 @@ namespace DescribeParser.IntegrationTests
             string resultTemplateB = getEmbeddedResource(
                 "DescribeParser.IntegrationTests.TestFiles.resultTemplates.template_basic_b.md");
 
-            //get source code to test
+            //get source code to test 
             string text = getEmbeddedResource(embeddedName);
             if (insertMissingTerminators) text = PredictTerminators(text);
 

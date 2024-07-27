@@ -7,4 +7,61 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="TestFiles\City.ds" />
+    <None Remove="TestFiles\City\2024-04-15.ds" />
+    <None Remove="TestFiles\City\2024-04-16.ds" />
+    <None Remove="TestFiles\City\2024-04-17.ds" />
+    <None Remove="TestFiles\Energy.ds" />
+    <None Remove="TestFiles\Energy\2024-04-15.ds" />
+    <None Remove="TestFiles\Energy\2024-04-16.ds" />
+    <None Remove="TestFiles\Energy\2024-04-17.ds" />
+    <None Remove="TestFiles\NovaNews.ds" />
+    <None Remove="TestFiles\NovaNews\2024-04-15.ds" />
+    <None Remove="TestFiles\NovaNews\2024-04-16.ds" />
+    <None Remove="TestFiles\NovaNews\2024-04-17.ds" />
+    <None Remove="TestFiles\Radio1Rock.ds" />
+    <None Remove="TestFiles\Radio1Rock\2024-04-15.ds" />
+    <None Remove="TestFiles\Radio1Rock\2024-04-16.ds" />
+    <None Remove="TestFiles\Radio1Rock\2024-04-17.ds" />
+    <None Remove="TestFiles\radiowatch.ds" />
+    <None Remove="TestResultTemplates\template_basic_a.md" />
+    <None Remove="TestResultTemplates\template_basic_b.md" />
+    <None Remove="TestFiles\Veselina.ds" />
+    <None Remove="TestFiles\Veselina\2024-04-15.ds" />
+    <None Remove="TestFiles\Veselina\2024-04-16.ds" />
+    <None Remove="TestFiles\Veselina\2024-04-17.ds" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="TestFiles\City.ds" />
+    <EmbeddedResource Include="TestFiles\City\2024-04-15.ds" />
+    <EmbeddedResource Include="TestFiles\City\2024-04-16.ds" />
+    <EmbeddedResource Include="TestFiles\City\2024-04-17.ds" />
+    <EmbeddedResource Include="TestFiles\Energy.ds" />
+    <EmbeddedResource Include="TestFiles\Energy\2024-04-15.ds" />
+    <EmbeddedResource Include="TestFiles\Energy\2024-04-16.ds" />
+    <EmbeddedResource Include="TestFiles\Energy\2024-04-17.ds" />
+    <EmbeddedResource Include="TestFiles\NovaNews.ds" />
+    <EmbeddedResource Include="TestFiles\NovaNews\2024-04-15.ds" />
+    <EmbeddedResource Include="TestFiles\NovaNews\2024-04-16.ds" />
+    <EmbeddedResource Include="TestFiles\NovaNews\2024-04-17.ds" />
+    <EmbeddedResource Include="TestFiles\Radio1Rock.ds" />
+    <EmbeddedResource Include="TestFiles\Radio1Rock\2024-04-15.ds" />
+    <EmbeddedResource Include="TestFiles\Radio1Rock\2024-04-16.ds" />
+    <EmbeddedResource Include="TestFiles\Radio1Rock\2024-04-17.ds" />
+    <EmbeddedResource Include="TestFiles\radiowatch.ds" />
+    <EmbeddedResource Include="TestResultTemplates\template_basic_a.md" />
+    <EmbeddedResource Include="TestResultTemplates\template_basic_b.md" />
+    <EmbeddedResource Include="TestFiles\Veselina.ds" />
+    <EmbeddedResource Include="TestFiles\Veselina\2024-04-15.ds" />
+    <EmbeddedResource Include="TestFiles\Veselina\2024-04-16.ds" />
+    <EmbeddedResource Include="TestFiles\Veselina\2024-04-17.ds" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DescribeParser\DescribeParser.csproj" />
+    <ProjectReference Include="..\DescribeTranspiler\DescribeTranspiler.csproj" />
+  </ItemGroup>
+
 </Project>

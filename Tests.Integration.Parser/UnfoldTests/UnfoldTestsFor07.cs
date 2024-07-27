@@ -1,5 +1,6 @@
 ﻿using Antlr4.Runtime;
 using Antlr4.Runtime.Atn;
+using DescribeParser.Unfold;
 using DescribeParser.Visitors;
 using System;
 using System.Collections.Generic;
@@ -102,7 +103,7 @@ namespace DescribeParser.IntegrationTests
             Describe07Parser.ScriptureContext scriptureContext = parser.scripture();
             UnfoldVisitor07 visitor = new UnfoldVisitor07();
             DescribeUnfold u = new DescribeUnfold();
-            visitor.DoScripture(u, scriptureContext, embeddedName);
+            visitor.TranslateScripture(u, scriptureContext, embeddedName);
             string tree = u.ToString();
             Console.WriteLine(tree);
             //string tree = visitor.Log;
@@ -191,7 +192,7 @@ namespace DescribeParser.IntegrationTests
                 Describe07Parser.ScriptureContext scriptureContext = parser.scripture();
                 UnfoldVisitor07 visitor = new UnfoldVisitor07();
                 DescribeUnfold u = new DescribeUnfold();
-                visitor.DoScripture(u, scriptureContext, name);
+                visitor.TranslateScripture(u, scriptureContext, name);
                 fullwatch.Stop();
                 string tree = u.ToString();
                 Console.WriteLine(tree);
@@ -278,7 +279,7 @@ namespace DescribeParser.IntegrationTests
                 Describe07Parser.ScriptureContext scriptureContext = parser.scripture();
                 UnfoldVisitor07 visitor = new UnfoldVisitor07();
                 DescribeUnfold u = new DescribeUnfold();
-                visitor.DoScripture(u, scriptureContext, name);
+                visitor.TranslateScripture(u, scriptureContext, name);
                 fullwatch.Stop();
                 string tree = u.ToString();
                 Console.WriteLine(tree);

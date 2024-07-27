@@ -143,14 +143,6 @@ namespace DescribeTranspiler
                 _preprocessors.Add(DescribeVersion.Version10, new PreprocessorFor10(this));
                 _preprocessors.Add(DescribeVersion.Version11, new PreprocessorFor11(this));
 
-                _visitors = new Dictionary<DescribeVersion, IUnfoldVisitor>();
-                _visitors.Add(DescribeVersion.Version06, new UnfoldVisitor06());
-                _visitors.Add(DescribeVersion.Version07, new UnfoldVisitor07());
-                _visitors.Add(DescribeVersion.Version08, new UnfoldVisitor08());
-                _visitors.Add(DescribeVersion.Version09, new UnfoldVisitor09());
-                _visitors.Add(DescribeVersion.Version10, new UnfoldVisitor10());
-                _visitors.Add(DescribeVersion.Version11, new UnfoldVisitor11());
-
                 //_GoldParser = new GoldParser.Parser.Parser();
                 //LogInfo("GOLD parser engine initialized");
 

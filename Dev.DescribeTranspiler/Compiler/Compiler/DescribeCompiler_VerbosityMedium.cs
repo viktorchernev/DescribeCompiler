@@ -62,7 +62,7 @@ namespace DescribeTranspiler
             while (unfold.AllFiles.Count() > 0)
             {
                 string filename = unfold.AllFiles[0];
-                unfold.LastFile = filename;
+                unfold.ParseJob.LastFile = filename;
                 bool result = parseFile_MediumVerbosity(new FileInfo(filename), unfold);
                 if (result)
                 {
@@ -162,7 +162,7 @@ namespace DescribeTranspiler
             //unfold
             try
             {
-                bool optimized = _Visitor.DoScripture(unfold, root);
+                bool optimized = TranslateContext(unfold, root);
                 if (optimized)
                 {
                     LogText("Parse tree unfolded successfuly");
@@ -232,7 +232,7 @@ namespace DescribeTranspiler
             while (unfold.AllFiles.Count() > 0)
             {
                 string filename = unfold.AllFiles[0];
-                unfold.LastFile = filename;
+                unfold.ParseJob.LastFile = filename;
                 bool result = parseString_MediumVerbosity(filename, dict[filename], unfold);
                 if (result)
                 {
@@ -334,8 +334,8 @@ namespace DescribeTranspiler
             //unfold
             try
             {
-                unfold.LastFile = filename;
-                bool optimized = _Visitor.DoScripture(unfold, root);
+                unfold.ParseJob.LastFile = filename;
+                bool optimized = TranslateContext(unfold, root);
                 if (optimized)
                 {
                     LogText("Parse tree unfolded successfuly");
@@ -431,7 +431,7 @@ namespace DescribeTranspiler
             //unfold
             try
             {
-                bool optimized = _Visitor.DoScripture(unfold, root);
+                bool optimized = TranslateContext(unfold, root);
                 if (optimized)
                 {
                     LogText("Parse tree unfolded successfuly");
@@ -523,7 +523,7 @@ namespace DescribeTranspiler
             //unfold
             try
             {
-                bool optimized = _Visitor.DoScripture(unfold, root);
+                bool optimized = TranslateContext(unfold, root);
                 if (optimized)
                 {
                     LogText("Parse tree unfolded successfuly");

@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DescribeParser.Unfold
+namespace DescribeParser
 {
     /// <summary>
     /// Contains the intermediate data, used during a parse operation.
     /// </summary>
-    public class DescribeParseJob
+    public interface IDescribeParseJob
     {
         /// <summary>
         /// Gets or sets the starting directory.

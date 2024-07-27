@@ -113,7 +113,7 @@ namespace DescribeParser.IntegrationTests
                 //parse
                 Describe06Parser.ScriptureContext scriptureContext = parser.scripture();
                 AstVisitor06 visitor = new AstVisitor06();
-                AstScriptureNode tree = visitor.DoScripture(scriptureContext, name);
+                AstScriptureNode tree = visitor.TranslateScripture(scriptureContext, name);
                 fullwatch.Stop();
 
                 string tostring = tree.ToString();
@@ -200,7 +200,7 @@ namespace DescribeParser.IntegrationTests
             //parse
             Describe06Parser.ScriptureContext scriptureContext = parser.scripture();
             AstVisitor06 visitor = new AstVisitor06();
-            AstScriptureNode tree = visitor.DoScripture(scriptureContext, embeddedName);
+            AstScriptureNode tree = visitor.TranslateScripture(scriptureContext, embeddedName);
             
             string tostring = tree.ToString();
             string tojson = tree.ToJson();

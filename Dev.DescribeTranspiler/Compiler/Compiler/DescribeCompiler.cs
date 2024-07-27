@@ -17,7 +17,6 @@ namespace DescribeTranspiler
         // need all these so that they can be swapped by user derived class
         // don't need to figure out a way to do this for the lexer and the parser?
         private Dictionary<DescribeVersion, IDescribePreprocessor> _preprocessors;
-        private Dictionary<DescribeVersion, IUnfoldVisitor> _visitors;
 
 
 
@@ -34,16 +33,10 @@ namespace DescribeTranspiler
         /// The visitor class - Used to optimise parse result (parse tree)
         /// to an Unfold structure or an Abstract Syntax Tree
         /// </summary>
-        public IUnfoldVisitor _Visitor
+        public UniversalUnfoldVisitor _Visitor
         {
-            get
-            {
-                return _visitors[LanguageVersion];
-            }
-            set
-            {
-                _visitors[LanguageVersion] = value;
-            }
+            get;
+            set;
         }
         
         /// <summary>

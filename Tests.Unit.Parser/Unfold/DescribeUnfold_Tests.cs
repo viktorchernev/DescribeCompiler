@@ -1,4 +1,5 @@
 ﻿using DescribeParser.Unfold;
+using DescribeParser;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,7 +38,7 @@ namespace Tests.Unit.Parser
             // Arrange
             var unfold = new DescribeUnfold();
 
-            var testJob = new DescribeParseJob { InitialDir = "C:\\Test" };
+            var testJob = new SimpleParseJob { InitialDir = "C:\\Test" };
             var testAllFiles = new List<string> { "file1.txt", "file2.txt" };
             var testParsedFiles = new List<string> { "file1.txt" };
             var testFailedFiles = new List<string> { "file2.txt" };
@@ -91,7 +92,7 @@ namespace Tests.Unit.Parser
             // Arrange
             var unfold = new DescribeUnfold();
 
-            var testJob = new DescribeParseJob { InitialDir = "C:\\Test" };
+            var testJob = new SimpleParseJob { InitialDir = "C:\\Test" };
             var testAllFiles = new List<string> { "file1.txt", "file2.txt" };
             var testParsedFiles = new List<string> { "file1.txt" };
             var testFailedFiles = new List<string> { "file2.txt" };
@@ -129,7 +130,7 @@ namespace Tests.Unit.Parser
             // Arrange
             var unfold = new DescribeUnfold
             {
-                ParseJob = new DescribeParseJob { InitialDir = "C:\\", LastNamespace = "TestNamespace", LastFile = "TestFile" },
+                ParseJob = new SimpleParseJob { InitialDir = "C:\\", LastNamespace = "TestNamespace", LastFile = "TestFile" },
                 AllFiles = new List<string> { "file1.txt", "file2.txt" },
                 ParsedFiles = new List<string> { "file1.txt" },
                 FailedFiles = new List<string> { "file2.txt" },

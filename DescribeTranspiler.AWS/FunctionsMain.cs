@@ -5,6 +5,7 @@ using DescribeParser;
 
 using System;
 using System.IO;
+using DescribeParser.Unfold;
 
 
 namespace DescribeCompiler.AWS
@@ -32,11 +33,11 @@ namespace DescribeCompiler.AWS
                 DescribeTranspiler.DescribeCompiler.STOP_ON_ERROR = true;
 
                 //templates
-                JsonTranslator translator;
+                JsonListiaryTranslator translator;
                 if(Datnik.translatorName.ToLower().StartsWith("json_") 
                     || Datnik.translatorName.ToLower() == "json")
                 {
-                    translator = new JsonTranslator(
+                    translator = new JsonListiaryTranslator(
                         Messages.ConsoleLog,
                         Messages.ConsoleLogError,
                         Messages.ConsoleLogInfo);
@@ -94,11 +95,11 @@ namespace DescribeCompiler.AWS
 
 
                 //templates
-                JsonTranslatorWOL translator;
+                JsonListiaryTranslator translator;
                 if (Datnik.translatorName.ToLower().StartsWith("json_")
                     || Datnik.translatorName.ToLower() == "json")
                 {
-                    translator = new JsonTranslatorWOL(
+                    translator = new JsonListiaryTranslator(
                         Messages.ConsoleLog,
                         Messages.ConsoleLogError,
                         Messages.ConsoleLogInfo);

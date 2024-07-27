@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DescribeParser.Unfold;
 
 namespace DescribeTranspiler.Cli
 {
@@ -44,7 +45,7 @@ namespace DescribeTranspiler.Cli
                 if (Datnik.translatorName.ToLower().StartsWith("json_world_of_lists")
                     || Datnik.translatorName.ToLower() == "json_world_of_lists")
                 {
-                    translator = new JsonTranslatorWOL(
+                    translator = new JsonListiaryTranslator(
                         Messages.ConsoleLog,
                         Messages.ConsoleLogError,
                         Messages.ConsoleLogInfo);
@@ -52,7 +53,7 @@ namespace DescribeTranspiler.Cli
                 else if (Datnik.translatorName.ToLower().StartsWith("json_")
                     || Datnik.translatorName.ToLower() == "json")
                 {
-                    translator = new JsonTranslator(
+                    translator = new JsonBasicTranslator(
                         Messages.ConsoleLog,
                         Messages.ConsoleLogError,
                         Messages.ConsoleLogInfo);
@@ -60,10 +61,10 @@ namespace DescribeTranspiler.Cli
                 else if (Datnik.translatorName.ToLower().StartsWith("html_")
                     || Datnik.translatorName.ToLower() == "html")
                 {
-                    translator = new HtmlTranslator();
-                    (translator as HtmlTranslator).LogText = Messages.ConsoleLog;
-                    (translator as HtmlTranslator).LogError = Messages.ConsoleLogError;
-                    (translator as HtmlTranslator).LogInfo = Messages.ConsoleLogInfo;
+                    translator = new HtmlPageTranslator();
+                    (translator as HtmlPageTranslator).LogText = Messages.ConsoleLog;
+                    (translator as HtmlPageTranslator).LogError = Messages.ConsoleLogError;
+                    (translator as HtmlPageTranslator).LogInfo = Messages.ConsoleLogInfo;
                 }
                 else
                 {

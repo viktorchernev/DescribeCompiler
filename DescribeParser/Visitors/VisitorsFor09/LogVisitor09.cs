@@ -16,6 +16,9 @@ namespace DescribeParser.Visitors
     /// </summary>
     public class LogVisitor09 : Describe09BaseVisitor<object>
     {
+        /// <summary>
+        /// Ctor.
+        /// </summary>
         public LogVisitor09()
         {
             _log = "";
@@ -23,6 +26,11 @@ namespace DescribeParser.Visitors
         }
         
         string _log;
+        string _lerror;
+
+        /// <summary>
+        /// Gets or sets all the logs for this instance.
+        /// </summary>
         public string Log
         {
             get
@@ -35,7 +43,11 @@ namespace DescribeParser.Visitors
             }
         }
 
-        string _lerror;
+        /// <summary>
+        /// Gets the last error for this instance. 
+        /// If there was an error, this string contains the message, 
+        /// and if there weren't any errors, this will be `null`.
+        /// </summary>
         public string LastError
         {
             get
@@ -87,6 +99,12 @@ namespace DescribeParser.Visitors
                 _booliary.RemoveAt(_booliary.Count - 1);
             }
         }
+
+        /// <summary>
+        /// Visits the Scripture node in the Describe09 parse tree.
+        /// </summary>
+        /// <param name="context">The context of the Scripture node.</param>
+        /// <returns>A string indicating the success or failure of the visit.</returns>
         public override string VisitScripture([NotNull] Describe09Parser.ScriptureContext context)
         {
             Log += Environment.NewLine + logItem(context, "scripture");
@@ -95,12 +113,24 @@ namespace DescribeParser.Visitors
             return "success";
         }
 
+
+        /// <summary>
+        /// Visits a terminal node in the Describe09 parse tree.
+        /// </summary>
+        /// <param name="node">The terminal node to visit.</param>
+        /// <returns>A string indicating the success of the visit.</returns>
         public override string VisitTerminal(ITerminalNode node)
         {
             Log += Environment.NewLine + logToken(node);
             return "success";
         }
 
+
+        /// <summary>
+        /// Visits the Producer node in the Describe09 parse tree.
+        /// </summary>
+        /// <param name="context">The context of the Producer node.</param>
+        /// <returns>A string indicating the success or failure of the visit.</returns>
         public override string VisitProducer([NotNull] Describe09Parser.ProducerContext context)
         {
             Log += Environment.NewLine + logItem(context, "producer");
@@ -108,6 +138,12 @@ namespace DescribeParser.Visitors
             visitChildren(context);
             return "success";
         }
+
+        /// <summary>
+        /// Visits the Text_chunk node in the Describe09 parse tree.
+        /// </summary>
+        /// <param name="context">The context of the Text_chunk node.</param>
+        /// <returns>A string indicating the success or failure of the visit.</returns>
         public override string VisitText_chunk([NotNull] Describe09Parser.Text_chunkContext context)
         {
             Log += Environment.NewLine + logItem(context, "text_chunk");
@@ -115,6 +151,12 @@ namespace DescribeParser.Visitors
             visitChildren(context);
             return "success";
         }
+
+        /// <summary>
+        /// Visits the Item node in the Describe09 parse tree.
+        /// </summary>
+        /// <param name="context">The context of the Item node.</param>
+        /// <returns>A string indicating the success or failure of the visit.</returns>
         public override string VisitItem([NotNull] Describe09Parser.ItemContext context)
         {
             Log += Environment.NewLine + logItem(context, "item");
@@ -122,6 +164,12 @@ namespace DescribeParser.Visitors
             visitChildren(context);
             return "success";
         }
+
+        /// <summary>
+        /// Visits the Expression node in the Describe09 parse tree.
+        /// </summary>
+        /// <param name="context">The context of the Expression node.</param>
+        /// <returns>A string indicating the success or failure of the visit.</returns>
         public override string VisitExpression([NotNull] Describe09Parser.ExpressionContext context)
         {
             Log += Environment.NewLine + logItem(context, "expression");
@@ -129,6 +177,12 @@ namespace DescribeParser.Visitors
             visitChildren(context);
             return "success";
         }
+
+        /// <summary>
+        /// Visits the Expression_list node in the Describe09 parse tree.
+        /// </summary>
+        /// <param name="context">The context of the Expression_list node.</param>
+        /// <returns>A string indicating the success or failure of the visit.</returns>
         public override string VisitExpression_list([NotNull] Describe09Parser.Expression_listContext context)
         {
             Log += Environment.NewLine + logItem(context, "expression_list");
@@ -136,6 +190,12 @@ namespace DescribeParser.Visitors
             visitChildren(context);
             return "success";
         }
+
+        /// <summary>
+        /// Visits the Item_or_expression_list node in the Describe09 parse tree.
+        /// </summary>
+        /// <param name="context">The context of the Item_or_expression_list node.</param>
+        /// <returns>A string indicating the success or failure of the visit.</returns>
         public override string VisitItem_or_expression_list([NotNull] Describe09Parser.Item_or_expression_listContext context)
         {
             Log += Environment.NewLine + logItem(context, "item_or_expression_list");
@@ -143,6 +203,12 @@ namespace DescribeParser.Visitors
             visitChildren(context);
             return "success";
         }
+
+        /// <summary>
+        /// Visits the Item_or_expression_part node in the Describe09 parse tree.
+        /// </summary>
+        /// <param name="context">The context of the Item_or_expression_part node.</param>
+        /// <returns>A string indicating the success or failure of the visit.</returns>
         public override string VisitItem_or_expression_part([NotNull] Describe09Parser.Item_or_expression_partContext context)
         {
             Log += Environment.NewLine + logItem(context, "item_or_expression_part");

@@ -1,4 +1,4 @@
-﻿using DescribeParser.Unfold;
+﻿using DescribeParser;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +14,7 @@ namespace Tests.Unit.Parser
         public void DescribeParseJob_DefaultValues_ShouldBeNull()
         {
             // Arrange
-            var parseJob = new DescribeParseJob();
+            var parseJob = new SimpleParseJob();
 
             // Act & Assert
             Assert.IsNull(parseJob.InitialDir, "InitialDir should be null by default");
@@ -26,7 +26,7 @@ namespace Tests.Unit.Parser
         public void DescribeParseJob_SetProperties_ShouldReturnExpectedValues()
         {
             // Arrange
-            var parseJob = new DescribeParseJob();
+            var parseJob = new SimpleParseJob();
             var initialDir = "C:\\Start";
             var lastNamespace = "MyNamespace";
             var lastFile = "MyFile.cs";

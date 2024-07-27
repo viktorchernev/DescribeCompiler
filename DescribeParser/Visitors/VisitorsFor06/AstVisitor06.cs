@@ -11,6 +11,10 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace DescribeParser.Visitors
 {
+    /// <summary>
+    /// An Ast visitor for Describe Language version 0.6
+    /// Used to build Abstract Syntax Trees.
+    /// </summary>
     public class AstVisitor06
     {
         // Ctor & Properties
@@ -21,6 +25,11 @@ namespace DescribeParser.Visitors
         }
 
         string _log;
+        string _lerror;
+
+        /// <summary>
+        /// Gets or sets all the logs for this instance.
+        /// </summary>
         public string Log
         {
             get
@@ -33,7 +42,11 @@ namespace DescribeParser.Visitors
             }
         }
 
-        string _lerror;
+        /// <summary>
+        /// Gets the last error for this instance. 
+        /// If there was an error, this string contains the message, 
+        /// and if there weren't any errors, this will be `null`.
+        /// </summary>
         public string LastError
         {
             get

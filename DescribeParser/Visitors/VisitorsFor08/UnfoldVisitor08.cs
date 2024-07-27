@@ -10,7 +10,11 @@ using System.Linq.Expressions;
 
 namespace DescribeParser.Visitors
 {
-    public class UnfoldVisitor08 : Describe08BaseVisitor<object>
+    /// <summary>
+    /// This visitor class is used extract data and store it in an <see cref="DescribeUnfold"/>.
+    /// For Describe Language version 0.8
+    /// </summary>
+    public class UnfoldVisitor08
     {
         // Misc
         private static Random random = new Random();
@@ -30,6 +34,11 @@ namespace DescribeParser.Visitors
         }
 
         string _log;
+        string _lerror;
+
+        /// <summary>
+        /// Gets or sets all the logs for this instance.
+        /// </summary>
         public string Log
         {
             get
@@ -42,7 +51,11 @@ namespace DescribeParser.Visitors
             }
         }
 
-        string _lerror;
+        /// <summary>
+        /// Gets the last error for this instance. 
+        /// If there was an error, this string contains the message, 
+        /// and if there weren't any errors, this will be `null`.
+        /// </summary>
         public string LastError
         {
             get
