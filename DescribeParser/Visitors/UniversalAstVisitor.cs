@@ -30,6 +30,7 @@ namespace DescribeParser.Visitors
             }
             set
             {
+                Validators.ValidateString(value);
                 _log = value;
             }
         }
@@ -79,6 +80,9 @@ namespace DescribeParser.Visitors
         /// <returns>true if successful, false if not.</returns>
         public AstScriptureNode TranslateContext(ParserRuleContext context, string filename = "")
         {
+            Validators.ValidateParserRuleContext(context);
+            Validators.ValidateString(filename);
+
             string? fullTypeName = context.GetType().FullName;
             if (fullTypeName == null)
             {
@@ -116,6 +120,7 @@ namespace DescribeParser.Visitors
         public AstScriptureNode TranslateContext06(ParserRuleContext context, string filename = "")
         {
             Validators.ValidateParserRuleContext(context);
+            Validators.ValidateString(filename);
 
             visitor06.LastError = null;
             visitor06.Log = "";
@@ -141,6 +146,7 @@ namespace DescribeParser.Visitors
         public AstScriptureNode TranslateContext07(ParserRuleContext context, string filename = "")
         {
             Validators.ValidateParserRuleContext(context);
+            Validators.ValidateString(filename);
 
             visitor07.LastError = null;
             visitor07.Log = "";
@@ -166,6 +172,7 @@ namespace DescribeParser.Visitors
         public AstScriptureNode TranslateContext08(ParserRuleContext context, string filename = "")
         {
             Validators.ValidateParserRuleContext(context);
+            Validators.ValidateString(filename);
 
             visitor08.LastError = null;
             visitor08.Log = "";
@@ -191,6 +198,7 @@ namespace DescribeParser.Visitors
         public AstScriptureNode TranslateContext09(ParserRuleContext context, string filename = "")
         {
             Validators.ValidateParserRuleContext(context);
+            Validators.ValidateString(filename);
 
             visitor09.LastError = null;
             visitor09.Log = "";
@@ -216,6 +224,7 @@ namespace DescribeParser.Visitors
         public AstScriptureNode TranslateContext10(ParserRuleContext context, string filename = "")
         {
             Validators.ValidateParserRuleContext(context);
+            Validators.ValidateString(filename);
 
             visitor10.LastError = null;
             visitor10.Log = "";
@@ -241,6 +250,7 @@ namespace DescribeParser.Visitors
         public AstScriptureNode TranslateContext11(ParserRuleContext context, string filename = "")
         {
             Validators.ValidateParserRuleContext(context);
+            Validators.ValidateString(filename);
 
             visitor11.LastError = null;
             visitor11.Log = "";

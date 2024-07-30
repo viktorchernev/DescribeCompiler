@@ -29,6 +29,7 @@ namespace DescribeParser.Visitors
             }
             set
             {
+                Validators.ValidateString(value);
                 _log = value;
             }
         }
@@ -78,6 +79,8 @@ namespace DescribeParser.Visitors
         /// <returns>"success' if successful, "error" if not.</returns>
         public string VisitContext(ParserRuleContext context)
         {
+            Validators.ValidateParserRuleContext(context);
+
             string? fullTypeName = context.GetType().FullName;
             if (fullTypeName == null)
             {
@@ -402,6 +405,7 @@ namespace DescribeParser.Visitors
         /// <returns>"success' if successful, "error" if not.</returns>
         public string VisitTerminal(ITerminalNode node)
         {
+            Validators.ValidateTerminalNode(node);
             return VisitTerminal06(node);
         }
 
@@ -412,6 +416,8 @@ namespace DescribeParser.Visitors
         /// <returns>"success' if successful, "error" if not.</returns>
         public string VisitTerminal06(ITerminalNode node)
         {
+            Validators.ValidateTerminalNode(node);
+
             visitor06.LastError = null;
             visitor06.Log = "";
 
@@ -434,6 +440,8 @@ namespace DescribeParser.Visitors
         /// <returns>"success' if successful, "error" if not.</returns>
         public string VisitTerminal07(ITerminalNode node)
         {
+            Validators.ValidateTerminalNode(node);
+
             visitor07.LastError = null;
             visitor07.Log = "";
 
@@ -456,6 +464,8 @@ namespace DescribeParser.Visitors
         /// <returns>"success' if successful, "error" if not.</returns>
         public string VisitTerminal08(ITerminalNode node)
         {
+            Validators.ValidateTerminalNode(node);
+
             visitor08.LastError = null;
             visitor08.Log = "";
 
@@ -478,6 +488,8 @@ namespace DescribeParser.Visitors
         /// <returns>"success' if successful, "error" if not.</returns>
         public string VisitTerminal09(ITerminalNode node)
         {
+            Validators.ValidateTerminalNode(node);
+
             visitor09.LastError = null;
             visitor09.Log = "";
 
@@ -500,6 +512,8 @@ namespace DescribeParser.Visitors
         /// <returns>"success' if successful, "error" if not.</returns>
         public string VisitTerminal10(ITerminalNode node)
         {
+            Validators.ValidateTerminalNode(node);
+
             visitor10.LastError = null;
             visitor10.Log = "";
 
@@ -522,6 +536,8 @@ namespace DescribeParser.Visitors
         /// <returns>"success' if successful, "error" if not.</returns>
         public string VisitTerminal11(ITerminalNode node)
         {
+            Validators.ValidateTerminalNode(node);
+
             visitor11.LastError = null;
             visitor11.Log = "";
 

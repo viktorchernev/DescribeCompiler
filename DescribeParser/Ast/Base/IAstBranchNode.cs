@@ -17,7 +17,7 @@
         /// Gets the list of child nodes associated with this branch node.
         /// </summary>
         /// <value>
-        /// A <see cref="List{object}"/> containing the child nodes.
+        /// A list of <see cref="object"/> containing the child nodes.
         /// </value>
         public List<object> Children { get; }
     }

@@ -40,6 +40,7 @@ namespace DescribeParser.Visitors
             }
             set
             {
+                Validators.ValidateString(value);
                 _log = value;
             }
         }
@@ -76,12 +77,18 @@ namespace DescribeParser.Visitors
             IParseTree child = context.GetChild(0);
             if (child is Describe08Parser.ExpressionContext)
             {
-                AstExpressionNode expr = DoExpression(child as Describe08Parser.ExpressionContext);
+                AstExpressionNode expr = DoExpression((child as Describe08Parser.ExpressionContext)!);
                 expressions.Add(expr);
             }
             else if (child is Describe08Parser.Expression_listContext)
             {
-                expressions = DoExpressionList(child as Describe08Parser.Expression_listContext);
+                expressions = DoExpressionList((child as Describe08Parser.Expression_listContext)!);
+            }
+            else
+            {
+                throw new ArgumentException(
+                    $"The first child of the provided ScriptureContext is not valid.",
+                    nameof(child));
             }
 
             var scripture = AstFactory.CreateScriptureNode(filename, expressions, context.exception);
@@ -101,6 +108,12 @@ namespace DescribeParser.Visitors
             for (int i = 0; i < childCount; i++)
             {
                 var child = context.GetChild(i) as Describe08Parser.ExpressionContext;
+                if (child == null)
+                {
+                    throw new ArgumentException(
+                    $"The child at index {i} of the provided Expression_listContext is not valid.",
+                    nameof(child));
+                }
                 AstExpressionNode expression = DoExpression(child);
                 list.Add(expression);
             }
@@ -123,10 +136,22 @@ namespace DescribeParser.Visitors
 
             // get title item
             var firstChild = context.GetChild(0) as Describe08Parser.ItemContext;
+            if (firstChild == null)
+            {
+                throw new ArgumentException(
+                $"The first child of the provided ExpressionContext is not valid.",
+                nameof(firstChild));
+            }
             AstItemNode head = DoItem(firstChild);
 
             // get arrow leaf
             var secondChild = context.GetChild(1) as Describe08Parser.ProducerContext;
+            if (secondChild == null)
+            {
+                throw new ArgumentException(
+                $"The second child of the provided ExpressionContext is not valid.",
+                nameof(secondChild));
+            }
             AstLeafNode arrow = doProductionArrow(secondChild);
 
             // get lines

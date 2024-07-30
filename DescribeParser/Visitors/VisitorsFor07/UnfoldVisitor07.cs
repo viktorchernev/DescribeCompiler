@@ -49,6 +49,7 @@ namespace DescribeParser.Visitors
             }
             set
             {
+                Validators.ValidateString(value);
                 _log = value;
             }
         }
@@ -77,10 +78,15 @@ namespace DescribeParser.Visitors
         /// "scripture : expression_list EOF | expression EOF;"
         /// </summary>
         /// <param name="u">Unfold to be populated</param>
-        /// <param name="context">Root context produced by the parser aka the parse tree</param>
-        /// <returns>True if successful</returns>
+        /// <param name="context">Root context produced by the parser aka the parse tree.</param>
+        /// <param name="filename">The filename for the operation.</param>
+        /// <returns>True if successful.</returns>
         public bool TranslateScripture(DescribeUnfold u, Describe07Parser.ScriptureContext context, string filename = "")
         {
+            Validators.ValidateUnfold(u);
+            Validators.ValidateParserRuleContext(context);
+            Validators.ValidateString(filename);
+
             //reset namespace for the file
             u.ParseJob.LastNamespace = "";
             u.ParseJob.LastFile = filename == null ? "" : filename;
@@ -93,13 +99,13 @@ namespace DescribeParser.Visitors
             IParseTree child = context.GetChild(0);
             if (child is Describe07Parser.ExpressionContext)
             {
-                string key2 = DoExpression(u, child as Describe07Parser.ExpressionContext);
+                string key2 = DoExpression(u, (child as Describe07Parser.ExpressionContext)!);
                 if (isPrimary) u.PrimaryProductions.Add(key2);
                 return true;
             }
             else if (child is Describe07Parser.Expression_listContext)
             {
-                string[] keys = DoExpressionList(u, child as Describe07Parser.Expression_listContext, true);
+                string[] keys = DoExpressionList(u, (child as Describe07Parser.Expression_listContext)!, true);
                 if (isPrimary)
                 {
                     for (int i = 0; i < keys.Length; i++)
@@ -122,6 +128,13 @@ namespace DescribeParser.Visitors
         {
             int childCount = context.ChildCount;
             var firstChild = context.GetChild(0) as Describe07Parser.ExpressionContext;
+            if (firstChild == null)
+            {
+                throw new ArgumentException(
+                    "The first child of the provided Expression_listContext is not a valid ExpressionContext.", 
+                    nameof(context));
+            }
+            
             string key1 = DoExpression(u, firstChild);
 
             //We want to find out now if this first expression in the expression list
@@ -159,6 +172,12 @@ namespace DescribeParser.Visitors
             for (int i = 1; i < childCount; i++)
             {
                 var child = context.GetChild(i) as Describe07Parser.ExpressionContext;
+                if (child == null)
+                {
+                    throw new ArgumentException(
+                        $"The child at index {i} of the provided Expression_listContext is not a valid ExpressionContext.",
+                        nameof(context));
+                }
                 string key = DoExpression(u, child);
                 keys.Add(key);
             }
@@ -182,16 +201,28 @@ namespace DescribeParser.Visitors
             for (int i = 0; i < childCount - 1; i++)
             {
                 var ch = context.GetChild(i) as Describe07Parser.Item_or_expression_partContext;
+                if (ch == null)
+                {
+                    throw new ArgumentException(
+                        $"The child at index {i} of the provided Item_or_expression_listContext is not a valid Item_or_expression_partContext.",
+                        nameof(context));
+                }
                 var child = ch.GetChild(0);
                 if (child is Describe07Parser.ItemContext)
                 {
-                    string k = DoItem(u, child as Describe07Parser.ItemContext);
+                    string k = DoItem(u, (child as Describe07Parser.ItemContext)!);
                     keys.Add(k);
                 }
                 else if (child is Describe07Parser.ExpressionContext)
                 {
-                    string k = DoExpression(u, child as Describe07Parser.ExpressionContext);
+                    string k = DoExpression(u, (child as Describe07Parser.ExpressionContext)!);
                     keys.Add(k);
+                }
+                else
+                {
+                    throw new ArgumentException(
+                        $"The child at index {i} of the provided Item_or_expression_listContext is not valid.",
+                        nameof(context));
                 }
             }
 
@@ -199,13 +230,19 @@ namespace DescribeParser.Visitors
             var lastChild = context.GetChild(childCount - 1);
             if (lastChild is Describe07Parser.ItemContext)
             {
-                string k = DoItem(u, lastChild as Describe07Parser.ItemContext);
+                string k = DoItem(u, (lastChild as Describe07Parser.ItemContext)!);
                 keys.Add(k);
             }
             else if (lastChild is Describe07Parser.ExpressionContext)
             {
-                string k = DoExpression(u, lastChild as Describe07Parser.ExpressionContext);
+                string k = DoExpression(u, (lastChild as Describe07Parser.ExpressionContext)!);
                 keys.Add(k);
+            }
+            else
+            {
+                throw new ArgumentException(
+                    $"The last child of the provided Item_or_expression_listContext is not valid.",
+                    nameof(context));
             }
 
             //return
@@ -223,6 +260,12 @@ namespace DescribeParser.Visitors
         {
             int childCount = context.ChildCount;
             var firstChild = context.GetChild(0) as Describe07Parser.ItemContext;
+            if (firstChild == null)
+            {
+                throw new ArgumentException(
+                    $"The first child of the provided ExpressionContext is not a valid ItemContext.",
+                    nameof(context));
+            }
             string head = DoItem(u, firstChild);
 
             //find out which kind of expression we have
@@ -238,7 +281,7 @@ namespace DescribeParser.Visitors
             //otherwise continue as normal production
             else if (thirdChild is Describe07Parser.ItemContext)
             {
-                string right = DoItem(u, thirdChild as Describe07Parser.ItemContext);
+                string right = DoItem(u, (thirdChild as Describe07Parser.ItemContext)!);
 
                 //check for id collision item with same id is redefinition,
                 //but 2 productions heads with same id is collision
@@ -255,7 +298,7 @@ namespace DescribeParser.Visitors
             }
             else if (thirdChild is Describe07Parser.ExpressionContext)
             {
-                string right = DoExpression(u, thirdChild as Describe07Parser.ExpressionContext);
+                string right = DoExpression(u, (thirdChild as Describe07Parser.ExpressionContext)!);
                 //check for id collision item with same id is redefinition,
                 //but 2 productions heads with same id is collision
                 if (u.Productions.ContainsKey(head))
@@ -271,7 +314,7 @@ namespace DescribeParser.Visitors
             }
             else if (thirdChild is Describe07Parser.Item_or_expression_listContext)
             {
-                string[] rights = DoItemOrExpressionList(u, thirdChild as Describe07Parser.Item_or_expression_listContext);
+                string[] rights = DoItemOrExpressionList(u, (thirdChild as Describe07Parser.Item_or_expression_listContext)!);
                 //check for id collision item with same id is redefinition,
                 //but 2 productions heads with same id is collision
                 if (u.Productions.ContainsKey(head))
@@ -285,9 +328,15 @@ namespace DescribeParser.Visitors
                 }
                 u.Productions.Add(head, rights.ToList());
             }
+            else
+            {
+                throw new ArgumentException(
+                    $"The third child of the provided ExpressionContext is not a valid ItemContext.",
+                    nameof(thirdChild));
+            }
 
             //idFile
-            string cf = u.ParseJob.LastFile;
+            string cf = u.ParseJob.LastFile!;
             if (string.IsNullOrEmpty(cf)) cf = "NA";
             if (u.ProdidFile.ContainsKey(head) == false)
             {
@@ -312,15 +361,27 @@ namespace DescribeParser.Visitors
             for (int i = 0; i < childCount; i++)
             {
                 var child = context.GetChild(i);
-                if(child is Describe07Parser.Text_chunkContext)
+                if (child == null)
                 {
-                    ITerminalNode token = (child as Describe07Parser.Text_chunkContext).GetChild(0) as ITerminalNode;
+                    throw new ArgumentException(
+                        $"The child at index {i} of the provided ItemContext is not valid.",
+                        nameof(child));
+                }
+                else if (child is Describe07Parser.Text_chunkContext)
+                {
+                    ITerminalNode? token = (child as Describe11Parser.Text_chunkContext)?.GetChild(0) as ITerminalNode;
+                    if (token == null)
+                    {
+                        throw new ArgumentException(
+                        $"The child at index {i} of the provided ItemContext is not valid.",
+                        nameof(token));
+                    }
                     string s = token.GetText();
                     text += s;
                 }
                 else
                 {
-                    ITerminalNode token = child as ITerminalNode;
+                    ITerminalNode token = (child as ITerminalNode)!;
                     string s = token.GetText();
                     s = s.Trim();
                     s = s.Substring(1, s.Length - 2);
@@ -353,7 +414,7 @@ namespace DescribeParser.Visitors
             }
 
             //idFile
-            string cf = u.ParseJob.LastFile;
+            string cf = u.ParseJob.LastFile!;
             if (string.IsNullOrEmpty(cf)) cf = "NA";
             if (u.ItemidFile.ContainsKey(tag) == false)
             {

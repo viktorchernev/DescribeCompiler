@@ -30,6 +30,7 @@ namespace DescribeParser.Visitors
             }
             set
             {
+                Validators.ValidateString(value);
                 _log = value;
             }
         }
@@ -80,6 +81,8 @@ namespace DescribeParser.Visitors
         /// <returns>true if successful, false if not.</returns>
         public bool TranslateContext(DescribeUnfold u, ParserRuleContext context, string filename = "")
         {
+            Validators.ValidateUnfold(u);
+            Validators.ValidateParserRuleContext(context);
             Validators.ValidateString(filename);
 
             string? fullTypeName = context.GetType().FullName;
@@ -119,6 +122,8 @@ namespace DescribeParser.Visitors
         /// <returns>true if successful, false if not.</returns>
         public bool TranslateContext06(DescribeUnfold u, ParserRuleContext context, string filename = "")
         {
+            Validators.ValidateUnfold(u);
+            Validators.ValidateParserRuleContext(context);
             Validators.ValidateString(filename);
 
             visitor06.LastError = null;
@@ -145,6 +150,8 @@ namespace DescribeParser.Visitors
         /// <returns>true if successful, false if not.</returns>
         public bool TranslateContext07(DescribeUnfold u, ParserRuleContext context, string filename = "")
         {
+            Validators.ValidateUnfold(u);
+            Validators.ValidateParserRuleContext(context);
             Validators.ValidateString(filename);
 
             visitor07.LastError = null;
@@ -171,6 +178,8 @@ namespace DescribeParser.Visitors
         /// <returns>true if successful, false if not.</returns>
         public bool TranslateContext08(DescribeUnfold u, ParserRuleContext context, string filename = "")
         {
+            Validators.ValidateUnfold(u);
+            Validators.ValidateParserRuleContext(context);
             Validators.ValidateString(filename);
 
             visitor08.LastError = null;
@@ -197,6 +206,8 @@ namespace DescribeParser.Visitors
         /// <returns>true if successful, false if not.</returns>
         public bool TranslateContext09(DescribeUnfold u, ParserRuleContext context, string filename = "")
         {
+            Validators.ValidateUnfold(u);
+            Validators.ValidateParserRuleContext(context);
             Validators.ValidateString(filename);
 
             visitor09.LastError = null;
@@ -223,6 +234,8 @@ namespace DescribeParser.Visitors
         /// <returns>true if successful, false if not.</returns>
         public bool TranslateContext10(DescribeUnfold u, ParserRuleContext context, string filename = "")
         {
+            Validators.ValidateUnfold(u);
+            Validators.ValidateParserRuleContext(context);
             Validators.ValidateString(filename);
 
             visitor10.LastError = null;
@@ -249,6 +262,8 @@ namespace DescribeParser.Visitors
         /// <returns>true if successful, false if not.</returns>
         public bool TranslateContext11(DescribeUnfold u, ParserRuleContext context, string filename = "")
         {
+            Validators.ValidateUnfold(u);
+            Validators.ValidateParserRuleContext(context);
             Validators.ValidateString(filename);
 
             visitor11.LastError = null;

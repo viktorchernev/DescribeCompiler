@@ -27,11 +27,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <IsAotCompatible>False</IsAotCompatible>
     <FileAlignment>512</FileAlignment>
+    <NoWarn>1701;1702;3021</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <IsAotCompatible>False</IsAotCompatible>
     <FileAlignment>512</FileAlignment>
+    <NoWarn>1701;1702;3021</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>

@@ -20,7 +20,11 @@
         /// </summary>
         public abstract string ToCode();
 
-
+        /// <summary>
+        /// Replaces New line and Tab characters with their escape sequences.
+        /// </summary>
+        /// <param name="text">The string to be replaced.</param>
+        /// <returns>The modified string.</returns>
         protected static string replaceWhitespaceE(string text)
         {
             return text.Replace("\n", "\\n")

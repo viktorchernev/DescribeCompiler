@@ -107,6 +107,8 @@ namespace DescribeParser.Visitors
         /// <returns>A string indicating the success or failure of the visit.</returns>
         public override string VisitScripture([NotNull] Describe11Parser.ScriptureContext context)
         {
+            Validators.ValidateParserRuleContext(context);
+
             Log += Environment.NewLine + logItem(context, "scripture");
             if (_lerror != null) return "error";
             visitChildren(context);
@@ -121,6 +123,7 @@ namespace DescribeParser.Visitors
         /// <returns>A string indicating the success of the visit.</returns>
         public override string VisitTerminal(ITerminalNode node)
         {
+            Validators.ValidateTerminalNode(node);
             Log += Environment.NewLine + logToken(node);
             return "success";
         }
@@ -133,6 +136,8 @@ namespace DescribeParser.Visitors
         /// <returns>A string indicating the success or failure of the visit.</returns>
         public override string VisitProducer([NotNull] Describe11Parser.ProducerContext context)
         {
+            Validators.ValidateParserRuleContext(context);
+
             Log += Environment.NewLine + logItem(context, "producer");
             if (_lerror != null) return "error";
             visitChildren(context);
@@ -146,6 +151,8 @@ namespace DescribeParser.Visitors
         /// <returns>A string indicating the success or failure of the visit.</returns>
         public override string VisitText_chunk([NotNull] Describe11Parser.Text_chunkContext context)
         {
+            Validators.ValidateParserRuleContext(context);
+
             Log += Environment.NewLine + logItem(context, "text_chunk");
             if (_lerror != null) return "error";
             visitChildren(context);
@@ -159,6 +166,8 @@ namespace DescribeParser.Visitors
         /// <returns>A string indicating the success or failure of the visit.</returns>
         public override string VisitItem([NotNull] Describe11Parser.ItemContext context)
         {
+            Validators.ValidateParserRuleContext(context);
+
             Log += Environment.NewLine + logItem(context, "item");
             if (_lerror != null) return "error";
             visitChildren(context);
@@ -172,6 +181,8 @@ namespace DescribeParser.Visitors
         /// <returns>A string indicating the success or failure of the visit.</returns>
         public override string VisitExpression([NotNull] Describe11Parser.ExpressionContext context)
         {
+            Validators.ValidateParserRuleContext(context);
+
             Log += Environment.NewLine + logItem(context, "expression");
             if (_lerror != null) return "error";
             visitChildren(context);
@@ -185,6 +196,8 @@ namespace DescribeParser.Visitors
         /// <returns>A string indicating the success or failure of the visit.</returns>
         public override string VisitExpression_list([NotNull] Describe11Parser.Expression_listContext context)
         {
+            Validators.ValidateParserRuleContext(context);
+
             Log += Environment.NewLine + logItem(context, "expression_list");
             if (_lerror != null) return "error";
             visitChildren(context);
@@ -198,6 +211,8 @@ namespace DescribeParser.Visitors
         /// <returns>A string indicating the success or failure of the visit.</returns>
         public override string VisitItem_or_expression_list([NotNull] Describe11Parser.Item_or_expression_listContext context)
         {
+            Validators.ValidateParserRuleContext(context);
+
             Log += Environment.NewLine + logItem(context, "item_or_expression_list");
             if (_lerror != null) return "error";
             visitChildren(context);
@@ -211,6 +226,8 @@ namespace DescribeParser.Visitors
         /// <returns>A string indicating the success or failure of the visit.</returns>
         public override string VisitItem_or_expression_part([NotNull] Describe11Parser.Item_or_expression_partContext context)
         {
+            Validators.ValidateParserRuleContext(context);
+
             Log += Environment.NewLine + logItem(context, "item_or_expression_part");
             if (_lerror != null) return "error";
             visitChildren(context);
