@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace DescribeParser.Ast
 {
+    /// <summary>
+    /// This is the Factorcy class used to produce AST objects.
+    /// </summary>
     public static partial class AstFactory
     {
         /// <summary>
@@ -19,8 +22,12 @@ namespace DescribeParser.Ast
         /// <param name="parent">The parent node, if any. Default is null.</param>
         /// <returns>An <see cref="AstSimpleDecoratorNode"/> with the specified type, open bracket, name, and close bracket.</returns>
         public static AstSimpleDecoratorNode CreateSimpleDecoratorNode(AstSimpleDecoratorType type, 
-            AstLeafNode open, AstLeafNode name, AstLeafNode close, IAstBranchNode parent = null)
+            AstLeafNode open, AstLeafNode name, AstLeafNode close, IAstBranchNode? parent = null)
         {
+            ValidateAstChildNodeP(open);
+            ValidateAstChildNodeP(name);
+            ValidateAstChildNodeP(close);
+
             AstSimpleDecoratorNode decorator = new AstSimpleDecoratorNode();
 
             decorator.DecoratorType = type;
@@ -28,7 +35,7 @@ namespace DescribeParser.Ast
             decorator.Name = name;
             decorator.CloseBracket = close;
             decorator.Parent = parent;
-            decorator.Position = CreateSourcePosition(open.Position, close.Position);
+            decorator.Position = CreateSourcePosition(open.Position!, close.Position!);
 
             return decorator;
         }
@@ -42,8 +49,12 @@ namespace DescribeParser.Ast
         /// <param name="parent">The parent node, if any. Default is null.</param>
         /// <returns>An <see cref="AstSimpleDecoratorNode"/> with the specified type, open bracket, name, and close bracket.</returns>
         public static AstSimpleDecoratorNode CreateSimpleDecoratorNode(AstLeafNode open, 
-            AstLeafNode name, AstLeafNode close, IAstBranchNode parent = null)
+            AstLeafNode name, AstLeafNode close, IAstBranchNode? parent = null)
         {
+            ValidateAstChildNodeP(open);
+            ValidateAstChildNodeP(name);
+            ValidateAstChildNodeP(close);
+
             AstSimpleDecoratorNode decorator = new AstSimpleDecoratorNode();
 
             decorator.DecoratorType = getSimpleDecoratorType(name.Text);
@@ -51,7 +62,7 @@ namespace DescribeParser.Ast
             decorator.Name = name;
             decorator.CloseBracket = close;
             decorator.Parent = parent;
-            decorator.Position = CreateSourcePosition(open.Position, close.Position);
+            decorator.Position = CreateSourcePosition(open.Position!, close.Position!);
 
             return decorator;
         }
@@ -70,8 +81,13 @@ namespace DescribeParser.Ast
         /// <returns>An <see cref="AstDoubleDecoratorNode"/> with the specified type, open bracket, name, value, and close bracket.</returns>
         public static AstDoubleDecoratorNode CreateDoubleDecoratorNode(AstDoubleDecoratorType type,
             AstLeafNode open, AstLeafNode name, AstLeafNode value, AstLeafNode close, 
-            IAstBranchNode parent = null)
+            IAstBranchNode? parent = null)
         {
+            ValidateAstChildNodeP(open);
+            ValidateAstChildNodeP(name);
+            ValidateAstChildNodeP(value);
+            ValidateAstChildNodeP(close);
+
             AstDoubleDecoratorNode decorator = new AstDoubleDecoratorNode();
 
             decorator.DecoratorType = type;
@@ -80,7 +96,7 @@ namespace DescribeParser.Ast
             decorator.Value = value;
             decorator.CloseBracket = close;
             decorator.Parent = parent;
-            decorator.Position = CreateSourcePosition(open.Position, close.Position);
+            decorator.Position = CreateSourcePosition(open.Position!, close.Position!);
 
             return decorator;
         }
@@ -95,8 +111,13 @@ namespace DescribeParser.Ast
         /// <param name="parent">The parent node, if any. Default is null.</param>
         /// <returns>An <see cref="AstDoubleDecoratorNode"/> with the specified open bracket, name, value, and close bracket.</returns>
         public static AstDoubleDecoratorNode CreateDoubleDecoratorNode(AstLeafNode open, 
-            AstLeafNode name, AstLeafNode value, AstLeafNode close, IAstBranchNode parent = null)
+            AstLeafNode name, AstLeafNode value, AstLeafNode close, IAstBranchNode? parent = null)
         {
+            ValidateAstChildNodeP(open);
+            ValidateAstChildNodeP(name);
+            ValidateAstChildNodeP(value);
+            ValidateAstChildNodeP(close);
+
             AstDoubleDecoratorNode decorator = new AstDoubleDecoratorNode();
 
             decorator.DecoratorType = getDoubleDecoratorType(name.Text);
@@ -105,7 +126,7 @@ namespace DescribeParser.Ast
             decorator.Value = value;
             decorator.CloseBracket = close;
             decorator.Parent = parent;
-            decorator.Position = CreateSourcePosition(open.Position, close.Position);
+            decorator.Position = CreateSourcePosition(open.Position!, close.Position!);
 
             return decorator;
         }
@@ -125,8 +146,14 @@ namespace DescribeParser.Ast
         /// <returns>An <see cref="AstTripleDecoratorNode"/> with the specified type, open bracket, category, name, value, and close bracket.</returns>
         public static AstTripleDecoratorNode CreateTripleDecoratorNode(AstTripleDecoratorType type,
             AstLeafNode open, AstLeafNode category, AstLeafNode name, AstLeafNode value, AstLeafNode close,
-            IAstBranchNode parent = null)
+            IAstBranchNode? parent = null)
         {
+            ValidateAstChildNodeP(open);
+            ValidateAstChildNodeP(category);
+            ValidateAstChildNodeP(name);
+            ValidateAstChildNodeP(value);
+            ValidateAstChildNodeP(close);
+
             AstTripleDecoratorNode decorator = new AstTripleDecoratorNode();
 
             decorator.DecoratorType = type;
@@ -136,7 +163,7 @@ namespace DescribeParser.Ast
             decorator.Value = value;
             decorator.CloseBracket = close;
             decorator.Parent = parent;
-            decorator.Position = CreateSourcePosition(open.Position, close.Position);
+            decorator.Position = CreateSourcePosition(open.Position!, close.Position!);
 
             return decorator;
         }
@@ -153,8 +180,14 @@ namespace DescribeParser.Ast
         /// <returns>An <see cref="AstTripleDecoratorNode"/> with the specified open bracket, category, name, value, and close bracket.</returns>
         public static AstTripleDecoratorNode CreateTripleDecoratorNode(AstLeafNode open, 
             AstLeafNode category, AstLeafNode name, AstLeafNode value, AstLeafNode close,
-            IAstBranchNode parent = null)
+            IAstBranchNode? parent = null)
         {
+            ValidateAstChildNodeP(open);
+            ValidateAstChildNodeP(category);
+            ValidateAstChildNodeP(name);
+            ValidateAstChildNodeP(value);
+            ValidateAstChildNodeP(close);
+
             AstTripleDecoratorNode decorator = new AstTripleDecoratorNode();
 
             decorator.DecoratorType = getTripleDecoratorType(name.Text); ;
@@ -164,7 +197,7 @@ namespace DescribeParser.Ast
             decorator.Value = value;
             decorator.CloseBracket = close;
             decorator.Parent = parent;
-            decorator.Position = CreateSourcePosition(open.Position, close.Position);
+            decorator.Position = CreateSourcePosition(open.Position!, close.Position!);
 
             return decorator;
         }

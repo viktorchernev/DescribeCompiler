@@ -16,8 +16,12 @@ namespace DescribeParser.Ast
         /// <param name="parent">The optional parent node of the item.</param>
         /// <returns>The created AstItemNode.</returns>
         public static AstItemNode CreateItemNode(AstLeafNode text,
-            IAstBranchNode parent = null)
+            IAstBranchNode? parent = null)
         {
+            // Null checks
+            ValidateAstChildNodeP(text);
+
+            // code
             AstItemNode item = new AstItemNode();
 
             item.Tilde = null;
@@ -27,7 +31,7 @@ namespace DescribeParser.Ast
             item.Decorators = null;
             item.Parent = parent;
 
-            item.Position = CreateSourcePosition(text.Position);
+            item.Position = CreateSourcePosition(text.Position!);
 
             return item;
         }
@@ -40,8 +44,12 @@ namespace DescribeParser.Ast
         /// <param name="parent">The optional parent node of the item.</param>
         /// <returns>The created AstItemNode.</returns>
         public static AstItemNode CreateItemNode(AstLeafNode text, AstTagNode tag,
-            IAstBranchNode parent = null)
+            IAstBranchNode? parent = null)
         {
+            // Null checks
+            ValidateAstChildNodeP(text);
+
+            // code
             AstItemNode item = new AstItemNode();
 
             item.Tilde = null;
@@ -51,11 +59,7 @@ namespace DescribeParser.Ast
             item.Decorators = null;
             item.Parent = parent;
 
-            if(tag != null)
-            {
-                item.Position = CreateSourcePosition(text.Position, tag.Position);
-            }
-            else item.Position = CreateSourcePosition(text.Position);
+            item.Position = CreateSourcePosition(text.Position!, tag.Position!);
 
             return item;
         }
@@ -69,8 +73,14 @@ namespace DescribeParser.Ast
         /// <param name="parent">The optional parent node of the item.</param>
         /// <returns>The created AstItemNode.</returns>
         public static AstItemNode CreateItemNode(AstLeafNode text, AstTagNode tag,
-            List<AstLinkNode> links, IAstBranchNode parent = null)
+            List<AstLinkNode> links, IAstBranchNode? parent = null)
         {
+            // Null checks
+            ValidateAstChildNodeP(text);
+            ValidateAstChildNodeP(tag);
+            ValidateAstNodeListP(links);
+
+            // code
             AstItemNode item = new AstItemNode();
 
             item.Tilde = null;
@@ -92,7 +102,7 @@ namespace DescribeParser.Ast
                     }
                 }
             }
-            item.Position = CreateSourcePosition(text.Position, tag?.Position, linkPos);
+            item.Position = CreateSourcePosition(text.Position!, tag.Position!, linkPos!);
 
             return item;
         }
@@ -108,8 +118,15 @@ namespace DescribeParser.Ast
         /// <returns>The created AstItemNode.</returns>
         public static AstItemNode CreateItemNode(AstLeafNode text, AstTagNode tag,
             List<AstLinkNode> links, List<AstDecoratorNode> decorators,
-            IAstBranchNode parent = null)
+            IAstBranchNode? parent = null)
         {
+            // Null checks
+            ValidateAstChildNodeP(text);
+            ValidateAstChildNodeP(tag);
+            ValidateAstNodeListP(links);
+            ValidateAstNodeListP(decorators);
+
+            // code
             AstItemNode item = new AstItemNode();
 
             item.Tilde = null;
@@ -145,7 +162,7 @@ namespace DescribeParser.Ast
                 }
             }
 
-            item.Position = CreateSourcePosition(text.Position, tag.Position, linkPos, decoratorsPos);
+            item.Position = CreateSourcePosition(text.Position!, tag.Position!, linkPos!, decoratorsPos!);
 
             return item;
         }
@@ -160,8 +177,13 @@ namespace DescribeParser.Ast
         /// <param name="parent">The optional parent node of the item.</param>
         /// <returns>The created AstItemNode.</returns>
         public static AstItemNode CreateItemNode(AstLeafNode tilde, AstLeafNode text,
-            IAstBranchNode parent = null)
+            IAstBranchNode? parent = null)
         {
+            // Null checks
+            ValidateAstChildNodeP(tilde);
+            ValidateAstChildNodeP(text);
+
+            // code
             AstItemNode item = new AstItemNode();
 
             item.Tilde = tilde;
@@ -171,7 +193,7 @@ namespace DescribeParser.Ast
             item.Decorators = null;
             item.Parent = parent;
 
-            item.Position = CreateSourcePosition(tilde.Position, text.Position);
+            item.Position = CreateSourcePosition(tilde.Position!, text.Position!);
 
             return item;
         }
@@ -185,8 +207,14 @@ namespace DescribeParser.Ast
         /// <param name="parent">The optional parent node of the item.</param>
         /// <returns>The created AstItemNode.</returns>
         public static AstItemNode CreateItemNode(AstLeafNode tilde, AstLeafNode text, 
-            AstTagNode tag, IAstBranchNode parent = null)
+            AstTagNode tag, IAstBranchNode? parent = null)
         {
+            // Null checks
+            ValidateAstChildNodeP(tilde);
+            ValidateAstChildNodeP(text);
+            ValidateAstChildNodeP(tag);
+
+            // code
             AstItemNode item = new AstItemNode();
 
             item.Tilde = tilde;
@@ -196,7 +224,7 @@ namespace DescribeParser.Ast
             item.Decorators = null;
             item.Parent = parent;
 
-            item.Position = CreateSourcePosition(tilde.Position, tag.Position);
+            item.Position = CreateSourcePosition(tilde.Position!, text.Position!, tag.Position!);
 
             return item;
         }
@@ -211,8 +239,15 @@ namespace DescribeParser.Ast
         /// <param name="parent">The optional parent node of the item.</param>
         /// <returns>The created AstItemNode.</returns>
         public static AstItemNode CreateItemNode(AstLeafNode tilde, AstLeafNode text, 
-            AstTagNode tag, List<AstLinkNode> links, IAstBranchNode parent = null)
+            AstTagNode tag, List<AstLinkNode> links, IAstBranchNode? parent = null)
         {
+            // Null checks
+            ValidateAstChildNodeP(tilde);
+            ValidateAstChildNodeP(text);
+            ValidateAstChildNodeP(tag);
+            ValidateAstNodeListP(links);
+
+            // code
             AstItemNode item = new AstItemNode();
 
             item.Tilde = tilde;
@@ -235,7 +270,7 @@ namespace DescribeParser.Ast
                 }
             }
 
-            item.Position = CreateSourcePosition(tilde.Position, text.Position, linkPos);
+            item.Position = CreateSourcePosition(tilde.Position!, text.Position!, tag.Position!, linkPos!);
 
             return item;
         }
@@ -252,8 +287,16 @@ namespace DescribeParser.Ast
         /// <returns>The created AstItemNode.</returns>
         public static AstItemNode CreateItemNode(AstLeafNode tilde, AstLeafNode text, 
             AstTagNode tag, List<AstLinkNode> links, List<AstDecoratorNode> decorators,
-            IAstBranchNode parent = null)
+            IAstBranchNode? parent = null)
         {
+            // Null checks
+            ValidateAstChildNodeP(tilde);
+            ValidateAstChildNodeP(text);
+            ValidateAstChildNodeP(tag);
+            ValidateAstNodeListP(links);
+            ValidateAstNodeListP(decorators);
+
+            // code
             AstItemNode item = new AstItemNode();
 
             item.Tilde = tilde;
@@ -289,7 +332,7 @@ namespace DescribeParser.Ast
                 }
             }
 
-            item.Position = CreateSourcePosition(tilde.Position, text.Position, linkPos, decoratorsPos);
+            item.Position = CreateSourcePosition(tilde.Position!, text.Position!, tag.Position!, linkPos!, decoratorsPos!);
 
             return item;
         }

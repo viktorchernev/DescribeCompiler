@@ -11,7 +11,7 @@ namespace DescribeParser.Visitors
     {
         // Vars
         string _log;
-        string _lerror;
+        string? _lerror;
         UnfoldVisitor06 visitor06;
         UnfoldVisitor07 visitor07;
         UnfoldVisitor08 visitor08;
@@ -39,7 +39,7 @@ namespace DescribeParser.Visitors
         /// If there was an error, this string contains the message, 
         /// and if there weren't any errors, this will be `null`.
         /// </summary>
-        public string LastError
+        public string? LastError
         {
             get
             {
@@ -76,9 +76,12 @@ namespace DescribeParser.Visitors
         /// </summary>
         /// <param name="u">The <see cref="DescribeUnfold"/> class that will be populated</param>
         /// <param name="context">The <see cref="ParserRuleContext"/> object to translate.</param>
+        /// <param name="filename">The <see cref="string"/> filename for the operation.</param>
         /// <returns>true if successful, false if not.</returns>
         public bool TranslateContext(DescribeUnfold u, ParserRuleContext context, string filename = "")
         {
+            Validators.ValidateString(filename);
+
             string? fullTypeName = context.GetType().FullName;
             if (fullTypeName == null)
             {
@@ -112,9 +115,12 @@ namespace DescribeParser.Visitors
         /// </summary>
         /// <param name="u">The <see cref="DescribeUnfold"/> class that will be populated.</param>
         /// <param name="context">The <see cref="ParserRuleContext"/> object to translate.</param>
+        /// <param name="filename">The <see cref="string"/> filename for the operation.</param>
         /// <returns>true if successful, false if not.</returns>
         public bool TranslateContext06(DescribeUnfold u, ParserRuleContext context, string filename = "")
         {
+            Validators.ValidateString(filename);
+
             visitor06.LastError = null;
             visitor06.Log = "";
             if(context is Describe06Parser.ScriptureContext)
@@ -135,9 +141,12 @@ namespace DescribeParser.Visitors
         /// </summary>
         /// <param name="u">The <see cref="DescribeUnfold"/> class that will be populated.</param>
         /// <param name="context">The <see cref="ParserRuleContext"/> object to translate.</param>
+        /// <param name="filename">The <see cref="string"/> filename for the operation.</param>
         /// <returns>true if successful, false if not.</returns>
         public bool TranslateContext07(DescribeUnfold u, ParserRuleContext context, string filename = "")
         {
+            Validators.ValidateString(filename);
+
             visitor07.LastError = null;
             visitor07.Log = "";
             if (context is Describe07Parser.ScriptureContext)
@@ -158,9 +167,12 @@ namespace DescribeParser.Visitors
         /// </summary>
         /// <param name="u">The <see cref="DescribeUnfold"/> class that will be populated.</param>
         /// <param name="context">The <see cref="ParserRuleContext"/> object to translate.</param>
+        /// <param name="filename">The <see cref="string"/> filename for the operation.</param>
         /// <returns>true if successful, false if not.</returns>
         public bool TranslateContext08(DescribeUnfold u, ParserRuleContext context, string filename = "")
         {
+            Validators.ValidateString(filename);
+
             visitor08.LastError = null;
             visitor08.Log = "";
             if (context is Describe08Parser.ScriptureContext)
@@ -181,9 +193,12 @@ namespace DescribeParser.Visitors
         /// </summary>
         /// <param name="u">The <see cref="DescribeUnfold"/> class that will be populated.</param>
         /// <param name="context">The <see cref="ParserRuleContext"/> object to translate.</param>
+        /// <param name="filename">The <see cref="string"/> filename for the operation.</param>
         /// <returns>true if successful, false if not.</returns>
         public bool TranslateContext09(DescribeUnfold u, ParserRuleContext context, string filename = "")
         {
+            Validators.ValidateString(filename);
+
             visitor09.LastError = null;
             visitor09.Log = "";
             if (context is Describe09Parser.ScriptureContext)
@@ -204,9 +219,12 @@ namespace DescribeParser.Visitors
         /// </summary>
         /// <param name="u">The <see cref="DescribeUnfold"/> class that will be populated.</param>
         /// <param name="context">The <see cref="ParserRuleContext"/> object to translate.</param>
+        /// <param name="filename">The <see cref="string"/> filename for the operation.</param>
         /// <returns>true if successful, false if not.</returns>
         public bool TranslateContext10(DescribeUnfold u, ParserRuleContext context, string filename = "")
         {
+            Validators.ValidateString(filename);
+
             visitor10.LastError = null;
             visitor10.Log = "";
             if (context is Describe10Parser.ScriptureContext)
@@ -227,9 +245,12 @@ namespace DescribeParser.Visitors
         /// </summary>
         /// <param name="u">The <see cref="DescribeUnfold"/> class that will be populated.</param>
         /// <param name="context">The <see cref="ParserRuleContext"/> object to translate.</param>
+        /// <param name="filename">The <see cref="string"/> filename for the operation.</param>
         /// <returns>true if successful, false if not.</returns>
         public bool TranslateContext11(DescribeUnfold u, ParserRuleContext context, string filename = "")
         {
+            Validators.ValidateString(filename);
+
             visitor11.LastError = null;
             visitor11.Log = "";
             if (context is Describe11Parser.ScriptureContext)

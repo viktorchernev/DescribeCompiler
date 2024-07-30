@@ -87,7 +87,7 @@ namespace DescribeParser.Ast
         /// <summary>
         /// Gets the position of this leaf node within the source code.
         /// </summary>
-        public SourcePosition? Position 
+        public SourcePosition Position 
         { 
             get; 
             set;
@@ -111,6 +111,7 @@ namespace DescribeParser.Ast
         internal AstLeafNode()
         {
             Text = "";
+            Position = null!;
         }
 
 

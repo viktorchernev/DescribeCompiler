@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -107,7 +108,11 @@ namespace DescribeParser.Ast
         /// Internal constructor to prevent external instantiation of <see cref="AstSimpleDecoratorNode"/>.
         /// </summary>
         internal AstSimpleDecoratorNode()
-        { }
+        {
+            _open = null!;
+            _name = null!;
+            _close = null!;
+        }
 
 
 

@@ -23,6 +23,13 @@ namespace DescribeParser.Ast
             int firstIndex, int firstLine, int firstColumn, 
             int lastIndex, int lastLine, int lastColumn)
         {
+            if (firstIndex < 0) throw new ArgumentException("'firstIndex' cannot be negative.");
+            if (firstLine < 0) throw new ArgumentException("'firstLine' cannot be negative.");
+            if (firstColumn < 0) throw new ArgumentException("'firstColumn' cannot be negative.");
+            if (lastIndex < 0) throw new ArgumentException("'lastIndex' cannot be negative.");
+            if (lastLine < 0) throw new ArgumentException("'lastLine' cannot be negative.");
+            if (lastColumn < 0) throw new ArgumentException("'lastColumn' cannot be negative.");
+
             SourcePosition position = new SourcePosition();
             position.FirstIndex = firstIndex;
             position.FirstLine = firstLine;
@@ -42,6 +49,8 @@ namespace DescribeParser.Ast
         public static SourcePosition CreateSourcePosition(
             SourcePosition position)
         {
+            ValidateSourcePositionP(position);
+
             SourcePosition pos = new SourcePosition();
             pos.FirstIndex = position.FirstIndex;
             pos.FirstLine = position.FirstLine;
@@ -63,6 +72,9 @@ namespace DescribeParser.Ast
         public static SourcePosition CreateSourcePosition(
             SourcePosition position0, SourcePosition position1)
         {
+            ValidateSourcePositionP(position0);
+            ValidateSourcePositionP(position1);
+
             SourcePosition pos = new SourcePosition();
             pos.FirstIndex = position0.FirstIndex;
             pos.FirstLine = position0.FirstLine;
@@ -84,6 +96,8 @@ namespace DescribeParser.Ast
         /// </returns>
         public static SourcePosition CreateSourcePosition(params SourcePosition[] positions)
         {
+            ValidateSourcePositionListP(positions);
+
             SourcePosition pos0 = positions[0];
             SourcePosition pos1 = positions[0];
 

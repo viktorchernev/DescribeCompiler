@@ -10,7 +10,7 @@ namespace DescribeParser.Ast
     /// <summary>
     /// Represents an Ast Item object 
     /// </summary>
-    public class AstItemNode : AstNode, IAstBranchNode, IAstChildNode
+    public class AstItemNode : AstNode, IAstBranchChildNode
     {
         // Vars
         private AstLeafNode? _tilde;
@@ -202,7 +202,7 @@ namespace DescribeParser.Ast
         /// <summary>
         /// Get the SourcePosition of this Item object
         /// </summary>
-        public SourcePosition? Position
+        public SourcePosition Position
         {
             get;
             set;
@@ -224,7 +224,10 @@ namespace DescribeParser.Ast
         /// Internal constructor to prevent external instantiation of <see cref="AstTagNode"/>.
         /// </summary>
         internal AstItemNode()
-        { }
+        {
+            _text = null!;
+            Position = null!;
+        }
  
 
 
@@ -367,7 +370,7 @@ namespace DescribeParser.Ast
                 }
                 else if (sortedIndexes[i].name == "Links")
                 {
-                    if (Links.Count < 1) continue;
+                    if (Links == null || Links.Count < 1) continue;
                     for(int j = 0; j < Links.Count; j++)
                     {
                         s += Links[j]?.ToCode();
@@ -375,7 +378,7 @@ namespace DescribeParser.Ast
                 }
                 else if (sortedIndexes[i].name == "Decorators")
                 {
-                    if (Decorators.Count < 1) continue;
+                    if (Decorators == null || Decorators.Count < 1) continue;
                     for (int j = 0; j < Decorators.Count; j++)
                     {
                         s += Decorators[j]?.ToCode();

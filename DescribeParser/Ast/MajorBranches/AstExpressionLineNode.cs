@@ -10,17 +10,17 @@ namespace DescribeParser.Ast
     /// <summary>
     /// Represents an Ast Expression Line object 
     /// </summary>
-    public class AstExpressionLineNode : AstNode, IAstBranchNode, IAstChildNode
+    public class AstExpressionLineNode : AstNode, IAstBranchChildNode
     {
         // Vars
-        private IAstBranchNode? _body;
+        private IAstBranchChildNode? _body;
         private AstLeafNode? _punctuation;
 
         /// <summary>
         /// The Item Node or Expression Node representing the Body symbol 
         /// of the Expression line object
         /// </summary>
-        public IAstBranchNode? Body
+        public IAstBranchChildNode? Body
         {
             get
             {
@@ -29,7 +29,7 @@ namespace DescribeParser.Ast
             internal set
             {
                 _body = value;
-                if (_body != null && _body is IAstChildNode) (_body as IAstChildNode).Parent = this;
+                if (_body != null) _body.Parent = this;
             }
         }
 
@@ -111,7 +111,7 @@ namespace DescribeParser.Ast
         /// <summary>
         /// Get the SourcePosition of this Expression Line object
         /// </summary>
-        public SourcePosition? Position
+        public SourcePosition Position
         {
             get;
             set;
@@ -133,7 +133,9 @@ namespace DescribeParser.Ast
         /// Internal constructor to prevent external instantiation of <see cref="AstExpressionLineNode"/>.
         /// </summary>
         internal AstExpressionLineNode()
-        { }
+        {
+            Position = null!;
+        }
 
 
 

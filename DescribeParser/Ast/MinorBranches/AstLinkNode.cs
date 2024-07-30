@@ -5,7 +5,7 @@ namespace DescribeParser.Ast
     /// <summary>
     /// Represents an Ast Link object.
     /// </summary>
-    public class AstLinkNode : AstNode, IAstBranchNode, IAstChildNode
+    public class AstLinkNode : AstNode, IAstBranchChildNode
     {
         // Values
         private AstLeafNode _open;
@@ -128,7 +128,7 @@ namespace DescribeParser.Ast
         {
             get
             {
-                return new List<AstLeafNode>() { OpenBracket, Url, Title, Letter, CloseBracket };
+                return new List<AstLeafNode>() { OpenBracket, Url, Title!, Letter!, CloseBracket };
             }
         }
 
@@ -139,7 +139,7 @@ namespace DescribeParser.Ast
         {
             get
             {
-                return new List<object>() { OpenBracket, Url, Title, Letter, CloseBracket };
+                return new List<object>() { OpenBracket, Url, Title!, Letter!, CloseBracket };
             }
         }
 
@@ -148,7 +148,7 @@ namespace DescribeParser.Ast
         /// <summary>
         /// Get the SourcePosition of this Link object
         /// </summary>
-        public SourcePosition? Position
+        public SourcePosition Position
         {
             get;
             set;
@@ -171,6 +171,10 @@ namespace DescribeParser.Ast
         /// </summary>
         internal AstLinkNode()
         {
+            Position = null!;
+            _open = null!;
+            _url = null!;
+            _close = null!;
         }
 
 

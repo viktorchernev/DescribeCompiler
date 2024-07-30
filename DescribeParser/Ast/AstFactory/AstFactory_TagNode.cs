@@ -19,8 +19,12 @@ namespace DescribeParser.Ast
         /// <param name="parent">The parent item.</param>
         /// <returns>New instance of AstTagNode.</returns>
         public static AstTagNode CreateTagNode(AstLeafNode open, AstLeafNode id, AstLeafNode close, 
-            IAstBranchNode parent = null)
+            IAstBranchNode? parent = null)
         {
+            ValidateAstChildNodeP(open);
+            ValidateAstChildNodeP(id);
+            ValidateAstChildNodeP(close);
+
             AstTagNode tag = new AstTagNode();
 
             tag.OpenBracket = open;
@@ -28,7 +32,7 @@ namespace DescribeParser.Ast
             tag.CloseBracket = close;
 
             tag.Parent = parent;
-            tag.Position = CreateSourcePosition(open.Position, close.Position);
+            tag.Position = CreateSourcePosition(open.Position!, close.Position!);
 
             return tag;
         }

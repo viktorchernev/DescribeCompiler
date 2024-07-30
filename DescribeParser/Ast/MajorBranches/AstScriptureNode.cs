@@ -52,7 +52,7 @@ namespace DescribeParser.Ast
         /// <summary>
         /// The Exception of this Scripture object - null if parsing was successful
         /// </summary>
-        public Exception Exception
+        public Exception? Exception
         {
             get;
             internal set;
@@ -155,7 +155,9 @@ namespace DescribeParser.Ast
         /// Internal constructor to prevent external instantiation of <see cref="AstScriptureNode"/>.
         /// </summary>
         internal AstScriptureNode()
-        { }
+        {
+            _expressions = new List<AstExpressionNode>();
+        }
 
 
 

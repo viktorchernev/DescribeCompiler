@@ -5,7 +5,7 @@ namespace DescribeParser.Ast
     /// <summary>
     /// Represents a decorator node in the abstract syntax tree (AST).
     /// </summary>
-    public abstract class AstDecoratorNode : AstNode, IAstBranchNode, IAstChildNode
+    public abstract class AstDecoratorNode : AstNode, IAstBranchChildNode
     {
         // IAstBranchNode
         /// <summary>
@@ -29,7 +29,7 @@ namespace DescribeParser.Ast
         /// <summary>
         /// Get the SourcePosition of this Decorator object
         /// </summary>
-        public SourcePosition? Position
+        public SourcePosition Position
         {
             get;
             set;
@@ -52,6 +52,7 @@ namespace DescribeParser.Ast
         /// </summary>
         internal AstDecoratorNode()
         {
+            Position = null!;
         }
 
 

@@ -6,7 +6,7 @@ namespace DescribeParser.Ast
     /// <summary>
     /// Represents an Ast Tag object 
     /// </summary>
-    public class AstTagNode : AstNode, IAstBranchNode, IAstChildNode
+    public class AstTagNode : AstNode, IAstBranchChildNode
     {
         // Values
         private AstLeafNode _open;
@@ -92,7 +92,7 @@ namespace DescribeParser.Ast
         /// <summary>
         /// Get the SourcePosition of this Tag object
         /// </summary>
-        public SourcePosition? Position
+        public SourcePosition Position
         {
             get;
             set;
@@ -115,6 +115,10 @@ namespace DescribeParser.Ast
         /// </summary>
         internal AstTagNode()
         {
+            Position = null!;
+            _open = null!;
+            _id = null!;
+            _close = null!;
         }
 
 

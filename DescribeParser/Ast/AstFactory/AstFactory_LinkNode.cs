@@ -18,8 +18,11 @@ namespace DescribeParser.Ast
         /// <param name="parent">The parent item</param>
         /// <returns>New instance of AstLinkNode.</returns>
         public static AstLinkNode CreateLinkNode(AstLeafNode open, AstLeafNode url, AstLeafNode close,
-            IAstBranchNode parent = null)
+            IAstBranchNode? parent = null)
         {
+            ValidateAstChildNodeP(open);
+            ValidateAstChildNodeP(url);
+            ValidateAstChildNodeP(close);
             return _createLinkNode(open, url, null, null, close, parent);
         }
 
@@ -33,8 +36,12 @@ namespace DescribeParser.Ast
         /// <param name="parent">The parent item</param>
         /// <returns>New instance of AstLinkNode.</returns>
         public static AstLinkNode CreateLinkNode(AstLeafNode open, AstLeafNode url, AstLeafNode title, 
-            AstLeafNode close, IAstBranchNode parent = null)
+            AstLeafNode close, IAstBranchNode? parent = null)
         {
+            ValidateAstChildNodeP(open);
+            ValidateAstChildNodeP(url);
+            ValidateAstChildNodeP(title);
+            ValidateAstChildNodeP(close);
             return _createLinkNode(open, url, title, null, close, parent);
         }
 
@@ -49,13 +56,18 @@ namespace DescribeParser.Ast
         /// <param name="parent">The parent item</param>
         /// <returns>New instance of AstLinkNode.</returns>
         public static AstLinkNode CreateLinkNode(AstLeafNode open, AstLeafNode url, AstLeafNode title,
-            AstLeafNode letter, AstLeafNode close, IAstBranchNode parent = null)
+            AstLeafNode letter, AstLeafNode close, IAstBranchNode? parent = null)
         {
+            ValidateAstChildNodeP(open);
+            ValidateAstChildNodeP(url);
+            ValidateAstChildNodeP(title);
+            ValidateAstChildNodeP(letter);
+            ValidateAstChildNodeP(close);
             return _createLinkNode(open, url, title, letter, close, parent);
         }
 
-        static AstLinkNode _createLinkNode(AstLeafNode open, AstLeafNode url, AstLeafNode title,
-            AstLeafNode letter, AstLeafNode close, IAstBranchNode parent = null)
+        static AstLinkNode _createLinkNode(AstLeafNode open, AstLeafNode url, AstLeafNode? title,
+            AstLeafNode? letter, AstLeafNode close, IAstBranchNode? parent = null)
         {
             AstLinkNode link = new AstLinkNode();
 

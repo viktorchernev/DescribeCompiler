@@ -5,12 +5,12 @@ namespace DescribeParser.Ast
     /// <summary>
     /// Represents an Ast Expression object 
     /// </summary>
-    public class AstExpressionNode : AstNode, IAstBranchNode, IAstChildNode
+    public class AstExpressionNode : AstNode, IAstBranchChildNode
     {
         // Vars
         private AstItemNode _title;
         private AstLeafNode _prod;
-        private List<AstExpressionLineNode>? _linesList;
+        private List<AstExpressionLineNode> _linesList;
 
         /// <summary>
         /// The Leaf Node representing the title symbol of the Expression object
@@ -163,7 +163,7 @@ namespace DescribeParser.Ast
         /// <summary>
         /// Get the SourcePosition of this Expression object
         /// </summary>
-        public SourcePosition? Position
+        public SourcePosition Position
         {
             get;
             set;
@@ -185,7 +185,12 @@ namespace DescribeParser.Ast
         /// Internal constructor to prevent external instantiation of <see cref="AstExpressionNode"/>.
         /// </summary>
         internal AstExpressionNode()
-        { }
+        {
+            Position = null!;
+            _title = null!;
+            _prod = null!;
+            _linesList = null!;
+        }
 
 
 

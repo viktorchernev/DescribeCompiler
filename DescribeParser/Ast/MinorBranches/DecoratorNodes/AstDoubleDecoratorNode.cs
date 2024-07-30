@@ -125,7 +125,12 @@ namespace DescribeParser.Ast
         /// Internal constructor to prevent external instantiation of <see cref="AstDoubleDecoratorNode"/>.
         /// </summary>
         internal AstDoubleDecoratorNode()
-        { }
+        {
+            _open = null!;
+            _name = null!;
+            _value = null!;
+            _close = null!;
+        }
 
 
 
