@@ -17,7 +17,9 @@ namespace DescribeParser.Visitors
     /// </summary>
     public class AstVisitor07
     {
-        // Ctor & Properties
+        /// <summary>
+        /// Ctor.
+        /// </summary>
         public AstVisitor07()
         {
             _log = "";
@@ -25,7 +27,7 @@ namespace DescribeParser.Visitors
         }
 
         string _log;
-        string _lerror;
+        string? _lerror;
 
         /// <summary>
         /// Gets or sets all the logs for this instance.
@@ -47,7 +49,7 @@ namespace DescribeParser.Visitors
         /// If there was an error, this string contains the message, 
         /// and if there weren't any errors, this will be `null`.
         /// </summary>
-        public string LastError
+        public string? LastError
         {
             get
             {

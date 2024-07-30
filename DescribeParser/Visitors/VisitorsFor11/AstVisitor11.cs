@@ -17,7 +17,9 @@ namespace DescribeParser.Visitors
     /// </summary>
     public class AstVisitor11
     {
-        // Ctor & Properties
+        /// <summary>
+        /// Ctor.
+        /// </summary>
         public AstVisitor11()
         {
             _log = "";

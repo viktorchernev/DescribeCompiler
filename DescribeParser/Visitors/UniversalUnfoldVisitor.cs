@@ -125,7 +125,7 @@ namespace DescribeParser.Visitors
             visitor06.Log = "";
             if(context is Describe06Parser.ScriptureContext)
             {
-                bool result = visitor06.TranslateScripture(u, context as Describe06Parser.ScriptureContext, filename);
+                bool result = visitor06.TranslateScripture(u, (context as Describe06Parser.ScriptureContext)!, filename);
                 LastError = visitor06.LastError;
                 Log = visitor06.Log;
                 return result;
@@ -151,7 +151,7 @@ namespace DescribeParser.Visitors
             visitor07.Log = "";
             if (context is Describe07Parser.ScriptureContext)
             {
-                bool result = visitor07.TranslateScripture(u, context as Describe07Parser.ScriptureContext, filename);
+                bool result = visitor07.TranslateScripture(u, (context as Describe07Parser.ScriptureContext)!, filename);
                 LastError = visitor07.LastError;
                 Log = visitor07.Log;
                 return result;
@@ -177,7 +177,7 @@ namespace DescribeParser.Visitors
             visitor08.Log = "";
             if (context is Describe08Parser.ScriptureContext)
             {
-                bool result = visitor08.TranslateScripture(u, context as Describe08Parser.ScriptureContext, filename);
+                bool result = visitor08.TranslateScripture(u, (context as Describe08Parser.ScriptureContext)!, filename);
                 LastError = visitor08.LastError;
                 Log = visitor08.Log;
                 return result;
@@ -203,7 +203,7 @@ namespace DescribeParser.Visitors
             visitor09.Log = "";
             if (context is Describe09Parser.ScriptureContext)
             {
-                bool result = visitor09.TranslateScripture(u, context as Describe09Parser.ScriptureContext, filename);
+                bool result = visitor09.TranslateScripture(u, (context as Describe09Parser.ScriptureContext)!, filename);
                 LastError = visitor09.LastError;
                 Log = visitor09.Log;
                 return result;
@@ -229,7 +229,7 @@ namespace DescribeParser.Visitors
             visitor10.Log = "";
             if (context is Describe10Parser.ScriptureContext)
             {
-                bool result = visitor10.TranslateScripture(u, context as Describe10Parser.ScriptureContext, filename);
+                bool result = visitor10.TranslateScripture(u, (context as Describe10Parser.ScriptureContext)!, filename);
                 LastError = visitor10.LastError;
                 Log = visitor10.Log;
                 return result;
@@ -255,7 +255,7 @@ namespace DescribeParser.Visitors
             visitor11.Log = "";
             if (context is Describe11Parser.ScriptureContext)
             {
-                bool result = visitor11.TranslateScripture(u, context as Describe11Parser.ScriptureContext, filename);
+                bool result = visitor11.TranslateScripture(u, (context as Describe11Parser.ScriptureContext)!, filename);
                 LastError = visitor11.LastError;
                 Log = visitor11.Log;
                 return result;

@@ -26,7 +26,9 @@ namespace DescribeParser.Visitors
         }
 
 
-        // Ctor & Properties
+        /// <summary>
+        /// Ctor.
+        /// </summary>
         public UnfoldVisitor06()
         {
             _log = "";
@@ -34,7 +36,7 @@ namespace DescribeParser.Visitors
         }
 
         string _log;
-        string _lerror;
+        string? _lerror;
 
         /// <summary>
         /// Gets or sets all the logs for this instance.
@@ -56,7 +58,7 @@ namespace DescribeParser.Visitors
         /// If there was an error, this string contains the message, 
         /// and if there weren't any errors, this will be `null`.
         /// </summary>
-        public string LastError
+        public string? LastError
         {
             get
             {
@@ -92,13 +94,13 @@ namespace DescribeParser.Visitors
             IParseTree child = context.GetChild(0);
             if (child is Describe06Parser.ExpressionContext)
             {
-                string key2 = DoExpression(u, child as Describe06Parser.ExpressionContext);
+                string key2 = DoExpression(u, (child as Describe06Parser.ExpressionContext)!);
                 if (isPrimary) u.PrimaryProductions.Add(key2);
                 return true;
             }
             else if (child is Describe06Parser.Expression_listContext)
             {
-                string[] keys = DoExpressionList(u, child as Describe06Parser.Expression_listContext, true);
+                string[] keys = DoExpressionList(u, (child as Describe06Parser.Expression_listContext)!, true);
                 if (isPrimary)
                 {
                     for (int i = 0; i < keys.Length; i++)

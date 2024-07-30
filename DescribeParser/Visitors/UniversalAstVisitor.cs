@@ -11,7 +11,7 @@ namespace DescribeParser.Visitors
     {
         // Vars
         string _log;
-        string _lerror;
+        string? _lerror;
         AstVisitor06 visitor06;
         AstVisitor07 visitor07;
         AstVisitor08 visitor08;
@@ -39,7 +39,7 @@ namespace DescribeParser.Visitors
         /// If there was an error, this string contains the message, 
         /// and if there weren't any errors, this will be `null`.
         /// </summary>
-        public string LastError
+        public string? LastError
         {
             get
             {
@@ -75,6 +75,7 @@ namespace DescribeParser.Visitors
         /// object by its type, and performs the translate action on it.
         /// </summary>
         /// <param name="context">The <see cref="ParserRuleContext"/> object to translate.</param>
+        /// <param name="filename">The <see cref="string"/> filename for the operation.</param>
         /// <returns>true if successful, false if not.</returns>
         public AstScriptureNode TranslateContext(ParserRuleContext context, string filename = "")
         {
@@ -110,14 +111,17 @@ namespace DescribeParser.Visitors
         /// Translates the <see cref="ParserRuleContext"/> object using in LogVisitor06 (Describe v06).
         /// </summary>
         /// <param name="context">The <see cref="ParserRuleContext"/> object to translate.</param>
+        /// <param name="filename">The <see cref="string"/> filename for the operation.</param>
         /// <returns>true if successful, false if not.</returns>
         public AstScriptureNode TranslateContext06(ParserRuleContext context, string filename = "")
         {
+            Validators.ValidateParserRuleContext(context);
+
             visitor06.LastError = null;
             visitor06.Log = "";
             if(context is Describe06Parser.ScriptureContext)
             {
-                AstScriptureNode result = visitor06.TranslateScripture(context as Describe06Parser.ScriptureContext, filename);
+                AstScriptureNode result = visitor06.TranslateScripture((context as Describe06Parser.ScriptureContext)!, filename);
                 LastError = visitor06.LastError;
                 Log = visitor06.Log;
                 return result;
@@ -132,14 +136,17 @@ namespace DescribeParser.Visitors
         /// Translates the <see cref="ParserRuleContext"/> object using in LogVisitor07 (Describe v07).
         /// </summary>
         /// <param name="context">The <see cref="ParserRuleContext"/> object to translate.</param>
+        /// <param name="filename">The <see cref="string"/> filename for the operation.</param>
         /// <returns>true if successful, false if not.</returns>
         public AstScriptureNode TranslateContext07(ParserRuleContext context, string filename = "")
         {
+            Validators.ValidateParserRuleContext(context);
+
             visitor07.LastError = null;
             visitor07.Log = "";
             if (context is Describe07Parser.ScriptureContext)
             {
-                AstScriptureNode result = visitor07.TranslateScripture(context as Describe07Parser.ScriptureContext, filename);
+                AstScriptureNode result = visitor07.TranslateScripture((context as Describe07Parser.ScriptureContext)!, filename);
                 LastError = visitor07.LastError;
                 Log = visitor07.Log;
                 return result;
@@ -154,14 +161,17 @@ namespace DescribeParser.Visitors
         /// Translates the <see cref="ParserRuleContext"/> object using in LogVisitor08 (Describe v08).
         /// </summary>
         /// <param name="context">The <see cref="ParserRuleContext"/> object to translate.</param>
+        /// <param name="filename">The <see cref="string"/> filename for the operation.</param>
         /// <returns>true if successful, false if not.</returns>
         public AstScriptureNode TranslateContext08(ParserRuleContext context, string filename = "")
         {
+            Validators.ValidateParserRuleContext(context);
+
             visitor08.LastError = null;
             visitor08.Log = "";
             if (context is Describe08Parser.ScriptureContext)
             {
-                AstScriptureNode result = visitor08.TranslateScripture(context as Describe08Parser.ScriptureContext, filename);
+                AstScriptureNode result = visitor08.TranslateScripture((context as Describe08Parser.ScriptureContext)!, filename);
                 LastError = visitor08.LastError;
                 Log = visitor08.Log;
                 return result;
@@ -176,14 +186,17 @@ namespace DescribeParser.Visitors
         /// Translates the <see cref="ParserRuleContext"/> object using in LogVisitor09 (Describe v09).
         /// </summary>
         /// <param name="context">The <see cref="ParserRuleContext"/> object to translate.</param>
+        /// <param name="filename">The <see cref="string"/> filename for the operation.</param>
         /// <returns>true if successful, false if not.</returns>
         public AstScriptureNode TranslateContext09(ParserRuleContext context, string filename = "")
         {
+            Validators.ValidateParserRuleContext(context);
+
             visitor09.LastError = null;
             visitor09.Log = "";
             if (context is Describe09Parser.ScriptureContext)
             {
-                AstScriptureNode result = visitor09.TranslateScripture(context as Describe09Parser.ScriptureContext, filename);
+                AstScriptureNode result = visitor09.TranslateScripture((context as Describe09Parser.ScriptureContext)!, filename);
                 LastError = visitor09.LastError;
                 Log = visitor09.Log;
                 return result;
@@ -198,14 +211,17 @@ namespace DescribeParser.Visitors
         /// Translates the <see cref="ParserRuleContext"/> object using in LogVisitor10 (Describe v10).
         /// </summary>
         /// <param name="context">The <see cref="ParserRuleContext"/> object to translate.</param>
+        /// <param name="filename">The <see cref="string"/> filename for the operation.</param>
         /// <returns>true if successful, false if not.</returns>
         public AstScriptureNode TranslateContext10(ParserRuleContext context, string filename = "")
         {
+            Validators.ValidateParserRuleContext(context);
+
             visitor10.LastError = null;
             visitor10.Log = "";
             if (context is Describe10Parser.ScriptureContext)
             {
-                AstScriptureNode result = visitor10.TranslateScripture(context as Describe10Parser.ScriptureContext, filename);
+                AstScriptureNode result = visitor10.TranslateScripture((context as Describe10Parser.ScriptureContext)!, filename);
                 LastError = visitor10.LastError;
                 Log = visitor10.Log;
                 return result;
@@ -220,14 +236,17 @@ namespace DescribeParser.Visitors
         /// Translates the <see cref="ParserRuleContext"/> object using in LogVisitor11 (Describe v11).
         /// </summary>
         /// <param name="context">The <see cref="ParserRuleContext"/> object to translate.</param>
+        /// <param name="filename">The <see cref="string"/> filename for the operation.</param>
         /// <returns>true if successful, false if not.</returns>
         public AstScriptureNode TranslateContext11(ParserRuleContext context, string filename = "")
         {
+            Validators.ValidateParserRuleContext(context);
+
             visitor11.LastError = null;
             visitor11.Log = "";
             if (context is Describe11Parser.ScriptureContext)
             {
-                AstScriptureNode result = visitor11.TranslateScripture(context as Describe11Parser.ScriptureContext, filename);
+                AstScriptureNode result = visitor11.TranslateScripture((context as Describe11Parser.ScriptureContext)!, filename);
                 LastError = visitor11.LastError;
                 Log = visitor11.Log;
                 return result;
