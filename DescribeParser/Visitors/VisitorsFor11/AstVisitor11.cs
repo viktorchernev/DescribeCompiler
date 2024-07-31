@@ -140,8 +140,8 @@ namespace DescribeParser.Visitors
             if (firstChild == null)
             {
                 throw new ArgumentException(
-                $"The first child of the provided ExpressionContext is not valid.",
-                nameof(firstChild));
+                    $"The first child of the provided ExpressionContext is not valid.",
+                    nameof(firstChild));
             }
             AstItemNode head = DoItem(firstChild);
 
@@ -161,16 +161,22 @@ namespace DescribeParser.Visitors
             if (nextChild is ITerminalNode)
             {
                 var token = nextChild as ITerminalNode;
-                AstLeafNode terminatorLeaf = doLeaf(token);
+                AstLeafNode terminatorLeaf = doLeaf(token!);
                 AstExpressionLineNode line = AstFactory.CreateExpressionLineNode(null, terminatorLeaf);
                 lines.Add(line);
             }
             else if (nextChild is Describe11Parser.ItemContext)
             {
                 var ctxt = nextChild as Describe11Parser.ItemContext;
-                AstItemNode item = DoItem(ctxt);
+                AstItemNode item = DoItem(ctxt!);
 
                 var token = context.GetChild(3) as ITerminalNode;
+                if (token == null)
+                {
+                    throw new ArgumentException(
+                        $"The third child of the provided ExpressionContext is not valid.",
+                        nameof(secondChild));
+                }
                 AstLeafNode terminatorLeaf = doLeaf(token);
 
                 AstExpressionLineNode line = AstFactory.CreateExpressionLineNode(item, terminatorLeaf);
@@ -179,9 +185,15 @@ namespace DescribeParser.Visitors
             else if (nextChild is Describe11Parser.ExpressionContext)
             {
                 var ctxt = nextChild as Describe11Parser.ExpressionContext;
-                AstExpressionNode expression = DoExpression(ctxt);
+                AstExpressionNode expression = DoExpression(ctxt!);
 
                 var token = context.GetChild(3) as ITerminalNode;
+                if (token == null)
+                {
+                    throw new ArgumentException(
+                        $"The third child of the provided ExpressionContext is not valid.",
+                        nameof(secondChild));
+                }
                 AstLeafNode terminatorLeaf = doLeaf(token);
 
                 AstExpressionLineNode line = AstFactory.CreateExpressionLineNode(expression, terminatorLeaf);
@@ -190,9 +202,15 @@ namespace DescribeParser.Visitors
             else if (nextChild is Describe11Parser.Item_or_expression_listContext)
             {
                 var ctxt = nextChild as Describe11Parser.Item_or_expression_listContext;
-                List<AstExpressionLineNode> expressionLines = DoItemOrExpressionList(ctxt);
+                List<AstExpressionLineNode> expressionLines = DoItemOrExpressionList(ctxt!);
 
                 var token = context.GetChild(3) as ITerminalNode;
+                if (token == null)
+                {
+                    throw new ArgumentException(
+                        $"The third child of the provided ExpressionContext is not valid.",
+                        nameof(secondChild));
+                }
                 AstLeafNode terminatorLeaf = doLeaf(token);
 
                 expressionLines[expressionLines.Count - 1].Punctuation = terminatorLeaf;
@@ -216,6 +234,12 @@ namespace DescribeParser.Visitors
             for (int i = 0; i < childCount - 1; i++)
             {
                 var ch = context.GetChild(i) as Describe11Parser.Item_or_expression_partContext;
+                if (ch == null)
+                {
+                    throw new ArgumentException(
+                        $"The child at index {i} of the provided Item_or_expression_listContext is not valid.",
+                        nameof(ch));
+                }
                 AstExpressionLineNode line = DoItemOrExpressionPart(ch);
                 lines.Add(line);
             }
@@ -224,13 +248,13 @@ namespace DescribeParser.Visitors
             var lastChild = context.GetChild(childCount - 1);
             if (lastChild is Describe11Parser.ItemContext)
             {
-                var item = DoItem(lastChild as Describe11Parser.ItemContext);
+                var item = DoItem((lastChild as Describe11Parser.ItemContext)!);
                 var line = AstFactory.CreateExpressionLineNode(item, null);
                 lines.Add(line);
             }
             else if (lastChild is Describe11Parser.ExpressionContext)
             {
-                var expression = DoExpression(lastChild as Describe11Parser.ExpressionContext);
+                var expression = DoExpression((lastChild as Describe11Parser.ExpressionContext)!);
                 var line = AstFactory.CreateExpressionLineNode(expression, null);
                 lines.Add(line);
             }
@@ -248,31 +272,47 @@ namespace DescribeParser.Visitors
             int childCount = context.ChildCount;
             var firstChild = context.GetChild(0);
 
-            if(firstChild is  Describe11Parser.ItemContext)
+            if(firstChild is Describe11Parser.ItemContext)
             {
-                var item = DoItem(firstChild as Describe11Parser.ItemContext);
+                var item = DoItem((firstChild as Describe11Parser.ItemContext)!);
 
                 var secondChild = context.GetChild(1);
-                var puncruation = doLeaf(secondChild as ITerminalNode);
+                if(secondChild == null || secondChild is not ITerminalNode)
+                {
+                    throw new ArgumentException(
+                        $"The second child of the provided Item_or_expression_partContext is not valid.",
+                        nameof(firstChild));
+                }
+                var puncruation = doLeaf((secondChild as ITerminalNode)!);
                 var line = AstFactory.CreateExpressionLineNode(item, puncruation);
                 return line;
             }
             else if(firstChild is Describe11Parser.ExpressionContext)
             {
-                var expression = DoExpression(firstChild as Describe11Parser.ExpressionContext);
+                var expression = DoExpression((firstChild as Describe11Parser.ExpressionContext)!);
 
                 AstLeafNode? punctuation = null;
                 if(childCount > 1)
                 {
                     var secondChild = context.GetChild(1);
-                    var puncruation = doLeaf(secondChild as ITerminalNode);
+                    if (secondChild == null || secondChild is not ITerminalNode)
+                    {
+                        throw new ArgumentException(
+                            $"The second child of the provided Item_or_expression_partContext is not valid.",
+                            nameof(firstChild));
+                    }
+                    var puncruation = doLeaf((secondChild as ITerminalNode)!);
                 }
                 
                 var line = AstFactory.CreateExpressionLineNode(expression, punctuation);
                 return line;
             }
-
-            return null;
+            else
+            {
+                throw new ArgumentException(
+                    $"The first child of the provided Item_or_expression_partContext is not valid.",
+                    nameof(firstChild));
+            }
         }
 
         /// <summary>
@@ -304,15 +344,21 @@ namespace DescribeParser.Visitors
             string text = "";
             AstLeafNode? tilde = null;
             AstTagNode? tag = null;
-            List<AstLinkNode> links = new List<AstLinkNode>();
-            List<AstDecoratorNode> decorators = new List<AstDecoratorNode>();
+            List<AstLinkNode>? links = new List<AstLinkNode>();
+            List<AstDecoratorNode>? decorators = new List<AstDecoratorNode>();
             for (int i = 0; i < childCount; i++)
             {
                 var cur = context.GetChild(i);
-                if(cur is Describe11Parser.Text_chunkContext)
+                if (cur == null)
                 {
-                    var child = cur as Describe11Parser.Text_chunkContext;
-                    ITerminalNode token = child.GetChild(0) as ITerminalNode;
+                    throw new ArgumentException(
+                        $"The child at index {i} of the provided ItemContext is null.",
+                        nameof(cur));
+                }
+                else if (cur is Describe11Parser.Text_chunkContext)
+                {
+                    var child = (cur as Describe11Parser.Text_chunkContext)!;
+                    ITerminalNode? token = child.GetChild(0) as ITerminalNode;
                     string? s = token?.GetText();
                     text += s;
 
@@ -321,12 +367,12 @@ namespace DescribeParser.Visitors
                 }
                 else if(cur is ITerminalNode)
                 {
-                    var token = cur as ITerminalNode;
+                    var token = (cur as ITerminalNode)!;
                     if (GetTokenType(token) == "TILDE")
                     {
                         string ttxt = token.GetText();
-                        string ltriv = doLeadingTrivia(ttxt);
-                        string rtriv = doTrailingTrivia(ttxt);
+                        string? ltriv = doLeadingTrivia(ttxt);
+                        string? rtriv = doTrailingTrivia(ttxt);
                         ttxt = ttxt.Trim();
                         SourcePosition tpos = doPosition(token);
                         tilde = AstFactory.CreateLeafNode(AstLeafType.Tilde, ttxt, ltriv, rtriv, tpos);
@@ -349,21 +395,33 @@ namespace DescribeParser.Visitors
                     if (firstToken == null) firstToken = token;
                     else lastToken = token;
                 }
+                else
+                {
+                    throw new ArgumentException(
+                        $"The child at index {i} of the provided ItemContext is not valid.",
+                        nameof(cur));
+                }
             }
             if (links.Count == 0) links = null;
             if (decorators.Count == 0) decorators = null;
 
             // get position
+            if (firstToken == null || lastToken == null)
+            {
+                throw new ArgumentException(
+                    $"The provided ItemContext is not valid.",
+                    nameof(context));
+            }
             SourcePosition pos = doPosition(firstToken, lastToken);
 
             // get trivia
-            string ltrivia = doLeadingTrivia(text);
-            string rtrivia = doTrailingTrivia(text);
+            string? ltrivia = doLeadingTrivia(text);
+            string? rtrivia = doTrailingTrivia(text);
             text = text.Trim();
 
             // get the item
             AstLeafNode infochunk = AstFactory.CreateLeafNode(AstLeafType.Text, text, ltrivia, rtrivia, pos);
-            AstItemNode item = AstFactory.CreateItemNode(infochunk, tag, links);
+            AstItemNode item = AstFactory.CreateItemNode(tilde, infochunk, tag, links, decorators);
             return item;
         }
 
@@ -376,7 +434,19 @@ namespace DescribeParser.Visitors
 
             // get tokens
             var hyphen = context.GetChild(0) as ITerminalNode;
+            if (hyphen == null)
+            {
+                throw new ArgumentException(
+                    $"The first child of provided ProducerContext is not valid.",
+                    nameof(context));
+            }
             var rarr = context.GetChild(1) as ITerminalNode;
+            if (rarr == null)
+            {
+                throw new ArgumentException(
+                    $"The first child of provided ProducerContext is not valid.",
+                    nameof(context));
+            }
 
             // get text
             string text_hyphen = hyphen.GetText();
@@ -385,8 +455,8 @@ namespace DescribeParser.Visitors
             text += text_rarr.TrimEnd();
 
             // get trivia
-            string ltrivia = doLeadingTrivia(text_hyphen);
-            string rtrivia = doTrailingTrivia(text_rarr);
+            string? ltrivia = doLeadingTrivia(text_hyphen);
+            string? rtrivia = doTrailingTrivia(text_rarr);
 
             // get position
             SourcePosition pos = doPosition(hyphen, rarr);
@@ -415,8 +485,6 @@ namespace DescribeParser.Visitors
             string inside = text.Substring(oindex + 2, cindex - oindex - 2);
             string[] sep = inside.Split('|');
 
-            AstLeafNode? title = null;
-            AstLeafNode? letter = null;
             if (sep.Length == 1)
             {
                 AstLeafNode name = doLeaf(AstLeafType.Text, token, oindex + 2, cindex - oindex - 2);
@@ -448,8 +516,12 @@ namespace DescribeParser.Visitors
                 AstDecoratorNode decorator = AstFactory.CreateTripleDecoratorNode(o, category, name, value, c);
                 return decorator;
             }
-
-            return null;
+            else
+            {
+                throw new ArgumentException(
+                    $"The provided token is not valid.",
+                    nameof(token));
+            }
         }
         private AstLinkNode doLink(ITerminalNode token)
         {
@@ -468,7 +540,7 @@ namespace DescribeParser.Visitors
             string inside = text.Substring(oindex + 2, cindex - oindex - 2);
             string[] sep = inside.Split('|');
 
-            AstLeafNode? url = null;
+            AstLeafNode url;
             AstLeafNode? title = null;
             AstLeafNode? letter = null;
             if (sep.Length == 1)
@@ -493,6 +565,12 @@ namespace DescribeParser.Visitors
                 url = doLeaf(AstLeafType.Text, token, oindex + 2, sep[0].Length);
                 title = doLeaf(AstLeafType.Text, token, oindex + 2 + sep[0].Length, sep[1].Length);
                 letter = doLeaf(AstLeafType.Text, token, oindex + 2 + sep[0].Length + sep[1].Length, x);
+            }
+            else
+            {
+                throw new ArgumentException(
+                    $"The provided token is not valid.",
+                    nameof(token));
             }
 
             AstLinkNode tag = AstFactory.CreateLinkNode(o, url, title, letter, c);
@@ -524,8 +602,8 @@ namespace DescribeParser.Visitors
             SourcePosition pos = doPosition(token, startPos, length);
             string text = token.GetText();
             text = text.Substring(startPos, length);
-            string ltrivia = doLeadingTrivia(text);
-            string rtrivia = doTrailingTrivia(text);
+            string? ltrivia = doLeadingTrivia(text);
+            string? rtrivia = doTrailingTrivia(text);
             text = text.Trim();
 
             // get leaf
@@ -559,8 +637,8 @@ namespace DescribeParser.Visitors
             // get the rest
             string text = token.GetText();
             SourcePosition pos = doPosition(token);
-            string ltrivia = doLeadingTrivia(text);
-            string rtrivia = doTrailingTrivia(text);
+            string? ltrivia = doLeadingTrivia(text);
+            string? rtrivia = doTrailingTrivia(text);
             text = text.Trim();
 
             // get leaf
@@ -584,7 +662,7 @@ namespace DescribeParser.Visitors
             startCol = firstToken.Symbol.Column;
 
             // last
-            string lastText = lastToken?.GetText();
+            string lastText = lastToken.GetText();
             endIndex = lastToken.Symbol.StopIndex;
 
             var newLines = lastText.Split('\n');
@@ -608,7 +686,7 @@ namespace DescribeParser.Visitors
             startCol = token.Symbol.Column;
 
             // last
-            string lastText = token?.GetText();
+            string lastText = token.GetText();
             endIndex = token.Symbol.StopIndex;
 
             var newLines = lastText.Split('\n');

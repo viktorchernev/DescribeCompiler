@@ -35,10 +35,9 @@ namespace DescribeParser.Ast
         /// <param name="parent">The parent node of the leaf node, if any. Default is null.</param>
         /// <returns>A new instance of <see cref="AstLeafNode"/>.</returns>
         public static AstLeafNode CreateLeafNode(AstLeafType leaftype, string text, 
-            string trailingTrivia, SourcePosition position, IAstBranchNode? parent = null)
+            string? trailingTrivia, SourcePosition position, IAstBranchNode? parent = null)
         {
             ValidateString(text);
-            ValidateString(trailingTrivia);
             ValidateSourcePosition(position);
             return _createLeafNode(leaftype, text, null, trailingTrivia, position, parent);
         }
@@ -54,12 +53,19 @@ namespace DescribeParser.Ast
         /// <param name="parent">The parent node of the leaf node, if any. Default is null.</param>
         /// <returns>A new instance of <see cref="AstLeafNode"/>.</returns>
         public static AstLeafNode CreateLeafNode(AstLeafType leaftype, string text,
-            string leadingTrivia, string trailingTrivia,
+            string? leadingTrivia, string? trailingTrivia,
             SourcePosition position, IAstBranchNode? parent = null)
         {
+            if (trailingTrivia == null && leadingTrivia == null)
+            {
+                return CreateLeafNode(leaftype, text, position, parent);
+            }
+            else if (leadingTrivia == null)
+            {
+                return CreateLeafNode(leaftype, text, trailingTrivia!, position, parent);
+            }
+
             ValidateString(text);
-            ValidateString(leadingTrivia);
-            ValidateString(trailingTrivia);
             ValidateSourcePosition(position);
             return _createLeafNode(leaftype, text, leadingTrivia, trailingTrivia, position, parent);
         }

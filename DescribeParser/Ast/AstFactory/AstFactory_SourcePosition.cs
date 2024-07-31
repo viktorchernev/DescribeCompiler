@@ -70,8 +70,21 @@ namespace DescribeParser.Ast
         /// <param name="position1">The <see cref="SourcePosition"/> to use for the last part of the range.</param>
         /// <returns>A new <see cref="SourcePosition"/> with the first values from <paramref name="position0"/> and last values from <paramref name="position1"/>.</returns>
         public static SourcePosition CreateSourcePosition(
-            SourcePosition position0, SourcePosition position1)
+            SourcePosition? position0, SourcePosition? position1)
         {
+            if(position0 == null && position1 == null)
+            {
+                throw new ArgumentException("Both 'position0' and 'position1' cannot be null.");
+            }
+            if (position0 == null)
+            {
+                return CreateSourcePosition(position1!);
+            }
+            if (position1 == null)
+            {
+                return CreateSourcePosition(position0!);
+            }
+
             ValidateSourcePositionP(position0);
             ValidateSourcePositionP(position1);
 
@@ -94,26 +107,32 @@ namespace DescribeParser.Ast
         /// <returns>A single <see cref="SourcePosition"/> 
         /// that spans from the minimum first index to the maximum last index of the input positions.
         /// </returns>
-        public static SourcePosition CreateSourcePosition(params SourcePosition[] positions)
+        public static SourcePosition CreateSourcePosition(params SourcePosition?[] positions)
         {
-            ValidateSourcePositionListP(positions);
+            ValidateSourcePositionListP(positions!);
 
-            SourcePosition pos0 = positions[0];
-            SourcePosition pos1 = positions[0];
-
+            SourcePosition? pos0 = null;
+            SourcePosition? pos1 = null;
             for(int i = 1; i < positions.Length; i++)
             {
                 if (positions[i] == null) continue;
-                if (positions[i].FirstIndex < pos0.FirstIndex) pos0 = positions[i];
-                if (positions[i].LastIndex > pos1.LastIndex) pos1 = positions[i];
+                if (pos0 == null) pos0 = positions[i];
+                else if (positions[i]!.FirstIndex < pos0.FirstIndex) pos0 = positions[i];
+                if (pos1 == null) pos1 = positions[i];
+                if (positions[i]!.LastIndex > pos1!.LastIndex) pos1 = positions[i];
+            }
+
+            if(pos0 == null)
+            {
+                throw new ArgumentException("At least one SourcePosition in the array should not be null.");
             }
 
             SourcePosition pos = new SourcePosition();
-            pos.FirstIndex = pos0.FirstIndex;
+            pos.FirstIndex = pos0!.FirstIndex;
             pos.FirstLine = pos0.FirstLine;
             pos.FirstColumn = pos0.FirstColumn;
 
-            pos.LastIndex = pos1.LastIndex;
+            pos.LastIndex = pos1!.LastIndex;
             pos.LastLine = pos1.LastLine;
             pos.LastColumn = pos1.LastColumn;
 

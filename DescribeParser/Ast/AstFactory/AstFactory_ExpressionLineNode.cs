@@ -20,7 +20,6 @@ namespace DescribeParser.Ast
         {
             // Null checks
             ValidateAstChildNodeP(body);
-            ValidateSourcePosition(body.Position!);
 
             // code
             AstExpressionLineNode line = new AstExpressionLineNode();
@@ -28,6 +27,7 @@ namespace DescribeParser.Ast
             line.Body = body;
             line.Punctuation = null;
             line.Position = CreateSourcePosition(body.Position!);
+            line.Parent = parent;
 
             return line;
         }
