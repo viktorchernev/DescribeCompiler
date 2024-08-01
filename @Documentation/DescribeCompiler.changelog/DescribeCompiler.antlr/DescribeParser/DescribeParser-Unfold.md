@@ -58,7 +58,7 @@ DescribeUnfold - DescribeParser.Unfold namespace
 		We might implement a thread-safe version in the future, using thread-safe dictionaries and collections, such as `ConcurrentDictionary<TKey, TValue>` and `ConcurrentBag<T>`
 		
 		DescribeUnfold
-			.DescribeParseJob								ParseJob
+			.IDescribeParseJob								ParseJob
 			
 			.List<string>									AllFiles
 			.List<string>									ParsedFiles
