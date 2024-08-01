@@ -17,7 +17,7 @@ In order to run the `DescribeCompilerCLI.exe` you need a Windows PC with DotNet 
 In order to highlight Describe code, you can download the xml files for Notepad++ from the folder [Highlighting](https://github.com/viktorchernev/DescribeCompiler/tree/master/%23DescribeLanguage/Highlighting), or use the instructions provided in said folder to set up your preferred text editor.
   
 ### 1. Write Describe code  
-Write a title of each list, followed by an arrow `->` and the elements, one on a line, separated by comma `,` and end with a semicolon `;`. Add `[links]` in square brackets, and `<tag>` items in order to piece lists together. Add additional data as `{decorators}` in curly brackets. For more info visit the [documentation](https://github.com/viktorchernev/DescribeCompiler/wiki/Grammar-How-To) or explore Describe source codes and test cases in this [huge collection](https://github.com/viktorchernev/DataLists/tree/master/Lists).  
+Write a title of each list, followed by an arrow `->` and the elements, one on a line, separated by comma `,` and end with a semicolon `;`. Add `[links]` in square brackets, and `<tag>` items in order to piece lists together. Add additional data as `{decorators}` in curly brackets or as tilde inversions - `~`. For more info visit the [documentation](https://documentation.listiary.com/) / ([github](https://github.com/viktorchernev/DescribeCompiler/wiki/Grammar-How-To)) or explore Describe source codes and test cases in this [huge collection](https://library.listiary.com/) / ([github](https://github.com/viktorchernev/DataLists/tree/master/Lists)). 
   
 ![pic1a](https://github.com/viktorchernev/DescribeCompiler/assets/72315339/d5a71183-33ff-4e21-b6a1-db3ed7ac5967)
 
@@ -32,7 +32,7 @@ Run the CLI compiler by specifying the target folder (or file) as first argument
 
 
 ### 3. Result  
-The final output will depend on the translator used - and you can easily write your own translator, or use the ones that are prebuilt for you. Here we are using a set of particular HTML templates to build a bare-bone website.
+The final output will depend on the translator used - and you can easily write your own translator, or use the ones that are prebuilt for you. Here we are using a set of particular HTML templates to build a bare-bone website. The JSON translator is one of the particularly usefull ones. With that tanslator you produce JSON that can be consumed from web applications.
   
 ![pic3a](https://github.com/viktorchernev/DescribeCompiler/assets/72315339/36ae6997-82df-467e-b490-b7b9d63a860c)
 
@@ -42,6 +42,7 @@ The final output will depend on the translator used - and you can easily write y
 - You can reach me on Viber as well: +359-885-18-05-86
 
 ## Releases
+* [1.0.0] Coming up soon
 * [0.9.3](https://github.com/viktorchernev/DescribeCompiler/releases/tag/0.9.3) (Support for Describe Language v1.0 - Official)  
 * [0.9.2](https://github.com/viktorchernev/DescribeCompiler/releases/tag/0.9.2) (Added features and bugfixes)
 * [0.9.1](https://github.com/viktorchernev/DescribeCompiler/releases/tag/0.9.1) (Refactoring, added features and bugfixes)
