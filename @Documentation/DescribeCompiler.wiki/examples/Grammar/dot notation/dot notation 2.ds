@@ -1,0 +1,15 @@
+
+
+
+
+
+directives ->
+	namespace <treeofall.public.science>;
+
+
+
+science <rnode> ->
+
+	math <eqS>,
+	informatics,
+	physics <SDr>;

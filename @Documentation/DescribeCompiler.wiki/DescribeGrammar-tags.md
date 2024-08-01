@@ -9,4 +9,6 @@ Note that tags, decorators and links are written after the text of an entry, and
 Example:  
 ![tags](https://github.com/viktorchernev/DescribeCompiler/assets/72315339/383a4ebe-0ba9-4377-824a-050d338321e3)
   
-[[⮜ Prev|https://github.com/viktorchernev/DescribeCompiler/wiki/DescribeGrammar-decorators]] | [[Next ➤|https://github.com/viktorchernev/DescribeCompiler/wiki/DescribeGrammar-tagging]]
+### Links
+[[Next|https://github.com/viktorchernev/DescribeCompiler/wiki/DescribeGrammar-tagging]]  
+[[Prev|https://github.com/viktorchernev/DescribeCompiler/wiki/DescribeGrammar-decorators]]  

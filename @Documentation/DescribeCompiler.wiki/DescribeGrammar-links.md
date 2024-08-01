@@ -14,4 +14,6 @@ Multiple links:
 ***
 _Interesting fact - In the early stages of the D#scribe language development it was possible write two or more links in the same square brackets, divided by a comma, but this functionality has been scraped as an unnecessary complication._  
   
-[[⮜ Prev|https://github.com/viktorchernev/DescribeCompiler/wiki/DescribeGrammar-comments]] | [[Next ➤|https://github.com/viktorchernev/DescribeCompiler/wiki/DescribeGrammar-decorators]]
+### Links
+[[Next|https://github.com/viktorchernev/DescribeCompiler/wiki/DescribeGrammar-decorators]]  
+[[Prev|https://github.com/viktorchernev/DescribeCompiler/wiki/DescribeGrammar-comments]]  

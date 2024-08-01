@@ -1,60 +1,90 @@
-### 1. How to use
-The describe compiler API is very easy to use:
+The Describe Compiler API is a software library, containing the de-facto compiler for the Describe Markup Language, as well as some translators for different target languages . It is a .Net dll that targets .Net 8.0 and is licensed under the [AGPL v3](https://www.gnu.org/licenses/agpl-3.0) public license.
 
-1. Add a reference to the project or DLL
-2. Create your handlers that will be used for logging
-3. Call the constructor in order to create the compiler class, passing your logging methods
-4. Call `bool ParseFile(FileInfo fileInfo, out string html)` to get result
+The Describe Compiler is verry stright-forward to implement.
 
-***
+### 1. Add a reference
+You can either download the [Visual Studio project](https://github.com/viktorchernev/DescribeCompiler/tree/master/DescribeTranspiler) or the compiled dll file from the last release from [here](https://github.com/viktorchernev/DescribeCompiler/releases/), and reference it in your .Net project.
 
-### 2. Example
-Below is an example of using the compiler API as described above:
+### 2. Create log handlers
+Create handler methods that are used for logging data. This is how we are going to get output from the parser. In the example below, we are creating methods that will log data to the console in different colors.
 
-1. Create log handlers:  
+```
+//log text
+private static void ConsoleLog(string text)
+{
+    Console.WriteLine(text);
+}
 
-`//log text`  
-`private static void ConsoleLog(string text)`  
-`{`  
-`    Console.WriteLine(text);`  
-`}`  
-`//log info gray`  
-`private static void ConsoleLogInfo(string text)`  
-`{`  
-`    Console.ForegroundColor = ConsoleColor.DarkGray;`  
-`    Console.WriteLine(text);`  
-`    Console.ForegroundColor = ConsoleColor.White;`  
-`}`  
-`//log errors red`  
-`private static void ConsoleLogError(string text)`  
-`{`  
-`    Console.ForegroundColor = ConsoleColor.Red;`  
-`    Console.WriteLine(text);`  
-`    Console.ForegroundColor = ConsoleColor.White;`  
-`}`  
-`//log parser data green`  
-`private static void ConsoleLogParseInfo(string text)`  
-`{`  
-`    Console.ForegroundColor = ConsoleColor.Green;`  
-`    Console.WriteLine(text);`  
-`    Console.ForegroundColor = ConsoleColor.White;`  
-`}`  
+//log info gray
+private static void ConsoleLogInfo(string text)
+{
+    Console.ForegroundColor = ConsoleColor.DarkGray;
+    Console.WriteLine(text);
+    Console.ForegroundColor = ConsoleColor.White;
+}
 
-2. Call constructor:
+//log errors red
+private static void ConsoleLogError(string text)
+{
+    Console.ForegroundColor = ConsoleColor.Red;
+    Console.WriteLine(text);
+    Console.ForegroundColor = ConsoleColor.White;
+}
 
-`DescribeCompiler.DescribeCompiler compiler = `  
-`    new DescribeCompiler.DescribeCompiler(`  
-`        ConsoleLog,`  
-`        ConsoleLogError,`  
-`        ConsoleLogInfo,`  
-`        ConsoleLogParseInfo,`  
-`        LogVerbosity.High);`  
+//log parser data green
+private static void ConsoleLogParseInfo(string text)
+{
+    Console.ForegroundColor = ConsoleColor.Green;
+    Console.WriteLine(text);
+    Console.ForegroundColor = ConsoleColor.White;
+}
+```
 
-3. Parse a file and save results:
+### 3. Construct and set the compiler 
+The constructor for the compiler takes verbosity and log handlers as optional arguments, so that the user does not need to set them one by one. Some or all of log handlers can be omitted and corresponding output won't be logged.
 
-`string html = "";`  
-`compiler.ParseFile(new FileInfo(@"C:\Users\User\Desktop\Lists\0_root.ds"), out html);`  
-`if(html != null)`  
-`{`  
-`    File.WriteAllText(@"C:\Users\User\Desktop\result.html", html);`  
-`}`  
+```
+DescribeCompiler.DescribeCompiler compiler =
+	new DescribeCompiler.DescribeCompiler(
+		Datnik.verbosity,
+		Messages.ConsoleLog,
+		Messages.ConsoleLogError,
+		Messages.ConsoleLogInfo,
+		Messages.ConsoleLogParseInfo);
+
+//settings
+DescribeCompiler.DescribeCompiler.PARSE_TOP_DIRECTORY_ONLY = Datnik.topOnly;
+DescribeCompiler.DescribeCompiler.PARSE_DS_ONLY = Datnik.dsOnly;
+DescribeCompiler.DescribeCompiler.STOP_ON_ERROR = Datnik.requireSuccess;
+```
+
+### 4. Compile
+The Describe compiler will populate a DescribeUnfold structure with data.
+
+```
+DescribeUnfold unfold = new DescribeUnfold();
+bool result = compiler.ParseFolder(new DirectoryInfo(Datnik.input), unfold);
+```
+
+### 5. Translate
+Construct a translator of a desired type and translate the populated DescribeUnfold structure.
+If result is not ```null``` then the translation process was successful, so save the resulted string to file.
+
+```
+DescribeTranslator translator = 
+	new JsonTranslator(
+		Messages.ConsoleLog,
+		Messages.ConsoleLogError,
+		Messages.ConsoleLogInfo);
+
+string result = translator.TranslateUnfold(unfold);
+if (result != null)
+{
+	File.WriteAllText(@"C:\result\path\output.json", result);
+}
+```
+
+### Links
+[[Describe Compilation | https://github.com/viktorchernev/DescribeCompiler/wiki/Compiler-how-to]]  
+[[Use the CLI version | https://github.com/viktorchernev/DescribeCompiler/wiki/CliCompiler-how-to]]  
+[[Use the AWS version | https://github.com/viktorchernev/DescribeCompiler/wiki/AwsCompiler-how-to]]  

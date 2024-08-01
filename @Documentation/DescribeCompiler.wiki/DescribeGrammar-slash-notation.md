@@ -5,5 +5,6 @@ Slash notation was the first addressing scheme used in the prototype of the desc
 * very fragile - renaming or rearranging of files breaks lists
 * not well suited for database integration  
   
-
-[[⮜ Prev|https://github.com/viktorchernev/DescribeCompiler/wiki/DescribeGrammar-dot-notation]] | [[Next ➤|https://github.com/viktorchernev/DescribeCompiler/wiki/DescribeGrammar-filenames]]
+### Links
+[[Next|https://github.com/viktorchernev/DescribeCompiler/wiki/DescribeGrammar-filenames]]  
+[[Prev|https://github.com/viktorchernev/DescribeCompiler/wiki/DescribeGrammar-dot-notation]]  

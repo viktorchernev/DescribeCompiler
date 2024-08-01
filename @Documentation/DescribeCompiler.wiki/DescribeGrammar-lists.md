@@ -12,5 +12,7 @@ Compound list:
 
 Empty list:  
 ![empty list](https://github.com/viktorchernev/DescribeCompiler/assets/72315339/e6802a08-8020-4606-a773-4b5dbff4e480)  
-  
-[[⮜ Prev|https://github.com/viktorchernev/DescribeCompiler/wiki/Grammar-How-To]] | [[Next ➤|https://github.com/viktorchernev/DescribeCompiler/wiki/DescribeGrammar-comments]]
+
+### Lists
+[[Next|https://github.com/viktorchernev/DescribeCompiler/wiki/DescribeGrammar-comments]]  
+[[Prev|https://github.com/viktorchernev/DescribeCompiler/wiki/Grammar-How-To]]  

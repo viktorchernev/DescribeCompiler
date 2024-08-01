@@ -1,0 +1,28 @@
+
+
+
+
+1. solar system ->
+
+	Rocky planets <roc>,
+	Gas giants <gas>,
+	Ice giants <ice>;
+
+
+
+2. rocky planets <roc> ->
+
+	Mercury,
+	Venus,
+	Earth,
+	Mars;
+
+3. gas giants <gas> ->
+
+	Jupiter,
+	Saturn;
+
+4. ice giants <ice> ->
+
+	Uranus,
+	Neptune;
