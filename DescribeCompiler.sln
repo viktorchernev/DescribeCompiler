@@ -19,11 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DescribeTranspiler.Listiary
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DescribeTranspiler.AWS", "DescribeTranspiler.AWS\DescribeTranspiler.AWS.csproj", "{73107AFA-99E1-410B-92ED-0BC68F4DE061}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dev.DescribeParser", "Dev.DescribeParser\Dev.DescribeParser.csproj", "{D2B42F21-BFD4-4AB3-8443-64906E4AB06A}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests.Integration.Transpiler", "Tests.Integration.Transpiler\Tests.Integration.Transpiler.csproj", "{E79EF796-96CD-46E8-B60E-529DB449AB5B}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dev.DescribeTranspiler", "Dev.DescribeTranspiler\Dev.DescribeTranspiler.csproj", "{33D0F17D-5267-4C58-9453-7525795A5B1B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,18 +59,10 @@ Global
 		{73107AFA-99E1-410B-92ED-0BC68F4DE061}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{73107AFA-99E1-410B-92ED-0BC68F4DE061}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{73107AFA-99E1-410B-92ED-0BC68F4DE061}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D2B42F21-BFD4-4AB3-8443-64906E4AB06A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D2B42F21-BFD4-4AB3-8443-64906E4AB06A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D2B42F21-BFD4-4AB3-8443-64906E4AB06A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D2B42F21-BFD4-4AB3-8443-64906E4AB06A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E79EF796-96CD-46E8-B60E-529DB449AB5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E79EF796-96CD-46E8-B60E-529DB449AB5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E79EF796-96CD-46E8-B60E-529DB449AB5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E79EF796-96CD-46E8-B60E-529DB449AB5B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{33D0F17D-5267-4C58-9453-7525795A5B1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{33D0F17D-5267-4C58-9453-7525795A5B1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{33D0F17D-5267-4C58-9453-7525795A5B1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{33D0F17D-5267-4C58-9453-7525795A5B1B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
