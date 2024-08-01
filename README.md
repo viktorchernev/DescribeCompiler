@@ -42,7 +42,7 @@ The final output will depend on the translator used - and you can easily write y
 - You can reach me on Viber as well: +359-885-18-05-86
 
 ## Releases
-* [1.0.0] Coming up soon
+* [1.0] Coming up soon
 * [0.9.3](https://github.com/viktorchernev/DescribeCompiler/releases/tag/0.9.3) (Support for Describe Language v1.0 - Official)  
 * [0.9.2](https://github.com/viktorchernev/DescribeCompiler/releases/tag/0.9.2) (Added features and bugfixes)
 * [0.9.1](https://github.com/viktorchernev/DescribeCompiler/releases/tag/0.9.1) (Refactoring, added features and bugfixes)
