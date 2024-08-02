@@ -362,7 +362,11 @@ namespace DescribeParser.Visitors
                     string? s = token?.GetText();
                     text += s;
 
-                    if (firstToken == null) firstToken = token;
+                    if (firstToken == null)
+                    {
+                        firstToken = token;
+                        lastToken = token;
+                    }
                     else lastToken = token;
                 }
                 else if(cur is ITerminalNode)
@@ -392,7 +396,11 @@ namespace DescribeParser.Visitors
                         decorators.Add(decorator);
                     }
 
-                    if (firstToken == null) firstToken = token;
+                    if (firstToken == null)
+                    {
+                        firstToken = token;
+                        lastToken = token;
+                    }
                     else lastToken = token;
                 }
                 else

@@ -372,7 +372,7 @@ namespace DescribeParser.Visitors
                 }
                 else if (child is Describe08Parser.Text_chunkContext)
                 {
-                    ITerminalNode? token = (child as Describe11Parser.Text_chunkContext)?.GetChild(0) as ITerminalNode;
+                    ITerminalNode? token = (child as Describe08Parser.Text_chunkContext)?.GetChild(0) as ITerminalNode;
                     if (token == null)
                     {
                         throw new ArgumentException(

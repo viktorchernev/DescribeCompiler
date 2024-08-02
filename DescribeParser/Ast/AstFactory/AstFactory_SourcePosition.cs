@@ -109,17 +109,19 @@ namespace DescribeParser.Ast
         /// </returns>
         public static SourcePosition CreateSourcePosition(params SourcePosition?[] positions)
         {
-            ValidateSourcePositionListP(positions!);
+            ValidateSourcePositionList(positions!);
 
             SourcePosition? pos0 = null;
             SourcePosition? pos1 = null;
-            for(int i = 1; i < positions.Length; i++)
+            for(int i = 0; i < positions.Length; i++)
             {
                 if (positions[i] == null) continue;
+                
                 if (pos0 == null) pos0 = positions[i];
                 else if (positions[i]!.FirstIndex < pos0.FirstIndex) pos0 = positions[i];
+                
                 if (pos1 == null) pos1 = positions[i];
-                if (positions[i]!.LastIndex > pos1!.LastIndex) pos1 = positions[i];
+                else if (positions[i]!.LastIndex > pos1!.LastIndex) pos1 = positions[i];
             }
 
             if(pos0 == null)

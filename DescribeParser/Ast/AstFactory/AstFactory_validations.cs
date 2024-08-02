@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace DescribeParser.Ast
 {
@@ -58,6 +59,10 @@ namespace DescribeParser.Ast
             ArgumentNullException.ThrowIfNull(position.LastIndex, $"{nameof(position)}.{nameof(position.LastIndex)}");
             ArgumentNullException.ThrowIfNull(position.LastLine, $"{nameof(position)}.{nameof(position.LastLine)}");
         }
+        private static void ValidateSourcePositionList(IEnumerable<SourcePosition> positions)
+        {
+            ArgumentNullException.ThrowIfNull(positions, nameof(positions));
+        }
         private static void ValidateSourcePositionListP(IEnumerable<SourcePosition> positions)
         {
             ArgumentNullException.ThrowIfNull(positions, nameof(positions));
@@ -87,7 +92,10 @@ namespace DescribeParser.Ast
 
         private static void ValidateString(string text)
         {
-            throw new ArgumentNullException(nameof(text), "The string cannot be null.");
+            if (text == null)
+            {
+                throw new ArgumentNullException(nameof(text), "The string cannot be null.");
+            }
         }
     }
 }
