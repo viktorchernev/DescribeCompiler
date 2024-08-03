@@ -1,0 +1,15 @@
+
+
+
+
+
+
+directives ->
+	namespace <treeofall.public>;
+
+
+
+PUBLIC <rnode> ->
+
+	culture <.culture.rnode>,
+	science <.science.rnode>;

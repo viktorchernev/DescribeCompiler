@@ -1,0 +1,17 @@
+
+
+
+
+directives -> 
+
+	verbosity <high>,
+	namespace <treeofall.public.unsorted>;
+
+
+
+unsorted <rnode> ->
+
+	Amount of sleep needed\, by age <amountSleepNeeded>,
+	christianity denominations <christianityDenominations>,
+	World's Fastest Cars 2023 <fastestCars2023>,
+	personality types <personalityTraits>;
