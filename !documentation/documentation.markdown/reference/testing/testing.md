@@ -2,6 +2,7 @@
 layout: page
 title: Testing
 permalink: /testing/
+exclude: true
 ---
 ## Grammars
 
@@ -13,10 +14,11 @@ permalink: /testing/
 
 4. The log outputs from the two different methods are compared, making sure the parsing process produced the same result in all the test cases.
 
-## Links
+### Links
 
-* [Grammar v0.6](/DescribeDocumentation/testing/grammar-v06)
-* [Grammar v0.7](/DescribeDocumentation/testing/grammar-v07)
-* [Grammar v0.8](/DescribeDocumentation/testing/grammar-v08)
-* [Grammar v0.9](/DescribeDocumentation/testing/grammar-v09)
-* [Grammar v1.0](/DescribeDocumentation/testing/grammar-v10)
+[Grammar v0.6](/testing/grammar-v06)<br>
+[Grammar v0.7](/testing/grammar-v07)<br>
+[Grammar v0.8](/testing/grammar-v08)<br>
+[Grammar v0.9](/testing/grammar-v09)<br>
+[Grammar v1.0](/testing/grammar-v10)<br>
+[Back](/language/reference)

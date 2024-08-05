@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Grammar v1.0
-permalink: /testing/grammar-v10/
+permalink: /testing/grammar-v10
 exclude: true
 ---
 _Describe Official (v1.0)_
@@ -17,3 +17,7 @@ _Describe Official (v1.0)_
 
 <span style="color:green">other</span><br>
 <span style="color:blue">```2 root nodes.ds```</span> - Two simple lists in one file, with tags, links and decorators.<br>
+
+
+### Links
+[Back](/testing)

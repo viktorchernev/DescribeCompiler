@@ -31,7 +31,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/testing/">Testing</a><a class="page-link" href="/versioning/">Versioning</a></div>
+        <div class="trigger"></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
@@ -43,147 +43,128 @@
   </header>
 
   <div class="post-content">
-    <p>Describe version 0.8, codenamed Links is the third test version of the language. It introduced the concept of links, written in square brackets - <code class="language-plaintext highlighter-rouge">[https://someurl.net/]</code></p>
+    <p>Describe version 0.8, code-named Links is the third test version of the language. It introduced the concept of links, written in square brackets - <code class="language-plaintext highlighter-rouge">[https://someurl.net/]</code></p>
 
-<p>The GOLD parser grammar is given next<br />
-Keep in mind that the precompiler plays a role as well, and this cannot be seen from the grammar file.<br /><br /></p>
+<p>The ANTLR4 parser grammar is given next.<br /><br /></p>
 
 <p><span style="color:blue"><em>Describe 0.8 - Links</em></span></p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>! Attributes
-"Name" = 'D#SCRIBE markup Language'
-"Author" = 'DemonOfReason'
-"Version" = '0.8'
-"About" = 'D#SCRIBE Language'
-"Character Mapping" = 'Unicode'
-"Case Sensitive" = False
-"Start Symbol" = &lt;scripture&gt;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/* Describe Markup Language
+ * version 0.8 (Links)
+ * Created by DemonOfReason and ChatGPT
+ * Finished on 16 June 2024 */
 
-! Comments
-Comment Start = '/*'
-Comment End = '*/'
-Comment Line = '//'
-Link Start = '['
-Link End = ']'
-
-! Symbols
-Hyphen = '-'
-LeftArrow = '&lt;'
-RightArrow = '&gt;'
-Separator = ','
-Terminator = ';'
-!Star = '*'
-!FSlash = '/'
-!BSlash = '\'
-!LeftSquare = '['
-!RightSquare = ']'
-
-! Escaped symbols
-EscapeHyphen = '\-'
-EscapeLeftArrow = '\&lt;'
-EscapeRightArrow = '\&gt;'
-EscapeLeftSquare = '\['
-EscapeRightSquare = '\]'
-EscapeSeparator = '\,'
-EscapeTerminator = '\;'
-EscapeStar = '\*'
-EscapeFSlash = '\/'
-EscapeBSlash = '\\'
-
-! Text
-{SpecialCharacter} = ['['']''-''&lt;''&gt;'','';''*''/''\''\-''\&lt;''\&gt;''\,''\;''\*''\/''\\']
-{TextCharacter} = {Printable} - {SpecialCharacter}
-Text = {TextCharacter}+
+grammar Describe08;
 
 
-! Producer
-&lt;producer&gt;
-    ::= Hyphen RightArrow
-
-! Tagging
-&lt;tag&gt;
-    ::= LeftArrow &lt;text&gt; RightArrow
-
-&lt;links&gt;
-    ::= Link Link
-    | Link &lt;links&gt;
-
-&lt;decorators&gt;
-    ::= Decorator Decorator
-    | Decorator &lt;decorators&gt;
-
-
-
-
-! Text
-&lt;text-chunk&gt;
-    ::= Text
-    | EscapeHyphen
-    | EscapeLeftArrow
-    | EscapeRightArrow
-    | EscapeSeparator
-    | EscapeTerminator
-    | EscapeStar
-    | EscapeEscape
-    | EscapeFSlash
-    | EscapeBSlash
-    | EscapeLeftSquare
-    | EscapeRightSquare
-
-&lt;text-chunk-list&gt;    
-    ::= &lt;text-chunk&gt; &lt;text-chunk&gt;    
-     | &lt;text-chunk&gt; &lt;text-chunk-list&gt;
-
-&lt;text&gt;     
-    ::= &lt;text-chunk&gt;    
-    | &lt;text-chunk-list&gt;
-   
+// Define lexer rules for white spaces. Linespace is the same but with new line - '\n'
+// ----------------------------------------------------------------------------------------------------------
+// ' ' 					: A space character.
+// '\r'					: A carriage return character (ASCII 13).
+// '\n'					: A newline character (ASCII 10).
+// '\t'					: A tab character (ASCII 9).
+// '\u000B'				: A vertical tab character (ASCII 11).
+// '\u000C'				: A form feed character (ASCII 12).
+// '\u0085'				: A next line (NEL) character (Unicode character U+0085).
+// '\u00A0'				: A non-breaking space (Unicode character U+00A0).
+// '\u1680'				: An ogham space mark (Unicode character U+1680).
+// '\u2000-\u200A'			: A range of en space to hair space (Unicode characters U+2000 to U+200A, inclusive).
+// '\u2028'				: A line separator (Unicode character U+2028).
+// '\u2029'				: A paragraph separator (Unicode character U+2029).
+// '\u202F'				: A narrow no-break space (Unicode character U+202F).
+// '\u205F'				: A medium mathematical space (Unicode character U+205F).
+// '\u3000'				: An ideographic space (Unicode character U+3000).
+// ----------------------------------------------------------------------------------------------------------
+fragment WHITESPACE			: [ \r\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000] ;
+fragment LINESPACE			: [ \r\n\t\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000] ;
 
 
-! Item
-&lt;item&gt;    
-    ::= &lt;text&gt;
-    | &lt;text&gt; Link
-    | &lt;text&gt; &lt;tag&gt;
-    | &lt;text&gt; &lt;tag&gt; Link
-    | &lt;text&gt; &lt;tag&gt; &lt;links&gt;
-    | &lt;text&gt; Link &lt;tag&gt;
-    | &lt;text&gt; &lt;links&gt; &lt;tag&gt;
+// Define lexer rules for comments
+LINE_COMMENT       			: '// ' .*? ('\r'? '\n' LINESPACE* | EOF) -&gt; skip ;
+BLOCK_COMMENT   	    		: '/*' .*? ('*/' LINESPACE* | EOF) -&gt; skip ;
+TAG					: '&lt;' .+? '&gt;' LINESPACE* ;
+LINK					: '[' .*? ']' LINESPACE* ;
+
+// Define lexer rules for other tokens
+HYPHEN					: '-' ;
+RIGHT_ARROW           		 	: '&gt;' LINESPACE* ;
+LEFT_ARROW             			: '&lt;' LINESPACE* ;
+RIGHT_SQUARE      			: ']' LINESPACE* ;
+SEPARATOR            			: ',' LINESPACE* ;
+TERMINATOR           			: ';' LINESPACE* ;
+FORWARD_SLASHES				: '//' LINESPACE* ;
+FORWARD_SLASH				: '/' LINESPACE* ;
+STAR					: '*' LINESPACE* ;
+
+ESCAPE_ESCAPE        			: '\\\\' LINESPACE* ;
+ESCAPE_HYPHEN      			: '\\-' LINESPACE* ;
+ESCAPE_RIGHT_ARROW      		: '\\&gt;' LINESPACE* ;
+ESCAPE_LEFT_ARROW      			: '\\&lt;' LINESPACE* ;
+ESCAPE_RIGHT_SQUARE      		: '\\]' LINESPACE* ;
+ESCAPE_LEFT_SQUARE      		: '\\[' LINESPACE* ;
+ESCAPE_SEPARATOR     			: '\\,' LINESPACE* ;
+ESCAPE_TERMINATOR    			: '\\;' LINESPACE* ;
+ESCAPE_LCOMMENT      			: '\\//' LINESPACE* ;
+ESCAPE_BCOMMENT      			: '\\/*' LINESPACE* ;
+ESCAPE               			: '\\' LINESPACE* ;
+
+// Define lexer rule for data
+// Note: For some reason we don't need to escape '[' and '|'
+// and ANTLR does not like when we try to escape them
+fragment DATA_CHAR			: ~[[\]\-&lt;&gt;,;*/\\] ;
+DATA                			: DATA_CHAR+ ;
+
+// Define parser rules
+producer				: HYPHEN RIGHT_ARROW ;
+
+text_chunk				: ESCAPE_ESCAPE
+					| ESCAPE_HYPHEN
+					| ESCAPE_RIGHT_ARROW
+					| ESCAPE_LEFT_ARROW
+					| ESCAPE_RIGHT_SQUARE
+					| ESCAPE_LEFT_SQUARE
+					| ESCAPE_SEPARATOR
+					| ESCAPE_TERMINATOR
+					| ESCAPE_LCOMMENT
+					| ESCAPE_BCOMMENT
+					| ESCAPE
+					| HYPHEN
+							
+					| RIGHT_ARROW
+					| RIGHT_SQUARE
+							
+					| FORWARD_SLASHES
+					| FORWARD_SLASH
+					| STAR
+					| DATA ;
 
 
-    
+
+item 					: (text_chunk)+ (TAG)?
+					| (text_chunk)+ (LINK)+
+					| (text_chunk)+ (LINK)+ TAG
+					| (text_chunk)+ TAG (LINK)+ ;
 
 
-! Expressions and more
-&lt;item-or-expression&gt;    
-    ::= &lt;item&gt;    
-    | &lt;expression&gt;
+expression 				: item producer item_or_expression_list TERMINATOR
+					| item producer item TERMINATOR
+					| item producer expression TERMINATOR
+					| item producer TERMINATOR ;
 
-&lt;item-or-expression-list&gt;
-    ::= &lt;item&gt; Separator &lt;item&gt;
-    | &lt;item&gt; Separator &lt;expression&gt;
-    | &lt;expression&gt; &lt;item&gt;
-    | &lt;expression&gt; &lt;expression&gt;
-    
-    | &lt;item&gt; Separator &lt;item-or-expression-list&gt;
-    | &lt;expression&gt; &lt;item-or-expression-list&gt;
 
-    
-    
+item_or_expression_part			: item SEPARATOR
+					| expression (SEPARATOR)? ;
 
-&lt;expression&gt;     
-    ::= &lt;item&gt; &lt;producer&gt; Terminator    
-    | &lt;item&gt; &lt;producer&gt; &lt;item-or-expression&gt; Terminator   
-    | &lt;item&gt; &lt;producer&gt; &lt;item-or-expression-list&gt; Terminator
-    | &lt;item&gt; &lt;producer&gt; &lt;item-or-expression&gt;
-    | &lt;item&gt; &lt;producer&gt; &lt;item-or-expression-list&gt;
 
-&lt;expression-list&gt;     
-    ::= &lt;expression&gt; &lt;expression&gt;    
-    | &lt;expression&gt; &lt;expression-list&gt;
+item_or_expression_list 		: (item_or_expression_part)+ item 
+					| (item_or_expression_part)+ expression ;
 
-&lt;scripture&gt;     
-    ::= &lt;expression&gt;      
-    | &lt;expression-list&gt;
+
+expression_list				: (expression)+ expression ;
+
+
+scripture 				: expression_list EOF
+					| expression EOF ;
+
 </code></pre></div></div>
 
 <h3 id="links">Links</h3>

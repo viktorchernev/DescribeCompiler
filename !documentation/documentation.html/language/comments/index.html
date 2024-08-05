@@ -31,7 +31,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/testing/">Testing</a><a class="page-link" href="/versioning/">Versioning</a></div>
+        <div class="trigger"></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
@@ -43,7 +43,9 @@
   </header>
 
   <div class="post-content">
-    <p>Comments in describe are much like comments in C++ or C#, or other C type languages - we have single line comments, that start with two slashes <code class="language-plaintext highlighter-rouge">//</code> and end with a new line, and we also have the delimited type, starting with slash and a star - <code class="language-plaintext highlighter-rouge">/*</code> and ending with a star and a slash - <code class="language-plaintext highlighter-rouge">*/</code>.</p>
+    <p>Comments in describe are much like comments in C++ or C#, or other C type languages - we have single line comments, that start with two slashes and a space <code class="language-plaintext highlighter-rouge">// </code> and end with a new line, and we also have the delimited type, starting with slash and a star - <code class="language-plaintext highlighter-rouge">/*</code> and ending with a star and a slash - <code class="language-plaintext highlighter-rouge">*/</code>.</p>
+
+<p>Note that, a colon before two forward slashes <code class="language-plaintext highlighter-rouge">://</code> will escape the comment. This is done because we want to be able to write links in text - <code class="language-plaintext highlighter-rouge">https://abc...</code> e.g. without the need to escape the forward slashes, which would be annoying. We can also escape the colon, if needed to have a comment - <code class="language-plaintext highlighter-rouge">\://</code>.</p>
 
 <p><span style="color:blue"><em>Example:</em></span></p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//our solar system
