@@ -1,9 +1,10 @@
 ---
 layout: page
-title: Grammar v0.7
+title: Testing - Grammar 0.7
 permalink: /testing/grammar-v07/
 exclude: true
 ---
+<br>
 _Describe Tags (v0.7)_
 
 <span style="font-style: italic;">```Grammar version 0.7 has to pass all the tests for Grammar version 0.6 before passing the following:```</span>
@@ -60,6 +61,6 @@ _Describe Tags (v0.7)_
 <span style="color:blue">```2 root nodes.ds```</span> - Two simple lists in one file, with tags<br>
 <span style="color:blue">```cyrillic.ds```</span> - Some very simple list in Cyrillic, with Cyrillic tags. This is for testing the pre-processor, as the GOLD Parser can't parse Cyrillic.
 
-
+<br>
 ### Links
 [Back](/testing)

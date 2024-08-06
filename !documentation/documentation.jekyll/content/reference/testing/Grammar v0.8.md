@@ -1,9 +1,10 @@
 ---
 layout: page
-title: Grammar v0.8
+title: Testing - Grammar 0.8
 permalink: /testing/grammar-v08/
 exclude: true
 ---
+<br>
 _Describe Links (v0.8)_
 
 <span style="font-style: italic;">```Grammar version 0.8 has to pass all the tests for Grammar versions 0.6 and 0.7 before passing the following:```</span><br>
@@ -51,6 +52,6 @@ _Describe Links (v0.8)_
 <span style="color:blue">```2 root nodes.ds```</span> - Two simple lists in one file, with tags and links.<br>
 <span style="color:blue">```cyrillic.ds```</span> - Some very simple list in Cyrillic, with Cyrillic tags and Cyrillic links. This is for testing the pre-processor, as the GOLD Parser can't parse Cyrillic.
 
-
+<br>
 ### Links
 [Back](/testing)

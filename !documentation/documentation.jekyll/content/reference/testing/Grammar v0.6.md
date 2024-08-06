@@ -1,9 +1,10 @@
 ---
 layout: page
-title: Grammar v0.6
+title: Testing - Grammar 0.6
 permalink: /testing/grammar-v06/
 exclude: true
 ---
+<br>
 _Describe Basics (v0.6)_
 
 <span style="color:green">basic functionality</span><br>
@@ -56,6 +57,6 @@ _Describe Basics (v0.6)_
 <span style="color:blue">```2 root nodes.ds```</span> - Two simple lists in one file<br>
 <span style="color:blue">```cyrillic.ds```</span> - Some very simple list in Cyrillic. This is for testing the pre-processor, as the GOLD Parser can't parse Cyrillic.
 
-
+<br>
 ### Links
 [Back](/testing)

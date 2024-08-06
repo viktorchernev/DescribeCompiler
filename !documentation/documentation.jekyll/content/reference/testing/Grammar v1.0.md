@@ -1,9 +1,10 @@
 ---
 layout: page
-title: Grammar v1.0
+title: Testing - Grammar 1.0
 permalink: /testing/grammar-v10
 exclude: true
 ---
+<br>
 _Describe Official (v1.0)_
 
 <span style="font-style: italic;">```Grammar version 1.0 has to pass all the tests for Grammar versions 0.6, 0.7, 0.8 and 0.9```</span><br>
@@ -18,6 +19,6 @@ _Describe Official (v1.0)_
 <span style="color:green">other</span><br>
 <span style="color:blue">```2 root nodes.ds```</span> - Two simple lists in one file, with tags, links and decorators.<br>
 
-
+<br>
 ### Links
 [Back](/testing)

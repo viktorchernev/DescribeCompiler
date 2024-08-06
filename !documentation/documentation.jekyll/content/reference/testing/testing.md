@@ -1,9 +1,10 @@
 ---
 layout: page
-title: Testing
+title: Describe Transpiler - Testing
 permalink: /testing/
 exclude: true
 ---
+<br>
 ## Grammars
 
 1. We have devised (and are devising) describe source code test files (.ds) that aim to test various different scenarios for each version of the Describe grammar.
@@ -14,8 +15,8 @@ exclude: true
 
 4. The log outputs from the two different methods are compared, making sure the parsing process produced the same result in all the test cases.
 
+<br>
 ### Links
-
 [Grammar v0.6](/testing/grammar-v06)<br>
 [Grammar v0.7](/testing/grammar-v07)<br>
 [Grammar v0.8](/testing/grammar-v08)<br>
