@@ -1,3 +1,0 @@
-BUG: Runaway group
-treeofall.public.technologies.cultivars.CJ327K8T
-Same comment issue recurs

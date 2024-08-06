@@ -1,1 +1,0 @@
-FEATURE: Wikipedia links to be translated to 'w'

@@ -1,2 +1,0 @@
-// generic errors - not valid file or folder, when we are looking
-// for either files or folders
