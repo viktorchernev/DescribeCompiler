@@ -1,0 +1,2 @@
+FEATURE: Text decorators
+Inline text decorators, like price tags e.g. 

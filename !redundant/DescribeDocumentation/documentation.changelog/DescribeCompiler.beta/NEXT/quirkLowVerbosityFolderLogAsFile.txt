@@ -1,0 +1,3 @@
+// Why the folder we are parsing is added to low verbosity output
+// in the same way as a parsed file?
+// "C:\Users\Viktor Chernev\Desktop\docs-scratch\TestData" - Ok"

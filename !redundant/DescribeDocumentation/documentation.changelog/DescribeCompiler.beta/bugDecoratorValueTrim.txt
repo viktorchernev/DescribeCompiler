@@ -1,0 +1,5 @@
+BUG: We are removing whitespaces from decorator values. Why?
+Because of inproper trimming that previously was not problematic, but now, with complex texts as decorator values is
+
+in ```OptimizerForDescribe10``` ```private string DoDecorator(string text)```
+in ```OptimizerForDescribe09``` ```private string DoDecorator(string text)```

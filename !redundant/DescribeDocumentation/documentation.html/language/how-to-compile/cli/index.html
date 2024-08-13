@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Describe Compilation - CLI | Documentation</title>
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="Describe Compilation - CLI" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Describe Compiler Documentation" />
+<meta property="og:description" content="Describe Compiler Documentation" />
+<link rel="canonical" href="http://localhost:4000/language/how-to-compile/cli/" />
+<meta property="og:url" content="http://localhost:4000/language/how-to-compile/cli/" />
+<meta property="og:site_name" content="Documentation" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Describe Compilation - CLI" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Describe Compiler Documentation","headline":"Describe Compilation - CLI","url":"http://localhost:4000/language/how-to-compile/cli/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Documentation" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Documentation</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Describe Compilation - CLI</h1>
+  </header>
+
+  <div class="post-content">
+    <p><br />The Describe Compiler CLI is a text-based app that provides a command line interface for the API compiler, so that users can compile Describe source files on the command line. The app is licensed under the <a href="https://www.gnu.org/licenses/agpl-3.0">AGPL v3</a> public license.</p>
+
+<h3 id="help">help</h3>
+
+<p><code class="language-plaintext highlighter-rouge">DescribeCompilerCLI help</code><br />
+<code class="language-plaintext highlighter-rouge">DescribeCompilerCLI -h</code><br /></p>
+
+<p><span style="color:orange"><em>help | -h</em></span><br /></p>
+
+<p>The help command is used to display usage / help message</p>
+
+<h3 id="parse-file">parse-file</h3>
+
+<p><code class="language-plaintext highlighter-rouge">DescribeCompilerCLI parse-file "C:\parse\path\input.ds" "C:\result\path\output.json"</code><br />
+<code class="language-plaintext highlighter-rouge">translator=JSON verbosity=low logfile="C:\parse\path\log.txt"</code><br /> <!-- artifacts=use artifacts-path="C:\artifacts\path\input.dart" --></p>
+
+<p><span style="color:orange"><em>parse-file PARSE_PATH RESULT_PATH [translator = ( TARGET_LANGUAGE | TRANSLATOR_NAME )] [verbosity= ( l | low | m | medium |h | high)| log-verbosity= ( l | low | m | medium | h | high)][logfile=LOG_PATH]</em></span><br /></p>
+
+<p>The parse-file command is used to parse a single file. First we specify the command, followed by the source file to be parsed and the output file path. Anything after that is optional.</p>
+
+<ul>
+  <li>
+    <p><span style="color:blue"><strong><em>translator</em></strong></span><br />
+Either the desired output language or the name of the translator to be used.</p>
+  </li>
+  <li>
+    <p><span style="color:blue"><strong><em>verbosity</em></strong></span><br />
+The log verbosity of the app. Same as <code class="language-plaintext highlighter-rouge">log-verbosity</code>. <code class="language-plaintext highlighter-rouge">l</code> or <code class="language-plaintext highlighter-rouge">low</code> for low verbosity, <code class="language-plaintext highlighter-rouge">m</code> or <code class="language-plaintext highlighter-rouge">medium</code> for medium verbosity or <code class="language-plaintext highlighter-rouge">h</code> or <code class="language-plaintext highlighter-rouge">high</code> for high verbosity. Low is default.</p>
+  </li>
+</ul>
+
+<!--
+* <span style="color:orange">**_artifacts - NOT IMPLEMENTED_**</span> - Whether to use artifacts. ```m``` or ```makeonly``` will only create new and overwrite existing artifacts, but will not consume them, ```t``` or ```takeonly``` will only consume but not create or update them, ```u``` or ```use``` will both use available or valid artifacts while updating invalid ones and creating new artifacts when not available, and ```n``` or ```no``` will ignore artifacts all-together. Default is no.
+
+* <span style="color:orange">**_ARTIFACTS_PATH - NOT IMPLEMENTED_**</span> - Specifies the path of directory to store artifacts in.
+-->
+
+<ul>
+  <li><span style="color:blue"><strong><em>logfile</em></strong></span><br />
+Specifies path of directory or file to output logs to. If not specified, logs will be outputted only to the console, which is the default.</li>
+</ul>
+
+<h3 id="parse-folder">parse-folder</h3>
+
+<p><code class="language-plaintext highlighter-rouge">DescribeCompilerCLI parse-folder "C:\parse\path\input\" "C:\result\path\output.json"</code><br />
+<code class="language-plaintext highlighter-rouge">translator=JSON dsonly=true toponly=false onerror=ignore</code><br />
+<code class="language-plaintext highlighter-rouge">verbosity=low logfile="C:\parse\path\log.txt"</code><br /></p>
+
+<p><span style="color:orange"><em>parse-folder PARSE_PATH RESULT_PATH [translator = ( TARGET_LANGUAGE | TRANSLATOR_NAME )][dsonly= ( true | false ) ][toponly= ( true | false ) ][onerror= ( stop | ignore )][verbosity= ( l | low | m | medium |h | high)| log-verbosity= ( l | low | m | medium | h | high)][logfile=LOG_PATH]</em></span><br /></p>
+
+<p>The parse-folder command is used to parse a directory full of Describe source files (.ds files). First we specify the command, followed by the source directory to be parsed and the output file path. Anything after that is optional.</p>
+
+<ul>
+  <li>
+    <p><span style="color:blue"><strong><em>translator</em></strong></span><br />
+Either the desired output language or the name of the translator to be used.</p>
+  </li>
+  <li>
+    <p><span style="color:blue"><strong><em>dsonly</em></strong></span><br />
+Whether to omit files that are not Describe source files (.DS). <code class="language-plaintext highlighter-rouge">true</code> or <code class="language-plaintext highlighter-rouge">false</code>. Default is true.</p>
+  </li>
+  <li>
+    <p><span style="color:blue"><strong><em>toponly</em></strong></span><br />
+Whether to parse files in child directories or not. <code class="language-plaintext highlighter-rouge">true</code> or <code class="language-plaintext highlighter-rouge">false</code>. Default is false.</p>
+  </li>
+  <li>
+    <p><span style="color:blue"><strong><em>onerror</em></strong></span><br />
+What to do when there is an error in source code. <code class="language-plaintext highlighter-rouge">stop</code> or <code class="language-plaintext highlighter-rouge">ignore</code>. Default is stop.</p>
+  </li>
+  <li>
+    <p><span style="color:blue"><strong><em>verbosity</em></strong></span><br />
+The log verbosity of the app. Same as <code class="language-plaintext highlighter-rouge">log-verbosity</code>. <code class="language-plaintext highlighter-rouge">l</code> or <code class="language-plaintext highlighter-rouge">low</code> for low verbosity, <code class="language-plaintext highlighter-rouge">m</code> or <code class="language-plaintext highlighter-rouge">medium</code> for medium verbosity or <code class="language-plaintext highlighter-rouge">h</code> or <code class="language-plaintext highlighter-rouge">high</code> for high verbosity. Low is default.</p>
+  </li>
+  <li>
+    <p><span style="color:blue"><strong><em>logfile</em></strong></span><br />
+Specifies path of directory or file to output logs to. If not specified, logs will be outputted only to the console, which is the default.</p>
+  </li>
+</ul>
+
+<p><br /></p>
+<h3 id="links">Links</h3>
+<p><a href="/language/how-to-compile/">Describe Compilation</a><br /> 
+<a href="/language/how-to-compile/api/">Use the API version</a><br />
+<a href="/language/how-to-compile/aws/">Use the AWS version</a><br />
+<a href="/language/">Back</a></p>
+
+  </div>
+
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+  
+	github: <a href="https://github.com/viktorchernev/DescribeCompiler">viktorchernev</a><br>email: <a class="u-email" href="mailto:vchernev91@abv.bg">vchernev91@abv.bg</a><!-- <h2 class="footer-heading">Documentation</h2> 
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Documentation</li><li><a class="u-email" href="mailto:vchernev91@abv.bg">vchernev91@abv.bg</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/viktorchernev"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">viktorchernev</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Describe Compiler Documentation</p>
+      </div>
+    </div>-->
+
+  </div>
+
+</footer>
+</body>
+
+</html>

@@ -1,0 +1,2 @@
+FEATURE: Device a strategy to deal with error position offseting in different text editors
+A text editor as Notepad++ counts a tab for example as 4 symbols, but this can vary between editors and various settings. Thus, a strategy must be devised to deal with the issue

@@ -1,0 +1,6 @@
+REN: Support for Describe Compiler Framework has been discontinued. Using the CLI version instead.
+
+Both Core and Framework versions of the CLI app do the same. At this moment, there is no need to keep both.
+
+On deeper analysis, we will need it.
+CLI.Framework returned as CLI.NET 

@@ -1,0 +1,29 @@
+BUG: There is a bug related to star comments - we might be errorneously escaping the stars for example?
+
+
+directives -> namespace <treeofall.private.job>;
+
+
+May <may2023> ->
+
+
+	WEEK 22 ->
+	
+		Monday 29 May ->;
+		Tuesday 30 May ->
+			-deal with Stanislav and shed folders;
+
+		Wednesday 31 May ->;
+		Thirsday 01 June ->;
+		Friday 02 June ->;
+
+
+	/* WEEK Template
+	WEEK ->
+	
+		Monday ->;
+		Tuesday ->;
+		Wednesday ->;
+		Thirsday ->;
+		Friday ->;
+	*/

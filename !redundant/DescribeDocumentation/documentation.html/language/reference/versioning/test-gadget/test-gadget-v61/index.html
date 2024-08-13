@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>TestGadget v6.1 (WinForms, Gold parser) | Documentation</title>
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="TestGadget v6.1 (WinForms, Gold parser)" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Describe Compiler Documentation" />
+<meta property="og:description" content="Describe Compiler Documentation" />
+<link rel="canonical" href="http://localhost:4000/language/reference/versioning/test-gadget/test-gadget-v61/" />
+<meta property="og:url" content="http://localhost:4000/language/reference/versioning/test-gadget/test-gadget-v61/" />
+<meta property="og:site_name" content="Documentation" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="TestGadget v6.1 (WinForms, Gold parser)" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Describe Compiler Documentation","headline":"TestGadget v6.1 (WinForms, Gold parser)","url":"http://localhost:4000/language/reference/versioning/test-gadget/test-gadget-v61/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Documentation" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Documentation</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">TestGadget v6.1 (WinForms, Gold parser)</h1>
+  </header>
+
+  <div class="post-content">
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>using GOLD;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+
+namespace TestGadget
+{
+    public static class TestGadget
+    {
+        static TestGadget()
+        {
+            MyParser = new DescribeParser();
+            MyParser.Translations = new Dictionary&lt;string, string&gt;();
+            MyParser.Files = new Dictionary&lt;string, string&gt;();
+            MyParser.Productions = new Dictionary&lt;string, List&lt;string&gt;&gt;();
+            NodeDict = new Dictionary&lt;TreeNode, string&gt;();
+        }
+        public static void Reset()
+        {
+            MyParser.Translations = new Dictionary&lt;string, string&gt;();
+            MyParser.Files = new Dictionary&lt;string, string&gt;();
+            MyParser.Productions = new Dictionary&lt;string, List&lt;string&gt;&gt;();
+            MyParser.PrimaryProductions = new Dictionary&lt;string, List&lt;string&gt;&gt;();
+            MyParser.IsFirstScripture = true;
+        }
+
+
+        public static Dictionary&lt;TreeNode, string&gt; NodeDict;
+        public static void WriteTree(TreeView tree)
+        {
+            tree.Nodes.Clear();
+            NodeDict = new Dictionary&lt;TreeNode, string&gt;();
+
+            foreach (string pkey in MyParser.PrimaryProductions.Keys)
+            {
+                string text = MyParser.Translations[pkey];
+                var node = tree.Nodes.Add(text);
+                if (!NodeDict.ContainsKey(node)) NodeDict.Add(node, pkey);
+                else
+                {
+                    var lll = NodeDict[node];
+                }
+                foreach(string lkey in MyParser.PrimaryProductions[pkey])
+                {
+                    AddLayer(node, lkey);
+                }
+            }
+        }
+        static void AddLayer(TreeNode node, string key)
+        {
+            if (MyParser.Translations.ContainsKey(key) == false) return;
+
+            string text = MyParser.Translations[key];
+            var n = node.Nodes.Add(text);
+            if(!NodeDict.ContainsKey(n)) NodeDict.Add(n, key);
+            else
+            {
+                var lll = NodeDict[n];
+            }
+            if (MyParser.Productions.ContainsKey(key))
+            {
+                foreach (string rkey in MyParser.Productions[key])
+                {
+                    AddLayer(n, rkey);
+                }
+            }
+            else if (MyParser.PrimaryProductions.ContainsKey(key))
+            {
+                foreach (string rkey in MyParser.PrimaryProductions[key])
+                {
+                    AddLayer(n, rkey);
+                }
+            }
+        }
+
+
+        public static string? SourcePath;
+        public static string? GrammarPath;
+        public static void LoadGrammer(string path)
+        {
+            try
+            {
+                if (MyParser.Setup(path))
+                {
+                    GrammarPath = path;
+                    //MessageBox.Show("CGT loaded");
+                }
+                else
+                {
+                    MessageBox.Show("CGT failed to load");
+                }
+            }
+            catch (GOLD.ParserException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        public static void ParseTextFile(string filename)
+        {
+            if (MyParser.Loaded == false) return;
+            string filetext = ReadTextFile(filename);
+            if (filetext == null || string.IsNullOrWhiteSpace(filetext)) return;
+
+            SourcePath = filename;
+            MyParser.CurrentSourcePath = filename;
+            ParseSource(filename);
+        }
+        public static void ParseTextFiles(string path)
+        {
+            if (MyParser.Loaded == false) return;
+            string fname = Path.GetFileName(path);
+            string? folder = Path.GetDirectoryName(path);
+            if(folder == null) return;
+            folder += "\\";
+
+            ParseTextFiles(folder, fname);
+        }
+        public static void ParseTextFiles(string path, string filename)
+        {
+            if (MyParser.Loaded == false) return;
+            SourcePath = path + filename;
+
+            List&lt;string&gt; parsedFiles = new List&lt;string&gt;();
+
+            MyParser.CurrentSourcePath = path + filename;
+            while (MyParser.CurrentSourcePath != "")
+            {
+                parsedFiles.Add(MyParser.CurrentSourcePath);
+
+                string filetext = ReadTextFile(MyParser.CurrentSourcePath);
+                if (filetext != null 
+                    &amp;&amp; string.IsNullOrWhiteSpace(filetext) == false)
+                {
+                    ParseSource(MyParser.CurrentSourcePath);
+                }
+
+                MyParser.CurrentSourcePath = "";
+                foreach (string s in MyParser.Files.Values)
+                {
+                    if (parsedFiles.Contains(s) == false)
+                    {
+                        MyParser.CurrentSourcePath = s;
+                        break;
+                    }
+                }
+            }
+        }
+        static string ReadTextFile(string filename)
+        {
+            try
+            {
+                string text = File.ReadAllText(filename);
+                return text;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+
+
+        internal static DescribeParser MyParser;
+        static void ParseSource(string path)
+        {
+            try
+            {
+                string text = File.ReadAllText(path);
+                StringReader reader = new StringReader(text);
+                bool result = MyParser.Parse(reader);
+                if (result)
+                {
+                    //MessageBox.Show(path + " parsed successfully!");
+                }
+                else
+                {
+                    MessageBox.Show(path + Environment.NewLine + MyParser.FailMessage);
+                }
+            }
+            catch (GOLD.ParserException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+    }
+
+    internal class DescribeParser
+    {
+        // The final translations are stored here
+        //public List&lt;Production&gt; All = new List&lt;Production&gt;();
+        public Dictionary&lt;string, List&lt;string&gt;&gt; PrimaryProductions = new Dictionary&lt;string, List&lt;string&gt;&gt;();
+        public Dictionary&lt;string, List&lt;string&gt;&gt; Productions = new Dictionary&lt;string, List&lt;string&gt;&gt;();
+        public Dictionary&lt;string, string&gt; Translations = new Dictionary&lt;string, string&gt;();
+        public Dictionary&lt;string, string&gt; Files = new Dictionary&lt;string, string&gt;();
+
+        // Other variables
+        public bool Loaded = false;
+        private GOLD.Parser parser = new GOLD.Parser();
+        public GOLD.Reduction? Root = null;//hacked to be nullable, it wasn't
+        public string FailMessage = "";
+
+        public bool Setup(string FilePath)
+        {
+            Loaded = parser.LoadTables(FilePath);
+            return Loaded;
+        }
+        public bool Parse(TextReader reader)
+        {
+            GOLD.ParseMessage response;
+            bool done = false;
+            bool accepted = false;
+
+            parser.Open(reader);
+            parser.TrimReductions = false;
+
+            while (!done)
+            {
+                response = parser.Parse();
+                switch (response)
+                {
+                    case GOLD.ParseMessage.LexicalError:
+                        //Cannot recognize token
+                        FailMessage = "Lexical Error:\n" +
+                                      "Position: " + parser.CurrentPosition().Line + ", " + parser.CurrentPosition().Column + "\n" +
+                                      "Read: " + parser.CurrentToken().Data;
+                        done = true;
+                        break;
+
+                    case GOLD.ParseMessage.SyntaxError:
+                        //Expecting a different token
+                        FailMessage = "Syntax Error:\n" +
+                                      "Position: " + parser.CurrentPosition().Line + ", " + parser.CurrentPosition().Column + "\n" +
+                                      "Read: " + parser.CurrentToken().Data + "\n" +
+                                      "Expecting: " + parser.ExpectedSymbols().Text();
+                        done = true;
+                        break;
+
+                    case GOLD.ParseMessage.Reduction:
+                        //Populate dictionaries
+                        Populate(parser.CurrentReduction);
+                        break;
+
+                    case GOLD.ParseMessage.Accept:
+                        //Accepted!
+                        Root = (GOLD.Reduction)parser.CurrentReduction;    //The root node!                                  
+                        done = true;
+                        accepted = true;
+                        break;
+
+                    case GOLD.ParseMessage.TokenRead:
+                        //You don't have to do anything here.
+                        break;
+
+                    case GOLD.ParseMessage.InternalError:
+                        //INTERNAL ERROR! Something is horribly wrong.
+                        FailMessage = "INTERNAL ERROR! Something is horribly wrong";
+                        done = true;
+                        break;
+
+                    case GOLD.ParseMessage.NotLoadedError:
+                        //This error occurs if the CGT was not loaded.                   
+                        FailMessage = "Tables not loaded";
+                        done = true;
+                        break;
+
+                    case GOLD.ParseMessage.GroupError:
+                        //GROUP ERROR! Unexpected end of file
+                        FailMessage = "Runaway group";
+                        done = true;
+                        break;
+                }
+            }
+            return accepted;
+        }
+
+        private void Populate(object o)
+        {
+            Reduction r = (Reduction)o;
+            string ruleName = GetRuleName(r);
+            if (ruleName != "scripture") return;
+
+            //All = DoScripture(r);
+            List&lt;Production&gt; ps = DoScripture(r);
+            Translate(ps);
+        }
+        private void Translate(List&lt;Production&gt; productions)
+        {
+            foreach (Production p in productions)
+            {
+                string a = p.Left.Tag.Id;
+                if (p.Left.Tag.Type == TagType.File)
+                {
+                    FileTag ftag = (FileTag)p.Left.Tag;
+                    //Files.Add(ftag.Id, ftag.FileName);
+                }
+
+                List&lt;string&gt; bs = new List&lt;string&gt;();
+                foreach (Termin t in p.Rights)
+                {
+                    bs.Add(t.Tag.Id);
+                    if (t.Tag.Type == TagType.File)
+                    {
+                        FileTag ftag = (FileTag)t.Tag;
+                        //Files.Add(ftag.Id, ftag.FileName);
+                    }
+                }
+
+                if(p.IsPrimery) PrimaryProductions.Add(a, bs);
+                else Productions.Add(a, bs);
+
+
+                if (Translations.ContainsKey(p.Left.Tag.Id) == false)
+                {
+                    Translations.Add(p.Left.Tag.Id, p.Left.Literal);
+                }
+                foreach (Termin t in p.Rights)
+                {
+                    if (Translations.ContainsKey(t.Tag.Id) == false)
+                    {
+                        Translations.Add(t.Tag.Id, t.Literal);
+                    }
+                }
+            }
+        }
+
+
+
+        //Misc
+        internal string? CurrentSourcePath;
+        string GetRuleName(Reduction r)
+        {
+            string ruleName = r.Parent.Head().Name();
+            return ruleName;
+        }
+
+        //Text
+        string DoText(Reduction r)
+        {
+            if(r.Count() == 1)
+            {
+                string? s = r[0].Data.ToString();
+                if (string.IsNullOrEmpty(s))
+                {
+                    throw new Exception("Inproper TEXT - text[0] is null or empty");
+                }
+                return s;
+            }
+            else if (r.Count() == 2)
+            {
+                string s = DoText((Reduction)r[0].Data) + " " + DoText((Reduction)r[1].Data);
+                return s;
+            }
+            else
+            {
+                throw new Exception("Inproper TEXT - text is of inproper lenght");
+            }
+        }
+
+        //Tags
+        Tag DoTag(Reduction r)
+        {
+            if (r.Count() == 3)
+            {
+                return DoSimpleTag(r);
+            }
+            else if (r.Count() == 5)
+            {
+                return DoFileTag(r);
+            }
+            else
+            {
+                throw new Exception("Inproper TAG - tag is not 3 or 5 items long");
+            }
+        }
+        SimpleTag DoSimpleTag(Reduction r)
+        {
+            if (r[1].Data is Reduction == false)
+            {
+                throw new Exception("Inproper TAG - tag[1] is not a reduction");
+            }
+            Reduction rtext = (Reduction)r[1].Data;
+            string? rn = GetRuleName(rtext);
+            if (rn != "text")
+            {
+                throw new Exception("Inproper TAG - tag[1] is not \"text\"");
+            }
+            string tag = DoText(rtext);
+            if(CurrentSourcePath != null &amp;&amp; 
+                !Files.ContainsKey(tag)) 
+                    Files.Add(tag, CurrentSourcePath);
+            return new SimpleTag(tag);
+        }
+        FileTag DoFileTag(Reduction r)
+        {
+            if (r[1].Data is Reduction == false)
+            {
+                throw new Exception("Inproper TAG - tag[1] is not a reduction");
+            }
+            Reduction rtext = (Reduction)r[1].Data;
+            string? rn = GetRuleName(rtext);
+            if (rn != "text")
+            {
+                throw new Exception("Inproper TAG - tag[1] is not \"text\"");
+            }
+            string file = DoText(rtext);
+
+            if (r[3].Data is Reduction == false)
+            {
+                throw new Exception("Inproper TAG - tag[3] is not a reduction");
+            }
+            Reduction rftext = (Reduction)r[3].Data;
+            string? rfn = GetRuleName(rftext);
+            if (rfn != "text")
+            {
+                throw new Exception("Inproper TAG - tag[3] is not \"text\"");
+            }
+            string tag = DoText(rftext);
+            if (CurrentSourcePath != null &amp;&amp;
+                !Files.ContainsKey(tag))
+                    Files.Add(tag, Path.GetDirectoryName(CurrentSourcePath) + "\\" + file);
+            return new FileTag(tag, file);
+        }
+
+        //Items
+        Termin DoTermin(Reduction r)
+        {
+            var count = r.Count();
+
+            var data = r[0].Data;
+            var data2 = r[1].Data;
+
+            if (count &lt; 1 || count &gt; 3)
+            {
+                throw new Exception("Inproper ITEM - item must have 1, 2 or 3 items");
+            }
+            else if (count == 1)
+            {
+                return DoTermin1(r);
+            }
+            else if (count == 2)
+            {
+                return DoTermin2(r);
+            }
+            else //count == 3
+            {
+                return DoTermin3(r);
+            }
+        }
+        Termin DoTermin1(Reduction r)
+        {
+            if (r[0].Data is Reduction == false)
+            {
+                throw new Exception("Inproper ITEM - item[0] must be a reduction");
+            }
+            string n = GetRuleName((Reduction)r[0].Data);
+            if (n != "tag")
+            {
+                throw new Exception("Inproper ITEM - item[0] must be a tag");
+            }
+            //Tag tag = DoTag((Reduction)r[1].Data);
+            throw new Exception("Inproper ITEM - item must have 2 items");
+        }
+        Termin DoTermin2(Reduction r)
+        {
+            if (r[0].Data is Reduction == false)
+            {
+                throw new Exception("Inproper ITEM - item[0] must be a reduction");
+            }
+            string n0 = GetRuleName((Reduction)r[0].Data);
+            if (r[1].Data is Reduction == false)
+            {
+                throw new Exception("Inproper ITEM - item[1] must be a reduction");
+            }
+            string n1 = GetRuleName((Reduction)r[1].Data);
+
+            if (n0 != "text")
+            {
+                throw new Exception("Inproper ITEM - item[0] must be a text");
+            }
+            if (n1 != "tag")
+            {
+                throw new Exception("Inproper ITEM - item[1] must be a tag");
+            }
+
+            string text = DoText((Reduction)r[0].Data);
+            Tag tag = DoTag((Reduction)r[1].Data);
+            return new Termin(text, tag);
+        }
+        Termin DoTermin3(Reduction r)
+        {
+            throw new Exception("Inproper ITEM - item must have 1, 2 items");
+        }
+
+        //Itemlists
+        List&lt;Termin&gt; DoItemlist(Reduction r)
+        {
+            var count = r.Count();
+            if (count != 3)
+            {
+                throw new Exception("Inproper ITEMLIST - itemlist must have 3 items");
+            }
+            if (r[0].Data is Reduction == false)
+            {
+                throw new Exception("Inproper ITEMLIST - itemlist[0] must be a reduction");
+            }
+            string n1 = GetRuleName((Reduction)r[0].Data);
+            if (n1 != "item")
+            {
+                throw new Exception("Inproper ITEMLIST - itemlist[0] must be an item");
+            }
+
+            if (r[2].Data is Reduction == false)
+            {
+                throw new Exception("Inproper ITEMLIST - itemlist[2] must be a reduction");
+            }
+            string n2 = GetRuleName((Reduction)r[2].Data);
+            if (n2 != "item" &amp;&amp; n2 != "itemlist")
+            {
+                throw new Exception("Inproper ITEMLIST - itemlist[2] must be an item or an itemlist");
+            }
+
+            Termin a = DoTermin((Reduction)r[0].Data);
+            List&lt;Termin&gt; list = new List&lt;Termin&gt;() { a };
+
+            if(n2 == "item")
+            {
+                Termin b = DoTermin((Reduction)r[2].Data);
+                list.Add(b);
+            }
+            else
+            {
+                List&lt;Termin&gt; bs = DoItemlist((Reduction)r[2].Data);
+                foreach (Termin t in bs) list.Add(t);
+            }
+
+            return list;
+        }
+
+        //Expressions
+        Production DoExpression(Reduction r)
+        {
+            if (r[0].Data is Reduction == false)
+            {
+                throw new Exception("Inproper EXPRESSION - expression[0] must be a reduction");
+            }
+            string n1 = GetRuleName((Reduction)r[0].Data);
+            if (n1 != "item")
+            {
+                throw new Exception("Inproper EXPRESSION - expression[0] must be an item");
+            }
+            Termin leftHandSide = DoTermin((Reduction)r[0].Data);
+
+            if (r[1].Data.ToString() != "-&gt;")
+            {
+                throw new Exception("Inproper EXPRESSION - expression[1] must be '-&gt;'");
+            }
+
+            List&lt;Termin&gt; ts = new List&lt;Termin&gt;();
+            for (int i = 2; i &lt; r.Count(); i++)
+            {
+                if (r[i].Data is Reduction)
+                {
+                    string ruleName = GetRuleName((Reduction)r[i].Data);
+
+                    switch (ruleName)
+                    {
+                        case "item":
+                            Termin x = DoTermin((Reduction)r[i].Data);
+                            ts.Add(x);
+                            break;
+                        case "itemlist":
+                            List&lt;Termin&gt; ys = DoItemlist((Reduction)r[i].Data);
+                            foreach (Termin y in ys) ts.Add(y);
+                            break;
+                        case "expression":
+                            Termin z = DoExpression((Reduction)r[i].Data).Left;
+                            ts.Add(z);
+                            break;
+                        case "expressionlist":
+                            List&lt;Production&gt; ms = DoExpressionlist((Reduction)r[i].Data);
+                            foreach (Production m in ms) ts.Add(m.Left);
+                            break;
+                        default:
+                            continue;
+                    }
+                }
+            }
+
+            return new Production(leftHandSide, ts);
+        }
+        List&lt;Production&gt; DoExpressionlist(Reduction r)
+        {
+            var count = r.Count();
+            if (count != 2)
+            {
+                throw new Exception("Inproper EXPRESSIONLIST - expressionlist must have 2 items");
+            }
+            if (r[0].Data is Reduction == false)
+            {
+                throw new Exception("Inproper EXPRESSIONLIST - expressionlist[0] must be a reduction");
+            }
+            string n1 = GetRuleName((Reduction)r[0].Data);
+            if (n1 != "expression")
+            {
+                throw new Exception("Inproper EXPRESSIONLIST - expressionlist[0] must be an expression");
+            }
+
+            if (r[1].Data is Reduction == false)
+            {
+                throw new Exception("Inproper EXPRESSIONLIST - expressionlist[1] must be a reduction");
+            }
+            string n2 = GetRuleName((Reduction)r[1].Data);
+            if (n2 != "expression" &amp;&amp; n2 != "expressionlist")
+            {
+                throw new Exception("Inproper EXPRESSIONLIST - expressionlist[1] must be an expression or an expressionlist");
+            }
+
+            Production a = DoExpression((Reduction)r[0].Data);
+            List&lt;Production&gt; list = new List&lt;Production&gt;() { a };
+
+            if (n2 == "expression")
+            {
+                Production b = DoExpression((Reduction)r[1].Data);
+                list.Add(b);
+            }
+            else
+            {
+                List&lt;Production&gt; bs = DoExpressionlist((Reduction)r[1].Data);
+                foreach (Production t in bs) list.Add(t);
+            }
+
+            return list;
+        }
+
+        //Scripture
+        public bool IsFirstScripture = true;
+        List&lt;Production&gt; DoScripture(Reduction r)
+        {
+            var count = r.Count();
+            if (count != 1)
+            {
+                throw new Exception("Inproper SCRIPTURE - scripture must have 1 item");
+            }
+            if (r[0].Data is Reduction == false)
+            {
+                throw new Exception("Inproper SCRIPTURE - scripture[0] must be a reduction");
+            }
+            string n = GetRuleName((Reduction)r[0].Data);
+            if (n != "expression" &amp;&amp; n != "expressionlist")
+            {
+                throw new Exception("Inproper SCRIPTURE - scripture[0] must be an expression or an expressionlist");
+            }
+
+            if(n == "expression")
+            {
+                Production p = DoExpression((Reduction)r[0].Data);
+                if (IsFirstScripture)
+                {
+                    p.IsPrimery = true;
+                    IsFirstScripture = false;
+                }
+                return new List&lt;Production&gt;() { p };
+            }
+            else
+            {
+                List&lt;Production&gt; ps = DoExpressionlist((Reduction)r[0].Data);
+                if (IsFirstScripture)
+                {
+                    foreach (Production p in ps) p.IsPrimery = true;
+                    IsFirstScripture = false;
+                }
+                return ps;
+            }
+        }
+    }
+
+
+
+
+}
+
+//https://www.meziantou.net/introduction-to-goldparser.htm
+//TestGadget.LoadGrammer(@"C:\PATH HERE\#DESCRIBE.egt");
+//TestGadget.ParseTextFiles(@"C:\PATH HERE\", "0_root");
+//TestGadget.WriteTree(MainTreeView);
+</code></pre></div></div>
+
+<p><br /></p>
+<h3 id="links">Links</h3>
+<p><a href="/language/reference/versioning/">Back</a></p>
+
+  </div>
+
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+  
+	github: <a href="https://github.com/viktorchernev/DescribeCompiler">viktorchernev</a><br>email: <a class="u-email" href="mailto:vchernev91@abv.bg">vchernev91@abv.bg</a><!-- <h2 class="footer-heading">Documentation</h2> 
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Documentation</li><li><a class="u-email" href="mailto:vchernev91@abv.bg">vchernev91@abv.bg</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/viktorchernev"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">viktorchernev</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Describe Compiler Documentation</p>
+      </div>
+    </div>-->
+
+  </div>
+
+</footer>
+</body>
+
+</html>

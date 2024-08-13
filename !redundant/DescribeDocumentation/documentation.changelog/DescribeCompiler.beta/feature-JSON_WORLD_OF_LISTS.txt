@@ -1,0 +1,2 @@
+FEATURE: Added new JSON translator - JSON_WORLD_OF_LISTS
+More and more decorators are being implemented for the world in lists project that might overcomplicate the simple JSON_COMMONER translator. This is the reason why a new inbuilt translator has been created - JSON_WORLD_OF_LISTS

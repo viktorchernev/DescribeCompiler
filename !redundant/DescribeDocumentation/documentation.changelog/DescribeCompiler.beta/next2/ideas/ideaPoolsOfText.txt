@@ -1,0 +1,13 @@
+IDEA: pool of long text entries
+for example, when we have links that are full of URL escaped characters, those can be very long and ugly.
+We can have all those in one very large entry at the bottom of the document, called the pool, and write our links like so:
+
+	list ->
+	
+		something [:pool:112-319],
+		what not [:pool:700-922];
+
+	pool ->
+		Lorem%20ipsum%20dolor%20sit%20amet%2C%20consectetur%20adipiscing%20elit%20Ut%20id%20tellus%20lacinia%2C%20gravida%20lorem%20ut%2C%20cursus%20neque%20Proin%20at%20leo%20eu%20ipsum%20mattis%20dictum%20Aenean%20facilisis%20erat%20in%20purus%20dignissim%20auctor%20Duis%20id%20magna%20libero%20Nullam%20egestas%20lobortis%20dolor%2C%20vitae%20venenatis%20lectus%20blandit%20id%20Curabitur%20lorem%20sapien%2C%20mattis%20eu%20commodo%20vel%2C%20fringilla%20nec%20enim%20Nullam%20blandit%2C%20magna%20ut%20malesuada%20lacinia%2C%20nunc%20leo%20facilisis%20eros%2C%20at%20tristique%20sapien%20lorem%20id%20nibh%20Cras%20interdum%20urna%20ac%20tellus%20gravida%2C%20et%20pharetra%20sapien%20ultricies%20Fusce%20vel%20iaculis%20nibh%2C%20vitae%20ullamcorper%20turpis%20Pellentesque%20habitant%20morbi%20tristique%20senectus%20et%20netus%20et%20malesuada%20fames%20ac%20turpis%20egestas%20Ut%20blandit%2C%20enim%20eget%20pulvinar%20suscipit%2C%20justo%20tortor%20auctor%20augue%2C%20suscipit%20dignissim%20dui%20augue%20ac%20libero%20Nullam%20varius%20nisi%20sit%20amet%20magna%20elementum%2C%20sed%20ullamcorper%20libero%20scelerisque%20Aenean%20tincidunt%20nisl%20vel%20orci%20venenatis%20pharetra%20Mauris%20ligula%20odio%2C%20molestie%20non%20nibh%20a%2C%20gravida%20congue%20turpis%20Nullam%20gravida%20mauris%20quis%20velit%20tincidunt%2C%20at%20imperdiet%20neque%20suscipit%20;
+
+This can also be useful with some locks and encryption.

@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>TestGadget v5 (WinForms, Gold parser) | Documentation</title>
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="TestGadget v5 (WinForms, Gold parser)" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Describe Compiler Documentation" />
+<meta property="og:description" content="Describe Compiler Documentation" />
+<link rel="canonical" href="http://localhost:4000/language/reference/versioning/test-gadget/test-gadget-v5/" />
+<meta property="og:url" content="http://localhost:4000/language/reference/versioning/test-gadget/test-gadget-v5/" />
+<meta property="og:site_name" content="Documentation" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="TestGadget v5 (WinForms, Gold parser)" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Describe Compiler Documentation","headline":"TestGadget v5 (WinForms, Gold parser)","url":"http://localhost:4000/language/reference/versioning/test-gadget/test-gadget-v5/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Documentation" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Documentation</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">TestGadget v5 (WinForms, Gold parser)</h1>
+  </header>
+
+  <div class="post-content">
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>using GOLD;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+
+namespace TestGadget
+{
+    public static class TestGadget
+    {
+        static TestGadget()
+        {
+            MyParser = new MyParserClass();
+            MyParser.Translations = new Dictionary&lt;string, string&gt;();
+            MyParser.Files = new Dictionary&lt;string, string&gt;();
+            MyParser.Productions = new Dictionary&lt;string, List&lt;string&gt;&gt;();
+        }
+
+
+
+        public static void WriteTree(TreeView tree)
+        {
+            for (int j = 0; j &lt; MyParser.Productions["rootnode"].Count; j++)
+            {
+                string code = MyParser.Productions["rootnode"][j];
+                string text = "NULL";
+                if (code != null)
+                {
+                    text = MyParser.Translations[code];
+                    var node = tree.Nodes.Add(text);
+                    AddLayer(node, code);
+                }
+            }
+        }
+        static void AddLayer(TreeNode node, string code)
+        {
+            if (MyParser.Productions.ContainsKey(code) == false) return;
+
+            List&lt;string&gt; ps = MyParser.Productions[code];
+            for (int j = 0; j &lt; ps.Count; j++)
+            {
+                string text = "NULL";
+                if (ps[j] != null)
+                {
+                    text = MyParser.Translations[ps[j]];
+                    var n = node.Nodes.Add(text);
+                    AddLayer(n, ps[j]);
+                }
+            }
+        }
+
+
+
+        public static void LoadGrammer(string path)
+        {
+            try
+            {
+                if (MyParser.Setup(path))
+                {
+                    //MessageBox.Show("CGT loaded");
+                }
+                else
+                {
+                    MessageBox.Show("CGT failed to load");
+                }
+            }
+            catch (GOLD.ParserException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        public static void ParseTextFile(string filename)
+        {
+            if (MyParser.Loaded == false) return;
+            string filetext = ReadTextFile(filename);
+            if (filetext == null || string.IsNullOrWhiteSpace(filetext)) return;
+            ParseSource(filename);
+        }
+        public static void ParseTextFiles(string path, string filename)
+        {
+            if (MyParser.Loaded == false) return;
+            List&lt;string&gt; parsedFiles = new List&lt;string&gt;();
+
+            string cur = path + filename;
+            while (cur != "")
+            {
+                parsedFiles.Add(cur);
+
+                string filetext = ReadTextFile(cur);
+                if (filetext == null || string.IsNullOrWhiteSpace(filetext)) continue;
+                ParseSource(cur);
+
+                cur = "";
+                foreach (string s in MyParser.Files.Values)
+                {
+                    if (parsedFiles.Contains(path + s) == false)
+                    {
+                        cur = path + s;
+                        break;
+                    }
+                }
+            }
+        }
+        static string ReadTextFile(string filename)
+        {
+            try
+            {
+                string text = File.ReadAllText(filename);
+                return text;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+
+
+        static MyParserClass MyParser;
+        static void ParseSource(string path)
+        {
+            try
+            {
+                string text = File.ReadAllText(path);
+                StringReader reader = new StringReader(text);
+                bool result = MyParser.Parse(reader);
+                if (result)
+                {
+                    //MessageBox.Show(path + " parsed successfully!");
+                }
+                else
+                {
+                    MessageBox.Show(path + Environment.NewLine + MyParser.FailMessage);
+                }
+            }
+            catch (GOLD.ParserException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+    }
+
+    internal class MyParserClass
+    {
+        public bool Loaded = false;
+        private GOLD.Parser parser = new GOLD.Parser();
+        public GOLD.Reduction? Root = null;//hacked to be nullable, it wasn't
+        public string FailMessage = "";
+
+        public bool Setup(string FilePath)
+        {
+            Loaded = parser.LoadTables(FilePath);
+            return Loaded;
+        }
+        public bool Parse(TextReader reader)
+        {
+            GOLD.ParseMessage response;
+            bool done = false;
+            bool accepted = false;
+
+            parser.Open(reader);
+            parser.TrimReductions = false;
+
+            while (!done)
+            {
+                response = parser.Parse();
+                switch (response)
+                {
+                    case GOLD.ParseMessage.LexicalError:
+                        //Cannot recognize token
+                        FailMessage = "Lexical Error:\n" +
+                                      "Position: " + parser.CurrentPosition().Line + ", " + parser.CurrentPosition().Column + "\n" +
+                                      "Read: " + parser.CurrentToken().Data;
+                        done = true;
+                        break;
+
+                    case GOLD.ParseMessage.SyntaxError:
+                        //Expecting a different token
+                        FailMessage = "Syntax Error:\n" +
+                                      "Position: " + parser.CurrentPosition().Line + ", " + parser.CurrentPosition().Column + "\n" +
+                                      "Read: " + parser.CurrentToken().Data + "\n" +
+                                      "Expecting: " + parser.ExpectedSymbols().Text();
+                        done = true;
+                        break;
+
+                    case GOLD.ParseMessage.Reduction:
+                        //Populate dictionaries
+                        Populate(parser.CurrentReduction);
+                        break;
+
+                    case GOLD.ParseMessage.Accept:
+                        //Accepted!
+                        Root = (GOLD.Reduction)parser.CurrentReduction;    //The root node!                                  
+                        done = true;
+                        accepted = true;
+                        break;
+
+                    case GOLD.ParseMessage.TokenRead:
+                        //You don't have to do anything here.
+                        break;
+
+                    case GOLD.ParseMessage.InternalError:
+                        //INTERNAL ERROR! Something is horribly wrong.
+                        done = true;
+                        break;
+
+                    case GOLD.ParseMessage.NotLoadedError:
+                        //This error occurs if the CGT was not loaded.                   
+                        FailMessage = "Tables not loaded";
+                        done = true;
+                        break;
+
+                    case GOLD.ParseMessage.GroupError:
+                        //GROUP ERROR! Unexpected end of file
+                        FailMessage = "Runaway group";
+                        done = true;
+                        break;
+                }
+            }
+            return accepted;
+        }
+
+
+        public Dictionary&lt;string, List&lt;string&gt;&gt; Productions = new Dictionary&lt;string, List&lt;string&gt;&gt;();
+        public Dictionary&lt;string, string&gt; Translations = new Dictionary&lt;string, string&gt;();
+        public Dictionary&lt;string, string&gt; Files = new Dictionary&lt;string, string&gt;();
+
+
+        void Populate(object o)
+        {
+            Reduction r = (Reduction)o;
+            string ruleName = GetRuleName(r);
+
+
+            if (ruleName == "item")
+            {
+                Item? item = GetItem(r);
+                if (item == null) return;
+
+                if (item.Tag.FileId != null)
+                {
+                    if (Files.ContainsKey(item.Tag.Id) == false)
+                    {
+                        Files.Add(item.Tag.Id, item.Tag.FileId);
+                    }
+                }
+                if (Translations.ContainsKey(item.Tag.Id) == false)
+                {
+                    Translations.Add(item.Tag.Id, item.Literal);
+                }
+            }
+            else if (ruleName == "expression")
+            {
+                Reduction litem = (Reduction)r.get_Data(0);
+                Item? lit = GetItem(litem);
+                if (lit == null) return;
+
+
+                var next = r.get_Data(2);
+                if(next is Reduction == false) return;
+                Reduction ritem = (Reduction)next;
+                string rule = ritem.Parent.Head().Name();
+                if (rule == "item")
+                {
+                    Item? rit = GetItem(ritem);
+                    if (rit == null) return;
+                    List&lt;string&gt; rcodes = new List&lt;string&gt;() { rit.Tag.Id };
+                    Productions.Add(lit.Tag.Id, rcodes);
+                }
+                else if (rule == "itemlist")
+                {
+                    List&lt;Reduction&gt;? reductions = UnwindItemlist(ritem);
+                    if (reductions == null) return;
+
+                    List&lt;Item&gt; items = new List&lt;Item&gt;();
+                    foreach (Reduction red in reductions)
+                    {
+                        if (red == null) continue;
+                        Item? item = GetItem(red);
+                        if (item == null) continue;
+                        items.Add(item);
+                    }
+                    List&lt;string&gt; rcodes = new List&lt;string&gt;();
+                    foreach (Item it in items)
+                    {
+                        rcodes.Add(it.Tag.Id);
+                    }
+                    Productions.Add(lit.Tag.Id, rcodes);
+                }
+            }
+        }
+
+        Item? GetItem(Reduction r)
+        {
+            string name = GetRuleName(r);
+            if (name != "item") return null;
+
+            Tag? t = getTag(r);
+            string literal = (string)r.get_Data(0);
+
+            return new Item(literal, t);
+        }
+        Tag? getTag(Reduction r)
+        {
+            string name = GetRuleName(r);
+            if (name != "item") return null;
+
+            Reduction rtag = (Reduction)r.get_Data(1);          //get tag from "item"
+
+            if (rtag.Count() == 3)
+            {
+                string? tag = rtag.get_Data(1).ToString();
+                return new Tag(tag);
+            }
+            else if (rtag.Count() == 5)
+            {
+                string? tag = rtag.get_Data(3).ToString();
+                if (tag == null) return null;                    //log error
+
+                string? fname = rtag.get_Data(1).ToString();
+                if (fname == null) return null;                  //log error
+
+
+                return new Tag(tag, fname);
+            }
+            else return null;                                    //log error
+        }
+        string GetRuleName(Reduction r)
+        {
+            string ruleName = r.Parent.Head().Name();
+            return ruleName;
+        }
+        List&lt;Reduction&gt;? UnwindItemlist(Reduction r)
+        {
+            Reduction left = (Reduction)r.get_Data(0);
+            Reduction right = (Reduction)r.get_Data(2);
+
+            if (GetRuleName(right) == "item")
+            {
+                return new List&lt;Reduction&gt;() { left, right };
+            }
+            else if (GetRuleName(right) == "itemlist")
+            {
+                List&lt;Reduction&gt;? li = UnwindItemlist(right);
+                if (li == null) return null;
+
+                List&lt;Reduction&gt; output = new List&lt;Reduction&gt;() { left };
+                foreach (Reduction e in li) output.Add(e);
+                return output;
+            }
+
+            return null;
+        }
+    }
+    public class Tag
+    {
+        string _id;
+        string? _fileId;
+
+        public string Id
+        {
+            get { return _id; }
+        }
+        public string? FileId
+        {
+            get { return _fileId; }
+        }
+
+        public Tag(string id)
+        {
+            _id = id;
+        }
+        public Tag(string id, string fileId)
+        {
+            _id = id;
+            _fileId = fileId;
+        }
+    }
+    public class Item
+    {
+        string _literal;
+        Tag _tag;
+
+        public string Literal
+        {
+            get { return _literal; }
+        }
+        public Tag Tag
+        {
+            get { return _tag; }
+        }
+
+        public Item(string literal, Tag tag)
+        {
+            _literal = literal;
+            _tag = tag;
+        }
+    }
+}
+
+//https://www.meziantou.net/introduction-to-goldparser.htm
+//TestGadget.LoadGrammer(@"C:\PATH HERE\#DESCRIBE.egt");
+//TestGadget.ParseTextFiles(@"C:\PATH HERE\", "0_root");
+//TestGadget.WriteTree(MainTreeView);
+
+
+// When there is a literal that is 8 symbols long it is mistaken for an id, resulting in a syntax error
+// Cyrilic symbols result in a lexical error
+</code></pre></div></div>
+
+<p><br /></p>
+<h3 id="links">Links</h3>
+<p><a href="/language/reference/versioning/">Back</a></p>
+
+  </div>
+
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+  
+	github: <a href="https://github.com/viktorchernev/DescribeCompiler">viktorchernev</a><br>email: <a class="u-email" href="mailto:vchernev91@abv.bg">vchernev91@abv.bg</a><!-- <h2 class="footer-heading">Documentation</h2> 
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Documentation</li><li><a class="u-email" href="mailto:vchernev91@abv.bg">vchernev91@abv.bg</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/viktorchernev"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">viktorchernev</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Describe Compiler Documentation</p>
+      </div>
+    </div>-->
+
+  </div>
+
+</footer>
+</body>
+
+</html>

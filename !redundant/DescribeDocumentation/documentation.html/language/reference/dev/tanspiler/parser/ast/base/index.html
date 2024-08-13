@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>DescribeParser.Ast namespace - Abstract Syntax Tree | Documentation</title>
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="DescribeParser.Ast namespace - Abstract Syntax Tree" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Describe Compiler Documentation" />
+<meta property="og:description" content="Describe Compiler Documentation" />
+<link rel="canonical" href="http://localhost:4000/language/reference/dev/tanspiler/parser/ast/base/" />
+<meta property="og:url" content="http://localhost:4000/language/reference/dev/tanspiler/parser/ast/base/" />
+<meta property="og:site_name" content="Documentation" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="DescribeParser.Ast namespace - Abstract Syntax Tree" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Describe Compiler Documentation","headline":"DescribeParser.Ast namespace - Abstract Syntax Tree","url":"http://localhost:4000/language/reference/dev/tanspiler/parser/ast/base/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Documentation" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Documentation</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">DescribeParser.Ast namespace - Abstract Syntax Tree</h1>
+  </header>
+
+  <div class="post-content">
+    <p><br />The Base folder contains the base class and the interfaces for the members of the AST. These are the base classes and interfaces for the Abstract Syntax Tree. <code class="language-plaintext highlighter-rouge">SourcePosition</code> describes the position of the first and the last character in a Node. AstNode is the base class for all the Nodes in the abstract syntax tree. It implement the IAstNode interface. Every IAstNode - that is, every AstNode, that is every node in the abstract syntax tree should implement the appropriate methods thus being directly translateable to string representation, to JSON representation, and to source code. Finally, every node in the abstract syntax tree can be IAstChildNode and IAstBranchNode, and most are both, with the exception of the top-level and bottom level classes.</p>
+
+<p><br /></p>
+<h2 id="1-iastnode">1. IAstNode</h2>
+
+<p>The IAstNode interface represents a node in an abstract syntax tree (AST).</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    ToString() - Get a string representation of an AST object for logging purposes.
+    ToJson() - Get a JSON string representation of an AST object for logging purposes.
+    ToCode() - Get a source code string representation of an AST object.
+
+    IAstNode
+        .public string ToString()
+        .public string ToJson()
+        .public string ToCode()
+</code></pre></div></div>
+
+<p><br /></p>
+<h2 id="2-astnode">2. AstNode</h2>
+
+<p>The base class for the AST</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    ToString() - Get a string representation of an AST object for logging purposes.
+    ToJson() - Get a JSON string representation of an AST object for logging purposes.
+    ToCode() - Get a source code string representation of an AST object.
+
+    `protected static string replaceWhitespaceE(string text)`
+    Replaces new lines with escape characters in a string. Derived classes use this method in order to safely log strings.
+    text - The unescaped text.
+    RETURNS - an escaped string, containing symbols like '\n' instead of new line characters and '\t' instead of tab characters.
+
+
+    public abstract class AstNode : IAstNode
+        .public abstract new string ToString()
+        .public abstract new string ToJson()
+        .public abstract new string ToCode()
+        
+        .protected static string replaceWhitespaceE(string text)
+</code></pre></div></div>
+
+<p><br /></p>
+<h2 id="3-iastchildnode">3. IAstChildNode</h2>
+
+<p>Represents a child node in an abstract syntax tree (AST).
+Being a child node means that a node is not the top level one, and has its place in the heirarchy, thus representing a chunk of the source code, and we want to know the position of that chunk, so that we can highlight it or replace/change it if needed.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    Position - Gets/sets the position of the node within the source code. A `SourcePosition` object representing the position of the node, or `null` if the position is not set.
+    Parent - Gets/sets the parent node of this node. An `IAstBranchNode` object representing the parent of this node, or `null` if the parent is not set.
+
+    public interface IAstChildNode : IAstNode
+        .SourcePosition? Position               { get; set;  }
+        .IAstBranchNode? Parent                 { get; set; }
+</code></pre></div></div>
+
+<p><br /></p>
+<h2 id="4-sourceposition">4. SourcePosition</h2>
+
+<p>Represents an Ast SourcePosition object.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    FirstIndex - The zero-based index in the source code string of the first character in this SourcePosition object.
+    FirstLine - The zero-based line number in the source code of the first character in this SourcePosition object.
+    FirstColumn - The zero-based column number in the current line, in the source code of the first character in this SourcePosition object.
+    LastIndex - The zero-based index in the source code string of the last character in this SourcePosition object.
+    LastLine - The zero-based line number in the source code of the last character in this SourcePosition object.
+    LastColumn - The zero-based column number in the current line, in the source code of the last character in this SourcePosition object.
+
+    public class SourcePosition
+        .public int FirstIndex                  {get; internal set; }
+        .public int FirstLine                   {get; internal set; }
+        .public int FirstColumn                 {get; internal set; }
+        .public int LastIndex                   {get; internal set; }
+        .public int LastLine                    {get; internal set; }
+        .public int LastColumn                  {get; internal set; }
+</code></pre></div></div>
+
+<p><br /></p>
+<h2 id="5-iastbranchnode">5. IAstBranchNode</h2>
+
+<p>Represents a branch node in an abstract syntax tree (AST).
+Branch nodes are nodes that contain other nodes.</p>
+
+<p><br /></p>
+<h3 id="51-iastbranchnode">5.1. IAstBranchNode</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Leafs - Gets the list of leaf nodes associated with this branch node. A `List&lt;AstLeafNode&gt;` containing the leaf nodes.
+Children - Gets the list of child nodes associated with this branch node. A `List&lt;object&gt;` containing the child nodes.
+
+public interface IAstBranchNode : IAstNode
+    .public List&lt;AstLeafNode&gt; Leafs         { get; }
+    .public List&lt;object&gt; Children           { get; }
+</code></pre></div></div>
+
+<p><br /></p>
+<h3 id="52-iastbranchnode">5.2. IAstBranchNode<T></T></h3>
+
+<p>Represents a generic branch node in an abstract syntax tree (AST) that can contain children of a specified type.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Leafs - Gets the list of leaf nodes associated with this branch node. A `List&lt;AstLeafNode&gt;` containing the leaf nodes.
+Children - Gets the list of child nodes of type `T` associated with this branch node. A `List&lt;T&gt;` containing the child nodes.
+
+public interface IAstBranchNode&lt;T&gt; : IAstNode
+    .public List&lt;AstLeafNode&gt; Leafs         { get; }
+    .public List&lt;T&gt; Children                { get; }
+</code></pre></div></div>
+
+<p><br /></p>
+<h3 id="links">Links</h3>
+<p><a href="/language/reference/dev/tanspiler/parser/ast/">Back</a></p>
+
+  </div>
+
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+  
+	github: <a href="https://github.com/viktorchernev/DescribeCompiler">viktorchernev</a><br>email: <a class="u-email" href="mailto:vchernev91@abv.bg">vchernev91@abv.bg</a><!-- <h2 class="footer-heading">Documentation</h2> 
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Documentation</li><li><a class="u-email" href="mailto:vchernev91@abv.bg">vchernev91@abv.bg</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/viktorchernev"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">viktorchernev</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Describe Compiler Documentation</p>
+      </div>
+    </div>-->
+
+  </div>
+
+</footer>
+</body>
+
+</html>

@@ -1,41 +1,66 @@
-# !documentation
+# AntlrRuntime
+The ANTLR4 C# runtime, Visual Studio project.
 
-### `documentation / documentation.changelog`
-Contains text/markdown files describing bugs, features and ideas, both implemented in the past and ones for future consideration and/or implementation.
+# DescribeParser
+The ANTLR4 based parser for Describe, Visual Studio project.
 
-### `documentation / documentation.github`
-This directory contains the downloaded backup of the GitHub wiki for this repository. Also, contains the `README.md` and other such files from the repo.
+# DescribeTranspiler
+The DescribeParser based transpiler for Describe, Visual Studio project.
 
-### `documentation / documentation.markdown`
-This is the full documentation in markdown files, with Jekyll front matter / YAML to link them.
-Contains a collection of markdown files that compose the complete documentation for this repository, and can also include additional documentation, like documentation about the Describe Language, for example. These files include Jekyll front matter, are arranged in folder structure, and link to each other. They are the source code for a Jekyll website.
+# DescribeTranspiler.CLI
+The CLI based front end for the DescribeTranspiler, Visual Studio project.
 
-### `documentation / documentation.jekyll`
-The same information as `documentation.markdown`, but contains a jekyll template for building a static website from that markdown.
+# DescribeTranspiler.AWS
+The Amazon Web Service - Lambda based front end for the DescribeTranspiler, Visual Studio project.
 
-### `documentation / documentation.html`
-The same information as `documentation.jekyll`, but contains the built static website from that jekyll template directory.
+# DescribeTranspiler.Listiary
+Proprietary tools for listiary.net, Visual Studio project. PASSWORD PROTECTED.
 
-### `documentation / examples`
-Contains examples of Describe source code files and pictures of those files with highlighting.
+# Tests.Integration.Parser
+Integration tests for the DescribeParser, Visual Studio project.
+
+# Tests.Integration.Transpiler
+Integration tests for the DescribeTranspiler, Visual Studio project.
+
+# Tests.Unit.Parser
+Unit tests for the DescribeParser, Visual Studio project.
 
 
 
+<br><br>
 # !release
-
-### `release / 0.9.0`
-The release folder for the first beta version 0.9
-
-### `release / 0.9.1`
-The release folder for version 0.9.1
-
-### `release / 0.9.2`
-The release folder for version 0.9.2
+The release folder.
 
 ### `release / 0.9.3`
 The release folder for version 0.9.3
 
+### `release / 0.9.2`
+The release folder for version 0.9.2
+
+### `release / 0.9.1`
+The release folder for version 0.9.1
+
+### `release / 0.9.0`
+The release folder for the first beta version 0.9
 
 
+
+<br><br>
 # !redundant
-The `!redundant` folder contains a copy of those other two repositories.
+
+### `DescribeDocumentation`
+This repository contains the documentation for the language.
+
+### `DescribeLanguage`
+Describe Markup Language related stuff - grammars, test files for those grammars, highlighting config files, media.
+
+### `DescribeLibrary`
+A large collection of Describe source files.
+
+
+
+
+
+<br><br>
+# !work
+This folder contains different files that have been worked on in the past and could be useful for future work.

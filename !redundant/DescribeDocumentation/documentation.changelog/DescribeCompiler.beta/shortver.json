@@ -1,0 +1,29 @@
+shortVers: [ 
+	
+	"regular version - long text", 
+	"shorter version", 
+	"shortest" 
+],
+
+
+
+
+
+
+Uncaught (in promise) SyntaxError: JSON.parse: bad escaped character at line 1 column 601388 of the JSON data
+    loadJson https://development.worldinlists.net/index/js/index.scripts.js:931
+    AsyncFunctionThrow self-hosted:856
+    (Async: async)
+    <anonymous> https://development.worldinlists.net/index/js/index.scripts.js:1141
+
+
+
+
+{"name":"leaf","text":"Harry Potter and the Prisoner of Azkaban - J. K. Rowling","id":"treeofall.public.books.JJJgtZJN","links":[],"decorators":[],"type":"item"}
+
+{"name":"leaf","text":"Harry Potter and the Prisoner of Azkaban - J. K. Rowling","id":"treeofall.public.books.JJJgtZJN","links":[],"decorators":[],"shortvers":["Harry Potter and the Prisoner of Azkaban - J. K. Rowling","Harry Potter & the Prisoner of Azkaban", "The Prisoner of Azkaban"],"type":"item"}
+
+
+{"name":"leaf","text":"Harry Potter and the Sorcerer's Stone - J. K. Rowling","id":"treeofall.public.books.l0Wtrtzs","links":[],"decorators":[],"shortvers":["Harry Potter and the Sorcerer's Stone - J. K. Rowling","Harry Potter & the Sorcerer's Stone", "The Sorcerer's Stone"],"type":"item"}
+
+"shortvers":["Harry Potter and the Sorcerer's Stone - J. K. Rowling","Harry Potter & the Sorcerer's Stone", "The Sorcerer's Stone"],

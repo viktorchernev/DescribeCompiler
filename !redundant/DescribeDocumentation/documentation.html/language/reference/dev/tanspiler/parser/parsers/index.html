@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Parsers folder - DescribeParser.Parsers namespace | Documentation</title>
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="Parsers folder - DescribeParser.Parsers namespace" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Describe Compiler Documentation" />
+<meta property="og:description" content="Describe Compiler Documentation" />
+<link rel="canonical" href="http://localhost:4000/language/reference/dev/tanspiler/parser/parsers/" />
+<meta property="og:url" content="http://localhost:4000/language/reference/dev/tanspiler/parser/parsers/" />
+<meta property="og:site_name" content="Documentation" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Parsers folder - DescribeParser.Parsers namespace" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Describe Compiler Documentation","headline":"Parsers folder - DescribeParser.Parsers namespace","url":"http://localhost:4000/language/reference/dev/tanspiler/parser/parsers/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Documentation" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Documentation</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Parsers folder - DescribeParser.Parsers namespace</h1>
+  </header>
+
+  <div class="post-content">
+    <p><br />The Parser classes are used to, well, parse Describe source code. Those classes are generated automatically using the ANTLR 4 tool, that takes in a <code class="language-plaintext highlighter-rouge">.g4</code> grammar file and emits those C# source code files - only thing left for us is to add them to our project. Those classes will not be tested directly with unit-tests, as we trust the authors of ANTLR have done their job, as it is a state of the art tool. In fact, we don’t even understand their innerworkings in details - we simply use them, and this is fine.</p>
+
+<p><br /></p>
+<h2 id="parser-classes-source-files">Parser classes source files</h2>
+<p>There is a different set of classes for each version of the Describe language being parsed. Below is a file listing.
+I want to note here that, when building those classes with the ANTLR tool, you can specify wether you want to build listeners or visitors, as those are two separate ways of interacting with the parser, resulting in two distinct design patterns being used. We are using visitors, as this is the favorable approach for a few reasons, but we have chosen to have the Listener classes built anyway, so users are able to implement their own listener, if need be.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ParsersFor06 / Describe06BaseListener.cs, Describe06Listener.cs, Describe06BaseVisitor.cs, Describe06Visitor.cs, Describe06Lexer.ce, Describe06Parser.cs
+ParsersFor07 / Describe07BaseListener.cs, Describe07Listener.cs, Describe07BaseVisitor.cs, Describe07Visitor.cs, Describe07Lexer.ce, Describe07Parser.cs
+ParsersFor08 / Describe08BaseListener.cs, Describe08Listener.cs, Describe08BaseVisitor.cs, Describe08Visitor.cs, Describe08Lexer.ce, Describe08Parser.cs
+ParsersFor09 / Describe09BaseListener.cs, Describe09Listener.cs, Describe09BaseVisitor.cs, Describe09Visitor.cs, Describe09Lexer.ce, Describe09Parser.cs
+ParsersFor10 / Describe10BaseListener.cs, Describe10Listener.cs, Describe10BaseVisitor.cs, Describe10Visitor.cs, Describe10Lexer.ce, Describe10Parser.cs
+ParsersFor11 / Describe11BaseListener.cs, Describe11Listener.cs, Describe11BaseVisitor.cs, Describe11Visitor.cs, Describe11Lexer.ce, Describe11Parser.cs
+</code></pre></div></div>
+
+<p>We are not going to give a documentation of those classes here - anyone interested in that can read the book - “The Definitive ANTLR 4 Reference” or seek various online turorials and resources. We will simply give an example of basic usage of these classes, the way thhey are used in the DescribeParser project.</p>
+
+<p><br /></p>
+<h2 id="a-test-lexer">A) Test Lexer</h2>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//get source code to test
+string text = File.ReadAllText(sourceCodeFilePath);
+
+//construct parser
+AntlrInputStream inputstream = new AntlrInputStream(text);
+Describe06Lexer lexer = new Describe06Lexer(inputstream);
+CommonTokenStream tokenstream = new CommonTokenStream(lexer);
+
+//test lexer
+tokenstream.Fill();
+foreach (var token in tokenstream.GetTokens())
+{
+	int tokenType = token.Type;
+	string tokenText = token.Text;
+}
+</code></pre></div></div>
+
+<p><br /></p>
+<h2 id="b-test-parser">B) Test Parser</h2>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//get source code to test
+string text = File.ReadAllText(sourceCodeFilePath);
+
+//construct parser
+AntlrInputStream inputstream = new AntlrInputStream(text);
+Describe06Lexer lexer = new Describe06Lexer(inputstream);
+CommonTokenStream tokenstream = new CommonTokenStream(lexer);
+Describe06Parser parser = new Describe06Parser(tokenstream);
+
+//parse
+Describe06Parser.ScriptureContext scriptureContext = parser.scripture();
+// "scriptureContext" contains the actual parse tree. 
+// We need a visitor to work with it, though
+
+//visit
+LogVisitor06 visitor = new LogVisitor06();
+visitor.Visit(scriptureContext);
+// The visitor does the rest of the work from here.
+</code></pre></div></div>
+
+<p><br /></p>
+<h3 id="links">Links</h3>
+<p><a href="/language/reference/dev/tanspiler/parser/">Back</a></p>
+
+  </div>
+
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+  
+	github: <a href="https://github.com/viktorchernev/DescribeCompiler">viktorchernev</a><br>email: <a class="u-email" href="mailto:vchernev91@abv.bg">vchernev91@abv.bg</a><!-- <h2 class="footer-heading">Documentation</h2> 
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Documentation</li><li><a class="u-email" href="mailto:vchernev91@abv.bg">vchernev91@abv.bg</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/viktorchernev"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">viktorchernev</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Describe Compiler Documentation</p>
+      </div>
+    </div>-->
+
+  </div>
+
+</footer>
+</body>
+
+</html>

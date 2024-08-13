@@ -1,0 +1,30 @@
+// Commands
+jekyll new @website --force
+cd @website
+bundle exec jekyll serve
+bundle exec jekyll serve --draft
+
+// Jekyll folder
+gem environment
+C:\Ruby32-x64\lib\ruby\gems\3.2.0\gems\jekyll-4.3.3\lib
+
+// Ready sites
+C:\Users\Viktor Chernev\Desktop\World-Describe\Website\WorldInLists-Documentation\ver_blog
+
+
+
+Build Jekyll documentation ->
+
+	Go to the folder containing the jekyll dir - "\DescribeCompiler.jekyll",
+	Adjust values in "_config.yml" if needed,
+	
+	Copy the prepared markdown files/directories to the "content" subfolder,
+	Copy the index to the main folder as well, making sure that the permalink on that version is commented - "# permalink:",
+	
+	In cmd, cd to the jekyll dir - "\DescribeCompiler.jekyll",
+	Run "bundle exec jekyll clean",
+	Run "bundle install",
+	Run "bundle exec jekyll serve",
+	
+	Check result on localhost - "http://127.0.0.1:4000/",
+	Ctrl+V then Y then Y to stop server later;

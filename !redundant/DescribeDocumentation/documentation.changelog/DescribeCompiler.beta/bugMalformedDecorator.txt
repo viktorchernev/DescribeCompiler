@@ -1,0 +1,5 @@
+BUG: Malformed / unclosed decorator chokes the compiler in producing giberish JSON, probably because of the preprocessor
+
+	Book 2: Brotherhood - Oliver Bowden
+    [https://en.wikipedia.org/wiki/Assassin%27s_Creed_(book_series)#Brotherhood_(2010)]
+    {shorter|Brotherhood - Oliver Bowden,

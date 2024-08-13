@@ -1,0 +1,11 @@
+//color: red //color lorem ipsum //endcolor
+<span style="color: red">lorem ipsum<span>
+
+//url: http://world.net //title: Hello World //url
+<a href="http://world.net">Hello World</a>
+
+/*color: red color*/ lorem ipsum /*endcolor*/
+<span style="color: red">lorem ipsum<span>
+
+/*url: http://world.net /*title: Hello World url*/
+<a href="http://world.net">Hello World</a>

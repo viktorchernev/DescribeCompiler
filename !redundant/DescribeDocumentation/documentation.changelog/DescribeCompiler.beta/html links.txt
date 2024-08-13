@@ -1,0 +1,29 @@
+
+
+
+
+
+
+
+
+
+
+
+
+[https://viktorchernev.github.io/DescribeDocumentation/technical/ | github]
+[[https://viktorchernev.github.io/DescribeDocumentation/technical/]| github]]
+[[https://viktorchernev.github.io/DescribeDocumentation/technical/](github)]]
+[[https://viktorchernev.github.io/DescribeDocumentation/technical/ || github]]
+[(https://viktorchernev.github.io/DescribeDocumentation/technical/)[github]]
+[(https://viktorchernev.github.io/DescribeDocumentation/technical/)|(github)]
+
+
+
+{(color| lime)}	lorem ipsum {(/color)}
+{(color|						)}						{(/color)}
+<span style="color: 	lime	;">		lorem ipsum		</span>
+
+
+[(https://some/url)|(github)]
+[(								)|(					)]
+<a href="	https://some/url	">		github		</a>

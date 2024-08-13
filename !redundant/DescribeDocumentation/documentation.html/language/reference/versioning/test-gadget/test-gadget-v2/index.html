@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>TestGadget v2 | Documentation</title>
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="TestGadget v2" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Describe Compiler Documentation" />
+<meta property="og:description" content="Describe Compiler Documentation" />
+<link rel="canonical" href="http://localhost:4000/language/reference/versioning/test-gadget/test-gadget-v2/" />
+<meta property="og:url" content="http://localhost:4000/language/reference/versioning/test-gadget/test-gadget-v2/" />
+<meta property="og:site_name" content="Documentation" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="TestGadget v2" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Describe Compiler Documentation","headline":"TestGadget v2","url":"http://localhost:4000/language/reference/versioning/test-gadget/test-gadget-v2/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Documentation" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Documentation</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">TestGadget v2</h1>
+  </header>
+
+  <div class="post-content">
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using Gtk;
+
+namespace TOATg
+{
+    public static class TestGadget
+    {
+        public static Dictionary&lt;string, List&lt;string&gt;&gt; Productions;
+        public static Dictionary&lt;string, List&lt;string&gt;&gt; Files;
+        static TestGadget()
+        {
+            Productions = new Dictionary&lt;string, List&lt;string&gt;&gt;();
+            Files = new Dictionary&lt;string, List&lt;string&gt;&gt;();
+        }
+
+
+        public static void TestParse(string path, bool waitUserInput = false)
+        {
+            string[] files = Directory.GetFiles(path, "*.*", SearchOption.AllDirectories);
+            for (int i = 0; i &lt; files.Length; i++)
+            {
+                ParseTextFile(files[i]);
+            }
+
+            Console.WriteLine("\"" + path + "\" Done!");
+            if (waitUserInput) Console.ReadLine();
+        }
+        public static void WriteProductions()
+        {
+            foreach (KeyValuePair&lt;string, List&lt;string&gt;&gt; kvp in TestGadget.Productions)
+            {
+                Console.WriteLine("");
+                Console.WriteLine("");
+                Console.WriteLine(kvp.Key + " -&gt; ");
+                Console.WriteLine("    " + String.Join(",\n    ", kvp.Value) + ";");
+            }
+        }
+        public static void WriteTree()
+        {
+            // Make new window
+            Gtk.Window window = new Gtk.Window("TreeView Example");
+            window.SetSizeRequest(800, 600);
+
+            // Create tree view
+            Gtk.TreeView tree = new Gtk.TreeView();
+            window.Add(tree);
+
+            // Set columns - at this case 1 column
+            TreeViewColumn column_1 = new TreeViewColumn();
+            CellRendererText crt_1 = new CellRendererText();
+            column_1.PackStart(crt_1, true);
+            tree.AppendColumn(column_1);
+            column_1.AddAttribute(crt_1, "text", 0);
+
+            // Set content
+            TreeStore treeStore = new TreeStore(typeof(string), typeof(string));
+            TreeIter treeIter;
+
+
+            foreach (KeyValuePair&lt;string, List&lt;string&gt;&gt; kvp in TestGadget.Productions)
+            {
+                treeIter = treeStore.AppendValues(kvp.Key);
+                for(int j = 0; j &lt; kvp.Value.Count; j++)
+                {
+                    treeStore.AppendValues(treeIter, kvp.Value[j]);
+                }
+            }
+
+            tree.Model = treeStore;
+            window.ShowAll();
+        }
+        public static void WriteTree2()
+        {
+            // Make new window
+            Gtk.Window window = new Gtk.Window("TreeView Example");
+            window.SetSizeRequest(800, 600);
+
+            // Create tree view
+            Gtk.TreeView tree = new Gtk.TreeView();
+            window.Add(tree);
+
+            // Set columns - at this case 1 column
+            TreeViewColumn column_1 = new TreeViewColumn();
+            CellRendererText crt_1 = new CellRendererText();
+            column_1.PackStart(crt_1, true);
+            tree.AppendColumn(column_1);
+            column_1.AddAttribute(crt_1, "text", 0);
+
+            // Set content
+            TreeStore treeStore = new TreeStore(typeof(string), typeof(string));
+            TreeIter treeIter;
+
+
+            foreach (string ptitle in Files["0_root"])
+            {
+                treeIter = treeStore.AppendValues(ptitle);
+                for (int j = 0; j &lt; Productions[ptitle].Count; j++)
+                {
+                    TreeIter newIter = treeStore.AppendValues(treeIter, Productions[ptitle][j]);
+                    AddLayer(treeStore, newIter, Productions[ptitle][j]);
+                }
+            }
+
+            tree.Model = treeStore;
+            window.ShowAll();
+        }
+        static void AddLayer(TreeStore store, TreeIter iter, string itertext)
+        {
+            if (itertext.Contains('&lt;') &amp;&amp; itertext.Contains('&gt;'))
+            {
+                itertext = itertext.Split('&lt;')[0];
+                itertext = itertext.Trim();
+            }
+            if (Productions.ContainsKey(itertext) == false) return;
+
+
+            List&lt;string&gt; ps = Productions[itertext];
+            Productions.Remove(itertext);
+
+
+            for (int j = 0; j &lt; ps.Count; j++)
+            {
+                TreeIter newIter = store.AppendValues(iter, ps[j]);
+                AddLayer(store, newIter, ps[j]);
+            }
+        }
+
+
+
+        static string ReadTextFile(string filename)
+        {
+            string text = File.ReadAllText(filename);
+            return text;
+        }
+        static void ParseTextFile(string filename)
+        {
+            string fname = Path.GetFileNameWithoutExtension(filename);
+            Files.Add(fname, new List&lt;string&gt;());
+
+            string filetext = ReadTextFile(filename);
+            string[] productions = filetext.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
+            foreach (string prod in productions)
+            {
+                prod.Trim();
+                string[] sides = prod.Split(new string[] { "-&gt;" }, StringSplitOptions.RemoveEmptyEntries);
+                for (int i = 0; i &lt; sides.Length; i++) sides[i] = sides[i].Trim();
+
+                string title = sides[0];
+                if (string.IsNullOrEmpty(title) || string.IsNullOrWhiteSpace(title)) return;
+                List&lt;string&gt; list = new List&lt;string&gt;();
+                if (sides.Length &gt; 1)
+                {
+                    list = sides[1]
+                        .Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries)
+                        .ToList();
+                    for (int i = 0; i &lt; list.Count; i++) list[i] = list[i].Trim();
+                }
+
+                if (Productions.ContainsKey(title) == false)
+                {
+                    Productions.Add(title, list);
+                    Files[fname].Add(title);
+                }
+                else
+                {
+                    int n = 0;
+                    while (Productions.ContainsKey(title + " (" + n + ")"))
+                    {
+                        n++;
+                    }
+                    Productions.Add(title + " (" + n + ")", list);
+                    Files[fname].Add(title + " (" + n + ")");
+                }
+            }
+        }
+    }
+}
+
+// TODO: Figure out what to do with multiple productions
+// TODO: Figure out what to do with escaping charracters like commas
+</code></pre></div></div>
+
+<p><br /></p>
+<h3 id="links">Links</h3>
+<p><a href="/language/reference/versioning/">Back</a></p>
+
+  </div>
+
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+  
+	github: <a href="https://github.com/viktorchernev/DescribeCompiler">viktorchernev</a><br>email: <a class="u-email" href="mailto:vchernev91@abv.bg">vchernev91@abv.bg</a><!-- <h2 class="footer-heading">Documentation</h2> 
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Documentation</li><li><a class="u-email" href="mailto:vchernev91@abv.bg">vchernev91@abv.bg</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/viktorchernev"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">viktorchernev</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Describe Compiler Documentation</p>
+      </div>
+    </div>-->
+
+  </div>
+
+</footer>
+</body>
+
+</html>

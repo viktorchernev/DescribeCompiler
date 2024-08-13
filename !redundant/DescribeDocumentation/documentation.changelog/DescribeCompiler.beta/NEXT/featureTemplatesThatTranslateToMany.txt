@@ -1,0 +1,1 @@
+Look at templates that translate to a folder full of files, not to a single file
