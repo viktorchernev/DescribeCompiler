@@ -1,8 +1,7 @@
 ﻿namespace DescribeTranspiler
 {
     /// <summary>
-    /// Those are different grammar files (.egt) for the Gold parser engine.
-    /// Each of those files is stored as an embedded resource in the "Grammars" folder.
+    /// This enum represents the code-names of the different language versions.
     /// </summary>
     public enum DescribeVersionName
     {

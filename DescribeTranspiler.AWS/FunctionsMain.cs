@@ -1,5 +1,4 @@
 ﻿using DescribeTranspiler;
-using DescribeTranspiler.Compiler;
 using DescribeTranspiler.Translators;
 using DescribeParser;
 
@@ -52,7 +51,7 @@ namespace DescribeCompiler.AWS
 
                 //compile
                 DescribeUnfold unfold = new DescribeUnfold();
-                bool r = comp.ParseString(code, filename, unfold);
+                bool r = comp.ParseString_ToUnfold(code, filename, ref unfold);
                 if (r)
                 {
                     string result = translator.TranslateUnfold(unfold);
@@ -114,7 +113,7 @@ namespace DescribeCompiler.AWS
 
                 //compile
                 DescribeUnfold unfold = new DescribeUnfold();
-                bool r = comp.ParseMultiString(codes, unfold);
+                bool r = comp.ParseMultiString_ToUnfold(codes, ref unfold);
                 string result = translator.TranslateUnfold(unfold);
                 return result;
             }

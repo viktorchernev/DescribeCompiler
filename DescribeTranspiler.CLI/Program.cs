@@ -86,8 +86,6 @@ namespace DescribeTranspiler.Cli
             if (Arguments.readOutputFileArgument(args[2], 2) == false) return;
 
             //read other options
-            bool haveArtifactsArgument = false;
-            bool haveArtifactsPath = false;
             for (int i = 3; i < args.Length; i++)
             {
                 string cur = args[i].ToLower();
@@ -104,16 +102,6 @@ namespace DescribeTranspiler.Cli
                 {
                     if (Arguments.readVerbosityArgument(cur, i) == false) return;
                 }
-                else if (cur.StartsWith("artifacts=") && cur.Length > "artifacts=".Length)
-                {
-                    if (Arguments.readArtifactsArgument(cur, i) == false) return;
-                    haveArtifactsArgument = true;
-                }
-                else if (cur.StartsWith("artifacts-path=") && cur.Length > "artifacts-path=".Length)
-                {
-                    if (Arguments.readArtifactsPathArgument(args[i], i) == false) return;
-                    haveArtifactsPath = true;
-                }
                 else if (cur.StartsWith("logfile=") && cur.Length > "logfile=".Length)
                 {
                     if (Arguments.readLogfileArgument(args[i], i) == false) return;
@@ -123,28 +111,6 @@ namespace DescribeTranspiler.Cli
                     Messages.printArgumentError(cur, i, "what is this?");
                     return;
                 }
-            }
-            if (haveArtifactsArgument && haveArtifactsPath == false)
-            {
-                string? dir = Assembly.GetExecutingAssembly().Location;
-                dir = Path.GetDirectoryName(dir);
-                Datnik.artifactsFolderPath = Path.Combine(dir + "\\Artifacts");
-                Messages.ConsoleLogInfo(
-                    "Artifacts folder path have not been specified. Current directory \"" +
-                    Datnik.artifactsFolderPath + "\" will be used. " +
-                    "Note that Artifacts are not yet supported by the CLI");
-            }
-            else if (haveArtifactsArgument == false && haveArtifactsPath)
-            {
-                Messages.ConsoleLogInfo(
-                    "Artifacts folder path have been specified, without artifacts argument. \"u | use\" will be used. " +
-                    "Note that Artifacts are not yet supported by the CLI");
-                Datnik.artifactMode = DescribeTranspiler.Compiler.ArtifactMode.Use;
-            }
-            else if (haveArtifactsArgument || haveArtifactsPath)
-            {
-                Messages.ConsoleLogInfo(
-                    "Note that Artifacts are not yet supported by the CLI");
             }
 
             //Compile
@@ -158,8 +124,6 @@ namespace DescribeTranspiler.Cli
             if (Arguments.readOutputFileArgument(args[2], 2) == false) return;
 
             //read other options
-            bool haveArtifactsArgument = false;
-            bool haveArtifactsPath = false;
             for (int i = 3; i < args.Length; i++)
             {
                 string cur = args[i].ToLower();
@@ -202,16 +166,6 @@ namespace DescribeTranspiler.Cli
                 {
                     if (Arguments.readOnerrorArgument(cur, i) == false) return;
                 }
-                else if (cur.StartsWith("artifacts=") && cur.Length > "artifacts=".Length)
-                {
-                    if (Arguments.readArtifactsArgument(cur, i) == false) return;
-                    haveArtifactsArgument = true;
-                }
-                else if (cur.StartsWith("artifacts-path=") && cur.Length > "artifacts-path=".Length)
-                {
-                    if (Arguments.readArtifactsPathArgument(args[i], i) == false) return;
-                    haveArtifactsPath = true;
-                }
                 else if (cur.StartsWith("logfile=") && cur.Length > "logfile=".Length)
                 {
                     if (Arguments.readLogfileArgument(args[i], i) == false) return;
@@ -221,28 +175,6 @@ namespace DescribeTranspiler.Cli
                     Messages.printArgumentError(cur, i, "what is this?");
                     return;
                 }
-            }
-            if (haveArtifactsArgument && haveArtifactsPath == false)
-            {
-                string? dir = Assembly.GetExecutingAssembly().Location;
-                dir = Path.GetDirectoryName(dir);
-                Datnik.artifactsFolderPath = Path.Combine(dir + "\\Artifacts");
-                Messages.ConsoleLogInfo(
-                    "Artifacts folder path have not been specified. Current directory \"" +
-                    Datnik.artifactsFolderPath + "\" will be used. " +
-                    "Note that Artifacts are not yet supported by the CLI");
-            }
-            else if (haveArtifactsArgument == false && haveArtifactsPath)
-            {
-                Messages.ConsoleLogInfo(
-                    "Artifacts folder path have been specified, without artifacts argument. \"u | use\" will be used. " +
-                    "Note that Artifacts are not yet supported by the CLI");
-                Datnik.artifactMode = DescribeTranspiler.Compiler.ArtifactMode.Use;
-            }
-            else if (haveArtifactsArgument || haveArtifactsPath)
-            {
-                Messages.ConsoleLogInfo(
-                    "Note that Artifacts are not yet supported by the CLI");
             }
 
             //Compile

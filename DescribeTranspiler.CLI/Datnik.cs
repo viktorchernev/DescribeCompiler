@@ -1,5 +1,4 @@
 ﻿using DescribeTranspiler;
-using DescribeTranspiler.Compiler;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -98,16 +97,6 @@ namespace DescribeTranspiler.Cli
 
 
 
-        /// <summary>
-        /// Weather to and how to use artifacts
-        /// </summary>
-        public static ArtifactMode artifactMode;
-
-        /// <summary>
-        /// Path to artifacts folder
-        /// </summary>
-        public static string artifactsFolderPath;
-
 
         static Datnik()
         {
@@ -130,9 +119,6 @@ namespace DescribeTranspiler.Cli
             dsOnly = true;
             verbosity = LogVerbosity.Low;
             requireSuccess = true;
-
-            artifactMode = ArtifactMode.No;
-            artifactsFolderPath = null;
         }
     }
 }

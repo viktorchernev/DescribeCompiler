@@ -130,18 +130,18 @@ namespace DescribeTranspiler
         {
             LogInfo("Initializing " + COMPILER_NAME);
             LoadedGrammarName = "";
-            LanguageVersion = DescribeVersion.Version10;
+            LanguageVersion = DescribeVersionNumber.Version10;
 
             //init
             try
             {
-                _preprocessors = new Dictionary<DescribeVersion, IDescribePreprocessor>();
-                _preprocessors.Add(DescribeVersion.Version06, new PreprocessorFor06(this));
-                _preprocessors.Add(DescribeVersion.Version07, new PreprocessorFor07(this));
-                _preprocessors.Add(DescribeVersion.Version08, new PreprocessorFor08(this));
-                _preprocessors.Add(DescribeVersion.Version09, new PreprocessorFor09(this));
-                _preprocessors.Add(DescribeVersion.Version10, new PreprocessorFor10(this));
-                _preprocessors.Add(DescribeVersion.Version11, new PreprocessorFor11(this));
+                _preprocessors = new Dictionary<DescribeVersionNumber, IDescribePreprocessor>();
+                _preprocessors.Add(DescribeVersionNumber.Version06, new PreprocessorFor06(this));
+                _preprocessors.Add(DescribeVersionNumber.Version07, new PreprocessorFor07(this));
+                _preprocessors.Add(DescribeVersionNumber.Version08, new PreprocessorFor08(this));
+                _preprocessors.Add(DescribeVersionNumber.Version09, new PreprocessorFor09(this));
+                _preprocessors.Add(DescribeVersionNumber.Version10, new PreprocessorFor10(this));
+                _preprocessors.Add(DescribeVersionNumber.Version11, new PreprocessorFor11(this));
 
                 //_GoldParser = new GoldParser.Parser.Parser();
                 //LogInfo("GOLD parser engine initialized");

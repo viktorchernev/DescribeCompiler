@@ -344,17 +344,17 @@ namespace DescribeTranspiler
         {
             switch (LanguageVersion)
             {
-                case DescribeVersion.Version06:
+                case DescribeVersionNumber.Version06:
                     return _Visitor.TranslateContext06(u, context, filename);
-                case DescribeVersion.Version07:
+                case DescribeVersionNumber.Version07:
                     return _Visitor.TranslateContext07(u, context, filename);
-                case DescribeVersion.Version08:
+                case DescribeVersionNumber.Version08:
                     return _Visitor.TranslateContext08(u, context, filename);
-                case DescribeVersion.Version09:
+                case DescribeVersionNumber.Version09:
                     return _Visitor.TranslateContext09(u, context, filename);
-                case DescribeVersion.Version10:
+                case DescribeVersionNumber.Version10:
                     return _Visitor.TranslateContext10(u, context, filename);
-                case DescribeVersion.Version11:
+                case DescribeVersionNumber.Version11:
                     return _Visitor.TranslateContext11(u, context, filename);
                 default:
                     return false;
@@ -531,17 +531,17 @@ namespace DescribeTranspiler
         {
             switch (LanguageVersion)
             {
-                case DescribeVersion.Version06:
+                case DescribeVersionNumber.Version06:
                     return parse_LowVerbosity06(source, out root, out FailMessage);
-                case DescribeVersion.Version07:
+                case DescribeVersionNumber.Version07:
                     return parse_LowVerbosity07(source, out root, out FailMessage);
-                case DescribeVersion.Version08:
+                case DescribeVersionNumber.Version08:
                     return parse_LowVerbosity08(source, out root, out FailMessage);
-                case DescribeVersion.Version09:
+                case DescribeVersionNumber.Version09:
                     return parse_LowVerbosity09(source, out root, out FailMessage);
-                case DescribeVersion.Version10:
+                case DescribeVersionNumber.Version10:
                     return parse_LowVerbosity10(source, out root, out FailMessage);
-                case DescribeVersion.Version11:
+                case DescribeVersionNumber.Version11:
                     return parse_LowVerbosity11(source, out root, out FailMessage);
 
                 default:

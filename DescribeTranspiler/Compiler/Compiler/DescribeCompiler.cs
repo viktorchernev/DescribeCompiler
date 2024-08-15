@@ -8,6 +8,7 @@ using DescribeParser.Visitors;
 using Antlr4.Runtime;
 using DescribeParser;
 using DescribeParser.Unfold;
+using DescribeParser.Ast;
 
 
 namespace DescribeTranspiler
@@ -16,14 +17,14 @@ namespace DescribeTranspiler
     {
         // need all these so that they can be swapped by user derived class
         // don't need to figure out a way to do this for the lexer and the parser?
-        private Dictionary<DescribeVersion, IDescribePreprocessor> _preprocessors;
+        private Dictionary<DescribeVersionNumber, IDescribePreprocessor> _preprocessors;
 
 
 
         /// <summary>
         /// The current version of the language the Compiler is parsing
         /// </summary>
-        public DescribeVersion LanguageVersion
+        public DescribeVersionNumber LanguageVersion
         {
             get;
             set;
@@ -62,7 +63,7 @@ namespace DescribeTranspiler
         /// <param name="dirInfo">Represents the directory of files to be parsed</param>
         /// <param name="unfold">The unfold that will receive the data</param>
         /// <returns>true if successful, otherwise false</returns>
-        public bool ParseFolder(DirectoryInfo dirInfo, DescribeUnfold unfold)
+        public bool ParseFolder_ToUnfold(DirectoryInfo dirInfo, ref DescribeUnfold unfold)
         {
             FileCounter = 0;
             ReductionCounter = 0;
@@ -91,7 +92,7 @@ namespace DescribeTranspiler
         /// <param name="fileInfo">Represents the file to be parsed</param>
         /// <param name="unfold">The unfold that will receive the data</param>
         /// <returns>true if successful, otherwise false</returns>
-        public bool ParseFile(FileInfo fileInfo, DescribeUnfold unfold)
+        public bool ParseFile_ToUnfold(FileInfo fileInfo, ref DescribeUnfold unfold)
         {
             FileCounter = 0;
             ReductionCounter = 0;
@@ -123,7 +124,7 @@ namespace DescribeTranspiler
         /// </param>
         /// <param name="unfold">The unfold that will receive the data</param>
         /// <returns>true if successful, otherwise false</returns>
-        public bool ParseMultiString(List<KeyValuePair<string, string>> nameCodeList, DescribeUnfold unfold)
+        public bool ParseMultiString_ToUnfold(List<KeyValuePair<string, string>> nameCodeList, ref DescribeUnfold unfold)
         {
             FileCounter = 0;
             ReductionCounter = 0;
@@ -152,7 +153,7 @@ namespace DescribeTranspiler
         /// <param name="source">The describe source code to be parsed</param>
         /// <param name="unfold">The unfold that will receive the data</param>
         /// <returns>true if successful, otherwise false</returns>
-        public bool ParseString(string source, string filename, DescribeUnfold unfold)
+        public bool ParseString_ToUnfold(string source, string filename, ref DescribeUnfold unfold)
         {
             FileCounter = 0;
             ReductionCounter = 0;
@@ -173,6 +174,50 @@ namespace DescribeTranspiler
                 result = ParseString_HighVerbosity(source, filename, unfold);
             }
             return result;
+        }
+
+
+
+        public bool ParseFolder_ToMultipleUnfolds(DirectoryInfo dirInfo, ref List<DescribeUnfold> unfolds)
+        {
+            throw new NotImplementedException("Not implemented yet");
+        }
+
+        public bool ParseFile_ToMultipleUnfolds(FileInfo fileInfo, ref List<DescribeUnfold> unfolds)
+        {
+            throw new NotImplementedException("Not implemented yet");
+        }
+
+        public bool ParseMultiString_ToMultipleUnfolds(List<KeyValuePair<string, string>> nameCodeList, ref List<DescribeUnfold> unfolds)
+        {
+            throw new NotImplementedException("Not implemented yet");
+        }
+        
+        public bool ParseString_ToMultipleUnfolds(string source, string filename, ref List<DescribeUnfold> unfolds)
+        {
+            throw new NotImplementedException("Not implemented yet");
+        }
+
+
+
+        public bool ParseFolder_ToMultipleAst(DirectoryInfo dirInfo, out List<AstScriptureNode> roots)
+        {
+            throw new NotImplementedException("Not implemented yet");
+        }
+
+        public bool ParseFile_ToAst(FileInfo fileInfo, out AstScriptureNode root)
+        {
+            throw new NotImplementedException("Not implemented yet");
+        }
+
+        public bool ParseMultiString_ToMultipleAst(List<KeyValuePair<string, string>> nameCodeList, out List<AstScriptureNode> roots)
+        {
+            throw new NotImplementedException("Not implemented yet");
+        }
+
+        public bool ParseString_ToAst(string source, string filename, out AstScriptureNode root)
+        {
+            throw new NotImplementedException("Not implemented yet");
         }
     }
 }

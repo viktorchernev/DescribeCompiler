@@ -3,6 +3,9 @@ using System.Linq;
 
 namespace DescribeTranspiler
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class ResourceUtil
     {
         /// <summary>
@@ -61,7 +64,7 @@ namespace DescribeTranspiler
         /// <summary>
         /// Retrieve a string that is an embedded resource
         /// </summary>
-        /// <param name="filename">The name of the string resource, without extention</param>
+        /// <param name="filename">The name of the string resource, without extension</param>
         /// <returns>The retrieved string</returns>
         public static string ExtractResourceByFileName_String(string folder, string filename)
         {

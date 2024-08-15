@@ -7,8 +7,19 @@ using System.Threading.Tasks;
 
 namespace DescribeTranspiler.Preprocessors
 {
+    /// <summary>
+    /// A preprocessor for Describe 1.0 source code.
+    /// </summary>
     public class PreprocessorFor10 : IDescribePreprocessor
     {
+        private DescribeCompiler _Compiler;
+
+
+        /// <summary>
+        /// Preprocess Describe 1.0 source code
+        /// </summary>
+        /// <param name="value">The source code string to be preprocessed</param>
+        /// <returns>The preprocessed source code string</returns>
         public string ProcessSource(string text)
         {
             readDirectives(text);
@@ -82,12 +93,12 @@ namespace DescribeTranspiler.Preprocessors
         }
         void readLanguageVersion(string value)
         {
-            if (value.StartsWith("0.6>")) _Compiler.LanguageVersion = DescribeVersion.Version06;
-            else if (value.StartsWith("0.7>")) _Compiler.LanguageVersion = DescribeVersion.Version07;
-            else if (value.StartsWith("0.8>")) _Compiler.LanguageVersion = DescribeVersion.Version08;
-            else if (value.StartsWith("0.9>")) _Compiler.LanguageVersion = DescribeVersion.Version09;
-            else if (value.StartsWith("1.0>")) _Compiler.LanguageVersion = DescribeVersion.Version10;
-            else if (value.StartsWith("1.1>")) _Compiler.LanguageVersion = DescribeVersion.Version11;
+            if (value.StartsWith("0.6>")) _Compiler.LanguageVersion = DescribeVersionNumber.Version06;
+            else if (value.StartsWith("0.7>")) _Compiler.LanguageVersion = DescribeVersionNumber.Version07;
+            else if (value.StartsWith("0.8>")) _Compiler.LanguageVersion = DescribeVersionNumber.Version08;
+            else if (value.StartsWith("0.9>")) _Compiler.LanguageVersion = DescribeVersionNumber.Version09;
+            else if (value.StartsWith("1.0>")) _Compiler.LanguageVersion = DescribeVersionNumber.Version10;
+            else if (value.StartsWith("1.1>")) _Compiler.LanguageVersion = DescribeVersionNumber.Version11;
         }
         void readNamespace(string value)
         {
@@ -95,13 +106,15 @@ namespace DescribeTranspiler.Preprocessors
         }
 
 
-
-        private DescribeCompiler _Compiler;
+        /// <summary>
+        /// Ctor. Preprocessor dirrectives do set some compiler options.
+        /// This is why we need access to the compiler instance for this preprocessor.
+        /// </summary>
+        /// <param name="compiler">The compiler for the preprocessor.</param>
         public PreprocessorFor10(DescribeCompiler compiler)
         {
             _Compiler = compiler;
         }
-
 
 
         string RemoveWhitespace(string input)

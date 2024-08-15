@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace DescribeTranspiler.Preprocessors
 {
+    /// <summary>
+    /// Represents a preprocessor for Describe source code.
+    /// </summary>
     public interface IDescribePreprocessor
     {
         /// <summary>
