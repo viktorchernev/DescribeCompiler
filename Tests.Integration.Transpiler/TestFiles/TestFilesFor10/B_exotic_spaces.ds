@@ -1,0 +1,23 @@
+﻿A vertical tab character (ASCII 11) ->
+
+	A form feed character (ASCII 12),
+	A next line (NEL) character (Unicode character U+0085),
+
+	A non-breaking space (Unicode character U+00A0), 
+	An ogham space mark (Unicode character U+1680), 
+	En Quad (U+2000), 
+	Em Quad (U+2001), 
+	En Space (U+2002), 
+	Em Space (U+2003), 
+	Three-Per-Em Space (U+2004), 
+	Four-Per-Em Space (U+2005), 
+	Six-Per-Em Space (U+2006), 
+	Punctuation Space (U+2008), 
+	Thin Space (U+2009), 
+	Hair Space (U+200A), 
+	A paragraph separator (Unicode character U+2029),
+
+	A narrow no-break space (Unicode character U+202F), 
+	A medium mathematical space (Unicode character U+205F), 
+	An ideographic space (Unicode character U+3000),　
+	Figure Space; 

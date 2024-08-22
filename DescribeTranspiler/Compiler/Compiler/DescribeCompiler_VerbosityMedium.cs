@@ -18,7 +18,7 @@ namespace DescribeTranspiler
         bool ParseFolder_MediumVerbosity(DirectoryInfo dirInfo, DescribeUnfold unfold)
         {
             //initial checks
-            if (!isInitialized)
+            if (!_isInitialized)
             {
                 LogError("This parser isn't innitialized, and cannot be used. Create a new instance.");
                 return false;
@@ -83,9 +83,9 @@ namespace DescribeTranspiler
             LogText("Done!");
             LogText("------------------------");
 
-            LogInfo(FileCounter.ToString() + " files parsed.");
-            LogInfo("Parser red " + TokenCounter.ToString() +
-                " tokens in " + ReductionCounter.ToString() +
+            LogInfo(_fileCounter.ToString() + " files parsed.");
+            LogInfo("Parser red " + _tokenCounter.ToString() +
+                " tokens in " + _reductionCounter.ToString() +
                 " reductions.");
             LogInfo("Those were translated to " + unfold.Productions.Count().ToString() +
                 " productions, containing " + unfold.Translations.Count().ToString() +
@@ -95,8 +95,8 @@ namespace DescribeTranspiler
         bool ParseFile_MediumVerbosity(FileInfo fileInfo, DescribeUnfold unfold)
         {
             //initial checks
-            FileCounter++;
-            if (!isInitialized)
+            _fileCounter++;
+            if (!_isInitialized)
             {
                 LogError("This parser isn't innitialized, and cannot be used. Create a new instance.");
                 return false;
@@ -113,7 +113,7 @@ namespace DescribeTranspiler
             try
             {
                 source = File.ReadAllText(fileInfo.FullName);
-                source = _Preprocessor.ProcessSource(source);
+                source = CurrentPreprocessor.ProcessSource(source);
                 if (source.Length == 0)
                 {
                     LogError("Error - the file you are trying to parse is empty");
@@ -143,7 +143,7 @@ namespace DescribeTranspiler
 
                 if (result)
                 {
-                    LogText("File parsed successfuly");
+                    LogText("File parsed successfully");
                 }
                 else
                 {
@@ -165,7 +165,7 @@ namespace DescribeTranspiler
                 bool optimized = TranslateContext(unfold, root);
                 if (optimized)
                 {
-                    LogText("Parse tree unfolded successfuly");
+                    LogText("Parse tree unfolded successfully");
                     LogParserInfo("Done!");
                     LogText("------------------------");
                 }
@@ -183,9 +183,9 @@ namespace DescribeTranspiler
                 return false;
             }
 
-            LogInfo(FileCounter.ToString() + " files parsed.");
-            LogInfo("Parser red " + TokenCounter.ToString() +
-                " tokens in " + ReductionCounter.ToString() +
+            LogInfo(_fileCounter.ToString() + " files parsed.");
+            LogInfo("Parser red " + _tokenCounter.ToString() +
+                " tokens in " + _reductionCounter.ToString() +
                 " reductions.");
             LogInfo("Those were translated to " + unfold.Productions.Count().ToString() +
                 " productions, containing " + unfold.Translations.Count().ToString() +
@@ -196,7 +196,7 @@ namespace DescribeTranspiler
         bool ParseMultiString_MediumVerbosity(List<KeyValuePair<string, string>> nameCodeList, DescribeUnfold unfold)
         {
             //initial checks
-            if (!isInitialized)
+            if (!_isInitialized)
             {
                 LogError("This parser isn't innitialized, and cannot be used. Create a new instance.");
                 return false;
@@ -254,9 +254,9 @@ namespace DescribeTranspiler
             LogText("Done!");
             LogText("------------------------");
 
-            LogInfo(FileCounter.ToString() + " files parsed.");
-            LogInfo("Parser red " + TokenCounter.ToString() +
-                " tokens in " + ReductionCounter.ToString() +
+            LogInfo(_fileCounter.ToString() + " files parsed.");
+            LogInfo("Parser red " + _tokenCounter.ToString() +
+                " tokens in " + _reductionCounter.ToString() +
                 " reductions.");
             LogInfo("Those were translated to " + unfold.Productions.Count().ToString() +
                 " productions, containing " + unfold.Translations.Count().ToString() +
@@ -266,7 +266,7 @@ namespace DescribeTranspiler
         bool ParseString_MediumVerbosity(string source, string filename, DescribeUnfold unfold)
         {
             //initial checks
-            if (!isInitialized)
+            if (!_isInitialized)
             {
                 LogError("This parser isn't innitialized, and cannot be used. Create a new instance.");
                 return false;
@@ -285,7 +285,7 @@ namespace DescribeTranspiler
             LogText("Starting a parse operation on \"" + filename + "\"");
             try
             {
-                source = _Preprocessor.ProcessSource(source);
+                source = CurrentPreprocessor.ProcessSource(source);
                 if (source.Length == 0)
                 {
                     LogError("Error - the source code you are trying to parse is empty");
@@ -315,7 +315,7 @@ namespace DescribeTranspiler
 
                 if (result)
                 {
-                    LogText("Source code parsed successfuly");
+                    LogText("Source code parsed successfully");
                 }
                 else
                 {
@@ -338,7 +338,7 @@ namespace DescribeTranspiler
                 bool optimized = TranslateContext(unfold, root);
                 if (optimized)
                 {
-                    LogText("Parse tree unfolded successfuly");
+                    LogText("Parse tree unfolded successfully");
                     LogParserInfo("Done!");
                     LogText("------------------------");
                 }
@@ -356,8 +356,8 @@ namespace DescribeTranspiler
                 return false;
             }
 
-            LogInfo("Parser red " + TokenCounter.ToString() +
-                " tokens in " + ReductionCounter.ToString() +
+            LogInfo("Parser red " + _tokenCounter.ToString() +
+                " tokens in " + _reductionCounter.ToString() +
                 " reductions.");
             LogInfo("Those were translated to " + unfold.Productions.Count().ToString() +
                 " productions, containing " + unfold.Translations.Count().ToString() +
@@ -370,8 +370,8 @@ namespace DescribeTranspiler
 
         private bool parseString_MediumVerbosity(string filename, string source, DescribeUnfold unfold)
         {
-            FileCounter++;
-            if (!isInitialized)
+            _fileCounter++;
+            if (!_isInitialized)
             {
                 LogError("This parser isn't innitialized, and cannot be used. Create a new instance.");
                 return false;
@@ -394,7 +394,7 @@ namespace DescribeTranspiler
                     LogText("------------------------");
                     return false;
                 }
-                code = _Preprocessor.ProcessSource(source);
+                code = CurrentPreprocessor.ProcessSource(source);
             }
             catch (Exception ex)
             {
@@ -412,7 +412,7 @@ namespace DescribeTranspiler
 
                 if (result)
                 {
-                    LogText("File parsed successfuly");
+                    LogText("File parsed successfully");
                 }
                 else
                 {
@@ -434,7 +434,7 @@ namespace DescribeTranspiler
                 bool optimized = TranslateContext(unfold, root);
                 if (optimized)
                 {
-                    LogText("Parse tree unfolded successfuly");
+                    LogText("Parse tree unfolded successfully");
                     LogParserInfo("Done!");
                     LogText("------------------------");
                     return true;
@@ -455,8 +455,8 @@ namespace DescribeTranspiler
         }
         private bool parseFile_MediumVerbosity(FileInfo fileInfo, DescribeUnfold unfold)
         {
-            FileCounter++;
-            if (!isInitialized)
+            _fileCounter++;
+            if (!_isInitialized)
             {
                 LogError("This parser isn't innitialized, and cannot be used. Create a new instance.");
                 return false;
@@ -474,7 +474,7 @@ namespace DescribeTranspiler
             try
             {
                 source = File.ReadAllText(fileInfo.FullName);
-                source = _Preprocessor.ProcessSource(source);
+                source = CurrentPreprocessor.ProcessSource(source);
                 if (source.Length == 0)
                 {
                     LogError("Error - the file you are trying to parse is empty");
@@ -504,7 +504,7 @@ namespace DescribeTranspiler
 
                 if (result)
                 {
-                    LogText("File parsed successfuly");
+                    LogText("File parsed successfully");
                 }
                 else
                 {
@@ -526,7 +526,7 @@ namespace DescribeTranspiler
                 bool optimized = TranslateContext(unfold, root);
                 if (optimized)
                 {
-                    LogText("Parse tree unfolded successfuly");
+                    LogText("Parse tree unfolded successfully");
                     LogParserInfo("Done!");
                     LogText("------------------------");
                     return true;

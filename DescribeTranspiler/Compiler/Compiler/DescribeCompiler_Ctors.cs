@@ -129,60 +129,24 @@ namespace DescribeTranspiler
         private void initializeCompiler(LogVerbosity verbosity)
         {
             LogInfo("Initializing " + COMPILER_NAME);
-            LoadedGrammarName = "";
-            LanguageVersion = DescribeVersionNumber.Version10;
 
             //init
             try
             {
-                _preprocessors = new Dictionary<DescribeVersionNumber, IDescribePreprocessor>();
-                _preprocessors.Add(DescribeVersionNumber.Version06, new PreprocessorFor06(this));
-                _preprocessors.Add(DescribeVersionNumber.Version07, new PreprocessorFor07(this));
-                _preprocessors.Add(DescribeVersionNumber.Version08, new PreprocessorFor08(this));
-                _preprocessors.Add(DescribeVersionNumber.Version09, new PreprocessorFor09(this));
-                _preprocessors.Add(DescribeVersionNumber.Version10, new PreprocessorFor10(this));
-                _preprocessors.Add(DescribeVersionNumber.Version11, new PreprocessorFor11(this));
-
-                //_GoldParser = new GoldParser.Parser.Parser();
-                //LogInfo("GOLD parser engine initialized");
-
-                //set verbosity
+                resetBase();
+                resetStatistics();
                 Verbosity = verbosity;
+
                 LogInfo("Verbosity set to: " + Verbosity.ToString());
+                LogInfo("Describe Transpiler initialized.");
             }
             catch (Exception ex)
             {
-                LogError("Failed to initialize GOLD parser: " + ex.Message);
+                LogError("Failed to initialize Describe Transpiler: " + ex.Message);
                 return;
             }
 
-            //preload default grammar
-            //try
-            //{
-            //    string grammarname = GrammarNameToResourceName(DEFAULT_GRAMMAR);
-            //    byte[] grammar = ResourceUtil.ExtractResource_ByteArray(grammarname);
-            //    string fullname = GrammarNameToFullGramarName(DEFAULT_GRAMMAR);
-            //    if (LoadGrammar(grammar))
-            //    {
-            //        LogInfo("Preloaded grammar: \"" + fullname + "\"");
-            //        if (Verbosity != LogVerbosity.High) LogText("------------------------");
-            //        LoadedGrammarName = fullname;
-            //    }
-            //    else
-            //    {
-            //        LogInfo("Failed to preload grammar: \"" + fullname + "\"");
-            //        if (Verbosity != LogVerbosity.High) LogText("------------------------");
-            //        return;
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    LogError("Failed to preload grammar: " + ex.Message);
-            //    if (Verbosity != LogVerbosity.High) LogText("------------------------");
-            //    return;
-            //}
-
-            isInitialized = true;
+            _isInitialized = true;
         }
     }
 }

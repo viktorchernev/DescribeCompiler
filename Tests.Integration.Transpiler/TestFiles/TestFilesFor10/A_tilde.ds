@@ -1,0 +1,7 @@
+fabrics ->
+
+	~ wool fabrics <someid>,
+	~ cotton fabrics <someid2> ,
+
+	silk fabrics<someid> ,
+	synthetic fabrics;
