@@ -359,27 +359,6 @@ namespace DescribeTranspiler
         }
 
 
- /**/   bool TranslateContext(DescribeUnfold u, ParserRuleContext context)
-        {
-            switch (LanguageVersion)
-            {
-                case DescribeVersionNumber.Version06:
-                    return UnfoldVisitor.TranslateContext06(u, context, u.ParseJob.LastFile);
-                case DescribeVersionNumber.Version07:
-                    return UnfoldVisitor.TranslateContext07(u, context, u.ParseJob.LastFile);
-                case DescribeVersionNumber.Version08:
-                    return UnfoldVisitor.TranslateContext08(u, context, u.ParseJob.LastFile);
-                case DescribeVersionNumber.Version09:
-                    return UnfoldVisitor.TranslateContext09(u, context, u.ParseJob.LastFile);
-                case DescribeVersionNumber.Version10:
-                    return UnfoldVisitor.TranslateContext10(u, context, u.ParseJob.LastFile);
-                case DescribeVersionNumber.Version11:
-                    return UnfoldVisitor.TranslateContext11(u, context, u.ParseJob.LastFile);
-                default:
-                    return false;
-            }
-        }
-
 
         private bool parseFile_LowVerbosity(FileInfo fileInfo, DescribeUnfold unfold)
         {
@@ -596,6 +575,7 @@ namespace DescribeTranspiler
                 Describe06Parser parser = new Describe06Parser(tokenstream);
                 parser.BuildParseTree = true;
                 Describe06Parser.ScriptureContext scriptureContext = parser.scripture();
+                if (scriptureContext.exception != null) throw scriptureContext.exception;
 
                 //ParseInfo can provide insight into the parsing process
                 //ParseInfo pinfo = parser.ParseInfo;
@@ -631,6 +611,7 @@ namespace DescribeTranspiler
                 Describe07Parser parser = new Describe07Parser(tokenstream);
                 parser.BuildParseTree = true;
                 Describe07Parser.ScriptureContext scriptureContext = parser.scripture();
+                if (scriptureContext.exception != null) throw scriptureContext.exception;
 
                 //ParseInfo can provide insight into the parsing process
                 //ParseInfo pinfo = parser.ParseInfo;
@@ -665,7 +646,7 @@ namespace DescribeTranspiler
                 Describe08Parser parser = new Describe08Parser(tokenstream);
                 parser.BuildParseTree = true;
                 Describe08Parser.ScriptureContext scriptureContext = parser.scripture();
-                ParseInfo pinfo = parser.ParseInfo;
+                if (scriptureContext.exception != null) throw scriptureContext.exception;
 
                 //ParseInfo can provide insight into the parsing process
                 //ParseInfo pinfo = parser.ParseInfo;
@@ -699,6 +680,7 @@ namespace DescribeTranspiler
                 Describe09Parser parser = new Describe09Parser(tokenstream);
                 parser.BuildParseTree = true;
                 Describe09Parser.ScriptureContext scriptureContext = parser.scripture();
+                if (scriptureContext.exception != null) throw scriptureContext.exception;
 
                 //ParseInfo can provide insight into the parsing process
                 //ParseInfo pinfo = parser.ParseInfo;
@@ -731,8 +713,9 @@ namespace DescribeTranspiler
 
                 Describe10Parser parser = new Describe10Parser(tokenstream);
                 //parser.BuildParseTree = true;
-                Describe10Parser.ScriptureContext scriptureContext = parser.scripture();
 
+                Describe10Parser.ScriptureContext scriptureContext = parser.scripture();
+                if(scriptureContext.exception != null) throw scriptureContext.exception;
                 //ParseInfo can provide insight into the parsing process
                 //ParseInfo pinfo = parser.ParseInfo;
 
@@ -765,6 +748,7 @@ namespace DescribeTranspiler
                 Describe11Parser parser = new Describe11Parser(tokenstream);
                 parser.BuildParseTree = true;
                 Describe11Parser.ScriptureContext scriptureContext = parser.scripture();
+                if (scriptureContext.exception != null) throw scriptureContext.exception;
 
                 //ParseInfo can provide insight into the parsing process
                 //ParseInfo pinfo = parser.ParseInfo;
@@ -778,6 +762,28 @@ namespace DescribeTranspiler
                 FailMessage = ex.Message;
                 root = null;
                 return false;
+            }
+        }
+
+
+ /**/   bool TranslateContext(DescribeUnfold u, ParserRuleContext context)
+        {
+            switch (LanguageVersion)
+            {
+                case DescribeVersionNumber.Version06:
+                    return UnfoldVisitor.TranslateContext06(u, context, u.ParseJob.LastFile);
+                case DescribeVersionNumber.Version07:
+                    return UnfoldVisitor.TranslateContext07(u, context, u.ParseJob.LastFile);
+                case DescribeVersionNumber.Version08:
+                    return UnfoldVisitor.TranslateContext08(u, context, u.ParseJob.LastFile);
+                case DescribeVersionNumber.Version09:
+                    return UnfoldVisitor.TranslateContext09(u, context, u.ParseJob.LastFile);
+                case DescribeVersionNumber.Version10:
+                    return UnfoldVisitor.TranslateContext10(u, context, u.ParseJob.LastFile);
+                case DescribeVersionNumber.Version11:
+                    return UnfoldVisitor.TranslateContext11(u, context, u.ParseJob.LastFile);
+                default:
+                    return false;
             }
         }
     }

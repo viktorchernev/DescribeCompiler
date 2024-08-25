@@ -16,6 +16,48 @@ namespace DescribeTranspiler
     public partial class DescribeCompiler
     {
         /// <summary>
+        /// Change the current version of Describe we parse against.
+        /// </summary>
+        /// <param name="version">The desired new version</param>
+        /// <returns>True if successful</returns>
+        public bool ChangeLanguageVersion(DescribeVersionNumber version)
+        {
+            try
+            {
+                LanguageVersion = version;
+                LogInfo("Language version set to: " + GrammarFullName);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                LogError("Failed to set Describe version for the Transpiler: " + ex.Message);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Change the current version of Describe we parse against.
+        /// </summary>
+        /// <param name="version">The desired new version name</param>
+        /// <returns>True if successful</returns>
+        public bool ChangeLanguageVersion(DescribeVersionName versionName)
+        {
+            try
+            {
+                LanguageName = versionName;
+                LogInfo("Language version set to: " + GrammarFullName);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                LogError("Failed to set Describe version for the Transpiler: " + ex.Message);
+                return false;
+            }
+        }
+
+
+
+        /// <summary>
         /// Translate a folder of Describe source files
         /// </summary>
         /// <param name="dirInfo">Represents the directory of files to be parsed</param>
@@ -198,11 +240,11 @@ namespace DescribeTranspiler
             }
             else if (Verbosity == LogVerbosity.Medium)
             {
-                result = ParseString_MediumVerbosity(source, filename, unfold);
+                result = ParseString_MediumVerbosity(source, unfold);
             }
             else if (Verbosity == LogVerbosity.High)
             {
-                result = ParseString_HighVerbosity(source, filename, unfold);
+                result = ParseString_HighVerbosity(source, unfold);
             }
 
             // Set stats

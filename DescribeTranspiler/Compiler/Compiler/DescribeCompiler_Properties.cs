@@ -135,6 +135,29 @@ namespace DescribeTranspiler
             set
             {
                 GRAMMAR_NAME = value;
+                switch (value)
+                {
+                    case DescribeVersionName.Basics:
+                        GRAMMAR_VERSION = DescribeVersionNumber.Version06;
+                        break;
+                    case DescribeVersionName.Tags:
+                        GRAMMAR_VERSION = DescribeVersionNumber.Version07;
+                        break;
+                    case DescribeVersionName.Links:
+                        GRAMMAR_VERSION = DescribeVersionNumber.Version08;
+                        break;
+                    case DescribeVersionName.Decorators:
+                        GRAMMAR_VERSION = DescribeVersionNumber.Version09;
+                        break;
+                    case DescribeVersionName.Lines:
+                        GRAMMAR_VERSION = DescribeVersionNumber.Version10;
+                        break;
+                    case DescribeVersionName.Doubles:
+                        GRAMMAR_VERSION = DescribeVersionNumber.Version11;
+                        break;
+                    default:
+                        throw new ArgumentException("LanguageName is unknown");
+                }
             }
         }
 
@@ -150,6 +173,29 @@ namespace DescribeTranspiler
             set
             {
                 GRAMMAR_VERSION = value;
+                switch (value)
+                {
+                    case DescribeVersionNumber.Version06:
+                        GRAMMAR_NAME = DescribeVersionName.Basics;
+                        break;
+                    case DescribeVersionNumber.Version07:
+                        GRAMMAR_NAME = DescribeVersionName.Tags;
+                        break;
+                    case DescribeVersionNumber.Version08:
+                        GRAMMAR_NAME = DescribeVersionName.Links;
+                        break;
+                    case DescribeVersionNumber.Version09:
+                        GRAMMAR_NAME = DescribeVersionName.Decorators;
+                        break;
+                    case DescribeVersionNumber.Version10:
+                        GRAMMAR_NAME = DescribeVersionName.Lines;
+                        break;
+                    case DescribeVersionNumber.Version11:
+                        GRAMMAR_NAME = DescribeVersionName.Doubles;
+                        break;
+                    default:
+                        throw new ArgumentException("LanguageVersion is unknown");
+                }
             }
         }
 

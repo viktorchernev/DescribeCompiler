@@ -4,6 +4,7 @@ using DescribeParser.Unfold;
 using DescribeParser.Visitors;
 using DescribeTranspiler;
 using DescribeTranspiler.Translators;
+using System.Xml.Linq;
 
 
 namespace Tests.Integration.Transpiler
@@ -12,25 +13,90 @@ namespace Tests.Integration.Transpiler
     {
         public static string outputDir = @"C:\Users\Viktor Chernev\Desktop\testing\TranspilerTests\ParseStringToUnfold";
 
-        internal static void Test_ParseString()
+        internal static void Test_ParseString(LogVerbosity verbosity)
         {
+            string a = verbosity.ToString();
+            outputDir = outputDir + "\\" + a + "Verbosity";
+
             //set console
             Console.ForegroundColor = ConsoleColor.White;
 
-            //delete all ".md" files in the directory
-            string[] files = Directory.GetFiles(outputDir, "*.md");
-            foreach (string file in files) File.Delete(file);
+            // Delete all ".md" files in each directory within outputDir
+            string[] directories = Directory.GetDirectories(outputDir);
+            foreach (string dir in directories)
+            {
+                // Get all ".md" files in the current directory
+                string[] files = Directory.GetFiles(dir, "*.md");
+                foreach (string file in files)
+                {
+                    File.Delete(file); // Delete each file
+                }
+
+                // After all files have been deleted, the directory can be deleted
+                Directory.Delete(dir);
+            }
+
+            // Also delete any ".md" files directly in the outputDir
+            string[] filesInOutputDir = Directory.GetFiles(outputDir, "*.md");
+            foreach (string file in filesInOutputDir)
+            {
+                File.Delete(file);
+            }
 
             //get test files
             var names = getEmbeddedResoucesNames();
             foreach (string name in names)
             {
                 string[] sep = name.Split('.');
-                if (sep[4].Contains("live_Radio")) Test_ParseString(name, sep[4]);
-                else if (sep[4].Contains("TestFilesFor")) Test_ParseString(name, sep[4]);
+                if (sep[4].Contains("live_Radio")) test_ParseString(verbosity, name, sep[4]);
+                else if (sep[4].Contains("TestFilesFor"))
+                {
+                    if(sep[4].Contains("TestFilesFor06")) test_ParseString(verbosity, name, sep[4], DescribeVersionNumber.Version06);
+                    else if (sep[4].Contains("TestFilesFor07")) test_ParseString(verbosity, name, sep[4], DescribeVersionNumber.Version07);
+                    else if (sep[4].Contains("TestFilesFor08")) test_ParseString(verbosity, name, sep[4], DescribeVersionNumber.Version08);
+                    else if (sep[4].Contains("TestFilesFor09")) test_ParseString(verbosity, name, sep[4], DescribeVersionNumber.Version09);
+                    else if (sep[4].Contains("TestFilesFor10")) test_ParseString(verbosity, name, sep[4], DescribeVersionNumber.Version10);
+                    else if (sep[4].Contains("TestFilesFor11")) test_ParseString(verbosity, name, sep[4], DescribeVersionNumber.Version11);
+                    else test_ParseString(verbosity, name, sep[4]);
+                }
             }
         }
-        internal static void Test_ParseString(string embeddedName, string folder = null)
+        internal static void Test_ParseString(LogVerbosity verbosity, string embeddedName, string? folder = null)
+        {
+            string a = verbosity.ToString();
+            outputDir = outputDir + "\\" + a + "Verbosity";
+
+            //set console
+            Console.ForegroundColor = ConsoleColor.White;
+
+            // Delete all ".md" files in each directory within outputDir
+            string[] directories = Directory.GetDirectories(outputDir);
+            foreach (string dir in directories)
+            {
+                // Get all ".md" files in the current directory
+                string[] files = Directory.GetFiles(dir, "*.md");
+                foreach (string file in files)
+                {
+                    File.Delete(file); // Delete each file
+                }
+
+                // After all files have been deleted, the directory can be deleted
+                Directory.Delete(dir);
+            }
+
+            // Also delete any ".md" files directly in the outputDir
+            string[] filesInOutputDir = Directory.GetFiles(outputDir, "*.md");
+            foreach (string file in filesInOutputDir)
+            {
+                File.Delete(file);
+            }
+
+            //get test file
+            test_ParseString(verbosity ,embeddedName, folder);
+        }
+        internal static void test_ParseString(LogVerbosity verbosity, 
+            string embeddedName, string? folder = null, 
+            DescribeVersionNumber? langVer = null)
         {
             //set console
             Console.ForegroundColor = ConsoleColor.White;
@@ -48,9 +114,19 @@ namespace Tests.Integration.Transpiler
             Console.WriteLine("-------------------------------------------------");
 
             //construct compiler
-            DescribeCompiler compiler = new DescribeCompiler(
-                LogVerbosity.Low, ConsoleLog, ConsoleLogError, 
+            DescribeCompiler compiler;
+            if (langVer == null)
+            {
+                compiler = new DescribeCompiler(
+                verbosity, ConsoleLog, ConsoleLogError,
                 ConsoleLogInfo, ConsoleLogParseInfo);
+            }
+            else
+            {
+                compiler = new DescribeCompiler(langVer.Value,
+                verbosity, ConsoleLog, ConsoleLogError,
+                ConsoleLogInfo, ConsoleLogParseInfo);
+            }
 
             //compile
             DescribeUnfold unfold = new DescribeUnfold();

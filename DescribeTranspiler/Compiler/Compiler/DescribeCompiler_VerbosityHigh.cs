@@ -549,17 +549,17 @@ namespace DescribeTranspiler
             switch (LanguageVersion)
             {
                 case DescribeVersionNumber.Version06:
-                    return parse_LowVerbosity06(source, out root, out FailMessage);
+                    return parse_HighVerbosity06(source, out root, out FailMessage);
                 case DescribeVersionNumber.Version07:
-                    return parse_LowVerbosity07(source, out root, out FailMessage);
+                    return parse_HighVerbosity07(source, out root, out FailMessage);
                 case DescribeVersionNumber.Version08:
-                    return parse_LowVerbosity08(source, out root, out FailMessage);
+                    return parse_HighVerbosity08(source, out root, out FailMessage);
                 case DescribeVersionNumber.Version09:
-                    return parse_LowVerbosity09(source, out root, out FailMessage);
+                    return parse_HighVerbosity09(source, out root, out FailMessage);
                 case DescribeVersionNumber.Version10:
-                    return parse_LowVerbosity10(source, out root, out FailMessage);
+                    return parse_HighVerbosity10(source, out root, out FailMessage);
                 case DescribeVersionNumber.Version11:
-                    return parse_LowVerbosity11(source, out root, out FailMessage);
+                    return parse_HighVerbosity11(source, out root, out FailMessage);
 
                 default:
                     root = null;

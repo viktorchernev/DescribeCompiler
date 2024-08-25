@@ -261,16 +261,19 @@ namespace DescribeTranspiler
             //initial checks
             if (!_isInitialized)
             {
+                _errorCounter++;
                 LogError("This parser isn't innitialized, and cannot be used. Create a new instance.");
                 return false;
             }
             if (filename == null)
             {
+                _errorCounter++;
                 LogError("Null is not a valid filename.");
                 return false;
             }
             if (string.IsNullOrEmpty(filename) || string.IsNullOrWhiteSpace(filename))
             {
+                _errorCounter++;
                 LogError("\"" + filename + "\" is not a valid filename.");
                 return false;
             }
@@ -281,12 +284,14 @@ namespace DescribeTranspiler
                 source = CurrentPreprocessor.ProcessSource(source);
                 if (source.Length == 0)
                 {
+                    _errorCounter++;
                     LogError("Error - the source code you are trying to parse is empty");
                     LogText("------------------------");
                     return false;
                 }
                 else if (string.IsNullOrWhiteSpace(source))
                 {
+                    _errorCounter++;
                     LogError("Error - the source code you are trying to parse is only white space");
                     LogText("------------------------");
                     return false;
@@ -294,6 +299,7 @@ namespace DescribeTranspiler
             }
             catch (Exception ex)
             {
+                _errorCounter++;
                 LogError("Failed to read the source code: " + ex.Message);
                 LogText("------------------------");
                 return false;
@@ -312,6 +318,7 @@ namespace DescribeTranspiler
                 }
                 else
                 {
+                    _errorCounter++;
                     LogError("Failed to parse the source code: " + message);
                     LogText("------------------------");
                     return false;
@@ -319,6 +326,7 @@ namespace DescribeTranspiler
             }
             catch (Exception ex)
             {
+                _errorCounter++;
                 LogError("Failed to parse the source code: " + ex.Message);
                 LogText("------------------------");
                 return false;
@@ -336,6 +344,7 @@ namespace DescribeTranspiler
                 }
                 else
                 {
+                    _errorCounter++;
                     LogError("Failed to Unfold the parse tree");
                     LogText("------------------------");
                     return false;
@@ -343,14 +352,18 @@ namespace DescribeTranspiler
             }
             catch (Exception ex)
             {
+                _errorCounter++;
                 LogError("Failed to Unfold the parse tree : " + ex.Message);
                 LogText("------------------------");
                 return false;
             }
 
-            LogInfo("Parser red " + _tokenCounter.ToString() +
-                " tokens in " + _reductionCounter.ToString() +
-                " reductions.");
+
+            LogInfo("Parser red " + _characterCounter.ToString() + " characters, into "
+                + _tokenCounter.ToString() + " tokens.");
+            // This when we implement statistics in the parser's visitors
+            // + _tokenCounter.ToString() + " tokens in " 
+            // + _reductionCounter.ToString() + " reductions.");
             LogInfo("Those were translated to " + unfold.Productions.Count().ToString() +
                 " productions, containing " + unfold.Translations.Count().ToString() +
                 " entries.");
@@ -537,22 +550,23 @@ namespace DescribeTranspiler
                 return false;
             }
         }
-        private bool parse_MediumVerbosity(string source, out ParserRuleContext root, out string FailMessage)
+ /**/   private bool parse_MediumVerbosity(string source, out ParserRuleContext root, out string FailMessage)
         {
+            _characterCounter += source.Length;
             switch (LanguageVersion)
             {
                 case DescribeVersionNumber.Version06:
-                    return parse_LowVerbosity06(source, out root, out FailMessage);
+                    return parse_MediumVerbosity06(source, out root, out FailMessage);
                 case DescribeVersionNumber.Version07:
-                    return parse_LowVerbosity07(source, out root, out FailMessage);
+                    return parse_MediumVerbosity07(source, out root, out FailMessage);
                 case DescribeVersionNumber.Version08:
-                    return parse_LowVerbosity08(source, out root, out FailMessage);
+                    return parse_MediumVerbosity08(source, out root, out FailMessage);
                 case DescribeVersionNumber.Version09:
-                    return parse_LowVerbosity09(source, out root, out FailMessage);
+                    return parse_MediumVerbosity09(source, out root, out FailMessage);
                 case DescribeVersionNumber.Version10:
-                    return parse_LowVerbosity10(source, out root, out FailMessage);
+                    return parse_MediumVerbosity10(source, out root, out FailMessage);
                 case DescribeVersionNumber.Version11:
-                    return parse_LowVerbosity11(source, out root, out FailMessage);
+                    return parse_MediumVerbosity11(source, out root, out FailMessage);
 
                 default:
                     root = null;
@@ -560,22 +574,28 @@ namespace DescribeTranspiler
                     return false;
             }
         }
-        private bool parse_MediumVerbosity06(string source, out ParserRuleContext root, out string FailMessage)
+ /**/   private bool parse_MediumVerbosity06(string source, out ParserRuleContext root, out string FailMessage)
         {
             FailMessage = "";
-
             try
             {
                 AntlrInputStream inputstream = new AntlrInputStream(source);
                 Describe06Lexer lexer = new Describe06Lexer(inputstream);
                 CommonTokenStream tokenstream = new CommonTokenStream(lexer);
+
+                // we need this hack before we have implemented
+                // statistics in the Parser's visitor classes.
+                tokenstream.Fill();
+                var tokenList = tokenstream.GetTokens();
+                _tokenCounter = tokenList.Count;
+
                 Describe06Parser parser = new Describe06Parser(tokenstream);
                 parser.BuildParseTree = true;
                 Describe06Parser.ScriptureContext scriptureContext = parser.scripture();
-                ParseInfo pinfo = parser.ParseInfo;
+                if (scriptureContext.exception != null) throw scriptureContext.exception;
 
-                //deal with pinfo and return error messages
-                //very important to do appropriate error handling here
+                //ParseInfo can provide insight into the parsing process
+                //ParseInfo pinfo = parser.ParseInfo;
 
                 FailMessage = "Ok";
                 root = scriptureContext;
@@ -588,21 +608,28 @@ namespace DescribeTranspiler
                 return false;
             }
         }
-        private bool parse_MediumVerbosity07(string source, out ParserRuleContext root, out string FailMessage)
+ /**/   private bool parse_MediumVerbosity07(string source, out ParserRuleContext root, out string FailMessage)
         {
             FailMessage = "";
-
             try
             {
                 AntlrInputStream inputstream = new AntlrInputStream(source);
                 Describe07Lexer lexer = new Describe07Lexer(inputstream);
                 CommonTokenStream tokenstream = new CommonTokenStream(lexer);
+
+                // we need this hack before we have implemented
+                // statistics in the Parser's visitor classes.
+                tokenstream.Fill();
+                var tokenList = tokenstream.GetTokens();
+                _tokenCounter = tokenList.Count;
+
                 Describe07Parser parser = new Describe07Parser(tokenstream);
                 parser.BuildParseTree = true;
                 Describe07Parser.ScriptureContext scriptureContext = parser.scripture();
-                ParseInfo pinfo = parser.ParseInfo;
+                if (scriptureContext.exception != null) throw scriptureContext.exception;
 
-                //deal with pinfo and return error messages if needed
+                //ParseInfo can provide insight into the parsing process
+                //ParseInfo pinfo = parser.ParseInfo;
 
                 FailMessage = "Ok";
                 root = scriptureContext;
@@ -615,21 +642,28 @@ namespace DescribeTranspiler
                 return false;
             }
         }
-        private bool parse_MediumVerbosity08(string source, out ParserRuleContext root, out string FailMessage)
+ /**/   private bool parse_MediumVerbosity08(string source, out ParserRuleContext root, out string FailMessage)
         {
             FailMessage = "";
-
             try
             {
                 AntlrInputStream inputstream = new AntlrInputStream(source);
                 Describe08Lexer lexer = new Describe08Lexer(inputstream);
                 CommonTokenStream tokenstream = new CommonTokenStream(lexer);
+
+                // we need this hack before we have implemented
+                // statistics in the Parser's visitor classes.
+                tokenstream.Fill();
+                var tokenList = tokenstream.GetTokens();
+                _tokenCounter = tokenList.Count;
+
                 Describe08Parser parser = new Describe08Parser(tokenstream);
                 parser.BuildParseTree = true;
                 Describe08Parser.ScriptureContext scriptureContext = parser.scripture();
-                ParseInfo pinfo = parser.ParseInfo;
+                if (scriptureContext.exception != null) throw scriptureContext.exception;
 
-                //deal with pinfo and return error messages if needed
+                //ParseInfo can provide insight into the parsing process
+                //ParseInfo pinfo = parser.ParseInfo;
 
                 FailMessage = "Ok";
                 root = scriptureContext;
@@ -642,21 +676,28 @@ namespace DescribeTranspiler
                 return false;
             }
         }
-        private bool parse_MediumVerbosity09(string source, out ParserRuleContext root, out string FailMessage)
+ /**/   private bool parse_MediumVerbosity09(string source, out ParserRuleContext root, out string FailMessage)
         {
             FailMessage = "";
-
             try
             {
                 AntlrInputStream inputstream = new AntlrInputStream(source);
                 Describe09Lexer lexer = new Describe09Lexer(inputstream);
                 CommonTokenStream tokenstream = new CommonTokenStream(lexer);
+
+                // we need this hack before we have implemented
+                // statistics in the Parser's visitor classes.
+                tokenstream.Fill();
+                var tokenList = tokenstream.GetTokens();
+                _tokenCounter = tokenList.Count;
+
                 Describe09Parser parser = new Describe09Parser(tokenstream);
                 parser.BuildParseTree = true;
                 Describe09Parser.ScriptureContext scriptureContext = parser.scripture();
-                ParseInfo pinfo = parser.ParseInfo;
+                if (scriptureContext.exception != null) throw scriptureContext.exception;
 
-                //deal with pinfo and return error messages if needed
+                //ParseInfo can provide insight into the parsing process
+                //ParseInfo pinfo = parser.ParseInfo;
 
                 FailMessage = "Ok";
                 root = scriptureContext;
@@ -669,21 +710,28 @@ namespace DescribeTranspiler
                 return false;
             }
         }
-        private bool parse_MediumVerbosity10(string source, out ParserRuleContext root, out string FailMessage)
+ /**/   private bool parse_MediumVerbosity10(string source, out ParserRuleContext root, out string FailMessage)
         {
             FailMessage = "";
-
             try
             {
                 AntlrInputStream inputstream = new AntlrInputStream(source);
                 Describe10Lexer lexer = new Describe10Lexer(inputstream);
                 CommonTokenStream tokenstream = new CommonTokenStream(lexer);
+
+                // we need this hack before we have implemented
+                // statistics in the Parser's visitor classes.
+                tokenstream.Fill();
+                var tokenList = tokenstream.GetTokens();
+                _tokenCounter = tokenList.Count;
+
                 Describe10Parser parser = new Describe10Parser(tokenstream);
                 parser.BuildParseTree = true;
                 Describe10Parser.ScriptureContext scriptureContext = parser.scripture();
-                ParseInfo pinfo = parser.ParseInfo;
+                if (scriptureContext.exception != null) throw scriptureContext.exception;
 
-                //deal with pinfo and return error messages if needed
+                //ParseInfo can provide insight into the parsing process
+                //ParseInfo pinfo = parser.ParseInfo;
 
                 FailMessage = "Ok";
                 root = scriptureContext;
@@ -696,21 +744,28 @@ namespace DescribeTranspiler
                 return false;
             }
         }
-        private bool parse_MediumVerbosity11(string source, out ParserRuleContext root, out string FailMessage)
+ /**/   private bool parse_MediumVerbosity11(string source, out ParserRuleContext root, out string FailMessage)
         {
             FailMessage = "";
-
             try
             {
                 AntlrInputStream inputstream = new AntlrInputStream(source);
                 Describe11Lexer lexer = new Describe11Lexer(inputstream);
                 CommonTokenStream tokenstream = new CommonTokenStream(lexer);
+
+                // we need this hack before we have implemented
+                // statistics in the Parser's visitor classes.
+                tokenstream.Fill();
+                var tokenList = tokenstream.GetTokens();
+                _tokenCounter = tokenList.Count;
+
                 Describe11Parser parser = new Describe11Parser(tokenstream);
                 parser.BuildParseTree = true;
                 Describe11Parser.ScriptureContext scriptureContext = parser.scripture();
-                ParseInfo pinfo = parser.ParseInfo;
+                if (scriptureContext.exception != null) throw scriptureContext.exception;
 
-                //deal with pinfo and return error messages if needed
+                //ParseInfo can provide insight into the parsing process
+                //ParseInfo pinfo = parser.ParseInfo;
 
                 FailMessage = "Ok";
                 root = scriptureContext;

@@ -8,30 +8,30 @@ namespace DescribeParser.IntegrationTests
 {
     internal class ParserTestsFor11 : ParserTestsBase
     {
-        public static string outputDir = @"C:\Users\Viktor Chernev\Desktop\ANTLRd\testing\IntegrationTestingResults\v11";
+        public static string outputDir = @"C:\Users\Viktor Chernev\Desktop\ANTLRd\testing\IntegrationTestingResults\ParserTests\v11";
         public static string[] skipFilesFor06 = new string[]
         {
-            "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.A_basic3.ds",
-            "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.C_empty1.ds",
-            "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.C_empty2.ds",
-            "DescribeParser.IntegrationTests.TestFiles.TestFilesFor06.C_empty3.ds"
+            "Tests.Integration.Parser.TestFiles.TestFilesFor06.A_basic3.ds",
+            "Tests.Integration.Parser.TestFiles.TestFilesFor06.C_empty1.ds",
+            "Tests.Integration.Parser.TestFiles.TestFilesFor06.C_empty2.ds",
+            "Tests.Integration.Parser.TestFiles.TestFilesFor06.C_empty3.ds"
         };
         public static string[] skipFilesFor07 = new string[]
         {
-            "DescribeParser.IntegrationTests.TestFiles.TestFilesFor07.A_basic3.ds",
-            "DescribeParser.IntegrationTests.TestFiles.TestFilesFor07.C_empty1.ds",
-            "DescribeParser.IntegrationTests.TestFiles.TestFilesFor07.C_empty2.ds",
-            "DescribeParser.IntegrationTests.TestFiles.TestFilesFor07.C_empty3.ds"
+            "Tests.Integration.Parser.TestFiles.TestFilesFor07.A_basic3.ds",
+            "Tests.Integration.Parser.TestFiles.TestFilesFor07.C_empty1.ds",
+            "Tests.Integration.Parser.TestFiles.TestFilesFor07.C_empty2.ds",
+            "Tests.Integration.Parser.TestFiles.TestFilesFor07.C_empty3.ds"
         };
         public static string[] skipFilesFor08 = new string[]
         {
-            "DescribeParser.IntegrationTests.TestFiles.TestFilesFor08.A_basic3.ds",
-            "DescribeParser.IntegrationTests.TestFiles.TestFilesFor08.C_empty1.ds",
-            "DescribeParser.IntegrationTests.TestFiles.TestFilesFor08.C_empty2.ds"
+            "Tests.Integration.Parser.TestFiles.TestFilesFor08.A_basic3.ds",
+            "Tests.Integration.Parser.TestFiles.TestFilesFor08.C_empty1.ds",
+            "Tests.Integration.Parser.TestFiles.TestFilesFor08.C_empty2.ds"
         };
         public static string[] skipFilesFor09 = new string[]
         {
-            "DescribeParser.IntegrationTests.TestFiles.TestFilesFor09.A_basic3.ds"
+            "Tests.Integration.Parser.TestFiles.TestFilesFor09.A_basic3.ds"
         };
 
 
@@ -97,9 +97,9 @@ namespace DescribeParser.IntegrationTests
             //get result templates
             string outputdir = outputDir;
             string resultTemplateA = getEmbeddedResource(
-                "DescribeParser.IntegrationTests.TestFiles.resultTemplates.template_basic_a.md");
+                "Tests.Integration.Parser.TestFiles.resultTemplates.template_basic_a.md");
             string resultTemplateB = getEmbeddedResource(
-                "DescribeParser.IntegrationTests.TestFiles.resultTemplates.template_basic_b.md");
+                "Tests.Integration.Parser.TestFiles.resultTemplates.template_basic_b.md");
 
             //get source code to test
             string text = getEmbeddedResource(embeddedName);
@@ -186,9 +186,9 @@ namespace DescribeParser.IntegrationTests
             //get result templates
             string outputdir = outputDir;
             string resultTemplateA = getEmbeddedResource(
-                "DescribeParser.IntegrationTests.TestFiles.resultTemplates.template_basic_a.md");
+                "Tests.Integration.Parser.TestFiles.resultTemplates.template_basic_a.md");
             string resultTemplateB = getEmbeddedResource(
-                "DescribeParser.IntegrationTests.TestFiles.resultTemplates.template_basic_b.md");
+                "Tests.Integration.Parser.TestFiles.resultTemplates.template_basic_b.md");
 
             //delete all ".md" files in the directory
             
@@ -199,7 +199,7 @@ namespace DescribeParser.IntegrationTests
             var names = getEmbeddedResoucesNames();
             foreach (string name in names)
             {
-                if (name.StartsWith("DescribeParser.IntegrationTests.TestFiles.TestFilesFor06") == false) continue;
+                if (name.StartsWith("Tests.Integration.Parser.TestFiles.TestFilesFor06") == false) continue;
                 if (skipFilesFor06.Contains(name)) continue;
                 Console.WriteLine("-------------------------------------------------");
                 Console.WriteLine("Starting a parse operation on '" + name + "'" + Environment.NewLine);
@@ -278,15 +278,15 @@ namespace DescribeParser.IntegrationTests
             //get result templates
             string outputdir = outputDir;
             string resultTemplateA = getEmbeddedResource(
-                "DescribeParser.IntegrationTests.TestFiles.resultTemplates.template_basic_a.md");
+                "Tests.Integration.Parser.TestFiles.resultTemplates.template_basic_a.md");
             string resultTemplateB = getEmbeddedResource(
-                "DescribeParser.IntegrationTests.TestFiles.resultTemplates.template_basic_b.md");
+                "Tests.Integration.Parser.TestFiles.resultTemplates.template_basic_b.md");
 
             //get test files
             var names = getEmbeddedResoucesNames();
             foreach (string name in names)
             {
-                if (name.StartsWith("DescribeParser.IntegrationTests.TestFiles.TestFilesFor07") == false) continue;
+                if (name.StartsWith("Tests.Integration.Parser.TestFiles.TestFilesFor07") == false) continue;
                 if (skipFilesFor07.Contains(name)) continue;
                 Console.WriteLine("-------------------------------------------------");
                 Console.WriteLine("Starting a parse operation on '" + name + "'" + Environment.NewLine);
@@ -365,15 +365,15 @@ namespace DescribeParser.IntegrationTests
             //get result templates
             string outputdir = outputDir;
             string resultTemplateA = getEmbeddedResource(
-                "DescribeParser.IntegrationTests.TestFiles.resultTemplates.template_basic_a.md");
+                "Tests.Integration.Parser.TestFiles.resultTemplates.template_basic_a.md");
             string resultTemplateB = getEmbeddedResource(
-                "DescribeParser.IntegrationTests.TestFiles.resultTemplates.template_basic_b.md");
+                "Tests.Integration.Parser.TestFiles.resultTemplates.template_basic_b.md");
 
             //get test files
             var names = getEmbeddedResoucesNames();
             foreach (string name in names)
             {
-                if (name.StartsWith("DescribeParser.IntegrationTests.TestFiles.TestFilesFor08") == false) continue;
+                if (name.StartsWith("Tests.Integration.Parser.TestFiles.TestFilesFor08") == false) continue;
                 if (skipFilesFor08.Contains(name)) continue;
                 Console.WriteLine("-------------------------------------------------");
                 Console.WriteLine("Starting a parse operation on '" + name + "'" + Environment.NewLine);
@@ -452,15 +452,15 @@ namespace DescribeParser.IntegrationTests
             //get result templates
             string outputdir = outputDir;
             string resultTemplateA = getEmbeddedResource(
-                "DescribeParser.IntegrationTests.TestFiles.resultTemplates.template_basic_a.md");
+                "Tests.Integration.Parser.TestFiles.resultTemplates.template_basic_a.md");
             string resultTemplateB = getEmbeddedResource(
-                "DescribeParser.IntegrationTests.TestFiles.resultTemplates.template_basic_b.md");
+                "Tests.Integration.Parser.TestFiles.resultTemplates.template_basic_b.md");
 
             //get test files
             var names = getEmbeddedResoucesNames();
             foreach (string name in names)
             {
-                if (name.StartsWith("DescribeParser.IntegrationTests.TestFiles.TestFilesFor09") == false) continue;
+                if (name.StartsWith("Tests.Integration.Parser.TestFiles.TestFilesFor09") == false) continue;
                 if (skipFilesFor09.Contains(name)) continue;
                 Console.WriteLine("-------------------------------------------------");
                 Console.WriteLine("Starting a parse operation on '" + name + "'" + Environment.NewLine);
@@ -539,15 +539,15 @@ namespace DescribeParser.IntegrationTests
             //get result templates
             string outputdir = outputDir;
             string resultTemplateA = getEmbeddedResource(
-                "DescribeParser.IntegrationTests.TestFiles.resultTemplates.template_basic_a.md");
+                "Tests.Integration.Parser.TestFiles.resultTemplates.template_basic_a.md");
             string resultTemplateB = getEmbeddedResource(
-                "DescribeParser.IntegrationTests.TestFiles.resultTemplates.template_basic_b.md");
+                "Tests.Integration.Parser.TestFiles.resultTemplates.template_basic_b.md");
 
             //get test files
             var names = getEmbeddedResoucesNames();
             foreach (string name in names)
             {
-                if (name.StartsWith("DescribeParser.IntegrationTests.TestFiles.TestFilesFor10") == false) continue;
+                if (name.StartsWith("Tests.Integration.Parser.TestFiles.TestFilesFor10") == false) continue;
                 Console.WriteLine("-------------------------------------------------");
                 Console.WriteLine("Starting a parse operation on '" + name + "'" + Environment.NewLine);
 
@@ -625,15 +625,15 @@ namespace DescribeParser.IntegrationTests
             //get result templates
             string outputdir = outputDir;
             string resultTemplateA = getEmbeddedResource(
-                "DescribeParser.IntegrationTests.TestFiles.resultTemplates.template_basic_a.md");
+                "Tests.Integration.Parser.TestFiles.resultTemplates.template_basic_a.md");
             string resultTemplateB = getEmbeddedResource(
-                "DescribeParser.IntegrationTests.TestFiles.resultTemplates.template_basic_b.md");
+                "Tests.Integration.Parser.TestFiles.resultTemplates.template_basic_b.md");
 
             //get test files
             var names = getEmbeddedResoucesNames();
             foreach (string name in names)
             {
-                if (name.StartsWith("DescribeParser.IntegrationTests.TestFiles.TestFilesFor11") == false) continue;
+                if (name.StartsWith("Tests.Integration.Parser.TestFiles.TestFilesFor11") == false) continue;
                 Console.WriteLine("-------------------------------------------------");
                 Console.WriteLine("Starting a parse operation on '" + name + "'" + Environment.NewLine);
 
@@ -706,7 +706,7 @@ namespace DescribeParser.IntegrationTests
 
 
 
-        //embeddedFileName = "DescribeParser.IntegrationTests.TestFiles.TestFilesFor07.A_basic1.ds";
+        //embeddedFileName = "Tests.Integration.Parser.TestFiles.TestFilesFor07.A_basic1.ds";
         internal static void TestLexer(string embeddedFileName)
         {
             //get source code to test

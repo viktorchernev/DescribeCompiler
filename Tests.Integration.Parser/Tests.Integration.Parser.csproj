@@ -16,6 +16,7 @@
     <None Remove="TestFiles\TestFilesFor06\A_basic2.ds" />
     <None Remove="TestFiles\TestFilesFor06\A_basic3.ds" />
     <None Remove="TestFiles\TestFilesFor06\A_basic4.ds" />
+    <None Remove="TestFiles\TestFilesFor06\A_basicP.ds" />
     <None Remove="TestFiles\TestFilesFor06\A_twoRoots.ds" />
     <None Remove="TestFiles\TestFilesFor06\B_comments1.ds" />
     <None Remove="TestFiles\TestFilesFor06\B_comments2.ds" />
@@ -156,6 +157,7 @@
     <EmbeddedResource Include="TestFiles\resultTemplates\template_ast_c.md" />
     <EmbeddedResource Include="TestFiles\resultTemplates\template_ast_b.md" />
     <EmbeddedResource Include="TestFiles\resultTemplates\template_ast_a.md" />
+    <EmbeddedResource Include="TestFiles\TestFilesFor06\A_basicP.ds" />
     <EmbeddedResource Include="TestFiles\TestFilesFor06\G_long100a.ds" />
     <EmbeddedResource Include="TestFiles\TestFilesFor06\G_long100.ds" />
     <EmbeddedResource Include="TestFiles\TestFilesFor06\G_long50.ds" />

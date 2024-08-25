@@ -124,9 +124,136 @@ namespace DescribeTranspiler
             initializeCompiler(verbosity);
         }
 
+        /// <summary>
+        /// Ctor.
+        /// </summary>
+        public DescribeCompiler(DescribeVersionNumber describeVersion)
+        {
+            LogText = log;
+            LogError = log;
+            LogInfo = log;
+            LogParserInfo = log;
+
+            initializeCompiler(LogVerbosity.High, describeVersion);
+        }
+
+        /// <summary>
+        /// Ctor.
+        /// </summary>
+        /// <param name="verbosity">The logging verbosity of the parser</param>
+        public DescribeCompiler(
+            DescribeVersionNumber describeVersion, 
+            LogVerbosity verbosity)
+        {
+            LogText = log;
+            LogError = log;
+            LogInfo = log;
+            LogParserInfo = log;
+
+            initializeCompiler(verbosity, describeVersion);
+        }
+
+        /// <summary>
+        /// Ctor.
+        /// </summary>
+        /// <param name="verbosity">The logging verbosity of the parser</param>
+        /// <param name="logText">method to log text</param>
+        public DescribeCompiler(
+            DescribeVersionNumber describeVersion, 
+            LogVerbosity verbosity,
+            Action<string> logText)
+        {
+            LogText = log;
+            LogText += logText;
+
+            LogError = log;
+            LogInfo = log;
+            LogParserInfo = log;
+
+            initializeCompiler(verbosity, describeVersion);
+        }
+
+        /// <summary>
+        /// Ctor.
+        /// </summary>
+        /// <param name="verbosity">The logging verbosity of the parser</param>
+        /// <param name="logText">method to log text<</param>
+        /// <param name="logError">method to log errors<</param>
+        public DescribeCompiler(
+            DescribeVersionNumber describeVersion, 
+            LogVerbosity verbosity,
+            Action<string> logText, Action<string> logError)
+        {
+            LogText = log;
+            LogText += logText;
+
+            LogError = log;
+            LogError += logError;
+
+            LogInfo = log;
+            LogParserInfo = log;
+
+            initializeCompiler(verbosity, describeVersion);
+        }
+
+        /// <summary>
+        /// Ctor.
+        /// </summary>
+        /// <param name="verbosity">The logging verbosity of the parser</param>
+        /// <param name="logText">method to log text</param>
+        /// <param name="logError">method to log errors</param>
+        /// <param name="logInfo">method to log less important info</param>
+        public DescribeCompiler(
+            DescribeVersionNumber describeVersion, 
+            LogVerbosity verbosity,
+            Action<string> logText, Action<string> logError, Action<string> logInfo)
+        {
+            LogText = log;
+            LogText += logText;
+
+            LogError = log;
+            LogError += logError;
+
+            LogInfo = log;
+            LogInfo += logInfo;
+
+            LogParserInfo = log;
+
+            initializeCompiler(verbosity, describeVersion);
+        }
+
+        /// <summary>
+        /// Ctor.
+        /// </summary>
+        /// <param name="verbosity">The logging verbosity of the parser</param>
+        /// <param name="logText">method to log text</param>
+        /// <param name="logError">method to log errors</param>
+        /// <param name="logInfo">method to log less important info</param>
+        /// <param name="logParserInfo">method to log parser output</param>
+        public DescribeCompiler(
+            DescribeVersionNumber describeVersion,
+            LogVerbosity verbosity,
+            Action<string> logText, Action<string> logError,
+            Action<string> logInfo, Action<string> logParserInfo)
+        {
+            LogText = log;
+            LogText += logText;
+
+            LogError = log;
+            LogError += logError;
+
+            LogInfo = log;
+            LogInfo += logInfo;
+
+            LogParserInfo = log;
+            LogParserInfo += logParserInfo;
+
+            initializeCompiler(verbosity, describeVersion);
+        }
 
 
-        private void initializeCompiler(LogVerbosity verbosity)
+
+        private void initializeCompiler(LogVerbosity verbosity, DescribeVersionNumber? ver = null)
         {
             LogInfo("Initializing " + COMPILER_NAME);
 
@@ -136,8 +263,10 @@ namespace DescribeTranspiler
                 resetBase();
                 resetStatistics();
                 Verbosity = verbosity;
+                if (ver != null) LanguageVersion = ver.Value;
 
                 LogInfo("Verbosity set to: " + Verbosity.ToString());
+                LogInfo("Language version set to: " + GrammarFullName);
                 LogInfo("Describe Transpiler initialized.");
             }
             catch (Exception ex)
