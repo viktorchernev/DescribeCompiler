@@ -214,7 +214,7 @@ namespace DescribeTranspiler
 
 
         /// <summary>
-        /// Parse a Describe source code string
+        /// Parse a Describe source code string to an Unfold
         /// </summary>
         /// <param name="source">The describe source code to be parsed</param>
         /// <param name="unfold">The unfold that will receive the data</param>
@@ -263,16 +263,59 @@ namespace DescribeTranspiler
         }
 
         /// <summary>
-        /// 
+        /// Parse a Describe source code string to an AST
         /// </summary>
-        /// <param name="source"></param>
-        /// <param name="filename"></param>
-        /// <param name="root"></param>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
-        public bool ParseString(string source, string filename, out AstScriptureNode root)
+        /// <param name="source">The describe source code to be parsed</param>
+        /// <param name="filename">The filename of the source string</param>
+        /// <param name="root">The resulting AST tree</param>
+        /// <returns>True if successful, otherwise false</returns>
+        public bool ParseString(string source, string filename, out AstScriptureNode? rootNode)
         {
-            throw new NotImplementedException("Not implemented yet");
+            LogText("Starting a 'String -> AST' operation...");
+            CurrentJob.LastFile = filename;
+
+            // Reset stats, as we are starting a new operation
+            if (_isUsed)
+            {
+                resetBase();
+                resetStatistics();
+            }
+            bool result = false;
+
+            // Pick an appropriate parse method, based on verbosity level
+            if (Verbosity == LogVerbosity.Low)
+            {
+                result = ParseString_LowVerbosity(source, CurrentJob, out rootNode);
+            }
+            else if (Verbosity == LogVerbosity.Medium)
+            {
+                result = ParseString_LowVerbosity(source, CurrentJob, out rootNode);
+                //result = ParseString_MediumVerbosity(source, CurrentJob, out rootNode);
+            }
+            else if (Verbosity == LogVerbosity.High)
+            {
+                result = ParseString_LowVerbosity(source, CurrentJob, out rootNode);
+                //result = ParseString_HighVerbosity(source, CurrentJob, out rootNode);
+            }
+            else
+            {
+                result = false;
+                rootNode = null;
+            }
+
+            // Set stats
+            _isUsed = true;
+            _fileCounter++;
+            if (result == true) _parsedFileCounter++;
+            else _failedFileCounter++;
+
+            // log
+            LogInfo("All Files: " + _fileCounter.ToString() +
+                ", Succeeded: " + _parsedFileCounter.ToString() +
+                ", Failed: " + _failedFileCounter.ToString() +
+                ", Errors: " + _errorCounter.ToString());
+
+            return result;
         }
     }
 }

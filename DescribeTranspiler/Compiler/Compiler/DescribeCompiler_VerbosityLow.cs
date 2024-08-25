@@ -1,5 +1,7 @@
 ﻿using Antlr4.Runtime;
 using Antlr4.Runtime.Atn;
+using DescribeParser;
+using DescribeParser.Ast;
 using DescribeParser.Unfold;
 
 namespace DescribeTranspiler
@@ -255,7 +257,6 @@ namespace DescribeTranspiler
                 LogError("Null is not a valid filename.");
                 return false;
             }
-            unfold.ParseJob.LastFile = filename;
             if (string.IsNullOrEmpty(filename) || string.IsNullOrWhiteSpace(filename))
             {
                 _errorCounter++;
@@ -357,7 +358,135 @@ namespace DescribeTranspiler
                 " entries.");
             return true;
         }
+ /**/   bool ParseString_LowVerbosity(string source, IDescribeParseJob job, out AstScriptureNode? rootNode)
+        {
+            string? filename = job.LastFile;
 
+            //initial checks
+            if (!_isInitialized)
+            {
+                _errorCounter++;
+                LogError("Parser not innitialized.");
+                rootNode = null;
+                return false;
+            }
+            if (filename == null)
+            {
+                _errorCounter++;
+                LogError("Null is not a valid filename.");
+                rootNode = null;
+                return false;
+            }
+            if (string.IsNullOrEmpty(filename) || string.IsNullOrWhiteSpace(filename))
+            {
+                _errorCounter++;
+                LogError("Invalid filename.");
+                rootNode = null;
+                return false;
+            }
+
+            string msg = filename + " - ";
+            try
+            {
+                if (string.IsNullOrWhiteSpace(source))
+                {
+                    _errorCounter++;
+                    msg += "source code is empty!";
+                    LogError(msg);
+                    rootNode = null;
+                    return false;
+                }
+                else if (source.Length == 0)
+                {
+                    _errorCounter++;
+                    msg += "source code is empty!";
+                    LogError(msg);
+                    rootNode = null;
+                    return false;
+                }
+                source = CurrentPreprocessor.ProcessSource(source);
+                if (string.IsNullOrWhiteSpace(source))
+                {
+                    _errorCounter++;
+                    msg += "failed to preprocess source code!";
+                    LogError(msg);
+                    rootNode = null;
+                    return false;
+                }
+                else if (source.Length == 0)
+                {
+                    _errorCounter++;
+                    msg += "failed to preprocess source code!";
+                    LogError(msg);
+                    rootNode = null;
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                _errorCounter++;
+                msg += "failed to preprocess source code: " + ex.Message;
+                LogError(msg);
+                rootNode = null;
+                return false;
+            }
+
+            //parse
+            ParserRuleContext? root = null;
+            try
+            {
+                string message = "";
+                bool result = parse_LowVerbosity(source, out root, out message);
+                if (!result)
+                {
+                    _errorCounter++;
+                    msg += "failed to parse: " + message;
+                    LogError(msg);
+                    rootNode = null;
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                _errorCounter++;
+                msg += "failed to parse: " + ex.Message;
+                LogError(msg);
+                rootNode = null;
+                return false;
+            }
+
+            //unfold
+            try
+            {
+                AstScriptureNode? scriptureNode = TranslateContext(root, filename);
+                if (scriptureNode == null)
+                {
+                    _errorCounter++;
+                    msg += "failed to unfold tree.";
+                    LogError(msg);
+                    rootNode = null;
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                _errorCounter++;
+                msg += "failed to unfold tree: " + ex.Message;
+                LogError(msg);
+                rootNode = null;
+                return false;
+            }
+
+            LogText(msg + "parsed successfully");
+            LogInfo("Parser red " + _characterCounter.ToString() + " characters, into "
+                + _tokenCounter.ToString() + " tokens.");
+                // This when we implement statistics in the parser's visitors
+                // + _tokenCounter.ToString() + " tokens in " 
+                // + _reductionCounter.ToString() + " reductions.");
+            LogInfo("Those were translated to an AST.");
+            rootNode = null;
+            return true;
+        }
 
 
         private bool parseFile_LowVerbosity(FileInfo fileInfo, DescribeUnfold unfold)
@@ -784,6 +913,26 @@ namespace DescribeTranspiler
                     return UnfoldVisitor.TranslateContext11(u, context, u.ParseJob.LastFile);
                 default:
                     return false;
+            }
+        }
+ /**/   AstScriptureNode? TranslateContext(ParserRuleContext context, string filename)
+        {
+            switch (LanguageVersion)
+            {
+                case DescribeVersionNumber.Version06:
+                    return AstVisitor.TranslateContext06(context, filename);
+                case DescribeVersionNumber.Version07:
+                    return AstVisitor.TranslateContext07(context, filename);
+                case DescribeVersionNumber.Version08:
+                    return AstVisitor.TranslateContext08(context, filename);
+                case DescribeVersionNumber.Version09:
+                    return AstVisitor.TranslateContext09(context, filename);
+                case DescribeVersionNumber.Version10:
+                    return AstVisitor.TranslateContext10(context, filename);
+                case DescribeVersionNumber.Version11:
+                    return AstVisitor.TranslateContext11(context, filename);
+                default:
+                    return null;
             }
         }
     }
