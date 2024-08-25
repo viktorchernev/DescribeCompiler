@@ -35,21 +35,21 @@ namespace DescribeParser.Ast
         /// <summary>
         /// Creates an <see cref="AstExpressionLineNode"/> with the specified punctuation.
         /// </summary>
-        /// <param name="punctoation">The punctuation of the expression line node.</param>
+        /// <param name="punctuation">The punctuation of the expression line node.</param>
         /// <param name="parent">The parent node, if any. Default is null.</param>
         /// <returns>An <see cref="AstExpressionLineNode"/> with the specified punctuation.</returns>
-        public static AstExpressionLineNode CreateExpressionLineNode(AstLeafNode punctoation,
+        public static AstExpressionLineNode CreateExpressionLineNode(AstLeafNode punctuation,
             IAstBranchNode? parent = null)
         {
             // Null checks
-            ValidateAstChildNodeP(punctoation);
+            ValidateAstChildNodeP(punctuation);
 
             // code
             AstExpressionLineNode line = new AstExpressionLineNode();
 
             line.Body = null;
-            line.Punctuation = punctoation;
-            line.Position = CreateSourcePosition(punctoation.Position!);
+            line.Punctuation = punctuation;
+            line.Position = CreateSourcePosition(punctuation.Position!);
             line.Parent = parent;
 
             return line;
@@ -59,33 +59,33 @@ namespace DescribeParser.Ast
         /// Creates an <see cref="AstExpressionLineNode"/> with the specified body and punctuation.
         /// </summary>
         /// <param name="body">The body of the expression line node.</param>
-        /// <param name="punctoation">The punctuation of the expression line node.</param>
+        /// <param name="punctuation">The punctuation of the expression line node.</param>
         /// <param name="parent">The parent node, if any. Default is null.</param>
         /// <returns>An <see cref="AstExpressionLineNode"/> with the specified body and punctuation.</returns>
         public static AstExpressionLineNode CreateExpressionLineNode(IAstBranchChildNode? body, 
-            AstLeafNode? punctoation, IAstBranchNode? parent = null)
+            AstLeafNode? punctuation, IAstBranchNode? parent = null)
         {
             AstExpressionLineNode line = new AstExpressionLineNode();
 
             line.Body = body;
-            line.Punctuation = punctoation;
+            line.Punctuation = punctuation;
             line.Parent = parent;
 
-            if(body != null && punctoation != null)
+            if(body != null && punctuation != null)
             {
-                ValidateSourcePosition(punctoation.Position!);
+                ValidateSourcePosition(punctuation.Position!);
                 ValidateSourcePosition(body.Position!);
-                line.Position = CreateSourcePosition(body.Position!, punctoation.Position!);
+                line.Position = CreateSourcePosition(body.Position!, punctuation.Position!);
             }
             else if(body != null)
             {
                 ValidateSourcePosition(body.Position!);
                 line.Position = CreateSourcePosition(body.Position!);
             }
-            else if (punctoation != null)
+            else if (punctuation != null)
             {
-                ValidateSourcePosition(punctoation.Position!);
-                line.Position = CreateSourcePosition(punctoation.Position!);
+                ValidateSourcePosition(punctuation.Position!);
+                line.Position = CreateSourcePosition(punctuation.Position!);
             }
             else
             {

@@ -391,7 +391,18 @@ namespace DescribeParser.Visitors
             text = text.Trim();
 
             //tag
-            if(tag == "") tag = getRandomString();
+            if (tag == "")
+            {
+                tag = getRandomString();
+                if (string.IsNullOrEmpty(u.ParseJob.LastNamespace) == false)
+                {
+                    tag = u.ParseJob.LastNamespace + '.' + tag;
+                }
+            }
+            else if (tag[0] == '.' && string.IsNullOrEmpty(u.ParseJob.LastNamespace) == false)
+            {
+                tag = u.ParseJob.LastNamespace + tag;
+            }
             if (!u.Translations.Keys.Contains(tag))
             {
                 u.Translations.Add(tag, text);

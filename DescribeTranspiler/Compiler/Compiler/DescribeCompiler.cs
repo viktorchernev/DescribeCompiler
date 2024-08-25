@@ -180,9 +180,11 @@ namespace DescribeTranspiler
         public bool ParseString(string source, string filename, ref DescribeUnfold unfold)
         {
             LogText("Starting a 'String -> Unfold' operation...");
+            unfold.ParseJob = CurrentJob;
+            unfold.ParseJob.LastFile = filename;
 
             // Reset stats, as we are starting a new operation
-            if(_isUsed)
+            if (_isUsed)
             {
                 resetBase();
                 resetStatistics();
@@ -192,7 +194,7 @@ namespace DescribeTranspiler
             // Pick an appropriate parse method, based on verbosity level
             if (Verbosity == LogVerbosity.Low)
             {
-                result = ParseString_LowVerbosity(source, filename, unfold);
+                result = ParseString_LowVerbosity(source, unfold);
             }
             else if (Verbosity == LogVerbosity.Medium)
             {

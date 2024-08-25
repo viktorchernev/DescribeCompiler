@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DescribeParser
+﻿namespace DescribeParser
 {
     /// <summary>
     /// This class contains intermediate data, used during a parse operation.

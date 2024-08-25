@@ -22,7 +22,12 @@ namespace DescribeTranspiler.Preprocessors
         /// <returns>The preprocessed source code string</returns>
         public string ProcessSource(string text)
         {
-            readDirectives(text);
+            int len = readDirectives(text);
+            if (len > 0)
+            {
+                text = text.Substring(len);
+                text = text.TrimStart();
+            }
 
             AntlrInputStream inputstream = new AntlrInputStream(text);
             Describe10Lexer lexer = new Describe10Lexer(inputstream);
@@ -71,15 +76,16 @@ namespace DescribeTranspiler.Preprocessors
             else output = output.Insert(insertionIndex + 1, tail);
             return output;
         }
-        void readDirectives(string value)
+        int readDirectives(string value)
         {
-            if (value.TrimStart().ToLower().StartsWith("directives") == false) return;
+            if (value.TrimStart().ToLower().StartsWith("directives") == false) return 0;
 
             try
             {
                 string text = value.Split(';')[0];
+                int length = text.Length + 1;
                 text = RemoveWhitespace(text);
-                if (text.StartsWith("directives->") == false) return;
+                if (text.StartsWith("directives->") == false) return 0;
 
                 string[] directives = text.Substring(12).TrimStart('>').Split(',');
                 foreach (string directive in directives)
@@ -88,8 +94,10 @@ namespace DescribeTranspiler.Preprocessors
                     if (sep[0] == "language-version") readLanguageVersion(sep[sep.Length - 1]);
                     else if (sep[0] == "namespace") readNamespace(sep[sep.Length - 1]);
                 }
+
+                return length;
             }
-            catch { }
+            catch { return -1; }
         }
         void readLanguageVersion(string value)
         {
@@ -102,7 +110,9 @@ namespace DescribeTranspiler.Preprocessors
         }
         void readNamespace(string value)
         {
-            //TODO: Implement
+            string name = value.Split('>')[0];
+            name = name.Trim();
+            _Compiler.CurrentJob.LastNamespace = name;
         }
 
 

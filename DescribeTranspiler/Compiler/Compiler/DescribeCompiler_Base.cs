@@ -35,9 +35,16 @@ namespace DescribeTranspiler
         private UniversalLogVisitor _logVisitor;
 
         /// <summary>
+        /// The current parse job object.
+        /// Contains various variables for the job in progress that get passed around.
+        /// </summary>
+        private SimpleParseJob _currentJob;
+
+        /// <summary>
         /// The logs for the current parse operation
         /// </summary>
         private string _log;
+
 
 
         private void resetBase()
@@ -53,6 +60,7 @@ namespace DescribeTranspiler
             _unfoldVisitor = new UniversalUnfoldVisitor();
             _astVisitor = new UniversalAstVisitor();
             _logVisitor = new UniversalLogVisitor();
+            _currentJob = new SimpleParseJob();
 
             _log = "";
         }

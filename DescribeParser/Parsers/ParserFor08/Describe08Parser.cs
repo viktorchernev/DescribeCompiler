@@ -36,12 +36,12 @@ public partial class Describe08Parser : Parser {
 	protected static DFA[] decisionToDFA;
 	protected static PredictionContextCache sharedContextCache = new PredictionContextCache();
 	public const int
-		LINE_COMMENT=1, BLOCK_COMMENT=2, TAG=3, LINK=4, HYPHEN=5, RIGHT_ARROW=6, 
-		LEFT_ARROW=7, RIGHT_SQUARE=8, SEPARATOR=9, TERMINATOR=10, FORWARD_SLASHES=11, 
-		FORWARD_SLASH=12, STAR=13, ESCAPE_ESCAPE=14, ESCAPE_HYPHEN=15, ESCAPE_RIGHT_ARROW=16, 
-		ESCAPE_LEFT_ARROW=17, ESCAPE_RIGHT_SQUARE=18, ESCAPE_LEFT_SQUARE=19, ESCAPE_SEPARATOR=20, 
-		ESCAPE_TERMINATOR=21, ESCAPE_LCOMMENT=22, ESCAPE_BCOMMENT=23, ESCAPE=24, 
-		DATA=25;
+		PROTO_SLASHES=1, LINE_COMMENT=2, BLOCK_COMMENT=3, TAG=4, LINK=5, HYPHEN=6, 
+		RIGHT_ARROW=7, LEFT_ARROW=8, RIGHT_SQUARE=9, SEPARATOR=10, TERMINATOR=11, 
+		COLON=12, FORWARD_SLASH=13, STAR=14, ESCAPE_ESCAPE=15, ESCAPE_HYPHEN=16, 
+		ESCAPE_RIGHT_ARROW=17, ESCAPE_LEFT_ARROW=18, ESCAPE_RIGHT_SQUARE=19, ESCAPE_LEFT_SQUARE=20, 
+		ESCAPE_SEPARATOR=21, ESCAPE_TERMINATOR=22, ESCAPE_COLON=23, ESCAPE_LCOMMENT=24, 
+		ESCAPE_BCOMMENT=25, ESCAPE=26, DATA=27;
 	public const int
 		RULE_producer = 0, RULE_text_chunk = 1, RULE_item = 2, RULE_expression = 3, 
 		RULE_item_or_expression_part = 4, RULE_item_or_expression_list = 5, RULE_expression_list = 6, 
@@ -52,14 +52,15 @@ public partial class Describe08Parser : Parser {
 	};
 
 	private static readonly string[] _LiteralNames = {
-		null, null, null, null, null, "'-'"
+		null, "'://'", null, null, null, null, "'-'"
 	};
 	private static readonly string[] _SymbolicNames = {
-		null, "LINE_COMMENT", "BLOCK_COMMENT", "TAG", "LINK", "HYPHEN", "RIGHT_ARROW", 
-		"LEFT_ARROW", "RIGHT_SQUARE", "SEPARATOR", "TERMINATOR", "FORWARD_SLASHES", 
-		"FORWARD_SLASH", "STAR", "ESCAPE_ESCAPE", "ESCAPE_HYPHEN", "ESCAPE_RIGHT_ARROW", 
+		null, "PROTO_SLASHES", "LINE_COMMENT", "BLOCK_COMMENT", "TAG", "LINK", 
+		"HYPHEN", "RIGHT_ARROW", "LEFT_ARROW", "RIGHT_SQUARE", "SEPARATOR", "TERMINATOR", 
+		"COLON", "FORWARD_SLASH", "STAR", "ESCAPE_ESCAPE", "ESCAPE_HYPHEN", "ESCAPE_RIGHT_ARROW", 
 		"ESCAPE_LEFT_ARROW", "ESCAPE_RIGHT_SQUARE", "ESCAPE_LEFT_SQUARE", "ESCAPE_SEPARATOR", 
-		"ESCAPE_TERMINATOR", "ESCAPE_LCOMMENT", "ESCAPE_BCOMMENT", "ESCAPE", "DATA"
+		"ESCAPE_TERMINATOR", "ESCAPE_COLON", "ESCAPE_LCOMMENT", "ESCAPE_BCOMMENT", 
+		"ESCAPE", "DATA"
 	};
 	public static readonly IVocabulary DefaultVocabulary = new Vocabulary(_LiteralNames, _SymbolicNames);
 
@@ -152,14 +153,16 @@ public partial class Describe08Parser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ESCAPE_LEFT_SQUARE() { return GetToken(Describe08Parser.ESCAPE_LEFT_SQUARE, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ESCAPE_SEPARATOR() { return GetToken(Describe08Parser.ESCAPE_SEPARATOR, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ESCAPE_TERMINATOR() { return GetToken(Describe08Parser.ESCAPE_TERMINATOR, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ESCAPE_COLON() { return GetToken(Describe08Parser.ESCAPE_COLON, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ESCAPE_LCOMMENT() { return GetToken(Describe08Parser.ESCAPE_LCOMMENT, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ESCAPE_BCOMMENT() { return GetToken(Describe08Parser.ESCAPE_BCOMMENT, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ESCAPE() { return GetToken(Describe08Parser.ESCAPE, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HYPHEN() { return GetToken(Describe08Parser.HYPHEN, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode RIGHT_ARROW() { return GetToken(Describe08Parser.RIGHT_ARROW, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode RIGHT_SQUARE() { return GetToken(Describe08Parser.RIGHT_SQUARE, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FORWARD_SLASHES() { return GetToken(Describe08Parser.FORWARD_SLASHES, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FORWARD_SLASH() { return GetToken(Describe08Parser.FORWARD_SLASH, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PROTO_SLASHES() { return GetToken(Describe08Parser.PROTO_SLASHES, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COLON() { return GetToken(Describe08Parser.COLON, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STAR() { return GetToken(Describe08Parser.STAR, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DATA() { return GetToken(Describe08Parser.DATA, 0); }
 		public Text_chunkContext(ParserRuleContext parent, int invokingState)
@@ -195,7 +198,7 @@ public partial class Describe08Parser : Parser {
 			{
 			State = 19;
 			_la = TokenStream.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 67107168L) != 0)) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 268432066L) != 0)) ) {
 			ErrorHandler.RecoverInline(this);
 			}
 			else {
@@ -311,7 +314,7 @@ public partial class Describe08Parser : Parser {
 					State = 32;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
-				} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & 67107168L) != 0) );
+				} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & 268432066L) != 0) );
 				State = 35;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
@@ -344,7 +347,7 @@ public partial class Describe08Parser : Parser {
 					State = 42;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
-				} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & 67107168L) != 0) );
+				} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & 268432066L) != 0) );
 				State = 45;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
@@ -379,7 +382,7 @@ public partial class Describe08Parser : Parser {
 					State = 54;
 					ErrorHandler.Sync(this);
 					_la = TokenStream.LA(1);
-				} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & 67107168L) != 0) );
+				} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & 268432066L) != 0) );
 				State = 56;
 				Match(TAG);
 				State = 58;
@@ -857,7 +860,7 @@ public partial class Describe08Parser : Parser {
 	}
 
 	private static int[] _serializedATN = {
-		4,1,25,126,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,2,7,
+		4,1,27,126,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,2,7,
 		7,7,1,0,1,0,1,0,1,1,1,1,1,2,4,2,23,8,2,11,2,12,2,24,1,2,3,2,28,8,2,1,2,
 		4,2,31,8,2,11,2,12,2,32,1,2,4,2,36,8,2,11,2,12,2,37,1,2,4,2,41,8,2,11,
 		2,12,2,42,1,2,4,2,46,8,2,11,2,12,2,47,1,2,1,2,1,2,4,2,53,8,2,11,2,12,2,
@@ -866,29 +869,29 @@ public partial class Describe08Parser : Parser {
 		1,4,1,4,1,4,3,4,91,8,4,3,4,93,8,4,1,5,4,5,96,8,5,11,5,12,5,97,1,5,1,5,
 		1,5,4,5,103,8,5,11,5,12,5,104,1,5,1,5,3,5,109,8,5,1,6,4,6,112,8,6,11,6,
 		12,6,113,1,6,1,6,1,7,1,7,1,7,1,7,1,7,1,7,3,7,124,8,7,1,7,0,0,8,0,2,4,6,
-		8,10,12,14,0,1,3,0,5,6,8,8,11,25,138,0,16,1,0,0,0,2,19,1,0,0,0,4,62,1,
-		0,0,0,6,83,1,0,0,0,8,92,1,0,0,0,10,108,1,0,0,0,12,111,1,0,0,0,14,123,1,
-		0,0,0,16,17,5,5,0,0,17,18,5,6,0,0,18,1,1,0,0,0,19,20,7,0,0,0,20,3,1,0,
-		0,0,21,23,3,2,1,0,22,21,1,0,0,0,23,24,1,0,0,0,24,22,1,0,0,0,24,25,1,0,
-		0,0,25,27,1,0,0,0,26,28,5,3,0,0,27,26,1,0,0,0,27,28,1,0,0,0,28,63,1,0,
-		0,0,29,31,3,2,1,0,30,29,1,0,0,0,31,32,1,0,0,0,32,30,1,0,0,0,32,33,1,0,
-		0,0,33,35,1,0,0,0,34,36,5,4,0,0,35,34,1,0,0,0,36,37,1,0,0,0,37,35,1,0,
-		0,0,37,38,1,0,0,0,38,63,1,0,0,0,39,41,3,2,1,0,40,39,1,0,0,0,41,42,1,0,
-		0,0,42,40,1,0,0,0,42,43,1,0,0,0,43,45,1,0,0,0,44,46,5,4,0,0,45,44,1,0,
-		0,0,46,47,1,0,0,0,47,45,1,0,0,0,47,48,1,0,0,0,48,49,1,0,0,0,49,50,5,3,
-		0,0,50,63,1,0,0,0,51,53,3,2,1,0,52,51,1,0,0,0,53,54,1,0,0,0,54,52,1,0,
-		0,0,54,55,1,0,0,0,55,56,1,0,0,0,56,58,5,3,0,0,57,59,5,4,0,0,58,57,1,0,
-		0,0,59,60,1,0,0,0,60,58,1,0,0,0,60,61,1,0,0,0,61,63,1,0,0,0,62,22,1,0,
-		0,0,62,30,1,0,0,0,62,40,1,0,0,0,62,52,1,0,0,0,63,5,1,0,0,0,64,65,3,4,2,
-		0,65,66,3,0,0,0,66,67,3,10,5,0,67,68,5,10,0,0,68,84,1,0,0,0,69,70,3,4,
-		2,0,70,71,3,0,0,0,71,72,3,4,2,0,72,73,5,10,0,0,73,84,1,0,0,0,74,75,3,4,
-		2,0,75,76,3,0,0,0,76,77,3,6,3,0,77,78,5,10,0,0,78,84,1,0,0,0,79,80,3,4,
-		2,0,80,81,3,0,0,0,81,82,5,10,0,0,82,84,1,0,0,0,83,64,1,0,0,0,83,69,1,0,
-		0,0,83,74,1,0,0,0,83,79,1,0,0,0,84,7,1,0,0,0,85,86,3,4,2,0,86,87,5,9,0,
-		0,87,93,1,0,0,0,88,90,3,6,3,0,89,91,5,9,0,0,90,89,1,0,0,0,90,91,1,0,0,
-		0,91,93,1,0,0,0,92,85,1,0,0,0,92,88,1,0,0,0,93,9,1,0,0,0,94,96,3,8,4,0,
-		95,94,1,0,0,0,96,97,1,0,0,0,97,95,1,0,0,0,97,98,1,0,0,0,98,99,1,0,0,0,
-		99,100,3,4,2,0,100,109,1,0,0,0,101,103,3,8,4,0,102,101,1,0,0,0,103,104,
+		8,10,12,14,0,1,4,0,1,1,6,7,9,9,12,27,138,0,16,1,0,0,0,2,19,1,0,0,0,4,62,
+		1,0,0,0,6,83,1,0,0,0,8,92,1,0,0,0,10,108,1,0,0,0,12,111,1,0,0,0,14,123,
+		1,0,0,0,16,17,5,6,0,0,17,18,5,7,0,0,18,1,1,0,0,0,19,20,7,0,0,0,20,3,1,
+		0,0,0,21,23,3,2,1,0,22,21,1,0,0,0,23,24,1,0,0,0,24,22,1,0,0,0,24,25,1,
+		0,0,0,25,27,1,0,0,0,26,28,5,4,0,0,27,26,1,0,0,0,27,28,1,0,0,0,28,63,1,
+		0,0,0,29,31,3,2,1,0,30,29,1,0,0,0,31,32,1,0,0,0,32,30,1,0,0,0,32,33,1,
+		0,0,0,33,35,1,0,0,0,34,36,5,5,0,0,35,34,1,0,0,0,36,37,1,0,0,0,37,35,1,
+		0,0,0,37,38,1,0,0,0,38,63,1,0,0,0,39,41,3,2,1,0,40,39,1,0,0,0,41,42,1,
+		0,0,0,42,40,1,0,0,0,42,43,1,0,0,0,43,45,1,0,0,0,44,46,5,5,0,0,45,44,1,
+		0,0,0,46,47,1,0,0,0,47,45,1,0,0,0,47,48,1,0,0,0,48,49,1,0,0,0,49,50,5,
+		4,0,0,50,63,1,0,0,0,51,53,3,2,1,0,52,51,1,0,0,0,53,54,1,0,0,0,54,52,1,
+		0,0,0,54,55,1,0,0,0,55,56,1,0,0,0,56,58,5,4,0,0,57,59,5,5,0,0,58,57,1,
+		0,0,0,59,60,1,0,0,0,60,58,1,0,0,0,60,61,1,0,0,0,61,63,1,0,0,0,62,22,1,
+		0,0,0,62,30,1,0,0,0,62,40,1,0,0,0,62,52,1,0,0,0,63,5,1,0,0,0,64,65,3,4,
+		2,0,65,66,3,0,0,0,66,67,3,10,5,0,67,68,5,11,0,0,68,84,1,0,0,0,69,70,3,
+		4,2,0,70,71,3,0,0,0,71,72,3,4,2,0,72,73,5,11,0,0,73,84,1,0,0,0,74,75,3,
+		4,2,0,75,76,3,0,0,0,76,77,3,6,3,0,77,78,5,11,0,0,78,84,1,0,0,0,79,80,3,
+		4,2,0,80,81,3,0,0,0,81,82,5,11,0,0,82,84,1,0,0,0,83,64,1,0,0,0,83,69,1,
+		0,0,0,83,74,1,0,0,0,83,79,1,0,0,0,84,7,1,0,0,0,85,86,3,4,2,0,86,87,5,10,
+		0,0,87,93,1,0,0,0,88,90,3,6,3,0,89,91,5,10,0,0,90,89,1,0,0,0,90,91,1,0,
+		0,0,91,93,1,0,0,0,92,85,1,0,0,0,92,88,1,0,0,0,93,9,1,0,0,0,94,96,3,8,4,
+		0,95,94,1,0,0,0,96,97,1,0,0,0,97,95,1,0,0,0,97,98,1,0,0,0,98,99,1,0,0,
+		0,99,100,3,4,2,0,100,109,1,0,0,0,101,103,3,8,4,0,102,101,1,0,0,0,103,104,
 		1,0,0,0,104,102,1,0,0,0,104,105,1,0,0,0,105,106,1,0,0,0,106,107,3,6,3,
 		0,107,109,1,0,0,0,108,95,1,0,0,0,108,102,1,0,0,0,109,11,1,0,0,0,110,112,
 		3,6,3,0,111,110,1,0,0,0,112,113,1,0,0,0,113,111,1,0,0,0,113,114,1,0,0,

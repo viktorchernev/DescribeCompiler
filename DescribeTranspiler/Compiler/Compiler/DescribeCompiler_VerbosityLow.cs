@@ -1,15 +1,6 @@
 ﻿using Antlr4.Runtime;
 using Antlr4.Runtime.Atn;
-using DescribeParser;
 using DescribeParser.Unfold;
-using System;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.PortableExecutable;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace DescribeTranspiler
 {
@@ -247,8 +238,10 @@ namespace DescribeTranspiler
                 " entries.");
             return true;
         }
- /**/   bool ParseString_LowVerbosity(string source, string filename, DescribeUnfold unfold)
+ /**/   bool ParseString_LowVerbosity(string source, DescribeUnfold unfold)
         {
+            string? filename = unfold.ParseJob.LastFile;
+
             //initial checks
             if (!_isInitialized)
             {
@@ -262,6 +255,7 @@ namespace DescribeTranspiler
                 LogError("Null is not a valid filename.");
                 return false;
             }
+            unfold.ParseJob.LastFile = filename;
             if (string.IsNullOrEmpty(filename) || string.IsNullOrWhiteSpace(filename))
             {
                 _errorCounter++;
@@ -335,8 +329,7 @@ namespace DescribeTranspiler
             //unfold
             try
             {
-                unfold.ParseJob.LastFile = filename;
-                bool optimized = TranslateContext(unfold, root, filename);
+                bool optimized = TranslateContext(unfold, root);
                 if (!optimized)
                 {
                     _errorCounter++;
@@ -366,22 +359,22 @@ namespace DescribeTranspiler
         }
 
 
-        bool TranslateContext(DescribeUnfold u, ParserRuleContext context, string filename = "")
+ /**/   bool TranslateContext(DescribeUnfold u, ParserRuleContext context)
         {
             switch (LanguageVersion)
             {
                 case DescribeVersionNumber.Version06:
-                    return UnfoldVisitor.TranslateContext06(u, context, filename);
+                    return UnfoldVisitor.TranslateContext06(u, context, u.ParseJob.LastFile);
                 case DescribeVersionNumber.Version07:
-                    return UnfoldVisitor.TranslateContext07(u, context, filename);
+                    return UnfoldVisitor.TranslateContext07(u, context, u.ParseJob.LastFile);
                 case DescribeVersionNumber.Version08:
-                    return UnfoldVisitor.TranslateContext08(u, context, filename);
+                    return UnfoldVisitor.TranslateContext08(u, context, u.ParseJob.LastFile);
                 case DescribeVersionNumber.Version09:
-                    return UnfoldVisitor.TranslateContext09(u, context, filename);
+                    return UnfoldVisitor.TranslateContext09(u, context, u.ParseJob.LastFile);
                 case DescribeVersionNumber.Version10:
-                    return UnfoldVisitor.TranslateContext10(u, context, filename);
+                    return UnfoldVisitor.TranslateContext10(u, context, u.ParseJob.LastFile);
                 case DescribeVersionNumber.Version11:
-                    return UnfoldVisitor.TranslateContext11(u, context, filename);
+                    return UnfoldVisitor.TranslateContext11(u, context, u.ParseJob.LastFile);
                 default:
                     return false;
             }

@@ -1,4 +1,5 @@
-﻿using DescribeParser.Visitors;
+﻿using DescribeParser;
+using DescribeParser.Visitors;
 using DescribeTranspiler;
 using DescribeTranspiler.Preprocessors;
 
@@ -70,6 +71,22 @@ namespace DescribeTranspiler
             set
             {
                 _logVisitor = value;
+            }
+        }
+
+        /// <summary>
+        /// The universal Log visitor class - Used to optimise parse result (parse tree)
+        /// to a log text.
+        /// </summary>
+        public SimpleParseJob CurrentJob
+        {
+            get
+            {
+                return _currentJob;
+            }
+            set
+            {
+                _currentJob = value;
             }
         }
 

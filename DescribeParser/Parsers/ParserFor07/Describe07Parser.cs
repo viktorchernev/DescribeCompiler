@@ -36,11 +36,11 @@ public partial class Describe07Parser : Parser {
 	protected static DFA[] decisionToDFA;
 	protected static PredictionContextCache sharedContextCache = new PredictionContextCache();
 	public const int
-		LINE_COMMENT=1, BLOCK_COMMENT=2, TAG=3, HYPHEN=4, RIGHT_ARROW=5, LEFT_ARROW=6, 
-		SEPARATOR=7, TERMINATOR=8, FORWARD_SLASHES=9, FORWARD_SLASH=10, STAR=11, 
-		ESCAPE_ESCAPE=12, ESCAPE_HYPHEN=13, ESCAPE_RIGHT_ARROW=14, ESCAPE_LEFT_ARROW=15, 
-		ESCAPE_SEPARATOR=16, ESCAPE_TERMINATOR=17, ESCAPE_LCOMMENT=18, ESCAPE_BCOMMENT=19, 
-		ESCAPE=20, DATA=21;
+		PROTO_SLASHES=1, LINE_COMMENT=2, BLOCK_COMMENT=3, TAG=4, HYPHEN=5, RIGHT_ARROW=6, 
+		LEFT_ARROW=7, SEPARATOR=8, TERMINATOR=9, COLON=10, FORWARD_SLASH=11, STAR=12, 
+		ESCAPE_ESCAPE=13, ESCAPE_HYPHEN=14, ESCAPE_RIGHT_ARROW=15, ESCAPE_LEFT_ARROW=16, 
+		ESCAPE_SEPARATOR=17, ESCAPE_TERMINATOR=18, ESCAPE_COLON=19, ESCAPE_LCOMMENT=20, 
+		ESCAPE_BCOMMENT=21, ESCAPE=22, DATA=23;
 	public const int
 		RULE_producer = 0, RULE_text_chunk = 1, RULE_item = 2, RULE_expression = 3, 
 		RULE_item_or_expression_part = 4, RULE_item_or_expression_list = 5, RULE_expression_list = 6, 
@@ -51,14 +51,14 @@ public partial class Describe07Parser : Parser {
 	};
 
 	private static readonly string[] _LiteralNames = {
-		null, null, null, null, "'-'"
+		null, "'://'", null, null, null, "'-'"
 	};
 	private static readonly string[] _SymbolicNames = {
-		null, "LINE_COMMENT", "BLOCK_COMMENT", "TAG", "HYPHEN", "RIGHT_ARROW", 
-		"LEFT_ARROW", "SEPARATOR", "TERMINATOR", "FORWARD_SLASHES", "FORWARD_SLASH", 
+		null, "PROTO_SLASHES", "LINE_COMMENT", "BLOCK_COMMENT", "TAG", "HYPHEN", 
+		"RIGHT_ARROW", "LEFT_ARROW", "SEPARATOR", "TERMINATOR", "COLON", "FORWARD_SLASH", 
 		"STAR", "ESCAPE_ESCAPE", "ESCAPE_HYPHEN", "ESCAPE_RIGHT_ARROW", "ESCAPE_LEFT_ARROW", 
-		"ESCAPE_SEPARATOR", "ESCAPE_TERMINATOR", "ESCAPE_LCOMMENT", "ESCAPE_BCOMMENT", 
-		"ESCAPE", "DATA"
+		"ESCAPE_SEPARATOR", "ESCAPE_TERMINATOR", "ESCAPE_COLON", "ESCAPE_LCOMMENT", 
+		"ESCAPE_BCOMMENT", "ESCAPE", "DATA"
 	};
 	public static readonly IVocabulary DefaultVocabulary = new Vocabulary(_LiteralNames, _SymbolicNames);
 
@@ -149,13 +149,15 @@ public partial class Describe07Parser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ESCAPE_LEFT_ARROW() { return GetToken(Describe07Parser.ESCAPE_LEFT_ARROW, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ESCAPE_SEPARATOR() { return GetToken(Describe07Parser.ESCAPE_SEPARATOR, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ESCAPE_TERMINATOR() { return GetToken(Describe07Parser.ESCAPE_TERMINATOR, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ESCAPE_COLON() { return GetToken(Describe07Parser.ESCAPE_COLON, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ESCAPE_LCOMMENT() { return GetToken(Describe07Parser.ESCAPE_LCOMMENT, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ESCAPE_BCOMMENT() { return GetToken(Describe07Parser.ESCAPE_BCOMMENT, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ESCAPE() { return GetToken(Describe07Parser.ESCAPE, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HYPHEN() { return GetToken(Describe07Parser.HYPHEN, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode RIGHT_ARROW() { return GetToken(Describe07Parser.RIGHT_ARROW, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FORWARD_SLASHES() { return GetToken(Describe07Parser.FORWARD_SLASHES, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FORWARD_SLASH() { return GetToken(Describe07Parser.FORWARD_SLASH, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PROTO_SLASHES() { return GetToken(Describe07Parser.PROTO_SLASHES, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COLON() { return GetToken(Describe07Parser.COLON, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STAR() { return GetToken(Describe07Parser.STAR, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DATA() { return GetToken(Describe07Parser.DATA, 0); }
 		public Text_chunkContext(ParserRuleContext parent, int invokingState)
@@ -191,7 +193,7 @@ public partial class Describe07Parser : Parser {
 			{
 			State = 19;
 			_la = TokenStream.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 4193840L) != 0)) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 16776290L) != 0)) ) {
 			ErrorHandler.RecoverInline(this);
 			}
 			else {
@@ -740,32 +742,32 @@ public partial class Describe07Parser : Parser {
 	}
 
 	private static int[] _serializedATN = {
-		4,1,21,91,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,2,7,
+		4,1,23,91,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,2,7,
 		7,7,1,0,1,0,1,0,1,1,1,1,1,2,4,2,23,8,2,11,2,12,2,24,1,2,3,2,28,8,2,1,3,
 		1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,
 		3,3,3,49,8,3,1,4,1,4,1,4,1,4,1,4,3,4,56,8,4,3,4,58,8,4,1,5,4,5,61,8,5,
 		11,5,12,5,62,1,5,1,5,1,5,4,5,68,8,5,11,5,12,5,69,1,5,1,5,3,5,74,8,5,1,
 		6,4,6,77,8,6,11,6,12,6,78,1,6,1,6,1,7,1,7,1,7,1,7,1,7,1,7,3,7,89,8,7,1,
-		7,0,0,8,0,2,4,6,8,10,12,14,0,1,2,0,4,5,9,21,94,0,16,1,0,0,0,2,19,1,0,0,
-		0,4,22,1,0,0,0,6,48,1,0,0,0,8,57,1,0,0,0,10,73,1,0,0,0,12,76,1,0,0,0,14,
-		88,1,0,0,0,16,17,5,4,0,0,17,18,5,5,0,0,18,1,1,0,0,0,19,20,7,0,0,0,20,3,
-		1,0,0,0,21,23,3,2,1,0,22,21,1,0,0,0,23,24,1,0,0,0,24,22,1,0,0,0,24,25,
-		1,0,0,0,25,27,1,0,0,0,26,28,5,3,0,0,27,26,1,0,0,0,27,28,1,0,0,0,28,5,1,
-		0,0,0,29,30,3,4,2,0,30,31,3,0,0,0,31,32,3,10,5,0,32,33,5,8,0,0,33,49,1,
-		0,0,0,34,35,3,4,2,0,35,36,3,0,0,0,36,37,3,4,2,0,37,38,5,8,0,0,38,49,1,
-		0,0,0,39,40,3,4,2,0,40,41,3,0,0,0,41,42,3,6,3,0,42,43,5,8,0,0,43,49,1,
-		0,0,0,44,45,3,4,2,0,45,46,3,0,0,0,46,47,5,8,0,0,47,49,1,0,0,0,48,29,1,
-		0,0,0,48,34,1,0,0,0,48,39,1,0,0,0,48,44,1,0,0,0,49,7,1,0,0,0,50,51,3,4,
-		2,0,51,52,5,7,0,0,52,58,1,0,0,0,53,55,3,6,3,0,54,56,5,7,0,0,55,54,1,0,
-		0,0,55,56,1,0,0,0,56,58,1,0,0,0,57,50,1,0,0,0,57,53,1,0,0,0,58,9,1,0,0,
-		0,59,61,3,8,4,0,60,59,1,0,0,0,61,62,1,0,0,0,62,60,1,0,0,0,62,63,1,0,0,
-		0,63,64,1,0,0,0,64,65,3,4,2,0,65,74,1,0,0,0,66,68,3,8,4,0,67,66,1,0,0,
-		0,68,69,1,0,0,0,69,67,1,0,0,0,69,70,1,0,0,0,70,71,1,0,0,0,71,72,3,6,3,
-		0,72,74,1,0,0,0,73,60,1,0,0,0,73,67,1,0,0,0,74,11,1,0,0,0,75,77,3,6,3,
-		0,76,75,1,0,0,0,77,78,1,0,0,0,78,76,1,0,0,0,78,79,1,0,0,0,79,80,1,0,0,
-		0,80,81,3,6,3,0,81,13,1,0,0,0,82,83,3,12,6,0,83,84,5,0,0,1,84,89,1,0,0,
-		0,85,86,3,6,3,0,86,87,5,0,0,1,87,89,1,0,0,0,88,82,1,0,0,0,88,85,1,0,0,
-		0,89,15,1,0,0,0,10,24,27,48,55,57,62,69,73,78,88
+		7,0,0,8,0,2,4,6,8,10,12,14,0,1,3,0,1,1,5,6,10,23,94,0,16,1,0,0,0,2,19,
+		1,0,0,0,4,22,1,0,0,0,6,48,1,0,0,0,8,57,1,0,0,0,10,73,1,0,0,0,12,76,1,0,
+		0,0,14,88,1,0,0,0,16,17,5,5,0,0,17,18,5,6,0,0,18,1,1,0,0,0,19,20,7,0,0,
+		0,20,3,1,0,0,0,21,23,3,2,1,0,22,21,1,0,0,0,23,24,1,0,0,0,24,22,1,0,0,0,
+		24,25,1,0,0,0,25,27,1,0,0,0,26,28,5,4,0,0,27,26,1,0,0,0,27,28,1,0,0,0,
+		28,5,1,0,0,0,29,30,3,4,2,0,30,31,3,0,0,0,31,32,3,10,5,0,32,33,5,9,0,0,
+		33,49,1,0,0,0,34,35,3,4,2,0,35,36,3,0,0,0,36,37,3,4,2,0,37,38,5,9,0,0,
+		38,49,1,0,0,0,39,40,3,4,2,0,40,41,3,0,0,0,41,42,3,6,3,0,42,43,5,9,0,0,
+		43,49,1,0,0,0,44,45,3,4,2,0,45,46,3,0,0,0,46,47,5,9,0,0,47,49,1,0,0,0,
+		48,29,1,0,0,0,48,34,1,0,0,0,48,39,1,0,0,0,48,44,1,0,0,0,49,7,1,0,0,0,50,
+		51,3,4,2,0,51,52,5,8,0,0,52,58,1,0,0,0,53,55,3,6,3,0,54,56,5,8,0,0,55,
+		54,1,0,0,0,55,56,1,0,0,0,56,58,1,0,0,0,57,50,1,0,0,0,57,53,1,0,0,0,58,
+		9,1,0,0,0,59,61,3,8,4,0,60,59,1,0,0,0,61,62,1,0,0,0,62,60,1,0,0,0,62,63,
+		1,0,0,0,63,64,1,0,0,0,64,65,3,4,2,0,65,74,1,0,0,0,66,68,3,8,4,0,67,66,
+		1,0,0,0,68,69,1,0,0,0,69,67,1,0,0,0,69,70,1,0,0,0,70,71,1,0,0,0,71,72,
+		3,6,3,0,72,74,1,0,0,0,73,60,1,0,0,0,73,67,1,0,0,0,74,11,1,0,0,0,75,77,
+		3,6,3,0,76,75,1,0,0,0,77,78,1,0,0,0,78,76,1,0,0,0,78,79,1,0,0,0,79,80,
+		1,0,0,0,80,81,3,6,3,0,81,13,1,0,0,0,82,83,3,12,6,0,83,84,5,0,0,1,84,89,
+		1,0,0,0,85,86,3,6,3,0,86,87,5,0,0,1,87,89,1,0,0,0,88,82,1,0,0,0,88,85,
+		1,0,0,0,89,15,1,0,0,0,10,24,27,48,55,57,62,69,73,78,88
 	};
 
 	public static readonly ATN _ATN =
