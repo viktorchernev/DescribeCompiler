@@ -171,17 +171,26 @@ namespace DescribeTranspiler
 
 
         /// <summary>
-        /// Parse a Describe source file
+        /// Parse a Describe source file to an Unfold
         /// </summary>
         /// <param name="fileInfo">Represents the file to be parsed</param>
         /// <param name="unfold">The unfold that will receive the data</param>
         /// <returns>true if successful, otherwise false</returns>
         public bool ParseFile(FileInfo fileInfo, ref DescribeUnfold unfold)
         {
-            _fileCounter = 0;
-            _reductionCounter = 0;
+            LogText("Starting a 'File -> Unfold' operation...");
+            unfold.ParseJob = CurrentJob;
+            unfold.ParseJob.LastFile = fileInfo.FullName;
+
+            // Reset stats, as we are starting a new operation
+            if (_isUsed)
+            {
+                resetBase();
+                resetStatistics();
+            }
             bool result = false;
 
+            // Pick an appropriate parse method, based on verbosity level
             if (Verbosity == LogVerbosity.Low)
             {
                 result = ParseFile_LowVerbosity(fileInfo, unfold);
@@ -192,20 +201,30 @@ namespace DescribeTranspiler
             }
             else if (Verbosity == LogVerbosity.High)
             {
-                _tokenCounter = 0;
-                _reductionCounter = 0;
                 result = ParseFile_HighVerbosity(fileInfo, unfold);
             }
+
+            // Set stats
+            _isUsed = true;
+            _fileCounter++;
+            if (result == true) _parsedFileCounter++;
+            else _failedFileCounter++;
+
+            // log
+            LogInfo("All Files: " + _fileCounter.ToString() +
+                ", Succeeded: " + _parsedFileCounter.ToString() +
+                ", Failed: " + _failedFileCounter.ToString() +
+                ", Errors: " + _errorCounter.ToString());
+
             return result;
         }
 
         /// <summary>
-        /// 
+        /// Parse a Describe source file to an AST
         /// </summary>
-        /// <param name="fileInfo"></param>
-        /// <param name="root"></param>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
+        /// <param name="fileInfo">Represents the file to be parsed</param>
+        /// <param name="root">The resulting AST tree</param>
+        /// <returns>true if successful, otherwise false</returns>
         public bool ParseFile(FileInfo fileInfo, out AstScriptureNode root)
         {
             throw new NotImplementedException("Not implemented yet");
@@ -289,13 +308,11 @@ namespace DescribeTranspiler
             }
             else if (Verbosity == LogVerbosity.Medium)
             {
-                result = ParseString_LowVerbosity(source, CurrentJob, out rootNode);
-                //result = ParseString_MediumVerbosity(source, CurrentJob, out rootNode);
+                result = ParseString_MediumVerbosity(source, CurrentJob, out rootNode);
             }
             else if (Verbosity == LogVerbosity.High)
             {
-                result = ParseString_LowVerbosity(source, CurrentJob, out rootNode);
-                //result = ParseString_HighVerbosity(source, CurrentJob, out rootNode);
+                result = ParseString_HighVerbosity(source, CurrentJob, out rootNode);
             }
             else
             {

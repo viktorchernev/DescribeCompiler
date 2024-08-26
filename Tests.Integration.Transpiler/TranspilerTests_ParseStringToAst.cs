@@ -1,5 +1,6 @@
 ﻿using Antlr4.Runtime;
 using Antlr4.Runtime.Atn;
+using DescribeParser.Ast;
 using DescribeParser.Unfold;
 using DescribeParser.Visitors;
 using DescribeTranspiler;
@@ -9,11 +10,11 @@ using System.Xml.Linq;
 
 namespace Tests.Integration.Transpiler
 {
-    internal class TranspilerTests : TranspilerTestsBase
+    internal class TranspilerTests_StringToAst : TranspilerTestsBase
     {
-        public static string outputDir = @"C:\Users\Viktor Chernev\Desktop\testing\TranspilerTests\ParseStringToUnfold";
+        public static string outputDir = @"C:\Users\Viktor Chernev\Desktop\testing\TranspilerTests\ParseStringToAst";
 
-        internal static void Test_ParseString(LogVerbosity verbosity)
+        internal static void Test_ParseStringToAst(LogVerbosity verbosity)
         {
             string a = verbosity.ToString();
             outputDir = outputDir + "\\" + a + "Verbosity";
@@ -48,20 +49,20 @@ namespace Tests.Integration.Transpiler
             foreach (string name in names)
             {
                 string[] sep = name.Split('.');
-                if (sep[4].Contains("live_Radio")) test_ParseString(verbosity, name, sep[4]);
+                if (sep[4].Contains("live_Radio")) test_ParseStringToAst(verbosity, name, sep[4]);
                 else if (sep[4].Contains("TestFilesFor"))
                 {
-                    if(sep[4].Contains("TestFilesFor06")) test_ParseString(verbosity, name, sep[4], DescribeVersionNumber.Version06);
-                    else if (sep[4].Contains("TestFilesFor07")) test_ParseString(verbosity, name, sep[4], DescribeVersionNumber.Version07);
-                    else if (sep[4].Contains("TestFilesFor08")) test_ParseString(verbosity, name, sep[4], DescribeVersionNumber.Version08);
-                    else if (sep[4].Contains("TestFilesFor09")) test_ParseString(verbosity, name, sep[4], DescribeVersionNumber.Version09);
-                    else if (sep[4].Contains("TestFilesFor10")) test_ParseString(verbosity, name, sep[4], DescribeVersionNumber.Version10);
-                    else if (sep[4].Contains("TestFilesFor11")) test_ParseString(verbosity, name, sep[4], DescribeVersionNumber.Version11);
-                    else test_ParseString(verbosity, name, sep[4]);
+                    if(sep[4].Contains("TestFilesFor06")) test_ParseStringToAst(verbosity, name, sep[4], DescribeVersionNumber.Version06);
+                    else if (sep[4].Contains("TestFilesFor07")) test_ParseStringToAst(verbosity, name, sep[4], DescribeVersionNumber.Version07);
+                    else if (sep[4].Contains("TestFilesFor08")) test_ParseStringToAst(verbosity, name, sep[4], DescribeVersionNumber.Version08);
+                    else if (sep[4].Contains("TestFilesFor09")) test_ParseStringToAst(verbosity, name, sep[4], DescribeVersionNumber.Version09);
+                    else if (sep[4].Contains("TestFilesFor10")) test_ParseStringToAst(verbosity, name, sep[4], DescribeVersionNumber.Version10);
+                    else if (sep[4].Contains("TestFilesFor11")) test_ParseStringToAst(verbosity, name, sep[4], DescribeVersionNumber.Version11);
+                    else test_ParseStringToAst(verbosity, name, sep[4]);
                 }
             }
         }
-        internal static void Test_ParseString(LogVerbosity verbosity, string embeddedName, string? folder = null)
+        internal static void Test_ParseStringToAst(LogVerbosity verbosity, string embeddedName, string? folder = null)
         {
             string a = verbosity.ToString();
             outputDir = outputDir + "\\" + a + "Verbosity";
@@ -92,9 +93,9 @@ namespace Tests.Integration.Transpiler
             }
 
             //get test file
-            test_ParseString(verbosity ,embeddedName, folder);
+            test_ParseStringToAst(verbosity ,embeddedName, folder);
         }
-        internal static void test_ParseString(LogVerbosity verbosity, 
+        internal static void test_ParseStringToAst(LogVerbosity verbosity, 
             string embeddedName, string? folder = null, 
             DescribeVersionNumber? langVer = null)
         {
@@ -129,16 +130,18 @@ namespace Tests.Integration.Transpiler
             }
 
             //compile
-            DescribeUnfold unfold = new DescribeUnfold();
-            bool r = compiler.ParseString(sourceCode, embeddedName, ref unfold);
+            AstScriptureNode? rootNode;
+            bool r = compiler.ParseString(sourceCode, embeddedName, out rootNode);
+            if (rootNode == null) r = false;
 
             //form log file
             string log = compiler.Log;
-            string unfoldText = unfold.ToString();
+            string astText = "null"; 
+            if (r == true) astText = rootNode!.ToJson();
             string result = resultTemplateA;
             result += sourceCode + resultTemplateB;
-            result += log + resultTemplateC + Environment.NewLine;
-            result += unfoldText;
+            result += log + resultTemplateC.Replace("Produced Unfold", "Produced AST") + Environment.NewLine;
+            result += astText;
 
             //get save name
             string[] sep = embeddedName.Split('.');

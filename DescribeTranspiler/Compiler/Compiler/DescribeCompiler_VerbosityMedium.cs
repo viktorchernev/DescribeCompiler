@@ -1,5 +1,7 @@
 ﻿using Antlr4.Runtime;
 using Antlr4.Runtime.Atn;
+using DescribeParser.Ast;
+using DescribeParser;
 using DescribeParser.Unfold;
 
 namespace DescribeTranspiler
@@ -254,7 +256,7 @@ namespace DescribeTranspiler
                 " entries.");
             return true;
         }
-        bool ParseString_MediumVerbosity(string source, DescribeUnfold unfold)
+ /**/   bool ParseString_MediumVerbosity(string source, DescribeUnfold unfold)
         {
             string? filename = unfold.ParseJob.LastFile;
 
@@ -368,6 +370,129 @@ namespace DescribeTranspiler
                 " productions, containing " + unfold.Translations.Count().ToString() +
                 " entries.");
 
+            return true;
+        }
+ /**/   bool ParseString_MediumVerbosity(string source, IDescribeParseJob job, out AstScriptureNode? rootNode)
+        {
+            string? filename = job.LastFile;
+
+            //initial checks
+            if (!_isInitialized)
+            {
+                _errorCounter++;
+                LogError("This parser isn't innitialized, and cannot be used. Create a new instance.");
+                rootNode = null;
+                return false;
+            }
+            if (filename == null)
+            {
+                _errorCounter++;
+                LogError("Null is not a valid filename.");
+                rootNode = null;
+                return false;
+            }
+            if (string.IsNullOrEmpty(filename) || string.IsNullOrWhiteSpace(filename))
+            {
+                _errorCounter++;
+                LogError("\"" + filename + "\" is not a valid filename.");
+                rootNode = null;
+                return false;
+            }
+
+            LogText("Starting a parse operation on \"" + filename + "\"");
+            try
+            {
+                source = CurrentPreprocessor.ProcessSource(source);
+                if (source.Length == 0)
+                {
+                    _errorCounter++;
+                    LogError("Error - the source code you are trying to parse is empty");
+                    LogText("------------------------");
+                    rootNode = null;
+                    return false;
+                }
+                else if (string.IsNullOrWhiteSpace(source))
+                {
+                    _errorCounter++;
+                    LogError("Error - the source code you are trying to parse is only white space");
+                    LogText("------------------------");
+                    rootNode = null;
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                _errorCounter++;
+                LogError("Failed to read the source code: " + ex.Message);
+                LogText("------------------------");
+                rootNode = null;
+                return false;
+            }
+
+            //parse
+            ParserRuleContext? root = null;
+            try
+            {
+                string message = "";
+                bool result = parse_MediumVerbosity(source, out root, out message);
+
+                if (result)
+                {
+                    LogText("Source code parsed successfully");
+                }
+                else
+                {
+                    _errorCounter++;
+                    LogError("Failed to parse the source code: " + message);
+                    LogText("------------------------");
+                    rootNode = null;
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                _errorCounter++;
+                LogError("Failed to parse the source code: " + ex.Message);
+                LogText("------------------------");
+                rootNode = null;
+                return false;
+            }
+
+            //unfold
+            try
+            {
+                AstScriptureNode? scriptureNode = TranslateContext(root, filename);
+                rootNode = scriptureNode;
+                if (scriptureNode != null)
+                {
+                    LogText("Parse tree unfolded successfully");
+                    LogParserInfo("Done!");
+                    LogText("------------------------");
+                }
+                else
+                {
+                    _errorCounter++;
+                    LogError("Failed to Unfold the parse tree");
+                    LogText("------------------------");
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                _errorCounter++;
+                LogError("Failed to Unfold the parse tree : " + ex.Message);
+                LogText("------------------------");
+                rootNode = null;
+                return false;
+            }
+
+
+            LogInfo("Parser red " + _characterCounter.ToString() + " characters, into "
+                + _tokenCounter.ToString() + " tokens.");
+            // This when we implement statistics in the parser's visitors
+            // + _tokenCounter.ToString() + " tokens in " 
+            // + _reductionCounter.ToString() + " reductions.");
+            LogInfo("Those were translated to an AST.");
             return true;
         }
 

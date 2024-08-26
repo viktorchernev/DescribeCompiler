@@ -83,12 +83,80 @@ namespace DescribeTranspiler
                 " entries.");
             return true;
         }
+        bool ParseMultiString_LowVerbosity(List<KeyValuePair<string, string>> nameCodeList, DescribeUnfold unfold)
+        {
+            //initial checks
+            if (!_isInitialized)
+            {
+                LogError("Parser not innitialized.");
+                return false;
+            }
+
+            //fetch files
+            Dictionary<string, string> dict = new Dictionary<string, string>();
+            string msg = "Parsing multiple strings - ";
+            try
+            {
+                if (nameCodeList.Count == 0)
+                {
+                    msg += "no strings to parse.";
+                    LogError(msg);
+                    return false;
+                }
+                for (int i = 0; i < nameCodeList.Count; i++)
+                {
+                    unfold.AllFiles.Add(nameCodeList[i].Key);
+                    dict.Add(nameCodeList[i].Key, nameCodeList[i].Value);
+                }
+            }
+            catch (Exception ex)
+            {
+                LogError(msg + " Failed to read the file names: " + ex.Message);
+                return false;
+            }
+
+
+            //parse files
+            while (unfold.AllFiles.Count() > 0)
+            {
+                string filename = unfold.AllFiles[0];
+                unfold.ParseJob.LastFile = filename;
+                bool result = parseString_LowVerbosity(filename, dict[filename], unfold);
+                if (result)
+                {
+                    unfold.ParsedFiles.Add(filename);
+                    unfold.AllFiles.RemoveAt(0);
+                }
+                else
+                {
+                    unfold.FailedFiles.Add(filename);
+                    if (STOP_ON_ERROR) return false;
+                    else
+                    {
+                        unfold.AllFiles.RemoveAt(0);
+                    }
+                }
+            }
+
+            LogText(msg + "Ok");
+
+            LogText("------------------------");
+            LogInfo(_fileCounter.ToString() + " files parsed.");
+            LogInfo("Parser red " + _tokenCounter.ToString() +
+                " tokens in " + _reductionCounter.ToString() +
+                " reductions.");
+            LogInfo("Those were translated to " + unfold.Productions.Count().ToString() +
+                " productions, containing " + unfold.Translations.Count().ToString() +
+                " entries.");
+            return true;
+        }
+
         bool ParseFile_LowVerbosity(FileInfo fileInfo, DescribeUnfold unfold)
         {
             //initial checks
-            _fileCounter++;
             if (!_isInitialized)
             {
+                _errorCounter++;
                 LogError("Parser not innitialized.");
                 return false;
             }
@@ -96,6 +164,7 @@ namespace DescribeTranspiler
             string msg = "\"" + fileInfo.FullName + "\" - ";
             if (!File.Exists(fileInfo.FullName))
             {
+                _errorCounter++;
                 msg += "does not exist!";
                 LogError("msg");
                 return false;
@@ -164,73 +233,6 @@ namespace DescribeTranspiler
             }
 
             LogText(msg + "parsed successfully");
-            LogInfo(_fileCounter.ToString() + " files parsed.");
-            LogInfo("Parser red " + _tokenCounter.ToString() +
-                " tokens in " + _reductionCounter.ToString() +
-                " reductions.");
-            LogInfo("Those were translated to " + unfold.Productions.Count().ToString() +
-                " productions, containing " + unfold.Translations.Count().ToString() +
-                " entries.");
-            return true;
-        }
-        bool ParseMultiString_LowVerbosity(List<KeyValuePair<string, string>> nameCodeList, DescribeUnfold unfold)
-        {
-            //initial checks
-            if (!_isInitialized)
-            {
-                LogError("Parser not innitialized.");
-                return false;
-            }
-
-            //fetch files
-            Dictionary<string, string> dict = new Dictionary<string, string>();
-            string msg = "Parsing multiple strings - ";
-            try
-            {
-                if (nameCodeList.Count == 0)
-                {
-                    msg += "no strings to parse.";
-                    LogError(msg);
-                    return false;
-                }
-                for (int i = 0; i < nameCodeList.Count; i++)
-                {
-                    unfold.AllFiles.Add(nameCodeList[i].Key);
-                    dict.Add(nameCodeList[i].Key, nameCodeList[i].Value);
-                }
-            }
-            catch (Exception ex)
-            {
-                LogError(msg + " Failed to read the file names: " + ex.Message);
-                return false;
-            }
-
-
-            //parse files
-            while (unfold.AllFiles.Count() > 0)
-            {
-                string filename = unfold.AllFiles[0];
-                unfold.ParseJob.LastFile = filename;
-                bool result = parseString_LowVerbosity(filename, dict[filename], unfold);
-                if (result)
-                {
-                    unfold.ParsedFiles.Add(filename);
-                    unfold.AllFiles.RemoveAt(0);
-                }
-                else
-                {
-                    unfold.FailedFiles.Add(filename);
-                    if (STOP_ON_ERROR) return false;
-                    else
-                    {
-                        unfold.AllFiles.RemoveAt(0);
-                    }
-                }
-            }
-
-            LogText(msg + "Ok");
-
-            LogText("------------------------");
             LogInfo(_fileCounter.ToString() + " files parsed.");
             LogInfo("Parser red " + _tokenCounter.ToString() +
                 " tokens in " + _reductionCounter.ToString() +
@@ -459,6 +461,7 @@ namespace DescribeTranspiler
             try
             {
                 AstScriptureNode? scriptureNode = TranslateContext(root, filename);
+                rootNode = scriptureNode;
                 if (scriptureNode == null)
                 {
                     _errorCounter++;
@@ -484,7 +487,6 @@ namespace DescribeTranspiler
                 // + _tokenCounter.ToString() + " tokens in " 
                 // + _reductionCounter.ToString() + " reductions.");
             LogInfo("Those were translated to an AST.");
-            rootNode = null;
             return true;
         }
 
