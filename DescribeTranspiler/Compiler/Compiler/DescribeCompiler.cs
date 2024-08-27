@@ -225,9 +225,49 @@ namespace DescribeTranspiler
         /// <param name="fileInfo">Represents the file to be parsed</param>
         /// <param name="root">The resulting AST tree</param>
         /// <returns>true if successful, otherwise false</returns>
-        public bool ParseFile(FileInfo fileInfo, out AstScriptureNode root)
+        public bool ParseFile(FileInfo fileInfo, out AstScriptureNode? root)
         {
-            throw new NotImplementedException("Not implemented yet");
+            LogText("Starting a 'File -> AST' operation...");
+            CurrentJob.LastFile = fileInfo.FullName;
+
+            // Reset stats, as we are starting a new operation
+            if (_isUsed)
+            {
+                resetBase();
+                resetStatistics();
+            }
+            bool result = false;
+
+            // Pick an appropriate parse method, based on verbosity level
+            if (Verbosity == LogVerbosity.Low)
+            {
+                result = ParseFile_LowVerbosity(fileInfo, out root);
+            }
+            else if (Verbosity == LogVerbosity.Medium)
+            {
+                result = ParseFile_LowVerbosity(fileInfo, out root);
+                //result = ParseFile_MediumVerbosity(fileInfo, out root);
+            }
+            else if (Verbosity == LogVerbosity.High)
+            {
+                result = ParseFile_LowVerbosity(fileInfo, out root);
+                //result = ParseFile_HighVerbosity(fileInfo, out root);
+            }
+
+            // Set stats
+            _isUsed = true;
+            _fileCounter++;
+            if (result == true) _parsedFileCounter++;
+            else _failedFileCounter++;
+
+            // log
+            LogInfo("All Files: " + _fileCounter.ToString() +
+                ", Succeeded: " + _parsedFileCounter.ToString() +
+                ", Failed: " + _failedFileCounter.ToString() +
+                ", Errors: " + _errorCounter.ToString());
+
+            root = null;
+            return result;
         }
 
 

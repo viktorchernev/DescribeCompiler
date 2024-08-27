@@ -22,17 +22,18 @@ namespace Tests.Integration.Transpiler
 
 
 
-            //TranspilerTests_StringToUnfold.Test_ParseString(LogVerbosity.Low,
-            //"Tests.Integration.Transpiler.TestFiles.live_Radio.NovaNews.2024-04-15.ds", "live_Radio");
-            //TranspilerTests_StringToUnfold.Test_ParseString(LogVerbosity.Low,
-            //"Tests.Integration.Transpiler.TestFiles.TestFilesFor06.A_basic3.ds", "TestFilesFor06");
             //TranspilerTests_StringToUnfold.Test_ParseString(LogVerbosity.Low);
             //TranspilerTests_StringToUnfold.Test_ParseString(LogVerbosity.Medium);
             //TranspilerTests_StringToUnfold.Test_ParseString(LogVerbosity.High);
 
             //TranspilerTests_StringToAst.Test_ParseStringToAst(LogVerbosity.Low);
             //TranspilerTests_StringToAst.Test_ParseStringToAst(LogVerbosity.Medium);
-            TranspilerTests_StringToAst.Test_ParseStringToAst(LogVerbosity.High);
+            //TranspilerTests_StringToAst.Test_ParseStringToAst(LogVerbosity.High);
+
+            //TranspilerTests_FileToUnfold.Test_ParseFile(LogVerbosity.Low, @"C:\Users\Viktor Chernev\Desktop\testing\TestFiles");
+            //TranspilerTests_FileToUnfold.Test_ParseFile(LogVerbosity.Medium, @"C:\Users\Viktor Chernev\Desktop\testing\TestFiles");
+            TranspilerTests_FileToUnfold.Test_ParseFile(LogVerbosity.High, @"C:\Users\Viktor Chernev\Desktop\testing\TestFiles");
+
             Console.WriteLine("Tests done. Press any key to exit.");
             Console.ReadLine();
         }
