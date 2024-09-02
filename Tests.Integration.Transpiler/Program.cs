@@ -8,15 +8,15 @@ namespace Tests.Integration.Transpiler
         {
             printLogo2();
 
-            //HtmlPageTranslatorTests.TestFile("Tests.Integration.Transpiler.TestFiles.NovaNews.2024-04-15.ds");
+            //HtmlPageTranslatorTests.TestFile("Tests.Integration.Transpiler.TestFiles.live_Radio.NovaNews.2024-04-15.ds");
             //Console.WriteLine("HtmlPageTranslatorTests done. Press any key to continue.");
             //Console.ReadLine();
 
-            //HtmlBasicTranslatorTests.TestFile("Tests.Integration.Transpiler.TestFiles.NovaNews.2024-04-15.ds");
+            //HtmlBasicTranslatorTests.TestFile("Tests.Integration.Transpiler.TestFiles.live_Radio.NovaNews.2024-04-15.ds");
             //Console.WriteLine("HtmlPageTranslatorTests done. Press any key to continue.");
             //Console.ReadLine();
 
-            //JsonTranslatorTests.TestFile("Tests.Integration.Transpiler.TestFiles.NovaNews.2024-04-15.ds");
+            //JsonTranslatorTests.TestFile("Tests.Integration.Transpiler.TestFiles.live_Radio.NovaNews.2024-04-15.ds");
             //Console.WriteLine("Tests done. Press any key to exit.");
             //Console.ReadLine();
 
@@ -32,7 +32,37 @@ namespace Tests.Integration.Transpiler
 
             //TranspilerTests_FileToUnfold.Test_ParseFile(LogVerbosity.Low, @"C:\Users\Viktor Chernev\Desktop\testing\TestFiles");
             //TranspilerTests_FileToUnfold.Test_ParseFile(LogVerbosity.Medium, @"C:\Users\Viktor Chernev\Desktop\testing\TestFiles");
-            TranspilerTests_FileToUnfold.Test_ParseFile(LogVerbosity.High, @"C:\Users\Viktor Chernev\Desktop\testing\TestFiles");
+            //TranspilerTests_FileToUnfold.Test_ParseFile(LogVerbosity.High, @"C:\Users\Viktor Chernev\Desktop\testing\TestFiles");
+
+            //TranspilerTests_FileToAst.Test_ParseFile(LogVerbosity.Low, @"C:\Users\Viktor Chernev\Desktop\testing\TestFiles");
+            //TranspilerTests_FileToAst.Test_ParseFile(LogVerbosity.Medium, @"C:\Users\Viktor Chernev\Desktop\testing\TestFiles");
+            //TranspilerTests_FileToAst.Test_ParseFile(LogVerbosity.High, @"C:\Users\Viktor Chernev\Desktop\testing\TestFiles");
+
+            //TranspilerTests_StringsToUnfold.Test_ParseString_OverloadA(LogVerbosity.Low);
+            //TranspilerTests_StringsToUnfold.Test_ParseString_OverloadA(LogVerbosity.Medium);
+            //TranspilerTests_StringsToUnfold.Test_ParseString_OverloadA(LogVerbosity.High);
+
+            //TranspilerTests_StringsToUnfold.Test_ParseString_OverloadB(LogVerbosity.Low);
+            //TranspilerTests_StringsToUnfold.Test_ParseString_OverloadB(LogVerbosity.Medium);
+            //TranspilerTests_StringsToUnfold.Test_ParseString_OverloadB(LogVerbosity.High);
+
+            //TranspilerTests_StringsToUnfolds.Test_ParseString_OverloadA(LogVerbosity.Low);
+            //TranspilerTests_StringsToUnfolds.Test_ParseString_OverloadA(LogVerbosity.Medium);
+            //TranspilerTests_StringsToUnfolds.Test_ParseString_OverloadA(LogVerbosity.High);
+
+            //TranspilerTests_StringsToUnfolds.Test_ParseString_OverloadB(LogVerbosity.Low);
+            //TranspilerTests_StringsToUnfolds.Test_ParseString_OverloadB(LogVerbosity.Medium);
+            //TranspilerTests_StringsToUnfolds.Test_ParseString_OverloadB(LogVerbosity.High);
+
+            //TranspilerTests_StringsToAsts.Test_ParseString_OverloadA(LogVerbosity.Low);
+            //TranspilerTests_StringsToAsts.Test_ParseString_OverloadA(LogVerbosity.Medium);
+            //TranspilerTests_StringsToAsts.Test_ParseString_OverloadA(LogVerbosity.High);
+
+            //TranspilerTests_StringsToAsts.Test_ParseString_OverloadB(LogVerbosity.Low);
+            //TranspilerTests_StringsToAsts.Test_ParseString_OverloadB(LogVerbosity.Medium);
+            //TranspilerTests_StringsToAsts.Test_ParseString_OverloadB(LogVerbosity.High);
+
+
 
             Console.WriteLine("Tests done. Press any key to exit.");
             Console.ReadLine();

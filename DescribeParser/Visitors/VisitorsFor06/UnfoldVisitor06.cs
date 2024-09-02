@@ -88,7 +88,7 @@ namespace DescribeParser.Visitors
             Validators.ValidateString(filename);
 
             //reset namespace for the file
-            u.ParseJob.LastNamespace = "";
+            u.ParseJob.LocalNamespace = "l." + getRandomString();
             u.ParseJob.LastFile = filename == null ? "" : filename;
 
             //if we have no productions whatsoever
@@ -382,6 +382,10 @@ namespace DescribeParser.Visitors
             if (string.IsNullOrEmpty(u.ParseJob.LastNamespace) == false)
             {
                 tag = u.ParseJob.LastNamespace + '.' + tag;
+            }
+            else
+            {
+                tag = u.ParseJob.LocalNamespace + '.' + tag;
             }
             if (!u.Translations.Keys.Contains(tag))
             {

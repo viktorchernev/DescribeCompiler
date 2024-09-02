@@ -75,5 +75,12 @@ namespace DescribeTranspiler
             _reductionCounter = 0;
             _errorCounter = 0;
         }
+        private void softResetStatistics()
+        {
+            _characterCounter = 0;
+            _tokenCounter = 0;
+            _reductionCounter = 0;
+            _errorCounter = 0;
+        }
     }
 }

@@ -56,7 +56,7 @@ namespace DescribeTranspiler
             {
                 string filename = unfold.AllFiles[0];
                 unfold.ParseJob.LastFile = filename;
-                bool result = parseFile_MediumVerbosity(new FileInfo(filename), unfold);
+                bool result = false;//parseFile_MediumVerbosity(new FileInfo(filename), unfold);
                 if (result)
                 {
                     unfold.ParsedFiles.Add(filename);
@@ -125,7 +125,7 @@ namespace DescribeTranspiler
             {
                 string filename = unfold.AllFiles[0];
                 unfold.ParseJob.LastFile = filename;
-                bool result = parseString_MediumVerbosity(filename, dict[filename], unfold);
+                bool result = false; //parseString_MediumVerbosity(filename, dict[filename], unfold);
                 if (result)
                 {
                     unfold.ParsedFiles.Add(filename);
@@ -159,6 +159,11 @@ namespace DescribeTranspiler
 
  /**/   bool ParseFile_MediumVerbosity(FileInfo fileInfo, DescribeUnfold unfold)
         {
+            //get initial counts
+            int initialProductionsCount = unfold.Productions.Count();
+            int initialTranslationsCount = unfold.Translations.Count();
+            softResetStatistics();
+
             //initial checks
             if (!_isInitialized)
             {
@@ -276,14 +281,151 @@ namespace DescribeTranspiler
             // This when we implement statistics in the parser's visitors
             // + _tokenCounter.ToString() + " tokens in " 
             // + _reductionCounter.ToString() + " reductions.");
-            LogInfo("Those were translated to " + unfold.Productions.Count().ToString() +
-                " productions, containing " + unfold.Translations.Count().ToString() +
+            LogInfo("Those were translated to " + (unfold.Productions.Count() - initialProductionsCount).ToString() +
+                " productions, containing " + (unfold.Translations.Count() - initialTranslationsCount).ToString() +
                 " entries.");
             return true;
         }
+ /**/   bool ParseFile_MediumVerbosity(FileInfo fileInfo, out AstScriptureNode? rootNode)
+        {
+            string? filename = fileInfo.FullName;
+            softResetStatistics();
+
+            //initial checks
+            if (!_isInitialized)
+            {
+                _errorCounter++;
+                LogError("This parser isn't innitialized, and cannot be used. Create a new instance.");
+                rootNode = null;
+                return false;
+            }
+
+            LogText("Starting a parse operation on file: \"" + fileInfo.FullName + "\"");
+            if (!File.Exists(fileInfo.FullName))
+            {
+                _errorCounter++;
+                LogError("Error - the file you are trying to parse does not exist");
+                LogText("------------------------");
+                rootNode = null;
+                return false;
+            }
+            string source = "";
+            try
+            {
+                source = File.ReadAllText(fileInfo.FullName);
+                if (string.IsNullOrWhiteSpace(source))
+                {
+                    _errorCounter++;
+                    LogError("Error - the file you are trying to parse is empty");
+                    LogText("------------------------");
+                    rootNode = null;
+                    return false;
+                }
+                else if (source.Length == 0)
+                {
+                    _errorCounter++;
+                    LogError("Error - the file you are trying to parse is only white space");
+                    LogText("------------------------");
+                    rootNode = null;
+                    return false;
+                }
+                source = CurrentPreprocessor.ProcessSource(source);
+                if (source.Length == 0)
+                {
+                    _errorCounter++;
+                    LogError("Error - the preprocessor returned empty string");
+                    LogText("------------------------");
+                    rootNode = null;
+                    return false;
+                }
+                else if (string.IsNullOrWhiteSpace(source))
+                {
+                    _errorCounter++;
+                    LogError("Error - the preprocessor returned only whitespace");
+                    LogText("------------------------");
+                    rootNode = null;
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                _errorCounter++;
+                LogError("Failed to read the file contents: " + ex.Message);
+                LogText("------------------------");
+                rootNode = null;
+                return false;
+            }
+
+            //parse
+            ParserRuleContext? root = null;
+            try
+            {
+                string message = "";
+                bool result = parse_MediumVerbosity(source, out root, out message);
+
+                if (result)
+                {
+                    LogText("File parsed successfully");
+                }
+                else
+                {
+                    _errorCounter++;
+                    LogError("Failed to parse the file: " + message);
+                    LogText("------------------------");
+                    rootNode = null;
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                _errorCounter++;
+                LogError("Failed to parse the file: " + ex.Message);
+                LogText("------------------------");
+                rootNode = null;
+                return false;
+            }
+
+            //unfold
+            try
+            {
+                AstScriptureNode? scriptureNode = TranslateContext(root, filename);
+                rootNode = scriptureNode;
+                if (scriptureNode == null)
+                {
+                    _errorCounter++;
+                    LogText("Failed to Unfold the parse tree");
+                    LogText("------------------------");
+                    rootNode = null;
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                _errorCounter++;
+                LogError("Failed to Unfold the parse tree : " + ex.Message);
+                LogText("------------------------");
+                rootNode = null;
+                return false;
+            }
+
+            LogInfo("Parser red " + _characterCounter.ToString() + " characters, into "
+                + _tokenCounter.ToString() + " tokens.");
+            // This when we implement statistics in the parser's visitors
+            // + _tokenCounter.ToString() + " tokens in " 
+            // + _reductionCounter.ToString() + " reductions.");
+            LogInfo("Those were translated to an AST.");
+            return true;
+        }
+
+
  /**/   bool ParseString_MediumVerbosity(string source, DescribeUnfold unfold)
         {
             string? filename = unfold.ParseJob.LastFile;
+            softResetStatistics();
+
+            //get initial counts
+            int initialProductionsCount = unfold.Productions.Count();
+            int initialTranslationsCount = unfold.Translations.Count();
 
             //initial checks
             if (!_isInitialized)
@@ -391,8 +533,8 @@ namespace DescribeTranspiler
             // This when we implement statistics in the parser's visitors
             // + _tokenCounter.ToString() + " tokens in " 
             // + _reductionCounter.ToString() + " reductions.");
-            LogInfo("Those were translated to " + unfold.Productions.Count().ToString() +
-                " productions, containing " + unfold.Translations.Count().ToString() +
+            LogInfo("Those were translated to " + (unfold.Productions.Count() - initialProductionsCount).ToString() +
+                " productions, containing " + (unfold.Translations.Count() - initialTranslationsCount).ToString() +
                 " entries.");
 
             return true;
@@ -400,6 +542,7 @@ namespace DescribeTranspiler
  /**/   bool ParseString_MediumVerbosity(string source, IDescribeParseJob job, out AstScriptureNode? rootNode)
         {
             string? filename = job.LastFile;
+            softResetStatistics();
 
             //initial checks
             if (!_isInitialized)
@@ -522,184 +665,6 @@ namespace DescribeTranspiler
         }
 
 
-
-        private bool parseString_MediumVerbosity(string filename, string source, DescribeUnfold unfold)
-        {
-            _fileCounter++;
-            if (!_isInitialized)
-            {
-                LogError("This parser isn't innitialized, and cannot be used. Create a new instance.");
-                return false;
-            }
-
-            //LogText("------------------------");
-            LogText("Starting a parse operation on file: \"" + filename + "\"");
-            string code = null;
-            try
-            {
-                if (source.Length == 0)
-                {
-                    LogError("Error - the file you are trying to parse is empty");
-                    LogText("------------------------");
-                    return false;
-                }
-                else if (string.IsNullOrWhiteSpace(source))
-                {
-                    LogError("Error - the file you are trying to parse is only white space");
-                    LogText("------------------------");
-                    return false;
-                }
-                code = CurrentPreprocessor.ProcessSource(source);
-            }
-            catch (Exception ex)
-            {
-                LogError("Failed to read the file contents: " + ex.Message);
-                LogText("------------------------");
-                return false;
-            }
-
-            //parse
-            ParserRuleContext? root = null;
-            try
-            {
-                string message = "";
-                bool result = parse_MediumVerbosity(code, out root, out message);
-
-                if (result)
-                {
-                    LogText("File parsed successfully");
-                }
-                else
-                {
-                    LogError("Failed to parse the file: " + message);
-                    LogText("------------------------");
-                    return false;
-                }
-            }
-            catch (Exception ex)
-            {
-                LogError("Failed to parse the file: " + ex.Message);
-                LogText("------------------------");
-                return false;
-            }
-
-            //unfold
-            try
-            {
-                bool optimized = TranslateContext(unfold, root);
-                if (optimized)
-                {
-                    LogText("Parse tree unfolded successfully");
-                    LogParserInfo("Done!");
-                    LogText("------------------------");
-                    return true;
-                }
-                else
-                {
-                    LogError("Failed to Unfold the parse tree");
-                    LogText("------------------------");
-                    return false;
-                }
-            }
-            catch (Exception ex)
-            {
-                LogError("Failed to Unfold the parse tree : " + ex.Message);
-                LogText("------------------------");
-                return false;
-            }
-        }
-        private bool parseFile_MediumVerbosity(FileInfo fileInfo, DescribeUnfold unfold)
-        {
-            _fileCounter++;
-            if (!_isInitialized)
-            {
-                LogError("This parser isn't innitialized, and cannot be used. Create a new instance.");
-                return false;
-            }
-
-            //LogText("------------------------");
-            LogText("Starting a parse operation on file: \"" + fileInfo.FullName + "\"");
-            if (!File.Exists(fileInfo.FullName))
-            {
-                LogError("Error - the file you are trying to parse does not exist");
-                LogText("------------------------");
-                return false;
-            }
-            string source = "";
-            try
-            {
-                source = File.ReadAllText(fileInfo.FullName);
-                source = CurrentPreprocessor.ProcessSource(source);
-                if (source.Length == 0)
-                {
-                    LogError("Error - the file you are trying to parse is empty");
-                    LogText("------------------------");
-                    return false;
-                }
-                else if (string.IsNullOrWhiteSpace(source))
-                {
-                    LogError("Error - the file you are trying to parse is only white space");
-                    LogText("------------------------");
-                    return false;
-                }
-            }
-            catch (Exception ex)
-            {
-                LogError("Failed to read the file contents: " + ex.Message);
-                LogText("------------------------");
-                return false;
-            }
-
-            //parse
-            ParserRuleContext? root = null;
-            try
-            {
-                string message = "";
-                bool result = parse_MediumVerbosity(source, out root, out message);
-
-                if (result)
-                {
-                    LogText("File parsed successfully");
-                }
-                else
-                {
-                    LogError("Failed to parse the file: " + message);
-                    LogText("------------------------");
-                    return false;
-                }
-            }
-            catch (Exception ex)
-            {
-                LogError("Failed to parse the file: " + ex.Message);
-                LogText("------------------------");
-                return false;
-            }
-
-            //unfold
-            try
-            {
-                bool optimized = TranslateContext(unfold, root);
-                if (optimized)
-                {
-                    LogText("Parse tree unfolded successfully");
-                    LogParserInfo("Done!");
-                    LogText("------------------------");
-                    return true;
-                }
-                else
-                {
-                    LogError("Failed to Unfold the parse tree");
-                    LogText("------------------------");
-                    return false;
-                }
-            }
-            catch (Exception ex)
-            {
-                LogError("Failed to Unfold the parse tree : " + ex.Message);
-                LogText("------------------------");
-                return false;
-            }
-        }
  /**/   private bool parse_MediumVerbosity(string source, out ParserRuleContext root, out string FailMessage)
         {
             _characterCounter += source.Length;

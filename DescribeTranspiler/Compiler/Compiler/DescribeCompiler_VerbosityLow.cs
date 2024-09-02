@@ -54,7 +54,7 @@ namespace DescribeTranspiler
             {
                 string filename = unfold.AllFiles[0];
                 unfold.ParseJob.LastFile = filename;
-                bool result = parseFile_LowVerbosity(new FileInfo(filename), unfold);
+                bool result = false; //parseFile_LowVerbosity(new FileInfo(filename), unfold);
                 if (result)
                 {
                     unfold.ParsedFiles.Add(filename);
@@ -121,7 +121,7 @@ namespace DescribeTranspiler
             {
                 string filename = unfold.AllFiles[0];
                 unfold.ParseJob.LastFile = filename;
-                bool result = parseString_LowVerbosity(filename, dict[filename], unfold);
+                bool result = false; //parseString_LowVerbosity(filename, dict[filename], unfold);
                 if (result)
                 {
                     unfold.ParsedFiles.Add(filename);
@@ -155,6 +155,11 @@ namespace DescribeTranspiler
 
  /**/   bool ParseFile_LowVerbosity(FileInfo fileInfo, DescribeUnfold unfold)
         {
+            //get initial counts
+            int initialProductionsCount = unfold.Productions.Count();
+            int initialTranslationsCount = unfold.Translations.Count();
+            softResetStatistics();
+
             //initial checks
             if (!_isInitialized)
             {
@@ -261,14 +266,15 @@ namespace DescribeTranspiler
             // This when we implement statistics in the parser's visitors
             // + _tokenCounter.ToString() + " tokens in " 
             // + _reductionCounter.ToString() + " reductions.");
-            LogInfo("Those were translated to " + unfold.Productions.Count().ToString() +
-                " productions, containing " + unfold.Translations.Count().ToString() +
+            LogInfo("Those were translated to " + (unfold.Productions.Count() - initialProductionsCount).ToString() +
+                " productions, containing " + (unfold.Translations.Count() - initialTranslationsCount).ToString() +
                 " entries.");
             return true;
         }
  /**/   bool ParseFile_LowVerbosity(FileInfo fileInfo, out AstScriptureNode? rootNode)
         {
             string? filename = fileInfo.FullName;
+            softResetStatistics();
 
             //initial checks
             if (!_isInitialized)
@@ -396,6 +402,11 @@ namespace DescribeTranspiler
  /**/   bool ParseString_LowVerbosity(string source, DescribeUnfold unfold)
         {
             string? filename = unfold.ParseJob.LastFile;
+            softResetStatistics();
+
+            //get initial counts
+            int initialProductionsCount = unfold.Productions.Count();
+            int initialTranslationsCount = unfold.Translations.Count();
 
             //initial checks
             if (!_isInitialized)
@@ -506,14 +517,15 @@ namespace DescribeTranspiler
                 // This when we implement statistics in the parser's visitors
                 // + _tokenCounter.ToString() + " tokens in " 
                 // + _reductionCounter.ToString() + " reductions.");
-            LogInfo("Those were translated to " + unfold.Productions.Count().ToString() +
-                " productions, containing " + unfold.Translations.Count().ToString() +
+            LogInfo("Those were translated to " + (unfold.Productions.Count() - initialProductionsCount).ToString() +
+                " productions, containing " + (unfold.Translations.Count() - initialTranslationsCount).ToString() +
                 " entries.");
             return true;
         }
  /**/   bool ParseString_LowVerbosity(string source, IDescribeParseJob job, out AstScriptureNode? rootNode)
         {
             string? filename = job.LastFile;
+            softResetStatistics();
 
             //initial checks
             if (!_isInitialized)
@@ -642,179 +654,6 @@ namespace DescribeTranspiler
         }
 
 
-        private bool parseFile_LowVerbosity(FileInfo fileInfo, DescribeUnfold unfold)
-        {
-            _fileCounter++;
-            if (!_isInitialized)
-            {
-                LogError("Parser not innitialized.");
-                return false;
-            }
-
-            string msg = "\"" + fileInfo.FullName + "\" - ";
-            if (!File.Exists(fileInfo.FullName))
-            {
-                msg += "does not exist!";
-                LogError("msg");
-                return false;
-            }
-            string source = "";
-
-            //read source code
-            try
-            {
-                source = File.ReadAllText(fileInfo.FullName);
-                source = CurrentPreprocessor.ProcessSource(source);
-                if (source.Length == 0)
-                {
-                    msg += "file is empty!";
-                    LogError(msg);
-                    return false;
-                }
-                else if (string.IsNullOrWhiteSpace(source))
-                {
-                    msg += "file is empty!";
-                    LogError(msg);
-                    return false;
-                }
-            }
-            catch (Exception ex)
-            {
-                msg += "failed to read: " + ex.Message;
-                LogError(msg);
-                return false;
-            }
-
-            //parse
-            ParserRuleContext? root = null;
-            try
-            {
-                string message = "";
-                bool result = parse_LowVerbosity(source, out root, out message);
-                if (!result)
-                {
-                    msg += "failed to parse: " + message;
-                    LogError(msg);
-                    return false;
-                }
-            }
-            catch (Exception ex)
-            {
-                msg += "failed to parse: " + ex.Message;
-                LogError(msg);
-                return false;
-            }
-
-            //unfold
-            try
-            {
-                bool optimized = TranslateContext(unfold, root);
-                if (optimized)
-                {
-                    msg += "Ok";
-                    LogText(msg);
-                }
-                else
-                {
-                    msg += "failed to unfold tree.";
-                    LogError(msg);
-                    return false;
-                }
-                return true;
-            }
-            catch (Exception ex)
-            {
-                msg += "failed to unfold tree: " + ex.Message;
-                LogError(msg);
-                return false;
-            }
-        }
-        private bool parseString_LowVerbosity(string filename, string source, DescribeUnfold unfold)
-        {
-            _fileCounter++;
-            if (!_isInitialized)
-            {
-                LogError("Parser not innitialized.");
-                _errorCounter++;
-                return false;
-            }
-
-            string msg = "\"" + filename + "\" - ";
-            string code = null;
-            try
-            {
-                if (source.Length == 0)
-                {
-                    msg += "file is empty!";
-                    LogError(msg);
-                    _errorCounter++;
-                    return false;
-                }
-                else if (string.IsNullOrWhiteSpace(source))
-                {
-                    msg += "file is empty!";
-                    LogError(msg);
-                    _errorCounter++;
-                    return false;
-                }
-                code = CurrentPreprocessor.ProcessSource(source);
-            }
-            catch (Exception ex)
-            {
-                msg += "failed to read: " + ex.Message;
-                _errorCounter++;
-                LogError(msg);
-                return false;
-            }
-
-            //parse
-            ParserRuleContext? root = null;
-            try
-            {
-                string message = "";
-                bool result = parse_LowVerbosity(code, out root, out message);
-                if (!result)
-                {
-                    msg += "failed to parse: " + message;
-                    _errorCounter++;
-                    LogError(msg);
-                    return false;
-                }
-            }
-            catch (Exception ex)
-            {
-                msg += "failed to parse: " + ex.Message;
-                _errorCounter++;
-                LogError(msg);
-                return false;
-            }
-
-            //unfold
-            try
-            {
-                bool optimized = TranslateContext(unfold, root);
-                if (optimized)
-                {
-                    msg += "Ok";
-                    LogText(msg);
-                }
-                else
-                {
-                    msg += "failed to unfold tree.";
-                    _errorCounter++;
-                    LogError(msg);
-                    return false;
-                }
-                return true;
-            }
-            catch (Exception ex)
-            {
-                msg += "failed to unfold tree: " + ex.Message;
-                _errorCounter++;
-                LogError(msg);
-                return false;
-            }
-        }
  /**/   private bool parse_LowVerbosity(string source, out ParserRuleContext root, out string FailMessage)
         {
             _characterCounter += source.Length;

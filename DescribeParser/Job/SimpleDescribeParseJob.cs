@@ -16,6 +16,11 @@
         public string? LastNamespace { get; set; }
 
         /// <summary>
+        /// Gets or sets the current local namespace in a parse operation.
+        /// </summary>
+        public string? LocalNamespace { get; set; }
+
+        /// <summary>
         /// Gets or sets the current file in a parse operation.
         /// </summary>
         public string? LastFile { get; set; }

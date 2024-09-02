@@ -9,6 +9,7 @@ using Antlr4.Runtime;
 using DescribeParser;
 using DescribeParser.Unfold;
 using DescribeParser.Ast;
+using System.Security.Cryptography;
 
 
 namespace DescribeTranspiler
@@ -58,32 +59,97 @@ namespace DescribeTranspiler
 
 
         /// <summary>
-        /// Translate a folder of Describe source files
+        /// Translate a folder of Describe source files to an Unfold
         /// </summary>
         /// <param name="dirInfo">Represents the directory of files to be parsed</param>
         /// <param name="unfold">The unfold that will receive the data</param>
         /// <returns>true if successful, otherwise false</returns>
         public bool ParseFolder(DirectoryInfo dirInfo, ref DescribeUnfold unfold)
         {
-            _fileCounter = 0;
-            _reductionCounter = 0;
-            bool result = false;
+            LogText("Starting a 'DirectoryInfo -> Unfold' operation...");
+            LogText("STOP_ON_ERROR - " + STOP_ON_ERROR);
+            LogText("PARSE_DS_ONLY - " + PARSE_DS_ONLY);
+            LogText("PARSE_TOP_DIRECTORY_ONLY - " + PARSE_TOP_DIRECTORY_ONLY);
 
-            if (Verbosity == LogVerbosity.Low)
+            unfold.ParseJob = CurrentJob;
+
+            // Check parameters 
+            if (sourceCodes.Count == 0)
             {
-                result = ParseFolder_LowVerbosity(dirInfo, unfold);
+                LogError("no strings to parse");
+                return false;
             }
-            else if (Verbosity == LogVerbosity.Medium)
+
+            // Reset stats, as we are starting a new operation
+            if (_isUsed)
             {
-                result = ParseFolder_MediumVerbosity(dirInfo, unfold);
+                resetBase();
+                resetStatistics();
             }
-            else if (Verbosity == LogVerbosity.High)
+
+            bool opresult = true;
+            for (int i = 0; i < sourceCodes.Count; i++)
             {
-                _tokenCounter = 0;
-                _reductionCounter = 0;
-                result = ParseFolder_HighVerbosity(dirInfo, unfold);
+                string filename = sourceCodes[i].FileName;
+                unfold.ParseJob.LastFile = filename;
+                string source = sourceCodes[i].SourceText;
+                bool result = false;
+
+                // Pick an appropriate parse method, based on verbosity level
+                if (Verbosity == LogVerbosity.Low)
+                {
+                    result = ParseString_LowVerbosity(source, unfold);
+                }
+                else if (Verbosity == LogVerbosity.Medium)
+                {
+                    result = ParseString_MediumVerbosity(source, unfold);
+                }
+                else if (Verbosity == LogVerbosity.High)
+                {
+                    result = ParseString_HighVerbosity(source, unfold);
+                }
+
+                _fileCounter++;
+                if (result == true) _parsedFileCounter++;
+                else
+                {
+                    _failedFileCounter++;
+                    if (STOP_ON_ERROR)
+                    {
+                        opresult = false;
+                        break;
+                    }
+                }
             }
-            return result;
+
+            // log
+            LogInfo("All Files: " + _fileCounter.ToString() +
+                ", Succeeded: " + _parsedFileCounter.ToString() +
+                ", Failed: " + _failedFileCounter.ToString() +
+                ", Errors: " + _errorCounter.ToString());
+
+            _isUsed = true;
+            return opresult;
+
+            //_fileCounter = 0;
+            //_reductionCounter = 0;
+            //bool result = false;
+
+            //if (Verbosity == LogVerbosity.Low)
+            //{
+            //    result = ParseFolder_LowVerbosity(dirInfo, unfold);
+            //}
+            //else if (Verbosity == LogVerbosity.Medium)
+            //{
+            //    result = ParseFolder_MediumVerbosity(dirInfo, unfold);
+            //}
+            //else if (Verbosity == LogVerbosity.High)
+            //{
+            //    _tokenCounter = 0;
+            //    _reductionCounter = 0;
+            //    result = ParseFolder_HighVerbosity(dirInfo, unfold);
+            //}
+            //return result;
         }
 
         /// <summary>
@@ -113,7 +179,81 @@ namespace DescribeTranspiler
 
 
         /// <summary>
-        /// Parse multiple Describe source code string
+        /// Parse multiple Describe source code strings to an Unfold
+        /// </summary>
+        /// <param name="sourceCodes">
+        /// The list of source code strings to be parsed.
+        /// Keys are the filenames. Values are the sources.
+        /// </param>
+        /// <param name="unfold">The unfold that will receive the data</param>
+        /// <returns>true if successful, otherwise false</returns>
+        public bool ParseStrings(List<SourceCode> sourceCodes, ref DescribeUnfold unfold)
+        {
+            LogText("Starting a 'String[] -> Unfold' operation...");
+            LogText("STOP_ON_ERROR - " + STOP_ON_ERROR);
+            unfold.ParseJob = CurrentJob;
+
+            // Check parameters 
+            if (sourceCodes.Count == 0)
+            {
+                LogError("no strings to parse");
+                return false;
+            }
+
+            // Reset stats, as we are starting a new operation
+            if (_isUsed)
+            {
+                resetBase();
+                resetStatistics();
+            }
+
+            bool opresult = true;
+            for (int i = 0; i < sourceCodes.Count; i++)
+            {
+                string filename = sourceCodes[i].FileName;
+                unfold.ParseJob.LastFile = filename;
+                string source = sourceCodes[i].SourceText;
+                bool result = false;
+
+                // Pick an appropriate parse method, based on verbosity level
+                if (Verbosity == LogVerbosity.Low)
+                {
+                    result = ParseString_LowVerbosity(source, unfold);
+                }
+                else if (Verbosity == LogVerbosity.Medium)
+                {
+                    result = ParseString_MediumVerbosity(source, unfold);
+                }
+                else if (Verbosity == LogVerbosity.High)
+                {
+                    result = ParseString_HighVerbosity(source, unfold);
+                }
+
+                _fileCounter++;
+                if (result == true) _parsedFileCounter++;
+                else
+                {
+                    _failedFileCounter++;
+                    if(STOP_ON_ERROR)
+                    {
+                        opresult = false;
+                        break;
+                    }
+                }
+            }
+
+            // log
+            LogInfo("All Files: " + _fileCounter.ToString() +
+                ", Succeeded: " + _parsedFileCounter.ToString() +
+                ", Failed: " + _failedFileCounter.ToString() +
+                ", Errors: " + _errorCounter.ToString());
+
+            _isUsed = true;
+            return opresult;
+        }
+
+        /// <summary>
+        /// Parse multiple Describe source code strings to an Unfold
         /// </summary>
         /// <param name="nameCodeList">
         /// The list of source code strings to be parsed.
@@ -121,52 +261,385 @@ namespace DescribeTranspiler
         /// </param>
         /// <param name="unfold">The unfold that will receive the data</param>
         /// <returns>true if successful, otherwise false</returns>
-        public bool ParseStrings(List<KeyValuePair<string, string>> nameCodeList, ref DescribeUnfold unfold)
+        public bool ParseStrings(List<string> sourceCodes, ref DescribeUnfold unfold)
         {
-            _fileCounter = 0;
-            _reductionCounter = 0;
-            bool result = false;
+            LogText("Starting a 'String[] -> Unfold' operation...");
+            LogText("STOP_ON_ERROR - " + STOP_ON_ERROR);
+            unfold.ParseJob = CurrentJob;
 
-            if (Verbosity == LogVerbosity.Low)
+            // Check parameters 
+            if (sourceCodes.Count == 0)
             {
-                result = ParseMultiString_LowVerbosity(nameCodeList, unfold);
+                LogError("no strings to parse");
+                return false;
             }
-            else if (Verbosity == LogVerbosity.Medium)
+
+            // Reset stats, as we are starting a new operation
+            if (_isUsed)
             {
-                result = ParseMultiString_MediumVerbosity(nameCodeList, unfold);
+                resetBase();
+                resetStatistics();
             }
-            else if (Verbosity == LogVerbosity.High)
+
+            bool opresult = true;
+            for (int i = 0; i < sourceCodes.Count; i++)
             {
-                _tokenCounter = 0;
-                _reductionCounter = 0;
-                result = ParseMultiString_HighVerbosity(nameCodeList, unfold);
+                string filename = _createMD5(sourceCodes[i], 16);
+                unfold.ParseJob.LastFile = filename;
+                string source = sourceCodes[i];
+                bool result = false;
+
+                // Pick an appropriate parse method, based on verbosity level
+                if (Verbosity == LogVerbosity.Low)
+                {
+                    result = ParseString_LowVerbosity(source, unfold);
+                }
+                else if (Verbosity == LogVerbosity.Medium)
+                {
+                    result = ParseString_MediumVerbosity(source, unfold);
+                }
+                else if (Verbosity == LogVerbosity.High)
+                {
+                    result = ParseString_HighVerbosity(source, unfold);
+                }
+
+                _fileCounter++;
+                if (result == true) _parsedFileCounter++;
+                else
+                {
+                    _failedFileCounter++;
+                    if (STOP_ON_ERROR)
+                    {
+                        opresult = false;
+                        break;
+                    }
+                }
             }
-            return result;
+
+            // log
+            LogInfo("All Files: " + _fileCounter.ToString() +
+                ", Succeeded: " + _parsedFileCounter.ToString() +
+                ", Failed: " + _failedFileCounter.ToString() +
+                ", Errors: " + _errorCounter.ToString());
+
+            _isUsed = true;
+            return opresult;
         }
 
         /// <summary>
-        /// 
+        /// Parse multiple Describe source code strings to multiple Unfolds.
+        /// This is basically the same as running ParseString multiple times.
         /// </summary>
-        /// <param name="nameCodeList"></param>
-        /// <param name="unfolds"></param>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
-        public bool ParseStrings(List<KeyValuePair<string, string>> nameCodeList, ref List<DescribeUnfold> unfolds)
+        /// <param name="sourceCodes">The list of source codes to be parsed.</param>
+        /// <param name="unfolds">The unfold that will receive the data.</param>
+        /// <returns>true if successful, otherwise false</returns>
+        public bool ParseStrings(List<SourceCode> sourceCodes, out List<DescribeUnfold> unfolds)
         {
-            throw new NotImplementedException("Not implemented yet");
+            LogText("Starting a 'String[] -> Unfold[]' operation...");
+            LogText("STOP_ON_ERROR - " + STOP_ON_ERROR);
+            unfolds = new List<DescribeUnfold>();
+
+            // Check parameters 
+            if (sourceCodes.Count == 0)
+            {
+                LogError("no strings to parse");
+                return false;
+            }
+
+            // Reset stats, as we are starting a new operation
+            if (_isUsed)
+            {
+                resetBase();
+                resetStatistics();
+            }
+
+            bool opresult = true;
+            for (int i = 0; i < sourceCodes.Count; i++)
+            {
+                DescribeUnfold unfold = new DescribeUnfold();
+                unfold.ParseJob = CurrentJob;
+                string filename = sourceCodes[i].FileName;
+                unfold.ParseJob.LastFile = filename;
+                string source = sourceCodes[i].SourceText;
+                bool result = false;
+
+                // Pick an appropriate parse method, based on verbosity level
+                if (Verbosity == LogVerbosity.Low)
+                {
+                    result = ParseString_LowVerbosity(source, unfold);
+                }
+                else if (Verbosity == LogVerbosity.Medium)
+                {
+                    result = ParseString_MediumVerbosity(source, unfold);
+                }
+                else if (Verbosity == LogVerbosity.High)
+                {
+                    result = ParseString_HighVerbosity(source, unfold);
+                }
+
+                _fileCounter++;
+                if (result == true)
+                {
+                    unfolds.Add(unfold);
+                    _parsedFileCounter++;
+                }
+                else
+                {
+                    _failedFileCounter++;
+                    if (STOP_ON_ERROR)
+                    {
+                        opresult = false;
+                        break;
+                    }
+                }
+            }
+
+            // log
+            LogInfo("All Files: " + _fileCounter.ToString() +
+                ", Succeeded: " + _parsedFileCounter.ToString() +
+                ", Failed: " + _failedFileCounter.ToString() +
+                ", Errors: " + _errorCounter.ToString());
+
+            _isUsed = true;
+            return opresult;
         }
 
         /// <summary>
-        /// 
+        /// Parse multiple Describe source code strings to multiple Unfolds.
+        /// This is basically the same as running ParseString multiple times.
         /// </summary>
-        /// <param name="nameCodeList"></param>
-        /// <param name="roots"></param>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
-        public bool ParseStrings(List<KeyValuePair<string, string>> nameCodeList, out List<AstScriptureNode> roots)
+        /// <param name="sourceCodes">The list of source codes to be parsed.</param>
+        /// <param name="unfolds">The unfold that will receive the data.</param>
+        /// <returns>true if successful, otherwise false</returns>
+        public bool ParseStrings(List<string> sourceCodes, out List<DescribeUnfold> unfolds)
         {
-            throw new NotImplementedException("Not implemented yet");
+            LogText("Starting a 'String[] -> Unfold[]' operation...");
+            LogText("STOP_ON_ERROR - " + STOP_ON_ERROR);
+            unfolds = new List<DescribeUnfold>();
+
+            // Check parameters 
+            if (sourceCodes.Count == 0)
+            {
+                LogError("no strings to parse");
+                return false;
+            }
+
+            // Reset stats, as we are starting a new operation
+            if (_isUsed)
+            {
+                resetBase();
+                resetStatistics();
+            }
+
+            bool opresult = true;
+            for (int i = 0; i < sourceCodes.Count; i++)
+            {
+                DescribeUnfold unfold = new DescribeUnfold();
+                unfold.ParseJob = CurrentJob;
+                string filename = _createMD5(sourceCodes[i], 16);
+                unfold.ParseJob.LastFile = filename;
+                string source = sourceCodes[i];
+                bool result = false;
+
+                // Pick an appropriate parse method, based on verbosity level
+                if (Verbosity == LogVerbosity.Low)
+                {
+                    result = ParseString_LowVerbosity(source, unfold);
+                }
+                else if (Verbosity == LogVerbosity.Medium)
+                {
+                    result = ParseString_MediumVerbosity(source, unfold);
+                }
+                else if (Verbosity == LogVerbosity.High)
+                {
+                    result = ParseString_HighVerbosity(source, unfold);
+                }
+
+                _fileCounter++;
+                if (result == true)
+                {
+                    unfolds.Add(unfold);
+                    _parsedFileCounter++;
+                }
+                else
+                {
+                    _failedFileCounter++;
+                    if (STOP_ON_ERROR)
+                    {
+                        opresult = false;
+                        break;
+                    }
+                }
+            }
+
+            // log
+            LogInfo("All Files: " + _fileCounter.ToString() +
+                ", Succeeded: " + _parsedFileCounter.ToString() +
+                ", Failed: " + _failedFileCounter.ToString() +
+                ", Errors: " + _errorCounter.ToString());
+
+            _isUsed = true;
+            return opresult;
         }
+
+        /// <summary>
+        /// Parse multiple Describe source code strings to multiple Unfolds.
+        /// This is basically the same as running ParseString multiple times.
+        /// </summary>
+        /// <param name="sourceCodes">The list of source codes to be parsed.</param>
+        /// <param name="roots">The list of AstScriptureNode's that will receive the data.</param>
+        /// <returns>true if successful, otherwise false</returns>
+        public bool ParseStrings(List<SourceCode> sourceCodes, out List<AstScriptureNode> roots)
+        {
+            LogText("Starting a 'String[] -> Unfold[]' operation...");
+            LogText("STOP_ON_ERROR - " + STOP_ON_ERROR);
+            roots = new List<AstScriptureNode>();
+
+            // Check parameters 
+            if (sourceCodes.Count == 0)
+            {
+                LogError("no strings to parse");
+                return false;
+            }
+
+            // Reset stats, as we are starting a new operation
+            if (_isUsed)
+            {
+                resetBase();
+                resetStatistics();
+            }
+
+            bool opresult = true;
+            for (int i = 0; i < sourceCodes.Count; i++)
+            {
+                string filename = sourceCodes[i].FileName;
+                string source = sourceCodes[i].SourceText;
+                bool result = false;
+
+                AstScriptureNode? scripture = null;
+                SimpleParseJob job = new SimpleParseJob();
+                job.LastFile = filename;
+
+                // Pick an appropriate parse method, based on verbosity level
+                if (Verbosity == LogVerbosity.Low)
+                {
+                    result = ParseString_LowVerbosity(source, job, out scripture);
+                }
+                else if (Verbosity == LogVerbosity.Medium)
+                {
+                    result = ParseString_MediumVerbosity(source, job, out scripture);
+                }
+                else if (Verbosity == LogVerbosity.High)
+                {
+                    result = ParseString_HighVerbosity(source, job, out scripture);
+                }
+
+                _fileCounter++;
+                if (result == true)
+                {
+                    roots.Add(scripture!);
+                    _parsedFileCounter++;
+                }
+                else
+                {
+                    _failedFileCounter++;
+                    if (STOP_ON_ERROR)
+                    {
+                        opresult = false;
+                        break;
+                    }
+                }
+            }
+
+            // log
+            LogInfo("All Files: " + _fileCounter.ToString() +
+                ", Succeeded: " + _parsedFileCounter.ToString() +
+                ", Failed: " + _failedFileCounter.ToString() +
+                ", Errors: " + _errorCounter.ToString());
+
+            _isUsed = true;
+            return opresult;
+        }
+
+        /// <summary>
+        /// Parse multiple Describe source code strings to multiple Unfolds.
+        /// This is basically the same as running ParseString multiple times.
+        /// </summary>
+        /// <param name="sourceCodes">The list of source codes to be parsed.</param>
+        /// <param name="roots">The list of AstScriptureNode's that will receive the data.</param>
+        /// <returns>true if successful, otherwise false</returns>
+        public bool ParseStrings(List<string> sourceCodes, out List<AstScriptureNode> roots)
+        {
+            LogText("Starting a 'String[] -> Unfold[]' operation...");
+            LogText("STOP_ON_ERROR - " + STOP_ON_ERROR);
+            roots = new List<AstScriptureNode>();
+
+            // Check parameters 
+            if (sourceCodes.Count == 0)
+            {
+                LogError("no strings to parse");
+                return false;
+            }
+
+            // Reset stats, as we are starting a new operation
+            if (_isUsed)
+            {
+                resetBase();
+                resetStatistics();
+            }
+
+            bool opresult = true;
+            for (int i = 0; i < sourceCodes.Count; i++)
+            {
+                string filename = _createMD5(sourceCodes[i], 16);
+                string source = sourceCodes[i];
+                bool result = false;
+
+                AstScriptureNode? scripture = null;
+                SimpleParseJob job = new SimpleParseJob();
+                job.LastFile = filename;
+
+                // Pick an appropriate parse method, based on verbosity level
+                if (Verbosity == LogVerbosity.Low)
+                {
+                    result = ParseString_LowVerbosity(source, job, out scripture);
+                }
+                else if (Verbosity == LogVerbosity.Medium)
+                {
+                    result = ParseString_MediumVerbosity(source, job, out scripture);
+                }
+                else if (Verbosity == LogVerbosity.High)
+                {
+                    result = ParseString_HighVerbosity(source, job, out scripture);
+                }
+
+                _fileCounter++;
+                if (result == true)
+                {
+                    roots.Add(scripture!);
+                    _parsedFileCounter++;
+                }
+                else
+                {
+                    _failedFileCounter++;
+                    if (STOP_ON_ERROR)
+                    {
+                        opresult = false;
+                        break;
+                    }
+                }
+            }
+
+            // log
+            LogInfo("All Files: " + _fileCounter.ToString() +
+                ", Succeeded: " + _parsedFileCounter.ToString() +
+                ", Failed: " + _failedFileCounter.ToString() +
+                ", Errors: " + _errorCounter.ToString());
+
+            _isUsed = true;
+            return opresult;
+        }
+
 
 
 
@@ -245,13 +718,16 @@ namespace DescribeTranspiler
             }
             else if (Verbosity == LogVerbosity.Medium)
             {
-                result = ParseFile_LowVerbosity(fileInfo, out root);
-                //result = ParseFile_MediumVerbosity(fileInfo, out root);
+                result = ParseFile_MediumVerbosity(fileInfo, out root);
             }
             else if (Verbosity == LogVerbosity.High)
             {
-                result = ParseFile_LowVerbosity(fileInfo, out root);
-                //result = ParseFile_HighVerbosity(fileInfo, out root);
+                result = ParseFile_HighVerbosity(fileInfo, out root);
+            }
+            else
+            {
+                result = false;
+                root = null;
             }
 
             // Set stats
@@ -266,7 +742,6 @@ namespace DescribeTranspiler
                 ", Failed: " + _failedFileCounter.ToString() +
                 ", Errors: " + _errorCounter.ToString());
 
-            root = null;
             return result;
         }
 
@@ -373,6 +848,28 @@ namespace DescribeTranspiler
                 ", Errors: " + _errorCounter.ToString());
 
             return result;
+        }
+
+
+
+        private string _createMD5(string input, int length)
+        {
+            using (MD5 md5 = MD5.Create())
+            {
+                byte[] inputBytes = Encoding.ASCII.GetBytes(input);
+                byte[] hashBytes = md5.ComputeHash(inputBytes);
+
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < hashBytes.Length; i++)
+                {
+                    sb.Append(hashBytes[i].ToString("X2"));
+                }
+                string hash = sb.ToString();
+
+                if (length < 4 || length > 32) length = 16;
+                string shortHash = hash.Substring(0, length);
+                return shortHash;
+            }
         }
     }
 }

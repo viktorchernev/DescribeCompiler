@@ -88,7 +88,7 @@ namespace DescribeParser.Visitors
             Validators.ValidateString(filename);
 
             //reset namespace for the file
-            u.ParseJob.LastNamespace = "";
+            u.ParseJob.LocalNamespace = "l." + getRandomString();
             u.ParseJob.LastFile = filename == null ? "" : filename;
 
             //if we have no productions whatsoever
@@ -455,17 +455,14 @@ namespace DescribeParser.Visitors
             text = text.Trim();
 
             //tag
-            if (tag == "")
+            if (tag == "") tag = getRandomString();
+            if (tag[0] == '.' && string.IsNullOrEmpty(u.ParseJob.LastNamespace) == false)
             {
-                tag = getRandomString();
-                if (string.IsNullOrEmpty(u.ParseJob.LastNamespace) == false)
-                {
-                    tag = u.ParseJob.LastNamespace + '.' + tag;
-                }
+                tag = u.ParseJob.LastNamespace + '.' + tag;
             }
-            else if (tag[0] == '.' && string.IsNullOrEmpty(u.ParseJob.LastNamespace) == false)
+            else
             {
-                tag = u.ParseJob.LastNamespace + tag;
+                tag = u.ParseJob.LocalNamespace + '.' + tag;
             }
             if (!u.Translations.Keys.Contains(tag))
             {
