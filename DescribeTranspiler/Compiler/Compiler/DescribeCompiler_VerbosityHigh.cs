@@ -8,157 +8,7 @@ namespace DescribeTranspiler
 {
     public partial class DescribeCompiler
     {
-        bool ParseFolder_HighVerbosity(DirectoryInfo dirInfo, DescribeUnfold unfold)
-        {
-            //initial checks
-            if (!_isInitialized)
-            {
-                LogError("This parser isn't innitialized, and cannot be used. Create a new instance.");
-                return false;
-            }
-            LogText("------------------------");
-            LogText("Starting a parse operation on folder: \"" + dirInfo.FullName + "\"");
-            if (!Directory.Exists(dirInfo.FullName))
-            {
-                LogError("Error - the directory you are trying to parse does not exist");
-                LogText("------------------------");
-                return false;
-            }
-
-            //fetch files
-            try
-            {
-                SearchOption searchOption = SearchOption.AllDirectories;
-                if (PARSE_TOP_DIRECTORY_ONLY) searchOption = SearchOption.TopDirectoryOnly;
-
-                string searchMask = "*.*";
-                if (PARSE_DS_ONLY) searchMask = "*.ds";
-
-                //unfold.InitialDir = dirInfo.FullName;
-                unfold.AllFiles = Directory.GetFiles(dirInfo.FullName, searchMask, searchOption).ToList();
-                if (unfold.AllFiles.Count() == 0)
-                {
-                    LogError("Error - the directory you are trying to parse contains no files that fit the criteria");
-                    LogText("------------------------");
-                    return false;
-                }
-                LogInfo("Fetched " + unfold.AllFiles.Count() + " files");
-            }
-            catch (Exception ex)
-            {
-                LogError("Failed to read the file contents: " + ex.Message);
-                LogText("------------------------");
-                return false;
-            }
-
-            //parse files
-            while (unfold.AllFiles.Count() > 0)
-            {
-                string filename = unfold.AllFiles[0];
-                unfold.ParseJob.LastFile = filename;
-                bool result = false;//parseFile_HighVerbosity(new FileInfo(filename), unfold);
-                if (result)
-                {
-                    unfold.ParsedFiles.Add(filename);
-                    unfold.AllFiles.RemoveAt(0);
-                }
-                else
-                {
-                    unfold.FailedFiles.Add(filename);
-                    if (STOP_ON_ERROR) return false;
-                    else
-                    {
-                        unfold.AllFiles.RemoveAt(0);
-                    }
-                }
-            }
-
-            LogParserInfo("Done!");
-            LogText("------------------------");
-
-            LogInfo(_fileCounter.ToString() + " files parsed.");
-            LogInfo("Parser red " + _tokenCounter.ToString() +
-                " tokens in " + _reductionCounter.ToString() +
-                " reductions.");
-            LogInfo("Those were translated to " + unfold.Productions.Count().ToString() +
-                " productions, containing " + unfold.Translations.Count().ToString() +
-                " entries.");
-            return true;
-        }
-        bool ParseMultiString_HighVerbosity(List<KeyValuePair<string, string>> nameCodeList, DescribeUnfold unfold)
-        {
-            //initial checks
-            if (!_isInitialized)
-            {
-                LogError("This parser isn't innitialized, and cannot be used. Create a new instance.");
-                return false;
-            }
-            LogText("------------------------");
-            LogText("Starting a parse operation on multiple strings");
-
-
-            //fetch files
-            Dictionary<string, string> dict = new Dictionary<string, string>();
-            try
-            {
-                if (nameCodeList.Count == 0)
-                {
-                    LogError("Error - the source code list you are trying to parse contains no source codes");
-                    LogText("------------------------");
-                    return false;
-                }
-                for (int i = 0; i < nameCodeList.Count; i++)
-                {
-                    unfold.AllFiles.Add(nameCodeList[i].Key);
-                    dict.Add(nameCodeList[i].Key, nameCodeList[i].Value);
-                }
-                LogInfo("Fetched " + unfold.AllFiles.Count() + " files");
-            }
-            catch (Exception ex)
-            {
-                LogError("Failed to read the file names: " + ex.Message);
-                LogText("------------------------");
-                return false;
-            }
-
-            //parse files
-            while (unfold.AllFiles.Count() > 0)
-            {
-                string filename = unfold.AllFiles[0];
-                unfold.ParseJob.LastFile = filename;
-                bool result = false; //parseString_HighVerbosity(filename, dict[filename], unfold);
-                if (result)
-                {
-                    unfold.ParsedFiles.Add(filename);
-                    unfold.AllFiles.RemoveAt(0);
-                }
-                else
-                {
-                    unfold.FailedFiles.Add(filename);
-                    if (STOP_ON_ERROR) return false;
-                    else
-                    {
-                        unfold.AllFiles.RemoveAt(0);
-                    }
-                }
-            }
-
-            //log result
-            LogParserInfo("Done!");
-            LogText("------------------------");
-            LogInfo(_fileCounter.ToString() + " files parsed.");
-            LogInfo("Parser red " + _tokenCounter.ToString() +
-                " tokens in " + _reductionCounter.ToString() +
-                " reductions.");
-            LogInfo("Those were translated to " + unfold.Productions.Count().ToString() +
-                " productions, containing " + unfold.Translations.Count().ToString() +
-                " entries.");
-            return true;
-        }
-
-
-
- /**/   bool ParseFile_HighVerbosity(FileInfo fileInfo, DescribeUnfold unfold)
+        bool ParseFile_HighVerbosity(FileInfo fileInfo, DescribeUnfold unfold)
         {
             //get initial counts
             int initialProductionsCount = unfold.Productions.Count();
@@ -291,7 +141,7 @@ namespace DescribeTranspiler
                 " entries.");
             return true;
         }
- /**/   bool ParseFile_HighVerbosity(FileInfo fileInfo, out AstScriptureNode? rootNode)
+        bool ParseFile_HighVerbosity(FileInfo fileInfo, out AstScriptureNode? rootNode)
         {
             string? filename = fileInfo.FullName;
             softResetStatistics();
@@ -427,7 +277,7 @@ namespace DescribeTranspiler
         }
 
 
- /**/   bool ParseString_HighVerbosity(string source, DescribeUnfold unfold)
+        bool ParseString_HighVerbosity(string source, DescribeUnfold unfold)
         {
             string? filename = unfold.ParseJob.LastFile;
             softResetStatistics();
@@ -550,7 +400,7 @@ namespace DescribeTranspiler
 
             return true;
         }
- /**/   bool ParseString_HighVerbosity(string source, IDescribeParseJob job, out AstScriptureNode? rootNode)
+        bool ParseString_HighVerbosity(string source, IDescribeParseJob job, out AstScriptureNode? rootNode)
         {
             string? filename = job.LastFile;
             softResetStatistics();
@@ -678,7 +528,7 @@ namespace DescribeTranspiler
         }
 
 
- /**/   private bool parse_HighVerbosity(string source, out ParserRuleContext root, out string FailMessage)
+        private bool parse_HighVerbosity(string source, out ParserRuleContext root, out string FailMessage)
         {
             _characterCounter += source.Length;
             switch (LanguageVersion)
@@ -702,7 +552,7 @@ namespace DescribeTranspiler
                     return false;
             }
         }
- /**/   private bool parse_HighVerbosity06(string source, out ParserRuleContext root, out string FailMessage)
+        private bool parse_HighVerbosity06(string source, out ParserRuleContext root, out string FailMessage)
         {
             FailMessage = "";
             try
@@ -742,7 +592,7 @@ namespace DescribeTranspiler
                 return false;
             }
         }
- /**/   private bool parse_HighVerbosity07(string source, out ParserRuleContext root, out string FailMessage)
+        private bool parse_HighVerbosity07(string source, out ParserRuleContext root, out string FailMessage)
         {
             FailMessage = "";
             try
@@ -782,7 +632,7 @@ namespace DescribeTranspiler
                 return false;
             }
         }
- /**/   private bool parse_HighVerbosity08(string source, out ParserRuleContext root, out string FailMessage)
+        private bool parse_HighVerbosity08(string source, out ParserRuleContext root, out string FailMessage)
         {
             FailMessage = "";
             try
@@ -822,7 +672,7 @@ namespace DescribeTranspiler
                 return false;
             }
         }
- /**/   private bool parse_HighVerbosity09(string source, out ParserRuleContext root, out string FailMessage)
+        private bool parse_HighVerbosity09(string source, out ParserRuleContext root, out string FailMessage)
         {
             FailMessage = "";
             try
@@ -862,7 +712,7 @@ namespace DescribeTranspiler
                 return false;
             }
         }
- /**/   private bool parse_HighVerbosity10(string source, out ParserRuleContext root, out string FailMessage)
+        private bool parse_HighVerbosity10(string source, out ParserRuleContext root, out string FailMessage)
         {
             FailMessage = "";
             try
@@ -902,7 +752,7 @@ namespace DescribeTranspiler
                 return false;
             }
         }
- /**/   private bool parse_HighVerbosity11(string source, out ParserRuleContext root, out string FailMessage)
+        private bool parse_HighVerbosity11(string source, out ParserRuleContext root, out string FailMessage)
         {
             FailMessage = "";
             try

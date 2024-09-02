@@ -66,7 +66,8 @@ namespace DescribeTranspiler
         /// <returns>true if successful, otherwise false</returns>
         public bool ParseFolder(DirectoryInfo dirInfo, ref DescribeUnfold unfold)
         {
-            LogText("Starting a 'DirectoryInfo -> Unfold' operation...");
+            LogText("Starting a 'Directory -> Unfold' operation...");
+            LogText("\"" + dirInfo.FullName + "\"");
             LogText("STOP_ON_ERROR - " + STOP_ON_ERROR);
             LogText("PARSE_DS_ONLY - " + PARSE_DS_ONLY);
             LogText("PARSE_TOP_DIRECTORY_ONLY - " + PARSE_TOP_DIRECTORY_ONLY);
@@ -74,9 +75,33 @@ namespace DescribeTranspiler
             unfold.ParseJob = CurrentJob;
 
             // Check parameters 
-            if (sourceCodes.Count == 0)
+            if (!Directory.Exists(dirInfo.FullName))
             {
-                LogError("no strings to parse");
+                LogError("Directory does not exist!");
+                return false;
+            }
+
+            //fetch files
+            List<string> sourceFiles;
+            try
+            {
+                SearchOption searchOption = SearchOption.AllDirectories;
+                if (PARSE_TOP_DIRECTORY_ONLY) searchOption = SearchOption.TopDirectoryOnly;
+
+                string searchMask = "*.*";
+                if (PARSE_DS_ONLY) searchMask = "*.ds";
+
+                //unfold.InitialDir = dirInfo.FullName;
+                sourceFiles = Directory.GetFiles(dirInfo.FullName, searchMask, searchOption).ToList();
+                if (unfold.AllFiles.Count() == 0)
+                {
+                    LogError("Directory is empty");
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                LogError("Failed to read the file contents of the directory: " + ex.Message);
                 return false;
             }
 
@@ -88,25 +113,24 @@ namespace DescribeTranspiler
             }
 
             bool opresult = true;
-            for (int i = 0; i < sourceCodes.Count; i++)
+            for (int i = 0; i < sourceFiles.Count; i++)
             {
-                string filename = sourceCodes[i].FileName;
-                unfold.ParseJob.LastFile = filename;
-                string source = sourceCodes[i].SourceText;
+                FileInfo file = new FileInfo(sourceFiles[i]);
+                unfold.ParseJob.LastFile = sourceFiles[i];
                 bool result = false;
 
                 // Pick an appropriate parse method, based on verbosity level
                 if (Verbosity == LogVerbosity.Low)
                 {
-                    result = ParseString_LowVerbosity(source, unfold);
+                    result = ParseFile_LowVerbosity(file, unfold);
                 }
                 else if (Verbosity == LogVerbosity.Medium)
                 {
-                    result = ParseString_MediumVerbosity(source, unfold);
+                    result = ParseFile_MediumVerbosity(file, unfold);
                 }
                 else if (Verbosity == LogVerbosity.High)
                 {
-                    result = ParseString_HighVerbosity(source, unfold);
+                    result = ParseFile_HighVerbosity(file, unfold);
                 }
 
                 _fileCounter++;
@@ -130,50 +154,210 @@ namespace DescribeTranspiler
 
             _isUsed = true;
             return opresult;
-
-            //_fileCounter = 0;
-            //_reductionCounter = 0;
-            //bool result = false;
-
-            //if (Verbosity == LogVerbosity.Low)
-            //{
-            //    result = ParseFolder_LowVerbosity(dirInfo, unfold);
-            //}
-            //else if (Verbosity == LogVerbosity.Medium)
-            //{
-            //    result = ParseFolder_MediumVerbosity(dirInfo, unfold);
-            //}
-            //else if (Verbosity == LogVerbosity.High)
-            //{
-            //    _tokenCounter = 0;
-            //    _reductionCounter = 0;
-            //    result = ParseFolder_HighVerbosity(dirInfo, unfold);
-            //}
-            //return result;
         }
 
         /// <summary>
-        /// 
+        /// Translate a folder of Describe source files to a list of Unfolds
         /// </summary>
-        /// <param name="dirInfo"></param>
-        /// <param name="unfolds"></param>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
-        public bool ParseFolder(DirectoryInfo dirInfo, ref List<DescribeUnfold> unfolds)
+        /// <param name="dirInfo">Represents the directory of files to be parsed</param>
+        /// <param name="unfolds">The unfold that will receive the data</param>
+        /// <returns>true if successful, otherwise false</returns>
+        public bool ParseFolder(DirectoryInfo dirInfo, out List<DescribeUnfold> unfolds)
         {
-            throw new NotImplementedException("Not implemented yet");
+            LogText("Starting a 'Directory -> Unfold' operation...");
+            LogText("\"" + dirInfo.FullName + "\"");
+            LogText("STOP_ON_ERROR - " + STOP_ON_ERROR);
+            LogText("PARSE_DS_ONLY - " + PARSE_DS_ONLY);
+            LogText("PARSE_TOP_DIRECTORY_ONLY - " + PARSE_TOP_DIRECTORY_ONLY);
+            unfolds = new List<DescribeUnfold>();
+
+            // Check parameters 
+            if (!Directory.Exists(dirInfo.FullName))
+            {
+                LogError("Directory does not exist!");
+                return false;
+            }
+
+            //fetch files
+            List<string> sourceFiles;
+            try
+            {
+                SearchOption searchOption = SearchOption.AllDirectories;
+                if (PARSE_TOP_DIRECTORY_ONLY) searchOption = SearchOption.TopDirectoryOnly;
+
+                string searchMask = "*.*";
+                if (PARSE_DS_ONLY) searchMask = "*.ds";
+
+                //unfold.InitialDir = dirInfo.FullName;
+                sourceFiles = Directory.GetFiles(dirInfo.FullName, searchMask, searchOption).ToList();
+                if (sourceFiles.Count() == 0)
+                {
+                    LogError("Directory is empty");
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                LogError("Failed to read the file contents of the directory: " + ex.Message);
+                return false;
+            }
+
+            // Reset stats, as we are starting a new operation
+            if (_isUsed)
+            {
+                resetBase();
+                resetStatistics();
+            }
+
+            bool opresult = true;
+            for (int i = 0; i < sourceFiles.Count; i++)
+            {
+                DescribeUnfold unfold = new DescribeUnfold();
+                unfold.ParseJob = CurrentJob;
+                unfold.ParseJob.LastFile = sourceFiles[i];
+                FileInfo file = new FileInfo(sourceFiles[i]);
+                bool result = false;
+
+                // Pick an appropriate parse method, based on verbosity level
+                if (Verbosity == LogVerbosity.Low)
+                {
+                    result = ParseFile_LowVerbosity(file, unfold);
+                }
+                else if (Verbosity == LogVerbosity.Medium)
+                {
+                    result = ParseFile_MediumVerbosity(file, unfold);
+                }
+                else if (Verbosity == LogVerbosity.High)
+                {
+                    result = ParseFile_HighVerbosity(file, unfold);
+                }
+
+                _fileCounter++;
+                if (result == true)
+                {
+                    unfolds.Add(unfold);
+                    _parsedFileCounter++;
+                }
+                else
+                {
+                    _failedFileCounter++;
+                    if (STOP_ON_ERROR)
+                    {
+                        opresult = false;
+                        break;
+                    }
+                }
+            }
+
+            // log
+            LogInfo("All Files: " + _fileCounter.ToString() +
+                ", Succeeded: " + _parsedFileCounter.ToString() +
+                ", Failed: " + _failedFileCounter.ToString() +
+                ", Errors: " + _errorCounter.ToString());
+
+            _isUsed = true;
+            return opresult;
         }
-        
+
         /// <summary>
-        /// 
+        /// Translate a folder of Describe source files to a list of AstScriptureNode
         /// </summary>
-        /// <param name="dirInfo"></param>
-        /// <param name="roots"></param>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
+        /// <param name="dirInfo">Represents the directory of files to be parsed</param>
+        /// <param name="roots">The AstScriptureNode list that will receive the data</param>
+        /// <returns>true if successful, otherwise false</returns>
         public bool ParseFolder(DirectoryInfo dirInfo, out List<AstScriptureNode> roots)
         {
-            throw new NotImplementedException("Not implemented yet");
+            LogText("Starting a 'Directory -> Unfold' operation...");
+            LogText("\"" + dirInfo.FullName + "\"");
+            LogText("STOP_ON_ERROR - " + STOP_ON_ERROR);
+            LogText("PARSE_DS_ONLY - " + PARSE_DS_ONLY);
+            LogText("PARSE_TOP_DIRECTORY_ONLY - " + PARSE_TOP_DIRECTORY_ONLY);
+            roots = new List<AstScriptureNode>();
+
+            // Check parameters 
+            if (!Directory.Exists(dirInfo.FullName))
+            {
+                LogError("Directory does not exist!");
+                return false;
+            }
+
+            //fetch files
+            List<string> sourceFiles;
+            try
+            {
+                SearchOption searchOption = SearchOption.AllDirectories;
+                if (PARSE_TOP_DIRECTORY_ONLY) searchOption = SearchOption.TopDirectoryOnly;
+
+                string searchMask = "*.*";
+                if (PARSE_DS_ONLY) searchMask = "*.ds";
+
+                //unfold.InitialDir = dirInfo.FullName;
+                sourceFiles = Directory.GetFiles(dirInfo.FullName, searchMask, searchOption).ToList();
+                if (sourceFiles.Count() == 0)
+                {
+                    LogError("Directory is empty");
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                LogError("Failed to read the file contents of the directory: " + ex.Message);
+                return false;
+            }
+
+            // Reset stats, as we are starting a new operation
+            if (_isUsed)
+            {
+                resetBase();
+                resetStatistics();
+            }
+
+            bool opresult = true;
+            for (int i = 0; i < sourceFiles.Count; i++)
+            {
+                AstScriptureNode? scripture = null;
+                FileInfo file = new FileInfo(sourceFiles[i]);
+                bool result = false;
+
+                // Pick an appropriate parse method, based on verbosity level
+                if (Verbosity == LogVerbosity.Low)
+                {
+                    result = ParseFile_LowVerbosity(file, out scripture);
+                }
+                else if (Verbosity == LogVerbosity.Medium)
+                {
+                    result = ParseFile_MediumVerbosity(file, out scripture);
+                }
+                else if (Verbosity == LogVerbosity.High)
+                {
+                    result = ParseFile_HighVerbosity(file, out scripture);
+                }
+
+                _fileCounter++;
+                if (result == true && scripture != null)
+                {
+                    roots.Add(scripture!);
+                    _parsedFileCounter++;
+                }
+                else
+                {
+                    _failedFileCounter++;
+                    if (STOP_ON_ERROR)
+                    {
+                        opresult = false;
+                        break;
+                    }
+                }
+            }
+
+            // log
+            LogInfo("All Files: " + _fileCounter.ToString() +
+                ", Succeeded: " + _parsedFileCounter.ToString() +
+                ", Failed: " + _failedFileCounter.ToString() +
+                ", Errors: " + _errorCounter.ToString());
+
+            _isUsed = true;
+            return opresult;
         }
 
 
@@ -639,7 +823,6 @@ namespace DescribeTranspiler
             _isUsed = true;
             return opresult;
         }
-
 
 
 
