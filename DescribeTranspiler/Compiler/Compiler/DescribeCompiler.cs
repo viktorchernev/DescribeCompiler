@@ -93,7 +93,7 @@ namespace DescribeTranspiler
 
                 //unfold.InitialDir = dirInfo.FullName;
                 sourceFiles = Directory.GetFiles(dirInfo.FullName, searchMask, searchOption).ToList();
-                if (unfold.AllFiles.Count() == 0)
+                if (sourceFiles.Count() == 0)
                 {
                     LogError("Directory is empty");
                     return false;

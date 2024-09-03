@@ -62,7 +62,17 @@ namespace Tests.Integration.Transpiler
             //TranspilerTests_StringsToAsts.Test_ParseString_OverloadB(LogVerbosity.Medium);
             //TranspilerTests_StringsToAsts.Test_ParseString_OverloadB(LogVerbosity.High);
 
+            //TranspilerTests_FolderToUnfold.Test_ParseFolder(LogVerbosity.Low, @"C:\Users\Viktor Chernev\Desktop\testing\TestFiles");
+            //TranspilerTests_FolderToUnfold.Test_ParseFolder(LogVerbosity.Medium, @"C:\Users\Viktor Chernev\Desktop\testing\TestFiles");
+            //TranspilerTests_FolderToUnfold.Test_ParseFolder(LogVerbosity.High, @"C:\Users\Viktor Chernev\Desktop\testing\TestFiles");
 
+            //TranspilerTests_FolderToUnfolds.Test_ParseFolder(LogVerbosity.Low, @"C:\Users\Viktor Chernev\Desktop\testing\TestFiles");
+            //TranspilerTests_FolderToUnfolds.Test_ParseFolder(LogVerbosity.Medium, @"C:\Users\Viktor Chernev\Desktop\testing\TestFiles");
+            //TranspilerTests_FolderToUnfolds.Test_ParseFolder(LogVerbosity.High, @"C:\Users\Viktor Chernev\Desktop\testing\TestFiles");
+
+            //TranspilerTests_FolderToAsts.Test_ParseFolder(LogVerbosity.Low, @"C:\Users\Viktor Chernev\Desktop\testing\TestFiles");
+            //TranspilerTests_FolderToAsts.Test_ParseFolder(LogVerbosity.Medium, @"C:\Users\Viktor Chernev\Desktop\testing\TestFiles");
+            //TranspilerTests_FolderToAsts.Test_ParseFolder(LogVerbosity.High, @"C:\Users\Viktor Chernev\Desktop\testing\TestFiles");
 
             Console.WriteLine("Tests done. Press any key to exit.");
             Console.ReadLine();
