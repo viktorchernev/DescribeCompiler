@@ -8,9 +8,13 @@ using DescribeTranspiler.Translators;
 
 namespace Tests.Integration.Transpiler
 {
-    internal class JsonTranslatorTests : TestsBase
+    /// <summary>
+    /// Translates Describe Unfold to JSON object.
+    /// This is a variation of the Basic JSON translator, used in the Listiary wiki.
+    /// </summary>
+    internal class JsonListiaryTranslatorTests : TestsBase
     {
-        public static string outputDir = @"C:\Users\Viktor Chernev\Desktop\testing\TranslatorTests\JsonTranslatorTests";
+        public static string outputDir = @"C:\Users\Viktor Chernev\Desktop\testing\TranslatorTests\JsonListiaryTranslatorTests";
 
         internal static void TestFile(string embeddedName)
         {
@@ -36,17 +40,14 @@ namespace Tests.Integration.Transpiler
                 ConsoleLogInfo, ConsoleLogParseInfo);
 
             //construct translator
-            JsonListiaryTranslator translator = new JsonListiaryTranslator();
-            translator.LogText = ConsoleLog;
-            translator.LogError = ConsoleLogError;
-            translator.LogInfo = ConsoleLogInfo;
+            JsonListiaryTranslator translator = new JsonListiaryTranslator(ConsoleLog, ConsoleLogError, ConsoleLogInfo);
 
             //compile
             DescribeUnfold unfold = new DescribeUnfold();
             bool r = compiler.ParseString(text, embeddedName, ref unfold);
 
             //translate
-            string translated = translator.TranslateUnfold(unfold);
+            string? translated = translator.TranslateUnfold(unfold);
             string result = resultTemplateA;
             result += text + resultTemplateB;
             result += Environment.NewLine + Environment.NewLine + translated;

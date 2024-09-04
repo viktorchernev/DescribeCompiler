@@ -17,8 +17,8 @@ namespace DescribeTranspiler.Listiary.Translators
     public class SqlFileFillTranslator : DescribeUnfoldTranslator
     {
         //templates
-        static string failedFileQueryTemplate;
-        static string passedFileQueryTemplate;
+        static string? failedFileQueryTemplate;
+        static string? passedFileQueryTemplate;
 
 
         public override bool IsInitialized
@@ -29,6 +29,9 @@ namespace DescribeTranspiler.Listiary.Translators
 
         public SqlFileFillTranslator()
         {
+            Log = "";
+
+            //set default log handlers
             LogText = log;
             LogInfo = log;
             LogError = log;
@@ -51,6 +54,9 @@ namespace DescribeTranspiler.Listiary.Translators
         public SqlFileFillTranslator(
             Action<string> logText)
         {
+            Log = "";
+
+            //set default log handlers
             LogText = log;
             LogText += logText;
 
@@ -76,6 +82,9 @@ namespace DescribeTranspiler.Listiary.Translators
             Action<string> logText,
             Action<string> logError)
         {
+            Log = "";
+
+            //set default log handlers
             LogText = log;
             LogText += logText;
 
@@ -104,6 +113,9 @@ namespace DescribeTranspiler.Listiary.Translators
             Action<string> logError,
             Action<string> logInfo)
         {
+            Log = "";
+
+            //set default log handlers
             LogText = log;
             LogText += logText;
 

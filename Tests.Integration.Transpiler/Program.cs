@@ -62,8 +62,9 @@ namespace Tests.Integration.Transpiler
 
             //HtmlPageTranslatorTests.TestFile("Tests.Integration.Transpiler.TestFiles.live_Radio.NovaNews.2024-04-15.ds");
             //HtmlBasicTranslatorTests.TestFile("Tests.Integration.Transpiler.TestFiles.live_Radio.NovaNews.2024-04-15.ds");
-            XmlBasicTranslatorTests.TestFile("Tests.Integration.Transpiler.TestFiles.live_Radio.NovaNews.2024-04-15.ds");
-            //JsonTranslatorTests.TestFile("Tests.Integration.Transpiler.TestFiles.live_Radio.NovaNews.2024-04-15.ds");
+            //XmlBasicTranslatorTests.TestFile("Tests.Integration.Transpiler.TestFiles.live_Radio.NovaNews.2024-04-15.ds");
+            JsonBasicTranslatorTests.TestFile("Tests.Integration.Transpiler.TestFiles.live_Radio.NovaNews.2024-04-15.ds");
+            JsonListiaryTranslatorTests.TestFile("Tests.Integration.Transpiler.TestFiles.live_Radio.NovaNews.2024-04-15.ds");
 
             Console.WriteLine("Tests done. Press any key to exit.");
             Console.ReadLine();

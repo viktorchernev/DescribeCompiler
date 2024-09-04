@@ -125,7 +125,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Translators\Translators\Other\" />
+    <Folder Include="Translators\Translators\zOther\" />
   </ItemGroup>
 
 </Project>

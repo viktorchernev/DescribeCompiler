@@ -2,6 +2,7 @@
 using DescribeParser.Unfold;
 using System;
 using System.Collections.Generic;
+using System.Security;
 using System.Xml.Linq;
 
 namespace DescribeTranspiler.Translators
@@ -218,7 +219,6 @@ namespace DescribeTranspiler.Translators
             XDocument doc = XDocument.Parse(xml);
             // This will beautify the XML
             string beautifiedXml = doc.ToString();
-
             return beautifiedXml;
         }
 
@@ -277,6 +277,9 @@ namespace DescribeTranspiler.Translators
 
             return pt;
         }
+
+
+
         string TranslateProductionOrItem(DescribeUnfold u, string id)
         {
             if (u.Productions.ContainsKey(id)) return TranslateProduction(u, id);
@@ -310,7 +313,7 @@ namespace DescribeTranspiler.Translators
                     {
                         url  = "https://" + url;
                     }
-                    string template = linkTemplate!.Replace("{HTTPS}", url);
+                    string template = linkTemplate!.Replace("{HTTPS}", SecurityElement.Escape(url));
                     template = template.Replace("{TEXT}", CharacterDictionariesHtml.BlackCircledLettersI[i]);
                     linkage += template;
                 }
@@ -325,7 +328,7 @@ namespace DescribeTranspiler.Translators
                 {
                     if (decorator.Name == "color")
                     {
-                        string res = coloredProductionTemplate!.Replace("{TITLE}", u.Translations[id]);
+                        string res = coloredProductionTemplate!.Replace("{TITLE}", SecurityElement.Escape(u.Translations[id]));
                         res = res.Replace("{LINKS}", linkage);
                         res = res.Replace("{COLOR}", decorator.Value);
                         res = res.Replace("{ITEMS}", items);
@@ -333,7 +336,7 @@ namespace DescribeTranspiler.Translators
                     }
                 }
             }
-            string pt = productionTemplate!.Replace("{TITLE}", u.Translations[id]);
+            string pt = productionTemplate!.Replace("{TITLE}", SecurityElement.Escape(u.Translations[id]));
             pt = pt.Replace("{LINKS}", linkage);
             pt = pt.Replace("{ITEMS}", items);
             return pt;
@@ -357,7 +360,7 @@ namespace DescribeTranspiler.Translators
                     {
                         url = "https://" + url;
                     }
-                    string template = linkTemplate!.Replace("{HTTPS}", url);
+                    string template = linkTemplate!.Replace("{HTTPS}", SecurityElement.Escape(url));
                     template = template.Replace("{TEXT}", CharacterDictionariesHtml.BlackCircledLettersI[i]);
                     linkage += template;
                 }
@@ -376,26 +379,26 @@ namespace DescribeTranspiler.Translators
                     }
                     else if (decorator.Name == "comment")
                     {
-                        string res = commentItemTemplate!.Replace("{ITEM}", u.Translations[id]);
+                        string res = commentItemTemplate!.Replace("{ITEM}", SecurityElement.Escape(u.Translations[id]));
                         res = res.Replace("{LINKS}", linkage);
                         return res;
                     }
                     else if (decorator.Name == "nlcomment")
                     {
-                        string res = nlcommentItemTemplate!.Replace("{ITEM}", u.Translations[id]);
+                        string res = nlcommentItemTemplate!.Replace("{ITEM}", SecurityElement.Escape(u.Translations[id]));
                         res = res.Replace("{LINKS}", linkage);
                         return res;
                     }
                     else if (decorator.Name == "color")
                     {
-                        string res = coloredItemTemplate!.Replace("{ITEM}", u.Translations[id]);
+                        string res = coloredItemTemplate!.Replace("{ITEM}", SecurityElement.Escape(u.Translations[id]));
                         res = res.Replace("{LINKS}", linkage);
                         res = res.Replace("{COLOR}", decorator.Value);
                         return res;
                     }
                 }
             }
-            string it = itemTemplate!.Replace("{ITEM}", u.Translations[id]);
+            string it = itemTemplate!.Replace("{ITEM}", SecurityElement.Escape(u.Translations[id]));
             it = it.Replace("{LINKS}", linkage);
             return it;
         }

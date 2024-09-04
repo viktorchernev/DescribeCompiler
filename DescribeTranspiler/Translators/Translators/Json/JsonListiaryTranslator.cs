@@ -1,11 +1,16 @@
 ﻿using DescribeParser;
 using DescribeParser.Unfold;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Xml.Linq;
 
 
 namespace DescribeTranspiler.Translators
 {
+    /// <summary>
+    /// Translates Describe Unfold to JSON object
+    /// </summary>
     public class JsonListiaryTranslator : DescribeUnfoldTranslator
     {
         public override bool IsInitialized
@@ -17,17 +22,17 @@ namespace DescribeTranspiler.Translators
 
         //templates
         const string templatesFolderName = "JSON_LISTIARY";
-        static string pageTemplate;
-        static string rootTemplate;
-        static string itemTemplate;
-        static string emptyItemTemplate;
-        static string commentItemTemplate;
-        static string nlcommentItemTemplate;
-        static string coloredItemTemplate;
-        static string productionTemplate;
-        static string coloredProductionTemplate;
-        static string linkTemplate;
-        static string decoratorTemplate;
+        static string? pageTemplate;
+        static string? rootTemplate;
+        static string? itemTemplate;
+        static string? emptyItemTemplate;
+        static string? commentItemTemplate;
+        static string? nlcommentItemTemplate;
+        static string? coloredItemTemplate;
+        static string? productionTemplate;
+        static string? coloredProductionTemplate;
+        static string? linkTemplate;
+        static string? decoratorTemplate;
 
 
         /// <summary>
@@ -36,6 +41,8 @@ namespace DescribeTranspiler.Translators
         /// </summary>
         public JsonListiaryTranslator()
         {
+            Log = "";
+
             //set default log handlers
             LogText = log;
             LogInfo = log;
@@ -74,6 +81,8 @@ namespace DescribeTranspiler.Translators
         /// <param name="logText">method to log text</param>
         public JsonListiaryTranslator(Action<string> logText)
         {
+            Log = "";
+
             //set default log handlers
             LogText = log;
             LogText += logText;
@@ -115,6 +124,8 @@ namespace DescribeTranspiler.Translators
         /// <param name="logError">method to log errors</param>
         public JsonListiaryTranslator(Action<string> logText, Action<string> logError)
         {
+            Log = "";
+
             //set default log handlers
             LogText = log;
             LogText += logText;
@@ -159,6 +170,8 @@ namespace DescribeTranspiler.Translators
         /// <param name="logInfo">method to log less important info</param>
         public JsonListiaryTranslator(Action<string> logText, Action<string> logError, Action<string> logInfo)
         {
+            Log = "";
+
             //set default log handlers
             LogText = log;
             LogText += logText;
@@ -197,13 +210,29 @@ namespace DescribeTranspiler.Translators
 
 
 
+        /// <summary>
+        /// Get html code from unfold. 
+        /// Same as `TranslateUnfold`, but the JSON is beautified.
+        /// </summary>
+        /// <param name="u">The unfold to be translated</param>
+        /// <returns>The generated JSON code</returns>
+        public override string? TranslateUnfoldPretty(DescribeUnfold u)
+        {
+            string? json = TranslateUnfold(u);
+            if (json == null) return null;
+
+            XDocument doc = XDocument.Parse(json);
+            // This will beautify the XML
+            string beautifiedJson = doc.ToString();
+            return beautifiedJson;
+        }
 
         /// <summary>
         /// Get JSON code from unfold
         /// </summary>
         /// <param name="u">The unfold to be translated</param>
         /// <returns>The generated JSON code</returns>
-        public override string TranslateUnfold(DescribeUnfold u)
+        public override string? TranslateUnfold(DescribeUnfold u)
         {
             if (IsInitialized == false) return null;
 
@@ -214,8 +243,8 @@ namespace DescribeTranspiler.Translators
                 data += s;
             }
 
-            string rt = rootTemplate.Replace("{ITEMS}", data);
-            string pt = pageTemplate.Replace("{DATA}", rt);
+            string rt = rootTemplate!.Replace("{ITEMS}", data);
+            string pt = pageTemplate!.Replace("{DATA}", rt);
 
             if (pageTemplate.Contains("{TIME_STAMP}"))
             {
@@ -253,6 +282,9 @@ namespace DescribeTranspiler.Translators
 
             return pt;
         }
+
+
+
         string TranslateProductionOrItem(DescribeUnfold u, string id)
         {
             if (u.Productions.ContainsKey(id)) return TranslateProduction(u, id);
@@ -286,7 +318,7 @@ namespace DescribeTranspiler.Translators
                     {
                         url = "https://" + links[i];
                     }
-                    string template = linkTemplate.Replace("{HTTPS}", url);
+                    string template = linkTemplate!.Replace("{HTTPS}", url);
                     template = template.Replace("{TEXT}", CharacterDictionariesHtml.BlackCircledLettersI[i]);
                     if (linkage.Length > 0) linkage += ",";
                     linkage += template;
@@ -304,7 +336,7 @@ namespace DescribeTranspiler.Translators
                 {
                     if (d.Name != "custom") continue;
                     if (d.Category == null) continue;
-                    string decorator = decoratorTemplate.Replace("{NAME}", d.Name);
+                    string decorator = decoratorTemplate!.Replace("{NAME}", d.Name);
                     decorator = decorator.Replace("{VALUE}", d.Value);
                     //decorator = decorator.Replace("{VALUE}", "");
                     if (!string.IsNullOrEmpty(customDecorators)) customDecorators += ",";
@@ -315,8 +347,8 @@ namespace DescribeTranspiler.Translators
                 {
                     if (d.Name == "color")
                     {
-                        string res = coloredProductionTemplate.Replace("{TITLE}",
-                            u.Translations[id].Replace("\\", "\\\\").Replace("\"", "\\\""));
+                        string res = coloredProductionTemplate!.Replace("{TITLE}",
+                            JsonConvert.SerializeObject(u.Translations[id])[1..^1]);
                         res = res.Replace("{LINKS}", linkage);
                         res = res.Replace("{DECORATORS}", customDecorators);
                         res = res.Replace("{COLOR}", d.Value);
@@ -326,8 +358,8 @@ namespace DescribeTranspiler.Translators
                     }
                 }
             }
-            string pt = productionTemplate.Replace("{TITLE}",
-                u.Translations[id].Replace("\\", "\\\\").Replace("\"", "\\\""));
+            string pt = productionTemplate!.Replace("{TITLE}",
+                JsonConvert.SerializeObject(u.Translations[id])[1..^1]);
 
             //HAcKeD IN PLACE REMOVE
             string cur = u.ProdidFile[id][0];
@@ -361,7 +393,7 @@ namespace DescribeTranspiler.Translators
                     {
                         url = "https://" + url;
                     }
-                    string template = linkTemplate.Replace("{HTTPS}", url);
+                    string template = linkTemplate!.Replace("{HTTPS}", url);
 
                     if (url.StartsWith("https://en.wikipedia.org/"))
                     {
@@ -414,13 +446,12 @@ namespace DescribeTranspiler.Translators
                 {
                     if (d.Name == "empty")
                     {
-                        return emptyItemTemplate;
+                        return emptyItemTemplate!;
                     }
                     else if (d.Name == "comment")
                     {
-                        string res = commentItemTemplate.Replace("{ITEM}",
-                                u.Translations[id].Replace("\\", "\\\\")
-                                .Replace("\"", "\\\""));
+                        string res = commentItemTemplate!.Replace("{ITEM}",
+                                JsonConvert.SerializeObject(u.Translations[id])[1..^1]);
                         res = res.Replace("{LINKS}", linkage);
                         res = res.Replace("{DECORATORS}", customDecorators);
                         if (res.Contains("{ID}")) res = res.Replace("{ID}", id);
@@ -428,9 +459,8 @@ namespace DescribeTranspiler.Translators
                     }
                     else if (d.Name == "nlcomment")
                     {
-                        string res = nlcommentItemTemplate.Replace("{ITEM}",
-                                u.Translations[id].Replace("\\", "\\\\")
-                                .Replace("\"", "\\\""));
+                        string res = nlcommentItemTemplate!.Replace("{ITEM}",
+                                JsonConvert.SerializeObject(u.Translations[id])[1..^1]);
                         res = res.Replace("{LINKS}", linkage);
                         res = res.Replace("{DECORATORS}", customDecorators);
                         if (res.Contains("{ID}")) res = res.Replace("{ID}", id);
@@ -438,9 +468,8 @@ namespace DescribeTranspiler.Translators
                     }
                     else if (d.Name == "color")
                     {
-                        string res = coloredItemTemplate.Replace("{ITEM}",
-                            u.Translations[id].Replace("\\", "\\\\")
-                            .Replace("\"", "\\\""));
+                        string res = coloredItemTemplate!.Replace("{ITEM}",
+                            JsonConvert.SerializeObject(u.Translations[id])[1..^1]);
                         res = res.Replace("{LINKS}", linkage);
                         res = res.Replace("{DECORATORS}", customDecorators);
                         res = res.Replace("{SHORTVERS}", shortvers);
@@ -450,9 +479,8 @@ namespace DescribeTranspiler.Translators
                     }
                 }
             }
-            string it = itemTemplate.Replace("{ITEM}",
-                u.Translations[id].Replace("\\", "\\\\")
-                .Replace("\"", "\\\""));
+            string it = itemTemplate!.Replace("{ITEM}",
+                JsonConvert.SerializeObject(u.Translations[id])[1..^1]);
             it = it.Replace("{LINKS}", linkage);
             it = it.Replace("{DECORATORS}", customDecorators);
             it = it.Replace("{SHORTVERS}", shortvers);
