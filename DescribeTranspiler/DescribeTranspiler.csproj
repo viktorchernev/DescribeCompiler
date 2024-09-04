@@ -124,4 +124,8 @@
     <ProjectReference Include="..\DescribeParser\DescribeParser.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Translators\Translators\Other\" />
+  </ItemGroup>
+
 </Project>

@@ -6,7 +6,10 @@ using System.Collections.Generic;
 
 namespace DescribeTranspiler.Translators
 {
-    public class JsonListiaryTranslator : DescribeTranslator
+    /// <summary>
+    /// Translate Unfold to a simple HTML page with some CSS styling
+    /// </summary>
+    public class HtmlPageTranslator : DescribeUnfoldTranslator
     {
         public override bool IsInitialized
         {
@@ -16,26 +19,28 @@ namespace DescribeTranspiler.Translators
 
 
         //templates
-        const string templatesFolderName = "JSON_LISTIARY";
-        static string pageTemplate;
-        static string rootTemplate;
-        static string itemTemplate;
-        static string emptyItemTemplate;
-        static string commentItemTemplate;
-        static string nlcommentItemTemplate;
-        static string coloredItemTemplate;
-        static string productionTemplate;
-        static string coloredProductionTemplate;
-        static string linkTemplate;
-        static string decoratorTemplate;
+        const string templatesFolderName = "HTML_PARACORD";
+        static string? pageTemplate;
+        static string? rootTemplate;
+        static string? itemTemplate;
+        static string? emptyItemTemplate;
+        static string? commentItemTemplate;
+        static string? nlcommentItemTemplate;
+        static string? coloredItemTemplate;
+        static string? productionTemplate;
+        static string? coloredProductionTemplate;
+        static string? linkTemplate;
+
 
 
         /// <summary>
         /// Ctor.
         /// The Translator is loaded with the default templates.
         /// </summary>
-        public JsonListiaryTranslator()
+        public HtmlPageTranslator()
         {
+            Log = "";
+
             //set default log handlers
             LogText = log;
             LogInfo = log;
@@ -51,11 +56,10 @@ namespace DescribeTranspiler.Translators
                 productionTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Production");
                 itemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Item");
                 emptyItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemEmpty");
-                commentItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemComment");
                 nlcommentItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemCommentNl");
+                commentItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemComment");
                 coloredItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemColored");
                 linkTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Link");
-                decoratorTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Decorator");
 
                 LogInfo("Translator initialized - using template \"" + n + "\"");
                 IsInitialized = true;
@@ -72,8 +76,10 @@ namespace DescribeTranspiler.Translators
         /// The Translator is loaded with the default templates.
         /// </summary>
         /// <param name="logText">method to log text</param>
-        public JsonListiaryTranslator(Action<string> logText)
+        public HtmlPageTranslator(Action<string> logText)
         {
+            Log = "";
+
             //set default log handlers
             LogText = log;
             LogText += logText;
@@ -91,11 +97,10 @@ namespace DescribeTranspiler.Translators
                 productionTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Production");
                 itemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Item");
                 emptyItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemEmpty");
-                commentItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemComment");
                 nlcommentItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemCommentNl");
+                commentItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemComment");
                 coloredItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemColored");
                 linkTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Link");
-                decoratorTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Decorator");
 
                 LogInfo("Translator initialized - using template \"" + n + "\"");
                 IsInitialized = true;
@@ -113,8 +118,10 @@ namespace DescribeTranspiler.Translators
         /// </summary>
         /// <param name="logText">method to log text</param>
         /// <param name="logError">method to log errors</param>
-        public JsonListiaryTranslator(Action<string> logText, Action<string> logError)
+        public HtmlPageTranslator(Action<string> logText, Action<string> logError)
         {
+            Log = "";
+
             //set default log handlers
             LogText = log;
             LogText += logText;
@@ -134,11 +141,10 @@ namespace DescribeTranspiler.Translators
                 productionTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Production");
                 itemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Item");
                 emptyItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemEmpty");
-                commentItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemComment");
                 nlcommentItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemCommentNl");
+                commentItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemComment");
                 coloredItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemColored");
                 linkTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Link");
-                decoratorTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Decorator");
 
                 LogInfo("Translator initialized - using template \"" + n + "\"");
                 IsInitialized = true;
@@ -157,8 +163,10 @@ namespace DescribeTranspiler.Translators
         /// <param name="logText">method to log text</param>
         /// <param name="logError">method to log errors</param>
         /// <param name="logInfo">method to log less important info</param>
-        public JsonListiaryTranslator(Action<string> logText, Action<string> logError, Action<string> logInfo)
+        public HtmlPageTranslator(Action<string> logText, Action<string> logError, Action<string> logInfo)
         {
+            Log = "";
+
             //set default log handlers
             LogText = log;
             LogText += logText;
@@ -179,13 +187,12 @@ namespace DescribeTranspiler.Translators
                 productionTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Production");
                 itemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Item");
                 emptyItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemEmpty");
-                commentItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemComment");
                 nlcommentItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemCommentNl");
+                commentItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemComment");
                 coloredItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemColored");
                 linkTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Link");
-                decoratorTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Decorator");
 
-                LogInfo("Translator initialized - using template \"" + n + "\"");
+                LogInfo("Translator initialized - \"" + n + "\"");
                 IsInitialized = true;
             }
             catch (Exception ex)
@@ -197,13 +204,12 @@ namespace DescribeTranspiler.Translators
 
 
 
-
         /// <summary>
-        /// Get JSON code from unfold
+        /// Get html code from unfold
         /// </summary>
         /// <param name="u">The unfold to be translated</param>
-        /// <returns>The generated JSON code</returns>
-        public override string TranslateUnfold(DescribeUnfold u)
+        /// <returns>The generated html code</returns>
+        public override string? TranslateUnfold(DescribeUnfold u)
         {
             if (IsInitialized == false) return null;
 
@@ -214,8 +220,8 @@ namespace DescribeTranspiler.Translators
                 data += s;
             }
 
-            string rt = rootTemplate.Replace("{ITEMS}", data);
-            string pt = pageTemplate.Replace("{DATA}", rt);
+            string rt = rootTemplate!.Replace("{ITEMS}", data);
+            string pt = pageTemplate!.Replace("{DATA}", rt);
 
             if (pageTemplate.Contains("{TIME_STAMP}"))
             {
@@ -266,7 +272,6 @@ namespace DescribeTranspiler.Translators
             foreach (string s in li)
             {
                 string z = TranslateProductionOrItem(u, s);
-                if (items != "") items += ",";
                 items += z;
             }
 
@@ -281,66 +286,38 @@ namespace DescribeTranspiler.Translators
                 List<DescribeLink> links = u.Links[id];
                 for (int i = 0; i < links.Count; i++)
                 {
-                    string url = links[i].Url.Replace("\\", "");
+                    string url = links[i].Url;
+                    url = url.Replace("\\", "");
                     if (url.StartsWith("http") == false)
                     {
-                        url = "https://" + links[i];
+                        url  = "https://" + url;
                     }
-                    string template = linkTemplate.Replace("{HTTPS}", url);
+                    string template = linkTemplate!.Replace("{HTTPS}", url);
                     template = template.Replace("{TEXT}", CharacterDictionariesHtml.BlackCircledLettersI[i]);
-                    if (linkage.Length > 0) linkage += ",";
                     linkage += template;
                 }
+                linkage = " " + linkage;
             }
 
-            string customDecorators = "";
             //replace in template
             if (u.Decorators.ContainsKey(id))
             {
                 List<DescribeDecorator> decorators = u.Decorators[id];
-
-                //Get custom decorators first
-                foreach (DescribeDecorator d in decorators)
+                foreach (DescribeDecorator decorator in decorators)
                 {
-                    if (d.Name != "custom") continue;
-                    if (d.Category == null) continue;
-                    string decorator = decoratorTemplate.Replace("{NAME}", d.Name);
-                    decorator = decorator.Replace("{VALUE}", d.Value);
-                    //decorator = decorator.Replace("{VALUE}", "");
-                    if (!string.IsNullOrEmpty(customDecorators)) customDecorators += ",";
-                    customDecorators += decorator;
-                }
-
-                foreach (DescribeDecorator d in decorators)
-                {
-                    if (d.Name == "color")
+                    if (decorator.Name == "color")
                     {
-                        string res = coloredProductionTemplate.Replace("{TITLE}",
-                            u.Translations[id].Replace("\\", "\\\\").Replace("\"", "\\\""));
+                        string res = coloredProductionTemplate!.Replace("{TITLE}", u.Translations[id]);
                         res = res.Replace("{LINKS}", linkage);
-                        res = res.Replace("{DECORATORS}", customDecorators);
-                        res = res.Replace("{COLOR}", d.Value);
+                        res = res.Replace("{COLOR}", decorator.Value);
                         res = res.Replace("{ITEMS}", items);
-                        if (res.Contains("{ID}")) res = res.Replace("{ID}", id);
                         return res;
                     }
                 }
             }
-            string pt = productionTemplate.Replace("{TITLE}",
-                u.Translations[id].Replace("\\", "\\\\").Replace("\"", "\\\""));
-
-            //HAcKeD IN PLACE REMOVE
-            string cur = u.ProdidFile[id][0];
-            if(u.ParseJob.InitialDir != null) cur = cur.Substring(u.ParseJob.InitialDir.Length);
-            cur = cur.Trim('\\', '/').Replace('\\', '.').Replace('/', '.');
-            if (cur.EndsWith(".ds")) cur = cur.Substring(0, cur.Length - 3);
-            pt = pt.Replace(",\"text\":", ",\"filename\":\"" + cur + "\",\"text\":");
-
+            string pt = productionTemplate!.Replace("{TITLE}", u.Translations[id]);
             pt = pt.Replace("{LINKS}", linkage);
-            pt = pt.Replace("{DECORATORS}", customDecorators);
             pt = pt.Replace("{ITEMS}", items);
-            if (pt.Contains("{ID}")) pt = pt.Replace("{ID}", id);
-
             return pt;
         }
         string TranslateItem(DescribeUnfold u, string id)
@@ -356,109 +333,55 @@ namespace DescribeTranspiler.Translators
                 List<DescribeLink> links = u.Links[id];
                 for (int i = 0; i < links.Count; i++)
                 {
-                    string url = links[i].Url.Replace("\\", "");
+                    string url = links[i].Url;
+                    url = url.Replace("\\", "");
                     if (url.StartsWith("http") == false)
                     {
                         url = "https://" + url;
                     }
-                    string template = linkTemplate.Replace("{HTTPS}", url);
-
-                    if (url.StartsWith("https://en.wikipedia.org/"))
-                    {
-                        template = template.Replace("{TEXT}", CharacterDictionariesHtml.BlackCircledLetters['W']);
-                    }
-                    else
-                    {
-                        template = template.Replace("{TEXT}", CharacterDictionariesHtml.BlackCircledLettersI[i]);
-                    }
-
-                    if (linkage.Length > 0) linkage += ",";
+                    string template = linkTemplate!.Replace("{HTTPS}", url);
+                    template = template.Replace("{TEXT}", CharacterDictionariesHtml.BlackCircledLettersI[i]);
                     linkage += template;
                 }
+                linkage = " " + linkage;
             }
 
-            string customDecorators = "";
-            string shortvers = "";
             //replace in template
             if (u.Decorators.ContainsKey(id))
             {
                 List<DescribeDecorator> decorators = u.Decorators[id];
-
-                //Get custom decorators first
-                //foreach (List<string> ls in decorators)
-                //{
-                //    if (s.StartsWith("shorter|") || s.StartsWith("shorter |"))
-                //    {
-                //        string[] sss = s.Split('|');
-                //        if (!string.IsNullOrEmpty(shortvers)) shortvers += ",";
-                //        shortvers += "\"" + sss[1].Trim() + "\"";
-                //    }
-                //    else if (!s.StartsWith("custom|") && !s.StartsWith("custom |")) continue;
-                //    else
-                //    {
-                //        string[] sep = s.Split('|');
-                //        if (sep.Length < 2) continue;
-                //        string decorator = decoratorTemplate.Replace("{NAME}", sep[1].Trim());
-                //        if (sep.Length > 2) decorator = decorator.Replace("{VALUE}", sep[2].Trim());
-                //        else decorator = decorator.Replace("{VALUE}", "");
-                //        if (!string.IsNullOrEmpty(customDecorators)) customDecorators += ",";
-                //        customDecorators += decorator;
-                //    }
-                //}
-                //if (shortvers.Length > 0)
-                //{
-                //    shortvers = "\"shortvers\":[" + shortvers + "],";
-                //}
-
-                foreach (DescribeDecorator d in decorators)
+                foreach (DescribeDecorator decorator in decorators)
                 {
-                    if (d.Name == "empty")
+                    if (decorator.Name == "empty")
                     {
-                        return emptyItemTemplate;
+                        return emptyItemTemplate!;
                     }
-                    else if (d.Name == "comment")
+                    else if (decorator.Name == "comment")
                     {
-                        string res = commentItemTemplate.Replace("{ITEM}",
-                                u.Translations[id].Replace("\\", "\\\\")
-                                .Replace("\"", "\\\""));
+                        string res = commentItemTemplate!.Replace("{ITEM}", u.Translations[id]);
                         res = res.Replace("{LINKS}", linkage);
-                        res = res.Replace("{DECORATORS}", customDecorators);
-                        if (res.Contains("{ID}")) res = res.Replace("{ID}", id);
                         return res;
                     }
-                    else if (d.Name == "nlcomment")
+                    else if (decorator.Name == "nlcomment")
                     {
-                        string res = nlcommentItemTemplate.Replace("{ITEM}",
-                                u.Translations[id].Replace("\\", "\\\\")
-                                .Replace("\"", "\\\""));
+                        string res = nlcommentItemTemplate!.Replace("{ITEM}", u.Translations[id]);
                         res = res.Replace("{LINKS}", linkage);
-                        res = res.Replace("{DECORATORS}", customDecorators);
-                        if (res.Contains("{ID}")) res = res.Replace("{ID}", id);
                         return res;
                     }
-                    else if (d.Name == "color")
+                    else if (decorator.Name == "color")
                     {
-                        string res = coloredItemTemplate.Replace("{ITEM}",
-                            u.Translations[id].Replace("\\", "\\\\")
-                            .Replace("\"", "\\\""));
+                        string res = coloredItemTemplate!.Replace("{ITEM}", u.Translations[id]);
                         res = res.Replace("{LINKS}", linkage);
-                        res = res.Replace("{DECORATORS}", customDecorators);
-                        res = res.Replace("{SHORTVERS}", shortvers);
-                        res = res.Replace("{COLOR}", d.Value);
-                        if (res.Contains("{ID}")) res = res.Replace("{ID}", id);
+                        res = res.Replace("{COLOR}", decorator.Value);
                         return res;
                     }
                 }
             }
-            string it = itemTemplate.Replace("{ITEM}",
-                u.Translations[id].Replace("\\", "\\\\")
-                .Replace("\"", "\\\""));
+            string it = itemTemplate!.Replace("{ITEM}", u.Translations[id]);
             it = it.Replace("{LINKS}", linkage);
-            it = it.Replace("{DECORATORS}", customDecorators);
-            it = it.Replace("{SHORTVERS}", shortvers);
-            if (it.Contains("{ID}")) it = it.Replace("{ID}", id);
             return it;
         }
+
 
 
         //log

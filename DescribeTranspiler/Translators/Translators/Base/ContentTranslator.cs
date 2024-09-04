@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DescribeTranspiler.Translators
 {
-    public abstract class DescribeContentTranslator : DescribeTranslator
+    public abstract class DescribeContentTranslator : DescribeUnfoldTranslator
     {
         public override bool IsInitialized
         {

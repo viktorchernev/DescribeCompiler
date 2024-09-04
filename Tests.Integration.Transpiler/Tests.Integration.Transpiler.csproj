@@ -162,6 +162,8 @@
     <None Remove="TestFiles\live_Radio\Veselina\2024-04-15.ds" />
     <None Remove="TestFiles\live_Radio\Veselina\2024-04-16.ds" />
     <None Remove="TestFiles\live_Radio\Veselina\2024-04-17.ds" />
+    <None Remove="TestResultTemplates\template_basic_a.md" />
+    <None Remove="TestResultTemplates\template_basic_b.md" />
     <None Remove="TestResultTemplates\template_unfold_a.md" />
     <None Remove="TestResultTemplates\template_unfold_b.md" />
     <None Remove="TestResultTemplates\template_unfold_c.md" />
@@ -318,7 +320,9 @@
     <EmbeddedResource Include="TestFiles\TestFilesFor11\A_tags.ds" />
     <EmbeddedResource Include="TestFiles\TestFilesFor11\A_tags2.ds" />
     <EmbeddedResource Include="TestFiles\TestFilesFor11\A_tilde.ds" />
+    <EmbeddedResource Include="TestResultTemplates\template_basic_a.md" />
     <EmbeddedResource Include="TestResultTemplates\template_unfold_a.md" />
+    <EmbeddedResource Include="TestResultTemplates\template_basic_b.md" />
     <EmbeddedResource Include="TestResultTemplates\template_unfold_c.md" />
     <EmbeddedResource Include="TestResultTemplates\template_unfold_b.md" />
     <EmbeddedResource Include="TestFiles\live_Radio\Veselina.ds" />

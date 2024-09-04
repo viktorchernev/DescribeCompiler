@@ -8,11 +8,11 @@ using DescribeTranspiler.Translators;
 
 namespace Tests.Integration.Transpiler
 {
-    internal class JsonTranslatorTests : TranspilerTestsBase
+    internal class HtmlPageTranslatorTests : TestsBase
     {
-        public static string outputDir = @"C:\Users\Viktor Chernev\Desktop\testing\JsonTranslatorTests";
+        public static string outputDir = @"C:\Users\Viktor Chernev\Desktop\testing\TranslatorTests\HtmlPageTranslatorTests";
 
-        internal static void TestFile(string embeddedName)
+        public static void TestFile(string embeddedName)
         {
             //set console
             Console.ForegroundColor = ConsoleColor.White;
@@ -36,17 +36,15 @@ namespace Tests.Integration.Transpiler
                 ConsoleLogInfo, ConsoleLogParseInfo);
 
             //construct translator
-            JsonListiaryTranslator translator = new JsonListiaryTranslator();
-            translator.LogText = ConsoleLog;
-            translator.LogError = ConsoleLogError;
-            translator.LogInfo = ConsoleLogInfo;
+            HtmlPageTranslator translator = new HtmlPageTranslator(
+                ConsoleLog, ConsoleLogError, ConsoleLogInfo);
 
             //compile
             DescribeUnfold unfold = new DescribeUnfold();
             bool r = compiler.ParseString(text, embeddedName, ref unfold);
 
             //translate
-            string translated = translator.TranslateUnfold(unfold);
+            string? translated = translator.TranslateUnfold(unfold);
             string result = resultTemplateA;
             result += text + resultTemplateB;
             result += Environment.NewLine + Environment.NewLine + translated;
@@ -54,7 +52,7 @@ namespace Tests.Integration.Transpiler
             //get save name
             string[] sep = embeddedName.Split('.');
             string filename = sep[sep.Length - 2] + ".md";
-            string htmlname = sep[sep.Length - 2] + ".json";
+            string htmlname = sep[sep.Length - 2] + ".html";
             if (translated == null) filename = "~" + filename;
             filename = Path.Combine(outputdir, filename);
             htmlname = Path.Combine(outputdir, htmlname);

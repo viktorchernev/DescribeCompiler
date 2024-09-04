@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace DescribeTranspiler.Translators
 {
-    public class JsonBasicTranslator : DescribeTranslator
+    public class JsonBasicTranslator : DescribeUnfoldTranslator
     {
         public override bool IsInitialized
         {

@@ -8,20 +8,6 @@ namespace Tests.Integration.Transpiler
         {
             printLogo2();
 
-            //HtmlPageTranslatorTests.TestFile("Tests.Integration.Transpiler.TestFiles.live_Radio.NovaNews.2024-04-15.ds");
-            //Console.WriteLine("HtmlPageTranslatorTests done. Press any key to continue.");
-            //Console.ReadLine();
-
-            //HtmlBasicTranslatorTests.TestFile("Tests.Integration.Transpiler.TestFiles.live_Radio.NovaNews.2024-04-15.ds");
-            //Console.WriteLine("HtmlPageTranslatorTests done. Press any key to continue.");
-            //Console.ReadLine();
-
-            //JsonTranslatorTests.TestFile("Tests.Integration.Transpiler.TestFiles.live_Radio.NovaNews.2024-04-15.ds");
-            //Console.WriteLine("Tests done. Press any key to exit.");
-            //Console.ReadLine();
-
-
-
             //TranspilerTests_StringToUnfold.Test_ParseString(LogVerbosity.Low);
             //TranspilerTests_StringToUnfold.Test_ParseString(LogVerbosity.Medium);
             //TranspilerTests_StringToUnfold.Test_ParseString(LogVerbosity.High);
@@ -73,6 +59,11 @@ namespace Tests.Integration.Transpiler
             //TranspilerTests_FolderToAsts.Test_ParseFolder(LogVerbosity.Low, @"C:\Users\Viktor Chernev\Desktop\testing\TestFiles");
             //TranspilerTests_FolderToAsts.Test_ParseFolder(LogVerbosity.Medium, @"C:\Users\Viktor Chernev\Desktop\testing\TestFiles");
             //TranspilerTests_FolderToAsts.Test_ParseFolder(LogVerbosity.High, @"C:\Users\Viktor Chernev\Desktop\testing\TestFiles");
+
+            //HtmlPageTranslatorTests.TestFile("Tests.Integration.Transpiler.TestFiles.live_Radio.NovaNews.2024-04-15.ds");
+            //HtmlBasicTranslatorTests.TestFile("Tests.Integration.Transpiler.TestFiles.live_Radio.NovaNews.2024-04-15.ds");
+            XmlBasicTranslatorTests.TestFile("Tests.Integration.Transpiler.TestFiles.live_Radio.NovaNews.2024-04-15.ds");
+            //JsonTranslatorTests.TestFile("Tests.Integration.Transpiler.TestFiles.live_Radio.NovaNews.2024-04-15.ds");
 
             Console.WriteLine("Tests done. Press any key to exit.");
             Console.ReadLine();

@@ -9,7 +9,7 @@ using System.Xml.Linq;
 
 namespace Tests.Integration.Transpiler
 {
-    internal class TranspilerTests_FileToUnfold : TranspilerTestsBase
+    internal class TranspilerTests_FileToUnfold : TestsBase
     {
         public static string outputDir = @"C:\Users\Viktor Chernev\Desktop\testing\TranspilerTests\ParseFileToUnfold";
 

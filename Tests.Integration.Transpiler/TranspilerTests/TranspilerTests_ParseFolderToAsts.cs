@@ -12,7 +12,7 @@ using System.Xml.Linq;
 
 namespace Tests.Integration.Transpiler
 {
-    internal class TranspilerTests_FolderToAsts : TranspilerTestsBase
+    internal class TranspilerTests_FolderToAsts : TestsBase
     {
         public static string outputDir = @"C:\Users\Viktor Chernev\Desktop\testing\TranspilerTests\ParseFolderToAsts";
 

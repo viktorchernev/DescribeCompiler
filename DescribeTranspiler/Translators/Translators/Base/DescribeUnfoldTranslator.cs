@@ -3,7 +3,7 @@ using DescribeParser.Unfold;
 
 namespace DescribeTranspiler.Translators
 {
-    public abstract class DescribeTranslator
+    public abstract class DescribeUnfoldTranslator
     {
         /// <summary>
         /// This is meant as a failsafe - if false then the
@@ -20,8 +20,8 @@ namespace DescribeTranspiler.Translators
         /// Translate an unfold structure. This is the main method.
         /// </summary>
         /// <param name="u">The unfold structure to translate.</param>
-        /// <returns>The resulted string in the target language.</returns>
-        public abstract string TranslateUnfold(DescribeUnfold u);
+        /// <returns>The resulting string in the target language.</returns>
+        public abstract string? TranslateUnfold(DescribeUnfold u);
     }
 }
 // After we have parsed our files and optimized the resulting parse tree to content in an Unfold

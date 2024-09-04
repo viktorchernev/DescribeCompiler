@@ -8,9 +8,9 @@ using DescribeTranspiler.Translators;
 
 namespace Tests.Integration.Transpiler
 {
-    internal class HtmlBasicTranslatorTests : TranspilerTestsBase
+    internal class XmlBasicTranslatorTests : TestsBase
     {
-        public static string outputDir = @"C:\Users\Viktor Chernev\Desktop\testing\HtmlBasicTranslatorTests";
+        public static string outputDir = @"C:\Users\Viktor Chernev\Desktop\testing\TranslatorTests\XmlBasicTranslatorTests";
 
         internal static void TestFile(string embeddedName)
         {
@@ -36,17 +36,14 @@ namespace Tests.Integration.Transpiler
                 ConsoleLogInfo, ConsoleLogParseInfo);
 
             //construct translator
-            HtmlBasicTranslator translator = new HtmlBasicTranslator();
-            translator.LogText = ConsoleLog;
-            translator.LogError = ConsoleLogError;
-            translator.LogInfo = ConsoleLogInfo;
+            XmlBasicTranslator translator = new XmlBasicTranslator(ConsoleLog, ConsoleLogError, ConsoleLogInfo);
 
             //compile
             DescribeUnfold unfold = new DescribeUnfold();
             bool r = compiler.ParseString(text, embeddedName, ref unfold);
 
             //translate
-            string translated = translator.TranslateUnfold(unfold);
+            string? translated = translator.TranslateUnfoldPretty(unfold);
             string result = resultTemplateA;
             result += text + resultTemplateB;
             result += Environment.NewLine + Environment.NewLine + translated;
@@ -54,7 +51,7 @@ namespace Tests.Integration.Transpiler
             //get save name
             string[] sep = embeddedName.Split('.');
             string filename = sep[sep.Length - 2] + ".md";
-            string htmlname = sep[sep.Length - 2] + ".html";
+            string htmlname = sep[sep.Length - 2] + ".xml";
             if (translated == null) filename = "~" + filename;
             filename = Path.Combine(outputdir, filename);
             htmlname = Path.Combine(outputdir, htmlname);

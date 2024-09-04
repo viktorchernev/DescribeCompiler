@@ -6,7 +6,10 @@ using System.Collections.Generic;
 
 namespace DescribeTranspiler.Translators
 {
-    public class HtmlBasicTranslator : DescribeTranslator
+    /// <summary>
+    /// Translate Unfold to HTML markup snippet
+    /// </summary>
+    public class HtmlBasicTranslator : DescribeUnfoldTranslator
     {
         public override bool IsInitialized
         {
@@ -17,16 +20,16 @@ namespace DescribeTranspiler.Translators
 
         //templates
         const string templatesFolderName = "HTML_PLAIN";
-        static string pageTemplate;
-        static string rootTemplate;
-        static string itemTemplate;
-        static string emptyItemTemplate;
-        static string commentItemTemplate;
-        static string nlcommentItemTemplate;
-        static string coloredItemTemplate;
-        static string productionTemplate;
-        static string coloredProductionTemplate;
-        static string linkTemplate;
+        static string? pageTemplate;
+        static string? rootTemplate;
+        static string? itemTemplate;
+        static string? emptyItemTemplate;
+        static string? commentItemTemplate;
+        static string? nlcommentItemTemplate;
+        static string? coloredItemTemplate;
+        static string? productionTemplate;
+        static string? coloredProductionTemplate;
+        static string? linkTemplate;
 
 
 
@@ -36,6 +39,8 @@ namespace DescribeTranspiler.Translators
         /// </summary>
         public HtmlBasicTranslator()
         {
+            Log = "";
+
             //set default log handlers
             LogText = log;
             LogInfo = log;
@@ -66,13 +71,145 @@ namespace DescribeTranspiler.Translators
             }
         }
 
+        /// <summary>
+        /// Ctor.
+        /// The Translator is loaded with the default templates.
+        /// </summary>
+        /// <param name="logText">method to log text</param>
+        public HtmlBasicTranslator(Action<string> logText)
+        {
+            Log = "";
+
+            //set default log handlers
+            LogText = log;
+            LogText += logText;
+
+            LogInfo = log;
+            LogError = log;
+
+            //try to initialize templates
+            try
+            {
+                string n = templatesFolderName;
+                pageTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Page");
+                rootTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Root");
+                coloredProductionTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ProductionColored");
+                productionTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Production");
+                itemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Item");
+                emptyItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemEmpty");
+                nlcommentItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemCommentNl");
+                commentItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemComment");
+                coloredItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemColored");
+                linkTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Link");
+
+                LogInfo("Translator initialized - using template \"" + n + "\"");
+                IsInitialized = true;
+            }
+            catch (Exception ex)
+            {
+                IsInitialized = false;
+                LogError("Fatal error: " + ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Ctor.
+        /// The Translator is loaded with the default templates.
+        /// </summary>
+        /// <param name="logText">method to log text</param>
+        /// <param name="logError">method to log errors</param>
+        public HtmlBasicTranslator(Action<string> logText, Action<string> logError)
+        {
+            Log = "";
+
+            //set default log handlers
+            LogText = log;
+            LogText += logText;
+
+            LogInfo = log;
+
+            LogError = log;
+            LogError += logError;
+
+            //try to initialize templates
+            try
+            {
+                string n = templatesFolderName;
+                pageTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Page");
+                rootTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Root");
+                coloredProductionTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ProductionColored");
+                productionTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Production");
+                itemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Item");
+                emptyItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemEmpty");
+                nlcommentItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemCommentNl");
+                commentItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemComment");
+                coloredItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemColored");
+                linkTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Link");
+
+                LogInfo("Translator initialized - using template \"" + n + "\"");
+                IsInitialized = true;
+            }
+            catch (Exception ex)
+            {
+                IsInitialized = false;
+                LogError("Fatal error: " + ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Ctor.
+        /// The Translator is loaded with the default templates.
+        /// </summary>
+        /// <param name="logText">method to log text</param>
+        /// <param name="logError">method to log errors</param>
+        /// <param name="logInfo">method to log less important info</param>
+        public HtmlBasicTranslator(Action<string> logText, Action<string> logError, Action<string> logInfo)
+        {
+            Log = "";
+
+            //set default log handlers
+            LogText = log;
+            LogText += logText;
+
+            LogInfo = log;
+            LogInfo += logInfo;
+
+            LogError = log;
+            LogError += logError;
+
+            //try to initialize templates
+            try
+            {
+                string n = templatesFolderName;
+                pageTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Page");
+                rootTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Root");
+                coloredProductionTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ProductionColored");
+                productionTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Production");
+                itemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Item");
+                emptyItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemEmpty");
+                nlcommentItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemCommentNl");
+                commentItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemComment");
+                coloredItemTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"ItemColored");
+                linkTemplate = ResourceUtil.ExtractResourceByFileName_String(n, @"Link");
+
+                LogInfo("Translator initialized - using template \"" + n + "\"");
+                IsInitialized = true;
+            }
+            catch (Exception ex)
+            {
+                IsInitialized = false;
+                LogError("Fatal error: " + ex.Message);
+            }
+        }
+
+
 
         /// <summary>
         /// Get html code from unfold
         /// </summary>
         /// <param name="u">The unfold to be translated</param>
         /// <returns>The generated html code</returns>
-        public override string TranslateUnfold(DescribeUnfold u)
+        public override string? TranslateUnfold(DescribeUnfold u)
         {
             if (IsInitialized == false) return null;
 
@@ -83,8 +220,8 @@ namespace DescribeTranspiler.Translators
                 data += s;
             }
 
-            string rt = rootTemplate.Replace("{ITEMS}", data);
-            string pt = pageTemplate.Replace("{DATA}", rt);
+            string rt = rootTemplate!.Replace("{ITEMS}", data);
+            string pt = pageTemplate!.Replace("{DATA}", rt);
 
             if (pageTemplate.Contains("{TIME_STAMP}"))
             {
@@ -155,7 +292,7 @@ namespace DescribeTranspiler.Translators
                     {
                         url  = "https://" + url;
                     }
-                    string template = linkTemplate.Replace("{HTTPS}", url);
+                    string template = linkTemplate!.Replace("{HTTPS}", url);
                     template = template.Replace("{TEXT}", CharacterDictionariesHtml.BlackCircledLettersI[i]);
                     linkage += template;
                 }
@@ -170,7 +307,7 @@ namespace DescribeTranspiler.Translators
                 {
                     if (decorator.Name == "color")
                     {
-                        string res = coloredProductionTemplate.Replace("{TITLE}", u.Translations[id]);
+                        string res = coloredProductionTemplate!.Replace("{TITLE}", u.Translations[id]);
                         res = res.Replace("{LINKS}", linkage);
                         res = res.Replace("{COLOR}", decorator.Value);
                         res = res.Replace("{ITEMS}", items);
@@ -178,7 +315,7 @@ namespace DescribeTranspiler.Translators
                     }
                 }
             }
-            string pt = productionTemplate.Replace("{TITLE}", u.Translations[id]);
+            string pt = productionTemplate!.Replace("{TITLE}", u.Translations[id]);
             pt = pt.Replace("{LINKS}", linkage);
             pt = pt.Replace("{ITEMS}", items);
             return pt;
@@ -202,7 +339,7 @@ namespace DescribeTranspiler.Translators
                     {
                         url = "https://" + url;
                     }
-                    string template = linkTemplate.Replace("{HTTPS}", url);
+                    string template = linkTemplate!.Replace("{HTTPS}", url);
                     template = template.Replace("{TEXT}", CharacterDictionariesHtml.BlackCircledLettersI[i]);
                     linkage += template;
                 }
@@ -217,30 +354,30 @@ namespace DescribeTranspiler.Translators
                 {
                     if (decorator.Name == "empty")
                     {
-                        return emptyItemTemplate;
+                        return emptyItemTemplate!;
                     }
                     else if (decorator.Name == "comment")
                     {
-                        string res = commentItemTemplate.Replace("{ITEM}", u.Translations[id]);
+                        string res = commentItemTemplate!.Replace("{ITEM}", u.Translations[id]);
                         res = res.Replace("{LINKS}", linkage);
                         return res;
                     }
                     else if (decorator.Name == "nlcomment")
                     {
-                        string res = nlcommentItemTemplate.Replace("{ITEM}", u.Translations[id]);
+                        string res = nlcommentItemTemplate!.Replace("{ITEM}", u.Translations[id]);
                         res = res.Replace("{LINKS}", linkage);
                         return res;
                     }
                     else if (decorator.Name == "color")
                     {
-                        string res = coloredItemTemplate.Replace("{ITEM}", u.Translations[id]);
+                        string res = coloredItemTemplate!.Replace("{ITEM}", u.Translations[id]);
                         res = res.Replace("{LINKS}", linkage);
                         res = res.Replace("{COLOR}", decorator.Value);
                         return res;
                     }
                 }
             }
-            string it = itemTemplate.Replace("{ITEM}", u.Translations[id]);
+            string it = itemTemplate!.Replace("{ITEM}", u.Translations[id]);
             it = it.Replace("{LINKS}", linkage);
             return it;
         }

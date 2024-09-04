@@ -1,1 +1,1 @@
-<item><htmlStyle>color: green; font-style: italic;</htmlStyle><type>nlcomment</type><content>{ITEM}</content><links>{LINKS}</links></item>
+<item><htmlStyle>color: green; font-style: italic;</htmlStyle><type>basic</type><content>{ITEM}</content><links>{LINKS}</links></item>

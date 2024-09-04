@@ -8,9 +8,9 @@ using DescribeTranspiler.Translators;
 
 namespace Tests.Integration.Transpiler
 {
-    internal class HtmlPageTranslatorTests : TranspilerTestsBase
+    internal class HtmlBasicTranslatorTests : TestsBase
     {
-        public static string outputDir = @"C:\Users\Viktor Chernev\Desktop\testing\HtmlPageTranslatorTests";
+        public static string outputDir = @"C:\Users\Viktor Chernev\Desktop\testing\TranslatorTests\HtmlBasicTranslatorTests";
 
         internal static void TestFile(string embeddedName)
         {
@@ -36,10 +36,7 @@ namespace Tests.Integration.Transpiler
                 ConsoleLogInfo, ConsoleLogParseInfo);
 
             //construct translator
-            HtmlPageTranslator translator = new HtmlPageTranslator();
-            translator.LogText = ConsoleLog;
-            translator.LogError = ConsoleLogError;
-            translator.LogInfo = ConsoleLogInfo;
+            HtmlBasicTranslator translator = new HtmlBasicTranslator(ConsoleLog, ConsoleLogError, ConsoleLogInfo);
 
             //compile
             DescribeUnfold unfold = new DescribeUnfold();

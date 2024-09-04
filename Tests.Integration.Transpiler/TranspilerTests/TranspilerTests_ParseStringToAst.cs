@@ -10,7 +10,7 @@ using System.Xml.Linq;
 
 namespace Tests.Integration.Transpiler
 {
-    internal class TranspilerTests_StringToAst : TranspilerTestsBase
+    internal class TranspilerTests_StringToAst : TestsBase
     {
         public static string outputDir = @"C:\Users\Viktor Chernev\Desktop\testing\TranspilerTests\ParseStringToAst";
 

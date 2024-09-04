@@ -14,7 +14,7 @@ using DescribeParser.Unfold;
 
 namespace DescribeTranspiler.Listiary.Translators
 {
-    public class SqlFileFillTranslator : DescribeTranslator
+    public class SqlFileFillTranslator : DescribeUnfoldTranslator
     {
         //templates
         static string failedFileQueryTemplate;

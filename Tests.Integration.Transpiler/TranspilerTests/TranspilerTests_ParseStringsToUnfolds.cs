@@ -11,7 +11,7 @@ using System.Xml.Linq;
 
 namespace Tests.Integration.Transpiler
 {
-    internal class TranspilerTests_StringsToUnfolds : TranspilerTestsBase
+    internal class TranspilerTests_StringsToUnfolds : TestsBase
     {
         public static string outputDir = @"C:\Users\Viktor Chernev\Desktop\testing\TranspilerTests\ParseStringsToUnfolds";
 

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Tests.Integration.Transpiler
 {
-    internal class TranspilerTestsBase
+    internal class TestsBase
     {
         static string GetElapsedTime(Stopwatch watch)
         {
