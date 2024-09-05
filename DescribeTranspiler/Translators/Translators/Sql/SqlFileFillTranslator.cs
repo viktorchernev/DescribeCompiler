@@ -14,18 +14,22 @@ using DescribeParser.Unfold;
 
 namespace DescribeTranspiler.Listiary.Translators
 {
+    /// <summary>
+    /// Translates Describe Unfold to SQL queries intended at populating database with files.
+    /// </summary>
     public class SqlFileFillTranslator : DescribeUnfoldTranslator
     {
         //templates
         static string? failedFileQueryTemplate;
         static string? passedFileQueryTemplate;
 
-
         public override bool IsInitialized
         {
             get;
             protected set;
         }
+
+
 
         public SqlFileFillTranslator()
         {
@@ -141,6 +145,7 @@ namespace DescribeTranspiler.Listiary.Translators
         }
 
 
+
         public override string TranslateUnfold(DescribeUnfold u)
         {
             string query = "";
@@ -183,6 +188,8 @@ namespace DescribeTranspiler.Listiary.Translators
 
             return query;
         }
+
+
 
         public string Log
         {

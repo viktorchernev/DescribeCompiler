@@ -1,15 +1,12 @@
-﻿using DescribeParser;
-using DescribeParser.Unfold;
+﻿using DescribeParser.Unfold;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Xml.Linq;
 
 
 namespace DescribeTranspiler.Translators
 {
     /// <summary>
-    /// Translates Describe Unfold to JSON object
+    /// Translates Describe Unfold to JSON object.
+    /// This is a variation of the Basic JSON translator, used in the Listiary wiki.
     /// </summary>
     public class JsonListiaryTranslator : DescribeUnfoldTranslator
     {
@@ -33,6 +30,7 @@ namespace DescribeTranspiler.Translators
         static string? coloredProductionTemplate;
         static string? linkTemplate;
         static string? decoratorTemplate;
+
 
 
         /// <summary>
@@ -216,14 +214,17 @@ namespace DescribeTranspiler.Translators
         /// </summary>
         /// <param name="u">The unfold to be translated</param>
         /// <returns>The generated JSON code</returns>
-        public override string? TranslateUnfoldPretty(DescribeUnfold u)
+        public string? TranslateUnfoldPretty(DescribeUnfold u)
         {
             string? json = TranslateUnfold(u);
             if (json == null) return null;
 
-            XDocument doc = XDocument.Parse(json);
-            // This will beautify the XML
-            string beautifiedJson = doc.ToString();
+            // Deserialize the JSON string into an object
+            var jsonObject = JsonConvert.DeserializeObject(json);
+
+            // Serialize the object back to string with indentation
+            string beautifiedJson = JsonConvert.SerializeObject(jsonObject, Formatting.Indented);
+
             return beautifiedJson;
         }
 

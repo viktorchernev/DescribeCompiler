@@ -47,7 +47,7 @@ namespace Tests.Integration.Transpiler
             bool r = compiler.ParseString(text, embeddedName, ref unfold);
 
             //translate
-            string? translated = translator.TranslateUnfold(unfold);
+            string? translated = translator.TranslateUnfoldPretty(unfold);
             string result = resultTemplateA;
             result += text + resultTemplateB;
             result += Environment.NewLine + Environment.NewLine + translated;

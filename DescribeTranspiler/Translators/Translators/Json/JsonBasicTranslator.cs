@@ -1,12 +1,12 @@
-﻿using DescribeParser;
-using DescribeParser.Unfold;
+﻿using DescribeParser.Unfold;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
 
 
 namespace DescribeTranspiler.Translators
 {
+    /// <summary>
+    /// Translates Describe Unfold to JSON object.
+    /// </summary>
     public class JsonBasicTranslator : DescribeUnfoldTranslator
     {
         public override bool IsInitialized
@@ -29,6 +29,7 @@ namespace DescribeTranspiler.Translators
         static string? coloredProductionTemplate;
         static string? linkTemplate;
         static string? decoratorTemplate;
+
 
 
         /// <summary>
@@ -206,6 +207,25 @@ namespace DescribeTranspiler.Translators
 
 
 
+        /// <summary>
+        /// Get html code from unfold. 
+        /// Same as `TranslateUnfold`, but the JSON is beautified.
+        /// </summary>
+        /// <param name="u">The unfold to be translated</param>
+        /// <returns>The generated JSON code</returns>
+        public string? TranslateUnfoldPretty(DescribeUnfold u)
+        {
+            string? json = TranslateUnfold(u);
+            if (json == null) return null;
+
+            // Deserialize the JSON string into an object
+            var jsonObject = JsonConvert.DeserializeObject(json);
+
+            // Serialize the object back to string with indentation
+            string beautifiedJson = JsonConvert.SerializeObject(jsonObject, Formatting.Indented);
+
+            return beautifiedJson;
+        }
 
         /// <summary>
         /// Get JSON code from unfold
@@ -262,6 +282,9 @@ namespace DescribeTranspiler.Translators
 
             return pt;
         }
+
+
+
         string TranslateProductionOrItem(DescribeUnfold u, string id)
         {
             if (u.Productions.ContainsKey(id)) return TranslateProduction(u, id);
