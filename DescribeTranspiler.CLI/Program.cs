@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
+using System.Runtime.ConstrainedExecution;
 
 namespace DescribeTranspiler.Cli
 {
@@ -13,19 +14,24 @@ namespace DescribeTranspiler.Cli
         {
             try
             {
-                                    args = new string[8];
-                                    args[0] = "parse-folder";
-                                    args[1] = "C:\\Users\\Viktor Chernev\\Desktop\\dbs\\2024.02.15-205423065\\Public\\files";
-                                    args[2] = "C:\\Users\\Viktor Chernev\\Desktop\\dbs\\AAA";
-                                    args[3] = "translator=JSON_WORLD_OF_LISTS";
-                                    args[4] = "dsonly=true";
-                                    args[5] = "toponly=false";
-                                    args[6] = "onerror=ignore";
-                                    args[7] = "verbosity=l";
-                
                 //preset
                 Messages.presetConsole();
-                Messages.SetDarkBlueTheme();
+                bool setted = false;
+                for(int i = 0; i < args.Length; i++)
+                {
+                    string arg = args[i];
+                    if (arg.StartsWith("theme=") && arg.Length > "theme=".Length)
+                    {
+                        if (Arguments.readThemeArgument(args[i], i) == false) return;
+                        else
+                        {
+                            setted = true;
+                            break;
+                        }
+                    }
+                    else continue;
+                }
+                if(setted == false) Messages.SetGreenTheme();
                 Messages.printLogo3Bicolor();
                 Messages.printCmdLine(args);
 
@@ -34,18 +40,21 @@ namespace DescribeTranspiler.Cli
                 {
                     Messages.printNoArgumentsError();
                 }
+
                 //DescribeCompilerCLI help | -h
                 else if (args[0].ToLower() == "help" || args[0] == "-h")
                 {
                     Messages.printHelpMessage();
                 }
-                //DescribeCompilerCLI parse-file PARSE_PATH RESULT_PATH
-                //[dsonly[=<verb>]] [verbosity=<verb> | log-verbosity=<verb> ] [onerror=<verb> ]
-                //[artifacts=<verb> [artifacts-path=ARTIFACTS_PATH]] [logfile=LOG_PATH ]
+
+                //DescribeCompilerCLI parse-file PARSE_PATH RESULT_PATH [ password=PASSWORD ][ encrypt-log=false ]
+                //[ language-version=<verb> | lang-ver=<verb> ][ translator = ( TARGET_LANGUAGE | TRANSLATOR_NAME )]
+                //[ verbosity=<verb> | log-verbosity=<verb> ][ logfile=LOG_PATH | log-file=LOG_PATH ]
                 else if (args[0].ToLower() == "parse-file")
                 {
                     parseFile(args);
                 }
+
                 //DescribeCompilerCLI parse-folder PARSE_PATH RESULT_PATH
                 //[ dsonly[=<verb>] ] [ toponly[=true|=false] ] [ verbosity=<verb> | log-verbosity=<verb> ]
                 //[ onerror=<verb> ] [ artifacts=<verb> [artifacts-path=ARTIFACTS_PATH ]] [ logfile=LOG_PATH ]
@@ -61,6 +70,7 @@ namespace DescribeTranspiler.Cli
                 //save log to file
                 if (Datnik.logToFile)
                 {
+                    //if(Datnik.encryptLogFile == true)
                     File.WriteAllText(Datnik.logFilePath, Messages.Log);
                 }
             }

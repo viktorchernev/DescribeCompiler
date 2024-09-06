@@ -9,6 +9,48 @@ namespace DescribeTranspiler.Cli
 {
     internal static class Arguments
     {
+        /// <summary>
+        /// Read color theme
+        /// </summary>
+        /// <param name="arg">The argument raw text</param>
+        /// <param name="argindex">The index of the argument (for logging purposes)</param>
+        /// <returns>True if successful</returns>
+        internal static bool readThemeArgument(string arg, int argindex)
+        {
+            try
+            {
+                string val = arg.Substring(arg.IndexOf("=") + 1);
+                if (string.IsNullOrEmpty(val) || string.IsNullOrWhiteSpace(val))
+                {
+                    Messages.printArgumentError(arg, argindex, "");
+                    return false;
+                }
+                else if (val == "DBLUE") Messages.SetDarkBlueTheme();
+                else if (val == "LBLUE") Messages.SetLightBlueTheme();
+                else if (val == "GREEN") Messages.SetGreenTheme();
+                else if (val == "PASTEL") Messages.SetPastelTheme();
+                else if (val == "EARTH") Messages.SetEarthTheme();
+                else if (val == "CONTRAST") Messages.SetHighContrastTheme();
+                else if (val == "DEFAULT") Messages.SetDefaultTheme();
+                else if (val == "VIOLET") Messages.SetVioletTheme();
+                else if (val == "CYAN") Messages.SetCyanTheme();
+                else
+                {
+                    Messages.printArgumentError(arg,
+                        argindex,
+                        "invalid value \"" + val + "\"");
+                    return false;
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Messages.printArgumentError(arg, argindex, ex.Message);
+                return false;
+            }
+        }
+
 
         /// <summary>
         /// Read input file or folder

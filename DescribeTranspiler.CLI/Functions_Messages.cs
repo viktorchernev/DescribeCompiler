@@ -48,7 +48,37 @@ namespace DescribeTranspiler.Cli
         }
 
 
-        //themes
+        //themes chatGPT
+        public static void SetGreenTheme()
+        {
+            INFO_COLOR = ConsoleColor.Green;
+            TEXT_COLOR = ConsoleColor.Yellow;
+            ERROR_COLOR = ConsoleColor.Red;
+            MOREINFO_COLOR = ConsoleColor.DarkGray;
+        }
+        public static void SetPastelTheme()
+        {
+            INFO_COLOR = ConsoleColor.DarkCyan;
+            TEXT_COLOR = ConsoleColor.Magenta;
+            ERROR_COLOR = ConsoleColor.Red;
+            MOREINFO_COLOR = ConsoleColor.Cyan;
+        }
+        public static void SetEarthTheme()
+        {
+            INFO_COLOR = ConsoleColor.DarkYellow;
+            TEXT_COLOR = ConsoleColor.DarkGreen;
+            ERROR_COLOR = ConsoleColor.Red;
+            MOREINFO_COLOR = ConsoleColor.Gray;
+        }
+        public static void SetHighContrastTheme()
+        {
+            INFO_COLOR = ConsoleColor.White;
+            TEXT_COLOR = ConsoleColor.Yellow;
+            ERROR_COLOR = ConsoleColor.Red;
+            MOREINFO_COLOR = ConsoleColor.Green;
+        }
+
+        //themes mine
         public static void SetDefaultTheme()
         {
             INFO_COLOR = ConsoleColor.DarkGray;

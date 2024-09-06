@@ -28,12 +28,12 @@ namespace DescribeTranspiler.Cli
                     Messages.ConsoleLogParseInfo);
 
                 //settings
-                DescribeTranspiler.DescribeCompiler.PARSE_TOP_DIRECTORY_ONLY = Datnik.topOnly;
-                DescribeTranspiler.DescribeCompiler.PARSE_DS_ONLY = Datnik.dsOnly;
-                DescribeTranspiler.DescribeCompiler.STOP_ON_ERROR = Datnik.requireSuccess;
+                comp.PARSE_TOP_DIRECTORY_ONLY = Datnik.topOnly;
+                comp.PARSE_DS_ONLY = Datnik.dsOnly;
+                comp.STOP_ON_ERROR = Datnik.requireSuccess;
 
                 //templates
-                DescribeTranslator translator = null;
+                DescribeUnfoldTranslator translator = null;
                 if (Datnik.translatorName.ToLower().StartsWith("json_world_of_lists")
                     || Datnik.translatorName.ToLower() == "json_world_of_lists")
                 {
@@ -69,9 +69,9 @@ namespace DescribeTranspiler.Cli
                 //compile
                 DescribeUnfold unfold = new DescribeUnfold();
                 bool r = false;
-                if (Datnik.isInputDir == false) r = comp.ParseFile_ToUnfold(new FileInfo(Datnik.input), ref unfold);
-                else r = comp.ParseFolder_ToUnfold(new DirectoryInfo(Datnik.input), ref unfold);
-                string result = translator.TranslateUnfold(unfold);
+                if (Datnik.isInputDir == false) r = comp.ParseFile(new FileInfo(Datnik.input), ref unfold);
+                else r = comp.ParseFolder(new DirectoryInfo(Datnik.input), ref unfold);
+                string? result = translator.TranslateUnfold(unfold);
 
                 if (result != null)
                 {

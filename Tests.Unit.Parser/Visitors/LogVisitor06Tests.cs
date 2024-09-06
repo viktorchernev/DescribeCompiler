@@ -23,7 +23,7 @@ namespace DescribeParser.UnitTests
             LogVisitor06 visitor = new LogVisitor06();
             Assert.IsNotNull(visitor.Log);
         }
-        
+
         [Test]
         public void Ctor_Invocation_LastErrorNull()
         {
