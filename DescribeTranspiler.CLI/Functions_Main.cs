@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DescribeParser.Unfold;
+using DescribeTranspiler.Listiary.Translators;
 
 namespace DescribeTranspiler.Cli
 {
@@ -33,9 +34,9 @@ namespace DescribeTranspiler.Cli
                 comp.STOP_ON_ERROR = Datnik.requireSuccess;
 
                 //templates
-                DescribeUnfoldTranslator translator = null;
-                if (Datnik.translatorName.ToLower().StartsWith("json_world_of_lists")
-                    || Datnik.translatorName.ToLower() == "json_world_of_lists")
+                DescribeUnfoldTranslator translator;
+                if (Datnik.translatorName.ToLower().StartsWith("json_listiary")
+                    || Datnik.translatorName.ToLower() == "json_listiary")
                 {
                     translator = new JsonListiaryTranslator(
                         Messages.ConsoleLog,
@@ -50,13 +51,36 @@ namespace DescribeTranspiler.Cli
                         Messages.ConsoleLogError,
                         Messages.ConsoleLogInfo);
                 }
+                else if (Datnik.translatorName.ToLower().StartsWith("html_plain"))
+                {
+                    translator = new HtmlBasicTranslator(
+                        Messages.ConsoleLog,
+                        Messages.ConsoleLogError,
+                        Messages.ConsoleLogInfo);
+                }
                 else if (Datnik.translatorName.ToLower().StartsWith("html_")
                     || Datnik.translatorName.ToLower() == "html")
                 {
-                    translator = new HtmlPageTranslator();
-                    (translator as HtmlPageTranslator).LogText = Messages.ConsoleLog;
-                    (translator as HtmlPageTranslator).LogError = Messages.ConsoleLogError;
-                    (translator as HtmlPageTranslator).LogInfo = Messages.ConsoleLogInfo;
+                    translator = new HtmlPageTranslator(
+                        Messages.ConsoleLog,
+                        Messages.ConsoleLogError,
+                        Messages.ConsoleLogInfo);
+                }
+                else if (Datnik.translatorName.ToLower().StartsWith("xml_")
+                    || Datnik.translatorName.ToLower() == "xml")
+                {
+                    translator = new XmlBasicTranslator(
+                        Messages.ConsoleLog,
+                        Messages.ConsoleLogError,
+                        Messages.ConsoleLogInfo);
+                }
+                else if (Datnik.translatorName.ToLower().StartsWith("sql_")
+                    || Datnik.translatorName.ToLower() == "sql")
+                {
+                    translator = new SqlFileFillTranslator(
+                        Messages.ConsoleLog,
+                        Messages.ConsoleLogError,
+                        Messages.ConsoleLogInfo);
                 }
                 else
                 {
@@ -69,13 +93,26 @@ namespace DescribeTranspiler.Cli
                 //compile
                 DescribeUnfold unfold = new DescribeUnfold();
                 bool r = false;
-                if (Datnik.isInputDir == false) r = comp.ParseFile(new FileInfo(Datnik.input), ref unfold);
-                else r = comp.ParseFolder(new DirectoryInfo(Datnik.input), ref unfold);
-                string? result = translator.TranslateUnfold(unfold);
+                if (Datnik.isInputDir == false) r = comp.ParseFile(new FileInfo(Datnik.input!), ref unfold);
+                else r = comp.ParseFolder(new DirectoryInfo(Datnik.input!), ref unfold);
+
+                string? result; 
+                if(Datnik.isBeautified)
+                {
+                    if (translator is JsonBasicTranslator)
+                        result = (translator as JsonBasicTranslator)!.TranslateUnfoldPretty(unfold);
+                    else if (translator is JsonListiaryTranslator)
+                        result = (translator as JsonListiaryTranslator)!.TranslateUnfoldPretty(unfold);
+                    else result = translator.TranslateUnfold(unfold);
+                }
+                else
+                {
+                    result = translator.TranslateUnfold(unfold);
+                }
 
                 if (result != null)
                 {
-                    File.WriteAllText(Datnik.output, result);
+                    File.WriteAllText(Datnik.output!, result);
                     return true;
                 }
                 return false;

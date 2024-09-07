@@ -35,6 +35,7 @@ namespace DescribeTranspiler.Cli
                 if(setted == false) Messages.SetGreenTheme();
                 Messages.printLogo3Bicolor();
                 Messages.printCmdLine(args);
+                Messages.ConsoleLog("--------------------------------------------------");
 
                 //read args
                 if (args.Length < 1)
@@ -113,6 +114,10 @@ namespace DescribeTranspiler.Cli
                 {
                     if (Arguments.readTranslatorArgument(args[i], i) == false) return;
                 }
+                else if (cur.StartsWith("beautify=") && cur.Length > "beautify=".Length)
+                {
+                    if (Arguments.readBeautifyArgument(cur, i) == false) return;
+                }
                 else if (cur.StartsWith("verbosity=") && cur.Length > "verbosity=".Length)
                 {
                     if (Arguments.readVerbosityArgument(cur, i) == false) return;
@@ -146,6 +151,7 @@ namespace DescribeTranspiler.Cli
 
             //Compile
             MainFunctions.Compile();
+            Messages.ConsoleLog("--------------------------------------------------");
             Messages.printCompilationSuccess();
         }
         static void parseFolder(string[] args)

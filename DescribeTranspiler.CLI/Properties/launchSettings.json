@@ -2,7 +2,7 @@
   "profiles": {
     "DescribeTranspiler.CLI": {
       "commandName": "Project",
-      "commandLineArgs": "parse-file \r\n\"C:\\Users\\Viktor Chernev\\Desktop\\testing\\TestFiles\\live_Radio\\NovaNews.ds\" \"C:\\Users\\Viktor Chernev\\Desktop\\testing\\TranslatorCliTests\\json-low.json\"\r\ntranslator=JSON \r\nverbosity=low"
+      "commandLineArgs": " parse-file \r\n \"C:\\Users\\Viktor Chernev\\Desktop\\testing\\TestFiles\\live_Radio\\NovaNews.ds\"\r\n \"C:\\Users\\Viktor Chernev\\Desktop\\testing\\TranslatorCliTests\\json-low-beautified.json\"\r\n translator=JSON beautify=true\r\n verbosity=low"
     }
   }
 }

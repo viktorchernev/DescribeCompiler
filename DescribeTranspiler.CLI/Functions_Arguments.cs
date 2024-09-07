@@ -572,6 +572,40 @@ namespace DescribeTranspiler.Cli
             }
         }
 
+        /// <summary>
+        /// Read beautify argument
+        /// </summary>
+        /// <param name="arg">The argument raw text</param>
+        /// <param name="argindex">The index of the argument (for logging purposes)</param>
+        /// <returns>True if successful</returns>
+        internal static bool readBeautifyArgument(string arg, int argindex)
+        {
+            try
+            {
+                string val = arg.Substring(arg.IndexOf("=") + 1);
+                if (string.IsNullOrEmpty(val) || string.IsNullOrWhiteSpace(val))
+                {
+                    Messages.printArgumentError(arg, argindex, "");
+                    return false;
+                }
+                else if (val == "true") Datnik.isBeautified = true;
+                else if (val == "false") Datnik.isBeautified = false;
+                else
+                {
+                    Messages.printArgumentError(arg,
+                        argindex, "invalid value \"" + val + "\"");
+                    return false;
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Messages.printArgumentError(arg, argindex, ex.Message);
+                return false;
+            }
+        }
+
 
 
         /// <summary>

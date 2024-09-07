@@ -72,6 +72,11 @@ namespace DescribeTranspiler.Cli
         /// </summary>
         public static bool dsOnly;
 
+        /// <summary>
+        /// Wether the output needs to be in a beautified format
+        /// </summary>
+        public static bool isBeautified;
+
 
 
         /// <summary>
@@ -121,6 +126,7 @@ namespace DescribeTranspiler.Cli
             isInputDir = false;
             isOutputDir = false;
             topOnly = false;
+            isBeautified = false;
 
             translatorName = "HTML_PARACORD";
 
