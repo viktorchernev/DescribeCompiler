@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DescribeTranspiler.CLI;
+using System;
 using System.IO;
 using System.Reflection;
 using System.Runtime.ConstrainedExecution;
@@ -8,7 +9,7 @@ namespace DescribeTranspiler.Cli
     internal class Program
     {
         public static readonly bool LOG_STACK_TRACES = true;
-
+        public static CryptoUtil CryptoUtil = new CryptoUtil_Implementation1();
 
         static void Main(string[] args)
         {
@@ -70,8 +71,16 @@ namespace DescribeTranspiler.Cli
                 //save log to file
                 if (Datnik.logToFile)
                 {
-                    //if(Datnik.encryptLogFile == true)
-                    File.WriteAllText(Datnik.logFilePath, Messages.Log);
+                    if(Datnik.encryptLog == true)
+                    {
+                        string log = Messages.Log;
+                        string encryptedLog = CryptoUtil.EncryptString(log, Datnik.logPassword!);
+                        File.WriteAllText(Datnik.logFilePath!, encryptedLog);
+                    }
+                    else
+                    {
+                        File.WriteAllText(Datnik.logFilePath!, Messages.Log);
+                    }
                 }
             }
             catch (Exception ex)
@@ -115,6 +124,18 @@ namespace DescribeTranspiler.Cli
                 else if (cur.StartsWith("logfile=") && cur.Length > "logfile=".Length)
                 {
                     if (Arguments.readLogfileArgument(args[i], i) == false) return;
+                }
+                else if (cur.StartsWith("input-password=") && cur.Length > "input-password=".Length)
+                {
+                    if (Arguments.readInputPasswordArgument(args[i], i) == false) return;
+                }
+                else if (cur.StartsWith("output-password=") && cur.Length > "output-password=".Length)
+                {
+                    if (Arguments.readOutputPasswordArgument(args[i], i) == false) return;
+                }
+                else if (cur.StartsWith("log-password=") && cur.Length > "log-password=".Length)
+                {
+                    if (Arguments.readLogPasswordArgument(args[i], i) == false) return;
                 }
                 else
                 {

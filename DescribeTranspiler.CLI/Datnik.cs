@@ -12,12 +12,17 @@ namespace DescribeTranspiler.Cli
         /// <summary>
         /// Password to decrypt input files, if parseEncryptedFiles == true
         /// </summary>
-        public static string inputPassword;
+        public static string? inputPassword;
 
         /// <summary>
         /// Pasword to encrypt output file(s), if encryptOutput == true
         /// </summary>
-        public static string outputPassword;
+        public static string? outputPassword;
+
+        /// <summary>
+        /// Pasword to encrypt log file(s), if encryptLog == true
+        /// </summary>
+        public static string? logPassword;
 
         /// <summary>
         /// Wether to try to decrypt encrypted files (.DENC)
@@ -25,16 +30,21 @@ namespace DescribeTranspiler.Cli
         public static bool parseEncryptedFiles;
 
         /// <summary>
-        /// 
+        /// Wether to encrypt output. Output will be a blob file.
         /// </summary>
         public static bool encryptOutput;
 
+        /// <summary>
+        /// Wether to encrypt log. Log will be a blob file.
+        /// </summary>
+        public static bool encryptLog;
 
+        
 
         /// <summary>
         /// The input file or folder
         /// </summary>
-        public static string input;
+        public static string? input;
 
         /// <summary>
         /// Wether the input is a file or a folder
@@ -44,7 +54,7 @@ namespace DescribeTranspiler.Cli
         /// <summary>
         /// The output file or folder
         /// </summary>
-        public static string output;
+        public static string? output;
 
         /// <summary>
         /// Wether the output is a file or a folder
@@ -88,7 +98,7 @@ namespace DescribeTranspiler.Cli
         /// <summary>
         /// Path to an external log file
         /// </summary>
-        public static string logFilePath;
+        public static string? logFilePath;
 
         /// <summary>
         /// Weather to output logs to an external file
@@ -104,6 +114,7 @@ namespace DescribeTranspiler.Cli
             outputPassword = null;
             parseEncryptedFiles = false;
             encryptOutput = false;
+            encryptLog = false;
 
             input = null;
             output = null;

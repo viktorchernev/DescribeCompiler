@@ -52,6 +52,123 @@ namespace DescribeTranspiler.Cli
         }
 
 
+
+        /// <summary>
+        /// Read the password for encrypting the input file(s) with .denc extention.
+        /// </summary>
+        /// <param name="arg">The argument raw text</param>
+        /// <param name="argindex">The index of the argument (for logging purposes)</param>
+        /// <returns>True if successful</returns>
+        internal static bool readInputPasswordArgument(string arg, int argindex)
+        {
+            try
+            {
+                string val = arg.Substring(arg.IndexOf("=") + 1);
+                if (string.IsNullOrEmpty(val) || string.IsNullOrWhiteSpace(val))
+                {
+                    Messages.printArgumentError(arg, argindex, "");
+                    return false;
+                }
+                if (val.Length > 6)
+                {
+                    Datnik.inputPassword = val;
+                    Datnik.parseEncryptedFiles = true;
+                }
+                else
+                {
+                    Messages.printArgumentError(arg,
+                        argindex,
+                        "invalid value length - \"" + val + "\"");
+                    return false;
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Messages.printArgumentError(arg, argindex, ex.Message);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Read the password for output file(s).
+        /// </summary>
+        /// <param name="arg">The argument raw text</param>
+        /// <param name="argindex">The index of the argument (for logging purposes)</param>
+        /// <returns>True if successful</returns>
+        internal static bool readOutputPasswordArgument(string arg, int argindex)
+        {
+            try
+            {
+                string val = arg.Substring(arg.IndexOf("=") + 1);
+                if (string.IsNullOrEmpty(val) || string.IsNullOrWhiteSpace(val))
+                {
+                    Messages.printArgumentError(arg, argindex, "");
+                    return false;
+                }
+                if (val.Length > 6)
+                {
+                    Datnik.outputPassword = val;
+                    Datnik.encryptOutput = true;
+                }
+                else
+                {
+                    Messages.printArgumentError(arg,
+                        argindex,
+                        "invalid value length - \"" + val + "\"");
+                    return false;
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Messages.printArgumentError(arg, argindex, ex.Message);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Read the password for encrypting the log file.
+        /// </summary>
+        /// <param name="arg">The argument raw text</param>
+        /// <param name="argindex">The index of the argument (for logging purposes)</param>
+        /// <returns>True if successful</returns>
+        internal static bool readLogPasswordArgument(string arg, int argindex)
+        {
+            try
+            {
+                string val = arg.Substring(arg.IndexOf("=") + 1);
+                if (string.IsNullOrEmpty(val) || string.IsNullOrWhiteSpace(val))
+                {
+                    Messages.printArgumentError(arg, argindex, "");
+                    return false;
+                }
+                if (val.Length > 6)
+                {
+                    Datnik.logPassword = val;
+                    Datnik.encryptLog = true;
+                }
+                else
+                {
+                    Messages.printArgumentError(arg,
+                        argindex,
+                        "invalid value length - \"" + val + "\"");
+                    return false;
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Messages.printArgumentError(arg, argindex, ex.Message);
+                return false;
+            }
+        }
+
+
+
         /// <summary>
         /// Read input file or folder
         /// </summary>
@@ -279,7 +396,6 @@ namespace DescribeTranspiler.Cli
                 return false;
             }
         }
-
 
 
 
@@ -521,5 +637,4 @@ namespace DescribeTranspiler.Cli
             }
         }
     }
-
 }
