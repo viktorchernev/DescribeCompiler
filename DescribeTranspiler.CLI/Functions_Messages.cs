@@ -427,9 +427,9 @@ namespace DescribeTranspiler.Cli
         {
             Console.ForegroundColor = INFO_COLOR;
             Log += "Warning: " + message + Environment.NewLine;
-            Log += "Press any key to continue." + Environment.NewLine;
+            if (block) Log += "Press any key to continue." + Environment.NewLine;
             Console.WriteLine("Warning: " + message);
-            Console.WriteLine("Press any key to continue.");
+            if (block) Console.WriteLine("Press any key to continue.");
 
             Console.ForegroundColor = TEXT_COLOR;
             if (block) Console.Read();

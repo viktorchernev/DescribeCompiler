@@ -255,6 +255,104 @@ namespace DescribeTranspiler.Cli
                 return false;
             }
         }
+
+        /// <summary>
+        /// Decrypt source file(s)
+        /// </summary>
+        /// <returns>True if successful, otherwise false</returns>
+        internal static bool DecryptFile()
+        {
+            try
+            {
+                // check if source file exists
+                Messages.ConsoleLog("Decrypting - \"" + Datnik.input + "\"");
+                if (!File.Exists(Datnik.input))
+                {
+                    Messages.printFatalError("File does not exist!");
+                    return false;
+                }
+
+                // read cyphertext source
+                string encrypted = "";
+                try
+                {
+                    string extention = Path.GetExtension(Datnik.input);
+                    if(extention.ToLower() != "denc")
+                    {
+                        Messages.printWarning(
+                            "File extention of encryted file is not \".denc\". It is \"." + extention + "\".", false);
+                    }
+
+                    encrypted = File.ReadAllText(Datnik.input);
+                    if (string.IsNullOrWhiteSpace(encrypted))
+                    {
+                        Messages.printFatalError("Encrypted file is empty!");
+                        return false;
+                    }
+                    else if (encrypted.Length == 0)
+                    {
+                        Messages.printFatalError("Encrypted file is empty!");
+                        return false;
+                    }
+                    else
+                    {
+                        Messages.ConsoleLog("Reading file - succeeded.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Messages.printFatalError("Failed to read encrypted file: " + ex.Message);
+                    return false;
+                }
+
+                // encrypt
+                string decrypted = "";
+                try
+                {
+                    encrypted = Program.CryptoUtil.DecryptString(encrypted, Datnik.inputPassword!);
+                    if (encrypted == null)
+                    {
+                        Messages.printFatalError("Failed to decrypt for some reason - result is null");
+                        return false;
+                    }
+                    else if (string.IsNullOrEmpty(encrypted))
+                    {
+                        Messages.printFatalError("Failed to decrypt for some reason - result is empty");
+                        return false;
+                    }
+                    else if (string.IsNullOrWhiteSpace(encrypted))
+                    {
+                        Messages.printFatalError("Failed to decrypt for some reason - result is invalid");
+                        return false;
+                    }
+                    else
+                    {
+                        Messages.ConsoleLog("Decrypting file - succeeded.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Messages.printFatalError("Failed to decrypt: " + ex.Message);
+                    return false;
+                }
+
+                // write to file
+                File.WriteAllText(Datnik.output!, encrypted);
+                Messages.ConsoleLog("Writing file - succeeded.");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+                if (Program.LOG_STACK_TRACES)
+                {
+                    message += Environment.NewLine +
+                        "StackTrace:" + Environment.NewLine;
+                }
+                Messages.printFatalError(message);
+                return false;
+            }
+        }
     }
 
 }
