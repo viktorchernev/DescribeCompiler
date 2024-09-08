@@ -46,7 +46,6 @@ namespace DescribeTranspiler
             try
             {
                 LanguageName = versionName;
-                LogInfo("Language version set to: " + GrammarFullName);
                 return true;
             }
             catch (Exception ex)

@@ -64,24 +64,17 @@ namespace DescribeTranspiler.Cli
                 {
                     parseFolder(args);
                 }
+
+                //DescribeCompilerCLI encrypt-file PLAIN_PATH ENCRYPTED_PATH
+                else if (args[0].ToLower() == "encrypt-file")
+                {
+                    encryptFile(args);
+                }
+
+                //Unknown command
                 else
                 {
                     Messages.printArgumentError(args[0], 1);
-                }
-
-                //save log to file
-                if (Datnik.logToFile)
-                {
-                    if(Datnik.encryptLog == true)
-                    {
-                        string log = Messages.Log;
-                        string encryptedLog = CryptoUtil.EncryptString(log, Datnik.logPassword!);
-                        File.WriteAllText(Datnik.logFilePath!, encryptedLog);
-                    }
-                    else
-                    {
-                        File.WriteAllText(Datnik.logFilePath!, Messages.Log);
-                    }
                 }
             }
             catch (Exception ex)
@@ -92,12 +85,79 @@ namespace DescribeTranspiler.Cli
                     message += Environment.NewLine +
                         "StackTrace:" + Environment.NewLine;
                 }
-                Messages.printFatalError(message);
+                Messages.printFatalError(message, false);
+
+                //save log to file
+                if (Datnik.logToFile)
+                {
+                    if (Datnik.encryptLog == true)
+                    {
+                        string log = Messages.Log;
+                        string encryptedLog = CryptoUtil.EncryptString(log, Datnik.logPassword!);
+                        File.WriteAllText(Datnik.logFilePath!, encryptedLog);
+                    }
+                    else
+                    {
+                        File.WriteAllText(Datnik.logFilePath!, Messages.Log);
+                    }
+                }
+                Console.Read();
             }
             finally
             {
                 Messages.RevertConsoleColors();
             }
+        }
+        static void encryptFile(string[] args)
+        {
+            //read input output
+            if (Arguments.readInputFileArgument(args[1], 1) == false) return;
+            if (Arguments.readOutputFileArgument(args[2], 2) == false) return;
+
+            //read other options
+            for (int i = 3; i < args.Length; i++)
+            {
+                string cur = args[i].ToLower();
+
+                if (cur.StartsWith("password=") && cur.Length > "password=".Length)
+                {
+                    if (Arguments.readInputPasswordArgument(args[i], i) == false) return;
+                }
+                else if (cur.StartsWith("theme="))
+                {
+                    continue;
+                }
+                else
+                {
+                    Messages.printArgumentError(args[i], i, "what is this?");
+                    return;
+                }
+            }
+
+            //Compile
+            //MainFunctions.Encrypt();
+            Messages.ConsoleLog("--------------------------------------------------");
+            //Messages.printEncryptionSuccess(true);
+        }
+        static void decryptFile(string[] args)
+        {
+            throw new NotImplementedException();
+        }
+        static void recryptFile(string[] args)
+        {
+            throw new NotImplementedException();
+        }
+        static void encryptFolder(string[] args)
+        {
+            throw new NotImplementedException();
+        }
+        static void decryptFolder(string[] args)
+        {
+            throw new NotImplementedException();
+        }
+        static void recryptFolder(string[] args)
+        {
+            throw new NotImplementedException();
         }
         static void parseFile(string[] args)
         {
@@ -142,9 +202,21 @@ namespace DescribeTranspiler.Cli
                 {
                     if (Arguments.readLogPasswordArgument(args[i], i) == false) return;
                 }
+                else if (cur.StartsWith("lang-ver=") && cur.Length > "lang-ver=".Length)
+                {
+                    if (Arguments.readLanguageVersion(args[i], i) == false) return;
+                }
+                else if (cur.StartsWith("language-version=") && cur.Length > "language-version=".Length)
+                {
+                    if (Arguments.readLanguageVersion(args[i], i) == false) return;
+                }
+                else if (cur.StartsWith("theme="))
+                {
+                    continue;
+                }
                 else
                 {
-                    Messages.printArgumentError(cur, i, "what is this?");
+                    Messages.printArgumentError(args[i], i, "what is this?");
                     return;
                 }
             }
@@ -152,7 +224,23 @@ namespace DescribeTranspiler.Cli
             //Compile
             MainFunctions.Compile();
             Messages.ConsoleLog("--------------------------------------------------");
-            Messages.printCompilationSuccess();
+            Messages.printCompilationSuccess(false);
+
+            //save log to file
+            if (Datnik.logToFile)
+            {
+                if (Datnik.encryptLog == true)
+                {
+                    string log = Messages.Log;
+                    string encryptedLog = CryptoUtil.EncryptString(log, Datnik.logPassword!);
+                    File.WriteAllText(Datnik.logFilePath!, encryptedLog);
+                }
+                else
+                {
+                    File.WriteAllText(Datnik.logFilePath!, Messages.Log);
+                }
+            }
+            Console.Read();
         }
         static void parseFolder(string[] args)
         {
@@ -216,7 +304,23 @@ namespace DescribeTranspiler.Cli
 
             //Compile
             MainFunctions.Compile();
-            Messages.printCompilationSuccess();
+            Messages.printCompilationSuccess(false);
+
+            //save log to file
+            if (Datnik.logToFile)
+            {
+                if (Datnik.encryptLog == true)
+                {
+                    string log = Messages.Log;
+                    string encryptedLog = CryptoUtil.EncryptString(log, Datnik.logPassword!);
+                    File.WriteAllText(Datnik.logFilePath!, encryptedLog);
+                }
+                else
+                {
+                    File.WriteAllText(Datnik.logFilePath!, Messages.Log);
+                }
+            }
+            Console.Read();
         }
     }
 }

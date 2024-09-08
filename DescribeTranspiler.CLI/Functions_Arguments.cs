@@ -327,8 +327,8 @@ namespace DescribeTranspiler.Cli
                 else
                 {
                     // notexisting file or dir - we want parent dir to exist
-                    DirectoryInfo di = Directory.GetParent(arg);
-                    if (di.Exists)
+                    DirectoryInfo? di = Directory.GetParent(arg);
+                    if (di != null && di.Exists)
                     {
                         Datnik.output = arg;
                         Datnik.isOutputDir = false;
@@ -594,6 +594,45 @@ namespace DescribeTranspiler.Cli
                 {
                     Messages.printArgumentError(arg,
                         argindex, "invalid value \"" + val + "\"");
+                    return false;
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Messages.printArgumentError(arg, argindex, ex.Message);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Read language-version aka lang-ver argument
+        /// </summary>
+        /// <param name="arg">The argument raw text</param>
+        /// <param name="argindex">The index of the argument (for logging purposes)</param>
+        /// <returns>True if successful</returns>
+        internal static bool readLanguageVersion(string arg, int argindex)
+        {
+            try
+            {
+                string val = arg.Substring(arg.IndexOf("=") + 1);
+                if (string.IsNullOrEmpty(val) || string.IsNullOrWhiteSpace(val))
+                {
+                    Messages.printArgumentError(arg, argindex, "");
+                    return false;
+                }
+                else if (val == "0.6" || val == "06") Datnik.langVer = DescribeVersionNumber.Version06;
+                else if (val == "0.7" || val == "07") Datnik.langVer = DescribeVersionNumber.Version07;
+                else if (val == "0.8" || val == "08") Datnik.langVer = DescribeVersionNumber.Version08;
+                else if (val == "0.9" || val == "09") Datnik.langVer = DescribeVersionNumber.Version09;
+                else if (val == "1.0" || val == "10") Datnik.langVer = DescribeVersionNumber.Version10;
+                else if (val == "1.1" || val == "11") Datnik.langVer = DescribeVersionNumber.Version11;
+                else
+                {
+                    Messages.printArgumentError(arg,
+                        argindex,
+                        "invalid value \"" + val + "\"");
                     return false;
                 }
 

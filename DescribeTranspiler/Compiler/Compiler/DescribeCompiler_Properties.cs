@@ -117,7 +117,7 @@ namespace DescribeTranspiler
             {
                 return LOG_VERBOSITY;
             }
-            set 
+            set
             {
                 LOG_VERBOSITY = value; 
             }
@@ -134,26 +134,33 @@ namespace DescribeTranspiler
             }
             set
             {
+                if (GRAMMAR_NAME == value) return;
                 GRAMMAR_NAME = value;
                 switch (value)
                 {
                     case DescribeVersionName.Basics:
                         GRAMMAR_VERSION = DescribeVersionNumber.Version06;
+                        LogInfo("Language version set to: " + GrammarFullName);
                         break;
                     case DescribeVersionName.Tags:
                         GRAMMAR_VERSION = DescribeVersionNumber.Version07;
+                        LogInfo("Language version set to: " + GrammarFullName);
                         break;
                     case DescribeVersionName.Links:
                         GRAMMAR_VERSION = DescribeVersionNumber.Version08;
+                        LogInfo("Language version set to: " + GrammarFullName);
                         break;
                     case DescribeVersionName.Decorators:
                         GRAMMAR_VERSION = DescribeVersionNumber.Version09;
+                        LogInfo("Language version set to: " + GrammarFullName);
                         break;
                     case DescribeVersionName.Lines:
                         GRAMMAR_VERSION = DescribeVersionNumber.Version10;
+                        LogInfo("Language version set to: " + GrammarFullName);
                         break;
                     case DescribeVersionName.Doubles:
                         GRAMMAR_VERSION = DescribeVersionNumber.Version11;
+                        LogInfo("Language version set to: " + GrammarFullName);
                         break;
                     default:
                         throw new ArgumentException("LanguageName is unknown");
@@ -172,26 +179,33 @@ namespace DescribeTranspiler
             }
             set
             {
+                if (GRAMMAR_VERSION == value) return;
                 GRAMMAR_VERSION = value;
                 switch (value)
                 {
                     case DescribeVersionNumber.Version06:
                         GRAMMAR_NAME = DescribeVersionName.Basics;
+                        LogInfo("Language version set to: " + GrammarFullName);
                         break;
                     case DescribeVersionNumber.Version07:
                         GRAMMAR_NAME = DescribeVersionName.Tags;
+                        LogInfo("Language version set to: " + GrammarFullName);
                         break;
                     case DescribeVersionNumber.Version08:
                         GRAMMAR_NAME = DescribeVersionName.Links;
+                        LogInfo("Language version set to: " + GrammarFullName);
                         break;
                     case DescribeVersionNumber.Version09:
                         GRAMMAR_NAME = DescribeVersionName.Decorators;
+                        LogInfo("Language version set to: " + GrammarFullName);
                         break;
                     case DescribeVersionNumber.Version10:
                         GRAMMAR_NAME = DescribeVersionName.Lines;
+                        LogInfo("Language version set to: " + GrammarFullName);
                         break;
                     case DescribeVersionNumber.Version11:
                         GRAMMAR_NAME = DescribeVersionName.Doubles;
+                        LogInfo("Language version set to: " + GrammarFullName);
                         break;
                     default:
                         throw new ArgumentException("LanguageVersion is unknown");
@@ -205,7 +219,7 @@ namespace DescribeTranspiler
         /// <summary>
         /// Get the name of the Compiler that is currently being used
         /// </summary>
-        public string CompilerName
+        public static string CompilerName
         {
             get
             {
@@ -216,7 +230,7 @@ namespace DescribeTranspiler
         /// <summary>
         /// Get the version of the Compiler that is currently being used
         /// </summary>
-        public string CompilerVersion
+        public static string CompilerVersion
         {
             get
             {

@@ -271,12 +271,12 @@ namespace DescribeTranspiler.Translators
             }
             if (pageTemplate.Contains("{VERSION}"))
             {
-                string ver = "Built with Describe Compiler version " + DescribeCompiler.COMPILER_VERSION;
+                string ver = "Built with Describe Compiler version " + DescribeCompiler.CompilerVersion;
                 pt = pt.Replace("{VERSION}", ver);
             }
             if (pageTemplate.Contains("{SHORT_VERSION}"))
             {
-                string ver = "Describe Compiler v " + DescribeCompiler.COMPILER_VERSION;
+                string ver = "Describe Compiler v " + DescribeCompiler.CompilerVersion;
                 pt = pt.Replace("{SHORT_VERSION}", ver);
             }
 

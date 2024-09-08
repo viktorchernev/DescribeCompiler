@@ -77,6 +77,10 @@ namespace DescribeTranspiler.Cli
         /// </summary>
         public static bool isBeautified;
 
+        /// <summary>
+        /// The Descrabe language version to be used.
+        /// </summary>
+        public static DescribeVersionNumber langVer;
 
 
         /// <summary>
@@ -135,6 +139,7 @@ namespace DescribeTranspiler.Cli
 
             dsOnly = true;
             verbosity = LogVerbosity.Low;
+            langVer = DescribeVersionNumber.Version10;
             requireSuccess = true;
         }
     }

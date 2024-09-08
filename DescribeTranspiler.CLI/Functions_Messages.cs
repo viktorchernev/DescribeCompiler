@@ -336,7 +336,7 @@ namespace DescribeTranspiler.Cli
 
             ConsoleLogInfo(s);
         }
-        public static void printCompilationSuccess()
+        public static void printCompilationSuccess(bool block = true)
         {
             //add to log
             Log += "Task completed successfully. Press any key to exit." + Environment.NewLine;
@@ -345,9 +345,9 @@ namespace DescribeTranspiler.Cli
             Console.ForegroundColor = INFO_COLOR;
             Console.WriteLine("Task completed successfully. Press any key to exit.");
             Console.ForegroundColor = TEXT_COLOR;
-            Console.Read();
+            if(block) Console.Read();
         }
-        public static void printHelpMessage()
+        public static void printHelpMessage(bool block = true)
         {
             ConsoleLogInfo("-----------------------------------------------------------------");
             ConsoleLog("usage: " + thisName + " help | -h");
@@ -381,7 +381,7 @@ namespace DescribeTranspiler.Cli
             ConsoleLogInfo("* LOG_PATH - specify path of directory or file to output logs to");
             ConsoleLog("");
             ConsoleLogInfo("-----------------------------------------------------------------");
-            ConsoleLog("about: " + DescribeTranspiler.DescribeCompiler.COMPILER_NAME);
+            ConsoleLog("about: " + DescribeTranspiler.DescribeCompiler.CompilerName);
             ConsoleLogInfo("Describe is a domain specific language used to write and maintain complex data lists");
             ConsoleLogInfo("that are compiled on demand to html, xaml, xml, sql, json and any other language needed.");
             ConsoleLogInfo("Describe is licensed under the GNU Affero General Public License v3.0");
@@ -393,9 +393,9 @@ namespace DescribeTranspiler.Cli
             Log += "Press any key to exit." + Environment.NewLine;
             Console.WriteLine("Press any key to exit.");
             Console.ForegroundColor = TEXT_COLOR;
-            Console.Read();
+            if (block) Console.Read();
         }
-        public static void printWarning(string message)
+        public static void printWarning(string message, bool block = true)
         {
             Console.ForegroundColor = INFO_COLOR;
             Log += "Warning: " + message + Environment.NewLine;
@@ -404,9 +404,9 @@ namespace DescribeTranspiler.Cli
             Console.WriteLine("Press any key to continue.");
 
             Console.ForegroundColor = TEXT_COLOR;
-            Console.Read();
+            if (block) Console.Read();
         }
-        public static void printNoArgumentsError()
+        public static void printNoArgumentsError(bool block = true)
         {
             Console.ForegroundColor = ERROR_COLOR;
             Log += "No arguments or invalid argument count." + Environment.NewLine;
@@ -420,9 +420,9 @@ namespace DescribeTranspiler.Cli
             Console.WriteLine("Press any key to exit.");
 
             Console.ForegroundColor = TEXT_COLOR;
-            Console.Read();
+            if (block) Console.Read();
         }
-        public static void printArgumentError(string arg, int argIndex)
+        public static void printArgumentError(string arg, int argIndex, bool block = true)
         {
             Console.ForegroundColor = ERROR_COLOR;
             if (ONE_BASED_ARG_INDEX) argIndex++;
@@ -437,9 +437,9 @@ namespace DescribeTranspiler.Cli
             Console.WriteLine("Press any key to exit.");
 
             Console.ForegroundColor = TEXT_COLOR;
-            Console.Read();
+            if (block) Console.Read();
         }
-        public static void printArgumentError(string arg, int argIndex, string message)
+        public static void printArgumentError(string arg, int argIndex, string message, bool block = true)
         {
             Console.ForegroundColor = ERROR_COLOR;
             if (ONE_BASED_ARG_INDEX) argIndex++;
@@ -452,9 +452,9 @@ namespace DescribeTranspiler.Cli
             Console.WriteLine("Press any key to exit.");
 
             Console.ForegroundColor = TEXT_COLOR;
-            Console.Read();
+            if (block) Console.Read();
         }
-        public static void printFatalError(string message)
+        public static void printFatalError(string message, bool block = true)
         {
             Console.ForegroundColor = ERROR_COLOR;
             Log += "Fatal error: " + message + Environment.NewLine;
@@ -465,7 +465,7 @@ namespace DescribeTranspiler.Cli
             Console.WriteLine("Press any key to exit.");
 
             Console.ForegroundColor = TEXT_COLOR;
-            Console.Read();
+            if (block) Console.Read();
         }
 
 

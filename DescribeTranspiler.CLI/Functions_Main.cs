@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DescribeParser.Unfold;
 using DescribeTranspiler.Listiary.Translators;
+using DescribeTranspiler.CLI;
 
 namespace DescribeTranspiler.Cli
 {
@@ -32,6 +33,7 @@ namespace DescribeTranspiler.Cli
                 comp.PARSE_TOP_DIRECTORY_ONLY = Datnik.topOnly;
                 comp.PARSE_DS_ONLY = Datnik.dsOnly;
                 comp.STOP_ON_ERROR = Datnik.requireSuccess;
+                if(comp.LanguageVersion != Datnik.langVer) comp.LanguageVersion = Datnik.langVer;
 
                 //templates
                 DescribeUnfoldTranslator translator;
@@ -93,8 +95,31 @@ namespace DescribeTranspiler.Cli
                 //compile
                 DescribeUnfold unfold = new DescribeUnfold();
                 bool r = false;
-                if (Datnik.isInputDir == false) r = comp.ParseFile(new FileInfo(Datnik.input!), ref unfold);
-                else r = comp.ParseFolder(new DirectoryInfo(Datnik.input!), ref unfold);
+                if (Datnik.parseEncryptedFiles == false)
+                {
+                    if (Datnik.isInputDir == false) r = comp.ParseFile(new FileInfo(Datnik.input!), ref unfold);
+                    else r = comp.ParseFolder(new DirectoryInfo(Datnik.input!), ref unfold);
+                }
+                else
+                {
+                    if (Datnik.isInputDir == false) // single encrypted file
+                    {
+                        FileInfo finfo = new FileInfo(Datnik.input!);
+                        bool isEncrypted = (finfo.Extension == "denc");
+                        if(isEncrypted == false) r = comp.ParseFile(finfo, ref unfold);
+                        else
+                        {
+                            string filename = finfo.FullName;
+                            string source = File.ReadAllText(finfo.FullName);
+                            string decoded = Program.CryptoUtil.DecryptString(source, Datnik.inputPassword!);
+                            r = comp.ParseString(decoded, filename, ref unfold);
+                        }
+                    }
+                    else // folder with encrypted files
+                    {
+
+                    }
+                }
 
                 string? result; 
                 if(Datnik.isBeautified)
@@ -112,7 +137,16 @@ namespace DescribeTranspiler.Cli
 
                 if (result != null)
                 {
-                    File.WriteAllText(Datnik.output!, result);
+                    if(Datnik.encryptOutput)
+                    {
+                        string log = Messages.Log;
+                        string encryptedOutput = Program.CryptoUtil.EncryptString(result, Datnik.logPassword!);
+                        File.WriteAllText(Datnik.output!, encryptedOutput);
+                    }
+                    else
+                    {
+                        File.WriteAllText(Datnik.output!, result);
+                    }
                     return true;
                 }
                 return false;

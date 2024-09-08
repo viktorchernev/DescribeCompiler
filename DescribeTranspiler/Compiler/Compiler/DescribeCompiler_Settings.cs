@@ -8,6 +8,9 @@ namespace DescribeTranspiler
 {
     public partial class DescribeCompiler
     {
+        // TODO: Add properties for those first 3 settings,
+        // so that there can be a log method evoked to log the changing of the property
+
         /// <summary>
         /// Weather to parse only .ds files, or all the files in a directory.
         /// </summary>
@@ -24,35 +27,37 @@ namespace DescribeTranspiler
         /// </summary>
         public bool STOP_ON_ERROR = false;
 
+
+
         /// <summary>
         /// The log verbosity that is to be used.
         /// </summary>
-        public LogVerbosity LOG_VERBOSITY = LogVerbosity.Low;
+        private LogVerbosity LOG_VERBOSITY = LogVerbosity.Low;
 
         /// <summary>
         /// The default parser to be loaded with this version of the compiler.
         /// The grammar is usually left alone, unless there is a very good reason to be changed,
         /// which, on the other hand, makes this the de facto grammar that is used.
         /// </summary>
-        public DescribeVersionName GRAMMAR_NAME = DescribeVersionName.Lines;
+        private DescribeVersionName GRAMMAR_NAME = DescribeVersionName.Lines;
 
         /// <summary>
         /// The default parser to be loaded with this version of the compiler.
         /// The grammar is usually left alone, unless there is a very good reason to be changed,
         /// which, on the other hand, makes this the de facto grammar that is used.
         /// </summary>
-        public DescribeVersionNumber GRAMMAR_VERSION = DescribeVersionNumber.Version10;
+        private DescribeVersionNumber GRAMMAR_VERSION = DescribeVersionNumber.Version10;
 
 
 
         /// <summary>
         /// A string representing the full name of the compiler (with the version)
         /// </summary>
-        public static string COMPILER_NAME = "Describe Transpiler v1.0";
+        private static string COMPILER_NAME = "Describe Transpiler v1.0";
 
         /// <summary>
         /// A string representing the compiler version
         /// </summary>
-        public static string COMPILER_VERSION = "1.0";
+        private static string COMPILER_VERSION = "1.0";
     }
 }
