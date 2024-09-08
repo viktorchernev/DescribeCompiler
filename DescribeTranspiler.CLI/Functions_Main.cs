@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using DescribeParser.Unfold;
 using DescribeTranspiler.Listiary.Translators;
 using DescribeTranspiler.CLI;
+using MySqlX.XDevAPI.Common;
 
 namespace DescribeTranspiler.Cli
 {
@@ -150,6 +151,97 @@ namespace DescribeTranspiler.Cli
                     return true;
                 }
                 return false;
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+                if (Program.LOG_STACK_TRACES)
+                {
+                    message += Environment.NewLine +
+                        "StackTrace:" + Environment.NewLine;
+                }
+                Messages.printFatalError(message);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Encrypt source file(s)
+        /// </summary>
+        /// <returns>True if successful, otherwise false</returns>
+        internal static bool EncryptFile()
+        {
+            try
+            {
+                // check if source file exists
+                Messages.ConsoleLog("Encrypting - \"" + Datnik.input + "\"");
+                if (!File.Exists(Datnik.input))
+                {
+                    Messages.printFatalError("File does not exist!");
+                    return false;
+                }
+
+                // read plaitext source
+                string source = "";
+                try
+                {
+                    source = File.ReadAllText(Datnik.input);
+                    if (string.IsNullOrWhiteSpace(source))
+                    {
+                        Messages.printFatalError("Source file is empty!");
+                        return false;
+                    }
+                    else if (source.Length == 0)
+                    {
+                        Messages.printFatalError("Source file is empty!");
+                        return false;
+                    }
+                    else
+                    {
+                        Messages.ConsoleLog("Reading file - succeeded.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Messages.printFatalError("Failed to read source file: " + ex.Message);
+                    return false;
+                }
+
+                // encrypt
+                string encrypted = "";
+                try
+                {
+                    encrypted = Program.CryptoUtil.EncryptString(source, Datnik.inputPassword!);
+                    if (encrypted == null)
+                    {
+                        Messages.printFatalError("Failed to encrypt for some reason - result is null");
+                        return false;
+                    }
+                    else if (string.IsNullOrEmpty(encrypted))
+                    {
+                        Messages.printFatalError("Failed to encrypt for some reason - result is empty");
+                        return false;
+                    }
+                    else if (string.IsNullOrWhiteSpace(encrypted))
+                    {
+                        Messages.printFatalError("Failed to encrypt for some reason - result is invalid");
+                        return false;
+                    }
+                    else
+                    {
+                        Messages.ConsoleLog("Encrypting file - succeeded.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Messages.printFatalError("Failed to encrypt: " + ex.Message);
+                    return false;
+                }
+
+                // write to file
+                File.WriteAllText(Datnik.output!, encrypted);
+                Messages.ConsoleLog("Writing file - succeeded.");
+                return true;
             }
             catch (Exception ex)
             {

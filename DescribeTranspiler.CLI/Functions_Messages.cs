@@ -37,12 +37,14 @@ namespace DescribeTranspiler.Cli
         static string thisName;
         static Messages()
         {
+            Log = "";
+
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows)) Platform = OS.WINDOWS;
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux)) Platform = OS.LINUX;
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX)) Platform = OS.OSX;
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.FreeBSD)) Platform = OS.FREEBSD;
 
-            thisName = Assembly.GetExecutingAssembly().GetName().Name;
+            thisName = Assembly.GetExecutingAssembly().GetName().Name!;
             beforeForeground = Console.ForegroundColor;
             beforeBackground = Console.BackgroundColor;
         }
@@ -320,17 +322,32 @@ namespace DescribeTranspiler.Cli
 
             if (args.Length > 0)
             {
-                if (args[0].Contains(" ")) s = s + "\"" + args[0] + "\"";
-                else s = s + args[0];
+                s = s + args[0];
+                if (args.Length == 1) return;
 
-                if (args.Length > 1)
+                s = s + " \"" + args[1] + "\"";
+                if (args.Length == 2) return;
+
+                s = s + " \"" + args[2] + "\"";
+
+                for (int i = 3; i < args.Length - 1; i++)
                 {
-                    for (int i = 1; i < args.Length - 1; i++)
+                    if (args[i].StartsWith("password="))
+                    {
+                        s = s + " password=\"" + args[i].Substring("password=".Length) + "\"";
+                    }
+                    else if (args[i].StartsWith("log-file="))
+                    {
+                        s = s + " log-file=\"" + args[i].Substring("log-file=".Length) + "\"";
+                    }
+                    else if (args[i].StartsWith("logfile="))
+                    {
+                        s = s + " logfile=\"" + args[i].Substring("logfile=".Length) + "\"";
+                    }
+                    else
                     {
                         s = s + " " + args[i];
                     }
-                    if (args[args.Length - 1].Contains(" ")) s = s + " \"" + args[args.Length - 1] + "\"";
-                    else s = s + " " + args[args.Length - 1];
                 }
             }
 
@@ -346,6 +363,17 @@ namespace DescribeTranspiler.Cli
             Console.WriteLine("Task completed successfully. Press any key to exit.");
             Console.ForegroundColor = TEXT_COLOR;
             if(block) Console.Read();
+        }
+        public static void printEncryptionSuccess(bool block = true)
+        {
+            //add to log
+            Log += "Task completed successfully. Press any key to exit." + Environment.NewLine;
+
+            //add to console
+            Console.ForegroundColor = INFO_COLOR;
+            Console.WriteLine("Task completed successfully. Press any key to exit.");
+            Console.ForegroundColor = TEXT_COLOR;
+            if (block) Console.Read();
         }
         public static void printHelpMessage(bool block = true)
         {

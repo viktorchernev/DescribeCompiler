@@ -135,9 +135,9 @@ namespace DescribeTranspiler.Cli
             }
 
             //Compile
-            //MainFunctions.Encrypt();
+            MainFunctions.EncryptFile();
             Messages.ConsoleLog("--------------------------------------------------");
-            //Messages.printEncryptionSuccess(true);
+            Messages.printEncryptionSuccess(true);
         }
         static void decryptFile(string[] args)
         {
