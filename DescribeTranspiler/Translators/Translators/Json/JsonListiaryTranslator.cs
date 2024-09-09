@@ -365,8 +365,8 @@ namespace DescribeTranspiler.Translators
             //HAcKeD IN PLACE REMOVE
             string cur = u.ProdidFile[id][0];
             if(u.ParseJob.InitialDir != null) cur = cur.Substring(u.ParseJob.InitialDir.Length);
-            cur = cur.Trim('\\', '/').Replace('\\', '.').Replace('/', '.');
-            if (cur.EndsWith(".ds")) cur = cur.Substring(0, cur.Length - 3);
+            cur = JsonConvert.SerializeObject(cur); cur = cur.Substring(1, cur.Length - 2);
+            //if (cur.EndsWith(".ds")) cur = cur.Substring(0, cur.Length - 3);
             pt = pt.Replace(",\"text\":", ",\"filename\":\"" + cur + "\",\"text\":");
 
             pt = pt.Replace("{LINKS}", linkage);

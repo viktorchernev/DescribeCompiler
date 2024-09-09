@@ -11,6 +11,7 @@ using DescribeTranspiler;
 using DescribeTranspiler.Translators;
 using DescribeParser;
 using DescribeParser.Unfold;
+using Newtonsoft.Json;
 
 namespace DescribeTranspiler.Listiary.Translators
 {
@@ -155,8 +156,8 @@ namespace DescribeTranspiler.Listiary.Translators
             {
                 string cur = u.ParsedFiles[i];
                 cur = cur.Substring(u.ParseJob.InitialDir.Length);
-                cur = cur.Trim('\\', '/').Replace('\\', '.').Replace('/', '.');
-                if (cur.EndsWith(".ds")) cur = cur.Substring(0, cur.Length - 3);
+                cur = JsonConvert.SerializeObject(cur); cur = cur.Substring(1, cur.Length - 2);
+                //if (cur.EndsWith(".ds")) cur = cur.Substring(0, cur.Length - 3);
                 if (filenames.Contains(cur)) return null;
                 else filenames.Add(cur);
 
@@ -172,8 +173,8 @@ namespace DescribeTranspiler.Listiary.Translators
             {
                 string cur = u.FailedFiles[i];
                 cur = cur.Substring(u.ParseJob.InitialDir.Length);
-                cur = cur.Trim('\\', '/').Replace('\\', '.').Replace('/', '.');
-                if (cur.EndsWith(".ds")) cur = cur.Substring(0, cur.Length - 3);
+                cur = JsonConvert.SerializeObject(cur); cur = cur.Substring(1, cur.Length - 2);
+                //if (cur.EndsWith(".ds")) cur = cur.Substring(0, cur.Length - 3);
                 if (filenames.Contains(cur)) return null;
                 else filenames.Add(cur);
 

@@ -330,11 +330,23 @@ namespace DescribeTranspiler.Cli
 
                 s = s + " \"" + args[2] + "\"";
 
-                for (int i = 3; i < args.Length - 1; i++)
+                for (int i = 3; i < args.Length; i++)
                 {
                     if (args[i].StartsWith("password="))
                     {
                         s = s + " password=\"" + args[i].Substring("password=".Length) + "\"";
+                    }
+                    else if (args[i].StartsWith("input-password="))
+                    {
+                        s = s + " input-password=\"" + args[i].Substring("input-password=".Length) + "\"";
+                    }
+                    else if (args[i].StartsWith("output-password="))
+                    {
+                        s = s + " output-password=\"" + args[i].Substring("output-password=".Length) + "\"";
+                    }
+                    else if (args[i].StartsWith("log-password="))
+                    {
+                        s = s + " log-password=\"" + args[i].Substring("log-password=".Length) + "\"";
                     }
                     else if (args[i].StartsWith("log-file="))
                     {

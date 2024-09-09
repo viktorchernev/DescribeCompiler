@@ -71,6 +71,18 @@ namespace DescribeTranspiler.Cli
                     encryptFile(args);
                 }
 
+                //DescribeCompilerCLI decrypt-file PLAIN_PATH ENCRYPTED_PATH
+                else if (args[0].ToLower() == "decrypt-file")
+                {
+                    decryptFile(args);
+                }
+
+                //DescribeCompilerCLI recrypt-file PLAIN_PATH ENCRYPTED_PATH
+                else if (args[0].ToLower() == "recrypt-file")
+                {
+                    recryptFile(args);
+                }
+
                 //Unknown command
                 else
                 {
@@ -134,18 +146,76 @@ namespace DescribeTranspiler.Cli
                 }
             }
 
-            //Compile
+            //Encrypt
             MainFunctions.EncryptFile();
             Messages.ConsoleLog("--------------------------------------------------");
             Messages.printEncryptionSuccess(true);
         }
         static void decryptFile(string[] args)
         {
-            throw new NotImplementedException();
+            //read input output
+            if (Arguments.readInputFileArgument(args[1], 1) == false) return;
+            if (Arguments.readOutputFileArgument(args[2], 2) == false) return;
+
+            //read other options
+            for (int i = 3; i < args.Length; i++)
+            {
+                string cur = args[i].ToLower();
+
+                if (cur.StartsWith("password=") && cur.Length > "password=".Length)
+                {
+                    if (Arguments.readInputPasswordArgument(args[i], i) == false) return;
+                }
+                else if (cur.StartsWith("theme="))
+                {
+                    continue;
+                }
+                else
+                {
+                    Messages.printArgumentError(args[i], i, "what is this?");
+                    return;
+                }
+            }
+
+            //Decrypt
+            MainFunctions.DecryptFile();
+            Messages.ConsoleLog("--------------------------------------------------");
+            Messages.printEncryptionSuccess(true);
         }
         static void recryptFile(string[] args)
         {
-            throw new NotImplementedException();
+            //read input output
+            if (Arguments.readInputFileArgument(args[1], 1) == false) return;
+            if (Arguments.readOutputFileArgument(args[2], 2) == false) return;
+
+            //read other options
+            for (int i = 3; i < args.Length; i++)
+            {
+                string cur = args[i].ToLower();
+
+                if (cur.StartsWith("input-password=") && cur.Length > "input-password=".Length)
+                {
+                    if (Arguments.readInputPasswordArgument(args[i], i) == false) return;
+                }
+                else if (cur.StartsWith("output-password=") && cur.Length > "output-password=".Length)
+                {
+                    if (Arguments.readOutputPasswordArgument(args[i], i) == false) return;
+                }
+                else if (cur.StartsWith("theme="))
+                {
+                    continue;
+                }
+                else
+                {
+                    Messages.printArgumentError(args[i], i, "what is this?");
+                    return;
+                }
+            }
+
+            //Recrypt
+            MainFunctions.RecryptFile();
+            Messages.ConsoleLog("--------------------------------------------------");
+            Messages.printEncryptionSuccess(true);
         }
         static void encryptFolder(string[] args)
         {

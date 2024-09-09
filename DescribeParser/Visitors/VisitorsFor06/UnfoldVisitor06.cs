@@ -379,14 +379,7 @@ namespace DescribeParser.Visitors
 
             //tag
             string tag = getRandomString();
-            if (string.IsNullOrEmpty(u.ParseJob.LastNamespace) == false)
-            {
-                tag = u.ParseJob.LastNamespace + '.' + tag;
-            }
-            else
-            {
-                tag = u.ParseJob.LocalNamespace + '.' + tag;
-            }
+            tag = u.ParseJob.LocalNamespace + '.' + tag;
             if (!u.Translations.Keys.Contains(tag))
             {
                 u.Translations.Add(tag, text);

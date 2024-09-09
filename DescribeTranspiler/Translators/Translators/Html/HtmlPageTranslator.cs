@@ -20,7 +20,7 @@ namespace DescribeTranspiler.Translators
 
 
         //templates
-        const string templatesFolderName = "HTML_PARACORD";
+        const string templatesFolderName = "HTML_PAGE";
         static string? pageTemplate;
         static string? rootTemplate;
         static string? itemTemplate;

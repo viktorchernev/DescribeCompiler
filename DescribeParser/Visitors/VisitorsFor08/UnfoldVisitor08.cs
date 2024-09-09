@@ -409,9 +409,10 @@ namespace DescribeParser.Visitors
 
             //tag
             if (tag == "") tag = getRandomString();
-            if (tag[0] == '.' && string.IsNullOrEmpty(u.ParseJob.LastNamespace) == false)
+            if (tag[0] == '.')
             {
-                tag = u.ParseJob.LastNamespace + '.' + tag;
+                if (string.IsNullOrEmpty(u.ParseJob.LastNamespace) == false) tag = u.ParseJob.LastNamespace + tag;
+                else tag = u.ParseJob.LocalNamespace + tag;
             }
             else
             {
