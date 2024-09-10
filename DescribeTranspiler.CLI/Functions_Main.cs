@@ -129,6 +129,8 @@ namespace DescribeTranspiler.Cli
                         result = (translator as JsonBasicTranslator)!.TranslateUnfoldPretty(unfold);
                     else if (translator is JsonListiaryTranslator)
                         result = (translator as JsonListiaryTranslator)!.TranslateUnfoldPretty(unfold);
+                    else if (translator is XmlBasicTranslator)
+                        result = (translator as XmlBasicTranslator)!.TranslateUnfoldPretty(unfold);
                     else result = translator.TranslateUnfold(unfold);
                 }
                 else

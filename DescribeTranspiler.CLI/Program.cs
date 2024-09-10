@@ -49,35 +49,38 @@ namespace DescribeTranspiler.Cli
                     Messages.printHelpMessage();
                 }
 
-                //DescribeCompilerCLI parse-file PARSE_PATH RESULT_PATH [ password=PASSWORD ][ encrypt-log=false ]
-                //[ language-version=<verb> | lang-ver=<verb> ][ translator = ( TARGET_LANGUAGE | TRANSLATOR_NAME )]
-                //[ verbosity=<verb> | log-verbosity=<verb> ][ logfile=LOG_PATH | log-file=LOG_PATH ]
+                //DescribeCompilerCLI parse-file PARSE_PATH RESULT_PATH
+                //[ input-password=PASSWORD ][ output-password=PASSWORD ][ log-password=PASSWORD ]
+                //[ language-version=<verb> | lang-ver=<verb> ][ translator = ( TARGET_LANGUAGE | TRANSLATOR_NAME )] [ beautify=<verb> ]
+                //[ verbosity=<verb> | log-verbosity=<verb> ][ logfile=LOG_PATH | log-file=LOG_PATH ] [ theme=<verb> ]
                 else if (args[0].ToLower() == "parse-file")
                 {
                     parseFile(args);
                 }
 
                 //DescribeCompilerCLI parse-folder PARSE_PATH RESULT_PATH
-                //[ dsonly[=<verb>] ] [ toponly[=true|=false] ] [ verbosity=<verb> | log-verbosity=<verb> ]
-                //[ onerror=<verb> ] [ artifacts=<verb> [artifacts-path=ARTIFACTS_PATH ]] [ logfile=LOG_PATH ]
+                //[ dsonly=<verb> ][ toponly=<verb> ][ onerror= ( stop | ignore )][ output-many= ( true | false ) ]
+                //[ input-password=PASSWORD ][ output-password=PASSWORD ][ log-password=PASSWORD ]
+                //[ language-version=<verb> | lang-ver=<verb> ][ translator = ( TARGET_LANGUAGE | TRANSLATOR_NAME )] [ beautify=<verb> ]
+                //[ verbosity=<verb> | log-verbosity=<verb> ][ logfile=LOG_PATH | log-file=LOG_PATH ] [ theme=<verb> ]
                 else if (args[0].ToLower() == "parse-folder")
                 {
                     parseFolder(args);
                 }
 
-                //DescribeCompilerCLI encrypt-file PLAIN_PATH ENCRYPTED_PATH
+                //DescribeCompilerCLI encrypt-file PLAIN_PATH ENCRYPTED_PATH [ theme=<verb> ]
                 else if (args[0].ToLower() == "encrypt-file")
                 {
                     encryptFile(args);
                 }
 
-                //DescribeCompilerCLI decrypt-file PLAIN_PATH ENCRYPTED_PATH
+                //DescribeCompilerCLI decrypt-file PLAIN_PATH ENCRYPTED_PATH [ theme=<verb> ]
                 else if (args[0].ToLower() == "decrypt-file")
                 {
                     decryptFile(args);
                 }
 
-                //DescribeCompilerCLI recrypt-file PLAIN_PATH ENCRYPTED_PATH
+                //DescribeCompilerCLI recrypt-file PLAIN_PATH ENCRYPTED_PATH [ theme=<verb> ]
                 else if (args[0].ToLower() == "recrypt-file")
                 {
                     recryptFile(args);
@@ -349,6 +352,10 @@ namespace DescribeTranspiler.Cli
                         Datnik.topOnly = true;
                     }
                 }
+                else if (cur.StartsWith("beautify=") && cur.Length > "beautify=".Length)
+                {
+                    if (Arguments.readBeautifyArgument(cur, i) == false) return;
+                }
                 else if (cur.StartsWith("verbosity=") && cur.Length > "verbosity=".Length)
                 {
                     if (Arguments.readVerbosityArgument(cur, i) == false) return;
@@ -364,6 +371,30 @@ namespace DescribeTranspiler.Cli
                 else if (cur.StartsWith("logfile=") && cur.Length > "logfile=".Length)
                 {
                     if (Arguments.readLogfileArgument(args[i], i) == false) return;
+                }
+                else if (cur.StartsWith("input-password=") && cur.Length > "input-password=".Length)
+                {
+                    if (Arguments.readInputPasswordArgument(args[i], i) == false) return;
+                }
+                else if (cur.StartsWith("output-password=") && cur.Length > "output-password=".Length)
+                {
+                    if (Arguments.readOutputPasswordArgument(args[i], i) == false) return;
+                }
+                else if (cur.StartsWith("log-password=") && cur.Length > "log-password=".Length)
+                {
+                    if (Arguments.readLogPasswordArgument(args[i], i) == false) return;
+                }
+                else if (cur.StartsWith("lang-ver=") && cur.Length > "lang-ver=".Length)
+                {
+                    if (Arguments.readLanguageVersion(args[i], i) == false) return;
+                }
+                else if (cur.StartsWith("language-version=") && cur.Length > "language-version=".Length)
+                {
+                    if (Arguments.readLanguageVersion(args[i], i) == false) return;
+                }
+                else if (cur.StartsWith("theme="))
+                {
+                    continue;
                 }
                 else
                 {

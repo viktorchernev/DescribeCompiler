@@ -208,7 +208,7 @@ namespace DescribeTranspiler.Translators
 
 
         /// <summary>
-        /// Get html code from unfold. 
+        /// Get JSON code from unfold. 
         /// Same as `TranslateUnfold`, but the JSON is beautified.
         /// </summary>
         /// <param name="u">The unfold to be translated</param>

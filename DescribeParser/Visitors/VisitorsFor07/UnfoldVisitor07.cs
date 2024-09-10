@@ -88,7 +88,7 @@ namespace DescribeParser.Visitors
             Validators.ValidateString(filename);
 
             //reset namespace for the file
-            u.ParseJob.LocalNamespace = "l." + getRandomString();
+            u.ParseJob.LocalNamespace = "@" + getRandomString(6);
             u.ParseJob.LastFile = filename == null ? "" : filename;
 
             //if we have no productions whatsoever

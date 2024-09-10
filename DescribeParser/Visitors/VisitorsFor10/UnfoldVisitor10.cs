@@ -89,7 +89,8 @@ namespace DescribeParser.Visitors
             Validators.ValidateParserRuleContext(context);
             Validators.ValidateString(filename);
 
-            u.ParseJob.LocalNamespace = "l." + getRandomString();
+            //Use pool of generated names to ensure non-repeatability with minimum characters
+            u.ParseJob.LocalNamespace = "@" + getRandomString(6);
             u.ParseJob.LastFile = filename == null ? "" : filename;
 
             //if we have no productions whatsoever
