@@ -24,5 +24,10 @@
         /// Gets or sets the current file in a parse operation.
         /// </summary>
         public string? LastFile { get; set; }
+
+        /// <summary>
+        /// Gets or sets the root file in a parse operation.
+        /// </summary>
+        public string? RootFile { get; set; }
     }
 }

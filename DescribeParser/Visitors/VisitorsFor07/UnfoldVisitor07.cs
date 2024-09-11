@@ -91,9 +91,10 @@ namespace DescribeParser.Visitors
             u.ParseJob.LocalNamespace = "@" + getRandomString(6);
             u.ParseJob.LastFile = filename == null ? "" : filename;
 
-            //if we have no productions whatsoever
-            //then this must be the primary file
-            bool isPrimary = u.Productions.Count == 0;
+            //Is it a primary file
+            bool isPrimary;
+            if (u.ParseJob.RootFile == u.ParseJob.LastFile) isPrimary = true;
+            else isPrimary = false;
 
             //Unfold the scripture
             IParseTree child = context.GetChild(0);

@@ -365,7 +365,7 @@ namespace DescribeTranspiler
         {
             get
             {
-                return FolderCount;
+                return _folderCounter;
             }
         }
 

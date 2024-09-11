@@ -160,7 +160,7 @@ namespace DescribeTranspiler.Cli
                 if (Program.LOG_STACK_TRACES)
                 {
                     message += Environment.NewLine +
-                        "StackTrace:" + Environment.NewLine;
+                        "StackTrace:" + ex.StackTrace + Environment.NewLine;
                 }
                 Messages.printFatalError(message);
                 return false;
@@ -251,7 +251,7 @@ namespace DescribeTranspiler.Cli
                 if (Program.LOG_STACK_TRACES)
                 {
                     message += Environment.NewLine +
-                        "StackTrace:" + Environment.NewLine;
+                        "StackTrace:" + ex.StackTrace + Environment.NewLine;
                 }
                 Messages.printFatalError(message);
                 return false;
@@ -349,7 +349,7 @@ namespace DescribeTranspiler.Cli
                 if (Program.LOG_STACK_TRACES)
                 {
                     message += Environment.NewLine +
-                        "StackTrace:" + Environment.NewLine;
+                        "StackTrace:" + ex.StackTrace + Environment.NewLine;
                 }
                 Messages.printFatalError(message);
                 return false;
@@ -478,7 +478,7 @@ namespace DescribeTranspiler.Cli
                 if (Program.LOG_STACK_TRACES)
                 {
                     message += Environment.NewLine +
-                        "StackTrace:" + Environment.NewLine;
+                        "StackTrace:" + ex.StackTrace + Environment.NewLine;
                 }
                 Messages.printFatalError(message);
                 return false;

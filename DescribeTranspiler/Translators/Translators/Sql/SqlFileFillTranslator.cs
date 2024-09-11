@@ -1,16 +1,6 @@
-﻿using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.ConstrainedExecution;
-using System.Text;
-using System.Threading.Tasks;
-using DescribeTranspiler;
+﻿using DescribeParser.Unfold;
 using DescribeTranspiler.Translators;
-using DescribeParser;
-using DescribeParser.Unfold;
+using MySql.Data.MySqlClient;
 using Newtonsoft.Json;
 
 namespace DescribeTranspiler.Listiary.Translators
@@ -174,6 +164,7 @@ namespace DescribeTranspiler.Listiary.Translators
                 string cur = u.FailedFiles[i];
                 cur = cur.Substring(u.ParseJob.InitialDir.Length);
                 cur = JsonConvert.SerializeObject(cur); cur = cur.Substring(1, cur.Length - 2);
+                cur = cur.TrimStart('\\');
                 //if (cur.EndsWith(".ds")) cur = cur.Substring(0, cur.Length - 3);
                 if (filenames.Contains(cur)) return null;
                 else filenames.Add(cur);

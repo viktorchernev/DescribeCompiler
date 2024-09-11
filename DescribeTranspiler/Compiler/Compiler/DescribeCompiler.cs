@@ -10,6 +10,7 @@ using DescribeParser;
 using DescribeParser.Unfold;
 using DescribeParser.Ast;
 using System.Security.Cryptography;
+using System.Runtime;
 
 
 namespace DescribeTranspiler
@@ -72,6 +73,7 @@ namespace DescribeTranspiler
             LogText("PARSE_TOP_DIRECTORY_ONLY - " + PARSE_TOP_DIRECTORY_ONLY);
 
             unfold.ParseJob = CurrentJob;
+            unfold.ParseJob.InitialDir = dirInfo.FullName;
 
             // Check parameters 
             if (!Directory.Exists(dirInfo.FullName))
@@ -96,6 +98,22 @@ namespace DescribeTranspiler
                 {
                     LogError("Directory is empty");
                     return false;
+                }
+
+                //figure out a rootfile
+                List<string> topSourceFiles = Directory.GetFiles(dirInfo.FullName, searchMask, SearchOption.TopDirectoryOnly).ToList();
+                foreach (string topfile in topSourceFiles)
+                {
+                    if (Path.GetFileName(topfile).StartsWith('.'))
+                    {
+                        unfold.ParseJob.RootFile = topfile;
+                        break;
+                    }
+                }
+                if(string.IsNullOrEmpty(unfold.ParseJob.RootFile))
+                {
+                    if (topSourceFiles.Count > 0) unfold.ParseJob.RootFile = topSourceFiles[0];
+                    else unfold.ParseJob.RootFile = sourceFiles[0];
                 }
             }
             catch (Exception ex)
@@ -169,6 +187,7 @@ namespace DescribeTranspiler
             LogText("PARSE_DS_ONLY - " + PARSE_DS_ONLY);
             LogText("PARSE_TOP_DIRECTORY_ONLY - " + PARSE_TOP_DIRECTORY_ONLY);
             unfolds = new List<DescribeUnfold>();
+            CurrentJob.InitialDir = dirInfo.FullName;
 
             // Check parameters 
             if (!Directory.Exists(dirInfo.FullName))
@@ -193,6 +212,22 @@ namespace DescribeTranspiler
                 {
                     LogError("Directory is empty");
                     return false;
+                }
+
+                //figure out a rootfile
+                List<string> topSourceFiles = Directory.GetFiles(dirInfo.FullName, searchMask, SearchOption.TopDirectoryOnly).ToList();
+                foreach (string topfile in topSourceFiles)
+                {
+                    if (Path.GetFileName(topfile).StartsWith('.'))
+                    {
+                        CurrentJob.RootFile = topfile;
+                        break;
+                    }
+                }
+                if (string.IsNullOrEmpty(CurrentJob.RootFile))
+                {
+                    if (topSourceFiles.Count > 0) CurrentJob.RootFile = topSourceFiles[0];
+                    else CurrentJob.RootFile = sourceFiles[0];
                 }
             }
             catch (Exception ex)
@@ -383,6 +418,9 @@ namespace DescribeTranspiler
                 return false;
             }
 
+            //figure out a rootfile
+            unfold.ParseJob.RootFile = sourceCodes[0].FileName;
+
             // Reset stats, as we are starting a new operation
             if (_isUsed)
             {
@@ -471,6 +509,9 @@ namespace DescribeTranspiler
                 unfold.ParseJob.LastFile = filename;
                 string source = sourceCodes[i];
                 bool result = false;
+
+                //figure out a rootfile
+                if(i == 0) unfold.ParseJob.RootFile = filename;
 
                 // Pick an appropriate parse method, based on verbosity level
                 if (Verbosity == LogVerbosity.Low)

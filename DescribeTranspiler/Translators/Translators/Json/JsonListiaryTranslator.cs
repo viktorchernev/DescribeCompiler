@@ -241,6 +241,7 @@ namespace DescribeTranspiler.Translators
             foreach (string key in u.PrimaryProductions)
             {
                 string s = TranslateProductionOrItem(u, key);
+                if (data != "") data += ",";
                 data += s;
             }
 
@@ -366,6 +367,7 @@ namespace DescribeTranspiler.Translators
             string cur = u.ProdidFile[id][0];
             if(u.ParseJob.InitialDir != null) cur = cur.Substring(u.ParseJob.InitialDir.Length);
             cur = JsonConvert.SerializeObject(cur); cur = cur.Substring(1, cur.Length - 2);
+            cur = cur.TrimStart('\\');
             //if (cur.EndsWith(".ds")) cur = cur.Substring(0, cur.Length - 3);
             pt = pt.Replace(",\"text\":", ",\"filename\":\"" + cur + "\",\"text\":");
 
