@@ -130,8 +130,10 @@ namespace DescribeTranspiler
             }
 
             bool opresult = true;
+            DescribeVersionNumber version = LanguageVersion;
             for (int i = 0; i < sourceFiles.Count; i++)
             {
+                if (LanguageVersion != version) LanguageVersion = version;
                 FileInfo file = new FileInfo(sourceFiles[i]);
                 unfold.ParseJob.LastFile = sourceFiles[i];
                 bool result = false;
@@ -244,8 +246,10 @@ namespace DescribeTranspiler
             }
 
             bool opresult = true;
+            DescribeVersionNumber version = LanguageVersion;
             for (int i = 0; i < sourceFiles.Count; i++)
             {
+                if (LanguageVersion != version) LanguageVersion = version;
                 DescribeUnfold unfold = new DescribeUnfold();
                 unfold.ParseJob = CurrentJob;
                 unfold.ParseJob.LastFile = sourceFiles[i];
@@ -347,8 +351,10 @@ namespace DescribeTranspiler
             }
 
             bool opresult = true;
+            DescribeVersionNumber version = LanguageVersion;
             for (int i = 0; i < sourceFiles.Count; i++)
             {
+                if (LanguageVersion != version) LanguageVersion = version;
                 AstScriptureNode? scripture = null;
                 FileInfo file = new FileInfo(sourceFiles[i]);
                 bool result = false;
@@ -429,8 +435,10 @@ namespace DescribeTranspiler
             }
 
             bool opresult = true;
+            DescribeVersionNumber version = LanguageVersion;
             for (int i = 0; i < sourceCodes.Count; i++)
             {
+                if (LanguageVersion != version) LanguageVersion = version;
                 string filename = sourceCodes[i].FileName;
                 unfold.ParseJob.LastFile = filename;
                 string source = sourceCodes[i].SourceText;
@@ -503,8 +511,10 @@ namespace DescribeTranspiler
             }
 
             bool opresult = true;
+            DescribeVersionNumber version = LanguageVersion;
             for (int i = 0; i < sourceCodes.Count; i++)
             {
+                if (LanguageVersion != version) LanguageVersion = version;
                 string filename = _createMD5(sourceCodes[i], 16);
                 unfold.ParseJob.LastFile = filename;
                 string source = sourceCodes[i];
@@ -578,8 +588,10 @@ namespace DescribeTranspiler
             }
 
             bool opresult = true;
+            DescribeVersionNumber version = LanguageVersion;
             for (int i = 0; i < sourceCodes.Count; i++)
             {
+                if (LanguageVersion != version) LanguageVersion = version;
                 DescribeUnfold unfold = new DescribeUnfold();
                 unfold.ParseJob = CurrentJob;
                 string filename = sourceCodes[i].FileName;
@@ -656,8 +668,10 @@ namespace DescribeTranspiler
             }
 
             bool opresult = true;
+            DescribeVersionNumber version = LanguageVersion;
             for (int i = 0; i < sourceCodes.Count; i++)
             {
+                if (LanguageVersion != version) LanguageVersion = version;
                 DescribeUnfold unfold = new DescribeUnfold();
                 unfold.ParseJob = CurrentJob;
                 string filename = _createMD5(sourceCodes[i], 16);
@@ -734,8 +748,10 @@ namespace DescribeTranspiler
             }
 
             bool opresult = true;
+            DescribeVersionNumber version = LanguageVersion;
             for (int i = 0; i < sourceCodes.Count; i++)
             {
+                if (LanguageVersion != version) LanguageVersion = version;
                 string filename = sourceCodes[i].FileName;
                 string source = sourceCodes[i].SourceText;
                 bool result = false;
@@ -813,8 +829,10 @@ namespace DescribeTranspiler
             }
 
             bool opresult = true;
+            DescribeVersionNumber version = LanguageVersion;
             for (int i = 0; i < sourceCodes.Count; i++)
             {
+                if (LanguageVersion != version) LanguageVersion = version;
                 string filename = _createMD5(sourceCodes[i], 16);
                 string source = sourceCodes[i];
                 bool result = false;
