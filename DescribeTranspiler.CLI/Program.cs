@@ -59,13 +59,23 @@ namespace DescribeTranspiler.Cli
                 }
 
                 //DescribeCompilerCLI parse-folder PARSE_PATH RESULT_PATH
-                //[ dsonly=<verb> ][ toponly=<verb> ][ onerror= ( stop | ignore )][ output-many= ( true | false ) ]
+                //[ dsonly=<verb> ][ toponly=<verb> ][ onerror= ( stop | ignore )]
                 //[ input-password=PASSWORD ][ output-password=PASSWORD ][ log-password=PASSWORD ]
                 //[ language-version=<verb> | lang-ver=<verb> ][ translator = ( TARGET_LANGUAGE | TRANSLATOR_NAME )] [ beautify=<verb> ]
                 //[ verbosity=<verb> | log-verbosity=<verb> ][ logfile=LOG_PATH | log-file=LOG_PATH ] [ theme=<verb> ]
                 else if (args[0].ToLower() == "parse-folder")
                 {
                     parseFolder(args);
+                }
+
+                //DescribeCompilerCLI parse-many PARSE_PATH RESULT_PATH
+                //[ dsonly=<verb> ][ toponly=<verb> ][ onerror= ( stop | ignore )]
+                //[ input-password=PASSWORD ][ output-password=PASSWORD ][ log-password=PASSWORD ]
+                //[ language-version=<verb> | lang-ver=<verb> ][ translator = ( TARGET_LANGUAGE | TRANSLATOR_NAME )] [ beautify=<verb> ]
+                //[ verbosity=<verb> | log-verbosity=<verb> ][ logfile=LOG_PATH | log-file=LOG_PATH ] [ theme=<verb> ]
+                else if (args[0].ToLower() == "parse-many")
+                {
+                    Messages.printParseManyNotImplemented();
                 }
 
                 //DescribeCompilerCLI encrypt-file PLAIN_PATH ENCRYPTED_PATH [ theme=<verb> ]
@@ -84,6 +94,24 @@ namespace DescribeTranspiler.Cli
                 else if (args[0].ToLower() == "recrypt-file")
                 {
                     recryptFile(args);
+                }
+
+                //DescribeCompilerCLI encrypt-folder PLAIN_PATH ENCRYPTED_PATH [ theme=<verb> ]
+                else if (args[0].ToLower() == "encrypt-folder")
+                {
+                    encryptFolder(args);
+                }
+
+                //DescribeCompilerCLI decrypt-folder PLAIN_PATH ENCRYPTED_PATH [ theme=<verb> ]
+                else if (args[0].ToLower() == "decrypt-folder")
+                {
+                    decryptFolder(args);
+                }
+
+                //DescribeCompilerCLI recrypt-folder PLAIN_PATH ENCRYPTED_PATH [ theme=<verb> ]
+                else if (args[0].ToLower() == "recrypt-folder")
+                {
+                    recryptFolder(args);
                 }
 
                 //Unknown command
@@ -222,15 +250,100 @@ namespace DescribeTranspiler.Cli
         }
         static void encryptFolder(string[] args)
         {
-            throw new NotImplementedException();
+            //read input output
+            if (Arguments.readInputFolderArgument(args[1], 1) == false) return;
+            if (Arguments.readOutputFolderArgument(args[2], 2) == false) return;
+
+            //read other options
+            for (int i = 3; i < args.Length; i++)
+            {
+                string cur = args[i].ToLower();
+
+                if (cur.StartsWith("password=") && cur.Length > "password=".Length)
+                {
+                    if (Arguments.readInputPasswordArgument(args[i], i) == false) return;
+                }
+                else if (cur.StartsWith("theme="))
+                {
+                    continue;
+                }
+                else
+                {
+                    Messages.printArgumentError(args[i], i, "what is this?");
+                    return;
+                }
+            }
+
+            //Encrypt
+            MainFunctions.EncryptFolder();
+            Messages.ConsoleLog("--------------------------------------------------");
+            Messages.printEncryptionSuccess(true);
         }
         static void decryptFolder(string[] args)
         {
-            throw new NotImplementedException();
+            //read input output
+            if (Arguments.readInputFolderArgument(args[1], 1) == false) return;
+            if (Arguments.readOutputFolderArgument(args[2], 2) == false) return;
+
+            //read other options
+            for (int i = 3; i < args.Length; i++)
+            {
+                string cur = args[i].ToLower();
+
+                if (cur.StartsWith("password=") && cur.Length > "password=".Length)
+                {
+                    if (Arguments.readInputPasswordArgument(args[i], i) == false) return;
+                }
+                else if (cur.StartsWith("theme="))
+                {
+                    continue;
+                }
+                else
+                {
+                    Messages.printArgumentError(args[i], i, "what is this?");
+                    return;
+                }
+            }
+
+            //Encrypt
+            MainFunctions.DecryptFolder();
+            Messages.ConsoleLog("--------------------------------------------------");
+            Messages.printEncryptionSuccess(true);
         }
         static void recryptFolder(string[] args)
         {
-            throw new NotImplementedException();
+            //read input output
+            if (Arguments.readInputFolderArgument(args[1], 1) == false) return;
+            if (Arguments.readOutputFolderArgument(args[2], 2) == false) return;
+
+            //read other options
+            for (int i = 3; i < args.Length; i++)
+            {
+                string cur = args[i].ToLower();
+
+                if (cur.StartsWith("input-password=") && cur.Length > "input-password=".Length)
+                {
+                    if (Arguments.readInputPasswordArgument(args[i], i) == false) return;
+                }
+                else if (cur.StartsWith("output-password=") && cur.Length > "output-password=".Length)
+                {
+                    if (Arguments.readOutputPasswordArgument(args[i], i) == false) return;
+                }
+                else if (cur.StartsWith("theme="))
+                {
+                    continue;
+                }
+                else
+                {
+                    Messages.printArgumentError(args[i], i, "what is this?");
+                    return;
+                }
+            }
+
+            //Recrypt
+            MainFunctions.RecryptFolder();
+            Messages.ConsoleLog("--------------------------------------------------");
+            Messages.printEncryptionSuccess(true);
         }
         static void parseFile(string[] args)
         {

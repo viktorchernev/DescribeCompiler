@@ -323,10 +323,18 @@ namespace DescribeTranspiler.Cli
             if (args.Length > 0)
             {
                 s = s + args[0];
-                if (args.Length == 1) return;
+                if (args.Length == 1)
+                {
+                    ConsoleLogInfo(s); 
+                    return;
+                }
 
                 s = s + " \"" + args[1] + "\"";
-                if (args.Length == 2) return;
+                if (args.Length == 2)
+                {
+                    ConsoleLogInfo(s);
+                    return;
+                }
 
                 s = s + " \"" + args[2] + "\"";
 
@@ -428,6 +436,19 @@ namespace DescribeTranspiler.Cli
             ConsoleLogInfo("For more information visit https://github.com/viktorchernev/DescribeCompiler");
             ConsoleLogInfo("-----------------------------------------------------------------");
 
+
+            Console.ForegroundColor = INFO_COLOR;
+            Log += "Press any key to exit." + Environment.NewLine;
+            Console.WriteLine("Press any key to exit.");
+            Console.ForegroundColor = TEXT_COLOR;
+            if (block) Console.Read();
+        }
+        public static void printParseManyNotImplemented(bool block = true)
+        {
+            ConsoleLog("The command you are trying to use - \"parse-many\" has not been implemented yet.");
+            ConsoleLog("This message will be removed once it has been implemented.");
+            ConsoleLog("Meanwhile, why not try to parse single files multiple times?");
+            ConsoleLog("");
 
             Console.ForegroundColor = INFO_COLOR;
             Log += "Press any key to exit." + Environment.NewLine;

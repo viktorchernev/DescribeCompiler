@@ -153,9 +153,14 @@ namespace DescribeTranspiler
                 }
 
                 _fileCounter++;
-                if (result == true) _parsedFileCounter++;
+                if (result == true)
+                {
+                    _parsedFileCounter++;
+                    unfold.ParsedFiles.Add(sourceFiles[i]);
+                }
                 else
                 {
+                    unfold.FailedFiles.Add(sourceFiles[i]);
                     _failedFileCounter++;
                     if (STOP_ON_ERROR)
                     {
@@ -459,11 +464,16 @@ namespace DescribeTranspiler
                 }
 
                 _fileCounter++;
-                if (result == true) _parsedFileCounter++;
+                if (result == true)
+                {
+                    _parsedFileCounter++;
+                    unfold.ParsedFiles.Add(sourceCodes[i].FileName);
+                }
                 else
                 {
                     _failedFileCounter++;
-                    if(STOP_ON_ERROR)
+                    unfold.FailedFiles.Add(sourceCodes[i].FileName);
+                    if (STOP_ON_ERROR)
                     {
                         opresult = false;
                         break;
@@ -538,10 +548,15 @@ namespace DescribeTranspiler
                 }
 
                 _fileCounter++;
-                if (result == true) _parsedFileCounter++;
+                if (result == true)
+                {
+                    _parsedFileCounter++;
+                    unfold.ParsedFiles.Add(filename);
+                }
                 else
                 {
                     _failedFileCounter++;
+                    unfold.FailedFiles.Add(filename);
                     if (STOP_ON_ERROR)
                     {
                         opresult = false;

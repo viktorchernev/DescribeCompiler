@@ -29,7 +29,9 @@ namespace DescribeCompiler.AWS
                     Messages.ConsoleLogInfo,
                     Messages.ConsoleLogParseInfo);
 
-                DescribeTranspiler.DescribeCompiler.STOP_ON_ERROR = true;
+                //settings
+                comp.STOP_ON_ERROR = true;
+
 
                 //templates
                 JsonListiaryTranslator translator;
@@ -51,7 +53,7 @@ namespace DescribeCompiler.AWS
 
                 //compile
                 DescribeUnfold unfold = new DescribeUnfold();
-                bool r = comp.ParseString_ToUnfold(code, filename, ref unfold);
+                bool r = comp.ParseString(code, filename, ref unfold);
                 if (r)
                 {
                     string result = translator.TranslateUnfold(unfold);
@@ -113,7 +115,7 @@ namespace DescribeCompiler.AWS
 
                 //compile
                 DescribeUnfold unfold = new DescribeUnfold();
-                bool r = comp.ParseMultiString_ToUnfold(codes, ref unfold);
+                //bool r = comp.ParseStrings(codes, ref unfold);
                 string result = translator.TranslateUnfold(unfold);
                 return result;
             }

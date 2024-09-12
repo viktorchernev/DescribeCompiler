@@ -18,7 +18,7 @@ namespace DescribeCompiler.AWS
         //presets
         public static void printLogo()
         {
-            Log += DescribeTranspiler.DescribeCompiler.COMPILER_NAME;
+            Log += DescribeTranspiler.DescribeCompiler.CompilerName;
             Log += Environment.NewLine;
         }
 
@@ -98,7 +98,7 @@ namespace DescribeCompiler.AWS
         public static void printHelpMessage()
         {
             ConsoleLogInfo("-----------------------------------------------------------------");
-            ConsoleLog("about: " + DescribeTranspiler.DescribeCompiler.COMPILER_NAME);
+            ConsoleLog("about: " + DescribeTranspiler.DescribeCompiler.CompilerVersion);
             ConsoleLogInfo("Describe is a domain specific language used to write and maintain complex data lists");
             ConsoleLogInfo("that are compiled on demand to html, xaml, xml, sql, json and any other language needed.");
             ConsoleLogInfo("Describe is licensed under the GNU Affero General Public License v3.0");
