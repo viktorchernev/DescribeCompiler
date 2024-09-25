@@ -1,16 +1,6 @@
-﻿using DescribeTranspiler.Translators;
-using DescribeParser;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DescribeParser.Unfold;
+﻿using DescribeParser.Unfold;
 using DescribeTranspiler.Listiary.Translators;
-using DescribeTranspiler.CLI;
-using MySqlX.XDevAPI.Common;
-using System.Diagnostics;
-using System.Runtime;
+using DescribeTranspiler.Translators;
 
 namespace DescribeTranspiler.Cli
 {
@@ -90,7 +80,7 @@ namespace DescribeTranspiler.Cli
                 else
                 {
                     Messages.printFatalError(
-                        "Template name does not start with \"HTML_\" or \"JSON_\"," +
+                        "Template name does not start with \"HTML_\", \"JSON_\", \"XML_\" or \"SQL_\"," +
                         " thus, it is not known which translator to use");
                     return false;
                 }
@@ -195,6 +185,7 @@ namespace DescribeTranspiler.Cli
                     }
                 }
 
+                //translate
                 string? result; 
                 if(Datnik.isBeautified)
                 {

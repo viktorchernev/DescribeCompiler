@@ -910,6 +910,7 @@ namespace DescribeTranspiler
             LogText("Starting a 'File -> Unfold' operation...");
             unfold.ParseJob = CurrentJob;
             unfold.ParseJob.LastFile = fileInfo.FullName;
+            unfold.ParseJob.RootFile = fileInfo.FullName;
 
             // Reset stats, as we are starting a new operation
             if (_isUsed)
@@ -958,6 +959,7 @@ namespace DescribeTranspiler
         {
             LogText("Starting a 'File -> AST' operation...");
             CurrentJob.LastFile = fileInfo.FullName;
+            CurrentJob.RootFile = fileInfo.FullName;
 
             // Reset stats, as we are starting a new operation
             if (_isUsed)
@@ -1014,6 +1016,7 @@ namespace DescribeTranspiler
             LogText("Starting a 'String -> Unfold' operation...");
             unfold.ParseJob = CurrentJob;
             unfold.ParseJob.LastFile = filename;
+            unfold.ParseJob.RootFile = filename;
 
             // Reset stats, as we are starting a new operation
             if (_isUsed)
@@ -1063,6 +1066,7 @@ namespace DescribeTranspiler
         {
             LogText("Starting a 'String -> AST' operation...");
             CurrentJob.LastFile = filename;
+            CurrentJob.RootFile = filename;
 
             // Reset stats, as we are starting a new operation
             if (_isUsed)

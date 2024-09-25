@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Text.RegularExpressions;
 
 
 namespace DescribeParser.Visitors
@@ -389,7 +390,7 @@ namespace DescribeParser.Visitors
                     tag = s.Trim();
                 }
             }
-            text = text.Trim();
+            text = trimText(text);
 
             //tag
             if (tag == "") tag = getRandomString();
@@ -440,6 +441,24 @@ namespace DescribeParser.Visitors
 
 
 
+        static string trimText(string text)
+        {
+            // Use Regex to replace any sequence of whitespace characters with a single space
+            string s = Regex.Replace(text, @"\s+", " ").Trim();
+
+            // Replace escaped characters
+            s = s.Replace(@"\\", @"\");
+            s = s.Replace(@"\,", ",");
+            s = s.Replace(@"\;", ";");
+            s = s.Replace(@"\-", @"-");
+            s = s.Replace(@"\>", @">");
+            s = s.Replace(@"\<", @">");
+            s = s.Replace(@"\//", @"//");
+            s = s.Replace(@"\/*", @"/*");
+
+            // Return
+            return s;
+        }
         static string GetTokenType(int tokenType)
         {
             return Describe07Lexer.DefaultVocabulary.GetSymbolicName(tokenType);

@@ -45,6 +45,8 @@ namespace DescribeParser
         public static void ValidateUnfold(DescribeUnfold u)
         {
             ArgumentNullException.ThrowIfNull(u, nameof(u));
+            ArgumentNullException.ThrowIfNull(u.ParseJob, nameof(u.ParseJob));
+            ArgumentNullException.ThrowIfNull(u.ParseJob.RootFile, nameof(u.ParseJob.RootFile));
         }
 
         /// <summary>

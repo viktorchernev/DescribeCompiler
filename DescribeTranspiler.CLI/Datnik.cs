@@ -132,7 +132,7 @@ namespace DescribeTranspiler.Cli
             topOnly = false;
             isBeautified = false;
 
-            translatorName = "HTML_PARACORD";
+            translatorName = "HTML_PAGE";
 
             logFilePath = null;
             logToFile = false;

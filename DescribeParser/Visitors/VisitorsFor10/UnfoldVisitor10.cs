@@ -8,6 +8,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 
 
 namespace DescribeParser.Visitors
@@ -455,7 +456,7 @@ namespace DescribeParser.Visitors
                     }
                 }
             }
-            text = text.Trim();
+            text = trimText(text);
 
             //tag
             if (tag == "") tag = getRandomString();
@@ -565,6 +566,29 @@ namespace DescribeParser.Visitors
 
 
 
+        static string trimText(string text)
+        {
+            // Use Regex to replace any sequence of whitespace characters with a single space
+            string s = Regex.Replace(text, @"\s+", " ").Trim();
+            
+            // Replace escaped characters
+            s = s.Replace(@"\\", @"\");
+            s = s.Replace(@"\,", ",");
+            s = s.Replace(@"\;", ";");
+            s = s.Replace(@"\-", @"-");
+            s = s.Replace(@"\~", @"~");
+            s = s.Replace(@"\>", @">");
+            s = s.Replace(@"\<", @">");
+            s = s.Replace(@"\[", @"[");
+            s = s.Replace(@"\]", @"]");
+            s = s.Replace(@"\{", @"{");
+            s = s.Replace(@"\}", @"}");
+            s = s.Replace(@"\//", @"//");
+            s = s.Replace(@"\/*", @"/*");
+
+            // Return
+            return s;
+        }
         static string GetTokenType(int tokenType)
         {
             return Describe10Lexer.DefaultVocabulary.GetSymbolicName(tokenType);
