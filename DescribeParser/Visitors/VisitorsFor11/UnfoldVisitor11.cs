@@ -463,10 +463,11 @@ namespace DescribeParser.Visitors
                 if (string.IsNullOrEmpty(u.ParseJob.LastNamespace) == false) tag = u.ParseJob.LastNamespace + tag;
                 else tag = u.ParseJob.LocalNamespace + tag;
             }
-            else
+            else if (tag.Contains('.') == false)
             {
                 tag = u.ParseJob.LocalNamespace + '.' + tag;
             }
+            if (isTilde) tag = tag + "~" + getRandomString();
             if (!u.Translations.Keys.Contains(tag))
             {
                 u.Translations.Add(tag, text);

@@ -416,7 +416,7 @@ namespace DescribeParser.Visitors
                 if (string.IsNullOrEmpty(u.ParseJob.LastNamespace) == false) tag = u.ParseJob.LastNamespace + tag;
                 else tag = u.ParseJob.LocalNamespace + tag;
             }
-            else
+            else if (tag.Contains('.') == false)
             {
                 tag = u.ParseJob.LocalNamespace + '.' + tag;
             }

@@ -271,8 +271,17 @@ namespace DescribeTranspiler.Translators
         {
             List<string> li = new List<string>();
             if (u.Productions.ContainsKey(id)) li = u.Productions[id];
+
+            List<string> ti = new List<string>();
+            if (u.Tildes.ContainsKey(id)) ti = u.Tildes[id];
+
             string items = "";
             foreach (string s in li)
+            {
+                string z = TranslateProductionOrItem(u, s);
+                items += z;
+            }
+            foreach (string s in ti)
             {
                 string z = TranslateProductionOrItem(u, s);
                 items += z;

@@ -44,7 +44,7 @@ namespace DescribeTranspiler.Cli
                 }
 
                 //DescribeCompilerCLI help | -h
-                else if (args[0].ToLower() == "help" || args[0] == "-h")
+                else if (args[0].ToLower() == "help" || args[0].ToLower() == "-help" || args[0].ToLower() == "-h")
                 {
                     Messages.printHelpMessage();
                 }
@@ -376,6 +376,10 @@ namespace DescribeTranspiler.Cli
                 {
                     if (Arguments.readLogfileArgument(args[i], i) == false) return;
                 }
+                else if (cur.StartsWith("log-file=") && cur.Length > "log-file=".Length)
+                {
+                    if (Arguments.readLogfileArgument(args[i], i) == false) return;
+                }
                 else if (cur.StartsWith("input-password=") && cur.Length > "input-password=".Length)
                 {
                     if (Arguments.readInputPasswordArgument(args[i], i) == false) return;
@@ -482,6 +486,10 @@ namespace DescribeTranspiler.Cli
                     if (Arguments.readOnerrorArgument(cur, i) == false) return;
                 }
                 else if (cur.StartsWith("logfile=") && cur.Length > "logfile=".Length)
+                {
+                    if (Arguments.readLogfileArgument(args[i], i) == false) return;
+                }
+                else if (cur.StartsWith("log-file=") && cur.Length > "log-file=".Length)
                 {
                     if (Arguments.readLogfileArgument(args[i], i) == false) return;
                 }

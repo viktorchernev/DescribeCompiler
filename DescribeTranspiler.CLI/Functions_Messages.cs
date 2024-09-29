@@ -415,7 +415,7 @@ namespace DescribeTranspiler.Cli
             ConsoleLogInfo("-----------------------------------------------------------------");
             ConsoleLog("usage: " + thisName + " parse-file PARSE_PATH RESULT_PATH\n[ input-password=INPUT_PASSWORD ][ output-password=OUTPUT_PASSWORD ][ log-password=LOG_PASSWORD ]\n[ language-version=<verb> | lang-ver=<verb> ][ translator=(TARGET_LANGUAGE|TRANSLATOR_NAME) ]\n[ beautify=<verb> ][ verbosity=<verb> | log-verbosity=<verb> ][ logfile=LOG_PATH | log-file=LOG_PATH ][ theme=<verb> ]");
             ConsoleLogInfo("TARGET_LANGUAGE - the desired output language: \"JSON\", \"HTML\", \"XML\", \"SQL\"");
-            ConsoleLogInfo("TRANSLATOR_NAME - the name of the translator to be used :  \"HTML_PLAIN\", \"HTML_PARACORD\", \"XML_PLAIN\", \"SQL_FILEFILL\", \"JSON_COMMONER\", \"JSON_LISTIARY\"");
+            ConsoleLogInfo("TRANSLATOR_NAME - the name of the translator to be used :  \"HTML_PLAIN\", \"HTML_PAGE\", \"XML_PLAIN\", \"SQL_FILEFILL\", \"JSON_PLAIN\", \"JSON_LISTIARY\"");
             ConsoleLogInfo("PARSE_PATH - the path of the file to parse");
             ConsoleLogInfo("RESULT_PATH - the path of the file to write the result to (existing file or not)");
             ConsoleLogInfo("* verbosity - set the log verbosity of the parser (default is high): \"l\", \"low\", \"m\", \"medium\", \"h\", \"high\"");
@@ -429,7 +429,7 @@ namespace DescribeTranspiler.Cli
             ConsoleLogInfo("-----------------------------------------------------------------");
             ConsoleLog("usage: " + thisName + " parse-folder PARSE_PATH RESULT_PATH\n[ dsonly=<verb> ][ toponly=<verb> ][ onerror= ( stop | ignore )]\n[ input-password=INPUT_PASSWORD ][ output-password=OUTPUT_PASSWORD ][ log-password=LOG_PASSWORD ]\n[ language-version=<verb> | lang-ver=<verb> ][ translator=(TARGET_LANGUAGE | TRANSLATOR_NAME) ]\n[ beautify=<verb> ][ verbosity=<verb> | log-verbosity=<verb> ]\n[ logfile=LOG_PATH | log-file=LOG_PATH ][ theme=<verb> ]");
             ConsoleLogInfo("TARGET_LANGUAGE - the desired output language: \"JSON\", \"HTML\", \"XML\", \"SQL\"");
-            ConsoleLogInfo("TRANSLATOR_NAME - the name of the translator to be used :  \"HTML_PLAIN\", \"HTML_PARACORD\", \"XML_PLAIN\", \"SQL_FILEFILL\", \"JSON_COMMONER\", \"JSON_LISTIARY\"");
+            ConsoleLogInfo("TRANSLATOR_NAME - the name of the translator to be used :  \"HTML_PLAIN\", \"HTML_PAGE\", \"XML_PLAIN\", \"SQL_FILEFILL\", \"JSON_PLAIN\", \"JSON_LISTIARY\"");
             ConsoleLogInfo("PARSE_PATH - the path of the file to parse");
             ConsoleLogInfo("RESULT_PATH - the path of the file to write the result to (existing file or not)");
             ConsoleLogInfo("* dsonly - true, false");
@@ -488,8 +488,11 @@ namespace DescribeTranspiler.Cli
 
 
             Console.ForegroundColor = INFO_COLOR;
-            Log += "Press any key to exit." + Environment.NewLine;
-            Console.WriteLine("Press any key to exit.");
+            if (block)
+            {
+                Log += "Press any key to exit." + Environment.NewLine;
+                Console.WriteLine("Press any key to exit.");
+            }
             Console.ForegroundColor = TEXT_COLOR;
             if (block) Console.Read();
         }
@@ -524,7 +527,7 @@ namespace DescribeTranspiler.Cli
             Console.WriteLine("No arguments or invalid argument count.");
 
             Console.ForegroundColor = TEXT_COLOR;
-            printHelpMessage();
+            printHelpMessage(false);
 
             Console.ForegroundColor = INFO_COLOR;
             Log += "Press any key to exit." + Environment.NewLine;
@@ -541,7 +544,7 @@ namespace DescribeTranspiler.Cli
             Console.WriteLine("Invalid argument " + argIndex.ToString() + " - \"" + arg + "\"");
 
             Console.ForegroundColor = TEXT_COLOR;
-            printHelpMessage();
+            printHelpMessage(false);
 
             Console.ForegroundColor = INFO_COLOR;
             Log += "Press any key to exit." + Environment.NewLine;
