@@ -306,7 +306,7 @@ namespace DescribeParser.Visitors
                 else
                 {
                     u.Tildes.Add(head, new List<string>());
-                    u.Productions.Add(head, new List<string>() { right.Substring(1) });
+                    u.Productions.Add(head, new List<string>() { right });
                 }
             }
             else if (thirdChild is Describe10Parser.ExpressionContext)
@@ -560,6 +560,7 @@ namespace DescribeParser.Visitors
             {
                 u.ItemidFile[tag].Add(cf);
             }
+
 
             if (isTilde) tag = "~" + tag;
             return tag;
