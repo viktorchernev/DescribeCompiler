@@ -310,6 +310,7 @@ namespace DescribeTranspiler.Translators
             foreach (string s in ti)
             {
                 string z = TranslateProductionOrItem(u, s);
+                if (items != "") items += ",";
                 items += z;
             }
 

@@ -370,7 +370,7 @@ namespace DescribeTranspiler.Translators
                         url = "https://" + url;
                     }
                     string template = linkTemplate!.Replace("{HTTPS}", SecurityElement.Escape(url));
-                    template = template.Replace("{TEXT}", CharacterDictionariesHtml.BlackCircledLettersI[i]);
+                    template = template.Replace("{TEXT}", CharacterDictionariesHtml.BlackCircledLettersI[i] );
                     linkage += template;
                 }
                 linkage = " " + linkage;

@@ -17,7 +17,7 @@ namespace DescribeTranspiler.Translators
 
 
         //templates
-        const string templatesFolderName = "JSON_COMMONER";
+        const string templatesFolderName = "JSON_BASIC";
         static string? pageTemplate;
         static string? rootTemplate;
         static string? itemTemplate;
@@ -309,6 +309,7 @@ namespace DescribeTranspiler.Translators
             foreach (string s in ti)
             {
                 string z = TranslateProductionOrItem(u, s);
+                if (items != "") items += ",";
                 items += z;
             }
 
