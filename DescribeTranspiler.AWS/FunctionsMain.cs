@@ -8,7 +8,7 @@ using DescribeParser.Unfold;
 using DescribeTranspiler.Listiary.Translators;
 
 
-namespace DescribeCompiler.AWS
+namespace DescribeTranspiler.AWS
 {
     internal static class MainFunctions
     {
@@ -16,9 +16,8 @@ namespace DescribeCompiler.AWS
         /// Compile source file(s)
         /// </summary>
         /// <param name="code">The describe source code to be parsed</param>
-        /// <param name="filename">The describe source code file name</param>
         /// <returns>True if successful, otherwise false</returns>
-        internal static string? Compile(string code, string filename)
+        internal static string? Compile(string code)
         {
             try
             {
@@ -31,9 +30,6 @@ namespace DescribeCompiler.AWS
                     Messages.ConsoleLogParseInfo);
 
                 //settings
-                comp.PARSE_TOP_DIRECTORY_ONLY = Datnik.topOnly;
-                comp.PARSE_DS_ONLY = Datnik.dsOnly;
-                comp.STOP_ON_ERROR = Datnik.requireSuccess;
                 if (comp.LanguageVersion != Datnik.langVer) comp.LanguageVersion = Datnik.langVer;
 
                 //templates
@@ -98,8 +94,9 @@ namespace DescribeCompiler.AWS
                 bool r = false;
                 if (Datnik.parseEncryptedFiles == false)
                 {
-                    if (Datnik.isInputDir == false) r = comp.ParseFile(new FileInfo(Datnik.input!), ref unfold);
-                    else r = comp.ParseFolder(new DirectoryInfo(Datnik.input!), ref unfold);
+                    r = comp.ParseString(code, Datnik.fileName!, ref unfold);
+                    //if (Datnik.isInputDir == false) r = comp.ParseFile(new FileInfo(Datnik.fileName!), ref unfold);
+                    //else r = comp.ParseFolder(new DirectoryInfo(Datnik.fileName!), ref unfold);
                 }
                 else
                 {
@@ -156,8 +153,6 @@ namespace DescribeCompiler.AWS
                     Messages.ConsoleLogParseInfo);
 
                 //settings
-                comp.PARSE_TOP_DIRECTORY_ONLY = Datnik.topOnly;
-                comp.PARSE_DS_ONLY = Datnik.dsOnly;
                 comp.STOP_ON_ERROR = Datnik.requireSuccess;
                 if (comp.LanguageVersion != Datnik.langVer) comp.LanguageVersion = Datnik.langVer;
 
@@ -224,8 +219,9 @@ namespace DescribeCompiler.AWS
                 bool r = false;
                 if (Datnik.parseEncryptedFiles == false)
                 {
-                    if (Datnik.isInputDir == false) r = comp.ParseFile(new FileInfo(Datnik.input!), ref unfold);
-                    else r = comp.ParseFolder(new DirectoryInfo(Datnik.input!), ref unfold);
+                    r = comp.ParseFile(new FileInfo(Datnik.fileName!), ref unfold);
+                    //if (Datnik.isInputDir == false) r = comp.ParseFile(new FileInfo(Datnik.fileName!), ref unfold);
+                    //else r = comp.ParseFolder(new DirectoryInfo(Datnik.fileName!), ref unfold);
                 }
                 else
                 {

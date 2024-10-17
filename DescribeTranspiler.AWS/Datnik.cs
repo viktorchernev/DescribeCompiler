@@ -1,7 +1,7 @@
 ﻿using DescribeTranspiler;
 
 
-namespace DescribeCompiler.AWS
+namespace DescribeTranspiler.AWS
 {
     public class Datnik
     {
@@ -21,7 +21,7 @@ namespace DescribeCompiler.AWS
         public static string? logPassword;
 
         /// <summary>
-        /// Wether to try to decrypt encrypted files (.DENC)
+        /// Wether to parse encrypted files
         /// </summary>
         public static bool parseEncryptedFiles;
 
@@ -38,35 +38,11 @@ namespace DescribeCompiler.AWS
 
 
         /// <summary>
-        /// The input file or folder
+        /// The input file name
         /// </summary>
-        public static string? input;
+        public static string? fileName;
 
-        /// <summary>
-        /// Wether the input is a file or a folder
-        /// </summary>
-        public static bool isInputDir;
 
-        /// <summary>
-        /// The output file or folder
-        /// </summary>
-        public static string? output;
-
-        /// <summary>
-        /// Wether the output is a file or a folder
-        /// </summary>
-        public static bool isOutputDir;
-
-        /// <summary>
-        /// When parsing a folder, weather to parse files in top directory only
-        /// or parse files in child directories as well
-        /// </summary>
-        public static bool topOnly;
-
-        /// <summary>
-        /// Weather to omit files that are not Describe source files (".DS")
-        /// </summary>
-        public static bool dsOnly;
 
         /// <summary>
         /// Wether the output needs to be in a beautified format
@@ -100,40 +76,20 @@ namespace DescribeCompiler.AWS
 
 
 
-        /// <summary>
-        /// Path to an external log file
-        /// </summary>
-        public static string? logFilePath;
-
-        /// <summary>
-        /// Weather to output logs to an external file
-        /// </summary>
-        public static bool logToFile;
-
-
-
 
         static Datnik()
         {
             inputPassword = null;
             outputPassword = null;
-            parseEncryptedFiles = false;
             encryptOutput = false;
             encryptLog = false;
+            parseEncryptedFiles = false;
 
-            input = null;
-            output = null;
-            isInputDir = false;
-            isOutputDir = false;
-            topOnly = false;
+            fileName = null;
             isBeautified = false;
 
             translatorName = "HTML_PAGE";
 
-            logFilePath = null;
-            logToFile = false;
-
-            dsOnly = true;
             verbosity = LogVerbosity.Low;
             langVer = DescribeVersionNumber.Version10;
             requireSuccess = true;

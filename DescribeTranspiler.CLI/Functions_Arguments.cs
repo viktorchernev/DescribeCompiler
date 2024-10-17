@@ -556,7 +556,7 @@ namespace DescribeTranspiler.Cli
                 }
                 else if (string.IsNullOrEmpty(val) || string.IsNullOrWhiteSpace(val))
                 {
-                    Messages.printArgumentError(arg, argindex, "Empty value for template name");
+                    Messages.printArgumentError(arg, argindex, "Empty value for translator name");
                     return false;
                 }
                 else
