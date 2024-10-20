@@ -106,7 +106,7 @@ public class Function
             else result.Result = "Success";
             result.Command = command;
             result.Logs = Messages.Log;
-            result.Json = base64Json;
+            result.Output = base64Json;
 
             // return
             var response = new APIGatewayProxyResponse
@@ -221,7 +221,7 @@ public class Function
             else result.Result = "Success";
             result.Command = command;
             result.Logs = Messages.Log;
-            result.Json = base64Json;
+            result.Output = base64Json;
 
             // return
             var response = new APIGatewayProxyResponse
@@ -336,7 +336,7 @@ public class Function
             else result.Result = "Success";
             result.Command = command;
             result.Logs = Messages.Log;
-            result.Json = base64Json;
+            result.Output = base64Json;
 
             // return
             var response = new APIGatewayProxyResponse
@@ -451,7 +451,7 @@ public class Function
             else result.Result = "Success";
             result.Command = command;
             result.Logs = Messages.Log;
-            result.Json = base64Json;
+            result.Output = base64Json;
 
             // return
             var response = new APIGatewayProxyResponse
@@ -566,7 +566,7 @@ public class Function
             else result.Result = "Success";
             result.Command = command;
             result.Logs = Messages.Log;
-            result.Json = base64Json;
+            result.Output = base64Json;
 
             // return
             var response = new APIGatewayProxyResponse
@@ -605,5 +605,5 @@ public class OutputJson
 
     public string? Result { get; set; }
     public string? Logs { get; set; }
-    public string? Json { get; set; }
+    public string? Output { get; set; }
 }
