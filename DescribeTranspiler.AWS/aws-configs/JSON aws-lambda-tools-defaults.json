@@ -16,7 +16,7 @@
     "function-handler"      : "DescribeTranspiler.AWS::DescribeTranspiler.AWS.Function::HTranspile_SingleDmlToSingleJson",
     "framework"             : "net8.0",
     "function-name"         : "Transpile_SingleDmlToSingleJson",
-    "function-description"  : "Compile Describe Markup Language code to JSON",
+    "function-description"  : "Compile Describe Source code to JSON",
     "package-type"          : "Zip",
     "function-role"         : "arn:aws:iam::580393905125:role/lambda_exec_CompileDescribeCodeToJson",
     "function-subnets"      : "",
