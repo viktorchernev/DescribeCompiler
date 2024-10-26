@@ -357,6 +357,10 @@ namespace DescribeTranspiler.Translators
             }
 
             //replace in template
+            string before = "";
+            string after = "";
+            string res = itemTemplate!.Replace("{ITEM}", HttpUtility.HtmlEncode(u.Translations[id]));
+            res = res.Replace("{LINKS}", linkage);
             if (u.Decorators.ContainsKey(id))
             {
                 List<DescribeDecorator> decorators = u.Decorators[id];
@@ -364,32 +368,44 @@ namespace DescribeTranspiler.Translators
                 {
                     if (decorator.Name == "empty")
                     {
-                        return emptyItemTemplate!;
+                        res = emptyItemTemplate!;
                     }
                     else if (decorator.Name == "comment")
                     {
-                        string res = commentItemTemplate!.Replace("{ITEM}", HttpUtility.HtmlEncode(u.Translations[id]));
+                        res = commentItemTemplate!.Replace("{ITEM}", HttpUtility.HtmlEncode(u.Translations[id]));
                         res = res.Replace("{LINKS}", linkage);
-                        return res;
                     }
                     else if (decorator.Name == "nlcomment")
                     {
-                        string res = nlcommentItemTemplate!.Replace("{ITEM}", HttpUtility.HtmlEncode(u.Translations[id]));
+                        res = nlcommentItemTemplate!.Replace("{ITEM}", HttpUtility.HtmlEncode(u.Translations[id]));
                         res = res.Replace("{LINKS}", linkage);
-                        return res;
                     }
                     else if (decorator.Name == "color")
                     {
-                        string res = coloredItemTemplate!.Replace("{ITEM}", HttpUtility.HtmlEncode(u.Translations[id]));
+                        res = coloredItemTemplate!.Replace("{ITEM}", HttpUtility.HtmlEncode(u.Translations[id]));
                         res = res.Replace("{LINKS}", linkage);
                         res = res.Replace("{COLOR}", decorator.Value);
-                        return res;
+                    }
+                    else if (decorator.Name == "bold")
+                    {
+                        before += "<span style='font-weight:bold;'>";
+                        res += "</span>";
+                    }
+                    else if (decorator.Name == "italic")
+                    {
+                        res = "<span style='font-style:italic;'>" + res + "</span>";
+                    }
+                    else if (decorator.Name == "underlined")
+                    {
+                        res = "<span style='text-decoration-line:underline;'>" + res + "</span>";
+                    }
+                    else if (decorator.Name == "striked")
+                    {
+                        res = "<span style='text-decoration-line:line-through;'>" + res + "</span>";
                     }
                 }
             }
-            string it = itemTemplate!.Replace("{ITEM}", HttpUtility.HtmlEncode(u.Translations[id]));
-            it = it.Replace("{LINKS}", linkage);
-            return it;
+            return before + res + after;
         }
 
 

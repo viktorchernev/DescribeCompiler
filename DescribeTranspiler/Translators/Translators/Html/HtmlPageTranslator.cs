@@ -305,7 +305,8 @@ namespace DescribeTranspiler.Translators
                         url  = "https://" + url;
                     }
                     string template = linkTemplate!.Replace("{HTTPS}", url);
-                    template = template.Replace("{TEXT}", CharacterDictionariesHtml.BlackCircledLettersI[i]);
+                    string linkLetter = TranslateLink(url, i);
+                    template = template.Replace("{TEXT}", linkLetter);
                     linkage += template;
                 }
                 linkage = " " + linkage;
@@ -352,13 +353,18 @@ namespace DescribeTranspiler.Translators
                         url = "https://" + url;
                     }
                     string template = linkTemplate!.Replace("{HTTPS}", url);
-                    template = template.Replace("{TEXT}", CharacterDictionariesHtml.BlackCircledLettersI[i]);
+                    string linkLetter = TranslateLink(url, i);
+                    template = template.Replace("{TEXT}", linkLetter);
                     linkage += template;
                 }
                 linkage = " " + linkage;
             }
 
             //replace in template
+            string before = "";
+            string after = "";
+            string res = itemTemplate!.Replace("{ITEM}", HttpUtility.HtmlEncode(u.Translations[id]));
+            res = res.Replace("{LINKS}", linkage);
             if (u.Decorators.ContainsKey(id))
             {
                 List<DescribeDecorator> decorators = u.Decorators[id];
@@ -366,34 +372,90 @@ namespace DescribeTranspiler.Translators
                 {
                     if (decorator.Name == "empty")
                     {
-                        return emptyItemTemplate!;
+                        res = emptyItemTemplate!;
                     }
                     else if (decorator.Name == "comment")
                     {
-                        string res = commentItemTemplate!.Replace("{ITEM}", HttpUtility.HtmlEncode(u.Translations[id]));
+                        res = commentItemTemplate!.Replace("{ITEM}", HttpUtility.HtmlEncode(u.Translations[id]));
                         res = res.Replace("{LINKS}", linkage);
-                        return res;
                     }
                     else if (decorator.Name == "nlcomment")
                     {
-                        string res = nlcommentItemTemplate!.Replace("{ITEM}", HttpUtility.HtmlEncode(u.Translations[id]));
+                        res = nlcommentItemTemplate!.Replace("{ITEM}", HttpUtility.HtmlEncode(u.Translations[id]));
                         res = res.Replace("{LINKS}", linkage);
-                        return res;
                     }
                     else if (decorator.Name == "color")
                     {
-                        string res = coloredItemTemplate!.Replace("{ITEM}", HttpUtility.HtmlEncode(u.Translations[id]));
+                        res = coloredItemTemplate!.Replace("{ITEM}", HttpUtility.HtmlEncode(u.Translations[id]));
                         res = res.Replace("{LINKS}", linkage);
                         res = res.Replace("{COLOR}", decorator.Value);
-                        return res;
+                    }
+                    else if (decorator.Name == "bold")
+                    {
+                        before += "<span style='font-weight:bold;'>";
+                        res += "</span>";
+                    }
+                    else if (decorator.Name == "italic")
+                    {
+                        res = "<span style='font-style:italic;'>" + res + "</span>";
+                    }
+                    else if (decorator.Name == "underlined")
+                    {
+                        res = "<span style='text-decoration-line:underline;'>" + res + "</span>";
+                    }
+                    else if (decorator.Name == "striked")
+                    {
+                        res = "<span style='text-decoration-line:line-through;'>" + res + "</span>";
                     }
                 }
             }
-            string it = itemTemplate!.Replace("{ITEM}", HttpUtility.HtmlEncode(u.Translations[id]));
-            it = it.Replace("{LINKS}", linkage);
-            return it;
+            return before + res + after;
+        }
+        string TranslateLink(string url, int index)
+        {
+            if (isWikipediaUrl(url)) return makeWikipediaLink(url, index);
+            else if (isYoutubeUrl(url)) return makeYoutubeLink(url, index);
+            else return makeGenericLink(url, index);
         }
 
+
+        //site recognizers
+        bool isWikipediaUrl(string url)
+        {
+            if (url.StartsWith("https://www.wikipedia.org/")) return true;
+            if (url.StartsWith("http://www.wikipedia.org/")) return true;
+            if (url.StartsWith("https://en.wikipedia.org/")) return true;
+            if (url.StartsWith("http://en.wikipedia.org/")) return true;
+            return false;
+        }
+        bool isYoutubeUrl(string url)
+        {
+            if (url.StartsWith("https://www.youtube.com/")) return true;
+            if (url.StartsWith("http://www.youtube.com/")) return true;
+            return false;
+        }
+
+        //link generators
+        string makeGenericLink(string url, int index)
+        {
+            string linkLetter = "";
+            linkLetter = CharacterDictionariesHtml.BlackCircledLettersI[index];
+            return linkLetter;
+        }
+        string makeWikipediaLink(string url, int index)
+        {
+            string linkLetter = "";
+            linkLetter = CharacterDictionariesHtml.BlackCircledLettersI[22];
+            linkLetter = "<span style='color:green;' >" + linkLetter + "</span>";
+            return linkLetter;
+        }
+        string makeYoutubeLink(string url, int index)
+        {
+            string linkLetter = "";
+            linkLetter = CharacterDictionariesHtml.BlackCircledLetters['Y'];
+            linkLetter = "<span style='color:red;' >" + linkLetter + "</span>";
+            return linkLetter;
+        }
 
 
         //log

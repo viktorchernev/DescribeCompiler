@@ -589,16 +589,6 @@ public class Function
         }
     }
 }
-
-public class InputJson
-{
-    public string Command { get; set; }
-    public string Verbosity { get; set; }
-    public string Translator { get; set; }
-
-    public string Filename { get; set; }
-    public string Code { get; set; }
-}
 public class OutputJson
 {
     public string? Command { get; set; }

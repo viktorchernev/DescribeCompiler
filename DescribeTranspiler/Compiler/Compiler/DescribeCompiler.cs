@@ -93,7 +93,9 @@ namespace DescribeTranspiler
                 if (PARSE_DS_ONLY) searchMask = "*.ds";
 
                 //unfold.InitialDir = dirInfo.FullName;
-                sourceFiles = Directory.GetFiles(dirInfo.FullName, searchMask, searchOption).ToList();
+                sourceFiles = Directory.GetFiles(dirInfo.FullName, searchMask, searchOption)
+                    .Where(file => !file.EndsWith(".dr", StringComparison.OrdinalIgnoreCase))
+                    .ToList();
                 if (sourceFiles.Count() == 0)
                 {
                     LogError("Directory is empty");
@@ -214,7 +216,9 @@ namespace DescribeTranspiler
                 if (PARSE_DS_ONLY) searchMask = "*.ds";
 
                 //unfold.InitialDir = dirInfo.FullName;
-                sourceFiles = Directory.GetFiles(dirInfo.FullName, searchMask, searchOption).ToList();
+                sourceFiles = Directory.GetFiles(dirInfo.FullName, searchMask, searchOption)
+                    .Where(file => !file.EndsWith(".dr", StringComparison.OrdinalIgnoreCase))
+                    .ToList();
                 if (sourceFiles.Count() == 0)
                 {
                     LogError("Directory is empty");
@@ -335,7 +339,9 @@ namespace DescribeTranspiler
                 if (PARSE_DS_ONLY) searchMask = "*.ds";
 
                 //unfold.InitialDir = dirInfo.FullName;
-                sourceFiles = Directory.GetFiles(dirInfo.FullName, searchMask, searchOption).ToList();
+                sourceFiles = Directory.GetFiles(dirInfo.FullName, searchMask, searchOption)
+                    .Where(file => !file.EndsWith(".dr", StringComparison.OrdinalIgnoreCase))
+                    .ToList();
                 if (sourceFiles.Count() == 0)
                 {
                     LogError("Directory is empty");
