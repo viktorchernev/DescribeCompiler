@@ -24,7 +24,6 @@ namespace Tests.Unit.Parser
             Assert.IsNotNull(unfold.FailedFiles, "FailedFiles should be initialized.");
             Assert.IsNotNull(unfold.PrimaryProductions, "PrimaryProductions should be initialized.");
             Assert.IsNotNull(unfold.Productions, "Productions should be initialized.");
-            Assert.IsNotNull(unfold.Tildes, "Tildes should be initialized.");
             Assert.IsNotNull(unfold.Translations, "Translations should be initialized.");
             Assert.IsNotNull(unfold.Links, "Links should be initialized.");
             Assert.IsNotNull(unfold.Decorators, "Decorators should be initialized.");
@@ -64,7 +63,6 @@ namespace Tests.Unit.Parser
             unfold.FailedFiles = testFailedFiles;
             unfold.PrimaryProductions = testPrimaryProductions;
             unfold.Productions = testProductions;
-            unfold.Tildes = testTildes;
             unfold.Translations = testTranslations;
             unfold.Links = testLinks;
             unfold.Decorators = testDecorators;
@@ -78,7 +76,6 @@ namespace Tests.Unit.Parser
             CollectionAssert.AreEqual(testFailedFiles, unfold.FailedFiles);
             CollectionAssert.AreEqual(testPrimaryProductions, unfold.PrimaryProductions);
             CollectionAssert.AreEqual(testProductions, unfold.Productions);
-            CollectionAssert.AreEqual(testTildes, unfold.Tildes);
             CollectionAssert.AreEqual(testTranslations, unfold.Translations);
             CollectionAssert.AreEqual(testLinks, unfold.Links);
             CollectionAssert.AreEqual(testDecorators, unfold.Decorators);
@@ -136,7 +133,6 @@ namespace Tests.Unit.Parser
                 FailedFiles = new List<string> { "file2.txt" },
                 PrimaryProductions = new List<string> { "prod1", "prod2" },
                 Productions = new Dictionary<string, List<string>> { { "prod1", new List<string> { "item1" } } },
-                Tildes = new Dictionary<string, List<string>> { { "tilde1", new List<string> { "item2" } } },
                 Translations = new Dictionary<string, string> { { "item1", "translation1" } },
                 Links = new Dictionary<string, List<DescribeLink>> { { "item1", new List<DescribeLink> { new DescribeLink { Url = "http://example.com" } } } },
                 Decorators = new Dictionary<string, List<DescribeDecorator>> { { "item1", new List<DescribeDecorator> { new DescribeDecorator { Name = "Decorator1" } } } },

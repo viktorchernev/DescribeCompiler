@@ -32,7 +32,6 @@
             text += Translations_ToString();
             text += Links_ToString();
             text += Decorators_ToString();
-            text += Tildes_ToString();
             text += Environment.NewLine;
 
             //File Placement
@@ -131,36 +130,7 @@
             text += Environment.NewLine;
             return text;
         }
-        private string Tildes_ToString()
-        {
-            string text = INDENT + ".Tildes" + Environment.NewLine;
-            if (Tildes.Count == 0) return text;
 
-            foreach (KeyValuePair<string, List<string>> kvp in Tildes)
-            {
-                text += INDENT + INDENT + '"' + kvp.Key + "\" -> ";
-                if (kvp.Value.Count > 10)
-                {
-                    text += Environment.NewLine + INDENT + INDENT + INDENT;
-                    for (int i = 0; i < kvp.Value.Count - 1; i++)
-                    {
-                        text += "\"" + kvp.Value[i] + "\", ";
-                        if ((i + 1) % 10 == 0) text += Environment.NewLine + INDENT + INDENT + INDENT;
-                    }
-                }
-                else
-                {
-                    for (int i = 0; i < kvp.Value.Count - 1; i++)
-                    {
-                        text += "\"" + kvp.Value[i] + "\", ";
-                    }
-                }
-                if(kvp.Value.Count > 0) text += "\"" + kvp.Value[kvp.Value.Count - 1] + "\";";
-                text += Environment.NewLine;
-            }
-            text += Environment.NewLine;
-            return text;
-        }
         private string Translations_ToString()
         {
             string text = INDENT + ".Translations" + Environment.NewLine;

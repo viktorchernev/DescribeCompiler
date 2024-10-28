@@ -44,7 +44,7 @@
         /// <summary>
         /// Gets or sets the dictionary of tildes (head item ID - body items ID's).
         /// </summary>
-        public Dictionary<string, List<string>> Tildes { get; set; }
+        //public Dictionary<string, List<string>> Tildes { get; set; }
 
         /// <summary>
         /// Gets or sets the dictionary of translations (item ID - item Text).
@@ -75,6 +75,7 @@
         public Dictionary<string, List<string>> ProdidFile { get; set; }
 
 
+
         /// <summary>
         /// Initializes a new instance of the <see cref="DescribeUnfold"/> class.
         /// </summary>
@@ -88,7 +89,6 @@
 
             PrimaryProductions = new List<string>();
             Productions = new Dictionary<string, List<string>>();
-            Tildes = new Dictionary<string, List<string>>();
             Translations = new Dictionary<string, string>();
             Links = new Dictionary<string, List<DescribeLink>>();
             Decorators = new Dictionary<string, List<DescribeDecorator>>();

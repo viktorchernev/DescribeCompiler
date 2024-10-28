@@ -298,12 +298,10 @@ namespace DescribeParser.Visitors
 
                 if (right.StartsWith('~'))
                 {
-                    u.Tildes.Add(head, new List<string>() { right.Substring(1) });
-                    u.Productions.Add(head, new List<string>());
+                    u.Productions.Add(head, new List<string>() { right.Substring(1) });
                 }
                 else
                 {
-                    u.Tildes.Add(head, new List<string>());
                     u.Productions.Add(head, new List<string>() { right });
                 }
             }
@@ -321,7 +319,6 @@ namespace DescribeParser.Visitors
                         prodfile + "\"";
                     throw new Exception(message);
                 }
-                u.Tildes.Add(head, new List<string>());
                 u.Productions.Add(head, new List<string>() { right });
             }
             else if (thirdChild is Describe11Parser.Item_or_expression_listContext)
@@ -339,14 +336,12 @@ namespace DescribeParser.Visitors
                     throw new Exception(message);
                 }
 
-                List<string> tildes = new List<string>();
                 List<string> items = new List<string>();
                 for (int i = 0; i <  rights.Length; i++)
                 {
-                    if (rights[i].StartsWith('~')) tildes.Add(rights[i].Substring(1));
+                    if (rights[i].StartsWith('~')) items.Add(rights[i].Substring(1));
                     else items.Add(rights[i]);
                 }
-                u.Tildes.Add(head, tildes);
                 u.Productions.Add(head, items);
             }
             else
