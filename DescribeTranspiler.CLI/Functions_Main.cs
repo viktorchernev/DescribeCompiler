@@ -52,6 +52,7 @@ namespace DescribeTranspiler.Cli
                         Messages.ConsoleLog,
                         Messages.ConsoleLogError,
                         Messages.ConsoleLogInfo);
+                    (translator as HtmlBasicTranslator)!.IsCensored = Datnik.isCensored;
                 }
                 else if (Datnik.translatorName.ToLower().StartsWith("html_")
                     || Datnik.translatorName.ToLower() == "html")
@@ -60,6 +61,7 @@ namespace DescribeTranspiler.Cli
                         Messages.ConsoleLog,
                         Messages.ConsoleLogError,
                         Messages.ConsoleLogInfo);
+                    (translator as HtmlPageTranslator)!.IsCensored = Datnik.isCensored;
                 }
                 else if (Datnik.translatorName.ToLower().StartsWith("xml_")
                     || Datnik.translatorName.ToLower() == "xml")

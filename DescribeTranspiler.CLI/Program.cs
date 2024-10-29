@@ -52,7 +52,7 @@ namespace DescribeTranspiler.Cli
                 //DescribeCompilerCLI parse-file PARSE_PATH RESULT_PATH
                 //[ input-password=PASSWORD ][ output-password=PASSWORD ][ log-password=PASSWORD ]
                 //[ language-version=<verb> | lang-ver=<verb> ][ translator = ( TARGET_LANGUAGE | TRANSLATOR_NAME )] [ beautify=<verb> ]
-                //[ verbosity=<verb> | log-verbosity=<verb> ][ logfile=LOG_PATH | log-file=LOG_PATH ] [ theme=<verb> ]
+                //[ verbosity=<verb> | log-verbosity=<verb> ][ logfile=LOG_PATH | log-file=LOG_PATH ] [ theme=<verb> ] [ censor ]
                 else if (args[0].ToLower() == "parse-file")
                 {
                     parseFile(args);
@@ -62,7 +62,7 @@ namespace DescribeTranspiler.Cli
                 //[ dsonly=<verb> ][ toponly=<verb> ][ onerror= ( stop | ignore )]
                 //[ input-password=PASSWORD ][ output-password=PASSWORD ][ log-password=PASSWORD ]
                 //[ language-version=<verb> | lang-ver=<verb> ][ translator = ( TARGET_LANGUAGE | TRANSLATOR_NAME )] [ beautify=<verb> ]
-                //[ verbosity=<verb> | log-verbosity=<verb> ][ logfile=LOG_PATH | log-file=LOG_PATH ] [ theme=<verb> ]
+                //[ verbosity=<verb> | log-verbosity=<verb> ][ logfile=LOG_PATH | log-file=LOG_PATH ] [ theme=<verb> ] [ censor ]
                 else if (args[0].ToLower() == "parse-folder")
                 {
                     parseFolder(args);
@@ -72,7 +72,7 @@ namespace DescribeTranspiler.Cli
                 //[ dsonly=<verb> ][ toponly=<verb> ][ onerror= ( stop | ignore )]
                 //[ input-password=PASSWORD ][ output-password=PASSWORD ][ log-password=PASSWORD ]
                 //[ language-version=<verb> | lang-ver=<verb> ][ translator = ( TARGET_LANGUAGE | TRANSLATOR_NAME )] [ beautify=<verb> ]
-                //[ verbosity=<verb> | log-verbosity=<verb> ][ logfile=LOG_PATH | log-file=LOG_PATH ] [ theme=<verb> ]
+                //[ verbosity=<verb> | log-verbosity=<verb> ][ logfile=LOG_PATH | log-file=LOG_PATH ] [ theme=<verb> ] [ censor ]
                 else if (args[0].ToLower() == "parse-many")
                 {
                     Messages.printParseManyNotImplemented();
@@ -364,6 +364,10 @@ namespace DescribeTranspiler.Cli
                 {
                     if (Arguments.readBeautifyArgument(cur, i) == false) return;
                 }
+                else if (cur.ToLower() == "censor")
+                {
+                    Datnik.isCensored = true;
+                }
                 else if (cur.StartsWith("verbosity=") && cur.Length > "verbosity=".Length)
                 {
                     if (Arguments.readVerbosityArgument(cur, i) == false) return;
@@ -472,6 +476,10 @@ namespace DescribeTranspiler.Cli
                 else if (cur.StartsWith("beautify=") && cur.Length > "beautify=".Length)
                 {
                     if (Arguments.readBeautifyArgument(cur, i) == false) return;
+                }
+                else if (cur.ToLower() == "censor")
+                {
+                    Datnik.isCensored = true;
                 }
                 else if (cur.StartsWith("verbosity=") && cur.Length > "verbosity=".Length)
                 {

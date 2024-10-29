@@ -2,7 +2,7 @@
   "profiles": {
     "DescribeTranspiler.CLI": {
       "commandName": "Project",
-      "commandLineArgs": "parse-folder \"C:\\Users\\Viktor Chernev\\Desktop\\Lists-Cli\\MyData\\Videos\" \"C:\\Users\\Viktor Chernev\\Desktop\\Lists-Cli\\Videos.html\" translator=html_page beautify=true verbosity=low logfile=\"C:\\Users\\Viktor Chernev\\Desktop\\Lists-Cli\\Videos.log\" dsonly=false toponly=false onerror=ignore"
+      "commandLineArgs": "parse-folder \"C:\\Users\\Viktor Chernev\\Desktop\\Lists-Cli\\MyData\\Videos\" \"C:\\Users\\Viktor Chernev\\Desktop\\Lists-Cli\\Videos.html\" translator=html_page beautify=true verbosity=low logfile=\"C:\\Users\\Viktor Chernev\\Desktop\\Lists-Cli\\Videos.log\" dsonly=false toponly=false onerror=ignore censor"
     }
   }
 }

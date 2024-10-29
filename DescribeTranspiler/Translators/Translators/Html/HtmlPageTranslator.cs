@@ -1,9 +1,12 @@
 ﻿using DescribeParser;
 using DescribeParser.Unfold;
+using Mysqlx.Session;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Text;
+using System.Text.RegularExpressions;
 using System.Web;
 
 
@@ -14,6 +17,8 @@ namespace DescribeTranspiler.Translators
     /// </summary>
     public class HtmlPageTranslator : DescribeUnfoldTranslator
     {
+        public bool IsCensored = false;
+
         public override bool IsInitialized
         {
             get;
@@ -305,6 +310,7 @@ namespace DescribeTranspiler.Translators
             }
 
             //replace in template
+            string? colval = null;
             if (u.Decorators.ContainsKey(id))
             {
                 List<DescribeDecorator> decorators = u.Decorators[id];
@@ -312,18 +318,42 @@ namespace DescribeTranspiler.Translators
                 {
                     if (decorator.Name == "color")
                     {
-                        string res = coloredProductionTemplate!.Replace("{TITLE}", HttpUtility.HtmlEncode(u.Translations[id]));
-                        res = res.Replace("{LINKS}", linkage);
-                        res = res.Replace("{COLOR}", decorator.Value);
-                        res = res.Replace("{ITEMS}", items);
-                        return res;
+                        colval = decorator.Value;
+                    }
+                    else if (decorator.Name == "sensitive" && IsCensored)
+                    {
+                        string text = u.Translations[id];
+                        string censored = Regex.Replace(text, @"\S", "?");
+                        u.Translations[id] = censored;
+                    }
+                    else if (decorator.Name == "secret" && IsCensored)
+                    {
+                        string mask = GenerateRandomDarkSquares(random.Next(10, 30));
+                        u.Translations[id] = mask;
+                    }
+                    else if (decorator.Name == "hidden" && IsCensored)
+                    {
+                        string mask = GenerateRandomGreekText(random.Next(40, 100));
+                        u.Translations[id] = mask;
                     }
                 }
             }
-            string pt = productionTemplate!.Replace("{TITLE}", HttpUtility.HtmlEncode(u.Translations[id]));
-            pt = pt.Replace("{LINKS}", linkage);
-            pt = pt.Replace("{ITEMS}", items);
-            return pt;
+
+            if(colval == null)
+            {
+                string pt = productionTemplate!.Replace("{TITLE}", HttpUtility.HtmlEncode(u.Translations[id]));
+                pt = pt.Replace("{LINKS}", linkage);
+                pt = pt.Replace("{ITEMS}", items);
+                return pt;
+            }
+            else
+            {
+                string res = coloredProductionTemplate!.Replace("{TITLE}", HttpUtility.HtmlEncode(u.Translations[id]));
+                res = res.Replace("{LINKS}", linkage);
+                res = res.Replace("{COLOR}", colval);
+                res = res.Replace("{ITEMS}", items);
+                return res;
+            }
         }
         string TranslateItem(DescribeUnfold u, string id)
         {
@@ -399,6 +429,32 @@ namespace DescribeTranspiler.Translators
                     {
                         res = "<span style='text-decoration-line:line-through;'>" + res + "</span>";
                     }
+                    else if (decorator.Name == "sensitive" && IsCensored)
+                    {
+                        string text = u.Translations[id];
+                        string censored = Regex.Replace(text, @"\S", "?");
+
+                        // possible bug here - this is bad way of doing things
+                        // that is hacked into place. Should be refactored
+                        res = res.Replace(u.Translations[id], censored);
+                        u.Translations[id] = censored;
+                    }
+                    else if (decorator.Name == "secret" && IsCensored)
+                    {
+                        // possible bug here - this is bad way of doing things
+                        // that is hacked into place. Should be refactored
+                        string mask = GenerateRandomDarkSquares(random.Next(10, 30));
+                        res = res.Replace(u.Translations[id], mask);
+                        u.Translations[id] = mask;
+                    }
+                    else if (decorator.Name == "hidden" && IsCensored)
+                    {
+                        // possible bug here - this is bad way of doing things
+                        // that is hacked into place. Should be refactored
+                        string mask = GenerateRandomGreekText(random.Next(40, 100));
+                        res = res.Replace(u.Translations[id], mask);
+                        u.Translations[id] = mask;
+                    }
                 }
             }
             return before + res + after;
@@ -447,6 +503,57 @@ namespace DescribeTranspiler.Translators
             linkLetter = CharacterDictionariesHtml.BlackCircledLetters['Y'];
             linkLetter = "<span style='color:red;' >" + linkLetter + "</span>";
             return linkLetter;
+        }
+
+        //more
+        Random random = new Random();
+        string GenerateRandomGreekText(int length)
+        {
+            // Define a pool of Greek characters and spaces
+            string pool = "α βγδ εζη θικ λμν ξοπ ρστ υφχ ψω άέή ίόύ ώ ";
+
+            StringBuilder sb = new StringBuilder();
+
+            // Generate random characters from the pool
+            for (int i = 0; i < length; i++)
+            {
+                char randomChar = pool[random.Next(pool.Length)];
+                sb.Append(randomChar);
+            }
+
+            return sb.ToString();
+        }
+        string GenerateRandomMathText(int length)
+        {
+            // Define a pool of Greek characters and spaces
+            string pool = "+ - × ÷ = ≠ < > ≤ ≥ ∞ π ∑ ∫ √ ∆ ∇ ∝ ⊕ ⊗ ⊥ ⎰";
+
+            StringBuilder sb = new StringBuilder();
+
+            // Generate random characters from the pool
+            for (int i = 0; i < length; i++)
+            {
+                char randomChar = pool[random.Next(pool.Length)];
+                sb.Append(randomChar);
+            }
+
+            return sb.ToString();
+        }
+        string GenerateRandomDarkSquares(int length)
+        {
+            // Define a pool of Greek characters and spaces
+            string pool = "▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇";
+
+            StringBuilder sb = new StringBuilder();
+
+            // Generate random characters from the pool
+            for (int i = 0; i < length; i++)
+            {
+                char randomChar = pool[random.Next(pool.Length)];
+                sb.Append(randomChar);
+            }
+
+            return sb.ToString();
         }
 
 

@@ -413,7 +413,7 @@ namespace DescribeTranspiler.Cli
             ConsoleLogInfo("Display this help message");
             ConsoleLog("");
             ConsoleLogInfo("-----------------------------------------------------------------");
-            ConsoleLog("usage: " + thisName + " parse-file PARSE_PATH RESULT_PATH\n[ input-password=INPUT_PASSWORD ][ output-password=OUTPUT_PASSWORD ][ log-password=LOG_PASSWORD ]\n[ language-version=<verb> | lang-ver=<verb> ][ translator=(TARGET_LANGUAGE|TRANSLATOR_NAME) ]\n[ beautify=<verb> ][ verbosity=<verb> | log-verbosity=<verb> ][ logfile=LOG_PATH | log-file=LOG_PATH ][ theme=<verb> ]");
+            ConsoleLog("usage: " + thisName + " parse-file PARSE_PATH RESULT_PATH\n[ input-password=INPUT_PASSWORD ][ output-password=OUTPUT_PASSWORD ][ log-password=LOG_PASSWORD ]\n[ language-version=<verb> | lang-ver=<verb> ][ translator=(TARGET_LANGUAGE|TRANSLATOR_NAME) ]\n[ beautify=<verb> ][ verbosity=<verb> | log-verbosity=<verb> ][ logfile=LOG_PATH | log-file=LOG_PATH ][ theme=<verb> ][ censor ]");
             ConsoleLogInfo("TARGET_LANGUAGE - the desired output language: \"JSON\", \"HTML\", \"XML\", \"SQL\"");
             ConsoleLogInfo("TRANSLATOR_NAME - the name of the translator to be used :  \"HTML_PLAIN\", \"HTML_PAGE\", \"XML_PLAIN\", \"SQL_FILEFILL\", \"JSON_BASIC\", \"JSON_LISTIARY\"");
             ConsoleLogInfo("PARSE_PATH - the path of the file to parse");
@@ -427,7 +427,7 @@ namespace DescribeTranspiler.Cli
             ConsoleLogInfo("* theme - \"DBLUE\", \"LBLUE\", \"GREEN\", \"PASTEL\", \"EARTH\", \"CONTRAST\", \"DEFAULT\", \"VIOLET\", \"CYAN\"");
             ConsoleLog("");
             ConsoleLogInfo("-----------------------------------------------------------------");
-            ConsoleLog("usage: " + thisName + " parse-folder PARSE_PATH RESULT_PATH\n[ dsonly=<verb> ][ toponly=<verb> ][ onerror= ( stop | ignore )]\n[ input-password=INPUT_PASSWORD ][ output-password=OUTPUT_PASSWORD ][ log-password=LOG_PASSWORD ]\n[ language-version=<verb> | lang-ver=<verb> ][ translator=(TARGET_LANGUAGE | TRANSLATOR_NAME) ]\n[ beautify=<verb> ][ verbosity=<verb> | log-verbosity=<verb> ]\n[ logfile=LOG_PATH | log-file=LOG_PATH ][ theme=<verb> ]");
+            ConsoleLog("usage: " + thisName + " parse-folder PARSE_PATH RESULT_PATH\n[ dsonly=<verb> ][ toponly=<verb> ][ onerror= ( stop | ignore )]\n[ input-password=INPUT_PASSWORD ][ output-password=OUTPUT_PASSWORD ][ log-password=LOG_PASSWORD ]\n[ language-version=<verb> | lang-ver=<verb> ][ translator=(TARGET_LANGUAGE | TRANSLATOR_NAME) ]\n[ beautify=<verb> ][ verbosity=<verb> | log-verbosity=<verb> ]\n[ logfile=LOG_PATH | log-file=LOG_PATH ][ theme=<verb> ][ censor ]");
             ConsoleLogInfo("TARGET_LANGUAGE - the desired output language: \"JSON\", \"HTML\", \"XML\", \"SQL\"");
             ConsoleLogInfo("TRANSLATOR_NAME - the name of the translator to be used :  \"HTML_PLAIN\", \"HTML_PAGE\", \"XML_PLAIN\", \"SQL_FILEFILL\", \"JSON_BASIC\", \"JSON_LISTIARY\"");
             ConsoleLogInfo("PARSE_PATH - the path of the file to parse");

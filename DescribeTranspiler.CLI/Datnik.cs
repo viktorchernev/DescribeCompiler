@@ -10,6 +10,11 @@ namespace DescribeTranspiler.Cli
     public class Datnik
     {
         /// <summary>
+        /// Wether to censor items marked as "sensitive", "secret" or "hidden".
+        /// </summary>
+        public static bool isCensored;
+
+        /// <summary>
         /// Password to decrypt input files, if parseEncryptedFiles == true
         /// </summary>
         public static string? inputPassword;
@@ -119,6 +124,8 @@ namespace DescribeTranspiler.Cli
 
         static Datnik()
         {
+            isCensored = false;
+
             inputPassword = null;
             outputPassword = null;
             parseEncryptedFiles = false;
