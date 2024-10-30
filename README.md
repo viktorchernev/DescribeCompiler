@@ -9,9 +9,9 @@ _Maintaining large data lists, made easy_
 
 Describe is a markup language designed to write and maintain complex data lists that are compiled on demand to various formats, such as html, xml, sql and json. It is simple to use, intuitive and easy to master. Describe is readily extendible - implementing support for new target languages or customizing the transpilation process is straightforward, making it adaptable to a wide range of projects.
 
-Built on the reliable ANTLR 4.13, Describe offers a robust grammar. The Describe Compiler is currently in beta. It is available for free under the AGPL v3 license, but commercial licenses are negotiable as well.
+Built on the reliable ANTLR 4.13, Describe offers a robust grammar, although the compiler is currently in beta. It is available for free under the AGPL v3 license, but commercial licenses are negotiable as well.
 
-While ANTLR ensures strong grammar handling, please note that the compiler is still under active development, and occasional bugs may occur. We appreciate your patience as we continue to improve the tool.
+While ANTLR ensures strong grammar handling, the compiler is still under active development, and occasional bugs may occur. We appreciate your patience and value your contributions, as we continue to improve the tool.
 
 
 ## How to
