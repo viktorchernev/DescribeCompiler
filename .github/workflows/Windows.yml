@@ -1,4 +1,4 @@
-name: Test .NET CLI on Windows Latest
+name: Test .NET CLI on Windows
 
 on:
   workflow_dispatch:  # This allows you to run the workflow manually from the Actions tab
