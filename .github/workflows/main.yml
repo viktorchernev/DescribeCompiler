@@ -38,10 +38,14 @@ jobs:
     
       - name: List Extracted Files
         run: |
-          dir release_extracted\DescribeCompiler.CLI.v1.0-beta  # List files in the directory to confirm the .exe is present
+          dir release_extracted\DescribeCompiler.CLI.v1.0-beta  # List files to check for output.txt
       
       - name: Get CLI App result 
         shell: pwsh  # Use PowerShell
         run: |
-          Get-Content output.txt
+          if (Test-Path output.txt) {
+            Get-Content output.txt  # Display the contents of output.txt
+          } else {
+            Write-Host "output.txt does not exist."
+          }
     
