@@ -12,8 +12,8 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install 7-Zip
-        run: choco install -y 7zip  # Install 7-Zip to extract .7z files
-
+        run: sudo apt update && sudo apt install -y p7zip-full
+        
       - name: Extract Release Archive
         run: |
           7z x '!release\latest-unstable\LatestCli.7z' -o'release_extracted'  # Extract to 'release_extracted' folder
