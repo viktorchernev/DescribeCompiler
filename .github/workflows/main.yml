@@ -5,46 +5,36 @@ on:
 
 jobs:
   test-latest-release:
-    runs-on: windows-latest  # Uses the latest Windows environment (Windows 11 equivalent)
+    runs-on: windows-latest  # Uses the latest Windows environment
 
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
 
-      - name: Set up .NET
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: '8.0'  # Use your .NET version
-
       - name: Install 7-Zip
-        run: |
-          choco install -y 7zip  # Install 7-Zip to extract .7z files
+        run: choco install -y 7zip  # Install 7-Zip to extract .7z files
 
       - name: Extract Release Archive
         run: |
           7z x '!release\latest-unstable\LatestCli.7z' -o'release_extracted'  # Extract to 'release_extracted' folder
 
       - name: List Extracted Files
-        run: |
-          dir release_extracted  # List files in the directory to confirm the .exe is present
-      
+        run: dir release_extracted  # List files in the directory to confirm the .exe is present
+
       - name: Run CLI App Help Command
-        shell: pwsh  # Use PowerShell
         run: |
-            Start-Process -FilePath "D:\a\DescribeCompiler\DescribeCompiler\release_extracted\DescribeTranspiler.CLI.exe" -ArgumentList "-help auto" -NoNewWindow -Wait
-            if ($LASTEXITCODE -ne 0) {
-              Write-Host "The command failed with exit code $LASTEXITCODE. Check output.txt for details."
-            }
-    
-      - name: List Extracted Files
+          "release_extracted\DescribeTranspiler.CLI.exe" -help auto > output.txt
+          if %errorlevel% neq 0 (
+            echo The command failed with exit code %errorlevel%. Check output.txt for details.
+          )
+
+      - name: List Output Files
+        run: dir release_extracted  # List files to check for output.txt
+
+      - name: Get CLI App Result 
         run: |
-          dir release_extracted  # List files to check for output.txt
-      
-      - name: Get CLI App result 
-        shell: pwsh  # Use PowerShell
-        run: |
-          if (Test-Path output.txt) {
-            Get-Content output.txt  # Display the contents of output.txt
-          } else {
-            Write-Host "output.txt does not exist."
-          }
+          if exist output.txt (
+            type output.txt  # Display the contents of output.txt
+          ) else (
+            echo output.txt does not exist.
+          )
