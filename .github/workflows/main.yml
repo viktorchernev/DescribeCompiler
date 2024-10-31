@@ -22,13 +22,13 @@ jobs:
 
       - name: Extract Release Archive
         run: |
-          7z x '!release/1.0-beta/DescribeCompiler.CLI.v1.0-beta.7z' -o'release_extracted'  # Extract to 'release_extracted' folder
+          7z x '!release\1.0-beta\DescribeCompiler.CLI.v1.0-beta.7z' -o'release_extracted'  # Extract to 'release_extracted' folder
 
       - name: List Extracted Files
         run: |
-          dir release_extracted  # List files in the directory to confirm the .exe is present
-
+          dir release_extracted\DescribeCompiler.CLI.v1.0-beta  # List files in the directory to confirm the .exe is present
+      
       - name: Run CLI App Help Command
         shell: cmd
         run: |
-          release_extracted\DescribeTranspiler.CLI.exe -help  # Run the help command with an absolute path
+          release_extracted\DescribeCompiler.CLI.v1.0-beta\DescribeTranspiler.CLI.exe -help  # Run the help command with an absolute path
