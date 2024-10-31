@@ -29,6 +29,6 @@ jobs:
           dir release_extracted\DescribeCompiler.CLI.v1.0-beta  # List files in the directory to confirm the .exe is present
       
       - name: Run CLI App Help Command
-        shell: cmd
+        shell: pwsh  # Use PowerShell
         run: |
-          release_extracted\DescribeCompiler.CLI.v1.0-beta\DescribeTranspiler.CLI.exe -help  # Run the help command with an absolute path
+          release_extracted\DescribeCompiler.CLI.v1.0-beta\DescribeTranspiler.CLI.exe -help
