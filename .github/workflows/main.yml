@@ -24,7 +24,7 @@ jobs:
       - name: Run CLI App Help Command
         shell: cmd # Explicitly set to CMD
         run: |
-          "release_extracted\DescribeTranspiler.CLI.exe -help auto"
+          release_extracted\DescribeTranspiler.CLI.exe -help auto
 
       - name: List Output Files
         run: dir release_extracted  # List files to check for output.txt
