@@ -9,9 +9,9 @@ _Maintaining large data lists, made easy_
 
 Describe is a markup language designed to write and maintain complex data lists that are compiled on demand to various formats, such as html, xml, sql and json. It is simple to use, intuitive and easy to master. Describe is readily extendible - implementing support for new target languages or customizing the transpilation process is straightforward, making it adaptable to a wide range of projects.
 
-Built on the reliable ANTLR 4.13, Describe offers a robust grammar. The Describe Compiler is currently in beta. It is available for free under the AGPL v3 license, but commercial licenses are negotiable as well.
+Built on the reliable ANTLR 4.13, Describe offers a robust grammar, although the compiler is currently in beta. It is available for free under the AGPL v3 license, but commercial licenses are negotiable as well.
 
-While ANTLR ensures strong grammar handling, please note that the compiler is still under active development, and occasional bugs may occur. We appreciate your patience as we continue to improve the tool.
+While ANTLR ensures strong grammar handling, the compiler is still under active development, and occasional bugs may occur. We appreciate your patience and value your contributions, as we continue to improve the tool.
 
 
 ## How to
@@ -48,7 +48,7 @@ The final output will depend on the translator used - and you can easily write y
 ## Releases
 We are working on testing the Transpiler v1.0, as it is in alpha - pre release phase. It is finished but contains bugs here and there, and once those have been removed, it will be released.
 
-* 1.0 (Coming up soon)
+* [1.0-beta](https://github.com/viktorchernev/DescribeCompiler/releases/tag/1.0-beta) (ANTLR4, Describe v1.1)
 * [0.9.3](https://github.com/viktorchernev/DescribeCompiler/releases/tag/0.9.3) (Support for Describe Language v1.0 - Official)  
 * [0.9.2](https://github.com/viktorchernev/DescribeCompiler/releases/tag/0.9.2) (Added features and bugfixes)
 * [0.9.1](https://github.com/viktorchernev/DescribeCompiler/releases/tag/0.9.1) (Refactoring, added features and bugfixes)
