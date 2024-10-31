@@ -32,7 +32,11 @@ jobs:
         shell: pwsh  # Use PowerShell
         run: |
           & "release_extracted\DescribeCompiler.CLI.v1.0-beta\DescribeTranspiler.CLI.exe" -help > output.txt  # Redirect output to a file
-          
+
+      - name: List Extracted Files
+        run: |
+          dir release_extracted\DescribeCompiler.CLI.v1.0-beta  # List files in the directory to confirm the .exe is present
+      
       - name: Get CLI App result 
         shell: pwsh  # Use PowerShell
         run: |
