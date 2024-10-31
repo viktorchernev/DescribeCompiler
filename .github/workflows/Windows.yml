@@ -1,0 +1,49 @@
+name: Test .NET CLI on Windows Latest
+
+on:
+  workflow_dispatch:  # This allows you to run the workflow manually from the Actions tab
+
+jobs:
+  test-latest-release:
+    runs-on: windows-latest  # Uses the latest Windows environment
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - name: Install 7-Zip
+        run: choco install -y 7zip  # Install 7-Zip to extract .7z files
+
+      - name: Extract Release Archive
+        run: |
+          7z x '!release\latest-unstable\LatestCli.7z' -o'release_extracted'  # Extract to 'release_extracted' folder
+
+      - name: List Extracted Files
+        run: dir release_extracted  # List files in the directory to confirm the .exe is present
+
+      - name: Run CLI App Help Command
+        shell: cmd # Explicitly set to CMD
+        run: |
+          release_extracted\DescribeTranspiler.CLI.exe -help auto
+
+  test-windows-2019-release:
+    runs-on: windows-2019
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - name: Install 7-Zip
+        run: choco install -y 7zip  # Install 7-Zip to extract .7z files
+
+      - name: Extract Release Archive
+        run: |
+          7z x '!release\latest-unstable\LatestCli.7z' -o'release_extracted'  # Extract to 'release_extracted' folder
+
+      - name: List Extracted Files
+        run: dir release_extracted  # List files in the directory to confirm the .exe is present
+
+      - name: Run CLI App Help Command
+        shell: cmd # Explicitly set to CMD
+        run: |
+          release_extracted\DescribeTranspiler.CLI.exe -help auto
