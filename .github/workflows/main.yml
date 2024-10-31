@@ -26,19 +26,19 @@ jobs:
 
       - name: List Extracted Files
         run: |
-          dir release_extracted\LatestCli  # List files in the directory to confirm the .exe is present
+          dir release_extracted  # List files in the directory to confirm the .exe is present
       
       - name: Run CLI App Help Command
         shell: pwsh  # Use PowerShell
         run: |
-            & "release_extracted\LatestCli\DescribeTranspiler.CLI.exe" -help auto *> output.txt  # Capture all output
+            & "release_extracted\DescribeTranspiler.CLI.exe" -help auto *> output.txt  # Capture all output
             if ($LASTEXITCODE -ne 0) {
               Write-Host "The command failed with exit code $LASTEXITCODE. Check output.txt for details."
             }
     
       - name: List Extracted Files
         run: |
-          dir release_extracted\LatestCli  # List files to check for output.txt
+          dir release_extracted  # List files to check for output.txt
       
       - name: Get CLI App result 
         shell: pwsh  # Use PowerShell
