@@ -31,8 +31,11 @@ jobs:
       - name: Run CLI App Help Command
         shell: pwsh  # Use PowerShell
         run: |
-          & "release_extracted\DescribeCompiler.CLI.v1.0-beta\DescribeTranspiler.CLI.exe" -help *>&1 | Out-File output.txt # Redirect output to a file
-
+            & "release_extracted\DescribeCompiler.CLI.v1.0-beta\DescribeTranspiler.CLI.exe" -help *> output.txt  # Capture all output
+            if ($LASTEXITCODE -ne 0) {
+              Write-Host "The command failed with exit code $LASTEXITCODE. Check output.txt for details."
+            }
+    
       - name: List Extracted Files
         run: |
           dir release_extracted\DescribeCompiler.CLI.v1.0-beta  # List files in the directory to confirm the .exe is present
