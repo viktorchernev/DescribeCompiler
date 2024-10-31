@@ -1,0 +1,30 @@
+name: Test .NET CLI on Windows Latest
+
+on:
+  workflow_dispatch:  # This allows you to run the workflow manually from the Actions tab
+
+jobs:
+  test-latest-release:
+    runs-on: windows-latest  # Uses the latest Windows environment (Windows 11 equivalent)
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0'  # Use your .NET version
+
+      - name: Install 7-Zip
+        run: |
+          choco install -y 7zip  # Install 7-Zip to extract .7z files
+
+      - name: Extract Release Archive
+        run: |
+          7z x '!release/1.0-beta/DescribeCompiler.CLI.v1.0-beta.7z' -o'release_extracted'  # Extract to 'release_extracted' folder
+
+      - name: Run CLI App Tests
+        run: |
+          cd release_extracted  # Navigate to the folder with extracted files
+          .\DescribeTranspiler.CLI.exe -help  # Run the help command
