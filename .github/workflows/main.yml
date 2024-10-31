@@ -24,5 +24,4 @@ jobs:
       - name: Run CLI App Help Command
         shell: cmd # Explicitly set to CMD
         run: |
-          echo 'This is a test message.'
-          # release_extracted\DescribeTranspiler.CLI.exe -help auto
+          release_extracted\DescribeTranspiler.CLI.exe -help auto
