@@ -15,8 +15,6 @@ namespace DescribeTranspiler.Cli
         {
             try
             {
-                //preset
-                Messages.presetConsole();
                 bool setted = false;
                 for(int i = 0; i < args.Length; i++)
                 {
@@ -30,9 +28,16 @@ namespace DescribeTranspiler.Cli
                             break;
                         }
                     }
+                    else if (arg.ToLower() == "auto")
+                    {
+                        Messages.MANUAL_MODE = false;
+                    }
                     else continue;
                 }
-                if(setted == false) Messages.SetGreenTheme();
+
+                //preset
+                Messages.presetConsole();
+                if (setted == false) Messages.SetGreenTheme();
                 Messages.printLogo3Bicolor();
                 Messages.printCmdLine(args);
                 Messages.ConsoleLog("--------------------------------------------------");
@@ -46,7 +51,7 @@ namespace DescribeTranspiler.Cli
                 //DescribeCompilerCLI help | -h
                 else if (args[0].ToLower() == "help" || args[0].ToLower() == "-help" || args[0].ToLower() == "-h")
                 {
-                    Messages.printHelpMessage();
+                    printHelp(args);
                 }
 
                 //DescribeCompilerCLI parse-file PARSE_PATH RESULT_PATH
@@ -144,12 +149,16 @@ namespace DescribeTranspiler.Cli
                         File.WriteAllText(Datnik.logFilePath!, Messages.Log);
                     }
                 }
-                Console.Read();
+                if(Messages.MANUAL_MODE) Console.Read();
             }
             finally
             {
                 Messages.RevertConsoleColors();
             }
+        }
+        static void printHelp(string[] args)
+        {
+            Messages.printHelpMessage();
         }
         static void encryptFile(string[] args)
         {
@@ -167,6 +176,10 @@ namespace DescribeTranspiler.Cli
                     if (Arguments.readInputPasswordArgument(args[i], i) == false) return;
                 }
                 else if (cur.StartsWith("theme="))
+                {
+                    continue;
+                }
+                else if (cur.ToLower() == "auto")
                 {
                     continue;
                 }
@@ -198,6 +211,10 @@ namespace DescribeTranspiler.Cli
                     if (Arguments.readInputPasswordArgument(args[i], i) == false) return;
                 }
                 else if (cur.StartsWith("theme="))
+                {
+                    continue;
+                }
+                else if (cur.ToLower() == "auto")
                 {
                     continue;
                 }
@@ -236,6 +253,10 @@ namespace DescribeTranspiler.Cli
                 {
                     continue;
                 }
+                else if (cur.ToLower() == "auto")
+                {
+                    continue;
+                }
                 else
                 {
                     Messages.printArgumentError(args[i], i, "what is this?");
@@ -267,6 +288,10 @@ namespace DescribeTranspiler.Cli
                 {
                     continue;
                 }
+                else if (cur.ToLower() == "auto")
+                {
+                    continue;
+                }
                 else
                 {
                     Messages.printArgumentError(args[i], i, "what is this?");
@@ -295,6 +320,10 @@ namespace DescribeTranspiler.Cli
                     if (Arguments.readInputPasswordArgument(args[i], i) == false) return;
                 }
                 else if (cur.StartsWith("theme="))
+                {
+                    continue;
+                }
+                else if (cur.ToLower() == "auto")
                 {
                     continue;
                 }
@@ -330,6 +359,10 @@ namespace DescribeTranspiler.Cli
                     if (Arguments.readOutputPasswordArgument(args[i], i) == false) return;
                 }
                 else if (cur.StartsWith("theme="))
+                {
+                    continue;
+                }
+                else if (cur.ToLower() == "auto")
                 {
                     continue;
                 }
@@ -408,6 +441,10 @@ namespace DescribeTranspiler.Cli
                 {
                     continue;
                 }
+                else if (cur.ToLower() == "auto")
+                {
+                    continue;
+                }
                 else
                 {
                     Messages.printArgumentError(args[i], i, "what is this?");
@@ -434,7 +471,7 @@ namespace DescribeTranspiler.Cli
                     File.WriteAllText(Datnik.logFilePath!, Messages.Log);
                 }
             }
-            Console.Read();
+            if (Messages.MANUAL_MODE) Console.Read();
         }
         static void parseFolder(string[] args)
         {
@@ -525,6 +562,10 @@ namespace DescribeTranspiler.Cli
                 {
                     continue;
                 }
+                else if (cur.ToLower() == "auto")
+                {
+                    continue;
+                }
                 else
                 {
                     Messages.printArgumentError(cur, i, "what is this?");
@@ -550,7 +591,7 @@ namespace DescribeTranspiler.Cli
                     File.WriteAllText(Datnik.logFilePath!, Messages.Log);
                 }
             }
-            Console.Read();
+            if (Messages.MANUAL_MODE) Console.Read();
         }
     }
 }

@@ -25,6 +25,7 @@ namespace DescribeTranspiler.Cli
     public static class Messages
     {
         //settings
+        public static bool MANUAL_MODE = true;
         public static OS Platform;
         public static bool ONE_BASED_ARG_INDEX = true;
         public static ConsoleColor INFO_COLOR = ConsoleColor.DarkGray;
@@ -45,8 +46,8 @@ namespace DescribeTranspiler.Cli
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.FreeBSD)) Platform = OS.FREEBSD;
 
             thisName = Assembly.GetExecutingAssembly().GetName().Name!;
-            beforeForeground = Console.ForegroundColor;
-            beforeBackground = Console.BackgroundColor;
+            if (MANUAL_MODE) beforeForeground = Console.ForegroundColor;
+            if (MANUAL_MODE) beforeBackground = Console.BackgroundColor;
         }
 
 
@@ -118,20 +119,18 @@ namespace DescribeTranspiler.Cli
         }
         public static void RevertConsoleColors()
         {
-            Console.ForegroundColor = beforeForeground;
-            Console.BackgroundColor = beforeBackground;
+            if (MANUAL_MODE) Console.ForegroundColor = beforeForeground;
+            if (MANUAL_MODE) Console.BackgroundColor = beforeBackground;
         }
 
 
         //presets
         public static void presetConsole()
         {
-
-            if (Platform == OS.WINDOWS)
+            if (MANUAL_MODE && Platform == OS.WINDOWS)
             {
                 Console.BufferHeight = Int16.MaxValue - 1;
             }
-            Console.ForegroundColor = ConsoleColor.DarkGray;
         }
         public static void printLogo3()
         {
@@ -147,8 +146,9 @@ namespace DescribeTranspiler.Cli
             Log += @"   \////     \////     \////     \////     \||||     \////     \////     \////  " + Environment.NewLine;
             Log += Environment.NewLine;
 
-            ConsoleColor col = Console.ForegroundColor;
-            Console.ForegroundColor = logoColor;
+            ConsoleColor? col = null;
+            if (MANUAL_MODE)  col = Console.ForegroundColor;
+            if (MANUAL_MODE) Console.ForegroundColor = logoColor;
             Console.WriteLine();
             Console.WriteLine(@"   /\\\\     /\\\\     /\\\\     /\\\\     /\\\\     /\\\\     /\\\\     /\\\\  ");
             Console.WriteLine(@"  /  \\\\   /  \\\\   /  \\\\   /  \\\\   /  \\\\   _\ \\\\   /  \\\\   /  \\\\ ");
@@ -157,7 +157,7 @@ namespace DescribeTranspiler.Cli
             Console.WriteLine(@"  \  ////   \ \////   \  ////   \ \\\\    | \////   \ \\\\    \  ////   \ \//// ");
             Console.WriteLine(@"   \////     \////     \////     \////     \||||     \////     \////     \////  ");
             Console.WriteLine();
-            Console.ForegroundColor = col;
+            if (MANUAL_MODE) Console.ForegroundColor = col!.Value;
         }
         public static void printLogo2()
         {
@@ -173,8 +173,9 @@ namespace DescribeTranspiler.Cli
             Log += @"   \///     \///     \///     \///     \|||     \///     \///     \///  " + Environment.NewLine;
             Log += Environment.NewLine;
 
-            ConsoleColor col = Console.ForegroundColor;
-            Console.ForegroundColor = logoColor;
+            ConsoleColor? col = null;
+            if (MANUAL_MODE) col = Console.ForegroundColor;
+            if (MANUAL_MODE) Console.ForegroundColor = logoColor;
             Console.WriteLine();
             Console.WriteLine(@"   /\\\     /\\\     /\\\     /\\\     /\\\     /\\\     /\\\     /\\\  ");
             Console.WriteLine(@"  /  \\\   /  \\\   /  \\\   /  \\\   /  \\\   _\ \\\   /  \\\   /  \\\ ");
@@ -183,7 +184,7 @@ namespace DescribeTranspiler.Cli
             Console.WriteLine(@"  \  ///   \ \///   \  ///   \ \\\    | \///   \ \\\    \  ///   \ \/// ");
             Console.WriteLine(@"   \///     \///     \///     \///     \|||     \///     \///     \///  ");
             Console.WriteLine();
-            Console.ForegroundColor = col;
+            if (MANUAL_MODE) Console.ForegroundColor = col!.Value;
         }
         public static void printLogo3Bicolor()
         {
@@ -199,119 +200,120 @@ namespace DescribeTranspiler.Cli
             Log += @"   \////     \////     \////     \////     \||||     \////     \////     \////  " + Environment.NewLine;
             Log += Environment.NewLine;
 
-            ConsoleColor col = Console.ForegroundColor;
+            ConsoleColor? col = null;
+            if (MANUAL_MODE) col = Console.ForegroundColor;
             Console.WriteLine();
 
-            Console.ForegroundColor = colorA;
+            if (MANUAL_MODE) Console.ForegroundColor = colorA;
             Console.Write(@"   /\\\\     ");//D
-            Console.ForegroundColor = colorB;
+            if (MANUAL_MODE) Console.ForegroundColor = colorB;
             Console.Write(@"/\\\\     ");//E
-            Console.ForegroundColor = colorA;
+            if (MANUAL_MODE) Console.ForegroundColor = colorA;
             Console.Write(@"/\\\\     ");//S
-            Console.ForegroundColor = colorB;
+            if (MANUAL_MODE) Console.ForegroundColor = colorB;
             Console.Write(@"/\\\\     ");//C
-            Console.ForegroundColor = colorA;
+            if (MANUAL_MODE) Console.ForegroundColor = colorA;
             Console.Write(@"/\\\\     ");//R
-            Console.ForegroundColor = colorB;
+            if (MANUAL_MODE) Console.ForegroundColor = colorB;
             Console.Write(@"/\\\\     ");//I
-            Console.ForegroundColor = colorA;
+            if (MANUAL_MODE) Console.ForegroundColor = colorA;
             Console.Write(@"/\\\\     ");//B
-            Console.ForegroundColor = colorB;
+            if (MANUAL_MODE) Console.ForegroundColor = colorB;
             Console.Write(@"/\\\\  ");//E
             Console.WriteLine();
 
-            Console.ForegroundColor = colorA;
+            if (MANUAL_MODE) Console.ForegroundColor = colorA;
             Console.Write(@"  /  \\\\   ");//D
-            Console.ForegroundColor = colorB;
+            if (MANUAL_MODE) Console.ForegroundColor = colorB;
             Console.Write(@"/  \\\\   ");//E
-            Console.ForegroundColor = colorA;
+            if (MANUAL_MODE) Console.ForegroundColor = colorA;
             Console.Write(@"/  \\\\   ");//S
-            Console.ForegroundColor = colorB;
+            if (MANUAL_MODE) Console.ForegroundColor = colorB;
             Console.Write(@"/  \\\\   ");//C
-            Console.ForegroundColor = colorA;
+            if (MANUAL_MODE) Console.ForegroundColor = colorA;
             Console.Write(@"/  \\\\   ");//R
-            Console.ForegroundColor = colorB;
+            if (MANUAL_MODE) Console.ForegroundColor = colorB;
             Console.Write(@"_\ \\\\   ");//I
-            Console.ForegroundColor = colorA;
+            if (MANUAL_MODE) Console.ForegroundColor = colorA;
             Console.Write(@"/  \\\\   ");//B
-            Console.ForegroundColor = colorB;
+            if (MANUAL_MODE) Console.ForegroundColor = colorB;
             Console.Write(@"/  \\\\ ");//E
             Console.WriteLine();
 
-            Console.ForegroundColor = colorA;
+            if (MANUAL_MODE) Console.ForegroundColor = colorA;
             Console.Write(@" / /\ \\\\ ");//D
-            Console.ForegroundColor = colorB;
+            if (MANUAL_MODE) Console.ForegroundColor = colorB;
             Console.Write(@"/  \ \\\\ ");//E
-            Console.ForegroundColor = colorA;
+            if (MANUAL_MODE) Console.ForegroundColor = colorA;
             Console.Write(@"/\ \ \\\\ ");//S
-            Console.ForegroundColor = colorB;
+            if (MANUAL_MODE) Console.ForegroundColor = colorB;
             Console.Write(@"/ /\ \\\\ ");//C
-            Console.ForegroundColor = colorA;
+            if (MANUAL_MODE) Console.ForegroundColor = colorA;
             Console.Write(@"/  \ \\\\ ");//R
-            Console.ForegroundColor = colorB;
+            if (MANUAL_MODE) Console.ForegroundColor = colorB;
             Console.Write(@"/\/  \\\\ ");//I
-            Console.ForegroundColor = colorA;
+            if (MANUAL_MODE) Console.ForegroundColor = colorA;
             Console.Write(@"/  \ \\\\ ");//B
-            Console.ForegroundColor = colorB;
+            if (MANUAL_MODE) Console.ForegroundColor = colorB;
             Console.Write(@"/  \ \\\\");//E
             Console.WriteLine();
 
-            Console.ForegroundColor = colorA;
+            if (MANUAL_MODE) Console.ForegroundColor = colorA;
             Console.Write(@" \ \/ //// ");//D
-            Console.ForegroundColor = colorB;
+            if (MANUAL_MODE) Console.ForegroundColor = colorB;
             Console.Write(@"\ \ \//// ");//E
-            Console.ForegroundColor = colorA;
+            if (MANUAL_MODE) Console.ForegroundColor = colorA;
             Console.Write(@"\ \ \//// ");//S
-            Console.ForegroundColor = colorB;
+            if (MANUAL_MODE) Console.ForegroundColor = colorB;
             Console.Write(@"\ \\\//// ");//C
-            Console.ForegroundColor = colorA;
+            if (MANUAL_MODE) Console.ForegroundColor = colorA;
             Console.Write(@"\|   //// ");//R
-            Console.ForegroundColor = colorB;
+            if (MANUAL_MODE) Console.ForegroundColor = colorB;
             Console.Write(@"\  /\//// ");//I
-            Console.ForegroundColor = colorA;
+            if (MANUAL_MODE) Console.ForegroundColor = colorA;
             Console.Write(@"\ \  //// ");//B
-            Console.ForegroundColor = colorB;
+            if (MANUAL_MODE) Console.ForegroundColor = colorB;
             Console.Write(@"\ \ \////");//E
             Console.WriteLine();
 
-            Console.ForegroundColor = colorA;
+            if (MANUAL_MODE) Console.ForegroundColor = colorA;
             Console.Write(@"  \  ////   ");//D
-            Console.ForegroundColor = colorB;
+            if (MANUAL_MODE) Console.ForegroundColor = colorB;
             Console.Write(@"\ \////   ");//E
-            Console.ForegroundColor = colorA;
+            if (MANUAL_MODE) Console.ForegroundColor = colorA;
             Console.Write(@"\  ////   ");//S
-            Console.ForegroundColor = colorB;
+            if (MANUAL_MODE) Console.ForegroundColor = colorB;
             Console.Write(@"\ \\\\    ");//C
-            Console.ForegroundColor = colorA;
+            if (MANUAL_MODE) Console.ForegroundColor = colorA;
             Console.Write(@"| \////   ");//R
-            Console.ForegroundColor = colorB;
+            if (MANUAL_MODE) Console.ForegroundColor = colorB;
             Console.Write(@"\ \\\\    ");//I
-            Console.ForegroundColor = colorA;
+            if (MANUAL_MODE) Console.ForegroundColor = colorA;
             Console.Write(@"\  ////   ");//B
-            Console.ForegroundColor = colorB;
+            if (MANUAL_MODE) Console.ForegroundColor = colorB;
             Console.Write(@"\ \//// ");//E
             Console.WriteLine();
 
-            Console.ForegroundColor = colorA;
+            if (MANUAL_MODE) Console.ForegroundColor = colorA;
             Console.Write(@"   \////     ");//D
-            Console.ForegroundColor = colorB;
+            if (MANUAL_MODE) Console.ForegroundColor = colorB;
             Console.Write(@"\////     ");//E
-            Console.ForegroundColor = colorA;
+            if (MANUAL_MODE) Console.ForegroundColor = colorA;
             Console.Write(@"\////     ");//S
-            Console.ForegroundColor = colorB;
+            if (MANUAL_MODE) Console.ForegroundColor = colorB;
             Console.Write(@"\////     ");//C
-            Console.ForegroundColor = colorA;
+            if (MANUAL_MODE) Console.ForegroundColor = colorA;
             Console.Write(@"\||||     ");//R
-            Console.ForegroundColor = colorB;
+            if (MANUAL_MODE) Console.ForegroundColor = colorB;
             Console.Write(@"\////     ");//I
-            Console.ForegroundColor = colorA;
+            if (MANUAL_MODE) Console.ForegroundColor = colorA;
             Console.Write(@"\////     ");//B
-            Console.ForegroundColor = colorB;
+            if (MANUAL_MODE) Console.ForegroundColor = colorB;
             Console.Write(@"\////  ");//E
             Console.WriteLine();
 
             Console.WriteLine();
-            Console.ForegroundColor = col;
+            if (MANUAL_MODE) Console.ForegroundColor = col!.Value;
         }
 
 
@@ -379,10 +381,10 @@ namespace DescribeTranspiler.Cli
             Log += "Task completed successfully. Press any key to exit." + Environment.NewLine;
 
             //add to console
-            Console.ForegroundColor = INFO_COLOR;
+            if (MANUAL_MODE) Console.ForegroundColor = INFO_COLOR;
             Console.WriteLine("Task completed successfully. Press any key to exit.");
-            Console.ForegroundColor = TEXT_COLOR;
-            if(block) Console.Read();
+            if (MANUAL_MODE) Console.ForegroundColor = TEXT_COLOR;
+            if(block && MANUAL_MODE) Console.Read();
         }
         public static void printEncryptionSuccess(bool block = true)
         {
@@ -390,10 +392,10 @@ namespace DescribeTranspiler.Cli
             Log += "Task completed successfully. Press any key to exit." + Environment.NewLine;
 
             //add to console
-            Console.ForegroundColor = INFO_COLOR;
+            if (MANUAL_MODE) Console.ForegroundColor = INFO_COLOR;
             Console.WriteLine("Task completed successfully. Press any key to exit.");
-            Console.ForegroundColor = TEXT_COLOR;
-            if (block) Console.Read();
+            if (MANUAL_MODE) Console.ForegroundColor = TEXT_COLOR;
+            if (block && MANUAL_MODE) Console.Read();
         }
         public static void printHelpMessage(bool block = true)
         {
@@ -409,11 +411,11 @@ namespace DescribeTranspiler.Cli
             ConsoleLogInfo("Powered by ANTLR v 4.13.1 (C# Runtime for DotNet Standart)");
             ConsoleLog("");
             ConsoleLogInfo("-----------------------------------------------------------------");
-            ConsoleLog("usage: " + thisName + " help | -h");
+            ConsoleLog("usage: " + thisName + " help [ auto ] | -h [ auto ]");
             ConsoleLogInfo("Display this help message");
             ConsoleLog("");
             ConsoleLogInfo("-----------------------------------------------------------------");
-            ConsoleLog("usage: " + thisName + " parse-file PARSE_PATH RESULT_PATH\n[ input-password=INPUT_PASSWORD ][ output-password=OUTPUT_PASSWORD ][ log-password=LOG_PASSWORD ]\n[ language-version=<verb> | lang-ver=<verb> ][ translator=(TARGET_LANGUAGE|TRANSLATOR_NAME) ]\n[ beautify=<verb> ][ verbosity=<verb> | log-verbosity=<verb> ][ logfile=LOG_PATH | log-file=LOG_PATH ][ theme=<verb> ][ censor ]");
+            ConsoleLog("usage: " + thisName + " parse-file PARSE_PATH RESULT_PATH\n[ input-password=INPUT_PASSWORD ][ output-password=OUTPUT_PASSWORD ][ log-password=LOG_PASSWORD ]\n[ language-version=<verb> | lang-ver=<verb> ][ translator=(TARGET_LANGUAGE|TRANSLATOR_NAME) ]\n[ beautify=<verb> ][ verbosity=<verb> | log-verbosity=<verb> ][ logfile=LOG_PATH | log-file=LOG_PATH ][ theme=<verb> ][ censor ][ auto ]");
             ConsoleLogInfo("TARGET_LANGUAGE - the desired output language: \"JSON\", \"HTML\", \"XML\", \"SQL\"");
             ConsoleLogInfo("TRANSLATOR_NAME - the name of the translator to be used :  \"HTML_PLAIN\", \"HTML_PAGE\", \"XML_PLAIN\", \"SQL_FILEFILL\", \"JSON_BASIC\", \"JSON_LISTIARY\"");
             ConsoleLogInfo("PARSE_PATH - the path of the file to parse");
@@ -427,7 +429,7 @@ namespace DescribeTranspiler.Cli
             ConsoleLogInfo("* theme - \"DBLUE\", \"LBLUE\", \"GREEN\", \"PASTEL\", \"EARTH\", \"CONTRAST\", \"DEFAULT\", \"VIOLET\", \"CYAN\"");
             ConsoleLog("");
             ConsoleLogInfo("-----------------------------------------------------------------");
-            ConsoleLog("usage: " + thisName + " parse-folder PARSE_PATH RESULT_PATH\n[ dsonly=<verb> ][ toponly=<verb> ][ onerror= ( stop | ignore )]\n[ input-password=INPUT_PASSWORD ][ output-password=OUTPUT_PASSWORD ][ log-password=LOG_PASSWORD ]\n[ language-version=<verb> | lang-ver=<verb> ][ translator=(TARGET_LANGUAGE | TRANSLATOR_NAME) ]\n[ beautify=<verb> ][ verbosity=<verb> | log-verbosity=<verb> ]\n[ logfile=LOG_PATH | log-file=LOG_PATH ][ theme=<verb> ][ censor ]");
+            ConsoleLog("usage: " + thisName + " parse-folder PARSE_PATH RESULT_PATH\n[ dsonly=<verb> ][ toponly=<verb> ][ onerror= ( stop | ignore )]\n[ input-password=INPUT_PASSWORD ][ output-password=OUTPUT_PASSWORD ][ log-password=LOG_PASSWORD ]\n[ language-version=<verb> | lang-ver=<verb> ][ translator=(TARGET_LANGUAGE | TRANSLATOR_NAME) ]\n[ beautify=<verb> ][ verbosity=<verb> | log-verbosity=<verb> ]\n[ logfile=LOG_PATH | log-file=LOG_PATH ][ theme=<verb> ][ censor ][ auto ]");
             ConsoleLogInfo("TARGET_LANGUAGE - the desired output language: \"JSON\", \"HTML\", \"XML\", \"SQL\"");
             ConsoleLogInfo("TRANSLATOR_NAME - the name of the translator to be used :  \"HTML_PLAIN\", \"HTML_PAGE\", \"XML_PLAIN\", \"SQL_FILEFILL\", \"JSON_BASIC\", \"JSON_LISTIARY\"");
             ConsoleLogInfo("PARSE_PATH - the path of the file to parse");
@@ -443,42 +445,42 @@ namespace DescribeTranspiler.Cli
             ConsoleLogInfo("* theme - \"DBLUE\", \"LBLUE\", \"GREEN\", \"PASTEL\", \"EARTH\", \"CONTRAST\", \"DEFAULT\", \"VIOLET\", \"CYAN\"");
             ConsoleLog("");
             ConsoleLogInfo("-----------------------------------------------------------------");
-            ConsoleLog("usage: " + thisName + " encrypt-file PLAIN_PATH ENCRYPTED_PATH password=PASSWORD\n[ theme=<verb> ]");
+            ConsoleLog("usage: " + thisName + " encrypt-file PLAIN_PATH ENCRYPTED_PATH password=PASSWORD\n[ theme=<verb> ][ auto ]");
             ConsoleLogInfo("PLAIN_PATH - the path of the .DS file to be encrypted");
             ConsoleLogInfo("ENCRYPTED_PATH - the path of the encrypted file (cannot be the same as the PLAIN_PATH)");
             ConsoleLogInfo("PASSWORD - the encryption password");
             ConsoleLogInfo("* theme - console color theme: \"DBLUE\", \"LBLUE\", \"GREEN\", \"PASTEL\", \"EARTH\", \"CONTRAST\", \"DEFAULT\", \"VIOLET\", \"CYAN\"");
             ConsoleLog("");
             ConsoleLogInfo("-----------------------------------------------------------------");
-            ConsoleLog("usage: " + thisName + " decrypt-file ENCRYPTED_PATH PLAIN_PATH password=PASSWORD\n[ theme=<verb> ]");
+            ConsoleLog("usage: " + thisName + " decrypt-file ENCRYPTED_PATH PLAIN_PATH password=PASSWORD\n[ theme=<verb> ][ auto ]");
             ConsoleLogInfo("ENCRYPTED_PATH - the path of the encrypted file (cannot be the same as the PLAIN_PATH)");
             ConsoleLogInfo("PLAIN_PATH - the path of the resulted file");
             ConsoleLogInfo("PASSWORD - the encryption password");
             ConsoleLogInfo("* theme - console color theme: \"DBLUE\", \"LBLUE\", \"GREEN\", \"PASTEL\", \"EARTH\", \"CONTRAST\", \"DEFAULT\", \"VIOLET\", \"CYAN\"");
             ConsoleLog("");
             ConsoleLogInfo("-----------------------------------------------------------------");
-            ConsoleLog("usage: " + thisName + " recrypt-file ENCRYPTED_PATH1 ENCRYPTED_PATH2 password=PASSWORD\n[ theme=<verb> ]");
+            ConsoleLog("usage: " + thisName + " recrypt-file ENCRYPTED_PATH1 ENCRYPTED_PATH2 password=PASSWORD\n[ theme=<verb> ][ auto ]");
             ConsoleLogInfo("ENCRYPTED_PATH1 - the path of the encrypted file (cannot be the same as the PLAIN_PATH2)");
             ConsoleLogInfo("ENCRYPTED_PATH2 - the path of the result encrypted file (cannot be the same as the PLAIN_PATH1)");
             ConsoleLogInfo("PASSWORD - the encryption password");
             ConsoleLogInfo("* theme - console color theme: \"DBLUE\", \"LBLUE\", \"GREEN\", \"PASTEL\", \"EARTH\", \"CONTRAST\", \"DEFAULT\", \"VIOLET\", \"CYAN\"");
             ConsoleLog("");
             ConsoleLogInfo("-----------------------------------------------------------------");
-            ConsoleLog("usage: " + thisName + " encrypt-folder PLAIN_PATH ENCRYPTED_PATH password=PASSWORD\n[ theme=<verb> ]");
+            ConsoleLog("usage: " + thisName + " encrypt-folder PLAIN_PATH ENCRYPTED_PATH password=PASSWORD\n[ theme=<verb> ][ auto ]");
             ConsoleLogInfo("PLAIN_PATH - the path of the .DS folder to be encrypted");
             ConsoleLogInfo("ENCRYPTED_PATH - the path of the encrypted folder (cannot be the same as the PLAIN_PATH)");
             ConsoleLogInfo("PASSWORD - the encryption password");
             ConsoleLogInfo("* theme - console color theme: \"DBLUE\", \"LBLUE\", \"GREEN\", \"PASTEL\", \"EARTH\", \"CONTRAST\", \"DEFAULT\", \"VIOLET\", \"CYAN\"");
             ConsoleLog("");
             ConsoleLogInfo("-----------------------------------------------------------------");
-            ConsoleLog("usage: " + thisName + " decrypt-folder ENCRYPTED_PATH PLAIN_PATH password=PASSWORD\n[ theme=<verb> ]");
+            ConsoleLog("usage: " + thisName + " decrypt-folder ENCRYPTED_PATH PLAIN_PATH password=PASSWORD\n[ theme=<verb> ][ auto ]");
             ConsoleLogInfo("ENCRYPTED_PATH - the path of the encrypted folder (cannot be the same as the PLAIN_PATH)");
             ConsoleLogInfo("PLAIN_PATH - the path of the resulted folder");
             ConsoleLogInfo("PASSWORD - the encryption password");
             ConsoleLogInfo("* theme - console color theme: \"DBLUE\", \"LBLUE\", \"GREEN\", \"PASTEL\", \"EARTH\", \"CONTRAST\", \"DEFAULT\", \"VIOLET\", \"CYAN\"");
             ConsoleLog("");
             ConsoleLogInfo("-----------------------------------------------------------------");
-            ConsoleLog("usage: " + thisName + " recrypt-folder ENCRYPTED_PATH1 ENCRYPTED_PATH2 password=PASSWORD\n[ theme=<verb> ]");
+            ConsoleLog("usage: " + thisName + " recrypt-folder ENCRYPTED_PATH1 ENCRYPTED_PATH2 password=PASSWORD\n[ theme=<verb> ][ auto ]");
             ConsoleLogInfo("ENCRYPTED_PATH1 - the path of the encrypted folder (cannot be the same as the PLAIN_PATH2)");
             ConsoleLogInfo("ENCRYPTED_PATH2 - the path of the result encrypted folder (cannot be the same as the PLAIN_PATH1)");
             ConsoleLogInfo("PASSWORD - the encryption password");
@@ -487,14 +489,14 @@ namespace DescribeTranspiler.Cli
             ConsoleLogInfo("-----------------------------------------------------------------");
 
 
-            Console.ForegroundColor = INFO_COLOR;
-            if (block)
+            if(MANUAL_MODE) Console.ForegroundColor = INFO_COLOR;
+            if (block && MANUAL_MODE)
             {
                 Log += "Press any key to exit." + Environment.NewLine;
                 Console.WriteLine("Press any key to exit.");
             }
-            Console.ForegroundColor = TEXT_COLOR;
-            if (block) Console.Read();
+            if (MANUAL_MODE) Console.ForegroundColor = TEXT_COLOR;
+            if (block && MANUAL_MODE) Console.Read();
         }
         public static void printParseManyNotImplemented(bool block = true)
         {
@@ -503,83 +505,83 @@ namespace DescribeTranspiler.Cli
             ConsoleLog("Meanwhile, why not try to parse single files multiple times?");
             ConsoleLog("");
 
-            Console.ForegroundColor = INFO_COLOR;
+            if (MANUAL_MODE) Console.ForegroundColor = INFO_COLOR;
             Log += "Press any key to exit." + Environment.NewLine;
             Console.WriteLine("Press any key to exit.");
-            Console.ForegroundColor = TEXT_COLOR;
-            if (block) Console.Read();
+            if (MANUAL_MODE) Console.ForegroundColor = TEXT_COLOR;
+            if (block && MANUAL_MODE) Console.Read();
         }
         public static void printWarning(string message, bool block = true)
         {
-            Console.ForegroundColor = INFO_COLOR;
+            if (MANUAL_MODE) Console.ForegroundColor = INFO_COLOR;
             Log += "Warning: " + message + Environment.NewLine;
             if (block) Log += "Press any key to continue." + Environment.NewLine;
             Console.WriteLine("Warning: " + message);
             if (block) Console.WriteLine("Press any key to continue.");
 
-            Console.ForegroundColor = TEXT_COLOR;
-            if (block) Console.Read();
+            if (MANUAL_MODE) Console.ForegroundColor = TEXT_COLOR;
+            if (block && MANUAL_MODE) Console.Read();
         }
         public static void printNoArgumentsError(bool block = true)
         {
-            Console.ForegroundColor = ERROR_COLOR;
+            if (MANUAL_MODE) Console.ForegroundColor = ERROR_COLOR;
             Log += "No arguments or invalid argument count." + Environment.NewLine;
-            Console.WriteLine("No arguments or invalid argument count.");
+            if (MANUAL_MODE) Console.WriteLine("No arguments or invalid argument count.");
 
-            Console.ForegroundColor = TEXT_COLOR;
+            if (MANUAL_MODE) Console.ForegroundColor = TEXT_COLOR;
             printHelpMessage(false);
 
-            Console.ForegroundColor = INFO_COLOR;
+            if (MANUAL_MODE) Console.ForegroundColor = INFO_COLOR;
             Log += "Press any key to exit." + Environment.NewLine;
             Console.WriteLine("Press any key to exit.");
 
-            Console.ForegroundColor = TEXT_COLOR;
-            if (block) Console.Read();
+            if (MANUAL_MODE) Console.ForegroundColor = TEXT_COLOR;
+            if (block && MANUAL_MODE) Console.Read();
         }
         public static void printArgumentError(string arg, int argIndex, bool block = true)
         {
-            Console.ForegroundColor = ERROR_COLOR;
+            if (MANUAL_MODE) Console.ForegroundColor = ERROR_COLOR;
             if (ONE_BASED_ARG_INDEX) argIndex++;
             Log += "Invalid argument " + argIndex.ToString() + " - \"" + arg + "\"" + Environment.NewLine;
             Console.WriteLine("Invalid argument " + argIndex.ToString() + " - \"" + arg + "\"");
 
-            Console.ForegroundColor = TEXT_COLOR;
+            if (MANUAL_MODE) Console.ForegroundColor = TEXT_COLOR;
             printHelpMessage(false);
 
-            Console.ForegroundColor = INFO_COLOR;
+            if (MANUAL_MODE) Console.ForegroundColor = INFO_COLOR;
             Log += "Press any key to exit." + Environment.NewLine;
             Console.WriteLine("Press any key to exit.");
 
-            Console.ForegroundColor = TEXT_COLOR;
-            if (block) Console.Read();
+            if (MANUAL_MODE) Console.ForegroundColor = TEXT_COLOR;
+            if (block && MANUAL_MODE) Console.Read();
         }
         public static void printArgumentError(string arg, int argIndex, string message, bool block = true)
         {
-            Console.ForegroundColor = ERROR_COLOR;
+            if (MANUAL_MODE) Console.ForegroundColor = ERROR_COLOR;
             if (ONE_BASED_ARG_INDEX) argIndex++;
             Log += "Invalid argument " + argIndex.ToString() +
                 " - \"" + arg + "\" - " + message + Environment.NewLine;
             Console.WriteLine("Invalid argument " + argIndex.ToString() + " - \"" + arg + "\" - " + message);
 
-            Console.ForegroundColor = INFO_COLOR;
+            if (MANUAL_MODE) Console.ForegroundColor = INFO_COLOR;
             Log += "Press any key to exit." + Environment.NewLine;
             Console.WriteLine("Press any key to exit.");
 
-            Console.ForegroundColor = TEXT_COLOR;
-            if (block) Console.Read();
+            if (MANUAL_MODE) Console.ForegroundColor = TEXT_COLOR;
+            if (block && MANUAL_MODE) Console.Read();
         }
         public static void printFatalError(string message, bool block = true)
         {
-            Console.ForegroundColor = ERROR_COLOR;
+            if (MANUAL_MODE) Console.ForegroundColor = ERROR_COLOR;
             Log += "Fatal error: " + message + Environment.NewLine;
             Console.WriteLine("Fatal error: " + message);
 
-            Console.ForegroundColor = INFO_COLOR;
+            if (MANUAL_MODE) Console.ForegroundColor = INFO_COLOR;
             Log += "Press any key to exit." + Environment.NewLine;
             Console.WriteLine("Press any key to exit.");
 
-            Console.ForegroundColor = TEXT_COLOR;
-            if (block) Console.Read();
+            if (MANUAL_MODE) Console.ForegroundColor = TEXT_COLOR;
+            if (block && MANUAL_MODE) Console.Read();
         }
 
 
@@ -597,23 +599,23 @@ namespace DescribeTranspiler.Cli
         public static void ConsoleLogInfo(string text)
         {
             Log += text + Environment.NewLine;
-            Console.ForegroundColor = INFO_COLOR;
+            if (MANUAL_MODE) Console.ForegroundColor = INFO_COLOR;
             Console.WriteLine(text);
-            Console.ForegroundColor = TEXT_COLOR;
+            if (MANUAL_MODE) Console.ForegroundColor = TEXT_COLOR;
         }
         public static void ConsoleLogError(string text)
         {
             Log += text + Environment.NewLine;
-            Console.ForegroundColor = ERROR_COLOR;
+            if (MANUAL_MODE) Console.ForegroundColor = ERROR_COLOR;
             Console.WriteLine(text);
-            Console.ForegroundColor = TEXT_COLOR;
+            if (MANUAL_MODE) Console.ForegroundColor = TEXT_COLOR;
         }
         public static void ConsoleLogParseInfo(string text)
         {
             Log += text + Environment.NewLine;
-            Console.ForegroundColor = MOREINFO_COLOR;
+            if (MANUAL_MODE) Console.ForegroundColor = MOREINFO_COLOR;
             Console.WriteLine(text);
-            Console.ForegroundColor = TEXT_COLOR;
+            if (MANUAL_MODE) Console.ForegroundColor = TEXT_COLOR;
         }
     }
 }
