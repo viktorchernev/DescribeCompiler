@@ -31,4 +31,10 @@ jobs:
       - name: Run CLI App Help Command
         shell: pwsh  # Use PowerShell
         run: |
-          release_extracted\DescribeCompiler.CLI.v1.0-beta\DescribeTranspiler.CLI.exe -help
+          & "release_extracted\DescribeCompiler.CLI.v1.0-beta\DescribeTranspiler.CLI.exe" -help > output.txt  # Redirect output to a file
+          
+      - name: Get CLI App result 
+        shell: pwsh  # Use PowerShell
+        run: |
+          Get-Content output.txt
+    
