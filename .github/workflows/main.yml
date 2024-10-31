@@ -31,7 +31,7 @@ jobs:
       - name: Run CLI App Help Command
         shell: pwsh  # Use PowerShell
         run: |
-            & "release_extracted\DescribeTranspiler.CLI.exe" -help auto *> output.txt  # Capture all output
+            & "release_extracted\DescribeTranspiler.CLI.exe" -help auto
             if ($LASTEXITCODE -ne 0) {
               Write-Host "The command failed with exit code $LASTEXITCODE. Check output.txt for details."
             }
