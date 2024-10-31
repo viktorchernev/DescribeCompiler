@@ -25,9 +25,6 @@ jobs:
         run: |
           shell: cmd # Explicitly set to CMD
           "release_extracted\DescribeTranspiler.CLI.exe -help auto"
-          if %errorlevel% neq 0 (
-            echo The command failed with exit code %errorlevel%. Check output.txt for details.
-          )
 
       - name: List Output Files
         run: dir release_extracted  # List files to check for output.txt
