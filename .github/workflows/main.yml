@@ -22,8 +22,8 @@ jobs:
         run: dir release_extracted  # List files in the directory to confirm the .exe is present
 
       - name: Run CLI App Help Command
+        shell: cmd # Explicitly set to CMD
         run: |
-          shell: cmd # Explicitly set to CMD
           "release_extracted\DescribeTranspiler.CLI.exe -help auto"
 
       - name: List Output Files
