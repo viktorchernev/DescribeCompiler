@@ -22,7 +22,7 @@ jobs:
 
       - name: Extract Release Archive
         run: |
-          7z x '!release\latest-unstable/LatestCli.7z' -o'release_extracted'  # Extract to 'release_extracted' folder
+          7z x '!release\latest-unstable\LatestCli.7z' -o'release_extracted'  # Extract to 'release_extracted' folder
 
       - name: List Extracted Files
         run: |
@@ -38,7 +38,7 @@ jobs:
     
       - name: List Extracted Files
         run: |
-          dir release_extracted  # List files to check for output.txt
+          dir release_extracted\LatestCli  # List files to check for output.txt
       
       - name: Get CLI App result 
         shell: pwsh  # Use PowerShell
