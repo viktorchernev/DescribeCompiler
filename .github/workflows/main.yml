@@ -23,6 +23,7 @@ jobs:
 
       - name: Run CLI App Help Command
         run: |
+          shell: cmd # Explicitly set to CMD
           "release_extracted\DescribeTranspiler.CLI.exe" -help auto > output.txt
           if %errorlevel% neq 0 (
             echo The command failed with exit code %errorlevel%. Check output.txt for details.
