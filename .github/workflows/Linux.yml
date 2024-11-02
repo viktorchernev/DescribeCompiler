@@ -24,15 +24,15 @@ jobs:
         run: sudo apt install -y p7zip-full  # Install 7-Zip to extract .7z files
 
       - name: Check Directory for Release Archive
-        run: ls -l release  # List contents to verify the .7z file is present
+        run: ls -l !release  # List contents to verify the .7z file is present
 
       - name: Check Directory for Release Archive
-        run: ls -l release/latest-unstable  # List contents to verify the .7z file is present
+        run: ls -l !release/latest-unstable  # List contents to verify the .7z file is present
 
 
       - name: Extract Release Archive
         run: |
-          7z x 'release/latest-unstable/LatestCli.7z' -orelease_extracted  # Extract to 'release_extracted' folder
+          7z x '!release/latest-unstable/LatestCli.7z' -orelease_extracted  # Extract to 'release_extracted' folder
 
       - name: List Extracted Files
         run: ls -l release_extracted  # List files to confirm the .exe file is present
