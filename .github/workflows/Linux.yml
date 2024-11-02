@@ -11,6 +11,9 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v2
 
+      - name: List Root Directory
+        run: ls -l  # List contents of the root directory to understand the structure
+
       - name: Install Wine
         run: |
           sudo dpkg --add-architecture i386
