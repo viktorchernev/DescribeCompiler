@@ -46,7 +46,8 @@ The final output will depend on the translator used - and you can easily write y
 - You can reach me on Viber as well: +359-885-18-05-86
 
 ## Releases
-We are working on testing the Transpiler v1.0, as it is in alpha - pre release phase. It is finished but contains bugs here and there, and once those have been removed, it will be released.
+I am excited to present the Describe Markup Language Transpiler v1.0. 
+A word of caution - The transpiler is in beta, and some bugs on edge cases are to be expected - so maybe don't use the tool for mission-critical jobs and then get discouraged or angry should you encounter a bug.
 
 * [1.0-beta](https://github.com/viktorchernev/DescribeCompiler/releases/tag/1.0-beta) (ANTLR4, Describe v1.1)
 * [0.9.3](https://github.com/viktorchernev/DescribeCompiler/releases/tag/0.9.3) (Support for Describe Language v1.0 - Official)  
@@ -55,4 +56,4 @@ We are working on testing the Transpiler v1.0, as it is in alpha - pre release p
 * [0.9](https://github.com/viktorchernev/DescribeCompiler/releases/tag/0.9) (Initial release - Open beta)
 
 ## Notes
-* We currently have inbuilt translators for HTML and JSON. If you need to target other languages, you'd have to write your own translator - it is very easy. I will give updates here when more translators are available.
+* We currently have inbuilt translators for HTML, XML, JSON and SQL (although the SQL one is just for uploading whole parsed files to a database). If you need to target other languages, or need specific functionality, you'd have to write your own translator class - it is very easy. I will give updates here when more translators are available.
