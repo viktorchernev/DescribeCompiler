@@ -15,7 +15,7 @@ While ANTLR ensures strong grammar handling, the compiler is still under active 
 
 
 ## How to
-In order to run the `DescribeCompilerCLI.exe` you need a Windows PC with DotNet framework version 4.8 or higher. In order to reference the `DescribeCompilerAPI.dll` in your DotNet projects, you need to target DotNet framework version 4.8 or higher. There are no other dependencies. Also, be sure to check out our [wiki](https://github.com/viktorchernev/DescribeCompiler/wiki) for the complete documentation.  
+In order to run the `DescribeCompilerCLI.exe` you need a Windows PC with DotNet framework version 8.0 or higher. In order to reference the `DescribeCompilerAPI.dll` in your DotNet projects, you need to target DotNet framework version 8.0 or higher. In order to use the Amazon Lambda project, on the other hand, you need to upload it to AWS. Also, be sure to check out our [wiki](https://github.com/viktorchernev/DescribeCompiler/wiki) for the complete documentation.  
   
 ### 0. Set up highlighting
 In order to highlight Describe code, you can download the xml files for Notepad++ from the folder [Highlighting](https://github.com/viktorchernev/DescribeCompiler/tree/master/%23DescribeLanguage/Highlighting), or use the instructions provided in said folder to set up your preferred text editor.
