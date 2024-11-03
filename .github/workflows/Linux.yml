@@ -37,6 +37,11 @@ jobs:
       - name: List Extracted Files
         run: ls -l release_extracted  # List files to confirm the .exe file is present
 
+      - name: Install .NET SDK
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: '8.0.x'  # Adjust this based on your app's requirements
+
       - name: Run CLI App Help Command
         run: |
           wine release_extracted/DescribeTranspiler.CLI.exe -help auto
