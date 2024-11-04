@@ -46,8 +46,7 @@ The final output will depend on the translator used - and you can easily write y
 - You can reach me on Viber as well: +359-885-18-05-86
 
 ## Releases
-I am excited to present the Describe Markup Language Transpiler v1.0. 
-A word of caution - The transpiler is in beta, and some bugs on edge cases are to be expected - so maybe don't use the tool for mission-critical jobs and then get discouraged or angry should you encounter a bug.
+We are excited to present the Describe Markup Language Transpiler v1.0.
 
 * [1.0-beta](https://github.com/viktorchernev/DescribeCompiler/releases/tag/1.0-beta) (ANTLR4, Describe v1.1)
 * [0.9.3](https://github.com/viktorchernev/DescribeCompiler/releases/tag/0.9.3) (Support for Describe Language v1.0 - Official)  
