@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Color Background</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // Function to check if a string is a valid hex color
+        function isValidHexColor(color) {
+            // Regular expression to match hex colors (with or without #)
+            const hexPattern = /^#?([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$/;
+            return hexPattern.test(color);
+        }
+
+        // Get URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        
+        // Get the 'color' parameter from the URL
+        let color = urlParams.get('color') || 'white';  // Default to 'white' if no color is specified
+
+        // Check if the color is valid and if it's a hex code without '#', append '#'
+        if (isValidHexColor(color)) {
+            if (color[0] !== '#') {
+                color = '#' + color;  // Append '#' if missing
+            }
+        }
+
+        // Apply the color as the background
+        document.body.style.backgroundColor = color;
+    </script>
+</body>
+</html>

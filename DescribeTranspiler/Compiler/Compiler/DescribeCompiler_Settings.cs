@@ -17,7 +17,7 @@ namespace DescribeTranspiler
         public bool PARSE_DS_ONLY = true;
 
         /// <summary>
-        /// Weather to parse files in all subdirectories or only in the top directory.
+        /// Weather to parse files in all sub-directories or only in the top directory.
         /// </summary>
         public bool PARSE_TOP_DIRECTORY_ONLY = false;
 
