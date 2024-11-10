@@ -1,0 +1,47 @@
+name: Test .NET CLI on Ubuntu with Wine
+
+on:
+  workflow_dispatch:  # Allows manual execution from the Actions tab
+
+jobs:
+  test-ubuntu-release:
+    runs-on: ubuntu-latest  # Use the latest Ubuntu environment
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - name: List Root Directory
+        run: ls -l  # List contents of the root directory to understand the structure
+
+      - name: Install Wine
+        run: |
+          sudo dpkg --add-architecture i386
+          sudo apt update
+          sudo apt install -y wine-stable  # Install Wine stable version for running .exe files
+
+      - name: Install 7-Zip
+        run: sudo apt install -y p7zip-full  # Install 7-Zip to extract .7z files
+
+      - name: Check Directory for Release Archive
+        run: ls -l !release  # List contents to verify the .7z file is present
+
+      - name: Check Directory for Release Archive
+        run: ls -l !release/latest-unstable  # List contents to verify the .7z file is present
+
+
+      - name: Extract Release Archive
+        run: |
+          7z x '!release/latest-unstable/LatestCli.7z' -orelease_extracted  # Extract to 'release_extracted' folder
+
+      - name: List Extracted Files
+        run: ls -l release_extracted  # List files to confirm the .exe file is present
+
+      - name: Install .NET SDK
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: '8.0.x'  # Adjust this based on your app's requirements
+
+      - name: Run CLI App Help Command
+        run: |
+          wine release_extracted/DescribeTranspiler.CLI.exe -help auto

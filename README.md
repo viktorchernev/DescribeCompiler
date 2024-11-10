@@ -9,13 +9,13 @@ _Maintaining large data lists, made easy_
 
 Describe is a markup language designed to write and maintain complex data lists that are compiled on demand to various formats, such as html, xml, sql and json. It is simple to use, intuitive and easy to master. Describe is readily extendible - implementing support for new target languages or customizing the transpilation process is straightforward, making it adaptable to a wide range of projects.
 
-Built on the reliable ANTLR 4.13, Describe offers a robust grammar, although the compiler is currently in beta. It is available for free under the AGPL v3 license, but commercial licenses are negotiable as well.
+Built on a state of the art parsing platform such as ANTLR 4.13, Describe offers a robust grammar, although the compiler is currently in beta and some bugs are to be expected. It is available for free under the AGPL v3 license, but commercial licenses are negotiable as well.
 
 While ANTLR ensures strong grammar handling, the compiler is still under active development, and occasional bugs may occur. We appreciate your patience and value your contributions, as we continue to improve the tool.
 
 
 ## How to
-In order to run the `DescribeCompilerCLI.exe` you need a Windows PC with DotNet framework version 4.8 or higher. In order to reference the `DescribeCompilerAPI.dll` in your DotNet projects, you need to target DotNet framework version 4.8 or higher. There are no other dependencies. Also, be sure to check out our [wiki](https://github.com/viktorchernev/DescribeCompiler/wiki) for the complete documentation.  
+In order to run the `DescribeCompilerCLI.exe` you need a Windows PC with DotNet framework version 8.0 or higher. In order to reference the `DescribeCompilerAPI.dll` in your DotNet projects, you need to target DotNet framework version 8.0 or higher. In order to use the Amazon Lambda project, on the other hand, you need to upload it to AWS. Also, be sure to check out our [wiki](https://github.com/viktorchernev/DescribeCompiler/wiki) for the complete documentation.  
   
 ### 0. Set up highlighting
 In order to highlight Describe code, you can download the xml files for Notepad++ from the folder [Highlighting](https://github.com/viktorchernev/DescribeCompiler/tree/master/%23DescribeLanguage/Highlighting), or use the instructions provided in said folder to set up your preferred text editor.
@@ -46,7 +46,7 @@ The final output will depend on the translator used - and you can easily write y
 - You can reach me on Viber as well: +359-885-18-05-86
 
 ## Releases
-We are working on testing the Transpiler v1.0, as it is in alpha - pre release phase. It is finished but contains bugs here and there, and once those have been removed, it will be released.
+We are excited to present the Describe Markup Language Transpiler v1.0.
 
 * [1.0-beta](https://github.com/viktorchernev/DescribeCompiler/releases/tag/1.0-beta) (ANTLR4, Describe v1.1)
 * [0.9.3](https://github.com/viktorchernev/DescribeCompiler/releases/tag/0.9.3) (Support for Describe Language v1.0 - Official)  
@@ -55,4 +55,4 @@ We are working on testing the Transpiler v1.0, as it is in alpha - pre release p
 * [0.9](https://github.com/viktorchernev/DescribeCompiler/releases/tag/0.9) (Initial release - Open beta)
 
 ## Notes
-* We currently have inbuilt translators for HTML and JSON. If you need to target other languages, you'd have to write your own translator - it is very easy. I will give updates here when more translators are available.
+* We currently have inbuilt translators for HTML, XML, JSON and SQL (although the SQL one is just for uploading whole parsed files to a database). If you need to target other languages, or need specific functionality, you'd have to write your own translator class - it is very easy. I will give updates here when more translators are available.
