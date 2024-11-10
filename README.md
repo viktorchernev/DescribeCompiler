@@ -27,7 +27,7 @@ Write a title of each list, followed by an arrow `->` and the elements, one on a
 
 
 ### 2a. [Compile (using CLI)](https://github.com/viktorchernev/DescribeCompiler/wiki/CliCompiler-how-to)  
-Run the CLI compiler by specifying the target folder (or file) as first argument and output file (or folder) as second argument.  Add [options](https://github.com/viktorchernev/DescribeCompiler/wiki/CliCompiler-how-to) after that, if needed.  
+Run the CLI compiler by specifying the command as the first argument, the target folder (or file) as second argument and output file (or folder) as third argument. Add [options](https://github.com/viktorchernev/DescribeCompiler/wiki/CliCompiler-how-to) after that, if needed.  
 
 ![pic2a](https://github.com/viktorchernev/DescribeCompiler/assets/72315339/d8f6ac78-2cbc-4056-b560-16273474fa4d)
 
