@@ -1,6 +1,0 @@
-Like other programming languages, Describe has a file extension associated with source files, and it is ".ds" or ".DS", which stands for "Describe Scripture". By default, the compiler will read only files with those extensions, and ignore others. Also, by convention, source files that are not ready to be compiled are named with the ".dr" extension, which stands for "draft".   
-  
-Some prefixes are also commonly added to Describe source file names, as by convention:  
-
-* "@" - at symbol indicates that the source file is a root one
-* "#" - hash symbol indicates that the file is encrypted

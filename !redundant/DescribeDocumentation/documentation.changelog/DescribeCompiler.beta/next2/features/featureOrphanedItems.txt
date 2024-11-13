@@ -1,3 +1,0 @@
-feature:A way to view nodes that re not included in the main tree
-If there are nodes that are not included in the main tree, those will not be translated to html.
-There should be a way to report those nodes in logs and/or add an option to include those in the html, in some special list, like ORPHANED

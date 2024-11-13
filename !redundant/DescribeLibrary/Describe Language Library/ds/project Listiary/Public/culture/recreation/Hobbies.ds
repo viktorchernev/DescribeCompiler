@@ -1,7 +1,0 @@
-directives ->
-	namespace <treeofall.public.culture.recreation.hobbies>;
-
-
-hobbies <rnode> -> 
-
-	model building <modelBuilding>;

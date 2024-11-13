@@ -1,7 +1,0 @@
-directives ->
-	namespace <treeofall.public.culture.recreation.games>;
-
-
-card games <gamesCardGames> -> 
-	
-	poker games <gamesCardGamesPokerGames>;

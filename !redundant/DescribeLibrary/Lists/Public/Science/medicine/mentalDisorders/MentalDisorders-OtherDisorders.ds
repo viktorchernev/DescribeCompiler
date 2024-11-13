@@ -1,9 +1,0 @@
-directives ->
-	namespace <treeofall.public.science.medicine.mentalDisorders>;
-
-
-other disorders <OtherDisorders>->
-
-	Gender dysphoria <LNtHNO2e>,
-	Medication\-induced movement disorders and other adverse effects of medication <ztAB5Uth>,
-    Catatonia <2hFtgl2X>;

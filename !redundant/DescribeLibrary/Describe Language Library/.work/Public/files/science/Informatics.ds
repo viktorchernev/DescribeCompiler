@@ -1,9 +1,0 @@
-directives ->
-	namespace <treeofall.public.science.informatics>;
-
-
-informatics <rnode> ->
-
-	software <.software.rnode>,
-	hardware <.hardware.rnode>;
-	

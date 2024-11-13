@@ -1,9 +1,0 @@
-directives -> 
-	language-version <1.1>,
-	namespace <ytwatch>;
-
-
-mathematics <z2ew5K7t> ->
-
-	Primer [https://www.youtube.com/channel/UCKzJFdi57J53Vr_BkTfN3uQ] <zCOKdAjS>,
-	Mathologer [https://www.youtube.com/channel/UC1_uAIS3r8Vu6JjXWvastJg] <JtX3Rer7>;

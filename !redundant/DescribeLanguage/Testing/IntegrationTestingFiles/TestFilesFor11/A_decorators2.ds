@@ -1,6 +1,0 @@
-fabrics ->
-
-	wool {fabrics {{color| red}},
-	cotton } fabrics,
-	silk fabrics{{decorator}} ,
-	synthetic {}{}fabrics {{some text}} ;

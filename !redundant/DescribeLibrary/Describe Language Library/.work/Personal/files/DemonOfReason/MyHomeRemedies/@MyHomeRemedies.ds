@@ -1,9 +1,0 @@
-directives -> 
-	namespace <treeofall.personal.MyHomeRemedies>;
-
-my home remedies <rnode> ->
-
-	remove nicotine stains from fingers <MyHomeRemediesStainedFingers>,
-	naturally lower cholestarol <MyHomeRemediesLowerCholesterol>,
-	home remedies for fungal infection on feet <MyHomeRemediesFeetFungal>;
-	

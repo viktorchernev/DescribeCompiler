@@ -1,8 +1,0 @@
-fabrics -> /* comment *//* comment */
-/* comment */
-
-	wool fabrics,
-	cotton fabrics, /*comment*/
-	/* comment */
-	silk fabrics,
-	synthetic fabrics; /* comment *//* comment */

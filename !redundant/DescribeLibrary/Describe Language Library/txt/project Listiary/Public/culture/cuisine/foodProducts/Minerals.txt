@@ -1,7 +1,0 @@
-directives -> namespace <treeofall.public.culture.cuisine.foodProducts>;
-
-
-minerals <minerals> ->
-
-	Water <IlDEUIeE>,
-	Table salt (NaCl) <2Qa1nfG9>;

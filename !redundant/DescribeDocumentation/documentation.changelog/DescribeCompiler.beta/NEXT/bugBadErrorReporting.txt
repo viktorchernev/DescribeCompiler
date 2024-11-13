@@ -1,7 +1,0 @@
-When we have an error, a syntax one for example, why don't we get a message like press any key to exit?
-And worse yet, I can write text
-And worse yet, when there is an error, we continue with all other errors
-
-	No "ProductionColored" Template found during translation.
-	Failed to initialize the translator
-	This parser isn't innitialized, and cannot be used. Create a new instance.

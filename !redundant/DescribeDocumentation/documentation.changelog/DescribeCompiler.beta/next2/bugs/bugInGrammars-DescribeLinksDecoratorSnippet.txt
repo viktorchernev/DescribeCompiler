@@ -1,6 +1,0 @@
-Why is there the following in Links v0.8? It is most likely ignored from the builder and produces a warning
-
-
-<decorators>
-    ::= Decorator Decorator
-    | Decorator <decorators>
