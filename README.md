@@ -48,11 +48,12 @@ The final output will depend on the translator used - and you can easily write y
 ## Releases
 We are excited to present the Describe Markup Language Transpiler v1.0.
 
-* [1.0-beta](https://github.com/viktorchernev/DescribeCompiler/releases/tag/1.0-beta) (ANTLR4, Describe v1.1)
+* [1.0.1-beta](https://github.com/viktorchernev/DescribeCompiler/releases/tag/1.0.1-beta) (CLI argument auto)  
+* [1.0.0-beta](https://github.com/viktorchernev/DescribeCompiler/releases/tag/1.0-beta) (ANTLR4, Describe v1.1)
 * [0.9.3](https://github.com/viktorchernev/DescribeCompiler/releases/tag/0.9.3) (Support for Describe Language v1.0 - Official)  
 * [0.9.2](https://github.com/viktorchernev/DescribeCompiler/releases/tag/0.9.2) (Added features and bugfixes)
 * [0.9.1](https://github.com/viktorchernev/DescribeCompiler/releases/tag/0.9.1) (Refactoring, added features and bugfixes)
-* [0.9](https://github.com/viktorchernev/DescribeCompiler/releases/tag/0.9) (Initial release - Open beta)
+* [0.9.0](https://github.com/viktorchernev/DescribeCompiler/releases/tag/0.9) (Initial release - Open beta)
 
 ## Notes
 * We currently have inbuilt translators for HTML, XML, JSON and SQL (although the SQL one is just for uploading whole parsed files to a database). If you need to target other languages, or need specific functionality, you'd have to write your own translator class - it is very easy. I will give updates here when more translators are available.
