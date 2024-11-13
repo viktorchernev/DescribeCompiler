@@ -48,7 +48,7 @@ The final output will depend on the translator used - and you can easily write y
 ## Releases
 We are excited to present the Describe Markup Language Transpiler v1.0.
 
-* [1.0.1-beta](https://github.com/viktorchernev/DescribeCompiler/releases/tag/1.0.1-beta) (CLI argument auto)  
+* [1.0.1-beta](https://github.com/viktorchernev/DescribeCompiler/releases/tag/1.0.1-beta) (CLI argument - auto)  
 * [1.0.0-beta](https://github.com/viktorchernev/DescribeCompiler/releases/tag/1.0-beta) (ANTLR4, Describe v1.1)
 * [0.9.3](https://github.com/viktorchernev/DescribeCompiler/releases/tag/0.9.3) (Support for Describe Language v1.0 - Official)  
 * [0.9.2](https://github.com/viktorchernev/DescribeCompiler/releases/tag/0.9.2) (Added features and bugfixes)
