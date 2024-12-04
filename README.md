@@ -45,6 +45,11 @@ The final output will depend on the translator used - and you can easily write y
 - Send me an email vchernev91@abv.bg (might take a few days)
 - You can reach me on Viber as well: +359-885-18-05-86
 
+## Sponsor  
+If you think that Describe is cool, or if, maybe, my project has been useful to you, and you want to see it grow and mature faster, why not throw few bucks my way? I'd highly appreciate that, and will feel really cool and significant 😎🤩🥳. You can donate on patreon or ko-fi, where I will be publishing some cool exclusive content and giving free tech support to my patrons (There is no content yet, as there are no patrons yet. There is support though 😄). Ultimately, this is your hard-earned money, and you should not feel pressured into giving it away.
+- (Patreon link will be here)
+- (Ko-Fi link will be here)
+
 ## Releases
 We are excited to present the Describe Markup Language Transpiler v1.0.
 
