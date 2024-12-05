@@ -48,7 +48,7 @@ The final output will depend on the translator used - and you can easily write y
 ## Sponsor  
 If you think that Describe is cool, or if, maybe, my project has been useful to you, and you want to see it grow and mature faster, why not throw few bucks my way? I'd highly appreciate that, and will feel really cool and significant 😎🤩🥳. You can donate on patreon or ko-fi, where I will be publishing some cool exclusive content and giving free tech support to my patrons (There is no content yet, as there are no patrons yet. There is support though 😄). Ultimately, this is your hard-earned money, and you should not feel pressured into giving it away.
 - [Describe Markup Language on Patreon](https://www.patreon.com/DescribeMarkupLanguage)
-- Describe Markup Language on Ko-Fi (comming soon)
+- [Describe Markup Language on Ko-Fi](https://ko-fi.com/viktorchernev)
 
 ## Releases
 We are excited to present the Describe Markup Language Transpiler v1.0.
