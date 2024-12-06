@@ -11,7 +11,7 @@ Describe is a markup language designed to write and maintain complex data lists 
 
 - [Describe Language - A quick overview](https://documentation.listiary.com/language/how-to-write/)
 - [Describe Language - Large source files directory](https://library.listiary.com/)
-- [Describe Language - Full documentation](https://library.listiary.com/)
+- [Describe Language - Official documentation](https://documentation.listiary.com/)
 
 Built on a state of the art parsing platform such as ANTLR 4.13, Describe offers a robust grammar, although the compiler is currently in beta and some bugs are to be expected. It is available for free under the AGPL v3 license, but commercial licenses are negotiable as well.
 
