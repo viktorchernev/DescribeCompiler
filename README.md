@@ -9,6 +9,10 @@ _Maintaining large data lists, made easy_
 
 Describe is a markup language designed to write and maintain complex data lists that are compiled on demand to various formats, such as html, xml, sql and json. It is simple to use, intuitive and easy to master. Describe is readily extendible - implementing support for new target languages or customizing the transpilation process is straightforward, making it adaptable to a wide range of projects.
 
+- [Describe Language - A quick overview](https://documentation.listiary.com/language/how-to-write/)
+- [Describe Language - Large source files directory](https://library.listiary.com/)
+- [Describe Language - Full documentation](https://library.listiary.com/)
+
 Built on a state of the art parsing platform such as ANTLR 4.13, Describe offers a robust grammar, although the compiler is currently in beta and some bugs are to be expected. It is available for free under the AGPL v3 license, but commercial licenses are negotiable as well.
 
 While ANTLR ensures strong grammar handling, the compiler is still under active development, and occasional bugs may occur. We appreciate your patience and value your contributions, as we continue to improve the tool.
@@ -46,7 +50,7 @@ The final output will depend on the translator used - and you can easily write y
 - You can reach me on Viber as well: +359-885-18-05-86
 
 ## Sponsor  
-If you think that Describe is cool, or if, maybe, my project has been useful to you, and you want to see it grow and mature faster, why not throw few bucks my way? I'd highly appreciate that, and will feel really cool and significant 😎🤩🥳. You can donate on patreon or ko-fi, where I will be publishing some cool exclusive content and giving free tech support to my patrons (There is no content yet, as there are no patrons yet. There is support though 😄). Ultimately, this is your hard-earned money, and you should not feel pressured into giving it away.
+If you think that Describe is cool, or if, maybe, my project has been useful to you, and you want to see it grow and mature faster, why not throw few bucks my way? I'd highly appreciate that, and will feel really cool and significant 😎🤩🥳. You can donate on patreon or ko-fi, where I will be publishing some cool exclusive content and giving free tech support to my patrons (There is no content yet, as there are no patrons yet. There is support though 😄).
 - [Describe Markup Language on Patreon](https://www.patreon.com/DescribeMarkupLanguage)
 - [Describe Markup Language on Ko-Fi](https://ko-fi.com/viktorchernev)
 
